@@ -10,6 +10,15 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Imports: 
-    glue
+    dplyr,
+    glue,
+    httr2,
+    janitor,
+    magrittr,
+    purrr,
+    rvest,
+    stringr,
+    utils
 URL: https://github.com/werkstattcodes/ParlAT
 BugReports: https://github.com/werkstattcodes/ParlAT/issues
+Roxygen: list(markdown = TRUE)
