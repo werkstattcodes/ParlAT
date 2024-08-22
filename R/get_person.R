@@ -1,12 +1,78 @@
-get_person <- function(search_string) {
+#' Search persons in Austrian political institutions
+#'
+#' The `get_person` function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
+#'
+#' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
+#' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
+#' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
+#'
+#' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`).
+#' @export
+#'
+#' @examples
+#' # Example: Search for females in the Volksanwaltschaft
+#' get_person(institution="Volksanwaltschaft", gender="female")
+#'
+#' # Example: Search for all individuals named "Krisper" in all institutions
+#' get_person(search_string="Krisper", gender="all")
+#'
+#' # Example: Search in multiple institutions
+#' get_person(institution=c("Bundespräsident", "Nationalrat"), gender="male")
 
-  # search_string <- "Krisper"
+
+get_person <- function(search_string = NULL,
+                       institution =  c(
+                         "Bundespräsident",
+                         "Bundesrat",
+                         "Bundesregierung",
+                         "Europäisches Parlament",
+                         "Konstituierende Nationalversammlung",
+                         "Landeshauptleute",
+                         "Nationalrat",
+                         "Parlamentsdirektion",
+                         "Politische Mandate",
+                         "Provisorische Nationalversammlung",
+                         "Rechnungshof",
+                         "Volksanwaltschaft"
+                       ),
+                       gender = c("all", "female", "male")) {
+  # search_string <- NULL
+  #check if institution is within scope
+  # institution=NULL
+  institution = match.arg(institution, several.ok = TRUE)
+
+  institution_code <- purrr::map_chr(institution, \(x) switch(
+    x,
+    "Bundespräsident" = "BP",
+    "Bundesrat" = "BR",
+    "Konstituierende Nationalversammlung" = "KN",
+    "Bundesregierung" = "BuREG",
+    "Landeshauptleute" = "LH",
+    "Europäisches Parlament" = "MEP",
+    "Politische Mandate" = "MPO",
+    "Nationalrat" = "NR",
+    "Parlamentsdirektion" = "PD",
+    "Provisorische Nationalversammlung" = "PN",
+    "Rechnungshof" = "PRRH",
+    "Volksanwaltschaft" = "VA"
+  ))
+  # gender <- NULL
+  gender <- match.arg(gender)
+  gender_code <- switch(gender,
+                        "male" = "M",
+                        "female" = "W",
+                        "all" = NULL)
+  # gender_code <- NULL
+
+  body_params <- list(PERSART = institution_code, GESCHL = gender_code) |>
+    purrr::compact() |>  #keep only non-empty elements
+    jsonlite::toJSON()
 
   res <- httr2::request("https://www.parlament.gv.at/Filter/api/filter/data/10400") |>
     httr2::req_url_query(
       js = "eval",
-      page = "1",
-      pagesize = "20",
+      #page = "1",
+      pagesize = "10000",
       search = search_string,
       ascDesc = "ASC",
     ) |>
@@ -14,35 +80,36 @@ get_person <- function(search_string) {
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
       `content-type` = "application/json",
-      cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=a8RmonS5xoSPjzey8ovDCAsEBsyl5Ua7YpXVQjF0.appsrv06e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1724182412%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
       dnt = "1",
       origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0
-Safari/537.36",
-    ) |>
-    httr2::req_body_raw("{}", "application/json") |>
+      priority = "u=1, i") |>
+    httr2::req_body_raw(body_params, "application/json") |>
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+    httr2::req_verbose(body_req=T, header_req=F, header_resp = F) |>
     httr2::req_perform()
 
   # vec_headings
   vec_headings <- res |> httr2::resp_body_json(simplifyVector = T) |> purrr::pluck("header", "label") |> janitor::make_clean_names()
 
   df_res <- res |> httr2::resp_body_json(simplifyVector = T) |> purrr::pluck("rows")  |> as.data.frame()
-  # nrow(df_res)
+
+  if (nrow(df_res) == 0) {
+    message("No results found for the given search criteria.")
+    return(NULL)
+  }
 
   colnames(df_res) <- vec_headings
 
   df_res  <- df_res |>
-    dplyr:::select(
-      name,
-      geschl,
-      pad_intern,
-      funktion,
-      link
-    )
+    dplyr:::select(pad_intern,
+                   name,
+                   gender = geschl,
+                   position = funktion,
+                   link)
 
   df_res <- df_res |>
-    dplyr::mutate(funktion=stringr::str_remove(funktion, pattern=stringr::regex("<.*$")))
+    dplyr::mutate(position = stringr::str_remove(position, pattern = stringr::regex("<.*$")))
+
 
   return(df_res)
 

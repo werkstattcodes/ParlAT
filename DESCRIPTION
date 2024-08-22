@@ -18,6 +18,7 @@ Imports:
     purrr,
     rvest,
     stringr,
+    tibble,
     utils
 URL: https://github.com/werkstattcodes/ParlAT
 BugReports: https://github.com/werkstattcodes/ParlAT/issues
