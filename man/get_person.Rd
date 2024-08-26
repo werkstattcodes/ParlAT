@@ -26,13 +26,17 @@ A data.frame with the search results. The data frame includes columns for the in
 \description{
 The \code{get_person} function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
 }
+\details{
+Note that \code{get_person} only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
+not return a match.
+}
 \examples{
 # Example: Search for females in the Volksanwaltschaft
-get_person(institution="Volksanwaltschaft", gender="female")
+get_person(institution = "Volksanwaltschaft", gender = "female")
 
 # Example: Search for all individuals named "Krisper" in all institutions
-get_person(search_string="Krisper", gender="all")
+get_person(search_string = "Krisper")
 
 # Example: Search in multiple institutions
-get_person(institution=c("Bundespräsident", "Nationalrat"), gender="male")
+get_person(institution = c("Bundespräsident", "Nationalrat"), gender = "male")
 }

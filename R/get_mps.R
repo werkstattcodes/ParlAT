@@ -1,12 +1,57 @@
-get_mps <- function(institution=c("all", "Bundesrat", "Nationalrat"),
-                    gender=c("all", "female","male"),
-                    legis_period="all",
-                    parl_group=c("all",
-                      "LBd", "CSP", "GRÜNE", "SPÖ", "F-BZÖ", "GdP", "F", "FPÖ",
-                      "KuL", "VO", "WdU", "LB", "NEOS-LIF", "PILZ", "NEOS", "OK",
-                      "HB", "KPÖ", "ÖVP", "BZÖ", "JETZT", "L", "STRONACH", "NWB",
-                      "SdP")
-                    ) {
+#' get_mps
+#'
+#' The `get_mps` searches the database on all Members of Parliament since 1918. It mirrors the search functionality 'Parlamentarier:innen ab 1918'
+#' on the website of the Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918))
+#'
+#' @param institution
+#' @param gender
+#' @param legis_period *Gesetzgebungsperiode*
+#' @param parl_group *Fraktion*
+#' @param party *Wahlpartei* defaults to "all" possible values:  all (*'Alle Wahlparteien'*), BP (*'Bauernpartei'*), BZÖ (*'Bündnis Zukunft Österreich'*), BAP (*'Bürgerliche Arbeitspartei'*), CSP (*'Christlichsoziale Partei'*), Grüne (*'Die Grünen'*), FPÖ (*'Freiheitliche Partei Österreichs'*), GdP (*'Großdeutsche Volkspartei'*), HB (*'Heimatblock'*), KuL (*'Kommunisten und Linkssozialisten'*), KPÖ (*'Kommunistische Partei Österreichs'*), LBd (*'Landbund'*), L (*'Liberales Forum'*), LB (*'Linksblock'*), PILZ (*'Liste Peter Pilz'*), NWB (*'Nationaler Wirtschaftsblock'*), NEOS (*'NEOS - Das neue Österreich und Liberales Forum'*), ÖVP (*'Österreichische Volkspartei'*), SdP (*'Sozialdemokratische Arbeiterpartei Deutschösterreichs'*), SPÖ (*'Sozialistische Partei Österreichs'*), SPÖ (*'Sozialdemokratische Partei Österreichs'*), STRONA (*'Team Frank Stronach - Frank'*), VO (*'Volksoppostition'*), WdU (*'Wahlpartei der Unabhängigen'*)
+#' @param electoral_district Documentation not clear; search only on level of Bundesland;
+#'
+#' @param presidents_only
+#' @param make_unique Default is FALSE. If TRUE output contains only one single row per MP. Name variants are nested into a list.
+#'
+#' @return
+#' @export
+#'
+#' @details
+#''
+#'
+#' @examples
+get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
+                    gender = c("all", "female", "male"),
+                    legis_period = "all",
+                    party = c(
+                      "all", "BP","BZÖ","BAP","CSP","Grüne","FPÖ","GdP","HB","KuL","KPÖ","LBd","L","LB","PILZ","NWB","NEOS",
+                      "ÖVP","SdP","SPÖ","SPÖ","STRONACH","VO","WdU"),
+                    parl_group = c(
+                      "all","LBd","CSP","GRÜNE","SPÖ","F-BZÖ","GdP","F","FPÖ","KuL","VO","WdU","LB","NEOS-LIF","PILZ",
+                      "NEOS","OK","HB","KPÖ","ÖVP","BZÖ","JETZT","L","STRONACH","NWB","SdP"
+                    ),
+                    electoral_district = c(
+                      "all",
+
+                      "Bundeswahlvorschlag",
+
+                      "Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark",
+                      "Tirol","Vorarlberg","Wien","Burgenland Nord","Burgenland Süd","Klagenfurt","Villach",
+
+                      "Kärnten West","Kärnten Ost",
+                      "Weinviertel","Waldviertel","Mostviertel","Niederösterreich Mitte","Niederösterreich Süd","Thermenregion","Niederösterreich Ost",
+                      "Linz und Umgebung","Innviertel","Hausruckviertel","Traunviertel","Mühlviertel",
+                      "Salzburg Stadt","Flachgau/Tennengau","Lungau/Pinzgau/Pongau",
+                      "Graz und Umgebung","Oststeiermark","Weststeiermark","Obersteiermark",
+                      "Innsbruck","Innsbruck-Land","Unterland","Oberland","Osttirol",
+                      "Vorarlberg Nord","Vorarlberg Süd",
+                      "Wien Innen-Süd","Wien Innen-West","Wien Innen-Ost","Wien Süd","Wien Süd-West","Wien Nord-West","Wien Nord"),
+
+                    state=c(),
+
+                    presidents_only = FALSE,
+                    make_unique = FALSE) {
+
 
   gender <- match.arg(gender)
   if (gender == "all") {
@@ -21,34 +66,121 @@ get_mps <- function(institution=c("all", "Bundesrat", "Nationalrat"),
   }
 
   institution <- match.arg(institution)
-  institution <- switch(institution,
-                        all="ALLE",
-                        Nationalrat="NR",
-                        Bundesrat="BR")
+  institution <- switch(
+    institution,
+    all = "ALLE",
+    Nationalrat = "NR",
+    Bundesrat = "BR"
+  )
 
-  if (!(is.numeric(legis_period) || legis_period %in% c("all", "Provisorische Nationalversammlung", "Konstituierende Nationalversammlung"))) {
-    stop("Invalid input for legis_period. Must be a numeric value or one of 'all', 'Provisorisch Nationalversammlung', or 'Konstituierende Nationalversammlung'.")
+  if (!(is.numeric(legis_period) ||
+        legis_period %in% c("all",
+      "Provisorische Nationalversammlung",
+      "Konstituierende Nationalversammlung"
+    )
+  )) {
+    stop(
+      "Invalid input for legis_period. Must be a numeric value or one of 'all', 'Provisorisch Nationalversammlung', or 'Konstituierende Nationalversammlung'."
+    )
   }
 
   if (is.numeric(legis_period)) {
     legis_period <- as.character(as.roman(legis_period))
-  } else if (legis_period=="all") {
+  } else if (legis_period == "all") {
     legis_period <- "ALLE"
   } else {
     legis_period
   }
 
-  parl_group <- match.arg(parl_group)
-  if (parl_group=="all") {
-    parl_group <- "ALLE" }
+  party <- match.arg(party, several.ok = FALSE)
+  if (party == "all") {
+    party <- "ALLE"
+  }
+
+  parl_group <- match.arg(parl_group, several.ok = FALSE)
+  if (parl_group == "all") {
+    parl_group <- "ALLE"
+  }
+
+  if (!presidents_only %in% c(TRUE, FALSE)) {
+    stop(
+      "Invalid input for `presidents_only`. Must be logical (TRUE or FALSE). Default is FALSE"
+    )
+  } else if (presidents_only == TRUE) {
+    presidents_only <- "J"
+  } else {
+    presidents_only <- NULL
+  }
+
+  electoral_district <- match.arg(electoral_district, several.ok = FALSE)
+  electoral_district <- purrr::map_chr(electoral_district, \(x) switch(
+    x,
+    "all" = "ALLE",
+    "Bundeswahlvorschlag"="FB",
+    "Burgenland" = "F1",
+    "Kärnten" = "F2",
+    "Niederösterreich" = "F3",
+    "Oberösterreich" = "F4",
+    "Salzburg" = "F5",
+    "Steiermark" = "F6",
+    "Tirol" = "F7",
+    "Vorarlberg" = "F8",
+    "Wien" = "F9",
+    "Burgenland Nord" = "F1A",
+    "Burgenland Süd" = "F1B",
+    "Klagenfurt" = "F2A",
+    "Villach" = "F2B",
+    "Kärnten West" = "F2C",
+    "Kärnten Ost" = "F2D",
+    "Weinviertel" = "F3A",
+    "Waldviertel" = "F3B",
+    "Mostviertel" = "F3C",
+    "Niederösterreich Mitte" = "F3D",
+    "Niederösterreich Süd" = "F3E",
+    "Thermenregion" = "F3F",
+    "Niederösterreich Ost" = "F3G",
+    "Linz und Umgebung" = "F4A",
+    "Innviertel" = "F4B",
+    "Hausruckviertel" = "F4C",
+    "Traunviertel" = "F4D",
+    "Mühlviertel" = "F4E",
+    "Salzburg Stadt" = "F5A",
+    "Flachgau/Tennengau" = "F5B",
+    "Lungau/Pinzgau/Pongau" = "F5C",
+    "Graz und Umgebung" = "F6A",
+    "Oststeiermark" = "F6B",
+    "Weststeiermark" = "F6C",
+    "Obersteiermark" = "F6D",
+    "Innsbruck" = "F7A",
+    "Innsbruck-Land" = "F7B",
+    "Unterland" = "F7C",
+    "Oberland" = "F7D",
+    "Osttirol" = "F7E",
+    "Vorarlberg Nord" = "F8A",
+    "Vorarlberg Süd" = "F8B",
+    "Wien Innen-Süd" = "F9A",
+    "Wien Innen-West" = "F9B",
+    "Wien Innen-Ost" = "F9C",
+    "Wien Süd" = "F9D",
+    "Wien Süd-West" = "F9E",
+    "Wien Nord-West" = "F9F",
+    "Wien Nord" = "F9G")
+    )
+
+
 
   body_params <- list(
-    M=M, #male MPs
-    W=W, #female MPs
-    NRBR=institution,
-    GP=legis_period,
-    FR=parl_group
-  )|>
+    M = M,
+    #male MPs
+    W = W,
+    #female MPs
+    NRBR = institution,
+    GP = legis_period,
+    WP = party,
+    FR = parl_group,
+    PR = presidents_only,
+    WK = electoral_district
+  ) |>
     purrr::compact() |>  #keep only non-empty elements
     jsonlite::toJSON()
 
@@ -59,7 +191,7 @@ get_mps <- function(institution=c("all", "Bundesrat", "Nationalrat"),
       listeId = "undefined",
       # pageNumber = "1",
       # pagesize = "10",
-      showAll="true",
+      showAll = "true",
       feldRnr = "3",
       ascDesc = "ASC",
     ) |>
@@ -71,9 +203,11 @@ get_mps <- function(institution=c("all", "Bundesrat", "Nationalrat"),
       origin = "https://www.parlament.gv.at",
       priority = "u=1, i"
     ) |>
-    httr2::req_body_raw(body_params, "application/json") |>
+    httr2::req_body_raw(body_params) |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-    httr2::req_verbose(body_req=T, header_req=F, header_resp = F) |>
+    httr2::req_verbose(body_req = T,
+                       header_req = F,
+                       header_resp = F) |>
     httr2::req_perform()
 
   # Extract headings; rename to make more informative
@@ -95,6 +229,9 @@ get_mps <- function(institution=c("all", "Bundesrat", "Nationalrat"),
 
   colnames(df_res) <- vec_headings
 
+  df_res <- df_res |>
+    dplyr::select(-sortier)
+
   # df_res <- df_res |>
   #   dplyr::mutate(pad_intern = as.numeric(pad_intern))|>
   #   dplyr::select(pad_intern, name, wahlpartei, bundesland, link) |>
@@ -108,7 +245,14 @@ get_mps <- function(institution=c("all", "Bundesrat", "Nationalrat"),
   #     electoral_district=bundesland
   #   )
 
+  if (make_unique == TRUE) {
+    df_res <- df_res |>
+      dplyr::group_by(across(-all_of("name"))) |>
+      dplyr::summarise(name = list(name), name_variants_n = dplyr::n()) |>
+      dplyr::ungroup() |>
+      dplyr::relocate(c(name, name_variants_n), .after = 1)
+  }
+
   return(df_res)
 
 }
-
