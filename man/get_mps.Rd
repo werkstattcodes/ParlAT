@@ -26,6 +26,7 @@ get_mps(
     "Obersteiermark", "Innsbruck", "Innsbruck-Land", "Unterland", "Oberland", "Osttirol",
     "Vorarlberg Nord", "Vorarlberg Süd", "Wien Innen-Süd", "Wien Innen-West",
     "Wien Innen-Ost", "Wien Süd", "Wien Süd-West", "Wien Nord-West", "Wien Nord"),
+  state = c(),
   presidents_only = FALSE,
   make_unique = FALSE
 )
@@ -44,6 +45,7 @@ get_mps(
 \description{
 The \code{get_mps} searches the database on all Members of Parliament since 1918. It mirrors the search functionality 'Parlamentarier:innen ab 1918'
 on the website of the Austrian Parliament (see \href{https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918}{here})
+Does not allow searching for specific name(s).
 }
 \details{
 '

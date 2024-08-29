@@ -2,6 +2,7 @@
 #'
 #' The `get_mps` searches the database on all Members of Parliament since 1918. It mirrors the search functionality 'Parlamentarier:innen ab 1918'
 #' on the website of the Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918))
+#' Does not allow searching for specific name(s).
 #'
 #' @param institution
 #' @param gender
