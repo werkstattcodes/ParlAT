@@ -7,7 +7,7 @@
 #' #' The `get_person` function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
 #' #' It mirrors the search functionality 'Personen' on the website of the Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/))
 #' #'
-#' #' @details Note that `get_person` only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
+#' #' @details Note that `get_person_single` only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
 #' #' not return a match.
 #' #'
 #' #' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
@@ -20,6 +20,7 @@
 #' #'
 #' #' @examples
 get_person_single <- function(search_string = NULL,
+                              search_strict=NULL,
                        institution = NULL,
                        gender = c("all", "female", "male")) {
 
@@ -113,11 +114,20 @@ get_person_single <- function(search_string = NULL,
   df_res <- df_res |>
     dplyr::mutate(position = stringr::str_remove(position, pattern = stringr::regex("<.*$")))
 
+  if(!is.null(search_strict) && search_strict==TRUE) {
+    df_res <- df_res |>
+      dplyr::filter(stringr::str_detect(name, stringr::fixed(search_string)))
+    return(df_res)
+
+  }
+
   return(df_res)
+
+
 }
 
 
-get_persons <- function(names, institution) {
+get_persons <- function(names, institution=NULL) {
 
   li_persons <- purrr::map(names, \(x) get_person_single(search_string = x, institution = institution))
 

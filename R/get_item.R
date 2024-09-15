@@ -123,19 +123,29 @@
 #'
 #' @examples
 get_item <- function(
-    topic=NULL,
-    institution = "Nationalrat",
-    legis_period=NULL,
-    date_start=NULL,
-    date_end=NULL,
-    item=NULL,
-    doc_type=NULL,
-    person=NULL,
-    number=NULL,
-    keyword=NULL,
-    eurovoc=NULL,
-    parl_group=NULL
+    topic=NULL, #Themen - Themen
+    institution = "Nationalrat", #Gremium - NRBR
+    legis_period=NULL, #Gesetzgebungsperiode - GB_Code
+    date_start=NULL, #Datum_von - DATUM_VON
+    date_end=NULL, #Datum_bis - DATUM_BIS
+    item=NULL, #Gegenstand - VHG
+    doc_type=NULL, #Art der Anfrage - DOKTYP
+    person=NULL, #Person - PAD_intern (via person_input)
+    number=NULL, #Nummer - INRUM PENDING
+    keyword=NULL, #Schlagwort - SW
+    eurovoc=NULL, #EuroVoc - EUROVOC
+    parl_group=NULL #Klub/Fraktion - FRAK_CODE
 ) {
+
+  #TOPIC
+  choices_topic=c("Arbeit", "Außenpolitik", "Bildung", "Budget und Finanzen",
+                  "Europäische Union", "Familie und Generationen", "Frauen und Gleichbehandlung",
+                  "Gesundheit und Ernährung", "Information und Medien", "Inneres und Recht",
+                  "Innovation, Technologie und Forschung", "Klima, Umwelt und Energie",
+                  "Kultur", "Land- und Forstwirtschaft", "Landesverteidigung",
+                  "Parlament und Demokratie", "Soziales", "Sport",
+                  "Verkehr und Infrastruktur", "Wirtschaft")
+ checkmate::assert_subset(topic, choices, empty.ok=T)
 
   #INSTITUTION
   checkmate::assert_subset(x=institution, choices = c("Bundesrat", "Nationalrat"), empty.ok=FALSE)
@@ -157,40 +167,50 @@ get_item <- function(
   date_end=as.Date(date_end, format="%d-%m-%Y")
   date_end <- format(as.POSIXct(date_end), format = "%Y-%m-%dT%H:%M:%S.000Z", tz = "UTC")
 
-  # ITEM (Verhandlungsgegenstand)
+  # ITEM / VHG / Gegenstand
   ## _todo_ what about multi-value choices
   ## checkmate::assert_subset does not show which element was not matched
   choices_item <- c("ASEU", "AS", "J_JPR_M", "ANTR", "US", "AUB", "AB_ABPR_ABM", "III", "BNR", "BI", "E", "EBR", "EU", "FS", "GO", "GABR", "GABR13", "IMM", "KOMM", "PET", "RGER", "RV", "RVS", "TRAU", "RVS15", "VOLKBG", "W")
   checkmate::assert_subset(x=item, choices = choices_item, empty.ok=TRUE)
 
-  # DOC_TYPE (Art des Antrages)
-
-  if (!is.null(doc_type) & is.null(item)) {
-    stop("'doc_type' can be only specified in combination with 'item'")
-  }
-
-  if (item=="BNR") {
-    choices_doc_type_bnr_national_council <- c("BNR", "BS", "BSE", "BSESM")
-    choices_doc_type_bnr_federal_council <- c("BNR", "BS", "BSE", "BSESM")
-
-    if (institution=="Nationalrat"||is.null(institution))
-    {checkmate::assert_subset(x=doc_type, choices = choices_doc_type_bnr_national_council, empty.ok=TRUE)}
-
-    if (institution=="Bundesrat")
-    {checkmate::assert_subset(x=doc_type, choices = choices_doc_type_bnr_federal_council, empty.ok=FALSE)}
-  }
-
-  if (item=="ANTR") {
+  if (!is.null(item) && item=="ANTR") {
   ## depending on institution, different set of permissble values
   choices_doc_type_antr_national_council <- c("A", "A(E)", "AA", "AEA", "AMIN", "ARH2", "AVB", "BUA", "UEA", "UEA", "URH2", "URH2")
   choices_doc_type_antr_federal_council <- c("AA-BR", "A-BR", "A(E)", "AEA-BR", "UEA-BR")
 
-  if (institution=="Nationalrat"||is.null(institution))
-  {checkmate::assert_subset(x=doc_type, choices = choices_doc_type_antr_national_council, empty.ok=TRUE)}
-
-  if (institution=="Bundesrat")
-  {checkmate::assert_subset(x=doc_type, choices = choices_doc_type_antr_federal_council, empty.ok=FALSE)}
+  if (institution=="Nationalrat"||is.null(institution)) {
+    checkmate::assert_subset(x=doc_type, choices = choices_doc_type_antr_national_council, empty.ok=TRUE)
+  } else if (institution=="Bundesrat") {
+      checkmate::assert_subset(x=doc_type, choices = choices_doc_type_antr_federal_council, empty.ok=FALSE)
+    }
   }
+
+  # DOC_TYPE (Art des Antrages)
+  if (!is.null(doc_type) & is.null(item)) {
+    stop("'doc_type' can be only specified in combination with 'item'")
+  }
+
+  if (!is.null(item) && item=="BNR") {
+    choices_doc_type_bnr_national_council <- c("BNR", "BS", "BSE", "BSESM")
+    choices_doc_type_bnr_federal_council <- c("BNR", "BS", "BSE", "BSESM")
+
+    if (institution=="Nationalrat"||is.null(institution)){
+      checkmate::assert_subset(x=doc_type, choices = choices_doc_type_bnr_national_council, empty.ok=TRUE)
+    }
+
+    if (institution=="Bundesrat"){
+      checkmate::assert_subset(x=doc_type, choices = choices_doc_type_bnr_federal_council, empty.ok=FALSE)
+    }
+  }
+
+  ##Gegenstand: schriftliche Anfragen
+  ### Art der Anfrage
+  if (!is.null(item) && item=="J_JPR_M") {
+    choices_doc_type_j_jpr_m_national_counicl <- c("J","JEU","JPR","M")
+  }
+
+
+
   # PERSON
   ## requires pad_intern as input => auxiliary function searching pad_intern based on name needed
   ## accepts multiple values
@@ -251,8 +271,7 @@ get_item <- function(
       cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=ed1JSdqiLIKgiFtm_wJhD78ib7UZWk3qfkL8Ayrl.appsrv04e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1724424995%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
       dnt = "1",
       origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+      priority = "u=1, i"
     ) |>
     httr2::req_body_raw(body_params, "application/json") |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>

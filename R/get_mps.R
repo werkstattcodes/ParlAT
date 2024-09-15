@@ -176,7 +176,7 @@ get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
     W = W,
     #female MPs
     NRBR = institution,
-    GP = legis_period,
+    GP = legis_period, #ONLY ACCEPTS VECTOR OF LENGTH 1
     WP = party,
     FR = parl_group,
     PR = presidents_only,
@@ -233,12 +233,6 @@ get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
   df_res <- df_res |>
     dplyr::select(-sortier)
 
-  # df_res <- df_res |>
-  #   dplyr::mutate(pad_intern = as.numeric(pad_intern))|>
-  #   dplyr::select(pad_intern, name, wahlpartei, bundesland, link) |>
-  #   dplyr::mutate(across(.cols=c(wahlpartei, bundesland), .fns=\(x) purrr::map_chr(x, \(y) y|> rvest::read_html() |> rvest::html_element("span") |> rvest::html_attr("title")))) |>
-  #   dplyr::mutate(legis_period=legis_period, .before=1)
-
   # #rename to english and make names more informative
   # df_res <- df_res |>
   #   dplyr::rename(
@@ -253,6 +247,12 @@ get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
       dplyr::ungroup() |>
       dplyr::relocate(c(name, name_variants_n), .after = 1)
   }
+
+  #parse html content in fraktion, gesetzgebungsperiode, bundesland
+  df_res <- df_res |>
+    dplyr::mutate(across(any_of(c("fraktion", "bundesland", "gesetzgebungsperioden")), \(x) purrr::map(x, \(y) aux_parse_html_text(html=y))))
+
+  print(nrow(df_res))
 
   return(df_res)
 

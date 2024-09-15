@@ -36,11 +36,21 @@ fn_check_legis_period_elements <- function(x) {
 }
 
 
+aux_parse_html_title <- function(html) {
 
-get_padintern <- function(string) {
-
-
-
-
+  html |>
+    rvest::read_html() |>
+    rvest::html_element("span") |>
+    rvest::html_attr("title")
 
 }
+
+aux_parse_html_text <- function(html) {
+
+  html |>
+    rvest::read_html() |>
+    rvest::html_elements("span") |>
+    rvest::html_text()
+
+}
+

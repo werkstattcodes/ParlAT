@@ -15,6 +15,7 @@ Imports:
     glue,
     httr2,
     janitor,
+    jsonlite,
     magrittr,
     purrr,
     rvest,

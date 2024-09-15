@@ -2,5 +2,12 @@
 
 export(fn_check_legis_period_elements)
 export(get_item)
+export(get_mandates)
+export(get_mandates_single)
 export(get_mps)
+export(get_names)
+export(get_participation)
+importFrom(jsonlite,fromJSON)
+importFrom(jsonlite,read_json)
+importFrom(jsonlite,toJSON)
 importFrom(utils,as.roman)

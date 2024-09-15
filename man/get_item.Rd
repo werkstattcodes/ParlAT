@@ -155,7 +155,7 @@ if item=="BNR"
 \item BNR: Beschluss
 \item BS: Sonstiger Beschluss
 \item BSE: Beschluss-EU
-\item BSESM: BEschluss-ESM
+\item BSESM: Beschluss-ESM
 \item BS-BR: Sonstiger Beschluss (only if instituition=="Bundesrat")
 }
 }

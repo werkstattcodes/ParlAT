@@ -2,6 +2,9 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom jsonlite fromJSON
+#' @importFrom jsonlite read_json
+#' @importFrom jsonlite toJSON
 #' @importFrom utils as.roman
 ## usethis namespace: end
 NULL

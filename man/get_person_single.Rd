@@ -8,6 +8,7 @@
 \usage{
 get_person_single(
   search_string = NULL,
+  search_strict = NULL,
   institution = NULL,
   gender = c("all", "female", "male")
 )
@@ -18,7 +19,7 @@ get_person_single(
 #' The \code{get_person} function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
 #' It mirrors the search functionality 'Personen' on the website of the Austrian Parliament (see \href{https://www.parlament.gv.at/recherchieren/personen/}{here})
 #'
-#' @details Note that \code{get_person} only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
+#' @details Note that \code{get_person_single} only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
 #' not return a match.
 #'
 #' @param search_string A character string to search for specific names or keywords. Default is \code{NULL}.
