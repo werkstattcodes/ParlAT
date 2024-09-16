@@ -28,7 +28,9 @@ get_mandates_single <- function(pad_intern) {
     dplyr::select(mandate) |>
     tidyr::unnest_longer(mandate) |>
     tidyr::unnest_wider(mandate) |>
-    dplyr::mutate(pad_intern=pad_intern, .before=1)
+    dplyr::mutate(pad_intern=pad_intern, .before=1) |>
+    dplyr::mutate(dplyr::across(c("mandatVon", "mandatBis"), \(x) lubridate::dmy(x)))
+
 }
 
 

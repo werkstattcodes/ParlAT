@@ -2,22 +2,22 @@
 #' ## allows only for search string of length 1, i.e. can only search for one person at the same time
 #'
 #'
-#' #' Search persons in Austrian political institutions
-#' #'
-#' #' The `get_person` function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
-#' #' It mirrors the search functionality 'Personen' on the website of the Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/))
-#' #'
-#' #' @details Note that `get_person_single` only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
-#' #' not return a match.
-#' #'
-#' #' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
-#' #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
-#' #' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
-#' #'
-#' #' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`).
-#' #' @export
-#' #'
-#' #'
+#' Search persons in Austrian political institutions
+#'
+#' The `get_person` function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
+#' It mirrors the search functionality 'Personen' on the website of the Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/))
+#'
+#' @details Note that `get_person_single` only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
+#' not return a match.
+#'
+#' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
+#' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
+#' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
+#'
+#' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`).
+#' @export
+#'
+#'
 #' #' @examples
 get_person_single <- function(search_string = NULL,
                               search_strict=NULL,
@@ -127,6 +127,15 @@ get_person_single <- function(search_string = NULL,
 }
 
 
+#' Get details on an individual's name.
+#'
+#' @param names
+#' @param institution
+#'
+#' @return
+#' @export
+#'
+#' @examples
 get_persons <- function(names, institution=NULL) {
 
   li_persons <- purrr::map(names, \(x) get_person_single(search_string = x, institution = institution))

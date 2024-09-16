@@ -186,7 +186,7 @@ get_item <- function(
   }
 
   # DOC_TYPE (Art des Antrages)
-  if (!is.null(doc_type) & is.null(item)) {
+  if (!is.null(doc_type) && is.null(item)) {
     stop("'doc_type' can be only specified in combination with 'item'")
   }
 

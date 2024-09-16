@@ -1,5 +1,9 @@
 #' Get all name variants of a person
 #'
+#'
+#' `get_names` returns all name variants of an MP or a specific name on a specific date. Particularly relevant
+#' for MPs who changed their name (marriage, divorce). Takes an MP's 'pad_intern' and an optional date as input.
+#'
 #' @param pad_intern
 #'
 #' @return a dataframe

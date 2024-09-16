@@ -206,20 +206,20 @@ get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
     ) |>
     httr2::req_body_raw(body_params) |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-    httr2::req_verbose(body_req = T,
-                       header_req = F,
-                       header_resp = F) |>
+    httr2::req_verbose(body_req = TRUE,
+                       header_req = FALSE,
+                       header_resp = FALSE) |>
     httr2::req_perform()
 
   # Extract headings; rename to make more informative
   vec_headings <- res |>
-    httr2::resp_body_json(simplifyVector = T) |>
+    httr2::resp_body_json(simplifyVector = TRUE) |>
     purrr::pluck("header", "label") |>
     janitor::make_clean_names()
 
   # extract the actual substantive data
   df_res <- res |>
-    httr2::resp_body_json(simplifyVector = T) |>
+    httr2::resp_body_json(simplifyVector = TRUE) |>
     purrr::pluck("rows") |>
     as.data.frame()
 
