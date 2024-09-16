@@ -58,7 +58,8 @@ df_res <- purrr::list_rbind(li_res)
 
 if (!is.null(date)) {
 
-  date_filter <- lubridate::dmy(date)
+  date_filter <- lubridate::parse_date_time(date, #parse_date_time recognizes different date formats
+                                            orders=c("dmy","ymd", "mdy"))
 
   df_res |>
     dplyr::mutate(mandatBis=dplyr::case_when(
