@@ -17,8 +17,8 @@
 #' @examples
 get_person_single <- function(search_string = NULL,
                               search_strict=NULL,
-                       institution = NULL,
-                       gender = c("all", "female", "male")) {
+                              institution = NULL,
+                              gender = c("all", "female", "male")) {
 
 
   # INSTITUTION
@@ -132,9 +132,9 @@ get_person_single <- function(search_string = NULL,
 #' @export
 #'
 #' @examples
-get_persons <- function(names, institution=NULL, mandates=FALSE, date=NULL) {
+get_persons <- function(names, search_strict=TRUE, institution=NULL, mandates=FALSE, date=NULL) {
 
-  li_persons <- purrr::map(names, \(x) get_person_single(search_string = x, institution = institution))
+  li_persons <- purrr::map(names, \(x) get_person_single(search_string = x, search_strict=search_strict, institution = institution))
 
   df_persons <- li_persons |> purrr::list_rbind()
 
