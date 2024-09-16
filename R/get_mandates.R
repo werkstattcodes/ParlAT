@@ -29,7 +29,8 @@ get_mandates_single <- function(pad_intern) {
     tidyr::unnest_longer(mandate) |>
     tidyr::unnest_wider(mandate) |>
     dplyr::mutate(pad_intern=pad_intern, .before=1) |>
-    dplyr::mutate(dplyr::across(c("mandatVon", "mandatBis"), \(x) lubridate::dmy(x)))
+    dplyr::mutate(dplyr::across(c("mandatVon", "mandatBis"), \(x) lubridate::dmy(x))) |>
+    dplyr::select(-zeitraum)
 
 }
 
@@ -44,7 +45,7 @@ get_mandates_single <- function(pad_intern) {
 #' @export
 #'
 #' @examples
-get_mandates <- function(pad_intern) {
+get_mandates <- function(pad_intern, date=NULL) {
 
 #remove duplicates
 pad_intern_unique <- unique(pad_intern)
@@ -53,7 +54,28 @@ if (length(pad_intern_unique)!=length(pad_intern)) {
 }
 
 li_res <- purrr::map(pad_intern_unique, \(x) get_mandates_single(pad_intern=x))
-purrr::list_rbind(li_res)
+df_res <- purrr::list_rbind(li_res)
+
+if (!is.null(date)) {
+
+  date_filter <- lubridate::dmy(date)
+
+  df_res |>
+    dplyr::mutate(mandatBis=dplyr::case_when(
+      aktiv==TRUE & is.na(mandatBis) ~ lubridate::today(),
+      .default=mandatBis
+    )) |>
+    dplyr::filter(date_filter >= mandatVon & date_filter<=mandatBis) |>
+    dplyr::mutate(mandatBis=dplyr::case_when(
+      aktiv==TRUE ~ lubridate::NA_Date_,
+      .default=mandatBis
+    ))
+
+} else {
+
+  df_res
+
+}
 
 }
 

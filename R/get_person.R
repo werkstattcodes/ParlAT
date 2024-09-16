@@ -127,7 +127,7 @@ get_person_single <- function(search_string = NULL,
 }
 
 
-#' Get details on an individual's name.
+#' Get details on an individual's name, including mandates on a specific date.
 #'
 #' @param names
 #' @param institution
@@ -136,10 +136,26 @@ get_person_single <- function(search_string = NULL,
 #' @export
 #'
 #' @examples
-get_persons <- function(names, institution=NULL) {
+get_persons <- function(names, institution=NULL, mandates=FALSE, date=NULL) {
 
   li_persons <- purrr::map(names, \(x) get_person_single(search_string = x, institution = institution))
 
-  li_persons |> purrr::list_rbind()
+  df_persons <- li_persons |> purrr::list_rbind()
+
+  if (!is.null(mandates) && mandates==TRUE) {
+
+    df_persons <- df_persons |>
+      dplyr::mutate(mandates=purrr::map(pad_intern, \(x) get_mandates(pad_intern=x, date=date))) |>
+      tidyr::unnest_longer(mandates, keep_empty=TRUE) |>
+      tidyr::unnest_wider(mandates, names_sep="_")
+
+  }
+
+    if (!is.null(date)) {
+      df_persons <- df_persons |>
+        dplyr::filter(!is.na(mandates_mandatVon))
+    }
+
+    return(df_persons)
 
 }
