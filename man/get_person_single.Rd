@@ -2,9 +2,7 @@
 % Please edit documentation in R/get_person.R
 \name{get_person_single}
 \alias{get_person_single}
-\title{TODO
-\subsection{allows only for search string of length 1, i.e. can only search for one person at the same time}{
-}}
+\title{Search persons in Austrian political institutions}
 \usage{
 get_person_single(
   search_string = NULL,
@@ -13,22 +11,21 @@ get_person_single(
   gender = c("all", "female", "male")
 )
 }
+\arguments{
+\item{search_string}{A character string to search for specific names or keywords. Default is \code{NULL}.}
+
+\item{institution}{A character vector specifying one or more institutions to search within. Possible values are \code{"Bundespräsident"}, \code{"Bundesrat"}, \code{"Bundesregierung"}, \code{"Europäisches Parlament"}, \code{"Konstituierende Nationalversammlung"}, \code{"Landeshauptleute"}, \code{"Nationalrat"}, \code{"Parlamentsdirektion"}, \code{"Politische Mandate"}, \code{"Provisorische Nationalversammlung"}, \code{"Rechnungshof"}, and \code{"Volksanwaltschaft"}. Defaults to all institutions.}
+
+\item{gender}{A character string specifying the gender to filter by. Possible values are \code{"male"}, \code{"female"}, or \code{"all"}. Default is \code{"all"}.}
+}
+\value{
+A data.frame with the search results. The data frame includes columns for the internal ID (\code{pad_intern}), name (\code{name}), gender (\code{gender}), position (\code{position}), and a link (\code{link}).
+}
 \description{
-#' Search persons in Austrian political institutions
-#'
-#' The \code{get_person} function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
-#' It mirrors the search functionality 'Personen' on the website of the Austrian Parliament (see \href{https://www.parlament.gv.at/recherchieren/personen/}{here})
-#'
-#' @details Note that \code{get_person_single} only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
-#' not return a match.
-#'
-#' @param search_string A character string to search for specific names or keywords. Default is \code{NULL}.
-#' @param institution A character vector specifying one or more institutions to search within. Possible values are \code{"Bundespräsident"}, \code{"Bundesrat"}, \code{"Bundesregierung"}, \code{"Europäisches Parlament"}, \code{"Konstituierende Nationalversammlung"}, \code{"Landeshauptleute"}, \code{"Nationalrat"}, \code{"Parlamentsdirektion"}, \code{"Politische Mandate"}, \code{"Provisorische Nationalversammlung"}, \code{"Rechnungshof"}, and \code{"Volksanwaltschaft"}. Defaults to all institutions.
-#' @param gender A character string specifying the gender to filter by. Possible values are \code{"male"}, \code{"female"}, or \code{"all"}. Default is \code{"all"}.
-#'
-#' @return A data.frame with the search results. The data frame includes columns for the internal ID (\code{pad_intern}), name (\code{name}), gender (\code{gender}), position (\code{position}), and a link (\code{link}).
-#' @export
-#'
-#'
-#' @examples
+The \code{get_person} function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
+It mirrors the search functionality 'Personen' on the website of the Austrian Parliament (see \href{https://www.parlament.gv.at/recherchieren/personen/}{here})
+}
+\details{
+Note that \code{get_person_single} only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
+not return a match.
 }

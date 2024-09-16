@@ -4,7 +4,7 @@
 \alias{get_mandates}
 \title{Get mandates}
 \usage{
-get_mandates(pad_intern)
+get_mandates(pad_intern, date = NULL)
 }
 \arguments{
 \item{pad_intern}{}

@@ -2,13 +2,17 @@
 % Please edit documentation in R/get_names.R
 \name{get_names}
 \alias{get_names}
-\title{Title}
+\title{Get all name variants of a person}
 \usage{
-get_names(pad_intern)
+get_names(pad_intern, date = NULL)
 }
 \arguments{
 \item{pad_intern}{}
 }
+\value{
+a dataframe
+}
 \description{
-Title
+\code{get_names} returns all name variants of an MP or a specific name on a specific date. Particularly relevant
+for MPs who changed their name (marriage, divorce). Takes an MP's 'pad_intern' and an optional date as input.
 }

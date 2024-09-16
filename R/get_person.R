@@ -1,7 +1,3 @@
-#' # TODO
-#' ## allows only for search string of length 1, i.e. can only search for one person at the same time
-#'
-#'
 #' Search persons in Austrian political institutions
 #'
 #' The `get_person` function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
@@ -18,7 +14,7 @@
 #' @export
 #'
 #'
-#' #' @examples
+#' @examples
 get_person_single <- function(search_string = NULL,
                               search_strict=NULL,
                        institution = NULL,
