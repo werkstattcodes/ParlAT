@@ -1,7 +1,3 @@
-#TODO
-## if mandate is active, 'mandatBis' is "" (empty) => to be replaced with Sys.Date()?
-## allow for multiple pad_interns as input
-
 #' Title
 #'
 #' @param pad_intern_single
@@ -12,7 +8,7 @@
 #' @examples
 get_mandates_single <- function(pad_intern) {
 
-  #pad_intern <- 35468
+  pad_intern <- 1174
 
   link_file_json <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}?json=TRUE")
   file_json <- jsonlite::read_json(link_file_json)
@@ -45,13 +41,15 @@ get_mandates_single <- function(pad_intern) {
 #' @export
 #'
 #' @examples
-get_mandates <- function(pad_intern, date=NULL) {
+get_mandates <- function(pad_intern, date=NULL, mp_only=NULL) {
 
 #remove duplicates
 pad_intern_unique <- unique(pad_intern)
 if (length(pad_intern_unique)!=length(pad_intern)) {
   print("Duplicate pad_interns removed")
 }
+
+# pad_intern_unique <- 1174
 
 li_res <- purrr::map(pad_intern_unique, \(x) get_mandates_single(pad_intern=x))
 df_res <- purrr::list_rbind(li_res)
@@ -61,7 +59,7 @@ if (!is.null(date)) {
   date_filter <- lubridate::parse_date_time(date, #parse_date_time recognizes different date formats
                                             orders=c("dmy","ymd", "mdy"))
 
-  df_res |>
+  df_res <- df_res |>
     dplyr::mutate(mandatBis=dplyr::case_when(
       aktiv==TRUE & is.na(mandatBis) ~ lubridate::today(),
       .default=mandatBis
@@ -71,12 +69,15 @@ if (!is.null(date)) {
       aktiv==TRUE ~ lubridate::NA_Date_,
       .default=mandatBis
     ))
-
-} else {
-
-  df_res
-
 }
+
+if (!is.null(mp_only) && mp_only==TRUE) {
+  df_res |>
+    dplyr::filter(gremium %in% c("NR", "BR"))
+} else {
+  df_res
+}
+
 
 }
 

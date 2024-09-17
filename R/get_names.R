@@ -12,7 +12,7 @@
 #' @examples
 get_names <- function(pad_intern, date=NULL) {
 
-  # pad_intern <- 1174
+  # pad_intern <- 3612
 
   link_file_json <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}?json=TRUE")
   file_json <- jsonlite::read_json(link_file_json)
@@ -26,6 +26,8 @@ get_names <- function(pad_intern, date=NULL) {
 
 
   #PREVIOUS NAMES
+  if (!is.null(file_json$content$personInfo$frueherenamen)) {
+
   person_names_previous <- file_json$content$personInfo$frueherenamen  |>
     stringr::str_split_1(stringr::regex("\\<br\\>"))
 
@@ -92,6 +94,11 @@ get_names <- function(pad_intern, date=NULL) {
      .default=date_start
    ))
 
+  } else {
+    df_names <- df_name_current |>
+      dplyr::mutate(pad_intern=pad_intern, .before=1)
+  }
+
  #get family/given name
  ## clean name
  df_names <- df_names |>
@@ -109,17 +116,20 @@ get_names <- function(pad_intern, date=NULL) {
     dplyr::mutate(name_family=stringr::str_extract(name_clean, stringr::regex("\\S+$"))) |>
     dplyr::mutate(name_given=stringr::str_remove(name_clean, stringr::regex(name_family)))
 
+ cols_select <- c(
+   index="name_index_2",
+   "pad_intern",
+   "name",
+   "date_start",
+   "date_end",
+   "name_clean",
+   "name_family",
+   "name_given",
+   "value"
+ )
+
  df_names <- df_names |>
-   dplyr::select(
-     index=name_index_2,
-     pad_intern,
-     name,
-     date_start,
-     date_end,
-     name_clean,
-     name_family,
-     name_given,
-     value
+   dplyr::select(any_of(cols_select)
    )
 
  if (!is.null(date)) {
