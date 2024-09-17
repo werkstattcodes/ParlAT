@@ -8,7 +8,7 @@
 #' @examples
 get_mandates_single <- function(pad_intern) {
 
-  pad_intern <- 1174
+  # pad_intern <- 1174
 
   link_file_json <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}?json=TRUE")
   file_json <- jsonlite::read_json(link_file_json)
