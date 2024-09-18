@@ -8,8 +8,8 @@
 #' @examples
 create_panel <- function(legis_period=NULL, institution=NULL) {
 
-  legis_period <- c(26,27)
-  institution <- "Nationalrat"
+  # legis_period <- c(26,27)
+  # institution <- "Nationalrat"
 
   #get all mps
   df_mps_all <- get_mps(legis_period=legis_period, institution = institution)
