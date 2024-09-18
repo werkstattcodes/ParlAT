@@ -4,7 +4,13 @@
 \alias{get_persons}
 \title{Get details on an individual's name, including mandates on a specific date.}
 \usage{
-get_persons(names, institution = NULL, mandates = FALSE, date = NULL)
+get_persons(
+  names,
+  search_strict = TRUE,
+  institution = NULL,
+  mandates = FALSE,
+  date = NULL
+)
 }
 \arguments{
 \item{institution}{}

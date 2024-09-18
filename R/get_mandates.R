@@ -41,7 +41,7 @@ get_mandates_single <- function(pad_intern) {
 #' @export
 #'
 #' @examples
-get_mandates <- function(pad_intern, date=NULL, mp_only=NULL) {
+get_mandates <- function(pad_intern, date=NULL, institution="Nationalrat") {
 
 #remove duplicates
 pad_intern_unique <- unique(pad_intern)
@@ -71,14 +71,25 @@ if (!is.null(date)) {
     ))
 }
 
-if (!is.null(mp_only) && mp_only==TRUE) {
+if (!is.null(institution)) {
+
+  institution <- switch(
+    institution,
+    all = "ALLE",
+    Nationalrat = "NR",
+    Bundesrat = "BR"
+  )
+
   df_res |>
-    dplyr::filter(gremium %in% c("NR", "BR"))
+    dplyr::filter(gremium %in% institution)
 } else {
   df_res
 }
 
 
 }
+
+
+
 
 
