@@ -21,37 +21,15 @@
 #''
 #'
 #' @examples
-get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
-                    gender = c("all", "female", "male"),
-                    legis_period = "all",
-                    party = c(
-                      "all", "BP","BZÖ","BAP","CSP","Grüne","FPÖ","GdP","HB","KuL","KPÖ","LBd","L","LB","PILZ","NWB","NEOS",
-                      "ÖVP","SdP","SPÖ","SPÖ","STRONACH","VO","WdU"),
-                    parl_group = c(
-                      "all","LBd","CSP","GRÜNE","SPÖ","F-BZÖ","GdP","F","FPÖ","KuL","VO","WdU","LB","NEOS-LIF","PILZ",
-                      "NEOS","OK","HB","KPÖ","ÖVP","BZÖ","JETZT","L","STRONACH","NWB","SdP"
-                    ),
-                    electoral_district = c(
-                      "all",
-
-                      "Bundeswahlvorschlag",
-
-                      "Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark",
-                      "Tirol","Vorarlberg","Wien","Burgenland Nord","Burgenland Süd","Klagenfurt","Villach",
-
-                      "Kärnten West","Kärnten Ost",
-                      "Weinviertel","Waldviertel","Mostviertel","Niederösterreich Mitte","Niederösterreich Süd","Thermenregion","Niederösterreich Ost",
-                      "Linz und Umgebung","Innviertel","Hausruckviertel","Traunviertel","Mühlviertel",
-                      "Salzburg Stadt","Flachgau/Tennengau","Lungau/Pinzgau/Pongau",
-                      "Graz und Umgebung","Oststeiermark","Weststeiermark","Obersteiermark",
-                      "Innsbruck","Innsbruck-Land","Unterland","Oberland","Osttirol",
-                      "Vorarlberg Nord","Vorarlberg Süd",
-                      "Wien Innen-Süd","Wien Innen-West","Wien Innen-Ost","Wien Süd","Wien Süd-West","Wien Nord-West","Wien Nord"),
-
-                    state=c(),
-
-                    presidents_only = FALSE,
-                    make_unique = FALSE) {
+get_mps_single <- function(institution = institution,
+                    gender = gender,
+                    legis_period = legis_period,
+                    party = party,
+                    parl_group = parl_group,
+                    electoral_district =electoral_district,
+                    state=state,
+                    presidents_only = presidents_only,
+                    make_unique = make_unique) {
 
 
   gender <- match.arg(gender)
@@ -168,8 +146,6 @@ get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
     "Wien Nord" = "F9G")
     )
 
-
-
   body_params <- list(
     M = M,
     #male MPs
@@ -257,3 +233,63 @@ get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
   return(df_res)
 
 }
+
+
+#' Title
+#'
+#' @param institution
+#' @param gender
+#' @param legis_period
+#' @param party
+#' @param parl_group
+#' @param electoral_district
+#' @param state
+#' @param presidents_only
+#' @param make_unique
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
+                             gender = c("all", "female", "male"),
+                             legis_period = "all",
+                             party = c(
+                               "all", "BP","BZÖ","BAP","CSP","Grüne","FPÖ","GdP","HB","KuL","KPÖ","LBd","L","LB","PILZ","NWB","NEOS",
+                               "ÖVP","SdP","SPÖ","SPÖ","STRONACH","VO","WdU"),
+                             parl_group = c(
+                               "all","LBd","CSP","GRÜNE","SPÖ","F-BZÖ","GdP","F","FPÖ","KuL","VO","WdU","LB","NEOS-LIF","PILZ",
+                               "NEOS","OK","HB","KPÖ","ÖVP","BZÖ","JETZT","L","STRONACH","NWB","SdP"
+                             ),
+                             electoral_district = c(
+                               "all",
+
+                               "Bundeswahlvorschlag",
+
+                               "Burgenland","Kärnten","Niederösterreich","Oberösterreich","Salzburg","Steiermark",
+                               "Tirol","Vorarlberg","Wien","Burgenland Nord","Burgenland Süd","Klagenfurt","Villach",
+
+                               "Kärnten West","Kärnten Ost",
+                               "Weinviertel","Waldviertel","Mostviertel","Niederösterreich Mitte","Niederösterreich Süd","Thermenregion","Niederösterreich Ost",
+                               "Linz und Umgebung","Innviertel","Hausruckviertel","Traunviertel","Mühlviertel",
+                               "Salzburg Stadt","Flachgau/Tennengau","Lungau/Pinzgau/Pongau",
+                               "Graz und Umgebung","Oststeiermark","Weststeiermark","Obersteiermark",
+                               "Innsbruck","Innsbruck-Land","Unterland","Oberland","Osttirol",
+                               "Vorarlberg Nord","Vorarlberg Süd",
+                               "Wien Innen-Süd","Wien Innen-West","Wien Innen-Ost","Wien Süd","Wien Süd-West","Wien Nord-West","Wien Nord"),
+
+                             state=NULL,
+
+                             presidents_only = FALSE,
+                             make_unique = FALSE){
+
+
+li_mps <- purrr::map(legis_period, \(x) get_mps_single(legis_period=x, institution=institution, gender=gender, party=party,
+                                         parl_group=parl_group, electoral_district=electoral_district,state=state,
+                                         presidents_only=presidents_only, make_unique=make_unique), .progress="Get MPs")
+li_mps |> purrr::list_rbind()
+
+
+}
+
+

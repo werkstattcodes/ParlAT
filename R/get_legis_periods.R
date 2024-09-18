@@ -8,6 +8,8 @@
 #' @examples
 get_legis_period <- function(legis_period=NULL) {
 
+  #legis_period <- 27
+
   res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
     httr2::req_url_query(
       jsMode = "FIELDS",

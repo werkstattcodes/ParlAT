@@ -8,8 +8,8 @@
 #' @examples
 create_panel <- function(legis_period=NULL, institution=NULL) {
 
-  # legis_period <- 27
-  # institution <- "Bundesrat"
+  legis_period <- c(26,27)
+  institution <- "Nationalrat"
 
   #get all mps
   df_mps_all <- get_mps(legis_period=legis_period, institution = institution)
@@ -76,17 +76,23 @@ create_panel <- function(legis_period=NULL, institution=NULL) {
   #join names
   df_mandates_long_pad_fill_names <- df_mandates_long_pad_fill |>
     dplyr::left_join(df_names,
-              by=dplyr::join_by(pad_intern, between(mandate_date, date_start, date_end)))
+              by=dplyr::join_by(pad_intern, between(mandate_date, date_start, date_end))) |>
+    dplyr::select(-date_start, -date_end) |>
+    dplyr::rename(
+      name_index=index,
+      name_value=value)
+
+
+  df_legis_period <- get_legis_period(legis_period={{legis_period}})
+
+  df_legis_period <- df_legis_period |>
+    dplyr::mutate(date_end=dplyr::case_when(
+      legis_period_current==TRUE ~ lubridate::today(),
+      .default=date_end
+    ))
 
 
   if (!is.null(legis_period)) {
-
-    df_legis_period <- get_legis_period(legis_period={{legis_period}})
-    df_legis_period <- df_legis_period |>
-      dplyr::mutate(date_end=dplyr::case_when(
-        legis_period_current==TRUE ~ lubridate::today(),
-        .default=date_end
-      ))
 
     df_mandates_long_pad_fill_names <- df_mandates_long_pad_fill_names |>
       dplyr::semi_join(df_legis_period, by=dplyr::join_by(between(mandate_date, date_start, date_end)))
@@ -94,7 +100,34 @@ create_panel <- function(legis_period=NULL, institution=NULL) {
     return(df_mandates_long_pad_fill_names)
   } else {
     df_mandates_long_pad_fill_names
-    }
+  }
+
+  #test
+  # df_legis_period <- df_legis_period |>
+  #   dplyr::mutate(duration_days=difftime(date_end, date_start, units="days"))
+  #
+  # duration_days <- df_legis_period |>
+  #   dplyr::summarise(duration_days_sum=sum(duration_days)) |>
+  #   dplyr::pull(duration_days_sum) |>
+  #   as.numeric()
+  #
+  # df_n_mps_days<- df_mandates_long_pad_fill_names |>
+  #   dplyr::group_by(mandate_date) |>
+  #   dplyr::summarise(n_mps=dplyr::n()) |>
+  #   dplyr::filter(n_mps!=183)
+  #
+  # nrow(df_mandates_long_pad_fill_names)
+  # 183*duration_days
+  #
+  # df_check <- df_mandates_long_pad_fill_names |>
+  #   dplyr::filter(mandate_date %in% c("2023-11-14", "2023-11-13", "2023-11-17")) |>
+  #   dplyr::count(pad_intern)
+  # nrow(df_check)
+  #
+  # check_pad_intern<- df_mandates_long_pad_fill_names |>
+  #   dplyr::filter(pad_intern==26343)
+
+
 }
 
 
