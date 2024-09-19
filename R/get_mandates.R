@@ -57,6 +57,7 @@ get_mandates <- function(pad_intern, date=NULL, institution="Nationalrat") {
 
 #remove duplicates
 pad_intern_unique <- unique(pad_intern)
+
 if (length(pad_intern_unique)!=length(pad_intern)) {
   print("Duplicate pad_interns removed")
 }
@@ -66,7 +67,7 @@ if (length(pad_intern_unique)!=length(pad_intern)) {
 li_res <- purrr::map(pad_intern_unique, \(x) get_mandates_single(pad_intern=x))
 df_res <- purrr::list_rbind(li_res)
 
-if (is.null(df_res)) {return(NULL)}
+if (is.null(df_res)| nrow(df_res)==0) {return(NULL)}
 
 if (!is.null(date)) {
 
