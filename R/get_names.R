@@ -10,12 +10,28 @@
 #' @export
 #'
 #' @examples
-get_names <- function(pad_intern, date=NULL) {
+get_names <- function(pad_intern, date=NULL, latest=NULL) {
 
-  # pad_intern <- 3612
+  # pad_intern <- 1234
 
   link_file_json <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}?json=TRUE")
-  file_json <- jsonlite::read_json(link_file_json)
+
+
+  #file_json <- jsonlite::read_json(link_file_json)
+
+  file_json <-   tryCatch(
+    {
+      jsonlite::read_json(link_file_json)
+    },
+    error = function(e) {
+      #warning(paste("Error reading JSON from URL:", e$message))
+      return(NULL)
+    }
+  )
+
+
+  if (is.null(file_json)) {
+    return(NA)    }
 
   #CURRENT NAMES
   person_name_current <- file_json$content$headingbox$title
@@ -134,10 +150,15 @@ get_names <- function(pad_intern, date=NULL) {
 
  if (!is.null(date)) {
    date_filter <- lubridate::dmy(date)
-   df_names |>  dplyr::filter(date_filter >= date_start & date_filter <= date_end)
-   } else {
-   df_names
+   df_names<- df_names |>  dplyr::filter(date_filter >= date_start & date_filter <= date_end)
  }
+
+ if (!is.null(latest) && latest==TRUE) {
+   df_names |>
+     dplyr::slice_head(n=1)
+ } else {
+      df_names
+    }
 
 }
 
