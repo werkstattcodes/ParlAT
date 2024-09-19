@@ -11,7 +11,19 @@ get_mandates_single <- function(pad_intern) {
   # pad_intern <- 1174
 
   link_file_json <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}?json=TRUE")
-  file_json <- jsonlite::read_json(link_file_json)
+
+  file_json <-   tryCatch(
+    {
+      jsonlite::read_json(link_file_json)
+    },
+    error = function(e) {
+      #warning(paste("Error reading JSON from URL:", e$message))
+      return(NULL)
+    }
+  )
+
+  if (is.null(file_json)) {
+    return(NULL)    }
 
   content <- file_json$content
 
@@ -53,6 +65,8 @@ if (length(pad_intern_unique)!=length(pad_intern)) {
 
 li_res <- purrr::map(pad_intern_unique, \(x) get_mandates_single(pad_intern=x))
 df_res <- purrr::list_rbind(li_res)
+
+if (is.null(df_res)) {return(NULL)}
 
 if (!is.null(date)) {
 
