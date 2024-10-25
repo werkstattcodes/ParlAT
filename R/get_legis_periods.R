@@ -34,11 +34,11 @@ get_legis_period <- function(legis_period=NULL) {
 
   #extract/clean dates
   df_res <- df_res |>
-    dplyr::filter(value!="ALLE") |>
-    dplyr::mutate(current=dplyr::case_when(
-      stringr::str_detect(label, "seit") ~ TRUE,
-      .default=FALSE
-    ))
+    dplyr::filter(value!="ALLE") #|>
+    # dplyr::mutate(current=dplyr::case_when(
+    #   stringr::str_detect(label, "seit") ~ TRUE,
+    #   .default=FALSE
+    # ))
 
   df_res <- df_res |>
     dplyr::mutate(dates_li=stringr::str_extract_all(label, stringr::regex("\\d{2}\\.\\d{2}\\.\\d{4}")))
@@ -46,7 +46,11 @@ get_legis_period <- function(legis_period=NULL) {
   df_res <- df_res |>
     dplyr::mutate(date_start=purrr::map_chr(dates_li, purrr::pluck, 1)) |>
     dplyr::mutate(date_end=purrr::map_chr(dates_li, .f=\(x) purrr::pluck(x, 2, .default=NA)))|>
-    dplyr::mutate(across(c("date_start", "date_end"), \(x) lubridate::dmy(x)))
+    dplyr::mutate(across(c("date_start", "date_end"), \(x) lubridate::dmy(x))) |>
+    dplyr::mutate(legis_period_current=dplyr::case_when(
+      is.na(date_end) ~ TRUE,
+      .default=FALSE
+    ))
 
   #select columns, rename
   df_res <- df_res |>
@@ -56,7 +60,7 @@ get_legis_period <- function(legis_period=NULL) {
     dplyr::select(
       legis_period_rom=value,
       legis_period,
-      legis_period_current=current,
+      legis_period_current,
       date_start,
       date_end
     )

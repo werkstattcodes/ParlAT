@@ -134,9 +134,14 @@ get_person_single <- function(search_string = NULL,
 #' @examples
 get_persons <- function(names, search_strict=TRUE, institution=NULL, mandates=FALSE, date=NULL) {
 
+  # names <- "generiert"
+  # search_strict <- TRUE
+  # instituiton=NULL
   li_persons <- purrr::map(names, \(x) get_person_single(search_string = x, search_strict=search_strict, institution = institution))
 
   df_persons <- li_persons |> purrr::list_rbind()
+
+  if (nrow(df_persons)==0) {return(NULL)}
 
   if (!is.null(mandates) && mandates==TRUE) {
 
