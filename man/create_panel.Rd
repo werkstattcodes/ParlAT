@@ -7,8 +7,13 @@
 create_panel(legis_period = NULL, institution = NULL)
 }
 \arguments{
-\item{legis_period}{}
+\item{legis_period}{Legislative period}
+
+\item{institution}{Chamber of Parliament. Nationalrat or Bundesrat}
+}
+\value{
+Description of the return value.
 }
 \description{
-Create Panel
+This function creates a panel of MPs with their mandates for a given legislative period and institution.
 }

@@ -3,7 +3,7 @@
 #' @description
 #' `get_item` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 #' in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
-#' mirrors the search functionality offered on the Austrian Parliament's website.
+#' mirrors the search functionality offered on the Austrian Parliament's website. See [here](https://www.parlament.gv.at/recherchieren/gegenstaende/index.html).
 #'
 #' @param topic Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param institution Character string. Either "Nationalrat" (National Council) or "Bundesrat" (Federal Council). Default is "Nationalrat".
@@ -145,10 +145,10 @@ get_item <- function(
                   "Kultur", "Land- und Forstwirtschaft", "Landesverteidigung",
                   "Parlament und Demokratie", "Soziales", "Sport",
                   "Verkehr und Infrastruktur", "Wirtschaft")
- checkmate::assert_subset(topic, choices, empty.ok=T)
+ checkmate::assert_subset(topic, choices_topic, empty.ok=T)
 
   #INSTITUTION
-  checkmate::assert_subset(x=institution, choices = c("Bundesrat", "Nationalrat"), empty.ok=FALSE)
+  checkmate::assert_subset(institution, choices = c("Bundesrat", "Nationalrat"), empty.ok=FALSE)
   ##encode
   institution_input <- switch(
     institution,
@@ -160,7 +160,7 @@ get_item <- function(
   legis_period <- purrr::map_chr(legis_period, \(x) fn_check_legis_period_elements(x))
 
   #DATE START; DATE END
-  ## todo allow for different date types
+  ## todo allow for different date types such as "yyyy-mm-dd", "mm/dd/yyyy", and "dd-mm-yyyy"
   date_start=as.Date(date_start, format="%d-%m-%Y")
   date_start <- format(as.POSIXct(date_start), format = "%Y-%m-%dT%H:%M:%S.000Z", tz = "UTC")
 
@@ -175,7 +175,7 @@ get_item <- function(
 
   if (!is.null(item) && item=="ANTR") {
   ## depending on institution, different set of permissble values
-  choices_doc_type_antr_national_council <- c("A", "A(E)", "AA", "AEA", "AMIN", "ARH2", "AVB", "BUA", "UEA", "UEA", "URH2", "URH2")
+  choices_doc_type_antr_national_council <- c("A", "A(E)", "AA", "AEA", "AMIN", "ARH2", "AVB", "BUA", "UEA", "URH2")
   choices_doc_type_antr_federal_council <- c("AA-BR", "A-BR", "A(E)", "AEA-BR", "UEA-BR")
 
   if (institution=="Nationalrat"||is.null(institution)) {
@@ -206,7 +206,6 @@ get_item <- function(
   ##Gegenstand: schriftliche Anfragen
   ### Art der Anfrage
   if (!is.null(item) && item=="J_JPR_M") {
-    choices_doc_type_j_jpr_m_national_counicl <- c("J","JEU","JPR","M")
   }
 
 

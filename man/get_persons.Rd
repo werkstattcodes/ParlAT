@@ -18,3 +18,6 @@ get_persons(
 \description{
 Get details on an individual's name, including mandates on a specific date.
 }
+\examples{
+get_persons("Zadic")
+}

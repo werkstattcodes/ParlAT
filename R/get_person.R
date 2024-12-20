@@ -13,8 +13,8 @@
 #' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`).
 #' @export
 #'
+#' @noRd
 #'
-#' @examples
 get_person_single <- function(search_string = NULL,
                               search_strict=NULL,
                               institution = NULL,
@@ -132,6 +132,7 @@ get_person_single <- function(search_string = NULL,
 #' @export
 #'
 #' @examples
+#' get_persons("Zadic")
 get_persons <- function(names, search_strict=TRUE, institution=NULL, mandates=FALSE, date=NULL) {
 
   # names <- "generiert"

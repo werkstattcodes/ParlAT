@@ -2,51 +2,70 @@
 % Please edit documentation in R/get_mps.R
 \name{get_mps}
 \alias{get_mps}
-\title{get_mps}
+\title{Get Members of Parliament}
 \usage{
 get_mps(
   institution = c("all", "Bundesrat", "Nationalrat"),
   gender = c("all", "female", "male"),
   legis_period = "all",
   party = c("all", "BP", "BZÖ", "BAP", "CSP", "Grüne", "FPÖ", "GdP", "HB", "KuL",
-    "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP", "SdP", "SPÖ", "SPÖ",
-    "STRONACH", "VO", "WdU"),
+    "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP", "SdP", "SPÖ", "STRONACH",
+    "VO", "WdU"),
   parl_group = c("all", "LBd", "CSP", "GRÜNE", "SPÖ", "F-BZÖ", "GdP", "F", "FPÖ",
     "KuL", "VO", "WdU", "LB", "NEOS-LIF", "PILZ", "NEOS", "OK", "HB", "KPÖ", "ÖVP",
     "BZÖ", "JETZT", "L", "STRONACH", "NWB", "SdP"),
   electoral_district = c("all", "Bundeswahlvorschlag", "Burgenland", "Kärnten",
     "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol",
-    "Vorarlberg", "Wien", "Burgenland Nord", "Burgenland Süd", "Klagenfurt", "Villach",
-    "Kärnten West", "Kärnten Ost", "Weinviertel", "Waldviertel", "Mostviertel",
-    "Niederösterreich Mitte", "Niederösterreich Süd", "Thermenregion",
-    "Niederösterreich Ost", "Linz und Umgebung", "Innviertel", "Hausruckviertel",
-    "Traunviertel", "Mühlviertel", "Salzburg Stadt", "Flachgau/Tennengau", 
-    
-    "Lungau/Pinzgau/Pongau", "Graz und Umgebung", "Oststeiermark", "Weststeiermark",
-    "Obersteiermark", "Innsbruck", "Innsbruck-Land", "Unterland", "Oberland", "Osttirol",
-    "Vorarlberg Nord", "Vorarlberg Süd", "Wien Innen-Süd", "Wien Innen-West",
-    "Wien Innen-Ost", "Wien Süd", "Wien Süd-West", "Wien Nord-West", "Wien Nord"),
-  state = c(),
+    "Vorarlberg", "Wien", "Wien Nord"),
+  state = NULL,
   presidents_only = FALSE,
   make_unique = FALSE
 )
 }
 \arguments{
-\item{legis_period}{\emph{Gesetzgebungsperiode}}
+\item{institution}{Chamber of Parliament. One of "all", "Bundesrat", or "Nationalrat"}
 
-\item{party}{\emph{Wahlpartei} defaults to "all" possible values:  all (\emph{'Alle Wahlparteien'}), BP (\emph{'Bauernpartei'}), BZÖ (\emph{'Bündnis Zukunft Österreich'}), BAP (\emph{'Bürgerliche Arbeitspartei'}), CSP (\emph{'Christlichsoziale Partei'}), Grüne (\emph{'Die Grünen'}), FPÖ (\emph{'Freiheitliche Partei Österreichs'}), GdP (\emph{'Großdeutsche Volkspartei'}), HB (\emph{'Heimatblock'}), KuL (\emph{'Kommunisten und Linkssozialisten'}), KPÖ (\emph{'Kommunistische Partei Österreichs'}), LBd (\emph{'Landbund'}), L (\emph{'Liberales Forum'}), LB (\emph{'Linksblock'}), PILZ (\emph{'Liste Peter Pilz'}), NWB (\emph{'Nationaler Wirtschaftsblock'}), NEOS (\emph{'NEOS - Das neue Österreich und Liberales Forum'}), ÖVP (\emph{'Österreichische Volkspartei'}), SdP (\emph{'Sozialdemokratische Arbeiterpartei Deutschösterreichs'}), SPÖ (\emph{'Sozialistische Partei Österreichs'}), SPÖ (\emph{'Sozialdemokratische Partei Österreichs'}), STRONA (\emph{'Team Frank Stronach - Frank'}), VO (\emph{'Volksoppostition'}), WdU (\emph{'Wahlpartei der Unabhängigen'})}
+\item{gender}{Gender filter. One of "all", "female", or "male"}
 
-\item{parl_group}{\emph{Fraktion}}
+\item{legis_period}{Legislative period. Can be "all", a numeric value,
+"Provisorische Nationalversammlung", or "Konstituierende Nationalversammlung"}
 
-\item{electoral_district}{Documentation not clear; search only on level of Bundesland;}
+\item{party}{Political party filter. See details for possible values.}
 
-\item{make_unique}{Default is FALSE. If TRUE output contains only one single row per MP. Name variants are nested into a list.}
+\item{parl_group}{Parliamentary group filter}
+
+\item{electoral_district}{Electoral district filter}
+
+\item{state}{State filter}
+
+\item{presidents_only}{Logical. If TRUE, returns only presidents. Default is FALSE}
+
+\item{make_unique}{Logical. If TRUE, returns unique entries. Default is FALSE}
+}
+\value{
+A dataframe containing information about Members of Parliament including:
+\item{name}{Name of the MP}
+\item{fraktion}{Parliamentary group}
+\item{bundesland}{Federal state}
+\item{gesetzgebungsperioden}{Legislative periods}
+And additional columns depending on the query parameters
 }
 \description{
-The \code{get_mps} searches the database on all Members of Parliament since 1918. It mirrors the search functionality 'Parlamentarier:innen ab 1918'
-on the website of the Austrian Parliament (see \href{https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918}{here})
-Does not allow searching for specific name(s).
+Retrieves information about Members of Parliament from the Austrian Parliament database.
+This function mirrors the search functionality 'Parlamentarier:innen ab 1918'
+from the Austrian Parliament website.
 }
 \details{
-'
+Available party values include: "all", "BP", "BZÖ", "BAP", "CSP", "Grüne", "FPÖ",
+"GdP", "HB", "KuL", "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP",
+"SdP", "SPÖ", "STRONACH", "VO", "WdU"
+}
+\examples{
+\dontrun{
+# Get all MPs from the current legislative period
+mps <- get_mps(institution = "Nationalrat", legis_period = "27")
+
+# Get female MPs from a specific party
+female_mps <- get_mps(gender = "female", party = "SPÖ")
+}
 }

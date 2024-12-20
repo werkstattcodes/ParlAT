@@ -4,7 +4,7 @@
 \alias{get_names}
 \title{Get all name variants of a person}
 \usage{
-get_names(pad_intern, date = NULL)
+get_names(pad_intern, date = NULL, latest = NULL)
 }
 \arguments{
 \item{pad_intern}{}

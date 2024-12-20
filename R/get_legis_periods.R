@@ -1,12 +1,13 @@
-#' #Get start and end dates of legislative periods
+#' Get start and end dates of legislative periods
 #'
-#' @param legis_period
+#' @param legis_period Number of legislative period(s)
 #'
-#' @return
+#' @return A dataframe
 #' @export
 #'
 #' @examples
-get_legis_period <- function(legis_period=NULL) {
+#' get_legis_period(c(23,23))
+get_legis_periods <- function(legis_period=NULL) {
 
   #legis_period <- 27
 

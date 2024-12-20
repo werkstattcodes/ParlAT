@@ -49,7 +49,7 @@ and displays a message.
 \description{
 \code{get_item} searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
-mirrors the search functionality offered on the Austrian Parliament's website.
+mirrors the search functionality offered on the Austrian Parliament's website. See \href{https://www.parlament.gv.at/recherchieren/gegenstaende/index.html}{here}.
 }
 \details{
 \subsection{Topic ('Thema')}{

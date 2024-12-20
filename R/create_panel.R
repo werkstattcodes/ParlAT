@@ -1,17 +1,16 @@
 #' Create Panel
 #'
-#' @param legis_period
+#' This function creates a panel of MPs with their mandates for a given legislative period and institution.
 #'
-#' @return
-#' @export
-#'
+#' @param legis_period Legislative period
+#' @param institution Chamber of Parliament. Nationalrat or Bundesrat
+#' @return Description of the return value.
 #' @examples
+#' @export
+
 create_panel <- function(legis_period=NULL, institution=NULL) {
 
-  # legis_period <- c(26,27)
-  # institution <- "Nationalrat"
-
-  #get all mps
+  # Get all MPs
   df_mps_all <- get_mps(legis_period=legis_period, institution = institution)
 
   #unique pad_interns
@@ -102,32 +101,4 @@ create_panel <- function(legis_period=NULL, institution=NULL) {
     df_mandates_long_pad_fill_names
   }
 
-  #test
-  # df_legis_period <- df_legis_period |>
-  #   dplyr::mutate(duration_days=difftime(date_end, date_start, units="days"))
-  #
-  # duration_days <- df_legis_period |>
-  #   dplyr::summarise(duration_days_sum=sum(duration_days)) |>
-  #   dplyr::pull(duration_days_sum) |>
-  #   as.numeric()
-  #
-  # df_n_mps_days<- df_mandates_long_pad_fill_names |>
-  #   dplyr::group_by(mandate_date) |>
-  #   dplyr::summarise(n_mps=dplyr::n()) |>
-  #   dplyr::filter(n_mps!=183)
-  #
-  # nrow(df_mandates_long_pad_fill_names)
-  # 183*duration_days
-  #
-  # df_check <- df_mandates_long_pad_fill_names |>
-  #   dplyr::filter(mandate_date %in% c("2023-11-14", "2023-11-13", "2023-11-17")) |>
-  #   dplyr::count(pad_intern)
-  # nrow(df_check)
-  #
-  # check_pad_intern<- df_mandates_long_pad_fill_names |>
-  #   dplyr::filter(pad_intern==26343)
-
-
 }
-
-
