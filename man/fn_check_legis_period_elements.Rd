@@ -9,6 +9,9 @@ fn_check_legis_period_elements(x)
 \arguments{
 \item{x}{a vector of length > 0;}
 }
+\value{
+a vector of length 1
+}
 \description{
 Check elements of vector 'legis_period'
 }

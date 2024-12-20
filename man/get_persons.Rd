@@ -2,22 +2,44 @@
 % Please edit documentation in R/get_person.R
 \name{get_persons}
 \alias{get_persons}
-\title{Get details on an individual's name, including mandates on a specific date.}
+\title{Search persons in Austrian political institutions}
 \usage{
 get_persons(
-  names,
+  names = NULL,
   search_strict = TRUE,
   institution = NULL,
   mandates = FALSE,
-  date = NULL
+  date = NULL,
+  gender = "all"
 )
 }
 \arguments{
-\item{institution}{}
+\item{names}{A character vector of name(s)}
+
+\item{search_strict}{Logical. If \code{TRUE}, only exact matches are returned. Default is \code{TRUE}.}
+
+\item{institution}{A character vector specifying one or more institutions to search within. Possible values are \code{"Bundespräsident"}, \code{"Bundesrat"}, \code{"Bundesregierung"}, \code{"Europäisches Parlament"}, \code{"Konstituierende Nationalversammlung"}, \code{"Landeshauptleute"}, \code{"Nationalrat"}, \code{"Parlamentsdirektion"}, \code{"Politische Mandate"}, \code{"Provisorische Nationalversammlung"}, \code{"Rechnungshof"}, and \code{"Volksanwaltschaft"}. Defaults to all institutions.}
+
+\item{mandates}{Logical. If \code{TRUE}, mandates are retrieved for each person. Default is \code{FALSE}.}
+
+\item{date}{A date to filter mandates. Default is \code{NULL}.}
+
+\item{gender}{A character vector. Possible values are "all", "female", or "male". Default is "all".}
 }
 \description{
-Get details on an individual's name, including mandates on a specific date.
+The \code{get_persons} function searches for current and former individuals
+active in the Austrian parliament as well as other related political
+institutions of Austria. It allows filtering by specific institutions
+and gender.
+It mirrors the search functionality 'Personen' on the website of the
+Austrian Parliament (see \href{https://www.parlament.gv.at/recherchieren/personen/}{here})
+}
+\details{
+Note that \code{get_person} only return matches for the latest
+name of an individual. MPs' pervious names, e.g. before marriage, do
+not return a match.
 }
 \examples{
-get_persons("Zadic")
+\dontrun{  
+get_persons(c("Zadic", "Kurz"))}
 }

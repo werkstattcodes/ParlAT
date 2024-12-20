@@ -1,5 +1,5 @@
 #' Search for Parliamentary Items
-#'
+#' @encoding UTF-8
 #' @description
 #' `get_item` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 #' in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
@@ -98,7 +98,7 @@
 #' Possible values for `doc_type` if institution=="Bundesrat" ('Federal Council')
 #' *  AA-BR: Abänderungsanträge
 #' *  A-BR: Selbständiger Antrag Bundesrat
-#' *  A(E): Selbständiger Entschließungsantrag Bundesrat
+#' *  A(E): Selbständiger Entschließungsantrag Bundesratxx
 #' *  AEA-BR: Selbständige Entschließungsanträge von Ausschüssen
 #' *  UEA-BR: Unselbständige Anträge
 #'
@@ -121,7 +121,9 @@
 #'
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{
+#' get_item(topic="Europäische Union", legis_period=28)
+#' }
 get_item <- function(
     topic=NULL, #Themen - Themen
     institution = "Nationalrat", #Gremium - NRBR

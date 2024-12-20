@@ -9,15 +9,10 @@
 #' @return a dataframe
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{get_names(pad_intern=2346)}
 get_names <- function(pad_intern, date=NULL, latest=NULL) {
 
-  # pad_intern <- 1234
-
   link_file_json <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}?json=TRUE")
-
-
-  #file_json <- jsonlite::read_json(link_file_json)
 
   file_json <-   tryCatch(
     {

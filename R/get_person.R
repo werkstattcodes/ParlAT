@@ -1,25 +1,14 @@
-#' Search persons in Austrian political institutions
-#'
-#' The `get_person` function searches for current and former individuals active in the Austrian parliament as well as other related political institutions of Austria. It allows filtering by specific institutions and gender.
-#' It mirrors the search functionality 'Personen' on the website of the Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/))
-#'
-#' @details Note that `get_person_single` only return matches for the latest name of an individual. MPs' pervious names, e.g. before marriage, do
-#' not return a match.
-#'
 #' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
 #'
 #' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`).
-#' @export
-#'
 #' @noRd
-#'
+
 get_person_single <- function(search_string = NULL,
                               search_strict=NULL,
                               institution = NULL,
                               gender = c("all", "female", "male")) {
-
 
   # INSTITUTION
 
@@ -110,9 +99,10 @@ get_person_single <- function(search_string = NULL,
   df_res <- df_res |>
     dplyr::mutate(position = stringr::str_remove(position, pattern = stringr::regex("<.*$")))
 
-  if(!is.null(search_strict) && search_strict==TRUE) {
+  if(!is.null(search_strict) && search_strict==TRUE && !is.null(search_string)) {
+    regex_search_string <- glue::glue("\\b{search_string}\\b") |> as.character()
     df_res <- df_res |>
-      dplyr::filter(stringr::str_detect(name, stringr::fixed(search_string)))
+      dplyr::filter(stringr::str_detect(name, stringr::regex(regex_search_string)))
     return(df_res)
 
   }
@@ -123,25 +113,60 @@ get_person_single <- function(search_string = NULL,
 }
 
 
-#' Get details on an individual's name, including mandates on a specific date.
+#' @title Search persons in Austrian political institutions
 #'
-#' @param names
-#' @param institution
+#' @description 
+#' The `get_persons` function searches for current and former individuals
+#' active in the Austrian parliament as well as other related political
+#' institutions of Austria. It allows filtering by specific institutions
+#' and gender.
+#' It mirrors the search functionality 'Personen' on the website of the
+#'  Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/))
 #'
-#' @return
-#' @export
-#'
-#' @examples
-#' get_persons("Zadic")
-get_persons <- function(names, search_strict=TRUE, institution=NULL, mandates=FALSE, date=NULL) {
+#' @details Note that `get_person` only return matches for the latest 
+#' name of an individual. MPs' pervious names, e.g. before marriage, do
+#' not return a match.
+#' 
+#' @param names A character vector of name(s)
+#' @param search_strict Logical. If `TRUE`, only exact matches are returned. Default is `TRUE`.
+#' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
+#' @param mandates Logical. If `TRUE`, mandates are retrieved for each person. Default is `FALSE`.
+#' @param date A date to filter mandates. Default is `NULL`.
+#' @param gender A character vector. Possible values are "all", "female", or "male". Default is "all".
 
-  # names <- "generiert"
-  # search_strict <- TRUE
-  # instituiton=NULL
-  li_persons <- purrr::map(names, \(x) get_person_single(search_string = x, search_strict=search_strict, institution = institution))
+#' @examples \dontrun{  
+#' get_persons(c("Zadic", "Kurz"))}
 
+get_persons <- function(
+  names=NULL, 
+  search_strict=TRUE, 
+  institution=NULL, 
+  mandates=FALSE, 
+  date=NULL, 
+  gender="all") {
+  
+# names <- NULL
+# gender <- "female"
+# date <- "2022-01-01"
+# mandates <- TRUE
+# institution <- NULL
+# search_strict <- TRUE
+
+  if (is.null(names) || length(names) == 0) {
+    li_persons <- list(get_person_single(
+      search_strict = search_strict, 
+      institution = institution,
+      gender = gender))
+  } else {
+    li_persons <- purrr::map(names, \(x) get_person_single(
+      search_string = x, 
+      search_strict = search_strict, 
+      institution = institution,
+      gender = gender))
+  }
+ 
   df_persons <- li_persons |> purrr::list_rbind()
-
+ 
   if (nrow(df_persons)==0) {return(NULL)}
 
   if (!is.null(mandates) && mandates==TRUE) {

@@ -1,5 +1,5 @@
-# use when legis_period allows for inpult longer than length 1
-# function splits input into elements of lenght 1
+# use when legis_period allows for input longer than length 1
+# function splits input into elements of length 1
 # checks if potentially numeric
 ## => if so converts to roman number
 ## => if not: checks if character string is permissible option
@@ -10,10 +10,8 @@
 #'
 #' @param x a vector of length > 0;
 #'
-#' @return
-#' @export
+#' @return a vector of length 1
 #'
-#' @examples
 fn_check_legis_period_elements <- function(x) {
 
   if (is.null(x)) {stop("`legis_period` is required.")}

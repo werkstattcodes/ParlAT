@@ -1,14 +1,13 @@
-#' Title
+#' @title Get mandates single mandate
+#' @description 
+#' Auxiliary function which retrieves mandates for a single mandate. Is used internally
+#' in get_mandates which allows for multiple `pad_intern` to be passed.
 #'
-#' @param pad_intern_single
+#' @param pad_intern  Personal identfication number of person 
+#' @noRd
+#' @return A dataframe.
 #'
-#' @return
-#' @export
-#'
-#' @examples
 get_mandates_single <- function(pad_intern) {
-
-  # pad_intern <- 1174
 
   link_file_json <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}?json=TRUE")
 
@@ -42,17 +41,32 @@ get_mandates_single <- function(pad_intern) {
 
 }
 
-
-#' Get mandates
+#' @title Get mandates
 #'
-#' Returns a dataframe with all past and present mandates of a specific individual.
+#' @description 
+#' Takes the `pad_intern` of one or several MPs as input and returns a dataframe
+#' with all past and present mandates. Mandates can be limited to a specific date
+#' or institution. 
+#' 
+#' The function partly mimics the behavior of the 'Personensuche' on the website 
+#' of the Parliament ([here]("https://www.parlament.gv.at/recherchieren/personen/")), 
+#' but requires the 'pad_intern' instead of the name of the MP. To get the 'pad_intern' of an MP,
+#' see the function `get_pad_intern`. 
 #'
-#' @param pad_intern
+#' @param pad_intern Personal identfication number of person
+#' @param date Date to filter mandates
+#' @param institution Institution for which mandates should be returned. Possible values are "Nationalrat", "Bundesrat" or "all"
 #'
-#' @return
+#' @return A dataframe.
 #' @export
 #'
-#' @examples
+#' @examples 
+#' \dontrun{
+#'   pad_intern <- c(1174, 1234)
+#'   result <- get_mandates(pad_intern, date="2023-01-01", institution="Nationalrat")
+#'   print(result)
+#' }
+#'
 get_mandates <- function(pad_intern, date=NULL, institution="Nationalrat") {
 
 #remove duplicates
@@ -61,8 +75,6 @@ pad_intern_unique <- unique(pad_intern)
 if (length(pad_intern_unique)!=length(pad_intern)) {
   print("Duplicate pad_interns removed")
 }
-
-# pad_intern_unique <- 1174
 
 li_res <- purrr::map(pad_intern_unique, \(x) get_mandates_single(pad_intern=x))
 df_res <- purrr::list_rbind(li_res)

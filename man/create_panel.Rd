@@ -17,3 +17,6 @@ Description of the return value.
 \description{
 This function creates a panel of MPs with their mandates for a given legislative period and institution.
 }
+\examples{
+create_panel(legis_period = 23, institution = "Nationalrat")
+}

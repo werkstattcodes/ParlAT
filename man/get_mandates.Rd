@@ -7,8 +7,30 @@
 get_mandates(pad_intern, date = NULL, institution = "Nationalrat")
 }
 \arguments{
-\item{pad_intern}{}
+\item{pad_intern}{Personal identfication number of person}
+
+\item{date}{Date to filter mandates}
+
+\item{institution}{Institution for which mandates should be returned. Possible values are "Nationalrat", "Bundesrat" or "all"}
+}
+\value{
+A dataframe.
 }
 \description{
-Returns a dataframe with all past and present mandates of a specific individual.
+Takes the \code{pad_intern} of one or several MPs as input and returns a dataframe
+with all past and present mandates. Mandates can be limited to a specific date
+or institution.
+
+The function partly mimics the behavior of the 'Personensuche' on the website
+of the Parliament (\href{"https://www.parlament.gv.at/recherchieren/personen/"}{here}),
+but requires the 'pad_intern' instead of the name of the MP. To get the 'pad_intern' of an MP,
+see the function \code{get_pad_intern}.
+}
+\examples{
+\dontrun{
+  pad_intern <- c(1174, 1234)
+  result <- get_mandates(pad_intern, date="2023-01-01", institution="Nationalrat")
+  print(result)
+}
+
 }

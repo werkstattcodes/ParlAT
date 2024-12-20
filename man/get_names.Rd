@@ -16,3 +16,6 @@ a dataframe
 \code{get_names} returns all name variants of an MP or a specific name on a specific date. Particularly relevant
 for MPs who changed their name (marriage, divorce). Takes an MP's 'pad_intern' and an optional date as input.
 }
+\examples{
+\dontrun{get_names(pad_intern=2346)}
+}
