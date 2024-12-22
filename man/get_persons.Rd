@@ -41,5 +41,5 @@ not return a match.
 }
 \examples{
 \dontrun{  
-get_persons(c("Zadic", "Kurz"))}
+get_persons(c("Kogler", "Kurz"))}
 }

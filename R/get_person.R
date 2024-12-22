@@ -135,7 +135,7 @@ get_person_single <- function(search_string = NULL,
 #' @param gender A character vector. Possible values are "all", "female", or "male". Default is "all".
 
 #' @examples \dontrun{  
-#' get_persons(c("Zadic", "Kurz"))}
+#' get_persons(c("Kogler", "Kurz"))}
 
 get_persons <- function(
   names=NULL, 

@@ -30,6 +30,8 @@
 #'
 #' @export
 
+#TODO: function incomplete
+
 get_participation <- function(
   topic=NULL, #Themen - THEMEN
   legis_period=NULL, #Gesetzgebungsperiode - GP_CODE

@@ -7,7 +7,11 @@
 get_names(pad_intern, date = NULL, latest = NULL)
 }
 \arguments{
-\item{pad_intern}{}
+\item{pad_intern}{Personal ID of individual}
+
+\item{date}{Date for which the name should be retrieved}
+
+\item{latest}{Logical. If TRUE, only the latest name is returned.}
 }
 \value{
 a dataframe

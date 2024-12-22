@@ -16,5 +16,7 @@ A dataframe
 Get start and end dates of legislative periods
 }
 \examples{
+\dontrun{
 get_legis_period(c(23,23))
+}
 }

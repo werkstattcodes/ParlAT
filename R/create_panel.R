@@ -5,7 +5,7 @@
 #' @param legis_period Legislative period
 #' @param institution Chamber of Parliament. Nationalrat or Bundesrat
 #' @return Description of the return value.
-#' @examples create_panel(legis_period = 23, institution = "Nationalrat")
+#' @examples \dontrun{create_panel(legis_period = 23, institution = "Nationalrat")}
 #' @export
 
 create_panel <- function(legis_period=NULL, institution=NULL) {

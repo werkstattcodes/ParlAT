@@ -49,7 +49,7 @@ get_mandates_single <- function(pad_intern) {
 #' or institution. 
 #' 
 #' The function partly mimics the behavior of the 'Personensuche' on the website 
-#' of the Parliament ([here]("https://www.parlament.gv.at/recherchieren/personen/")), 
+#' of the Parliament ([here](https://www.parlament.gv.at/recherchieren/personen/)), 
 #' but requires the 'pad_intern' instead of the name of the MP. To get the 'pad_intern' of an MP,
 #' see the function `get_pad_intern`. 
 #'

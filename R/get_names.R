@@ -4,7 +4,9 @@
 #' `get_names` returns all name variants of an MP or a specific name on a specific date. Particularly relevant
 #' for MPs who changed their name (marriage, divorce). Takes an MP's 'pad_intern' and an optional date as input.
 #'
-#' @param pad_intern
+#' @param pad_intern Personal ID of individual
+#' @param date Date for which the name should be retrieved
+#' @param latest Logical. If TRUE, only the latest name is returned.
 #'
 #' @return a dataframe
 #' @export

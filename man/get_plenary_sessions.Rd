@@ -7,13 +7,21 @@
 get_plenary_sessions(
   institution = NULL,
   legis_period = NULL,
-  session_and_activities = NULL
+  session_and_activities = "Sitzungen",
+  eingebracht = NULL,
+  stattgefunden = NULL
 )
 }
 \arguments{
-\item{institution}{A character string specifying the institution.}
+\item{institution}{A character string specifying the institution. "Bundesrat", "Nationalrat", or "Bundesversammlung"}
 
-\item{legis_period}{}
+\item{legis_period}{Numeric value specifying the legislative period. Data available from 20th legislative period onwards.}
+
+\item{session_and_activities}{A character string. 'Sitzungen', 'eingebracht wurden' or 'stattgefunden haben'.}
+
+\item{eingebracht}{A character string.  Specifying the type of activities that were introduced. Possible values are: 'ALLE', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'.}
+
+\item{stattgefunden}{A character string. specifying the type of activities that took place. Possible values are: 'ALLE', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'.}
 }
 \value{
 A data frame containing plenary session details.
@@ -21,7 +29,39 @@ A data frame containing plenary session details.
 \description{
 Retrieves information about plenary sessions from the Austrian Parliament's API.
 }
+\details{
+Possible values for \code{eingebracht} if \code{session_and_activities} is set to \verb{eingebracht wurden}:
+\itemize{
+\item ALLE: Alles (All)
+\item AA: Abänderungsanträge (Amendment Motions)
+\item G037: Anträge auf Absetzung von der Tagesordnung (Motions to Remove from Agenda)
+\item G080: Anträge auf Durchführung einer Volksabstimmung (Motions for Referendum)
+\item J: Dringliche Anfragen (Urgent Inquiries)
+\item AE: Dringliche Anträge (Urgent Motions)
+\item G015: Fristerstreckungsanträge (Deadline Extension Motions)
+\item G014: Fristsetzungsanträge (Deadline Setting Motions)
+\item AB: Kurze Debatten über Anfragebeantwortungen (Brief Debates on Inquiry Responses)
+\item G053: Rückverweisungsanträge (Referral Back Motions)
+\item UEA: Unselbständige Entschließungsanträge (Dependent Resolution Motions)
+\item UEAM: Unselbständige Misstrauensanträge (Dependent No-Confidence Motions)
+}
+
+Possible values for \code{stattgefunden} if \code{session_and_activities} is set to \verb{stattgefunden haben}:
+\itemize{
+\item ALLE: Alles (All)
+\item ASEU: Aktuelle Europastunden (Current Europe Hours)
+\item AS: Aktuelle Stunden (Current Hours)
+\item GO04: Erklärungen des Präsidenten / der Präsidentin (President's Declarations)
+\item FS: Fragestunden (Question Hours)
+\item RGER: Regierungserklärungen (Government Declarations)
+\item RGEU: Regierungserklärungen zu EU-Themen (Government Declarations on EU Topics)
+\item GO: Sonstige Geschäftsordnungsangelegenheiten (Other Procedural Matters)
+\item GO35: Unterrichtungen gemäß Art. 50 Abs. 5 B-VG (Notifications according to Art. 50 Para. 5 B-VG)
+}
+}
 \examples{
-\dontrun{get_plenary_session(instition = "Nationalrat", legis_period = 26)}
+\dontrun{
+get_plenary_session(instition = "Nationalrat", legis_period = 26)
+}
 
 }

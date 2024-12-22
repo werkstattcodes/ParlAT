@@ -6,7 +6,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' get_legis_period(c(23,23))
+#' }
 get_legis_periods <- function(legis_period=NULL) {
 
   #legis_period <- 27

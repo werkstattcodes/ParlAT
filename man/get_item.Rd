@@ -33,6 +33,8 @@ get_item(
 
 \item{item}{Character vector or \code{NULL}. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
 
+\item{doc_type}{Character vector or \code{NULL}. Specifies the type of parliamentary item(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
+
 \item{person}{Character string or \code{NULL}. Name of a person to search for (family name, optionally followed by first name). Default is \code{NULL}.}
 
 \item{number}{Character string or \code{NULL}. Specific item number to search for. Default is \code{NULL}.}
@@ -146,7 +148,7 @@ Possible values for \code{doc_type} if institution=="Bundesrat" ('Federal Counci
 \itemize{
 \item AA-BR: Abänderungsanträge
 \item A-BR: Selbständiger Antrag Bundesrat
-\item A(E): Selbständiger Entschließungsantrag Bundesratxx
+\item A(E): Selbständiger Entschließungsantrag Bundesrat
 \item AEA-BR: Selbständige Entschließungsanträge von Ausschüssen
 \item UEA-BR: Unselbständige Anträge
 }

@@ -11,6 +11,7 @@
 #' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy". Default is `NULL`.
 #' @param date_end Character string. End date for the search period in format "dd-mm-yyyy". Default is `NULL`.
 #' @param item Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
+#' @param doc_type Character vector or `NULL`. Specifies the type of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param person Character string or `NULL`. Name of a person to search for (family name, optionally followed by first name). Default is `NULL`.
 #' @param number Character string or `NULL`. Specific item number to search for. Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
@@ -98,7 +99,7 @@
 #' Possible values for `doc_type` if institution=="Bundesrat" ('Federal Council')
 #' *  AA-BR: Abänderungsanträge
 #' *  A-BR: Selbständiger Antrag Bundesrat
-#' *  A(E): Selbständiger Entschließungsantrag Bundesratxx
+#' *  A(E): Selbständiger Entschließungsantrag Bundesrat
 #' *  AEA-BR: Selbständige Entschließungsanträge von Ausschüssen
 #' *  UEA-BR: Unselbständige Anträge
 #'
