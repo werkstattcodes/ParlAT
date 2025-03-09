@@ -81,9 +81,9 @@
 #' * "W" (Wahlen, Elections)
 #'
 #' ## doc_type (Art des Antrages)
-#' If item=="ANTR".
-#' Possible values for `doc_type` if institution=="Nationalrat" ('National Council')
-#'
+#' If item is "ANTR", the permissible values for doc_type depend on the
+#' institution of interest.
+#' Possible values for `doc_type` if institution=="Nationalrat" ('National Council'):
 #' * A: Selbständiger Antrag
 #' * A(E): Selbständiger Entschließungsantrag
 #' * AA: Abänderungsantrag
@@ -96,14 +96,14 @@
 #' * UEA: Misstrauensantrag
 #' * URH2: Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses
 #'
-#' Possible values for `doc_type` if institution=="Bundesrat" ('Federal Council')
+#' Possible values for `doc_type` if institution=="Bundesrat" ('Federal Council'):
 #' *  AA-BR: Abänderungsanträge
 #' *  A-BR: Selbständiger Antrag Bundesrat
 #' *  A(E): Selbständiger Entschließungsantrag Bundesrat
 #' *  AEA-BR: Selbständige Entschließungsanträge von Ausschüssen
 #' *  UEA-BR: Unselbständige Anträge
 #'
-#' if item=="BNR"
+#' Possible values for `doc_type` if *item=="BNR"*:
 #' * BNR: Beschluss
 #' * BS: Sonstiger Beschluss
 #' * BSE: Beschluss-EU
@@ -126,32 +126,50 @@
 #' get_item(topic="Europäische Union", legis_period=28)
 #' }
 get_item <- function(
-    topic=NULL, #Themen - Themen
-    institution = "Nationalrat", #Gremium - NRBR
-    legis_period=NULL, #Gesetzgebungsperiode - GB_Code
-    date_start=NULL, #Datum_von - DATUM_VON
-    date_end=NULL, #Datum_bis - DATUM_BIS
-    item=NULL, #Gegenstand - VHG
-    doc_type=NULL, #Art der Anfrage - DOKTYP
-    person=NULL, #Person - PAD_intern (via person_input)
-    number=NULL, #Nummer - INRUM PENDING
-    keyword=NULL, #Schlagwort - SW
-    eurovoc=NULL, #EuroVoc - EUROVOC
-    parl_group=NULL #Klub/Fraktion - FRAK_CODE
+  topic = NULL, #Themen - Themen
+  institution = "Nationalrat", #Gremium - NRBR
+  legis_period = NULL, #Gesetzgebungsperiode - GB_Code
+  date_start = NULL, #Datum_von - DATUM_VON
+  date_end = NULL, #Datum_bis - DATUM_BIS
+  item = NULL, #Gegenstand - VHG
+  doc_type = NULL, #Art der Anfrage - DOKTYP
+  person = NULL, #Person - PAD_intern (via person_input)
+  number = NULL, #Nummer - INRUM PENDING
+  keyword = NULL, #Schlagwort - SW
+  eurovoc = NULL, #EuroVoc - EUROVOC
+  parl_group = NULL #Klub/Fraktion - FRAK_CODE
 ) {
-
   #TOPIC
-  choices_topic=c("Arbeit", "Außenpolitik", "Bildung", "Budget und Finanzen",
-                  "Europäische Union", "Familie und Generationen", "Frauen und Gleichbehandlung",
-                  "Gesundheit und Ernährung", "Information und Medien", "Inneres und Recht",
-                  "Innovation, Technologie und Forschung", "Klima, Umwelt und Energie",
-                  "Kultur", "Land- und Forstwirtschaft", "Landesverteidigung",
-                  "Parlament und Demokratie", "Soziales", "Sport",
-                  "Verkehr und Infrastruktur", "Wirtschaft")
- checkmate::assert_subset(topic, choices_topic, empty.ok=T)
+  choices_topic = c(
+    "Arbeit",
+    "Außenpolitik",
+    "Bildung",
+    "Budget und Finanzen",
+    "Europäische Union",
+    "Familie und Generationen",
+    "Frauen und Gleichbehandlung",
+    "Gesundheit und Ernährung",
+    "Information und Medien",
+    "Inneres und Recht",
+    "Innovation, Technologie und Forschung",
+    "Klima, Umwelt und Energie",
+    "Kultur",
+    "Land- und Forstwirtschaft",
+    "Landesverteidigung",
+    "Parlament und Demokratie",
+    "Soziales",
+    "Sport",
+    "Verkehr und Infrastruktur",
+    "Wirtschaft"
+  )
+  checkmate::assert_subset(topic, choices_topic, empty.ok = T)
 
   #INSTITUTION
-  checkmate::assert_subset(institution, choices = c("Bundesrat", "Nationalrat"), empty.ok=FALSE)
+  checkmate::assert_subset(
+    institution,
+    choices = c("Bundesrat", "Nationalrat"),
+    empty.ok = FALSE
+  )
   ##encode
   institution_input <- switch(
     institution,
@@ -160,31 +178,112 @@ get_item <- function(
   )
 
   #LEGIS PERIOD
-  legis_period <- purrr::map_chr(legis_period, \(x) fn_check_legis_period_elements(x))
+  legis_period <- purrr::map_chr(
+    legis_period,
+    \(x) fn_check_legis_period_elements(x)
+  )
 
   #DATE START; DATE END
-  ## todo allow for different date types such as "yyyy-mm-dd", "mm/dd/yyyy", and "dd-mm-yyyy"
-  date_start=as.Date(date_start, format="%d-%m-%Y")
-  date_start <- format(as.POSIXct(date_start), format = "%Y-%m-%dT%H:%M:%S.000Z", tz = "UTC")
+  ## TODO allow for different date types such as "yyyy-mm-dd", "mm/dd/yyyy", and "dd-mm-yyyy"
+  # Date validation
+  if (!is.null(date_start)) {
+    checkmate::assert_character(date_start, len = 1, null.ok = TRUE)
+    checkmate::assert_true(
+      stringr::str_detect(date_start, "^\\d{2}-\\d{2}-\\d{4}$"),
+      .var.name = "date_start must be in format dd-mm-yyyy"
+    )
+    date_start = as.Date(date_start, format = "%d-%m-%Y")
+    date_start <- format(
+      as.POSIXct(date_start),
+      format = "%Y-%m-%dT%H:%M:%S.000Z",
+      tz = "CET"
+    )
+  }
 
-  date_end=as.Date(date_end, format="%d-%m-%Y")
-  date_end <- format(as.POSIXct(date_end), format = "%Y-%m-%dT%H:%M:%S.000Z", tz = "UTC")
+  #date end
+  if (!is.null(date_end)) {
+    checkmate::assert_character(date_end, len = 1, null.ok = TRUE)
+    checkmate::assert_true(
+      stringr::str_detect(date_end, "^\\d{2}-\\d{2}-\\d{4}$"),
+      .var.name = "date_end must be in format dd-mm-yyyy"
+    )
+    date_end = as.Date(date_end, format = "%d-%m-%Y")
+    date_end <- format(
+      as.POSIXct(date_end),
+      format = "%Y-%m-%dT%H:%M:%S.000Z",
+      tz = "CET"
+    )
+  }
 
   # ITEM / VHG / Gegenstand
-  ## _todo_ what about multi-value choices
+  ## TODO what about multi-value choices - currently integrated
   ## checkmate::assert_subset does not show which element was not matched
-  choices_item <- c("ASEU", "AS", "J_JPR_M", "ANTR", "US", "AUB", "AB_ABPR_ABM", "III", "BNR", "BI", "E", "EBR", "EU", "FS", "GO", "GABR", "GABR13", "IMM", "KOMM", "PET", "RGER", "RV", "RVS", "TRAU", "RVS15", "VOLKBG", "W")
-  checkmate::assert_subset(x=item, choices = choices_item, empty.ok=TRUE)
+  choices_item <- c(
+    "ASEU",
+    "AS",
+    "J_JPR_M",
+    "ANTR",
+    "US",
+    "AUB",
+    "AB_ABPR_ABM",
+    "III",
+    "BNR",
+    "BI",
+    "E",
+    "EBR",
+    "EU",
+    "FS",
+    "GO",
+    "GABR",
+    "GABR13",
+    "IMM",
+    "KOMM",
+    "PET",
+    "RGER",
+    "RV",
+    "RVS",
+    "TRAU",
+    "RVS15",
+    "VOLKBG",
+    "W"
+  )
 
-  if (!is.null(item) && item=="ANTR") {
-  ## depending on institution, different set of permissble values
-  choices_doc_type_antr_national_council <- c("A", "A(E)", "AA", "AEA", "AMIN", "ARH2", "AVB", "BUA", "UEA", "URH2")
-  choices_doc_type_antr_federal_council <- c("AA-BR", "A-BR", "A(E)", "AEA-BR", "UEA-BR")
+  checkmate::assert_subset(x = item, choices = choices_item, empty.ok = TRUE)
 
-  if (institution=="Nationalrat"||is.null(institution)) {
-    checkmate::assert_subset(x=doc_type, choices = choices_doc_type_antr_national_council, empty.ok=TRUE)
-  } else if (institution=="Bundesrat") {
-      checkmate::assert_subset(x=doc_type, choices = choices_doc_type_antr_federal_council, empty.ok=FALSE)
+  if (!is.null(item) && any(item %in% "ANTR")) {
+    ## depending on institution, different set of permissble values
+    choices_doc_type_antr_national_council <- c(
+      "A",
+      "A(E)",
+      "AA",
+      "AEA",
+      "AMIN",
+      "ARH2",
+      "AVB",
+      "BUA",
+      "UEA",
+      "URH2"
+    )
+    choices_doc_type_antr_federal_council <- c(
+      "AA-BR",
+      "A-BR",
+      "A(E)",
+      "AEA-BR",
+      "UEA-BR"
+    )
+
+    if (institution == "Nationalrat" || is.null(institution)) {
+      checkmate::assert_subset(
+        x = doc_type,
+        choices = choices_doc_type_antr_national_council,
+        empty.ok = TRUE
+      )
+    } else if (institution == "Bundesrat") {
+      checkmate::assert_subset(
+        x = doc_type,
+        choices = choices_doc_type_antr_federal_council,
+        empty.ok = FALSE
+      )
     }
   }
 
@@ -193,32 +292,41 @@ get_item <- function(
     stop("'doc_type' can be only specified in combination with 'item'")
   }
 
-  if (!is.null(item) && item=="BNR") {
+  if (!is.null(item) && any(item %in% "BNR")) {
     choices_doc_type_bnr_national_council <- c("BNR", "BS", "BSE", "BSESM")
-    choices_doc_type_bnr_federal_council <- c("BNR", "BS", "BSE", "BSESM")
+    choices_doc_type_bnr_federal_council <- c("BNR", "BS-BR")
 
-    if (institution=="Nationalrat"||is.null(institution)){
-      checkmate::assert_subset(x=doc_type, choices = choices_doc_type_bnr_national_council, empty.ok=TRUE)
+    if (institution == "Nationalrat" || is.null(institution)) {
+      checkmate::assert_subset(
+        x = doc_type,
+        choices = choices_doc_type_bnr_national_council,
+        empty.ok = TRUE
+      )
     }
 
-    if (institution=="Bundesrat"){
-      checkmate::assert_subset(x=doc_type, choices = choices_doc_type_bnr_federal_council, empty.ok=FALSE)
+    if (institution == "Bundesrat") {
+      checkmate::assert_subset(
+        x = doc_type,
+        choices = choices_doc_type_bnr_federal_council,
+        empty.ok = FALSE
+      )
     }
   }
 
   ##Gegenstand: schriftliche Anfragen
   ### Art der Anfrage
-  if (!is.null(item) && item=="J_JPR_M") {
+  if (!is.null(item) && any(item %in% "J_JPR_M")) {
   }
-
-
 
   # PERSON
   ## requires pad_intern as input => auxiliary function searching pad_intern based on name needed
   ## accepts multiple values
   ## pad_intern needs to be character, not numeric
   if (!is.null(person)) {
-  person_input <- get_persons(names=person, institution=institution) |> dplyr::pull(pad_intern) |> unique() |> as.character()
+    person_input <- get_persons(names = person, institution = institution) |>
+      dplyr::pull(pad_intern) |>
+      unique() |>
+      as.character()
   } else {
     person_input <- NULL
   }
@@ -230,11 +338,15 @@ get_item <- function(
   ## choices_item_keyword defined in sysdata.rda
   ## disadvantage of defining keyword scope in vector: new keywords may be included in the future
   ### solution: no check as alternative? OR function to scrape keywords and update vector
-  checkmate::assert_subset(x=keyword, choices = choices_item_keyword, empty.ok=TRUE)
+  checkmate::assert_subset(
+    x = keyword,
+    choices = choices_item_keyword,
+    empty.ok = TRUE
+  )
 
   # EUROVOC
   ## include scope testing?
-  checkmate::assert_class(x=eurovoc, classes="character", null.ok=TRUE)
+  checkmate::assert_class(x = eurovoc, classes = "character", null.ok = TRUE)
 
   # PARL_GROUP (Klub/Fraktion)
   ## web: option "Klub/Fraktion" only visible after selecting legislative period; party options depend on chosen legislative period
@@ -242,27 +354,29 @@ get_item <- function(
   ## documentation: list of all possible parities plus abbreviations;
 
   body_params <- list(
-    THEMEN=topic,
+    THEMEN = topic,
     NRBR = institution_input,
     GP_CODE = legis_period,
-    DATUM_VON=c(date_start, date_end),
-    VHG=item,
-    DOKTYP=doc_type,
+    DATUM_VON = c(date_start, date_end),
+    VHG = item,
+    DOKTYP = doc_type,
     #INRNUM=number,
-    PAD_INTERN=person_input,
-    SW=keyword,
-    EUROVOC=eurovoc,
-    FRAK_CODE=parl_group
+    PAD_INTERN = person_input,
+    SW = keyword,
+    EUROVOC = eurovoc,
+    FRAK_CODE = parl_group
   ) |>
-    purrr::compact() |>  #keep only non-empty elements
+    purrr::compact() |> #keep only non-empty elements
     jsonlite::toJSON()
 
-  res <- httr2::request("https://www.parlament.gv.at/Filter/api/filter/data/101") |>
+  res <- httr2::request(
+    "https://www.parlament.gv.at/Filter/api/filter/data/101"
+  ) |>
     httr2::req_url_query(
       js = "eval",
       # page = "1",
       # pagesize = "10",
-      showAll=TRUE,
+      showAll = TRUE,
       sortrnr = "17",
       ascDesc = "DESC",
     ) |>
@@ -277,9 +391,7 @@ get_item <- function(
     ) |>
     httr2::req_body_raw(body_params, "application/json") |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-    httr2::req_verbose(body_req = T,
-                       header_req = F,
-                       header_resp = F) |>
+    httr2::req_verbose(body_req = T, header_req = F, header_resp = F) |>
     httr2::req_perform()
 
   vec_headings <- res |>
@@ -293,9 +405,9 @@ get_item <- function(
     purrr::pluck("rows")
   #print(class(df_res))
 
-  checkmate::check_data_frame(df_res, min.rows=1)
+  checkmate::check_data_frame(df_res, min.rows = 1)
 
-  if (length(df_res)==0) {
+  if (length(df_res) == 0) {
     message("No results found for the provided search criteria.")
     return(NULL)
   }
@@ -305,5 +417,4 @@ get_item <- function(
   print(nrow(df_res))
 
   return(df_res)
-
 }

@@ -28,3 +28,6 @@ BugReports: https://github.com/werkstattcodes/ParlAT/issues
 Roxygen: list(markdown = TRUE)
 Depends: 
     R (>= 2.10)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

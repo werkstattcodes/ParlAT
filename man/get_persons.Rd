@@ -40,6 +40,6 @@ name of an individual. MPs' pervious names, e.g. before marriage, do
 not return a match.
 }
 \examples{
-\dontrun{  
+\dontrun{
 get_persons(c("Kogler", "Kurz"))}
 }

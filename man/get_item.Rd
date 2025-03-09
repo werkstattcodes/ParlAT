@@ -128,8 +128,9 @@ Possible values for \code{item} include:
 
 \subsection{doc_type (Art des Antrages)}{
 
-If item=="ANTR".
-Possible values for \code{doc_type} if institution=="Nationalrat" ('National Council')
+If item is "ANTR", the permissible values for doc_type depend on the
+institution of interest.
+Possible values for \code{doc_type} if institution=="Nationalrat" ('National Council'):
 \itemize{
 \item A: Selbständiger Antrag
 \item A(E): Selbständiger Entschließungsantrag
@@ -144,7 +145,7 @@ Possible values for \code{doc_type} if institution=="Nationalrat" ('National Cou
 \item URH2: Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses
 }
 
-Possible values for \code{doc_type} if institution=="Bundesrat" ('Federal Council')
+Possible values for \code{doc_type} if institution=="Bundesrat" ('Federal Council'):
 \itemize{
 \item AA-BR: Abänderungsanträge
 \item A-BR: Selbständiger Antrag Bundesrat
@@ -153,7 +154,7 @@ Possible values for \code{doc_type} if institution=="Bundesrat" ('Federal Counci
 \item UEA-BR: Unselbständige Anträge
 }
 
-if item=="BNR"
+Possible values for \code{doc_type} if \emph{item=="BNR"}:
 \itemize{
 \item BNR: Beschluss
 \item BS: Sonstiger Beschluss
