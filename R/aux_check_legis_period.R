@@ -13,42 +13,70 @@
 #' @return a vector of length 1
 #'
 fn_check_legis_period_elements <- function(x) {
-
-  if (is.null(x)) {stop("`legis_period` is required.")}
+  if (is.null(x)) {
+    stop("`legis_period` is required.")
+  }
   #print("check 2")
 
-  if (!(stringr::str_detect(x, stringr::regex("\\D"), negate=T) || x %in% c("all","Provisorische Nationalversammlung","Konstituierende Nationalversammlung"))) {
+  if (
+    !(stringr::str_detect(x, stringr::regex("\\D"), negate = T) ||
+      x %in%
+        c(
+          "all",
+          "Provisorische Nationalversammlung",
+          "Konstituierende Nationalversammlung"
+        ))
+  ) {
     stop(
       "Invalid input for legis_period. Must be a numeric value or one of 'all', 'Provisorisch Nationalversammlung', or 'Konstituierende Nationalversammlung'."
     )
   }
 
-  if (stringr::str_detect(x, stringr::regex("\\D"), negate=T)) {
+  if (stringr::str_detect(x, stringr::regex("\\D"), negate = T)) {
     return(as.character(as.roman(x)))
   } else if (x == "all") {
     x <- "ALLE"
   } else {
     x
   }
-
 }
 
 
 aux_parse_html_title <- function(html) {
-
   html |>
     rvest::read_html() |>
     rvest::html_element("span") |>
     rvest::html_attr("title")
-
 }
 
 aux_parse_html_text <- function(html) {
-
   html |>
     rvest::read_html() |>
     rvest::html_elements("span") |>
     rvest::html_text()
-
 }
 
+
+#' Expand and standardize parliamentary group names
+#'
+#' This internal auxiliary function expands parliamentary group names to include related
+#' or historical variations of the same group. Currently only implemented for FPÖ (Freedom Party).
+#'
+#' @param parl_group Character vector containing parliamentary group names to be expanded
+#'
+#' @return A character vector with expanded and deduplicated parliamentary group names
+#'
+#' @keywords internal
+#' @noRd
+aux_parl_group_names_standard <- function(parl_group) {
+  group_FPÖ <- c("F", "FPÖ", "F-BZÖ")
+  #TODO add more groups; e.g. BZÖ? Check for other variations over time
+
+  #combine & make unique
+  for (i in 1:length(parl_group)) {
+    if (parl_group[i] %in% group_FPÖ) {
+      parl_group <- c(parl_group, group_FPÖ)
+    }
+    return(parl_group %>% unique())
+  }
+}

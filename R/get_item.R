@@ -16,7 +16,8 @@
 #' @param number Character string or `NULL`. Specific item number to search for. Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
-#' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`.
+#' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See 'Details.'
+#' @param parl_group_names_standard Logical. If `TRUE`, the function expands and standardizes parliamentary group names. Default is `FALSE`. See 'Details.' #TODO add to Details
 #'
 #' @details
 #' ## Topic ('Thema')
@@ -92,7 +93,7 @@
 #' * ARH2: Verlangen auf Gebarungsüberprüfung durch den Rechnungshof
 #' * AVB: Antrag auf Volksbefragung
 #' * BUA: Bericht und Antrag
-#' * UEA: Unselbständiger Entschließungsantrag
+#' * UEA: Unselbständiger Entschließungsantrag #BUG
 #' * UEA: Misstrauensantrag
 #' * URH2: Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses
 #'
@@ -114,6 +115,40 @@
 #' EuroVoc is an international thesaurus developed primarily for use within the EU. It enables searches
 #' using standardized keywords across Europe. The EuroVoc search is supported for all negotiation items
 #' from the 20th legislative period onwards.
+#'
+#' ## Parlamentary Group (Klub/Fraktion)
+#' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group.
+#' 
+#' BZÖ 
+#' CSP
+#' DnP
+#' F
+#' F-BZÖ
+#' FPÖ
+#' GdP
+#' GRÜNE
+#' HB
+#' JETZT
+#' Konvent
+#' KPÖ
+#' KuL
+#' L
+#' LB
+#' LBd
+#' NEOS
+#' NEOS-LIF
+#' NSDAP
+#' NWB
+#' OF
+#' OK
+#' ÖVP
+#' PILZ
+#' SdP
+#' SPÖ
+#' STRONACH
+#' VO
+#' WdU
+#'  
 #'
 #' @return A data frame containing the search results. If no results are found, the function returns `NULL`
 #' and displays a message.
@@ -137,7 +172,8 @@ get_item <- function(
   number = NULL, #Nummer - INRUM PENDING
   keyword = NULL, #Schlagwort - SW
   eurovoc = NULL, #EuroVoc - EUROVOC
-  parl_group = NULL #Klub/Fraktion - FRAK_CODE
+  parl_group = NULL, #Klub/Fraktion - FRAK_CODE
+  parl_group_names_standard = FALSE
 ) {
   #TOPIC
   choices_topic = c(
@@ -187,7 +223,7 @@ get_item <- function(
   ## TODO allow for different date types such as "yyyy-mm-dd", "mm/dd/yyyy", and "dd-mm-yyyy"
   # Date validation
   if (!is.null(date_start)) {
-    checkmate::assert_character(date_start, len = 1, null.ok = TRUE)
+    # checkmate::assert_character(date_start, len = 1, null.ok = TRUE)?
     checkmate::assert_true(
       stringr::str_detect(date_start, "^\\d{2}-\\d{2}-\\d{4}$"),
       .var.name = "date_start must be in format dd-mm-yyyy"
@@ -353,6 +389,11 @@ get_item <- function(
   ## scope-checking: would require list of all parties
   ## documentation: list of all possible parities plus abbreviations;
 
+  if (parl_group_names_standard == TRUE) {
+    parl_group <- aux_parl_group_names_standard(parl_group)
+  }
+
+  # COLLECT PARAMETERS
   body_params <- list(
     THEMEN = topic,
     NRBR = institution_input,
@@ -369,6 +410,64 @@ get_item <- function(
     purrr::compact() |> #keep only non-empty elements
     jsonlite::toJSON()
 
+  print(body_params)
+
+  res <- get_item_api_request(body_params) #move actual httr2 request to a distinct function
+
+  # res <- httr2::request(
+  #   "https://www.parlament.gv.at/Filter/api/filter/data/101"
+  # ) |>
+  #   httr2::req_url_query(
+  #     js = "eval",
+  #     # page = "1",
+  #     # pagesize = "10",
+  #     showAll = TRUE,
+  #     sortrnr = "17",
+  #     ascDesc = "DESC",
+  #   ) |>
+  #   httr2::req_headers(
+  #     accept = "*/*",
+  #     `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
+  #     `content-type` = "application/json",
+  #     # cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=ed1JSdqiLIKgiFtm_wJhD78ib7UZWk3qfkL8Ayrl.appsrv04e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1724424995%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
+  #     dnt = "1",
+  #     origin = "https://www.parlament.gv.at",
+  #     priority = "u=1, i"
+  #   ) |>
+  #   httr2::req_body_raw(body_params, "application/json") |>
+  #   httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+  #   httr2::req_verbose(body_req = T, header_req = T, header_resp = F) |>
+  #   httr2::req_perform()
+
+  vec_headings <- res |>
+    httr2::resp_body_json(simplifyVector = T) |>
+    purrr::pluck("header", "label") |>
+    janitor::make_clean_names()
+
+  # extract the actual substantive data
+  df_res <- res |>
+    httr2::resp_body_json(simplifyVector = T) |>
+    purrr::pluck("rows") %>%
+    as.data.frame()
+
+  checkmate::check_data_frame(df_res, min.rows = 1)
+
+  if (length(df_res) == 0) {
+    message("No results found for the provided search criteria.")
+    return(NULL)
+  }
+
+  colnames(df_res) <- vec_headings
+
+  print(nrow(df_res))
+  # print(class(df_res))
+
+  return(df_res)
+}
+
+
+#TODO documentation
+get_item_api_request <- function(body_params) {
   res <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/101"
   ) |>
@@ -384,37 +483,18 @@ get_item <- function(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
       `content-type` = "application/json",
-      cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=ed1JSdqiLIKgiFtm_wJhD78ib7UZWk3qfkL8Ayrl.appsrv04e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1724424995%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
+      # cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=ed1JSdqiLIKgiFtm_wJhD78ib7UZWk3qfkL8Ayrl.appsrv04e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1724424995%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
       dnt = "1",
       origin = "https://www.parlament.gv.at",
       priority = "u=1, i"
     ) |>
     httr2::req_body_raw(body_params, "application/json") |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-    httr2::req_verbose(body_req = T, header_req = F, header_resp = F) |>
+    httr2::req_verbose(
+      body_req = T,
+      header_req = F,
+      header_resp = F,
+      body_resp = F
+    ) |>
     httr2::req_perform()
-
-  vec_headings <- res |>
-    httr2::resp_body_json(simplifyVector = T) |>
-    purrr::pluck("header", "label") |>
-    janitor::make_clean_names()
-
-  # extract the actual substantive data
-  df_res <- res |>
-    httr2::resp_body_json(simplifyVector = T) |>
-    purrr::pluck("rows")
-  #print(class(df_res))
-
-  checkmate::check_data_frame(df_res, min.rows = 1)
-
-  if (length(df_res) == 0) {
-    message("No results found for the provided search criteria.")
-    return(NULL)
-  }
-
-  colnames(df_res) <- vec_headings
-
-  print(nrow(df_res))
-
-  return(df_res)
 }

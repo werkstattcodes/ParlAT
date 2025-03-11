@@ -29,5 +29,6 @@ Roxygen: list(markdown = TRUE)
 Depends: 
     R (>= 2.10)
 Suggests: 
+    httptest2,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
