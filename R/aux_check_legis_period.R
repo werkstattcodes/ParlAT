@@ -70,13 +70,24 @@ aux_parse_html_text <- function(html) {
 #' @noRd
 aux_parl_group_names_standard <- function(parl_group) {
   group_FPÖ <- c("F", "FPÖ", "F-BZÖ")
-  #TODO add more groups; e.g. BZÖ? Check for other variations over time
+  group_BZÖ <- c("BZÖ", "F-BZÖ")
+  group_NEOS <- c("NEOS", "NEOS-LIF")
+  group_JETZT <- c("JETZT", "PILZ")
 
   #combine & make unique
   for (i in 1:length(parl_group)) {
     if (parl_group[i] %in% group_FPÖ) {
       parl_group <- c(parl_group, group_FPÖ)
     }
-    return(parl_group %>% unique())
+    if (parl_group[i] %in% group_BZÖ) {
+      parl_group <- c(parl_group, group_BZÖ)
+    }
+    if (parl_group[i] %in% group_NEOS) {
+      parl_group <- c(parl_group, group_NEOS)
+    }
+    if (parl_group[i] %in% group_JETZT) {
+      parl_group <- c(parl_group, group_JETZT)
+    }
   }
+  return(parl_group %>% unique())
 }

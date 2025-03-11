@@ -118,37 +118,37 @@
 #'
 #' ## Parlamentary Group (Klub/Fraktion)
 #' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group.
-#' 
-#' BZÖ 
-#' CSP
-#' DnP
-#' F
-#' F-BZÖ
-#' FPÖ
-#' GdP
-#' GRÜNE
-#' HB
-#' JETZT
+#'
+#' #TODO complete abbreviations
+#' BZÖ    Bündnis Zkunft Österreich
+#' CSP    Crhistlichsoziale Partei
+#' DnP    Deutsche Nationalpartei
+#' F      Freiheitliche Partei Österreichs
+#' F-BZÖ  Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich
+#' FPÖ    Freiheitliche Partei Österreichs
+#' GdP    Großdeutsche Volkspartei
+#' GRÜNE  Die Grünen - Die Grüne Alternative
+#' HB     Heimatblock
+#' JETZT  Jetzt - Liste Pilz
 #' Konvent
-#' KPÖ
+#' KPÖ    Kommunistische Partei Österreichs
 #' KuL
 #' L
 #' LB
-#' LBd
-#' NEOS
-#' NEOS-LIF
-#' NSDAP
-#' NWB
+#' LBd    Landbund für Österreich
+#' NEOS   NEOS - Das Neue Österreich
+#' NEOS-LIF NEOS - Liberales Forum
+#' NSDAP  Nationalsozialistische Deutsche Arbeiterpartei
+#' NWB    Nationaler Wirtschaftsblck und Landbund
 #' OF
-#' OK
-#' ÖVP
-#' PILZ
+#' OK     Ohne Klub
+#' ÖVP    Österreichische Volkspartei
+#' PILZ   Liste Pilz
 #' SdP
-#' SPÖ
-#' STRONACH
-#' VO
-#' WdU
-#'  
+#' SPÖ    Sozialistische/Sozialdemokratische Partei Österreichs
+#' STRONACH Team Stronach
+#' VO     Wahlgemeinschafft Österreichische Volksopposition
+#' WdU    Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen)#'
 #'
 #' @return A data frame containing the search results. If no results are found, the function returns `NULL`
 #' and displays a message.
@@ -465,8 +465,21 @@ get_item <- function(
   return(df_res)
 }
 
-
-#TODO documentation
+#' Make an API request to parliament.at to get an item
+#'
+#' This function sends a request to the parliament.at API to retrieve data about a specific item.
+#'
+#' @param body_params JSON string or raw object containing the parameters to be sent in the request body
+#'
+#' @return An httr2 response object containing the API response
+#'
+#' @details
+#' The function makes a request to the parliament.at API endpoint for filtering data.
+#' It sets various query parameters and headers to properly format the request.
+#'
+#' @keywords internal
+#'
+#' @noRd
 get_item_api_request <- function(body_params) {
   res <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/101"
@@ -491,10 +504,29 @@ get_item_api_request <- function(body_params) {
     httr2::req_body_raw(body_params, "application/json") |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
     httr2::req_verbose(
-      body_req = T,
+      body_req = F,
       header_req = F,
       header_resp = F,
-      body_resp = F
+      body_resp = F,
+      info = F
     ) |>
     httr2::req_perform()
+
+  # print url to results / transparency reasons
+  body_params_li <- jsonlite::fromJSON(body_params)
+
+  query_string <- imap(
+    body_params_li,
+    \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
+  ) %>%
+    unlist() %>%
+    unname() %>%
+    paste0(collapse = "&")
+
+  print(glue::glue(
+    "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
+  ))
+
+  # return result
+  return(res)
 }
