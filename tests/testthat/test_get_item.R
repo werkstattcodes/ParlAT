@@ -18,8 +18,6 @@ with_mock_dir("test get item", {
 
 with_mock_dir("test_get_item-invalid_date", {
     res_wrong_format <- get_item(date_start = "2025-01-01")
-    nrow(res_wrong_format)
-    # expect_error(get_item(date_start = "2023-01-01"))
     expect_error(res_wrong_format)
 })
 

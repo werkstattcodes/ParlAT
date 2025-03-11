@@ -252,7 +252,6 @@ get_item <- function(
   }
 
   # ITEM / VHG / Gegenstand
-  ## TODO what about multi-value choices - currently integrated
   ## checkmate::assert_subset does not show which element was not matched
   choices_item <- c(
     "ASEU",
@@ -386,8 +385,41 @@ get_item <- function(
 
   # PARL_GROUP (Klub/Fraktion)
   ## web: option "Klub/Fraktion" only visible after selecting legislative period; party options depend on chosen legislative period
-  ## scope-checking: would require list of all parties
+  ## scope-checking: would require list of all parties: checks only if input is subset of all parl groups;
   ## documentation: list of all possible parities plus abbreviations;
+
+  choices_parl_group <- c(
+    "BZÖ",
+    "CSP",
+    "DnP",
+    "F",
+    "F-BZÖ",
+    "FPÖ",
+    "GdP",
+    "GRÜNE",
+    "HB",
+    "JETZT",
+    "Konvent",
+    "KPÖ",
+    "KuL",
+    "L",
+    "LB",
+    "LBd",
+    "NEOS",
+    "NEOS-LIF",
+    "NSDAP",
+    "NWB",
+    "OF",
+    "OK",
+    "ÖVP",
+    "PILZ",
+    "SdP",
+    "SPÖ",
+    "STRONACH",
+    "VO",
+    "WdU"
+  )
+  checkmate::assert_subset(parl_group, choices_parl_group, empty.ok = T)
 
   if (parl_group_names_standard == TRUE) {
     parl_group <- aux_parl_group_names_standard(parl_group)
@@ -515,7 +547,7 @@ get_item_api_request <- function(body_params) {
   # print url to results / transparency reasons
   body_params_li <- jsonlite::fromJSON(body_params)
 
-  query_string <- imap(
+  query_string <- purrr::imap(
     body_params_li,
     \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
   ) %>%

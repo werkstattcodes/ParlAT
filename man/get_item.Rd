@@ -17,7 +17,8 @@ get_item(
   number = NULL,
   keyword = NULL,
   eurovoc = NULL,
-  parl_group = NULL
+  parl_group = NULL,
+  parl_group_names_standard = FALSE
 )
 }
 \arguments{
@@ -43,7 +44,9 @@ get_item(
 
 \item{eurovoc}{Character vector or \code{NULL}. EuroVoc term(s) to search for. Default is \code{NULL}.}
 
-\item{parl_group}{Character vector or \code{NULL}. Parliamentary group(s) to search for. Default is \code{NULL}.}
+\item{parl_group}{Character vector or \code{NULL}. Parliamentary group(s) to search for. Default is \code{NULL}. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See 'Details.'}
+
+\item{parl_group_names_standard}{Logical. If \code{TRUE}, the function expands and standardizes parliamentary group names. Default is \code{FALSE}. See 'Details.' #TODO add to Details}
 }
 \value{
 A data frame containing the search results. If no results are found, the function returns \code{NULL}
@@ -140,7 +143,7 @@ Possible values for \code{doc_type} if institution=="Nationalrat" ('National Cou
 \item ARH2: Verlangen auf Gebarungsüberprüfung durch den Rechnungshof
 \item AVB: Antrag auf Volksbefragung
 \item BUA: Bericht und Antrag
-\item UEA: Unselbständiger Entschließungsantrag
+\item UEA: Unselbständiger Entschließungsantrag #BUG
 \item UEA: Misstrauensantrag
 \item URH2: Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses
 }
@@ -169,6 +172,42 @@ Possible values for \code{doc_type} if \emph{item=="BNR"}:
 EuroVoc is an international thesaurus developed primarily for use within the EU. It enables searches
 using standardized keywords across Europe. The EuroVoc search is supported for all negotiation items
 from the 20th legislative period onwards.
+}
+
+\subsection{Parlamentary Group (Klub/Fraktion)}{
+
+\code{parl_group} specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group.
+
+#TODO complete abbreviations
+BZÖ    Bündnis Zkunft Österreich
+CSP    Crhistlichsoziale Partei
+DnP    Deutsche Nationalpartei
+F      Freiheitliche Partei Österreichs
+F-BZÖ  Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich
+FPÖ    Freiheitliche Partei Österreichs
+GdP    Großdeutsche Volkspartei
+GRÜNE  Die Grünen - Die Grüne Alternative
+HB     Heimatblock
+JETZT  Jetzt - Liste Pilz
+Konvent
+KPÖ    Kommunistische Partei Österreichs
+KuL
+L
+LB
+LBd    Landbund für Österreich
+NEOS   NEOS - Das Neue Österreich
+NEOS-LIF NEOS - Liberales Forum
+NSDAP  Nationalsozialistische Deutsche Arbeiterpartei
+NWB    Nationaler Wirtschaftsblck und Landbund
+OF
+OK     Ohne Klub
+ÖVP    Österreichische Volkspartei
+PILZ   Liste Pilz
+SdP
+SPÖ    Sozialistische/Sozialdemokratische Partei Österreichs
+STRONACH Team Stronach
+VO     Wahlgemeinschafft Österreichische Volksopposition
+WdU    Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen)#'
 }
 }
 \note{
