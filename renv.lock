@@ -19,6 +19,17 @@
       ],
       "Hash": "470851b6d5d0ac559e9d01bb352b4021"
     },
+    "Rcpp": {
+      "Package": "Rcpp",
+      "Version": "1.0.14",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "methods",
+        "utils"
+      ],
+      "Hash": "e7bdd9ee90e96921ca8a0f1972d66682"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.0",
@@ -130,14 +141,14 @@
     },
     "glue": {
       "Package": "glue",
-      "Version": "1.7.0",
+      "Version": "1.8.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
         "methods"
       ],
-      "Hash": "e0b3a53876554bd45879e596cdb10a52"
+      "Hash": "5899f1eaa825580172bb56c08266f37c"
     },
     "hms": {
       "Package": "hms",
@@ -213,13 +224,13 @@
     },
     "jsonlite": {
       "Package": "jsonlite",
-      "Version": "1.8.8",
+      "Version": "1.8.9",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "methods"
       ],
-      "Hash": "e1b9c55281c5adc4dd113652d9e26768"
+      "Hash": "4e993b65c2c3ffbffce7bb3e2c6f832b"
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -276,6 +287,20 @@
         "askpass"
       ],
       "Hash": "c62edf62de70cadf40553e10c739049d"
+    },
+    "padr": {
+      "Package": "padr",
+      "Version": "0.6.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "dplyr",
+        "lubridate",
+        "rlang"
+      ],
+      "Hash": "246fc01396aa283b233ae6e750df7efe"
     },
     "pillar": {
       "Package": "pillar",

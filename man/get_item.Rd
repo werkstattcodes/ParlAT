@@ -18,7 +18,8 @@ get_item(
   keyword = NULL,
   eurovoc = NULL,
   parl_group = NULL,
-  parl_group_names_standard = FALSE
+  parl_group_names_standard = FALSE,
+  echo = TRUE
 )
 }
 \arguments{
@@ -46,7 +47,9 @@ get_item(
 
 \item{parl_group}{Character vector or \code{NULL}. Parliamentary group(s) to search for. Default is \code{NULL}. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See 'Details.'}
 
-\item{parl_group_names_standard}{Logical. If \code{TRUE}, the function expands and standardizes parliamentary group names. Default is \code{FALSE}. See 'Details.' #TODO add to Details}
+\item{parl_group_names_standard}{Logical. If \code{TRUE}, the function expands and standardizes parliamentary group names. Default is \code{FALSE}. See 'Details.'}
+
+\item{echo}{Logical. If \code{TRUE}, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.}
 }
 \value{
 A data frame containing the search results. If no results are found, the function returns \code{NULL}
@@ -176,38 +179,38 @@ from the 20th legislative period onwards.
 
 \subsection{Parlamentary Group (Klub/Fraktion)}{
 
-\code{parl_group} specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group.
-
-#TODO complete abbreviations
-BZÖ    Bündnis Zkunft Österreich
-CSP    Crhistlichsoziale Partei
-DnP    Deutsche Nationalpartei
-F      Freiheitliche Partei Österreichs
-F-BZÖ  Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich
-FPÖ    Freiheitliche Partei Österreichs
-GdP    Großdeutsche Volkspartei
-GRÜNE  Die Grünen - Die Grüne Alternative
-HB     Heimatblock
-JETZT  Jetzt - Liste Pilz
-Konvent
-KPÖ    Kommunistische Partei Österreichs
-KuL
-L
-LB
-LBd    Landbund für Österreich
-NEOS   NEOS - Das Neue Österreich
-NEOS-LIF NEOS - Liberales Forum
-NSDAP  Nationalsozialistische Deutsche Arbeiterpartei
-NWB    Nationaler Wirtschaftsblck und Landbund
-OF
-OK     Ohne Klub
-ÖVP    Österreichische Volkspartei
-PILZ   Liste Pilz
-SdP
-SPÖ    Sozialistische/Sozialdemokratische Partei Österreichs
-STRONACH Team Stronach
-VO     Wahlgemeinschafft Österreichische Volksopposition
-WdU    Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen)#'
+\code{parl_group} specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
+\itemize{
+\item BZÖ    Bündnis Zkunft Österreich
+\item CSP    Crhistlichsoziale Partei
+\item DnP    Deutsche Nationalpartei
+\item F      Freiheitliche Partei Österreichs
+\item F-BZÖ  Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich
+\item FPÖ    Freiheitliche Partei Österreichs
+\item GdP    Großdeutsche Volkspartei
+\item GRÜNE  Die Grünen - Die Grüne Alternative
+\item HB     Heimatblock
+\item JETZT  Jetzt - Liste Pilz
+\item Konvent
+\item KPÖ    Kommunistische Partei Österreichs
+\item KuL
+\item L
+\item LB
+\item LBd    Landbund für Österreich
+\item NEOS   NEOS - Das Neue Österreich
+\item NEOS-LIF NEOS - Liberales Forum
+\item NSDAP  Nationalsozialistische Deutsche Arbeiterpartei
+\item NWB    Nationaler Wirtschaftsblck und Landbund
+\item OF
+\item OK     Ohne Klub
+\item ÖVP    Österreichische Volkspartei
+\item PILZ   Liste Pilz
+\item SdP
+\item SPÖ    Sozialistische/Sozialdemokratische Partei Österreichs
+\item STRONACH Team Stronach
+\item VO     Wahlgemeinschafft Österreichische Volksopposition
+\item WdU    Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen)
+}
 }
 }
 \note{

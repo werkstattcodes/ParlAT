@@ -15,6 +15,5 @@
   "vcs.ignore.cellar": true,
   "vcs.ignore.library": true,
   "vcs.ignore.local": true,
-  "vcs.manage.ignores": true,
-  "r.lsp.diagnostics": false  
+  "vcs.manage.ignores": true
 }

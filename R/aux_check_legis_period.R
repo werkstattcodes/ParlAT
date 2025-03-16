@@ -1,3 +1,4 @@
+
 # use when legis_period allows for input longer than length 1
 # function splits input into elements of length 1
 # checks if potentially numeric
@@ -19,7 +20,7 @@ fn_check_legis_period_elements <- function(x) {
   #print("check 2")
 
   if (
-    !(stringr::str_detect(x, stringr::regex("\\D"), negate = T) ||
+    !(stringr::str_detect(x, stringr::regex("\\D"), negate = TRUE) ||
       x %in%
         c(
           "all",
@@ -75,7 +76,7 @@ aux_parl_group_names_standard <- function(parl_group) {
   group_JETZT <- c("JETZT", "PILZ")
 
   #combine & make unique
-  for (i in 1:length(parl_group)) {
+  for (i in seq_along(parl_group)) {
     if (parl_group[i] %in% group_FPÖ) {
       parl_group <- c(parl_group, group_FPÖ)
     }

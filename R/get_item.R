@@ -17,7 +17,9 @@
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
 #' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See 'Details.'
-#' @param parl_group_names_standard Logical. If `TRUE`, the function expands and standardizes parliamentary group names. Default is `FALSE`. See 'Details.' #TODO add to Details
+#' @param parl_group_names_standard Logical. If `TRUE`, the function expands and standardizes parliamentary group names. Default is `FALSE`. See 'Details.'
+# TODO: add parl_group_names_standard explentation to details
+#' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
 #'
 #' @details
 #' ## Topic ('Thema')
@@ -117,38 +119,38 @@
 #' from the 20th legislative period onwards.
 #'
 #' ## Parlamentary Group (Klub/Fraktion)
-#' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group.
+#' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
 #'
-#' #TODO complete abbreviations
-#' BZÖ    Bündnis Zkunft Österreich
-#' CSP    Crhistlichsoziale Partei
-#' DnP    Deutsche Nationalpartei
-#' F      Freiheitliche Partei Österreichs
-#' F-BZÖ  Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich
-#' FPÖ    Freiheitliche Partei Österreichs
-#' GdP    Großdeutsche Volkspartei
-#' GRÜNE  Die Grünen - Die Grüne Alternative
-#' HB     Heimatblock
-#' JETZT  Jetzt - Liste Pilz
-#' Konvent
-#' KPÖ    Kommunistische Partei Österreichs
-#' KuL
-#' L
-#' LB
-#' LBd    Landbund für Österreich
-#' NEOS   NEOS - Das Neue Österreich
-#' NEOS-LIF NEOS - Liberales Forum
-#' NSDAP  Nationalsozialistische Deutsche Arbeiterpartei
-#' NWB    Nationaler Wirtschaftsblck und Landbund
-#' OF
-#' OK     Ohne Klub
-#' ÖVP    Österreichische Volkspartei
-#' PILZ   Liste Pilz
-#' SdP
-#' SPÖ    Sozialistische/Sozialdemokratische Partei Österreichs
-#' STRONACH Team Stronach
-#' VO     Wahlgemeinschafft Österreichische Volksopposition
-#' WdU    Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen)#'
+# #TODO complete abbreviations
+#' - BZÖ    Bündnis Zkunft Österreich
+#' - CSP    Crhistlichsoziale Partei
+#' - DnP    Deutsche Nationalpartei
+#' - F      Freiheitliche Partei Österreichs
+#' - F-BZÖ  Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich
+#' - FPÖ    Freiheitliche Partei Österreichs
+#' - GdP    Großdeutsche Volkspartei
+#' - GRÜNE  Die Grünen - Die Grüne Alternative
+#' - HB     Heimatblock
+#' - JETZT  Jetzt - Liste Pilz
+#' - Konvent
+#' - KPÖ    Kommunistische Partei Österreichs
+#' - KuL
+#' - L
+#' - LB
+#' - LBd    Landbund für Österreich
+#' - NEOS   NEOS - Das Neue Österreich
+#' - NEOS-LIF NEOS - Liberales Forum
+#' - NSDAP  Nationalsozialistische Deutsche Arbeiterpartei
+#' - NWB    Nationaler Wirtschaftsblck und Landbund
+#' - OF
+#' - OK     Ohne Klub
+#' - ÖVP    Österreichische Volkspartei
+#' - PILZ   Liste Pilz
+#' - SdP
+#' - SPÖ    Sozialistische/Sozialdemokratische Partei Österreichs
+#' - STRONACH Team Stronach
+#' - VO     Wahlgemeinschafft Österreichische Volksopposition
+#' - WdU    Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen)
 #'
 #' @return A data frame containing the search results. If no results are found, the function returns `NULL`
 #' and displays a message.
@@ -161,6 +163,7 @@
 #' get_item(topic="Europäische Union", legis_period=28)
 #' }
 get_item <- function(
+  search_string = NULL,
   topic = NULL, #Themen - Themen
   institution = "Nationalrat", #Gremium - NRBR
   legis_period = NULL, #Gesetzgebungsperiode - GB_Code
@@ -173,7 +176,8 @@ get_item <- function(
   keyword = NULL, #Schlagwort - SW
   eurovoc = NULL, #EuroVoc - EUROVOC
   parl_group = NULL, #Klub/Fraktion - FRAK_CODE
-  parl_group_names_standard = FALSE
+  parl_group_names_standard = FALSE,
+  echo = TRUE
 ) {
   #TOPIC
   choices_topic = c(
@@ -442,45 +446,29 @@ get_item <- function(
     purrr::compact() |> #keep only non-empty elements
     jsonlite::toJSON()
 
-  print(body_params)
+  res <- get_item_api_request(body_params, search_string) #move actual httr2 request to a distinct function
+  # print(class(res))
+  # print(length(res))
+  # length(res[[1]])
+  # print(class(res[[1]][[1]]))
 
-  res <- get_item_api_request(body_params) #move actual httr2 request to a distinct function
+  df_res <- purrr::map(res, \(x) {
+    vec_headings <- x |>
+      httr2::resp_body_json(simplifyVector = T) |>
+      purrr::pluck("header", "label") |>
+      janitor::make_clean_names()
 
-  # res <- httr2::request(
-  #   "https://www.parlament.gv.at/Filter/api/filter/data/101"
-  # ) |>
-  #   httr2::req_url_query(
-  #     js = "eval",
-  #     # page = "1",
-  #     # pagesize = "10",
-  #     showAll = TRUE,
-  #     sortrnr = "17",
-  #     ascDesc = "DESC",
-  #   ) |>
-  #   httr2::req_headers(
-  #     accept = "*/*",
-  #     `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-  #     `content-type` = "application/json",
-  #     # cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=ed1JSdqiLIKgiFtm_wJhD78ib7UZWk3qfkL8Ayrl.appsrv04e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1724424995%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
-  #     dnt = "1",
-  #     origin = "https://www.parlament.gv.at",
-  #     priority = "u=1, i"
-  #   ) |>
-  #   httr2::req_body_raw(body_params, "application/json") |>
-  #   httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-  #   httr2::req_verbose(body_req = T, header_req = T, header_resp = F) |>
-  #   httr2::req_perform()
+    # extract the actual substantive data
+    df_res <- x |>
+      httr2::resp_body_json(simplifyVector = T) |>
+      purrr::pluck("rows") %>%
+      as.data.frame()
 
-  vec_headings <- res |>
-    httr2::resp_body_json(simplifyVector = T) |>
-    purrr::pluck("header", "label") |>
-    janitor::make_clean_names()
+    colnames(df_res) <- vec_headings
 
-  # extract the actual substantive data
-  df_res <- res |>
-    httr2::resp_body_json(simplifyVector = T) |>
-    purrr::pluck("rows") %>%
-    as.data.frame()
+    return(df_res)
+  }) %>%
+    purrr::list_rbind()
 
   checkmate::check_data_frame(df_res, min.rows = 1)
 
@@ -489,14 +477,33 @@ get_item <- function(
     return(NULL)
   }
 
-  colnames(df_res) <- vec_headings
+  # colnames(df_res) <- vec_headings
 
-  print(nrow(df_res))
-  # print(class(df_res))
+  if (echo == TRUE) {
+    print(body_params)
+    # print url to results / transparency reasons / add search string parameter
+    body_params_li <- jsonlite::fromJSON(body_params) %>%
+      c(., "search" = search_string)
+
+    query_string <- purrr::imap(
+      body_params_li,
+      \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
+    ) %>%
+      unlist() %>%
+      unname() %>%
+      paste0(collapse = "&")
+
+    print(glue::glue(
+      "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
+    ))
+
+    print(nrow(df_res))
+  }
 
   return(df_res)
 }
 
+#search_string not included by body, but via url_query
 #' Make an API request to parliament.at to get an item
 #'
 #' This function sends a request to the parliament.at API to retrieve data about a specific item.
@@ -512,53 +519,75 @@ get_item <- function(
 #' @keywords internal
 #'
 #' @noRd
-get_item_api_request <- function(body_params) {
-  res <- httr2::request(
+get_item_api_request <- function(body_params, search_string) {
+  #TODO page iteration needed
+
+  req <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/101"
   ) |>
+    httr2::req_method("POST") |>
     httr2::req_url_query(
       js = "eval",
-      # page = "1",
-      # pagesize = "10",
-      showAll = TRUE,
+      page = "1",
+      pagesize = "1000",
+      search = search_string,
+      # search = "Gesundheit",
       sortrnr = "17",
-      ascDesc = "DESC",
+      ascDesc = "DESC"
     ) |>
+    # httr2::req_url_path_append(search = search_string) |>
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-      `content-type` = "application/json",
-      # cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=ed1JSdqiLIKgiFtm_wJhD78ib7UZWk3qfkL8Ayrl.appsrv04e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1724424995%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
       dnt = "1",
       origin = "https://www.parlament.gv.at",
-      priority = "u=1, i"
+      priority = "u=1, i",
+      # referer = "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR&FP_001DATUM_VON=2024-02-01T01%3A00%3A00.000Z&FP_001DATUM_VON=2024-02-29T01%3A00%3A00.000Z&FP_001VHG=ANTR&FP_001search=gesundheit",
+      `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+      `sec-ch-ua-mobile` = "?0",
+      `sec-ch-ua-platform` = '"Windows"',
+      `sec-fetch-dest` = "empty",
+      `sec-fetch-mode` = "cors",
+      `sec-fetch-site` = "same-origin",
+      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+      # cookie = "JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv04e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv04e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.master:green1"
     ) |>
     httr2::req_body_raw(body_params, "application/json") |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
     httr2::req_verbose(
-      body_req = F,
+      body_req = T,
       header_req = F,
       header_resp = F,
       body_resp = F,
       info = F
-    ) |>
-    httr2::req_perform()
+    )
 
-  # print url to results / transparency reasons
-  body_params_li <- jsonlite::fromJSON(body_params)
+  is_complete <- function(resp) {
+    df_resp_current <- resp |>
+      httr2::resp_body_json(simplifyVector = T)
 
-  query_string <- purrr::imap(
-    body_params_li,
-    \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
-  ) %>%
-    unlist() %>%
-    unname() %>%
-    paste0(collapse = "&")
+    # print(paste("Next page:", df_resp_current$pages))
 
-  print(glue::glue(
-    "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
-  ))
+    df_resp_current <- df_resp_current %>%
+      purrr::pluck("rows") %>%
+      as.data.frame()
+
+    print(nrow(df_resp_current))
+
+    nrow(df_resp_current) < 1000 #dependent on page size parameter
+  }
+
+  resp <- httr2::req_perform_iterative(
+    req,
+    next_req = httr2::iterate_with_offset(
+      param_name = "page",
+      start = 1,
+      offset = 1,
+      resp_complete = \(resp) is_complete(resp)
+    ),
+    max_reqs = Inf
+  )
 
   # return result
-  return(res)
+  return(resp)
 }
