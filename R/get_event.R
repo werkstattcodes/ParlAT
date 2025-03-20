@@ -275,6 +275,20 @@ get_event <- function(
         print(nrow(df_res))
     }
 
+    df_res <- df_res %>%
+        dplyr::mutate(
+            link2 = map_chr(link2, \(x) {
+                if (is.na(x)) {
+                    return(NA)
+                } else {
+                    x %>%
+                        rvest::read_html() %>%
+                        rvest::html_element("a") %>%
+                        rvest::html_attr("href")
+                }
+            })
+        )
+
     return(df_res)
 }
 
