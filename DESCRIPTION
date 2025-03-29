@@ -2,10 +2,10 @@ Package: ParlAT
 Type: Package
 Title: A wrapper for the API of the Austrian Parliament
 Version: 0.1.0
-Authors@R: person("Jane", "Doe", email = "jane@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: MIT + file LICENSE
+Authors@R: person("Roland", "Schmidt", email = "rs2903@gmail.com", role = c("aut", "cre"))
+Description: The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. 
+    This includes, but is not limited to, data on past and current MPs, plenary sessions, or protocols.
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
@@ -23,7 +23,7 @@ Imports:
     stringr,
     tibble,
     utils
-URL: https://github.com/werkstattcodes/ParlAT
+URL: https://github.com/werkstattcodes/ParlAT, https://werkstattcodes.github.io/ParlAT/
 BugReports: https://github.com/werkstattcodes/ParlAT/issues
 Roxygen: list(markdown = TRUE)
 Depends: 

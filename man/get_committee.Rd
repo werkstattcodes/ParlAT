@@ -9,7 +9,8 @@ get_committee(
   institution = NULL,
   legis_period = NULL,
   permanent = NULL,
-  include_subcommittees = NULL
+  include_subcommittees = NULL,
+  echo = NULL
 )
 }
 \arguments{

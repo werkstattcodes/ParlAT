@@ -11,7 +11,7 @@
 #' @return A data frame containing plenary session details.
 #'
 #' @details
-#' Possible values for `eingebracht` if `session_and_activities` is set to `eingebracht wurden`:	
+#' Possible values for `eingebracht` if `session_and_activities` is set to `eingebracht wurden`:
 #' *   ALLE: Alles (All)
 #' *   AA: Abänderungsanträge (Amendment Motions)
 #' *   G037: Anträge auf Absetzung von der Tagesordnung (Motions to Remove from Agenda)
@@ -25,7 +25,7 @@
 #' *   UEA: Unselbständige Entschließungsanträge (Dependent Resolution Motions)
 #' *   UEAM: Unselbständige Misstrauensanträge (Dependent No-Confidence Motions)
 #'
-#' Possible values for `stattgefunden` if `session_and_activities` is set to `stattgefunden haben`:	
+#' Possible values for `stattgefunden` if `session_and_activities` is set to `stattgefunden haben`:
 #' *   ALLE: Alles (All)
 #' *   ASEU: Aktuelle Europastunden (Current Europe Hours)
 #' *   AS: Aktuelle Stunden (Current Hours)
@@ -36,24 +36,30 @@
 #' *   GO: Sonstige Geschäftsordnungsangelegenheiten (Other Procedural Matters)
 #' *   GO35: Unterrichtungen gemäß Art. 50 Abs. 5 B-VG (Notifications according to Art. 50 Para. 5 B-VG)
 #'
-#'     
+#'
 #' @examples \dontrun{
 #' get_plenary_session(instition = "Nationalrat", legis_period = 26)
 #' }
 #'
 #' @export
 # TODO augment documentation
+# TODO rename attributes to english
 get_plenary_sessions <- function(
     institution = NULL,
     legis_period = NULL,
     session_and_activities = "Sitzungen",
-    eingebracht=NULL,
-    stattgefunden=NULL
-    ) {
+    eingebracht = NULL,
+    stattgefunden = NULL
+) {
     # INSTITUTION
-    checkmate::assert_subset(institution, choices = c("Bundesrat", "Nationalrat", "Bundesversammlung"), empty.ok = FALSE)
+    checkmate::assert_subset(
+        institution,
+        choices = c("Bundesrat", "Nationalrat", "Bundesversammlung"),
+        empty.ok = FALSE
+    )
     ## encode
-    institution_input <- switch(institution,
+    institution_input <- switch(
+        institution,
         Nationalrat = "NR",
         Bundesrat = "BR",
         Bundesversammlung = "BV"
@@ -63,27 +69,68 @@ get_plenary_sessions <- function(
     legis_period_input <- as.character(utils::as.roman(legis_period))
 
     # SESSION AND ACTIVITIES
-    choices_session_and_activities <- c("Sitzungen", "eingebracht wurden", "stattgefunden haben")
-    checkmate::assert_subset(session_and_activities, choices_session_and_activities, empty.ok = T)
+    choices_session_and_activities <- c(
+        "Sitzungen",
+        "eingebracht wurden",
+        "stattgefunden haben"
+    )
+    checkmate::assert_subset(
+        session_and_activities,
+        choices_session_and_activities,
+        empty.ok = T
+    )
     ## encode
-    session_and_activities_input <- switch(session_and_activities,
+    session_and_activities_input <- switch(
+        session_and_activities,
         "Sitzungen" = "SI",
         "eingebracht wurden" = "EI",
         "stattgefunden haben" = "ST"
     )
 
-    # CONDITION USE OF 'eingebracht' and 'stattgefunden' on value in session_and_activities 
-    if (!is.null(eingebracht) && session_and_activities != "eingebracht wurden") {
-        stop("'eingebracht' parameter can only be used when session_and_activities is 'eingebracht wurden'")
+    # CONDITION USE OF 'eingebracht' and 'stattgefunden' on value in session_and_activities
+    if (
+        !is.null(eingebracht) && session_and_activities != "eingebracht wurden"
+    ) {
+        stop(
+            "'eingebracht' parameter can only be used when session_and_activities is 'eingebracht wurden'"
+        )
     }
-    if (!is.null(stattgefunden) && session_and_activities != "stattgefunden haben") {
-        stop("'stattgefunden' parameter can only be used when session_and_activities is 'stattgefunden haben'")
+    if (
+        !is.null(stattgefunden) &&
+            session_and_activities != "stattgefunden haben"
+    ) {
+        stop(
+            "'stattgefunden' parameter can only be used when session_and_activities is 'stattgefunden haben'"
+        )
     }
 
-    choices_eingebracht <- c("ALLE", "AA", "G037", "G080", "J", "AE", "G015", "G014", "AB", "G053", "UEA", "UEAM")
+    choices_eingebracht <- c(
+        "ALLE",
+        "AA",
+        "G037",
+        "G080",
+        "J",
+        "AE",
+        "G015",
+        "G014",
+        "AB",
+        "G053",
+        "UEA",
+        "UEAM"
+    )
     checkmate::assert_subset(eingebracht, choices_eingebracht, empty.ok = T)
 
-    choices_stattgefunden <- c("ALLE", "ASEU", "AS", "GO04", "FS", "RGER", "RGEU", "GO", "GO35")
+    choices_stattgefunden <- c(
+        "ALLE",
+        "ASEU",
+        "AS",
+        "GO04",
+        "FS",
+        "RGER",
+        "RGEU",
+        "GO",
+        "GO35"
+    )
     checkmate::assert_subset(stattgefunden, choices_stattgefunden, empty.ok = T)
 
     # BODY PARAMS
@@ -92,8 +139,8 @@ get_plenary_sessions <- function(
         NRBRBV = institution_input,
         GP = legis_period_input,
         R_SISTEI = session_and_activities_input,
-        EIN=eingebracht,
-        STATT=stattgefunden
+        EIN = eingebracht,
+        STATT = stattgefunden
     ) |>
         purrr::compact() |> # keep only non-empty elements
         jsonlite::toJSON()
@@ -105,10 +152,11 @@ get_plenary_sessions <- function(
             FBEZ = "WFP_007",
             listeId = "undefined",
             showAll = TRUE,
-            ascDesc = "ASC") |>
+            ascDesc = "ASC"
+        ) |>
         httr2::req_headers(
             accept = "*/*",
-            `content-type` = "application/json",            
+            `content-type` = "application/json",
             origin = "https://www.parlament.gv.at"
         ) |>
         httr2::req_body_raw(body_params, "application/json") |>

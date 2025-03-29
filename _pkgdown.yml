@@ -1,4 +1,18 @@
-url: ~
+url: https://werkstattcodes.github.io/ParlAT
 template:
   bootstrap: 5
+  light-switch: true
+  bslib:
+    bootswatch: cosmo
+    pkgdown-navbar-bg: '#132943'
+    pkgdown-navbar-ft: '#a39143'
 
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github, lightswitch]
+
+authors:
+  Roland Schmidt:
+    href: https://werk.statt.codes
+  

@@ -1,3 +1,52 @@
+#' Get Current Members of Parliament
+#'
+#' @description
+#' Fetches current members of parliament based on provided search criteria. Mirrors
+#' the search functionality on the Austrian Parliament website at
+#' <a href="https://www.parlament.gv.at/recherchieren/personen/nationalrat" target="_blank">this page</a>.
+#'
+#' @param institution Character. The parliamentary institution, accepted values are "Nationalrat" or "Bundesrat".
+#' @param gender Character. Gender filter to apply; options are "all", "female", or "male". Default is "all".
+#' @param position Character. Position filter with acceptable values:
+#'   \itemize{
+#'     \item "ALLE": Alle (all members of parliament)
+#'     \item "1PNR": Präsident des Nationalrates (President of the National Council)
+#'     \item "2PNR": Zweiter Präsident des Nationalrates (Second President of the National Council)
+#'     \item "3PNR": Dritter Präsident des Nationalrates (Third President of the National Council)
+#'     \item "PRAES": Präsidialkonferenz (Presidential Conference)
+#'     \item "ZON":  Ordner des Nationalrates (Regulators of the National Council)
+#'     \item "ZSN": Schriftführer des Nationalrates (Secretary of the National Council)
+#'   }
+#' @param parl_group Character. Parliamentary group filter. Acceptable values include "all", "LBd", "CSP", "GRÜNE", "SPÖ",
+#'   "F-BZÖ", "GdP", "F", "FPÖ", "KuL", "VO", "WdU", "LB", "NEOS-LIF", "PILZ", "NEOS", "OK", "HB", "KPÖ",
+#'   "ÖVP", "BZÖ", "JETZT", "L", "STRONACH", "NWB", "SdP".
+#'
+#' @param party Character. Political party filter with acceptable values such as "all", "BP", "BZÖ", "BAP", "CSP",
+#'   "Grüne", "FPÖ", "GdP", "HB", "KuL", "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP", "SdP",
+#'   "SPÖ", "STRONACH", "VO", "WdU".
+#' @param state Character. (Reserved) Currently not utilized.
+#' @param electoral_district Character. Electoral district filter. Accepted values include region names such as "all", "Bundeswahlvorschlag",
+#'   "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg",
+#'   "Wien", and various sub-regions (e.g., "Burgenland Nord", "Burgenland Süd", etc.).
+#'
+#' @return A data frame containing the list of current members of parliament that match the search criteria.
+#'
+#' @examples
+#' \dontrun{
+#'   df_members <- get_mps_current(
+#'     institution = "Nationalrat",
+#'     gender = "female",
+#'     party = "SPÖ",
+#'     electoral_district = "Wien"
+#'   )
+#'
+#'   if (!is.null(df_members)) {
+#'     print(df_members)
+#'   }
+#' }
+#'
+#' @import checkmate httr2 jsonlite purrr janitor
+#' @export
 get_mps_current <- function(
     institution = NULL,
     gender = "all",
@@ -5,13 +54,15 @@ get_mps_current <- function(
     parl_group = NULL,
     party = NULL,
     state = NULL,
-    electoral_district = NULL
+    electoral_district = NULL,
+    postal_code = NULL,
+    echo = TRUE
 ) {
     #GENDER
     choices_gender <- c("all", "female", "male")
     checkmate::assert_subset(
         gender,
-        choices_session_and_activities,
+        choices_gender,
         empty.ok = T
     )
     ## encode
@@ -45,12 +96,12 @@ get_mps_current <- function(
         "3PNR", #3. PräsidentIn des Nationalrates (Third President of the National Council)
         "PRAES", #Präsidialkonferenz (Presidential Conference)
         "ZON", #Ordner des Nationalrates (Regulators of the National Council)
-        "ZSN", #SchriftführerIn des Nationalrates (Secretary of the National Council)
+        "ZSN" #SchriftführerIn des Nationalrates (Secretary of the National Council)
     )
     checkmate::assert_subset(
         position,
         choices = choices_position,
-        empty.ok = FALSE
+        empty.ok = TRUE
     )
 
     #PARTY
@@ -79,7 +130,7 @@ get_mps_current <- function(
         "VO",
         "WdU"
     )
-    checkmate::assert_subset(party, choices = choices_party, empty.ok = FALSE)
+    checkmate::assert_subset(party, choices = choices_party, empty.ok = TRUE)
 
     #PARLIAMENTARY GROUP
     ##TODO. parl_group only accepted if R_WF=="FR" (Fraktion)
@@ -115,16 +166,27 @@ get_mps_current <- function(
     checkmate::assert_subset(
         parl_group,
         choices = choices_parl_group,
-        empty.ok = FALSE
+        empty.ok = TRUE
     )
 
     #encode
-    parl_group <- match.arg(parl_group, several.ok = FALSE)
-    if (parl_group == "all") {
+    # parl_group <- match.arg(parl_group, several.ok = FALSE)
+    if (!is.null(parl_group) && parl_group == "all") {
         parl_group <- "NULL"
     }
 
-    electoral_district <- match.arg(electoral_district, several.ok = FALSE)
+    #STATE
+
+    #POSTAL CODE
+    R_PBW_input <- NULL
+    if (!is.na(postal_code) && !is.null(postal_code)) {
+        R_PBW_input <- "PLZ"
+    } else {
+        R_PBW_input <- R_PBW_input
+    }
+
+    #ELECTORAL DISTRICT
+    # electoral_district <- match.arg(electoral_district, several.ok = FALSE)
     electoral_district <- purrr::map_chr(
         electoral_district,
         \(x)
@@ -188,43 +250,17 @@ get_mps_current <- function(
         M = M_input,
         W = W_input,
         NRBR = institution,
-        GP = legis_period,
         WP = party,
         FR = parl_group,
-        PR = presidents_only,
+        PLZ = postal_code,
+        R_PBW = R_PBW_input,
         WK = electoral_district
     ) |>
         purrr::compact() |>
         jsonlite::toJSON()
 
     # PERFORM REQUEST
-    res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
-        req_url_query(
-            jsMode = "FIELDS",
-            FBEZ = "WFW_002",
-        ) |>
-        httr2::req_headers(
-            accept = "*/*",
-            `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-            `content-type` = "application/json",
-            cookie = "JSESSIONID=SrL57wtco2xe1q0nrAy05WS_7epciUmOJjL1Y4xr.appsrv04e; JSESSIONID=TMjVAqf5hP5ZYQFoBRd8_8vRxt8HCVbHUOEghgQV.appsrv05e",
-            dnt = "1",
-            origin = "https://www.parlament.gv.at",
-            priority = "u=1, i",
-            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        ) |>
-        req_body_raw(
-            '{"STEP":["1000"],"NRBR":["NR"],"GP":["AKT"],"R_WF":["WP"],"R_PBW":["WK"],"M":["M"],"W":["W"]}',
-            "application/json"
-        ) |>
-        httr2::req_body_raw(body_params, "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-        httr2::req_verbose(
-            body_req = T,
-            header_req = F,
-            header_resp = F
-        ) |>
-        httr2::req_perform()
+    res <- get_mps_current_api_request(body_params)
 
     vec_headings <- res |>
         httr2::resp_body_json(simplifyVector = T) |>
@@ -240,11 +276,84 @@ get_mps_current <- function(
         message("No results found for the provided search criteria.")
         return(NULL)
     }
-
     colnames(df_res) <- vec_headings
-
     df_res <- as.data.frame(df_res)
-    print(names(df_res))
+
+    #ECHO
+    if (echo == TRUE) {
+        print(nrow(df_res))
+        print(body_params)
+
+        query_string <- body_params %>%
+            fromJSON() %>%
+            imap(
+                .,
+                \(x, y) glue::glue("WFW_002R{URLencode(y)}={URLencode(x)}")
+            ) %>%
+            unlist() %>%
+            unname() %>%
+            paste0(collapse = "&")
+
+        print(glue::glue(
+            "https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?{query_string}"
+        ))
+    }
+
+    # #PARSE HTML STRINGS
+    df_res <- df_res |>
+        dplyr::mutate(across(
+            c("klub", "bundesland"),
+            \(x) purrr::map_chr(x, aux_parse_html_text)
+        ))
 
     return(df_res)
+}
+
+
+#' Fetch Current Members of Parliament Data
+#'
+#' This function sends a POST request to the Austrian Parliament's API endpoint to retrieve data related to current members of parliament.
+#'
+#' @param body_params A JSON-formatted string or raw vector containing the body parameters required by the API.
+#'
+#' @return An HTTP response object from the httr2 package containing the API's response.
+#'
+#' @noRd
+get_mps_current_api_request <- function(body_params) {
+    httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
+        req_method("POST") |>
+        req_url_query(
+            jsMode = "EVAL",
+            FBEZ = "WFW_002",
+            listeId = "undefined",
+            pageNumber = "1",
+            pagesize = "200",
+            feldRnr = "1",
+            ascDesc = "ASC"
+        ) |>
+        httr2::req_headers(
+            accept = "*/*",
+            `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
+            origin = "https://www.parlament.gv.at",
+            priority = "u=1, i",
+            # referer = "https://www.parlament.gv.at/recherchieren/personen/nationalrat",
+            `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
+            `sec-ch-ua-mobile` = "?0",
+            `sec-ch-ua-platform` = '"Windows"',
+            `sec-fetch-dest` = "empty",
+            `sec-fetch-mode` = "cors",
+            `sec-fetch-site` = "same-origin",
+            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0",
+            # cookie = "JSESSIONID=8W7-0Ik_IGTvMWFmcUDtc42xP_c-TZhjBqdTemqY.appsrv05e; pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1742568811%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D; _pk_ses.1.26ca=1"
+        ) |>
+        httr2::req_body_raw(body_params, type = "application/json") |>
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        httr2::req_verbose(
+            body_req = F,
+            header_req = F,
+            header_resp = F,
+            body_resp = F,
+            info = F
+        ) %>%
+        httr2::req_perform()
 }

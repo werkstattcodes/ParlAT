@@ -255,6 +255,5 @@ get_protocols_api_request <- function(body_params, search_string) {
     )
 
     # return result
-    print(class(resp))
     return(resp)
 }

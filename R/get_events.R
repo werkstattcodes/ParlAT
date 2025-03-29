@@ -1,48 +1,62 @@
 #' Get Event Data from Parlament API
 #'
-#' This function retrieves event data based on search parameters such as date range, institution,
-#' event type, and place from the Parlament API. It validates inputs, constructs the proper JSON payload,
-#' and consolidates API responses into a single data frame.
-#'
+#' This function retrieves event data based on search parameters from the Parlament API.
+#' It largely mirrors the search functionality on the Austrian Parliament website at
+#' <a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">this page</a>.
+
 #' @param search_string Optional character string used to further filter the search results.
+#TODO make clear what search_string is actually doing; where does it search; title of events; or body?
 #' @param institution Character specifying the institution to query. Must be one of "Bundesrat" or "Nationalrat".
-#' @param event_type Optional character string indicating the event type. Allowed event types include:
-#'   "Plenarsitzung", "Ausschusssitzung oder Ausschuss", "Besuch einer Plenarsitzung",
-#'   "Demokratiebildung", "Fest-/Gedenksitzung", "Führung", "Internationales", "Klubveranstaltung",
-#'   "Konferenz", "Parlamentarische Enquete", "Pressekonferenz", "Sitzung der Bundesversammlung",
-#'   "Sonstiger Termin", "Veranstaltung".
-#' @param place Optional character string to filter events by location. Must match one of the predefined choices.
-#' @param echo Logical indicating whether to print the JSON parameters, URL, and number of results for transparency.
-#' @param date_start Optional character string representing the start date in "dd-mm-yyyy" format. Internally,
-#'   it is converted to a UTC formatted date-time string.
-#' @param date_end Optional character string representing the end date in "dd-mm-yyyy" format. Internally,
-#'   it is converted to a UTC formatted date-time string.
+#' @param event_type Optional character string indicating the event type. See Details.
+#TODO add English translation
+#' @param place Optional character string to filter events by location. See details.
+#TODO add locations
+#' @param echo Logical indicating; prints used search parameters, number of hits, and link to results on website of parliament.
+#' @param date_start Optional character string representing the start date in "dd-mm-yyyy" format.
+#' @param date_end Optional character string representing the end date in "dd-mm-yyyy" format.
+#' @details
+#' ## Event type
+#' Allowed event types are:
+#'   - "Plenarsitzung (Plenary Session)"
+#'   - "Ausschusssitzung oder Ausschuss (Committee Meeting or Committee)"
+#'   - "Besuch einer Plenarsitzung (Visit to a Plenary Session)"
+#'   - "Demokratiebildung (Democracy Education)"
+#'   - "Fest-/Gedenksitzung (Ceremonial/Commemorative Session)"
+#'   - "Führung (Guided Tour)"
+#'   - "Internationales (International)"
+#'   - "Klubveranstaltung (Club Event)"
+# TODO check translation
+#'   - "Konferenz (Conference)"
+#'   - "Parlamentarische Enquete (Parliamentary Inquiry)"
+#'   - "Pressekonferenz (Press Conference)"
+#'   - "Sitzung der Bundesversammlung (Federal Assembly Session)"
+# TODO check translation
+#'   - "Sonstiger Termin (Other Event)"
+#'   - "Veranstaltung (Event)".
+#'
+#' ## Place
+#' Must match one of the predefined choices.
+#'
 #'
 #' @return A data frame containing event details if results are found. If no events match the criteria,
 #'   the function prints a message and returns NULL.
 #'
-#' @details
-#' The function internally uses the checkmate package for input validation, ensuring that dates are correctly
-#' formatted and that provided values for institution, event type, and place are among the allowed options.
-#' The processed parameters are sent as a JSON payload in an API request. The response is transformed into a data frame,
-#' with column names cleaned using the janitor package. This function is useful to query and filter parliamentary event information.
-#'
 #' @examples
 #' \dontrun{
 #'   # Example: Retrieve events from the Nationalrat between "01-01-2022" and "31-01-2022"
-#'   events <- get_event(
+#'   events <- get_events(
 #'     search_string = "budget",
 #'     institution = "Nationalrat",
 #'     event_type = "Plenarsitzung",
 #'     place = "Nationalratssaal",
 #'     date_start = "01-01-2022",
-#'     date_end = "31-01-2022",
+#'     date_end = "31-12-2022",
 #'     echo = TRUE
 #'   )
 #' }
 #'
 #' @export
-get_event <- function(
+get_events <- function(
     search_string = NULL,
     institution = "Nationalrat",
     event_type = NULL,
@@ -193,6 +207,7 @@ get_event <- function(
         "virtuell",
         "Keine Bezeichnung im Select."
     )
+
     checkmate::assert_subset(
         x = place,
         choices = choices_place,
@@ -275,19 +290,21 @@ get_event <- function(
         print(nrow(df_res))
     }
 
-    df_res <- df_res %>%
-        dplyr::mutate(
-            link2 = map_chr(link2, \(x) {
-                if (is.na(x)) {
-                    return(NA)
-                } else {
-                    x %>%
-                        rvest::read_html() %>%
-                        rvest::html_element("a") %>%
-                        rvest::html_attr("href")
-                }
-            })
-        )
+    if ("link2" %in% colnames(df_res)) {
+        df_res <- df_res %>%
+            dplyr::mutate(
+                link2 = map_chr(link2, \(x) {
+                    if (is.na(x) | is.null(x)) {
+                        return(NA)
+                    } else {
+                        x %>%
+                            rvest::read_html() %>%
+                            rvest::html_element("a") %>%
+                            rvest::html_attr("href")
+                    }
+                })
+            )
+    }
 
     return(df_res)
 }

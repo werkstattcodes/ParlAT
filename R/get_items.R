@@ -1,7 +1,7 @@
 #' Search for Parliamentary Items
 #' @encoding UTF-8
 #' @description
-#' `get_item` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
+#' `get_items` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 #' in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
 #' mirrors the search functionality offered on the Austrian Parliament's website. See [here](https://www.parlament.gv.at/recherchieren/gegenstaende/index.html).
 #'
@@ -23,6 +23,7 @@
 #'
 #' @details
 #' ## Topic ('Thema')
+# 
 #' Possible values for `topic` include:
 #'
 #' * "Arbeit" (work)
@@ -160,9 +161,9 @@
 #' @export
 #'
 #' @examples \dontrun{
-#' get_item(topic="Europäische Union", legis_period=28)
+#' get_items(topic="Europäische Union", legis_period=28)
 #' }
-get_item <- function(
+get_items <- function(
   search_string = NULL,
   topic = NULL, #Themen - Themen
   institution = "Nationalrat", #Gremium - NRBR
@@ -446,11 +447,7 @@ get_item <- function(
     purrr::compact() |> #keep only non-empty elements
     jsonlite::toJSON()
 
-  res <- get_item_api_request(body_params, search_string) #move actual httr2 request to a distinct function
-  # print(class(res))
-  # print(length(res))
-  # length(res[[1]])
-  # print(class(res[[1]][[1]]))
+  res <- get_item_api_request(body_params, search_string)
 
   df_res <- purrr::map(res, \(x) {
     vec_headings <- x |>
@@ -464,6 +461,11 @@ get_item <- function(
       purrr::pluck("rows") %>%
       as.data.frame()
 
+    if (length(df_res) == 0) {
+      message("No results found for the provided search criteria.")
+      return(NULL)
+    }
+
     colnames(df_res) <- vec_headings
 
     return(df_res)
@@ -471,13 +473,6 @@ get_item <- function(
     purrr::list_rbind()
 
   checkmate::check_data_frame(df_res, min.rows = 1)
-
-  if (length(df_res) == 0) {
-    message("No results found for the provided search criteria.")
-    return(NULL)
-  }
-
-  # colnames(df_res) <- vec_headings
 
   if (echo == TRUE) {
     print(body_params)
@@ -520,8 +515,6 @@ get_item <- function(
 #'
 #' @noRd
 get_item_api_request <- function(body_params, search_string) {
-  #TODO page iteration needed
-
   req <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/101"
   ) |>
@@ -531,11 +524,9 @@ get_item_api_request <- function(body_params, search_string) {
       page = "1",
       pagesize = "1000",
       search = search_string,
-      # search = "Gesundheit",
       sortrnr = "17",
       ascDesc = "DESC"
     ) |>
-    # httr2::req_url_path_append(search = search_string) |>
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
@@ -555,7 +546,7 @@ get_item_api_request <- function(body_params, search_string) {
     httr2::req_body_raw(body_params, "application/json") |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
     httr2::req_verbose(
-      body_req = T,
+      body_req = F,
       header_req = F,
       header_resp = F,
       body_resp = F,
@@ -566,13 +557,11 @@ get_item_api_request <- function(body_params, search_string) {
     df_resp_current <- resp |>
       httr2::resp_body_json(simplifyVector = T)
 
-    # print(paste("Next page:", df_resp_current$pages))
-
     df_resp_current <- df_resp_current %>%
       purrr::pluck("rows") %>%
       as.data.frame()
 
-    print(nrow(df_resp_current))
+    # print(nrow(df_resp_current))
 
     nrow(df_resp_current) < 1000 #dependent on page size parameter
   }
@@ -589,5 +578,6 @@ get_item_api_request <- function(body_params, search_string) {
   )
 
   # return result
+  print(class(resp))
   return(resp)
 }
