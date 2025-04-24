@@ -19,7 +19,8 @@ this page."><meta property="og:image" content="https://werkstattcodes.github.io/
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/ParlAT.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/werkstattcodes/ParlAT/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
@@ -77,7 +78,7 @@ It largely mirrors the search functionality on the Austrian Parliament website a
 
 
 <dt id="arg-place">place<a class="anchor" aria-label="anchor" href="#arg-place"></a></dt>
-<dd><p>Optional character string to filter events by location. Must match one of the predefined choices.</p></dd>
+<dd><p>Optional character string to filter events by location. See details.</p></dd>
 
 
 <dt id="arg-date-start">date_start<a class="anchor" aria-label="anchor" href="#arg-date-start"></a></dt>
@@ -104,21 +105,28 @@ the function prints a message and returns NULL.</p>
 <h3 id="event-type">Event type<a class="anchor" aria-label="anchor" href="#event-type"></a></h3>
 
 
-<p>Allowed event types include:</p><ul><li><p>"Plenarsitzung"</p></li>
-<li><p>"Ausschusssitzung oder Ausschuss"</p></li>
-<li><p>"Besuch einer Plenarsitzung"</p></li>
-<li><p>"Demokratiebildung"</p></li>
-<li><p>"Fest-/Gedenksitzung"</p></li>
-<li><p>"Führung"</p></li>
-<li><p>"Internationales"</p></li>
-<li><p>"Klubveranstaltung"</p></li>
-<li><p>"Konferenz"</p></li>
-<li><p>"Parlamentarische Enquete"</p></li>
-<li><p>"Pressekonferenz"</p></li>
-<li><p>"Sitzung der Bundesversammlung"</p></li>
-<li><p>"Sonstiger Termin"</p></li>
-<li><p>"Veranstaltung".</p></li>
+<p>Allowed event types are:</p><ul><li><p>"Plenarsitzung (Plenary Session)"</p></li>
+<li><p>"Ausschusssitzung oder Ausschuss (Committee Meeting or Committee)"</p></li>
+<li><p>"Besuch einer Plenarsitzung (Visit to a Plenary Session)"</p></li>
+<li><p>"Demokratiebildung (Democracy Education)"</p></li>
+<li><p>"Fest-/Gedenksitzung (Ceremonial/Commemorative Session)"</p></li>
+<li><p>"Führung (Guided Tour)"</p></li>
+<li><p>"Internationales (International)"</p></li>
+<li><p>"Klubveranstaltung (Club Event)"</p></li>
+<li><p>"Konferenz (Conference)"</p></li>
+<li><p>"Parlamentarische Enquete (Parliamentary Inquiry)"</p></li>
+<li><p>"Pressekonferenz (Press Conference)"</p></li>
+<li><p>"Sitzung der Bundesversammlung (Federal Assembly Session)"</p></li>
+<li><p>"Sonstiger Termin (Other Event)"</p></li>
+<li><p>"Veranstaltung (Event)".</p></li>
 </ul></div>
+
+<div class="section">
+<h3 id="place">Place<a class="anchor" aria-label="anchor" href="#place"></a></h3>
+
+
+<p>Must match one of the predefined choices.</p>
+</div>
 
     </div>
 
