@@ -22,7 +22,7 @@ with all past and present mandates. Mandates can be limited to a specific date
 or institution.
 
 The function partly mimics the behavior of the 'Personensuche' on the website
-of the Parliament (\href{https://www.parlament.gv.at/recherchieren/personen/}{here}),
+of the Parliament (\href{https://www.parlament.gv.at/recherchieren/personen/}{here}{target="_blank"}),
 but requires the 'pad_intern' instead of the name of the MP. To get the 'pad_intern' of an MP,
 see the function \code{get_pad_intern}.
 }

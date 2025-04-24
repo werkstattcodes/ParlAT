@@ -86,8 +86,10 @@ get_person_single <- function(
     ) |>
     httr2::req_body_raw(body_params, "application/json") |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-    httr2::req_verbose(body_req = T, header_req = F, header_resp = F) |>
+    httr2::req_verbose(body_req = F, header_req = F, header_resp = F) |>
     httr2::req_perform()
+
+  # print("hello")
 
   # vec_headings
   vec_headings <- res |>
@@ -145,7 +147,7 @@ get_person_single <- function(
 #' name of an individual. MPs' pervious names, e.g. before marriage, do
 #' not return a match.
 #'
-#' @param names A character vector of name(s)
+#' @param names A character vector of name(s). Surname first.
 #' @param search_strict Logical. If `TRUE`, only exact matches are returned. Default is `TRUE`.
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param mandates Logical. If `TRUE`, mandates are retrieved for each person. Default is `FALSE`.
@@ -153,7 +155,7 @@ get_person_single <- function(
 #' @param gender A character vector. Possible values are "all", "female", or "male". Default is "all".
 
 #' @examples \dontrun{
-#' get_persons(c("Kogler", "Kurz"))}
+#' get_persons(c("Kogler Werner", "Kurz Sebastian"))}
 
 get_persons <- function(
   names = NULL,
@@ -163,13 +165,6 @@ get_persons <- function(
   date = NULL,
   gender = "all"
 ) {
-  # names <- NULL
-  # gender <- "female"
-  # date <- "2022-01-01"
-  # mandates <- TRUE
-  # institution <- NULL
-  # search_strict <- TRUE
-
   if (is.null(names) || length(names) == 0) {
     li_persons <- list(get_person_single(
       search_strict = search_strict,

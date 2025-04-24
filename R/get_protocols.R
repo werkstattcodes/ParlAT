@@ -1,17 +1,17 @@
-#' Retrieve Protocols from the Austrian Parliament API
+#' Retrieve Transcripts from the Austrian Parliament API
 #'
-#' This function sends a POST request to the Austrian Parliament's API to retrieve protocol data
+#' This function sends a POST request to the Austrian Parliament's API to retrieve transcript data
 #' based on the provided filters such as search string, legislative period, session type, and date range.
 #'
-#' @param search_string Optional character string to filter protocols by keywords. Defaults to NULL.
+#' @param search_string Optional character string to filter transcripts by keywords. Defaults to NULL.
 #' @param legis_period Optional numeric value representing the legislative period. This value is converted
 #'   to its Roman numeral representation internally. Defaults to NULL.
 #' @param session_type Optional character string specifying the type of session (e.g., "NRSITZ", "BRSITZ",
 #'   "USA", etc.). Defaults to NULL.
-#' @param date_start Optional start date (as character or Date) for filtering protocols. Defaults to NULL.
-#' @param date_end Optional end date (as character or Date) for filtering protocols. Defaults to NULL.
+#' @param date_start Optional start date (as character or Date) for filtering transcripts. Defaults to NULL.
+#' @param date_end Optional end date (as character or Date) for filtering transcripts. Defaults to NULL.
 #' @param echo Logical flag to indicate whether to print details of the request process. Defaults to TRUE.
-#' @return An object containing the API response, which typically includes the protocol data in JSON format.
+#' @return An object containing the API response, which typically includes the transcript data in JSON format.
 #' @details
 #' ## Session Type ('Art der Sitzung')
 #' * NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary sessions)
@@ -26,14 +26,14 @@
 
 #' @examples
 #' \dontrun{
-#'   # Retrieve all available protocols with default filters.
-#'   get_protocols()
+#'   # Retrieve all available transcripts with default filters.
+#'   get_transcripts()
 #'
-#'   # Retrieve protocols using a search string and specifying a legislative period.
-#'   get_protocols(search_string = "gesundheit", legis_period = 28, session_type = "NRSITZ",
+#'   # Retrieve transcripts using a search string and specifying a legislative period.
+#'   get_transcripts(search_string = "gesundheit", legis_period = 28, session_type = "NRSITZ",
 #'                 date_start = "2024-01-01", date_end = NULL)
 #' }
-get_protocols <- function(
+get_transcripts <- function(
     search_string = NULL,
     legis_period = NULL,
     session_type = NULL,
@@ -105,7 +105,7 @@ get_protocols <- function(
         purrr::compact() |> #keep only non-empty elements
         jsonlite::toJSON()
 
-    res <- get_protocols_api_request(body_params, search_string)
+    res <- get_transcripts_api_request(body_params, search_string)
 
     df_res <- purrr::map(res, \(x) {
         vec_headings <- x |>
@@ -157,40 +157,40 @@ get_protocols <- function(
 }
 
 
-#' Retrieve Protocols via API Request
-#'
-#' This function constructs and sends a POST request to the ParlAT API endpoint
-#' for retrieving protocol data. It uses the httr2 package to build the request,
-#' including setting specific query parameters (such as page, pagesize, search term, and sort order)
-#' and necessary headers (like Accept, User-Agent, and others) to emulate a browser request.
-#'
-#' The function supports iterative fetching by automatically handling pagination.
-#' It continues making requests until the number of rows returned is less than the specified page size,
-#' indicating that the final page has been reached.
-#'
-#' @param body_params A JSON string representing the body parameters for the POST request.
-#' @param search_string A string used as a search parameter in the query to filter protocols.
-#'
-#' @return A list containing the concatenated responses from all successful paginated API requests.
-#'
-#' @details
-#' Internally, the function defines a helper 'is_complete' to determine if the current response
-#' indicates that there is no further data to fetch. The pagination is managed by incrementing the
-#' 'page' parameter until fewer items than the page size are returned.
-#'
-#' @examples
-#' \dontrun{
-#'   # Define JSON body parameters and a search string
-#'   json_body <- '{"key": "value"}'
-#'   search_query <- "health"
-#'
-#'   # Retrieve protocols from the API
-#'   protocols <- get_protocols_api_request(json_body, search_query)
-#'
-#'   # View the structure of the result
-#'   print(str(protocols))
-#' }
-get_protocols_api_request <- function(body_params, search_string) {
+# Retrieve Transcripts via API Request
+#
+# This function constructs and sends a POST request to the ParlAT API endpoint
+# for retrieving transcript data. It uses the httr2 package to build the request,
+# including setting specific query parameters (such as page, pagesize, search term, and sort order)
+# and necessary headers (like Accept, User-Agent, and others) to emulate a browser request.
+#
+# The function supports iterative fetching by automatically handling pagination.
+# It continues making requests until the number of rows returned is less than the specified page size,
+# indicating that the final page has been reached.
+#
+# body_params: A JSON string representing the body parameters for the POST request.
+# search_string: A string used as a search parameter in the query to filter transcripts.
+#
+# Returns:
+# A list containing the concatenated responses from all successful paginated API requests.
+#
+# Details:
+# Internally, the function defines a helper 'is_complete' to determine if the current response
+# indicates that there is no further data to fetch. The pagination is managed by incrementing the
+# 'page' parameter until fewer items than the page size are returned.
+#
+# Examples:
+# Define JSON body parameters and a search string:
+#   json_body <- '{"key": "value"}'
+#   search_query <- "health"
+#
+# Retrieve transcripts from the API:
+#   transcripts <- get_transcripts_api_request(json_body, search_query)
+#
+# View the structure of the result:
+#   print(str(transcripts))
+
+get_transcripts_api_request <- function(body_params, search_string) {
     req <- httr2::request(
         "https://www.parlament.gv.at/Filter/api/filter/data/211"
     ) |>

@@ -1,24 +1,25 @@
-get_committee_membership <- function(name, institution) {
-
+get_committee_memberships <- function(name, institution) {
   # name="Krisper"
   # institution="Nationalrat"
 
-  vec_pad_intern <- get_persons(name=name, institution=institution) |>
+  vec_pad_intern <- get_persons(name = name, institution = institution) |>
     dplyr::pull(pad_intern) |>
     unique()
 
   body_params <- list(
-    PAD_INTERN=vec_pad_intern
+    PAD_INTERN = vec_pad_intern
   ) |>
-    purrr::compact() |>  #keep only non-empty elements
+    purrr::compact() |> #keep only non-empty elements
     jsonlite::toJSON()
 
   print(body_params)
 
-  res <- httr2::request("https://www.parlament.gv.at/Filter/api/filter/data/250") |>
+  res <- httr2::request(
+    "https://www.parlament.gv.at/Filter/api/filter/data/250"
+  ) |>
     httr2::req_url_query(
       `1` = "1",
-      showAll=TRUE,
+      showAll = TRUE,
       # page = "1",
       # pagesize = "20",
       sortrnr = "2",
@@ -34,9 +35,7 @@ get_committee_membership <- function(name, institution) {
     ) |>
     httr2::req_body_raw(body_params, "application/json") |>
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-    httr2::req_verbose(body_req = T,
-                       header_req = F,
-                       header_resp = F) |>
+    httr2::req_verbose(body_req = T, header_req = F, header_resp = F) |>
     httr2::req_perform()
 
   vec_headings <- res |>
@@ -59,10 +58,4 @@ get_committee_membership <- function(name, institution) {
   colnames(df_res) <- vec_headings
 
   return(df_res)
-
 }
-
-
-
-
-

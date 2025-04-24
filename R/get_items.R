@@ -23,7 +23,7 @@
 #'
 #' @details
 #' ## Topic ('Thema')
-# 
+#
 #' Possible values for `topic` include:
 #'
 #' * "Arbeit" (work)
@@ -58,7 +58,7 @@
 #'
 #' * "ASEU" (Aktuelle Europastunden, Current European Hours)
 #' * "AS" (Aktuelle Stunden, Current Hours)
-#' * "J_JPR_M" (Anfragen, Inquiries)
+#' * "J_JPR_M" (Anfragen, Written Questions)
 #' * "ANTR" (Anträge, Motions)
 #' * "US" (Anträge/Verlangen auf Untersuchungsausschuss, Motions/Requests for Investigative Committee)
 #' * "AUB" (Ausschussberichte, Committee Reports)

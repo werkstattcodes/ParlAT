@@ -53,7 +53,7 @@ And additional columns depending on the query parameters
 \description{
 Retrieves information about Members of Parliament from the Austrian Parliament database.
 This function mirrors the search functionality 'Parlamentarier:innen ab 1918'
-from the Austrian Parliament website.
+from the Austrian Parliament website \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918/index.html" target="_blank">}}here\if{html}{\out{</a>}}.
 }
 \details{
 Available party values include: "all", "BP", "BZÖ", "BAP", "CSP", "Grüne", "FPÖ",

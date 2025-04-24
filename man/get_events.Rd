@@ -21,7 +21,7 @@ get_events(
 
 \item{event_type}{Optional character string indicating the event type. See Details.}
 
-\item{place}{Optional character string to filter events by location. Must match one of the predefined choices.}
+\item{place}{Optional character string to filter events by location. See details.}
 
 \item{date_start}{Optional character string representing the start date in "dd-mm-yyyy" format.}
 
@@ -41,23 +41,28 @@ It largely mirrors the search functionality on the Austrian Parliament website a
 \details{
 \subsection{Event type}{
 
-Allowed event types include:
+Allowed event types are:
 \itemize{
-\item "Plenarsitzung"
-\item "Ausschusssitzung oder Ausschuss"
-\item "Besuch einer Plenarsitzung"
-\item "Demokratiebildung"
-\item "Fest-/Gedenksitzung"
-\item "Führung"
-\item "Internationales"
-\item "Klubveranstaltung"
-\item "Konferenz"
-\item "Parlamentarische Enquete"
-\item "Pressekonferenz"
-\item "Sitzung der Bundesversammlung"
-\item "Sonstiger Termin"
-\item "Veranstaltung".
+\item "Plenarsitzung (Plenary Session)"
+\item "Ausschusssitzung oder Ausschuss (Committee Meeting or Committee)"
+\item "Besuch einer Plenarsitzung (Visit to a Plenary Session)"
+\item "Demokratiebildung (Democracy Education)"
+\item "Fest-/Gedenksitzung (Ceremonial/Commemorative Session)"
+\item "Führung (Guided Tour)"
+\item "Internationales (International)"
+\item "Klubveranstaltung (Club Event)"
+\item "Konferenz (Conference)"
+\item "Parlamentarische Enquete (Parliamentary Inquiry)"
+\item "Pressekonferenz (Press Conference)"
+\item "Sitzung der Bundesversammlung (Federal Assembly Session)"
+\item "Sonstiger Termin (Other Event)"
+\item "Veranstaltung (Event)".
 }
+}
+
+\subsection{Place}{
+
+Must match one of the predefined choices.
 }
 }
 \examples{

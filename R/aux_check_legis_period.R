@@ -1,4 +1,3 @@
-
 # use when legis_period allows for input longer than length 1
 # function splits input into elements of length 1
 # checks if potentially numeric
@@ -12,6 +11,9 @@
 #' @param x a vector of length > 0;
 #'
 #' @return a vector of length 1
+#' 
+#' @keywords internal
+#' @noRd
 #'
 fn_check_legis_period_elements <- function(x) {
   if (is.null(x)) {

@@ -1,15 +1,16 @@
 #' Internal function to get MPs for a single legislative period
 #' @noRd
-get_mps_single <- function(institution = institution,
-                           gender = gender,
-                           legis_period = legis_period,
-                           party = party,
-                           parl_group = parl_group,
-                           electoral_district = electoral_district,
-                           state = state,
-                           presidents_only = presidents_only,
-                           make_unique = make_unique) {
-
+get_mps_single <- function(
+  institution = institution,
+  gender = gender,
+  legis_period = legis_period,
+  party = party,
+  parl_group = parl_group,
+  electoral_district = electoral_district,
+  state = state,
+  presidents_only = presidents_only,
+  make_unique = make_unique
+) {
   gender <- match.arg(gender)
   if (gender == "all") {
     M <- "M"
@@ -30,10 +31,15 @@ get_mps_single <- function(institution = institution,
     Bundesrat = "BR"
   )
 
-  if (!(is.numeric(legis_period) ||
-        legis_period %in% c("all",
-                            "Provisorische Nationalversammlung",
-                            "Konstituierende Nationalversammlung"))) {
+  if (
+    !(is.numeric(legis_period) ||
+      legis_period %in%
+        c(
+          "all",
+          "Provisorische Nationalversammlung",
+          "Konstituierende Nationalversammlung"
+        ))
+  ) {
     stop(
       "Invalid input for legis_period. Must be a numeric value or one of 'all', 'Provisorisch Nationalversammlung', or 'Konstituierende Nationalversammlung'."
     )
@@ -66,59 +72,63 @@ get_mps_single <- function(institution = institution,
   }
 
   electoral_district <- match.arg(electoral_district, several.ok = FALSE)
-  electoral_district <- purrr::map_chr(electoral_district, \(x) switch(
-    x,
-    "all" = "ALLE",
-    "Bundeswahlvorschlag" = "FB",
-    "Burgenland" = "F1",
-    "Kärnten" = "F2",
-    "Niederösterreich" = "F3",
-    "Oberösterreich" = "F4",
-    "Salzburg" = "F5",
-    "Steiermark" = "F6",
-    "Tirol" = "F7",
-    "Vorarlberg" = "F8",
-    "Wien" = "F9",
-    "Burgenland Nord" = "F1A",
-    "Burgenland Süd" = "F1B",
-    "Klagenfurt" = "F2A",
-    "Villach" = "F2B",
-    "Kärnten West" = "F2C",
-    "Kärnten Ost" = "F2D",
-    "Weinviertel" = "F3A",
-    "Waldviertel" = "F3B",
-    "Mostviertel" = "F3C",
-    "Niederösterreich Mitte" = "F3D",
-    "Niederösterreich Süd" = "F3E",
-    "Thermenregion" = "F3F",
-    "Niederösterreich Ost" = "F3G",
-    "Linz und Umgebung" = "F4A",
-    "Innviertel" = "F4B",
-    "Hausruckviertel" = "F4C",
-    "Traunviertel" = "F4D",
-    "Mühlviertel" = "F4E",
-    "Salzburg Stadt" = "F5A",
-    "Flachgau/Tennengau" = "F5B",
-    "Lungau/Pinzgau/Pongau" = "F5C",
-    "Graz und Umgebung" = "F6A",
-    "Oststeiermark" = "F6B",
-    "Weststeiermark" = "F6C",
-    "Obersteiermark" = "F6D",
-    "Innsbruck" = "F7A",
-    "Innsbruck-Land" = "F7B",
-    "Unterland" = "F7C",
-    "Oberland" = "F7D",
-    "Osttirol" = "F7E",
-    "Vorarlberg Nord" = "F8A",
-    "Vorarlberg Süd" = "F8B",
-    "Wien Innen-Süd" = "F9A",
-    "Wien Innen-West" = "F9B",
-    "Wien Innen-Ost" = "F9C",
-    "Wien Süd" = "F9D",
-    "Wien Süd-West" = "F9E",
-    "Wien Nord-West" = "F9F",
-    "Wien Nord" = "F9G"
-  ))
+  electoral_district <- purrr::map_chr(
+    electoral_district,
+    \(x)
+      switch(
+        x,
+        "all" = "ALLE",
+        "Bundeswahlvorschlag" = "FB",
+        "Burgenland" = "F1",
+        "Kärnten" = "F2",
+        "Niederösterreich" = "F3",
+        "Oberösterreich" = "F4",
+        "Salzburg" = "F5",
+        "Steiermark" = "F6",
+        "Tirol" = "F7",
+        "Vorarlberg" = "F8",
+        "Wien" = "F9",
+        "Burgenland Nord" = "F1A",
+        "Burgenland Süd" = "F1B",
+        "Klagenfurt" = "F2A",
+        "Villach" = "F2B",
+        "Kärnten West" = "F2C",
+        "Kärnten Ost" = "F2D",
+        "Weinviertel" = "F3A",
+        "Waldviertel" = "F3B",
+        "Mostviertel" = "F3C",
+        "Niederösterreich Mitte" = "F3D",
+        "Niederösterreich Süd" = "F3E",
+        "Thermenregion" = "F3F",
+        "Niederösterreich Ost" = "F3G",
+        "Linz und Umgebung" = "F4A",
+        "Innviertel" = "F4B",
+        "Hausruckviertel" = "F4C",
+        "Traunviertel" = "F4D",
+        "Mühlviertel" = "F4E",
+        "Salzburg Stadt" = "F5A",
+        "Flachgau/Tennengau" = "F5B",
+        "Lungau/Pinzgau/Pongau" = "F5C",
+        "Graz und Umgebung" = "F6A",
+        "Oststeiermark" = "F6B",
+        "Weststeiermark" = "F6C",
+        "Obersteiermark" = "F6D",
+        "Innsbruck" = "F7A",
+        "Innsbruck-Land" = "F7B",
+        "Unterland" = "F7C",
+        "Oberland" = "F7D",
+        "Osttirol" = "F7E",
+        "Vorarlberg Nord" = "F8A",
+        "Vorarlberg Süd" = "F8B",
+        "Wien Innen-Süd" = "F9A",
+        "Wien Innen-West" = "F9B",
+        "Wien Innen-Ost" = "F9C",
+        "Wien Süd" = "F9D",
+        "Wien Süd-West" = "F9E",
+        "Wien Nord-West" = "F9F",
+        "Wien Nord" = "F9G"
+      )
+  )
 
   body_params <- list(
     M = M,
@@ -199,7 +209,8 @@ get_mps_single <- function(institution = institution,
 #'
 #' Retrieves information about Members of Parliament from the Austrian Parliament database.
 #' This function mirrors the search functionality 'Parlamentarier:innen ab 1918'
-#' from the Austrian Parliament website.
+#' from the Austrian Parliament website <a href="https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918/index.html" target="_blank">here</a>.
+
 #'
 #' @param institution Chamber of Parliament. One of "all", "Bundesrat", or "Nationalrat"
 #' @param gender Gender filter. One of "all", "female", or "male"
@@ -234,44 +245,96 @@ get_mps_single <- function(institution = institution,
 #' # Get female MPs from a specific party
 #' female_mps <- get_mps(gender = "female", party = "SPÖ")
 #' }
-get_mps <- function(institution = c("all", "Bundesrat", "Nationalrat"),
-                    gender = c("all", "female", "male"),
-                    legis_period = "all",
-                    party = c(
-                      "all", "BP", "BZÖ", "BAP", "CSP", "Grüne", "FPÖ", "GdP",
-                      "HB", "KuL", "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS",
-                      "ÖVP", "SdP", "SPÖ", "STRONACH", "VO", "WdU"
-                    ),
-                    parl_group = c(
-                      "all", "LBd", "CSP", "GRÜNE", "SPÖ", "F-BZÖ", "GdP", "F",
-                      "FPÖ", "KuL", "VO", "WdU", "LB", "NEOS-LIF", "PILZ",
-                      "NEOS", "OK", "HB", "KPÖ", "ÖVP", "BZÖ", "JETZT", "L",
-                      "STRONACH", "NWB", "SdP"
-                    ),
-                    electoral_district = c(
-                      "all", "Bundeswahlvorschlag",
-                      "Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich",
-                      "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien",
-                      # Add all other electoral districts here...
-                      "Wien Nord"
-                    ),
-                    state = NULL,
-                    presidents_only = FALSE,
-                    make_unique = FALSE) {
-
+get_mps <- function(
+  institution = c("all", "Bundesrat", "Nationalrat"),
+  gender = c("all", "female", "male"),
+  legis_period = "all",
+  party = c(
+    "all",
+    "BP",
+    "BZÖ",
+    "BAP",
+    "CSP",
+    "Grüne",
+    "FPÖ",
+    "GdP",
+    "HB",
+    "KuL",
+    "KPÖ",
+    "LBd",
+    "L",
+    "LB",
+    "PILZ",
+    "NWB",
+    "NEOS",
+    "ÖVP",
+    "SdP",
+    "SPÖ",
+    "STRONACH",
+    "VO",
+    "WdU"
+  ),
+  parl_group = c(
+    "all",
+    "LBd",
+    "CSP",
+    "GRÜNE",
+    "SPÖ",
+    "F-BZÖ",
+    "GdP",
+    "F",
+    "FPÖ",
+    "KuL",
+    "VO",
+    "WdU",
+    "LB",
+    "NEOS-LIF",
+    "PILZ",
+    "NEOS",
+    "OK",
+    "HB",
+    "KPÖ",
+    "ÖVP",
+    "BZÖ",
+    "JETZT",
+    "L",
+    "STRONACH",
+    "NWB",
+    "SdP"
+  ),
+  electoral_district = c(
+    "all",
+    "Bundeswahlvorschlag",
+    "Burgenland",
+    "Kärnten",
+    "Niederösterreich",
+    "Oberösterreich",
+    "Salzburg",
+    "Steiermark",
+    "Tirol",
+    "Vorarlberg",
+    "Wien",
+    # Add all other electoral districts here...
+    "Wien Nord"
+  ),
+  state = NULL,
+  presidents_only = FALSE,
+  make_unique = FALSE
+) {
   li_mps <- purrr::map(
     legis_period,
-    \(x) get_mps_single(
-      legis_period = x,
-      institution = institution,
-      gender = gender,
-      party = party,
-      parl_group = parl_group,
-      electoral_district = electoral_district,
-      state = state,
-      presidents_only = presidents_only,
-      make_unique = make_unique
-    ),
+    \(x)
+      get_mps_single(
+        legis_period = x,
+        institution = institution,
+        gender = gender,
+        party = party,
+        parl_group = parl_group,
+        electoral_district = electoral_district,
+        state = state,
+        presidents_only = presidents_only,
+        make_unique = make_unique
+      ),
     .progress = "Get MPs"
   )
 

@@ -6,7 +6,9 @@
 \alias{ParlAT-package}
 \title{ParlAT: A wrapper for the API of the Austrian Parliament}
 \description{
-More about what it does (maybe more than one line) Use four spaces when indenting paragraphs within the Description.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. This includes, but is not limited to, data on past and current MPs, plenary sessions, or protocols.
 }
 \seealso{
 Useful links:
@@ -18,7 +20,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jane Doe \email{jane@example.com}
+\strong{Maintainer}: Roland Schmidt \email{rs2903@gmail.com}
 
 }
 \keyword{internal}

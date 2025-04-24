@@ -230,7 +230,7 @@ get_events <- function(
 
     # body_params <- "{\"DATERANGE\":[\"2025-03-17T23:00:00.000Z\",\"2025-03-19T22:59:59.000Z\"],\"GREMIUM\":[\"Nationalrat\"]}"
 
-    res <- get_event_api_request(body_params, search_string)
+    res <- get_events_api_request(body_params, search_string)
 
     #TODO alternative way to print search link
     # if (echo == TRUE) {
@@ -328,7 +328,7 @@ get_events <- function(
 #' the call and manage verbose settings. Pagination is implemented via the function
 #' `req_perform_iterative`, which continues to fetch data until a page returns less than
 #' 1000 entries (as checked by the helper function `is_complete`).
-#'
+#' @noMd
 #' @examples
 #' \dontrun{
 #'   # Example body parameters and search string
@@ -336,12 +336,12 @@ get_events <- function(
 #'   search <- "Plenarsitzung"
 #'
 #'   # Retrieve event data
-#'   response <- get_event_api_request(body, search)
+#'   response <- get_events_api_request(body, search)
 #'
 #'   # Process the response as needed
 #'   print(response)
 #' }
-get_event_api_request <- function(body_params, search_string) {
+get_events_api_request <- function(body_params, search_string) {
     req <- httr2::request(
         "https://www.parlament.gv.at/Filter/api/filter/data/600"
     ) |>

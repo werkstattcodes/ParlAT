@@ -8,3 +8,4 @@
 .quarto
 .vscode
 docs
+inst/doc

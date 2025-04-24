@@ -105,7 +105,7 @@ Possible values for \code{item} include:
 \itemize{
 \item "ASEU" (Aktuelle Europastunden, Current European Hours)
 \item "AS" (Aktuelle Stunden, Current Hours)
-\item "J_JPR_M" (Anfragen, Inquiries)
+\item "J_JPR_M" (Anfragen, Written Questions)
 \item "ANTR" (Anträge, Motions)
 \item "US" (Anträge/Verlangen auf Untersuchungsausschuss, Motions/Requests for Investigative Committee)
 \item "AUB" (Ausschussberichte, Committee Reports)

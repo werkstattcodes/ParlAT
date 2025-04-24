@@ -1,0 +1,28 @@
+---
+title: "ParlAT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ParlAT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ParlAT)
+```
+
+
+
+This vignette provides an introduction how to use the ParlAT package in 
+order to the access and subseqently analyze the Open Data provided by
+the Austrian Parliament.
+
+# Get current 
+

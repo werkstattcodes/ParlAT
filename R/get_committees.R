@@ -1,8 +1,7 @@
 #' Retrieve Committee Data from the Austrian Parliament API
 #'
-#' This function queries the Austrian Parliament's committee API using provided search criteria
-#' and returns a data frame containing the committee information. The search parameters are validated,
-#' encoded, and processed to match the API's expected input.
+#'  Get data on the committeses of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
+#'The function mirrors the search functionality of the Austrian Parliament's website for committees [here](https://www.parlament.gv.at/recherchieren/ausschuesse/index.html).
 #'
 #' @param search_string A character string for free text search within committee records. Optional.
 #' @param institution A character string specifying the institution ("Bundesrat" or "Nationalrat").
@@ -13,6 +12,7 @@
 #'   When set to TRUE, the corresponding API parameter is adjusted accordingly. Optional.
 #' @param include_subcommittees A logical flag to indicate whether subcommittees should be included
 #'   in the search results. Note that if permanent is TRUE, subcommittee search is disallowed.
+#' @param echo Logical. If TRUE, the function prints the used search parametes and the url to the pertaining search results on website of the Austrian Parlament.
 #'
 #' @details The function constructs a JSON request body by assembling the provided parameters
 #'   (after validation and necessary encoding) and sends a POST request to the API endpoint.
@@ -24,12 +24,10 @@
 #' @examples
 #' \dontrun{
 #'   # Retrieve data for the Nationalrat with a specified legislative period and permanent flag.
-#'   df <- get_committee(
-#'     search_string = "Finance",
+#'   df <- get_committees(
+#'     search_string = "Korruption",
 #'     institution = "Nationalrat",
-#'     legis_period = c("2019-2024"),
-#'     permanent = TRUE,
-#'     include_subcommittees = FALSE
+#'     legis_period = 27
 #'   )
 #'   if (!is.null(df)) {
 #'     print(df)
@@ -43,7 +41,7 @@
 #' @importFrom janitor make_clean_names
 #'
 #' @export
-get_committee <- function(
+get_committees <- function(
   search_string = NULL, #Suchbegriff - SUCH
   institution = NULL, #Gremium - NBR
   legis_period = NULL, #Gesetzgebungsperiode - GP_CODE
@@ -107,7 +105,7 @@ get_committee <- function(
     purrr::compact() |> #keep only non-empty elements
     jsonlite::toJSON()
 
-  res <- get_committee_api_request(body_params)
+  res <- get_committees_api_request(body_params)
 
   vec_headings <- res |>
     httr2::resp_body_json(simplifyVector = T) |>
@@ -157,7 +155,7 @@ get_committee <- function(
   return(df_res)
 }
 
-get_committee_api_request <- function(body_params) {
+get_committees_api_request <- function(body_params) {
   res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
     httr2::req_method("POST") |>
     httr2::req_url_query(
