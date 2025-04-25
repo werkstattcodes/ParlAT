@@ -1,6 +1,6 @@
 #' @title Get mandates single mandate
 #' @description
-#' Auxiliary function which retrieves mandates for a single mandate. Is used internally
+#' Auxiliary function which retrieves mandates for a single person. Is used internally
 #' in get_mandates which allows for multiple `pad_intern` to be passed.
 #'
 #' @param pad_intern  Personal identfication number of person
@@ -23,10 +23,13 @@ get_mandates_single <- function(pad_intern) {
   )
 
   if (is.null(file_json)) {
+    print(glue::glue("No data found for pad_intern {pad_intern}."))
     return(NULL)
   }
 
   content <- file_json$content
+
+  person_name <- content$headingbox$title_plain
 
   biography <- file_json$content$biografie
   df_biography <- biography |> tibble::enframe()
@@ -40,41 +43,65 @@ get_mandates_single <- function(pad_intern) {
     tidyr::unnest_wider(mandate) |>
     dplyr::mutate(pad_intern = pad_intern, .before = 1) |>
     dplyr::mutate(dplyr::across(
-      c("mandatVon", "mandatBis"),
+      dplyr::any_of(c("funktion_von", "funktion_bis")),
       \(x) lubridate::dmy(x)
     )) |>
-    dplyr::select(-zeitraum)
+    dplyr::mutate(name = person_name, .before = 1) %>%
+    dplyr::select(
+      -any_of(c("mandatVon", "mandatBis", "zeitraum", "gremium", "mandat"))
+    )
 }
 
 #' @title Get mandates
 #'
 #' @description
-#' Takes the `pad_intern` of one or several MPs as input and returns a dataframe
-#' with all past and present mandates. Mandates can be limited to a specific date
-#' or institution.
+#' Takes one or multiple names as input and returns a dataframe
+#' with all their past and present mandates. Mandates can be limited to a specific date
+#' or institution. Mandates cover memberships in Parliament, but also in the executive (e.g. Bundeskanzler/Chancellor).
+#'
+#' Note that a single row in the returned dataframe can represent e.g. multiple mandates in e.g. the Nationalrat if they were consecutively held.
 #'
 #' The function partly mimics the behavior of the 'Personensuche' on the website
-#' of the Parliament ([here](https://www.parlament.gv.at/recherchieren/personen/){target="_blank"}),
-#' but requires the 'pad_intern' instead of the name of the MP. To get the 'pad_intern' of an MP,
-#' see the function `get_pad_intern`.
-#'
+#' of the Parliament (<a href="https://www.parlament.gv.at/recherchieren/personen/" target="_blank">here</a>).
+#' @param names A character vector of name(s). Surname first. See details.
 #' @param pad_intern Personal identfication number of person
 #' @param date Date to filter mandates
-#' @param institution Institution for which mandates should be returned. Possible values are "Nationalrat", "Bundesrat" or "all"
+#' @param institution Institution for which mandates should be returned. Possible values are "Nationalrat" (National Council),
+#' "Bundesrat" (Federal Council) or "all" (returns also memberships in the executive).
+#' @details
+#' ## Names
+#' Surname first. If a person changed his or her name, the latest name
+#' has to be used to obtain all mandates. A search with a previous name will
+#' return no results. This is a design decision by the API creators.
 #'
 #' @return A dataframe.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#'   pad_intern <- c(1174, 1234)
-#'   result <- get_mandates(pad_intern, date="2023-01-01", institution="Nationalrat")
+#'   result <- get_mandates(c("Götze Elisabeth", "Kurz Sebastian"), institution="Nationalrat")
 #'   print(result)
+#'
+#'  get_mandates(c("Strache Pia Philipp")) #returns no result since previous name
+#'  get_mandates(c("Beck Pia Philipp")) #returns result since latest name
 #' }
 #'
 get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
-  
-  pad_intern <- get_persons(names) %>% dplyr::pull(pad_intern)
+  #INSTITUTION
+  checkmate::assert_subset(
+    institution,
+    choices = c("Bundesrat", "Nationalrat", "all"),
+    empty.ok = FALSE
+  )
+
+  df_persons <- get_persons(names)
+
+  if (is.null(df_persons) || nrow(df_persons) == 0) {
+    message("No mandates found.")
+    return(NULL)
+  } else {
+    pad_intern <- df_persons$pad_intern
+  }
 
   #remove duplicates
   pad_intern_unique <- unique(pad_intern)
@@ -101,19 +128,37 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
 
     df_res <- df_res |>
       dplyr::mutate(
-        mandatBis = dplyr::case_when(
-          aktiv == TRUE & is.na(mandatBis) ~ lubridate::today(),
-          .default = mandatBis
+        funktion_bis = dplyr::case_when(
+          aktiv == TRUE & is.na(funktion_bis) ~ lubridate::today(),
+          .default = funktion_bis
         )
       ) |>
-      dplyr::filter(date_filter >= mandatVon & date_filter <= mandatBis) |>
+      dplyr::filter(
+        date_filter >= funktion_von & date_filter <= funktion_bis
+      ) |>
       dplyr::mutate(
-        mandatBis = dplyr::case_when(
+        funktion_bis = dplyr::case_when(
           aktiv == TRUE ~ lubridate::NA_Date_,
-          .default = mandatBis
+          .default = funktion_bis
         )
       )
   }
+
+  #sort columns
+  df_res <- df_res |>
+    dplyr::select(
+      pad_intern,
+      name,
+      bez,
+      funktion,
+      funktion_text,
+      funktion_von,
+      funktion_bis,
+      aktiv,
+      klub,
+      contains("wahl"),
+      everything()
+    )
 
   if (!is.null(institution)) {
     institution <- switch(
@@ -122,9 +167,19 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
       Nationalrat = "NR",
       Bundesrat = "BR"
     )
+    if (institution == "ALLE") {
+      return(df_res)
+    } else {
+      df_res <- df_res |>
+        dplyr::filter(funktion %in% institution)
 
-    df_res |>
-      dplyr::filter(gremium %in% institution)
+      if (nrow(df_res) == 0) {
+        print(glue::glue("No mandates found for institution {institution}."))
+        return(NULL)
+      }
+
+      return(df_res)
+    }
   } else {
     df_res
   }
@@ -132,7 +187,11 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
 
 
 get_pad_intern <- function(name) {
-  get_persons(name) |>
+   pad_intern_person <- get_persons(name) |>
     dplyr::select(pad_intern) |>
     dplyr::distinct()
+
+  pad_intern_mps <- get_mps()
+
+
 }
