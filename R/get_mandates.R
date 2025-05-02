@@ -186,12 +186,29 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
 }
 
 
+#' Retrieve unique internal PAD affiliations for a given person
+#'
+#' This function queries the person dataset via `get_persons()`, extracts the
+#' `pad_intern` field, and returns only the unique values.
+#'
+#' @param name Character. One or more person names to look up.
+#'
+#' @return Character vector of unique internal PAD affiliations (`pad_intern`).
+#'
+#' @examples
+#' # Get the internal PAD affiliation(s) for "Roland"
+#' get_pad_intern("Roland")
+#'
+#' @seealso
+#' \code{\link{get_persons}}
 get_pad_intern <- function(name) {
-   pad_intern_person <- get_persons(name) |>
-    dplyr::select(pad_intern) |>
-    dplyr::distinct()
+  pad_intern_person <- get_persons(name)
 
-  pad_intern_mps <- get_mps()
+  if (!is.null(pad_intern_person) && nrow(pad_intern_person) > 0) {
+    pad_intern_person %>%
+      dplyr::pull(pad_intern) %>%
+      unique()
+  }
 
-
+  # pad_intern_mps <- get_mps()
 }

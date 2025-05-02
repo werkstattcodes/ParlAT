@@ -7,22 +7,84 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+```{css, echo=FALSE}
+.main-container {
+    max-width: 600px !important;
+}
+
+pre {
+  max-height: 800px !important;
+  overflow-y: auto !important;
+  overflow-x: scroll !important;
+}
+pre code {
+  white-space: pre
+}
+```
+
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+# options(tibble.print_min = 4L, tible_print_max=Inf, tibble.width = Inf) 
+options(width=10000)
 ```
 
 ```{r setup}
 library(ParlAT)
+library(dplyr)
 ```
-
-
 
 This vignette provides an introduction how to use the ParlAT package in 
 order to the access and subseqently analyze the Open Data provided by
 the Austrian Parliament.
 
-# Get current 
+
+# Get mandates
+
+Get the mandates of one or more individuals. Each row in the returned
+tibble represents data on one specific mandate.
+
+```{r}
+#| code-summary: "Get all mandates"
+get_mandates(names=c("Kogler Werner", "Nehammer Karl", "Götze Elisabeth", "Beck Pia Philippa", "Strache Pia Philippa"), institution = "all")
+```
+
+```{r}
+get_mandates(names=c("Strache Pia Philippa"), institution = "all")
+get_mandates(names=c("Beck Pia Philippa"), institution = "all")
+
+```
+
+# Get names
+```{r}
+get_names(44127)
+```
+
+# Get MPs
+
+Get all female MPs of the FPÖ.
+
+Note the importance of the `make_unique` argument. By default, the API of the Parliament
+returns a row fo each unqiue MP name. However, since MPs can change their 
+name, a standard query returns multiple rows for the same MP. The `make_unique` argument
+takes care of this duplications and returns only one row per MP identifier (pad_intern) and
+returns the different name variants as a list.
+
+```{r}
+df <- get_mps(institution="Nationalrat", party = "FPÖ", gender="female", make_unique = FALSE)
+df %>%
+filter(pad_intern==14693)
+
+df_unique <- get_mps(institution="Nationalrat", party = "FPÖ", gender="female", make_unique = TRUE)
+
+df_unique %>%
+filter(pad_intern==14693) 
+```
+
+
+
 
