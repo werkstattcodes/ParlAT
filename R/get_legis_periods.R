@@ -99,7 +99,8 @@ get_legis_periods <- function(legis_period = NULL) {
         )
       )
     ) %>%
-    dplyr::mutate(legis_period_abbrev = legis_period_rom)
+    dplyr::mutate(legis_period_abbrev = legis_period_rom) %>%
+    dplyr::mutate(legis_period_abbrev_num=legis_period %>% as.character()) 
 
   # add missing periods:
 
@@ -120,6 +121,7 @@ get_legis_periods <- function(legis_period = NULL) {
     legis_period_current = c(FALSE, FALSE, FALSE),
     legis_period_abbrev = c("ProNatVers", "KonstNatVers", "Bundesrat1Rep")
   ) %>%
+    dplyr::mutate(legis_period_abbrev_num=legis_period_abbrev) %>%
     dplyr::mutate(
       legis_period_name = glue::glue(
         "{format(date_start, '%d.%m.%Y')} - {format(date_end, '%d.%m.%Y')}: {legis_period_name}"
@@ -133,7 +135,7 @@ get_legis_periods <- function(legis_period = NULL) {
   #filter full result by requested period
   if (!is.null(legis_period)) {
     df_res |>
-      dplyr::filter(legis_period %in% {{ legis_period }})
+      dplyr::filter(legis_period_abbrev_num %in% {{ legis_period }})
   } else {
     df_res
   }

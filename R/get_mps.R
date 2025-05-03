@@ -2,14 +2,14 @@
 #' @noRd
 
 get_mps_single <- function(
-  institution = institution,
-  gender = "all"
-  # legis_period = legis_period,
-  # party = party,
-  # parl_group = parl_group,
-  # electoral_district = electoral_district,
-  # state = state,
-  # presidents_only = presidents_only,
+  institution = NULL,
+  gender = "all",
+  legis_period = NULL,
+  party = NULL,
+  parl_group = NULL,
+  state = NULL,
+  electoral_district = NULL,
+  presidents_only = NULL
   # make_unique = make_unique
 ) {
   # gender
@@ -36,6 +36,8 @@ get_mps_single <- function(
   )
 
   # instiutiton
+
+  #TODO: make that institution can be also all bodies
   checkmate::assert_subset(
     x = institution,
     choices = c(
@@ -47,134 +49,292 @@ get_mps_single <- function(
     empty.ok = TRUE
   )
 
-  switch(
-    institution,
-    "NR" = {
-      institution <- "Nationalrat"
-      W <- "W"
-    },
-    "BR" = {
-      institution <- "Bundesrat"
-    },
-    "KonstNatVers" = {
-      institution <- "Konstituierende Nationalversammlung"
-    },
-    "ProvNatVers" = {
-      institution <- "Provisorische Nationalversammlung"
-    }
+  # institution
+  checkmate::assert_subset(
+    x = institution,
+    choices = c("KonstNatVers", "NR", "BR", "ProvNatVers"),
+    empty.ok = TRUE
   )
 
+  if (!is.null(institution)) {
+    institution <- switch(
+      institution,
+      "NR" = "Nationalrat",
+      "BR" = "Bundesrat",
+      "KonstNatVers" = "Konstituierende Nationalversammlung",
+      "ProvNatVers" = "Provisorische Nationalversammlung",
+      institution # default: leave as is
+    )
+  }
+  # print(institution)
+
   # legis_period
-  #CONTINUE HERE; USE THE FUNCTION get_legis_periods()
+  legis_period <- as.character(legis_period)
+  checkmate::assert_subset(
+    x = legis_period,
+    choices = ParlAT::get_legis_periods()$legis_period_abbrev_num,
+    empty.ok = TRUE
+  )
 
-  # if (
-  #   !(is.numeric(legis_period) ||
-  #     legis_period %in%
-  #       c(
-  #         "all",
-  #         "Provisorische Nationalversammlung",
-  #         "Konstituierende Nationalversammlung"
-  #       ))
-  # ) {
-  #   stop(
-  #     "Invalid input for legis_period. Must be a numeric value or one of 'all', 'Provisorisch Nationalversammlung', or 'Konstituierende Nationalversammlung'."
-  #   )
-  # }
+  legis_period <- get_legis_periods(legis_period = legis_period) |>
+    dplyr::pull(legis_period_name)
 
-  # if (is.numeric(legis_period)) {
-  #   legis_period <- as.character(as.roman(legis_period))
-  # } else if (legis_period == "all") {
-  #   legis_period <- "ALLE"
-  # }
+  # parl group (Klub/Fraktion)
 
-  # party <- match.arg(party, several.ok = FALSE)
-  # if (party == "all") {
-  #   party <- "ALLE"
-  # }
+  #DOCUMENT many different naming variations for same party
+  choices_parl_group <- c(
+    "Abgeordnetenverband des Landbundes für Österreich",
+    "Bundesratsfraktion der Großdeutschen Volkspartei",
+    "Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat",
+    "Bundesratsfraktion der SPÖ",
+    "Bundesratsfraktion der WdU",
+    "Bundesratsfraktion der ÖVP",
+    "Christlichsoziale Fraktion im Bundesrate",
+    "Christlichsoziale Vereinigung deutscher Abgeordneter",
+    "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+    "Der Grüne Klub",
+    "Der Grüne Klub - Klub der Grün-Alternativen Abgeordneten",
+    "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+    "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+    "Fraktion der Freiheitlichen Bundesräte; Freiheitliche Bundesratsfraktion",
+    "Fraktion der Sozialdemokratischen Bundesratsmitglieder",
+    "Freiheitlicher Parlamentsklub",
+    "Freiheitlicher Parlamentsklub; Freiheitlicher Parlamentsklub - BZÖ",
+    "Großdeutsche Vereinigung",
+    "Großdeutsche Volkspartei",
+    "Klub Liberales Forum",
+    "Klub der Freiheitlichen",
+    "Klub der Freiheitlichen Partei Österreichs",
+    "Klub der Kommunisten und Linkssozialisten",
+    "Klub der Sozialistischen Abgeordneten und Bundesräte",
+    "Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte",
+    "Klub der Sozialistischen Partei Österreichs",
+    "Klub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Abgeordneten und Bundesräte",
+    "Klub der Unabhängigen; Klub der Wahlpartei der Unabhängigen",
+    "Klub der Wahlpartei der Unabhängigen",
+    "Klub der Österreichischen Volksopposition",
+    "Klub der Österreichischen Volkspartei",
+    "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei",
+    "Klub des Linksblocks (Kommunisten und Linkssozialisten)",
+    "Klub von NEOS und LIF; Klub von NEOS",
+    "Klub von NEOS; NEOS Parlamentsklub",
+    "Liste Pilz",
+    "NEOS Parlamentsklub",
+    "Parlamentarischer Klub des Heimatblocks",
+    "Parlamentsklub JETZT",
+    "Parlamentsklub Liberales Forum",
+    "Parlamentsklub Team Stronach",
+    "Parlamentsklub der Kommunistischen Partei Österreichs",
+    "Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs",
+    "Parlamentsklub der Österreichischen Volkspartei",
+    "Parlamentsklub der Österreichischen Volkspartei; Klub der Österreichischen Volkspartei",
+    "Parlamentsklub des BZÖ",
+    "Parlamentsklub des Liberalen Forums",
+    "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte",
+    "Sozialdemokratische Vereinigung",
+    "Verband der Abgeordneten der Großdeutschen Volkspartei",
+    "Verband der Abgeordneten des Nationalen Wirtschaftsblocks",
+    "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat",
+    "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs",
+    "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs",
+    "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs",
+    "ohne Fraktionszugehörigkeit",
+    "ohne Klubzugehörigkeit"
+  )
 
-  # parl_group <- match.arg(parl_group, several.ok = FALSE)
-  # if (parl_group == "all") {
-  #   parl_group <- "ALLE"
-  # }
+  checkmate::assert_subset(
+    x = parl_group,
+    choices = choices_parl_group,
+    empty.ok = TRUE
+  )
 
-  # if (!presidents_only %in% c(TRUE, FALSE)) {
-  #   stop(
-  #     "Invalid input for `presidents_only`. Must be logical (TRUE or FALSE). Default is FALSE"
-  #   )
-  # } else if (presidents_only == TRUE) {
-  #   presidents_only <- "J"
-  # } else {
-  #   presidents_only <- NULL
-  # }
+  # party (Wahlpartei)
 
-  # electoral_district <- match.arg(electoral_district, several.ok = FALSE)
-  # electoral_district <- purrr::map_chr(
-  #   electoral_district,
-  #   \(x)
-  #     switch(
-  #       x,
-  #       "all" = "ALLE",
-  #       "Bundeswahlvorschlag" = "FB",
-  #       "Burgenland" = "F1",
-  #       "Kärnten" = "F2",
-  #       "Niederösterreich" = "F3",
-  #       "Oberösterreich" = "F4",
-  #       "Salzburg" = "F5",
-  #       "Steiermark" = "F6",
-  #       "Tirol" = "F7",
-  #       "Vorarlberg" = "F8",
-  #       "Wien" = "F9",
-  #       "Burgenland Nord" = "F1A",
-  #       "Burgenland Süd" = "F1B",
-  #       "Klagenfurt" = "F2A",
-  #       "Villach" = "F2B",
-  #       "Kärnten West" = "F2C",
-  #       "Kärnten Ost" = "F2D",
-  #       "Weinviertel" = "F3A",
-  #       "Waldviertel" = "F3B",
-  #       "Mostviertel" = "F3C",
-  #       "Niederösterreich Mitte" = "F3D",
-  #       "Niederösterreich Süd" = "F3E",
-  #       "Thermenregion" = "F3F",
-  #       "Niederösterreich Ost" = "F3G",
-  #       "Linz und Umgebung" = "F4A",
-  #       "Innviertel" = "F4B",
-  #       "Hausruckviertel" = "F4C",
-  #       "Traunviertel" = "F4D",
-  #       "Mühlviertel" = "F4E",
-  #       "Salzburg Stadt" = "F5A",
-  #       "Flachgau/Tennengau" = "F5B",
-  #       "Lungau/Pinzgau/Pongau" = "F5C",
-  #       "Graz und Umgebung" = "F6A",
-  #       "Oststeiermark" = "F6B",
-  #       "Weststeiermark" = "F6C",
-  #       "Obersteiermark" = "F6D",
-  #       "Innsbruck" = "F7A",
-  #       "Innsbruck-Land" = "F7B",
-  #       "Unterland" = "F7C",
-  #       "Oberland" = "F7D",
-  #       "Osttirol" = "F7E",
-  #       "Vorarlberg Nord" = "F8A",
-  #       "Vorarlberg Süd" = "F8B",
-  #       "Wien Innen-Süd" = "F9A",
-  #       "Wien Innen-West" = "F9B",
-  #       "Wien Innen-Ost" = "F9C",
-  #       "Wien Süd" = "F9D",
-  #       "Wien Süd-West" = "F9E",
-  #       "Wien Nord-West" = "F9F",
-  #       "Wien Nord" = "F9G"
-  #     )
-  # )
+  vec_parties = c(
+    "Bauernpartei (BP)",
+    "Bündnis Zukunft Österreich (BZÖ)",
+    "Bürgerlich-demokratische Partei (BDP)",
+    "Bürgerliche Arbeitspartei (BAP)",
+    "Christlichsoziale Partei (CSP)",
+    "Die Freiheitlichen in Kärnten - BZÖ (BZÖK)",
+    "Die Freiheitlichen in Kärnten - Liste Gerhard Dörfler (FPK)",
+    "Die Grünen (Grüne)",
+    "Freiheitliche Partei Österreichs (FPÖ)",
+    "Großdeutsche Vereinigung (GdP)",
+    "Großdeutsche Volkspartei (GdP)",
+    "Heimatblock (HB)",
+    "Jüdisch-Nationale Partei (JNP)",
+    "Kommunisten und Linkssozialisten (KuL)",
+    "Kommunistische Partei Österreichs (KPÖ)",
+    "Landbund (LBd)",
+    "Liberales Forum (L)",
+    "Linksblock (LB)",
+    "Liste Fritz Dinkhauser - FRITZ (FRITZ)",
+    "Liste Peter Pilz (PILZ)",
+    "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+    "Nationaler Wirtschaftsblock (NWB)",
+    "Österreichische Volkspartei (ÖVP)",
+    "Sozialdemokratische Arbeiterpartei Deutschösterreichs (SdP)",
+    "Sozialdemokratische Partei Österreichs (SPÖ)",
+    "Sozialistische Partei Österreichs (SPÖ)",
+    "Team Frank Stronach - Frank (STRONA)",
+    "Tschechische Partei (TS)",
+    "Volksopposition (VO)",
+    "Wahlpartei der Unabhängigen (WdU)",
+    "ohne Parteizugehörigkeit (OP)"
+  )
+
+  choices_party <- stringr::str_extract(vec_parties, "(?<=\\().+?(?=\\))")
+
+  checkmate::assert_subset(
+    x = party,
+    choices = choices_party,
+    empty.ok = TRUE
+  )
+
+  if (!is.null(party)) {
+    search_OR <- glue::glue("({party})") %>% stringr::str_c(., collapse = "|")
+    party <- stringr::str_subset(vec_parties, stringr::regex(search_OR))
+  }
+
+  # state
+  choices_state <- c(
+    "Bundeswahlvorschlag",
+    "Burgenland",
+    "Kärnten",
+    "Niederösterreich",
+    "Oberösterreich",
+    "Salzburg",
+    "Steiermark",
+    "Tirol",
+    "Wien",
+    "Vorarlberg"
+  )
+
+  checkmate::assert_subset(
+    x = state,
+    choices = choices_state,
+    empty.ok = TRUE
+  )
+
+  # electoral district
+
+  choices_electoral_district <- c(
+    "Bundeswahlvorschlag",
+    "Burgenland",
+    "Burgenland Nord",
+    "Burgenland Süd",
+    "Deutsch-Südtirol",
+    "Flachgau/Tennengau",
+    "Graz",
+    "Graz und Umgebung",
+    "Hausruckviertel",
+    "Innsbruck-Land",
+    "Innviertel",
+    "Klagenfurt",
+    "Kärnten",
+    "Kärnten Ost",
+    "Kärnten West",
+    "Lienz",
+    "Linz und Umgebung",
+    "Lungau/Pinzgau/Pongau",
+    "Mittel- und Untersteier",
+    "Mostviertel",
+    "Mühlviertel",
+    "Niederösterreich",
+    "Niederösterreich Mitte",
+    "Niederösterreich Ost",
+    "Niederösterreich Süd",
+    "Niederösterreich Süd-Ost",
+    "Nordtirol",
+    "Oberland",
+    "Obersteier",
+    "Obersteiermark",
+    "Oberösterreich",
+    "Oststeier",
+    "Oststeiermark",
+    "Reststimmenmandat",
+    "Salzburg",
+    "Salzburg Stadt",
+    "Steiermark",
+    "Steiermark Mitte",
+    "Steiermark Nord",
+    "Steiermark Nord-West",
+    "Steiermark Ost",
+    "Steiermark Süd",
+    "Steiermark Süd-Ost",
+    "Steiermark West",
+    "Thermenregion",
+    "Tirol",
+    "Traunviertel",
+    "Unterland",
+    "Viertel oberm Manhartsberg",
+    "Viertel oberm Wienerwald",
+    "Viertel unterm Manhartsberg",
+    "Viertel unterm Wienerwald",
+    "Villach",
+    "Vorarlberg",
+    "Vorarlberg Nord",
+    "Vorarlberg Süd",
+    "Wahlkreisverband I (Burgenland, Niederösterreich, Wien)",
+    "Wahlkreisverband I (Wien)",
+    "Wahlkreisverband II (K, OÖ, S, St, T u V)",
+    "Wahlkreisverband II (Niederösterreich)",
+    "Wahlkreisverband III (OÖ, S, T u. V)",
+    "Wahlkreisverband III - Oberösterreich",
+    "Wahlkreisverband III - Salzburg",
+    "Wahlkreisverband III - Tirol",
+    "Wahlkreisverband IV (B, K u St.)",
+    "Wahlkreisverband IV - Burgenland",
+    "Wahlkreisverband IV - Kärnten",
+    "Wahlkreisverband IV - Steiermark",
+    "Waldviertel",
+    "Weinviertel",
+    "Weststeiermark",
+    "Wien",
+    "Wien Innen-Ost",
+    "Wien Innen-Süd",
+    "Wien Innen-West",
+    "Wien Nord",
+    "Wien Nord-West",
+    "Wien Nordost",
+    "Wien Nordwest",
+    "Wien Süd",
+    "Wien Süd-West",
+    "Wien Südost",
+    "Wien Südwest",
+    "Wien Umgebung",
+    "Wien West"
+  )
+
+  checkmate::assert_subset(
+    x = electoral_district,
+    choices = choices_electoral_district,
+    empty.ok = TRUE
+  )
+
+  # presidents only
+  checkmate::assert_subset(
+    x = presidents_only,
+    choices = c(TRUE, FALSE),
+    empty.ok = TRUE
+  )
+
+  # If presidents_only is TRUE, set PRAES to "J", otherwise NULL
+  if (!is.null(presidents_only)) {
+    presidents_only <- if (isTRUE(presidents_only)) "J" else NULL
+  }
+  print(presidents_only)
 
   body_params <- list(
     GESCHL_CODE = c(W, M),
-    ATTR_JSON.mandate_detail.gremium_name = institution
-    # NRBR = institution,
-    # GP = legis_period,
-    # WP = party,
-    # FR = parl_group,
-    # PR = presidents_only,
-    # WK = electoral_district
+    ATTR_JSON.mandate_detail.gremium_name = institution,
+    ATTR_JSON.mandate_detail.gp_text_full_short = legis_period,
+    ATTR_JSON.mandate_detail.wahlpartei_full_txt = party,
+    ATTR_JSON.mandate_detail.fraktion = parl_group,
+    ATTR_JSON.mandate_detail.wahlkreis_bundesland = state,
+    ATTR_JSON.mandate_detail.wahlkreis = electoral_district,
+    PRAES = presidents_only
   ) |>
     purrr::compact() |>
     jsonlite::toJSON()
