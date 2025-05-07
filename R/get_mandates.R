@@ -186,29 +186,59 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
 }
 
 
-#' Retrieve unique internal PAD affiliations for a given person
+#' Get unique identificiaton number (pad_intern)
 #'
-#' This function queries the person dataset via `get_persons()`, extracts the
-#' `pad_intern` field, and returns only the unique values.
+#' @param name Character vector of length 1. Name of the person in the
+#' format first name last name, or only family name.
 #'
-#' @param name Character. One or more person names to look up.
+#' @return A dataframe with the unique identification number (pad_intern) and
+#' person's current and previous names.
 #'
-#' @return Character vector of unique internal PAD affiliations (`pad_intern`).
+#' @export
 #'
 #' @examples
-#' # Get the internal PAD affiliation(s) for "Roland"
-#' get_pad_intern("Roland")
+#' \dontrun{
+#' get_pad_intern("Strache")
+#' get_pad_intern("Heinz-Christian Strache")
+#' }
 #'
 #' @seealso
 #' \code{\link{get_persons}}
 get_pad_intern <- function(name) {
-  pad_intern_person <- get_persons(name)
+  checkmate::assert_character(name, len = 1)
 
-  if (!is.null(pad_intern_person) && nrow(pad_intern_person) > 0) {
-    pad_intern_person %>%
+  pad_intern_mps <- get_mps(search_string = name)
+
+  if (!is.null(pad_intern_mps) && nrow(pad_intern_mps) > 0) {
+    pad_intern_mps <- pad_intern_mps %>%
+      dplyr::rename(name = name_nvg) %>%
+      dplyr::distinct(pad_intern, name) %>%
+      dplyr::mutate(pad_intern = as.character(pad_intern)) %>%
+      dplyr::mutate(names_previous = map(pad_intern, \(x) get_names(x)))
+
+    res <- pad_intern_mps %>%
+      tidyr::unnest_longer(names_previous) %>%
+      tidyr::unnest_wider(names_previous, names_sep = "_")
+
+    pad_interns_scope <- res %>%
+      dplyr::filter(stringr::str_detect(
+        names_previous_name_clean,
+        stringr::regex(paste0("\\b", {{ name }}, "\\b"), ignore_case = FALSE)
+      )) %>%
       dplyr::pull(pad_intern) %>%
       unique()
+
+    res <- res %>%
+      dplyr::filter(pad_intern %in% pad_interns_scope) %>%
+      dplyr::group_by(pad_intern) %>%
+      dplyr::summarise(
+        names_variants = paste(names_previous_name_clean, collapse = ", ")
+      ) %>%
+      dplyr::ungroup()
+
+    return(res)
   }
 
-  # pad_intern_mps <- get_mps()
+  # dplyr::bind_rows(pad_intern_person, pad_intern_mps) %>%
+  #   dplyr::distinct(pad_intern, name, names_previous)
 }
