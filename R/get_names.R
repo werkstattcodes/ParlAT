@@ -13,6 +13,13 @@
 #'
 #' @examples \dontrun{get_names(pad_intern=2346)}
 get_names <- function(pad_intern, date = NULL, latest = NULL) {
+  if (length(pad_intern) > 1) {
+    return(
+      purrr::map(pad_intern, \(x) get_names(x, date = date, latest = latest)) |>
+        purrr::list_rbind()
+    )
+  }
+
   link_file_json <- glue::glue(
     "https://www.parlament.gv.at/person/{pad_intern}?json=TRUE"
   )
@@ -98,7 +105,8 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
     df_names <- df_names |>
       dplyr::mutate(
         date_name = dplyr::case_when(
-          name_index_2 == 1 & is.na(date_name) ~ lubridate::today(),
+          # name_index_2 == 1 & is.na(date_name) ~ lubridate::today(),
+          name_index_2 == 1 & is.na(date_name) ~ NA,
           is.na(name_index) & is.na(date_name) ~ dplyr::lag(date_name) - 1,
           .default = date_name
         )
@@ -112,8 +120,9 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
       dplyr::mutate(
         date_end = dplyr::case_when(
           !is.na(date_name) & date_type == "end" ~ date_name,
-          !is.na(date_name) & date_type == "start" & name_index == 1 ~
-            date_name + (100 * 365),
+          # !is.na(date_name) & date_type == "start" & name_index == 1 ~
+          #   # date_name + (100 * 365),
+          !is.na(date_name) & date_type == "start" & name_index == 1 ~ NA,
           .default = NA
         )
       ) |>
@@ -126,7 +135,8 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
       dplyr::mutate(
         date_start = dplyr::case_when(
           is.na(name_index) ~ dplyr::lead(date_end) + 1,
-          name_index == n_rows ~ date_end - (100 * 365), #fictitious start date_name
+          # name_index == n_rows ~ date_end - (100 * 365), #fictitious start date_name
+          name_index == n_rows ~ NA, #fictitious start date_name
           .default = date_start
         )
       )
@@ -193,7 +203,23 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
   if (!is.null(date)) {
     date_filter <- lubridate::dmy(date)
     df_names <- df_names |>
-      dplyr::filter(date_filter >= date_start & date_filter <= date_end)
+      dplyr::mutate(
+        date_end_filter = ifelse(is.na(date_end), lubridate::today(), date_end),
+        date_start_filter = ifelse(
+          is.na(date_start),
+          as.Date("1900/01/01"),
+          date_start
+        )
+      ) %>%
+      dplyr::filter(
+        date_filter >= date_start_filter & date_filter <= date_end_filter
+      ) %>%
+      dplyr::select(-contains("_filter"))
+  }
+
+  if (nrow(df_names) == 1) {
+    df_names <- df_names %>%
+      dplyr::mutate(index = 1)
   }
 
   if (!is.null(latest) && latest == TRUE) {
