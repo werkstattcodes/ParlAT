@@ -1,17 +1,23 @@
-#' Get all name variants of a person
+#' Get name variants of a Member of Parliament
 #'
+#' Returns all name variants of an person or a specific name used on a given date.
+#' This function is particularly relevant for MPs who changed their names (e.g., due to marriage or divorce).
 #'
-#' `get_names` returns all name variants of an MP or a specific name on a specific date. Particularly relevant
-#' for MPs who changed their name (marriage, divorce). Takes an MP's 'pad_intern' and an optional date as input.
-#'
-#' @param pad_intern Personal ID of individual
-#' @param date Date for which the name should be retrieved
+#' @param pad_intern The internal identifier for the MP; allows for input of length >= 1;
+#' @param date Optional. A specific date to retrieve the name used at that time. When omitted, returns all name variants.
 #' @param latest Logical. If TRUE, only the latest name is returned.
+#'
+#' @return A character vector containing name variant(s) of the specified person
 #'
 #' @return a dataframe
 #' @export
 #'
-#' @examples \dontrun{get_names(pad_intern=2346)}
+#' @examples \dontrun{
+#' get_names(44127) #Philippa Pia Beck, Philippa Pia Strache
+#' get_names(44127, latest=T) #Philippa Pia Beck, formerly Strache
+#' get_names(44127, date="01/01/2023") #Philippa Pia Strache
+#' get_names(c(1130,83124)) #multiple pad_interns possible; e.g. Michael Pock/Bernhard; Freda Blau-Meissner/Meissner-Blau
+#' }
 get_names <- function(pad_intern, date = NULL, latest = NULL) {
   if (length(pad_intern) > 1) {
     return(

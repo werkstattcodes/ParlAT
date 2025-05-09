@@ -15,7 +15,7 @@
 #' @param electoral_district Electoral district filter
 #' @param state State filter
 #' @param presidents_only Logical. If TRUE, returns only presidents. Default is FALSE
-#' @param echo
+#' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
 #'
 #' @return A dataframe containing information about Members of Parliament including:
 #'   \item{name}{Name of the MP}
