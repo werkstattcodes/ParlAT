@@ -1,7 +1,7 @@
 #' Get Members of Parliament
 #'
 #' Retrieves information about Members of Parliament from the Austrian Parliament database.
-#' This function mirrors the search functionality 'Parlamentarier:innen ab 1918'
+#' This function mirrors the search functionality 'Parlamentarier:innen ab 1918' _(Parliamentarians since 1918)_
 #' from the Austrian Parliament website <a href="https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918/index.html" target="_blank">here</a>.
 
 #' @param search_string Search string (not only names).
@@ -18,11 +18,14 @@
 #' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
 #'
 #' @return A dataframe containing information about Members of Parliament including:
+#'   \item{pad_intern}{Person's unique identification number}
 #'   \item{name}{Name of the MP}
-#'   \item{fraktion}{Parliamentary group}
-#'   \item{bundesland}{Federal state}
-#'   \item{gesetzgebungsperioden}{Legislative periods}
-#'   And additional columns depending on the query parameters
+#'   \item{gender}{Gender}
+#'   \item{parl_group}{Parliamentary group}
+#'   \item{parl_group_abbrev}{Abbreviation of the parliamentary group}
+#'   \item{leigs_period}{Legislative period(s)}
+#'   \item{mandate_detail}{Details on madates in Parliament}
+#'   \item{electoral_district}{Electoral district}
 #'
 #' @details
 #'
@@ -492,156 +495,18 @@ get_mps <- function(
     return(NULL)
   }
 
+  #make column names more meaningful
+  df_res <- df_res %>%
+    dplyr::select(
+      pad_intern,
+      name = name_nvg,
+      gender = geschlecht,
+      parl_group = fraktionen,
+      parl_group_abbrev = frak,
+      legis_period = gp_code,
+      mande_datail = mandate_detail,
+      electoral_district = wahlkreise
+    )
+
   return(df_res)
-}
-
-
-#' Get Members of Parliament
-#'
-#' Retrieves information about Members of Parliament from the Austrian Parliament database.
-#' This function mirrors the search functionality 'Parlamentarier:innen ab 1918'
-#' from the Austrian Parliament website <a href="https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918/index.html" target="_blank">here</a>.
-
-#'
-#' @param institution Chamber of Parliament. One of "all", "Bundesrat", or "Nationalrat"
-#' @param gender Gender filter. One of "all", "female", or "male"
-#' @param legis_period Legislative period. Can be "all", a numeric value,
-#'        "Provisorische Nationalversammlung", or "Konstituierende Nationalversammlung"
-#' @param party Political party filter. See details for possible values.
-#' @param parl_group Parliamentary group filter
-#' @param electoral_district Electoral district filter
-#' @param state State filter
-#' @param presidents_only Logical. If TRUE, returns only presidents. Default is FALSE
-#' @param make_unique Logical. If TRUE, returns unique entries. Default is FALSE
-#'
-#' @return A dataframe containing information about Members of Parliament including:
-#'   \item{name}{Name of the MP}
-#'   \item{fraktion}{Parliamentary group}
-#'   \item{bundesland}{Federal state}
-#'   \item{gesetzgebungsperioden}{Legislative periods}
-#'   And additional columns depending on the query parameters
-#'
-#' @details
-#' Available party values include: "all", "BP", "BZÖ", "BAP", "CSP", "Grüne", "FPÖ",
-#' "GdP", "HB", "KuL", "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP",
-#' "SdP", "SPÖ", "STRONACH", "VO", "WdU"
-#' @noRd
-#'
-#' @examples
-#' \dontrun{
-#' # Get all MPs from the current legislative period
-#' mps <- get_mps(institution = "Nationalrat", legis_period = "27")
-#'
-#' # Get female MPs from a specific party
-#' female_mps <- get_mps(gender = "female", party = "SPÖ")
-#' }
-get_mps_old <- function(
-  name = NULL,
-  institution = c("all", "Bundesrat", "Nationalrat"),
-  gender = c("all", "female", "male"),
-  legis_period = "all",
-  party = c(
-    "all",
-    "BP",
-    "BZÖ",
-    "BAP",
-    "CSP",
-    "Grüne",
-    "FPÖ",
-    "GdP",
-    "HB",
-    "KuL",
-    "KPÖ",
-    "LBd",
-    "L",
-    "LB",
-    "PILZ",
-    "NWB",
-    "NEOS",
-    "ÖVP",
-    "SdP",
-    "SPÖ",
-    "STRONACH",
-    "VO",
-    "WdU"
-  ),
-  parl_group = c(
-    "all",
-    "LBd",
-    "CSP",
-    "GRÜNE",
-    "SPÖ",
-    "F-BZÖ",
-    "GdP",
-    "F",
-    "FPÖ",
-    "KuL",
-    "VO",
-    "WdU",
-    "LB",
-    "NEOS-LIF",
-    "PILZ",
-    "NEOS",
-    "OK",
-    "HB",
-    "KPÖ",
-    "ÖVP",
-    "BZÖ",
-    "JETZT",
-    "L",
-    "STRONACH",
-    "NWB",
-    "SdP"
-  ),
-  electoral_district = c(
-    "all",
-    "Bundeswahlvorschlag",
-    "Burgenland",
-    "Kärnten",
-    "Niederösterreich",
-    "Oberösterreich",
-    "Salzburg",
-    "Steiermark",
-    "Tirol",
-    "Vorarlberg",
-    "Wien",
-    # Add all other electoral districts here...
-    "Wien Nord"
-  ),
-  state = NULL,
-  presidents_only = FALSE,
-  make_unique = FALSE
-) {
-  li_mps <- purrr::map(
-    legis_period,
-    \(x)
-      get_mps_single(
-        # name = name,
-        legis_period = x,
-        institution = institution,
-        gender = gender,
-        party = party,
-        parl_group = parl_group,
-        electoral_district = electoral_district,
-        state = state,
-        presidents_only = presidents_only,
-        make_unique = make_unique
-      ),
-    .progress = "Get MPs"
-  )
-
-  li_mps |> purrr::list_rbind()
-}
-
-
-fn_make_tibble <- function(x) {
-  tibble::tibble(
-    !!!purrr::imap(x, function(value, name) {
-      if (is.list(value) && !is.atomic(value)) {
-        list(value) # bleibe list-column
-      } else {
-        value # einfacher atomic-Wert
-      }
-    })
-  )
 }

@@ -11,7 +11,7 @@
 #' @param x a vector of length > 0;
 #'
 #' @return a vector of length 1
-#' 
+#'
 #' @keywords internal
 #' @noRd
 #'
@@ -93,4 +93,17 @@ aux_parl_group_names_standard <- function(parl_group) {
     }
   }
   return(parl_group %>% unique())
+}
+
+#auxiliar function converting list to tibble, e.g. for extarcting mandates
+fn_make_tibble <- function(x) {
+  tibble::tibble(
+    !!!purrr::imap(x, function(value, name) {
+      if (is.list(value) && !is.atomic(value)) {
+        list(value) # bleibe list-column
+      } else {
+        value 
+      }
+    })
+  )
 }
