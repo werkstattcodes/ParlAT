@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-# options(tibble.print_min = 4L, tible_print_max=Inf, tibble.width = Inf) 
+# options(tibble.print_min = 4L, tibble_print_max=Inf, tibble.width = Inf) 
 options(width=10000)
 ```
 
@@ -61,7 +61,9 @@ get_mandates(names=c("Beck Pia Philippa"), institution = "all")
 
 # Get names
 ```{r}
-get_names(44127)
+get_names(44127, date="01/01/2024")
+get_names(44127, date="01/01/2023")
+get_pad_intern("Strache")
 ```
 
 # Get MPs
@@ -74,15 +76,15 @@ name, a standard query returns multiple rows for the same MP. The `make_unique` 
 takes care of this duplications and returns only one row per MP identifier (pad_intern) and
 returns the different name variants as a list.
 
-```{r}
-df <- get_mps(institution="Nationalrat", party = "FPÖ", gender="female", make_unique = FALSE)
-df %>%
-filter(pad_intern==14693)
+```{r, eval=FALSE}
 
-df_unique <- get_mps(institution="Nationalrat", party = "FPÖ", gender="female", make_unique = TRUE)
+df <- get_mps(institution="NR", party = "FPÖ", gender="female", echo=FALSE)
+class(df)
+names(df)
 
-df_unique %>%
-filter(pad_intern==14693) 
+class(df$pad_intern)
+df %>% dplyr::filter(pad_intern==41)
+
 ```
 
 
