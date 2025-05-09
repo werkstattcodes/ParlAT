@@ -2,24 +2,31 @@
 % Please edit documentation in R/get_names.R
 \name{get_names}
 \alias{get_names}
-\title{Get all name variants of a person}
+\title{Get name variants of a Member of Parliament}
 \usage{
 get_names(pad_intern, date = NULL, latest = NULL)
 }
 \arguments{
-\item{pad_intern}{Personal ID of individual}
+\item{pad_intern}{The internal identifier for the MP; allows for input of length >= 1;}
 
-\item{date}{Date for which the name should be retrieved}
+\item{date}{Optional. A specific date to retrieve the name used at that time. When omitted, returns all name variants.}
 
 \item{latest}{Logical. If TRUE, only the latest name is returned.}
 }
 \value{
+A character vector containing name variant(s) of the specified person
+
 a dataframe
 }
 \description{
-\code{get_names} returns all name variants of an MP or a specific name on a specific date. Particularly relevant
-for MPs who changed their name (marriage, divorce). Takes an MP's 'pad_intern' and an optional date as input.
+Returns all name variants of an person or a specific name used on a given date.
+This function is particularly relevant for MPs who changed their names (e.g., due to marriage or divorce).
 }
 \examples{
-\dontrun{get_names(pad_intern=2346)}
+\dontrun{
+get_names(44127) #Philippa Pia Beck, Philippa Pia Strache
+get_names(44127, latest=T) #Philippa Pia Beck, formerly Strache
+get_names(44127, date="01/01/2023") #Philippa Pia Strache
+get_names(c(1130,83124)) #multiple pad_interns possible; e.g. Michael Pock/Bernhard; Freda Blau-Meissner/Meissner-Blau
+}
 }
