@@ -207,11 +207,11 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
 get_pad_intern <- function(name) {
   checkmate::assert_character(name, len = 1)
 
-  pad_intern_mps <- get_mps(search_string = name)
+  pad_intern_mps <- get_mps(search_string = name, echo = FALSE)
 
   if (!is.null(pad_intern_mps) && nrow(pad_intern_mps) > 0) {
     pad_intern_mps <- pad_intern_mps %>%
-      dplyr::rename(name = name_nvg) %>%
+      # dplyr::rename(name = name_nvg) %>%
       dplyr::distinct(pad_intern, name) %>%
       dplyr::mutate(pad_intern = as.character(pad_intern)) %>%
       dplyr::mutate(names_previous = map(pad_intern, \(x) get_names(x)))
@@ -238,7 +238,4 @@ get_pad_intern <- function(name) {
 
     return(res)
   }
-
-  # dplyr::bind_rows(pad_intern_person, pad_intern_mps) %>%
-  #   dplyr::distinct(pad_intern, name, names_previous)
 }

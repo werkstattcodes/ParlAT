@@ -40,3 +40,4 @@ the call and manage verbose settings. Pagination is implemented via the function
   print(response)
 }
 }
+\keyword{internal}

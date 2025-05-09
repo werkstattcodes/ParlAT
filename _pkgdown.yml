@@ -11,6 +11,28 @@ navbar:
     left:  [intro, reference, articles, news]
     right: [search, github, lightswitch]
 
+reference:
+  - title: "main functions"
+    contents:
+      - create_panel
+      - get_committees
+      - get_events
+      - get_items
+      - get_legis_periods
+      - get_mandates
+      - get_mps
+      - get_mps_current
+      - get_participation
+      - get_persons
+      - get_plenary_sessions
+      - get_transcripts
+
+  - title: "auxiliary functions"
+    contents:
+     - get_names
+     - get_pad_intern
+ 
+
 authors:
   Roland Schmidt:
     href: https://werk.statt.codes  

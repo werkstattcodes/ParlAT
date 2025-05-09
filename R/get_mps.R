@@ -504,7 +504,7 @@ get_mps <- function(
       parl_group = fraktionen,
       parl_group_abbrev = frak,
       legis_period = gp_code,
-      mande_datail = mandate_detail,
+      mandate_detail = mandate_detail,
       electoral_district = wahlkreise
     )
 

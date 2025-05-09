@@ -7,6 +7,8 @@
 get_mandates(names, date = NULL, institution = "Nationalrat")
 }
 \arguments{
+\item{names}{A character vector of name(s). Surname first. See details.}
+
 \item{date}{Date to filter mandates}
 
 \item{institution}{Institution for which mandates should be returned. Possible values are "Nationalrat" (National Council),
@@ -19,17 +21,29 @@ A dataframe.
 }
 \description{
 Takes one or multiple names as input and returns a dataframe
-with all past and present mandates. Mandates can be limited to a specific date
+with all their past and present mandates. Mandates can be limited to a specific date
 or institution. Mandates cover memberships in Parliament, but also in the executive (e.g. Bundeskanzler/Chancellor).
 
-The function partly mimics the behavior of the 'Personensuche' on the website
+Note that a single row in the returned dataframe can represent e.g. multiple mandates in e.g. the Nationalrat if they were consecutively held.
+
 The function partly mimics the behavior of the 'Personensuche' on the website
 of the Parliament (\if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/personen/" target="_blank">}}here\if{html}{\out{</a>}}).
+}
+\details{
+\subsection{Names}{
+
+Surname first. If a person changed his or her name, the latest name
+has to be used to obtain all mandates. A search with a previous name will
+return no results. This is a design decision by the API creators.
+}
 }
 \examples{
 \dontrun{
   result <- get_mandates(c("Götze Elisabeth", "Kurz Sebastian"), institution="Nationalrat")
   print(result)
+
+ get_mandates(c("Strache Pia Philipp")) #returns no result since previous name
+ get_mandates(c("Beck Pia Philipp")) #returns result since latest name
 }
 
 }

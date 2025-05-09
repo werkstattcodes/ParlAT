@@ -321,7 +321,7 @@ get_events <- function(
 #' @param search_string A string used to filter the events based on the search term.
 #'
 #' @return A response object containing aggregated event data from multiple API calls.
-#'
+#' @keywords internal
 #' @details
 #' The API request is constructed using a series of pipe operators to set the method,
 #' query parameters, headers, and body. The request leverages the `httr2` package to perform
