@@ -7,9 +7,7 @@
 #' @param date Optional. A specific date to retrieve the name used at that time. When omitted, returns all name variants.
 #' @param latest Logical. If TRUE, only the latest name is returned.
 #'
-#' @return A character vector containing name variant(s) of the specified person
-#'
-#' @return a dataframe
+#' @return A dataframe containing name variant(s) of the specified person, including metadata such as dates and name types.
 #' @export
 #'
 #' @examples \dontrun{
