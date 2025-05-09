@@ -5,7 +5,7 @@
 #' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`).
 #' @noRd
 
-get_person_single <- function(
+get_persons_single <- function(
   search_string = NULL,
   search_strict = NULL,
   institution = NULL,
@@ -103,7 +103,7 @@ get_person_single <- function(
     as.data.frame()
 
   if (nrow(df_res) == 0) {
-    message("No results found for the given search criteria.")
+    # message("No results found for the given search criteria.")
     return(NULL)
   }
 
@@ -166,7 +166,7 @@ get_persons <- function(
   gender = "all"
 ) {
   if (is.null(names) || length(names) == 0) {
-    li_persons <- list(get_person_single(
+    li_persons <- list(get_persons_single(
       search_strict = search_strict,
       institution = institution,
       gender = gender
@@ -175,7 +175,7 @@ get_persons <- function(
     li_persons <- purrr::map(
       names,
       \(x)
-        get_person_single(
+        get_persons_single(
           search_string = x,
           search_strict = search_strict,
           institution = institution,
@@ -187,6 +187,7 @@ get_persons <- function(
   df_persons <- li_persons |> purrr::list_rbind()
 
   if (nrow(df_persons) == 0) {
+    message("No person found for the given search criteria.")
     return(NULL)
   }
 

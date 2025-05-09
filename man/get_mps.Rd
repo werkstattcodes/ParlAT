@@ -5,25 +5,23 @@
 \title{Get Members of Parliament}
 \usage{
 get_mps(
-  institution = c("all", "Bundesrat", "Nationalrat"),
-  gender = c("all", "female", "male"),
-  legis_period = "all",
-  party = c("all", "BP", "BZÖ", "BAP", "CSP", "Grüne", "FPÖ", "GdP", "HB", "KuL",
-    "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP", "SdP", "SPÖ", "STRONACH",
-    "VO", "WdU"),
-  parl_group = c("all", "LBd", "CSP", "GRÜNE", "SPÖ", "F-BZÖ", "GdP", "F", "FPÖ",
-    "KuL", "VO", "WdU", "LB", "NEOS-LIF", "PILZ", "NEOS", "OK", "HB", "KPÖ", "ÖVP",
-    "BZÖ", "JETZT", "L", "STRONACH", "NWB", "SdP"),
-  electoral_district = c("all", "Bundeswahlvorschlag", "Burgenland", "Kärnten",
-    "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol",
-    "Vorarlberg", "Wien", "Wien Nord"),
+  search_string = NULL,
+  institution = NULL,
+  gender = "all",
+  legis_period = NULL,
+  party = NULL,
+  parl_group = NULL,
   state = NULL,
-  presidents_only = FALSE,
-  make_unique = FALSE
+  electoral_district = NULL,
+  presidents_only = NULL,
+  echo = TRUE
 )
 }
 \arguments{
-\item{institution}{Chamber of Parliament. One of "all", "Bundesrat", or "Nationalrat"}
+\item{search_string}{Search string (not only names).}
+
+\item{institution}{Chamber of Parliament. NR (Nationalrat), BR (Bundesrat), KonstNatVers (Konstituierende Nationalversammlung),
+or ProvNatVers (Provisorische Nationalversammlung). NULL covers all institutions.}
 
 \item{gender}{Gender filter. One of "all", "female", or "male"}
 
@@ -34,31 +32,45 @@ get_mps(
 
 \item{parl_group}{Parliamentary group filter}
 
-\item{electoral_district}{Electoral district filter}
-
 \item{state}{State filter}
+
+\item{electoral_district}{Electoral district filter}
 
 \item{presidents_only}{Logical. If TRUE, returns only presidents. Default is FALSE}
 
-\item{make_unique}{Logical. If TRUE, returns unique entries. Default is FALSE}
+\item{echo}{Logical. If \code{TRUE}, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.}
 }
 \value{
 A dataframe containing information about Members of Parliament including:
+\item{pad_intern}{Person's unique identification number}
 \item{name}{Name of the MP}
-\item{fraktion}{Parliamentary group}
-\item{bundesland}{Federal state}
-\item{gesetzgebungsperioden}{Legislative periods}
-And additional columns depending on the query parameters
+\item{gender}{Gender}
+\item{parl_group}{Parliamentary group}
+\item{parl_group_abbrev}{Abbreviation of the parliamentary group}
+\item{leigs_period}{Legislative period(s)}
+\item{mandate_detail}{Details on madates in Parliament}
+\item{electoral_district}{Electoral district}
 }
 \description{
 Retrieves information about Members of Parliament from the Austrian Parliament database.
-This function mirrors the search functionality 'Parlamentarier:innen ab 1918'
+This function mirrors the search functionality 'Parlamentarier:innen ab 1918' \emph{(Parliamentarians since 1918)}
 from the Austrian Parliament website \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918/index.html" target="_blank">}}here\if{html}{\out{</a>}}.
 }
 \details{
-Available party values include: "all", "BP", "BZÖ", "BAP", "CSP", "Grüne", "FPÖ",
-"GdP", "HB", "KuL", "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP",
-"SdP", "SPÖ", "STRONACH", "VO", "WdU"
+\subsection{search_string}{
+
+Specifying \code{search_string} will filter the results across all columns, not only names.
+}
+
+\subsection{legis_period}{
+
+Filtering for a legislative period is only possible for the Nationalrat, the Konstituierende Nationalversammlung, and
+the Provisorische Nationalversammlung. Including a legislative period argument will exclude any results for the Bundesrat.
+
+Searching for multiple legislative periods will return only one match per individual, even if the person served in multiple periods.
+The relevant information is provided in \code{gp_code} (Gesetzgbungsperiode, legislative period) which stipulates the periods served in.
+The search does not return one row per legislative period.
+}
 }
 \examples{
 \dontrun{

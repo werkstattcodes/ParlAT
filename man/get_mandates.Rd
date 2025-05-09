@@ -4,32 +4,31 @@
 \alias{get_mandates}
 \title{Get mandates}
 \usage{
-get_mandates(pad_intern, date = NULL, institution = "Nationalrat")
+get_mandates(names, date = NULL, institution = "Nationalrat")
 }
 \arguments{
-\item{pad_intern}{Personal identfication number of person}
-
 \item{date}{Date to filter mandates}
 
-\item{institution}{Institution for which mandates should be returned. Possible values are "Nationalrat", "Bundesrat" or "all"}
+\item{institution}{Institution for which mandates should be returned. Possible values are "Nationalrat" (National Council),
+"Bundesrat" (Federal Council) or "all" (returns also memberships in the executive).}
+
+\item{pad_intern}{Personal identfication number of person}
 }
 \value{
 A dataframe.
 }
 \description{
-Takes the \code{pad_intern} of one or several MPs as input and returns a dataframe
+Takes one or multiple names as input and returns a dataframe
 with all past and present mandates. Mandates can be limited to a specific date
-or institution.
+or institution. Mandates cover memberships in Parliament, but also in the executive (e.g. Bundeskanzler/Chancellor).
 
 The function partly mimics the behavior of the 'Personensuche' on the website
-of the Parliament (\href{https://www.parlament.gv.at/recherchieren/personen/}{here}{target="_blank"}),
-but requires the 'pad_intern' instead of the name of the MP. To get the 'pad_intern' of an MP,
-see the function \code{get_pad_intern}.
+The function partly mimics the behavior of the 'Personensuche' on the website
+of the Parliament (\if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/personen/" target="_blank">}}here\if{html}{\out{</a>}}).
 }
 \examples{
 \dontrun{
-  pad_intern <- c(1174, 1234)
-  result <- get_mandates(pad_intern, date="2023-01-01", institution="Nationalrat")
+  result <- get_mandates(c("Götze Elisabeth", "Kurz Sebastian"), institution="Nationalrat")
   print(result)
 }
 

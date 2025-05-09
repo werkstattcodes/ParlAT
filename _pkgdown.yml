@@ -5,8 +5,7 @@ template:
   bslib:
     bootswatch: cosmo
     pkgdown-navbar-bg: '#132943'
-    pkgdown-navbar-ft: '#a39143'
-
+    
 navbar:
   structure:
     left:  [intro, reference, articles, news]
@@ -14,5 +13,4 @@ navbar:
 
 authors:
   Roland Schmidt:
-    href: https://werk.statt.codes
-  
+    href: https://werk.statt.codes  

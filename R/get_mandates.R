@@ -186,12 +186,59 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
 }
 
 
+#' Get unique identificiaton number (pad_intern)
+#'
+#' @param name Character vector of length 1. Name of the person in the
+#' format first name last name, or only family name.
+#'
+#' @return A dataframe with the unique identification number (pad_intern) and
+#' person's current and previous names.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_pad_intern("Strache")
+#' get_pad_intern("Heinz-Christian Strache")
+#' }
+#'
+#' @seealso
+#' \code{\link{get_persons}}
 get_pad_intern <- function(name) {
-   pad_intern_person <- get_persons(name) |>
-    dplyr::select(pad_intern) |>
-    dplyr::distinct()
+  checkmate::assert_character(name, len = 1)
 
-  pad_intern_mps <- get_mps()
+  pad_intern_mps <- get_mps(search_string = name)
 
+  if (!is.null(pad_intern_mps) && nrow(pad_intern_mps) > 0) {
+    pad_intern_mps <- pad_intern_mps %>%
+      dplyr::rename(name = name_nvg) %>%
+      dplyr::distinct(pad_intern, name) %>%
+      dplyr::mutate(pad_intern = as.character(pad_intern)) %>%
+      dplyr::mutate(names_previous = map(pad_intern, \(x) get_names(x)))
 
+    res <- pad_intern_mps %>%
+      tidyr::unnest_longer(names_previous) %>%
+      tidyr::unnest_wider(names_previous, names_sep = "_")
+
+    pad_interns_scope <- res %>%
+      dplyr::filter(stringr::str_detect(
+        names_previous_name_clean,
+        stringr::regex(paste0("\\b", {{ name }}, "\\b"), ignore_case = FALSE)
+      )) %>%
+      dplyr::pull(pad_intern) %>%
+      unique()
+
+    res <- res %>%
+      dplyr::filter(pad_intern %in% pad_interns_scope) %>%
+      dplyr::group_by(pad_intern) %>%
+      dplyr::summarise(
+        names_variants = paste(names_previous_name_clean, collapse = ", ")
+      ) %>%
+      dplyr::ungroup()
+
+    return(res)
+  }
+
+  # dplyr::bind_rows(pad_intern_person, pad_intern_mps) %>%
+  #   dplyr::distinct(pad_intern, name, names_previous)
 }
