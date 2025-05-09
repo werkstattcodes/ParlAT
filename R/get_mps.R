@@ -1,7 +1,54 @@
-#' Internal function to get MPs for a single legislative period
-#' @noRd
+#' Get Members of Parliament
+#'
+#' Retrieves information about Members of Parliament from the Austrian Parliament database.
+#' This function mirrors the search functionality 'Parlamentarier:innen ab 1918'
+#' from the Austrian Parliament website <a href="https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918/index.html" target="_blank">here</a>.
 
-get_mps_single <- function(
+#' @param search_string Search string (not only names).
+#' @param institution Chamber of Parliament. NR (Nationalrat), BR (Bundesrat), KonstNatVers (Konstituierende Nationalversammlung),
+#' or ProvNatVers (Provisorische Nationalversammlung). NULL covers all institutions.
+#' @param gender Gender filter. One of "all", "female", or "male"
+#' @param legis_period Legislative period. Can be "all", a numeric value,
+#'        "Provisorische Nationalversammlung", or "Konstituierende Nationalversammlung"
+#' @param party Political party filter. See details for possible values.
+#' @param parl_group Parliamentary group filter
+#' @param electoral_district Electoral district filter
+#' @param state State filter
+#' @param presidents_only Logical. If TRUE, returns only presidents. Default is FALSE
+#' @param echo
+#'
+#' @return A dataframe containing information about Members of Parliament including:
+#'   \item{name}{Name of the MP}
+#'   \item{fraktion}{Parliamentary group}
+#'   \item{bundesland}{Federal state}
+#'   \item{gesetzgebungsperioden}{Legislative periods}
+#'   And additional columns depending on the query parameters
+#'
+#' @details
+#'
+#' ## search_string
+#' Specifying `search_string` will filter the results across all columns, not only names.
+#' ## legis_period
+#' Filtering for a legislative period is only possible for the Nationalrat, the Konstituierende Nationalversammlung, and
+#' the Provisorische Nationalversammlung. Including a legislative period argument will exclude any results for the Bundesrat.
+#'
+#' Searching for multiple legislative periods will return only one match per individual, even if the person served in multiple periods.
+#' The relevant information is provided in `gp_code` (Gesetzgbungsperiode, legislative period) which stipulates the periods served in.
+#' The search does not return one row per legislative period.
+#'
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' # Get all MPs from the current legislative period
+#' mps <- get_mps(institution = "Nationalrat", legis_period = "27")
+#'
+#' # Get female MPs from a specific party
+#' female_mps <- get_mps(gender = "female", party = "SPÖ")
+#' }
+get_mps <- function(
+  search_string = NULL, #DOCUMENT search_string not only for names
   institution = NULL,
   gender = "all",
   legis_period = NULL,
@@ -10,7 +57,7 @@ get_mps_single <- function(
   state = NULL,
   electoral_district = NULL,
   presidents_only = NULL
-  # make_unique = make_unique
+  echo = TRUE
 ) {
   # gender
   checkmate::assert_subset(
@@ -22,8 +69,8 @@ get_mps_single <- function(
   switch(
     gender,
     "all" = {
-      M <- "M"
-      W <- "W"
+      M <- NULL
+      W <- NULL
     },
     "male" = {
       M <- "M"
@@ -41,9 +88,9 @@ get_mps_single <- function(
   checkmate::assert_subset(
     x = institution,
     choices = c(
-      "KonstNatVers",
       "NR",
       "BR",
+      "KonstNatVers",
       "ProvNatVers"
     ),
     empty.ok = TRUE
@@ -66,9 +113,24 @@ get_mps_single <- function(
       institution # default: leave as is
     )
   }
-  # print(institution)
 
   # legis_period
+  # info message on implications of legis_period on BR search results
+  if (
+    !is.null(legis_period) &&
+      (is.null(institution) ||
+        !(institution %in%
+          c(
+            "Nationalrat",
+            "Konstituierende Nationalversammlung",
+            "Provisorische Nationalversammlung"
+          )))
+  ) {
+    message(
+      "Important: Specifying a legislative period will NOT return results for the Bundesrat."
+    )
+  }
+
   legis_period <- as.character(legis_period)
   checkmate::assert_subset(
     x = legis_period,
@@ -324,7 +386,7 @@ get_mps_single <- function(
   if (!is.null(presidents_only)) {
     presidents_only <- if (isTRUE(presidents_only)) "J" else NULL
   }
-  print(presidents_only)
+  # print(presidents_only)
 
   body_params <- list(
     GESCHL_CODE = c(W, M),
@@ -344,10 +406,11 @@ get_mps_single <- function(
   ) |>
     httr2::req_method("POST") |>
     httr2::req_url_query(
-      # `1` = "1",
-      # page = "1",
-      # pagesize = "10",
-      showAll = "true",
+      `1` = "1",
+      page = "1",
+      pagesize = "10000", #IMPROVE
+      search = search_string,
+      # showAll = "true",
       sortrnr = "1",
       ascDesc = "ASC"
     ) |>
@@ -377,11 +440,14 @@ get_mps_single <- function(
 
   li_res <- res %>%
     httr2::resp_body_json() |>
-    purrr::pluck("rows")
+    purrr::pluck("rows") %>%
+    map(., \(x) x[[8]])
 
   df_res <- li_res %>%
-    map(., \(x) x[[8]] %>% tibble::enframe() %>% tidyr::pivot_wider()) %>%
-    list_rbind()
+    purrr::map(., fn_make_tibble) %>%
+    purrr::list_rbind()
+
+  # return(df_res)
 
   cols_keep <- c(
     "zit",
@@ -400,27 +466,32 @@ get_mps_single <- function(
   df_res <- df_res %>%
     dplyr::select(any_of(cols_keep))
 
+  if (echo == TRUE) {
+    print(body_params)
+    # print url to results / transparency reasons / add search string parameter
+    body_params_li <- jsonlite::fromJSON(body_params) %>%
+      c(., "search" = search_string)
+
+    query_string <- purrr::imap(
+      body_params_li,
+      \(x, y) glue::glue("PERSON_409{URLencode(y)}={URLencode(x)}")
+    ) %>%
+      unlist() %>%
+      unname() %>%
+      paste0(collapse = "&")
+
+    print(glue::glue(
+      "https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?{query_string}"
+    ))
+
+    print(nrow(df_res))
+  }
+
   if (nrow(df_res) == 0) {
     message("No results found for the search criteria provided.")
     return(NULL)
   }
 
-  #CHECK
-  # if (make_unique == TRUE) {
-  #   df_res <- df_res |>
-  #     dplyr::group_by(across(-all_of("name"))) |>
-  #     dplyr::summarise(name = list(name), name_variants_n = dplyr::n()) |>
-  #     dplyr::ungroup() |>
-  #     dplyr::relocate(c(name, name_variants_n), .after = 1)
-  # }
-
-  # df_res <- df_res |>
-  #   dplyr::mutate(across(
-  #     any_of(c("fraktion", "bundesland", "gesetzgebungsperioden")),
-  #     \(x) purrr::map(x, \(y) aux_parse_html_text(html = y))
-  #   ))
-
-  print(nrow(df_res))
   return(df_res)
 }
 
@@ -454,8 +525,7 @@ get_mps_single <- function(
 #' Available party values include: "all", "BP", "BZÖ", "BAP", "CSP", "Grüne", "FPÖ",
 #' "GdP", "HB", "KuL", "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP",
 #' "SdP", "SPÖ", "STRONACH", "VO", "WdU"
-#'
-#' @export
+#' @noRd
 #'
 #' @examples
 #' \dontrun{
@@ -465,7 +535,7 @@ get_mps_single <- function(
 #' # Get female MPs from a specific party
 #' female_mps <- get_mps(gender = "female", party = "SPÖ")
 #' }
-get_mps <- function(
+get_mps_old <- function(
   name = NULL,
   institution = c("all", "Bundesrat", "Nationalrat"),
   gender = c("all", "female", "male"),
@@ -561,4 +631,17 @@ get_mps <- function(
   )
 
   li_mps |> purrr::list_rbind()
+}
+
+
+fn_make_tibble <- function(x) {
+  tibble::tibble(
+    !!!purrr::imap(x, function(value, name) {
+      if (is.list(value) && !is.atomic(value)) {
+        list(value) # bleibe list-column
+      } else {
+        value # einfacher atomic-Wert
+      }
+    })
+  )
 }
