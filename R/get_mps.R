@@ -56,7 +56,7 @@ get_mps <- function(
   parl_group = NULL,
   state = NULL,
   electoral_district = NULL,
-  presidents_only = NULL
+  presidents_only = NULL,
   echo = TRUE
 ) {
   # gender
