@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>ParlAT • ParlAT</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -72,18 +71,109 @@
 
     
     
+<style type="text/css">
+.main-container {
+    max-width: 600px !important;
+}
+
+pre {
+  max-height: 800px !important;
+  overflow-y: auto !important;
+  overflow-x: scroll !important;
+}
+pre code {
+  white-space: pre
+}
+</style>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/werkstattcodes/ParlAT" class="external-link">ParlAT</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span></span>
-<span><span class="co">#&gt; loading 'ParlAT'</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when loading 'ParlAT'</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre></div>
 <p>This vignette provides an introduction how to use the ParlAT package
 in order to the access and subseqently analyze the Open Data provided by
 the Austrian Parliament.</p>
 <div class="section level2">
-<h2 id="get-current">Get current<a class="anchor" aria-label="anchor" href="#get-current"></a>
+<h2 id="get-mandates">Get mandates<a class="anchor" aria-label="anchor" href="#get-mandates"></a>
 </h2>
+<p>Get the mandates of one or more individuals. Each row in the returned
+tibble represents data on one specific mandate.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_mandates.html">get_mandates</a></span><span class="op">(</span>names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Kogler Werner"</span>, <span class="st">"Nehammer Karl"</span>, <span class="st">"Götze Elisabeth"</span>, <span class="st">"Beck Pia Philippa"</span>, <span class="st">"Strache Pia Philippa"</span><span class="op">)</span>, institution <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 12</span></span></span>
+<span><span class="co">#&gt;    pad_intern name                bez                                                             funktion funktion_text                                                   funktion_von funktion_bis aktiv klub                                                                                                             wahlkreis              wahlpartei wahlpartei_text                 </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                                                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 8242       Mag. Werner Kogler  Abgeordneter zum Nationalrat (XXVIII. GP), GRÜNE                NR       Abgeordneter zum Nationalrat                                    2024-10-24   <span style="color: #BB0000;">NA</span>           TRUE  Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament 6A - Graz und Umgebung GRÜNE      Die Grünen                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 8242       Mag. Werner Kogler  Abgeordneter zum Nationalrat (XXVII. GP), GRÜNE                 NR       Abgeordneter zum Nationalrat                                    2019-10-23   2020-01-07   FALSE Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament 6A - Graz und Umgebung GRÜNE      Die Grünen                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 8242       Mag. Werner Kogler  Abgeordneter zum Nationalrat (XXI.-XXV. GP), GRÜNE              NR       Abgeordneter zum Nationalrat                                    1999-10-29   2017-11-08   FALSE Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament 6 - Steiermark         GRÜNE      Die Grünen                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 8242       Mag. Werner Kogler  Betraut mit der Vertretung der Bundesministerin für Justiz      L        Betraut mit der Vertretung der Bundesministerin für Justiz      2021-01-08   2021-03-14   FALSE <span style="color: #BB0000;">NA</span>                                                                                                               <span style="color: #BB0000;">NA</span>                     <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>                              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 8242       Mag. Werner Kogler  Bundesminister für Kunst, Kultur, öffentlichen Dienst und Sport BM       Bundesminister für Kunst, Kultur, öffentlichen Dienst und Sport 2020-01-29   2025-03-03   FALSE <span style="color: #BB0000;">NA</span>                                                                                                               <span style="color: #BB0000;">NA</span>                     <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>                              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 8242       Mag. Werner Kogler  Bundesminister für öffentlichen Dienst und Sport                BM       Bundesminister für öffentlichen Dienst und Sport                2020-01-07   2020-01-29   FALSE <span style="color: #BB0000;">NA</span>                                                                                                               <span style="color: #BB0000;">NA</span>                     <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>                              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 8242       Mag. Werner Kogler  Vizekanzler                                                     VK       Vizekanzler                                                     2020-01-07   2024-10-02   FALSE <span style="color: #BB0000;">NA</span>                                                                                                               <span style="color: #BB0000;">NA</span>                     <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>                              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2136       Karl Nehammer, MSc  Abgeordneter zum Nationalrat (XXVIII. GP), ÖVP                  NR       Abgeordneter zum Nationalrat                                    2024-10-24   2025-01-21   FALSE Parlamentsklub der Österreichischen Volkspartei                                                                  Bundeswahlvorschlag    ÖVP        Österreichische Volkspartei     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2136       Karl Nehammer, MSc  Abgeordneter zum Nationalrat (XXVI.-XXVII. GP), ÖVP             NR       Abgeordneter zum Nationalrat                                    2017-11-09   2020-01-07   FALSE Parlamentsklub der Österreichischen Volkspartei                                                                  Bundeswahlvorschlag    ÖVP        Österreichische Volkspartei     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2136       Karl Nehammer, MSc  Bundeskanzler                                                   BK       Bundeskanzler                                                   2021-12-06   2025-01-10   FALSE <span style="color: #BB0000;">NA</span>                                                                                                               <span style="color: #BB0000;">NA</span>                     <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>                              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 2136       Karl Nehammer, MSc  Bundesminister für Inneres                                      BM       Bundesminister für Inneres                                      2020-01-07   2021-12-06   FALSE <span style="color: #BB0000;">NA</span>                                                                                                               <span style="color: #BB0000;">NA</span>                     <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>                              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 5654       Dr. Elisabeth Götze Abgeordnete zum Nationalrat (XXVII.-XXVIII. GP), GRÜNE          NR       Abgeordnete zum Nationalrat                                     2019-10-23   <span style="color: #BB0000;">NA</span>           TRUE  Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament 3 - Niederösterreich   GRÜNE      Die Grünen                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 44127      Pia Philippa Beck   Abgeordnete zum Nationalrat (XXVII. GP), ohne Klubzugehörigkeit NR       Abgeordnete zum Nationalrat                                     2019-10-23   2024-10-23   FALSE ohne Klubzugehörigkeit                                                                                           9 - Wien               OK         Freiheitliche Partei Österreichs</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_mandates.html">get_mandates</a></span><span class="op">(</span>names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Strache Pia Philippa"</span><span class="op">)</span>, institution <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; No person found for the given search criteria.</span></span>
+<span><span class="co">#&gt; No mandates found.</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="fu"><a href="../reference/get_mandates.html">get_mandates</a></span><span class="op">(</span>names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Beck Pia Philippa"</span><span class="op">)</span>, institution <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 12</span></span></span>
+<span><span class="co">#&gt;   pad_intern name              bez                                                             funktion funktion_text               funktion_von funktion_bis aktiv klub                   wahlkreis wahlpartei wahlpartei_text                 </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 44127      Pia Philippa Beck Abgeordnete zum Nationalrat (XXVII. GP), ohne Klubzugehörigkeit NR       Abgeordnete zum Nationalrat 2019-10-23   2024-10-23   FALSE ohne Klubzugehörigkeit 9 - Wien  OK         Freiheitliche Partei Österreichs</span></span></code></pre></div>
 </div>
-  </main>
+<div class="section level2">
+<h2 id="get-names">Get names<a class="anchor" aria-label="anchor" href="#get-names"></a>
+</h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_names.html">get_names</a></span><span class="op">(</span><span class="fl">44127</span>, date<span class="op">=</span><span class="st">"01/01/2024"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   index pad_intern              name date_start date_end        name_clean name_family    name_given value</span></span>
+<span><span class="co">#&gt; 1     1      44127 Pia Philippa Beck 2023-06-28     &lt;NA&gt; Pia Philippa Beck        Beck Pia Philippa   &lt;NA&gt;</span></span>
+<span><span class="fu"><a href="../reference/get_names.html">get_names</a></span><span class="op">(</span><span class="fl">44127</span>, date<span class="op">=</span><span class="st">"01/01/2023"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   index pad_intern                 name date_start   date_end           name_clean name_family    name_given                                 value</span></span>
+<span><span class="co">#&gt; 1     1      44127 Pia Philippa Strache       &lt;NA&gt; 2023-06-27 Pia Philippa Strache     Strache Pia Philippa  (bis 27.6.2023: Pia Philippa Strache)</span></span>
+<span><span class="fu"><a href="../reference/get_pad_intern.html">get_pad_intern</a></span><span class="op">(</span><span class="st">"Strache"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
+<span><span class="co">#&gt;   pad_intern names_variants                         </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1905       Max Strache                            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 35518      Heinz-Christian Strache                </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 44127      Pia Philippa Beck, Pia Philippa Strache</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="get-mps">Get MPs<a class="anchor" aria-label="anchor" href="#get-mps"></a>
+</h2>
+<p>Get all female MPs of the FPÖ.</p>
+<p>Note the importance of the <code>make_unique</code> argument. By
+default, the API of the Parliament returns a row fo each unqiue MP name.
+However, since MPs can change their name, a standard query returns
+multiple rows for the same MP. The <code>make_unique</code> argument
+takes care of this duplications and returns only one row per MP
+identifier (pad_intern) and returns the different name variants as a
+list.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mps.html">get_mps</a></span><span class="op">(</span>institution<span class="op">=</span><span class="st">"NR"</span>, party <span class="op">=</span> <span class="st">"FPÖ"</span>, gender<span class="op">=</span><span class="st">"female"</span>, echo<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">pad_intern</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">pad_intern</span><span class="op">==</span><span class="fl">41</span><span class="op">)</span></span></code></pre></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
@@ -93,7 +183,7 @@ the Austrian Parliament.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
