@@ -4,17 +4,17 @@
 \alias{get_mandates}
 \title{Get mandates}
 \usage{
-get_mandates(names, date = NULL, institution = "Nationalrat")
+get_mandates(names = NULL, pad_intern = NULL, institution = NULL, date = NULL)
 }
 \arguments{
-\item{names}{A character vector of name(s). Surname first. See details.}
-
-\item{date}{Date to filter mandates}
-
-\item{institution}{Institution for which mandates should be returned. Possible values are "Nationalrat" (National Council),
-"Bundesrat" (Federal Council) or "all" (returns also memberships in the executive).}
+\item{names}{A character vector of name(s). See details.}
 
 \item{pad_intern}{Personal identfication number of person}
+
+\item{institution}{Chamber of Parliament. NR (Nationalrat), BR (Bundesrat), KN (Konstituierende Nationalversammlung),
+or PV (Provisorische Nationalversammlung). NULL covers all institutions.}
+
+\item{date}{Date to filter mandates}
 }
 \value{
 A dataframe.
@@ -32,7 +32,7 @@ of the Parliament (\if{html}{\out{<a href="https://www.parlament.gv.at/recherchi
 \details{
 \subsection{Names}{
 
-Surname first. If a person changed his or her name, the latest name
+If a person changed his or her name, the latest name
 has to be used to obtain all mandates. A search with a previous name will
 return no results. This is a design decision by the API creators.
 }

@@ -14,9 +14,7 @@ get_names(pad_intern, date = NULL, latest = NULL)
 \item{latest}{Logical. If TRUE, only the latest name is returned.}
 }
 \value{
-A character vector containing name variant(s) of the specified person
-
-a dataframe
+A dataframe containing name variant(s) of the specified person, including metadata such as dates and name types.
 }
 \description{
 Returns all name variants of an person or a specific name used on a given date.

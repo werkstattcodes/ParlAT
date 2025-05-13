@@ -63,14 +63,14 @@ get_mandates_single <- function(pad_intern) {
 #'
 #' The function partly mimics the behavior of the 'Personensuche' on the website
 #' of the Parliament (<a href="https://www.parlament.gv.at/recherchieren/personen/" target="_blank">here</a>).
-#' @param names A character vector of name(s). Surname first. See details.
+#' @param names A character vector of name(s). See details.
 #' @param pad_intern Personal identfication number of person
 #' @param date Date to filter mandates
-#' @param institution Institution for which mandates should be returned. Possible values are "Nationalrat" (National Council),
-#' "Bundesrat" (Federal Council) or "all" (returns also memberships in the executive).
+#' @param institution Chamber of Parliament. NR (Nationalrat), BR (Bundesrat), KN (Konstituierende Nationalversammlung),
+#' or PV (Provisorische Nationalversammlung). NULL covers all institutions.
 #' @details
 #' ## Names
-#' Surname first. If a person changed his or her name, the latest name
+#' If a person changed his or her name, the latest name
 #' has to be used to obtain all mandates. A search with a previous name will
 #' return no results. This is a design decision by the API creators.
 #'
@@ -86,21 +86,41 @@ get_mandates_single <- function(pad_intern) {
 #'  get_mandates(c("Beck Pia Philipp")) #returns result since latest name
 #' }
 #'
-get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
+get_mandates <- function(
+  names = NULL,
+  pad_intern = NULL,
+  institution = NULL,
+  date = NULL
+) {
+  #TODO allow for pad_inten as input; either name or pad_intern
   #INSTITUTION
   checkmate::assert_subset(
-    institution,
-    choices = c("Bundesrat", "Nationalrat", "all"),
-    empty.ok = FALSE
+    x = institution,
+    choices = c(
+      "NR",
+      "BR",
+      "KN",
+      "PN"
+    ),
+    empty.ok = TRUE
   )
 
-  df_persons <- get_persons(names)
+  if (is.null(pad_intern) && !is.null(names) && length(names) > 1) {
+    return(
+      purrr::map(names, \(x) get_mandates(names = x)) |>
+        purrr::list_rbind()
+    )
+  }
 
-  if (is.null(df_persons) || nrow(df_persons) == 0) {
-    message("No mandates found.")
-    return(NULL)
-  } else {
-    pad_intern <- df_persons$pad_intern
+  if (is.null(pad_intern) && !is.na(names)) {
+    df_persons <- get_pad_intern(names)
+
+    if (is.null(df_persons) || nrow(df_persons) == 0) {
+      message("No mandates found.")
+      return(NULL)
+    } else {
+      pad_intern <- df_persons$pad_intern
+    }
   }
 
   #remove duplicates
@@ -120,6 +140,7 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
     return(NULL)
   }
 
+  #filter by date
   if (!is.null(date)) {
     date_filter <- lubridate::parse_date_time(
       date, #parse_date_time recognizes different date formats
@@ -144,6 +165,7 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
       )
   }
 
+  # return(df_res)
   #sort columns
   df_res <- df_res |>
     dplyr::select(
@@ -160,26 +182,26 @@ get_mandates <- function(names, date = NULL, institution = "Nationalrat") {
       everything()
     )
 
-  if (!is.null(institution)) {
-    institution <- switch(
-      institution,
-      all = "ALLE",
-      Nationalrat = "NR",
-      Bundesrat = "BR"
+  #add link to biography as means to check source
+  df_res <- df_res |>
+    dplyr::mutate(
+      url_biography = paste0(
+        "https://www.parlament.gv.at/person/",
+        pad_intern
+      )
     )
-    if (institution == "ALLE") {
-      return(df_res)
-    } else {
-      df_res <- df_res |>
-        dplyr::filter(funktion %in% institution)
 
-      if (nrow(df_res) == 0) {
-        print(glue::glue("No mandates found for institution {institution}."))
-        return(NULL)
-      }
+  # only institution of interest
+  if (!is.null(institution)) {
+    df_res <- df_res |>
+      dplyr::filter(funktion %in% institution)
 
-      return(df_res)
+    if (nrow(df_res) == 0) {
+      print(glue::glue("No mandates found for institution {institution}."))
+      return(NULL)
     }
+
+    return(df_res)
   } else {
     df_res
   }
