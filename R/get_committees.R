@@ -1,68 +1,56 @@
 #' Retrieve Committee Data from the Austrian Parliament API
 #'
-#'  Get data on the committeses of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
-#'The function mirrors the search functionality of the Austrian Parliament's website for committees [here](https://www.parlament.gv.at/recherchieren/ausschuesse/index.html).
+#'  Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
+#' The function mirrors the search functionality of the Austrian Parliament's website for committees
+#' <a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">here</a>.
 #'
-#' @param search_string A character string for free text search within committee records. Optional.
-#' @param institution A character string specifying the institution ("Bundesrat" or "Nationalrat").
-#'   This parameter is mandatory and is internally encoded to "BR" or "NR" respectively.
-#' @param legis_period A character vector representing one or more legislative period codes.
-#'   Each element is validated using an internal helper function.
+#' @param search_string A character string for free text search.
+#' @param institution A character string specifying the institution. Either NR (Nationalrat, National Council) or BR (Bundesrat/Federal Council).
+#' @param legis_period A character or numeric vector of length 1 for a specific legislative period. Required.
 #' @param permanent A logical flag indicating whether only permanent committees should be queried.
-#'   When set to TRUE, the corresponding API parameter is adjusted accordingly. Optional.
 #' @param include_subcommittees A logical flag to indicate whether subcommittees should be included
-#'   in the search results. Note that if permanent is TRUE, subcommittee search is disallowed.
-#' @param echo Logical. If TRUE, the function prints the used search parametes and the url to the pertaining search results on website of the Austrian Parlament.
+#'   in the search results. Search for subcommittees is only possible if `permanent` is not TRUE.
+#' @param details Logical. If TRUE, the function retrieves additional details for each committee, including members, documents, and reports.
+#' @param echo Logical. If TRUE, the function prints the used search parametes and the url to the pertaining search results on the website of the Austrian Parlament.
 #'
-#' @details The function constructs a JSON request body by assembling the provided parameters
-#'   (after validation and necessary encoding) and sends a POST request to the API endpoint.
-#'   The API response is parsed, and the data is converted into a data frame with cleaned column names.
-#'
-#' @return A data frame containing the committee data if successful. If no results match the criteria,
-#'   a message is printed and NULL is returned.
+#' @return A data frame
 #'
 #' @examples
 #' \dontrun{
-#'   # Retrieve data for the Nationalrat with a specified legislative period and permanent flag.
-#'   df <- get_committees(
-#'     search_string = "Korruption",
-#'     institution = "Nationalrat",
-#'     legis_period = 27
-#'   )
-#'   if (!is.null(df)) {
-#'     print(df)
-#'   }
+#'  get_committees(
+#'  search_string = "Ibiza",
+#' legis_period=27,
+#'  institution = "NR",
+#'  echo=TRUE)
 #' }
-#'
-#' @importFrom checkmate assert_subset assert_logical check_data_frame
-#' @importFrom purrr map_chr compact pluck
-#' @importFrom jsonlite toJSON
-#' @importFrom httr2 request req_url_query req_headers req_body_raw req_user_agent req_verbose req_perform resp_body_json
-#' @importFrom janitor make_clean_names
 #'
 #' @export
 get_committees <- function(
-  search_string = NULL, #Suchbegriff - SUCH
-  institution = NULL, #Gremium - NBR
-  legis_period = NULL, #Gesetzgebungsperiode - GP_CODE
-  permanent = NULL, #Permanent tagende Ausschüsse - PERM
+  search_string = NULL,
+  institution = NULL,
+  legis_period,
+  permanent = NULL,
   include_subcommittees = NULL, #auch Unterausschüsse - UA
+  details = FALSE,
   echo = NULL
 ) {
   #INSTITUTION
   checkmate::assert_subset(
     x = institution,
-    choices = c("Bundesrat", "Nationalrat"),
+    choices = c("NR", "BR"),
     empty.ok = FALSE
-  )
-  ##encode
-  institution_input <- switch(
-    institution,
-    Nationalrat = "NR",
-    Bundesrat = "BR"
   )
 
   #LEGIS PERIOD
+  checkmate::assert_false(
+    is.null(legis_period),
+    .var.name = "legis_period must not be NULL"
+  )
+  checkmate::assert_true(
+    length(legis_period) == 1,
+    .var.name = "legis_period must be of length 1"
+  )
+
   legis_period <- purrr::map_chr(
     legis_period,
     \(x) fn_check_legis_period_elements(x)
@@ -95,7 +83,7 @@ get_committees <- function(
 
   #DEFINE PARAMETERS
   body_params <- list(
-    NRBR = institution_input,
+    NRBR = institution,
     GP = legis_period,
     # GP_CODE = legis_period,
     PERM = permanent_input,
@@ -118,6 +106,9 @@ get_committees <- function(
     purrr::pluck("rows")
   #print(class(df_res))
 
+  colnames(df_res) <- vec_headings
+  df_res <- tidyr::as_tibble(df_res)
+
   checkmate::check_data_frame(df_res, min.rows = 1)
 
   if (length(df_res) == 0) {
@@ -125,12 +116,37 @@ get_committees <- function(
     return(NULL)
   }
 
-  colnames(df_res) <- vec_headings
-
-  #parse tagesordnung and rss description to plain text
+  #PARSE TAGESORDNUNG AND RSS DESCRIPTION TO PLAIN TEXT
   # df_res <- df_res |>
   #   dplyr::mutate(across(c("tagesordnung", "rss_description"), \(x) purrr::map_chr(x, \(x) aux_parse_html_text)))
 
+  #SELECT RELEVANT COLUMNS
+  df_res <- df_res %>%
+    dplyr::select(any_of(
+      c(
+        "committee" = "ausschuss",
+        "url_committee" = "link"
+      )
+    )) %>%
+    dplyr::mutate(
+      url_committee = paste0(
+        "https://www.parlament.gv.at",
+        url_committee
+      )
+    )
+
+  #GET DETAILS
+  if (details == TRUE) {
+    df_res <- df_res %>%
+      dplyr::mutate(
+        details = purrr::map(url_committee, \(x) {
+          get_committee_details(x)
+        })
+      ) %>%
+      tidyr::unnest_wider(details)
+  }
+
+  # ECHO
   if (echo == TRUE) {
     print(body_params)
     # print url to results / transparency reasons
@@ -151,9 +167,10 @@ get_committees <- function(
     print(nrow(df_res))
   }
 
-  #return result
+  #RETURN RESULT
   return(df_res)
 }
+
 
 get_committees_api_request <- function(body_params) {
   res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
@@ -188,4 +205,56 @@ get_committees_api_request <- function(body_params) {
     httr2::req_perform()
 
   return(res)
+}
+
+
+get_committee_details <- function(url_committee) {
+  # url_committee <- "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906"
+
+  url_committee_json <- paste0(
+    url_committee,
+    "?json=TRUE"
+  )
+  li_details <- fromJSON(url_committee_json)
+  listviewer::jsonedit(li_details)
+
+  df_details <- tibble::tibble(
+    title = li_details %>% purrr::pluck("content", "title"),
+    zitation = li_details %>% purrr::pluck("content", "zitation"),
+    gp_code = li_details %>% purrr::pluck("content", "gp_code"),
+    aus_id = li_details %>% purrr::pluck("content", "aus_id"),
+    aus_von = li_details %>% purrr::pluck("content", "aus_von"),
+    aus_bis = li_details %>% purrr::pluck("content", "aus_bis"),
+    names = list(li_details %>% purrr::pluck("content", "names")),
+    documents = list(li_details %>% purrr::pluck("content", "documents")),
+    assignments = list(li_details %>% purrr::pluck("content", "assignments")),
+    recentagenda = list(li_details %>% purrr::pluck("content", "recentagenda")),
+    recentreports = list(
+      li_details %>% purrr::pluck("content", "recentreports")
+    ),
+    stages = list(
+      li_details %>% purrr::pluck("content", "phase", "stages")
+    )
+  )
+
+  cols_select <- c(
+    "title",
+    "zitation",
+    "gp_code",
+    "aus_id",
+    "aus_von",
+    "aus_bis",
+    "names",
+    "documents",
+    "assignments",
+    "recentagenda",
+    "recentreports",
+    "stages"
+  )
+
+  df_details <- df_details %>%
+    dplyr::select(any_of(cols_select))
+  print(class(df_details))
+
+  return(df_details)
 }

@@ -29,8 +29,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-# options(tibble.print_min = 4L, tibble_print_max=Inf, tibble.width = Inf) 
-options(width=10000)
+# options(tibble.print_min = 4L, tibble_print_max=Inf, tibble.width = Inf)
+options(width = 10000)
 ```
 
 ```{r setup}
@@ -48,21 +48,24 @@ the Austrian Parliament.
 Get the mandates of one or more individuals. Each row in the returned
 tibble represents data on one specific mandate.
 
+code-summary: "Get all mandates"
 ```{r}
-#| code-summary: "Get all mandates"
-get_mandates(names=c("Kogler Werner", "Nehammer Karl", "Götze Elisabeth", "Beck Pia Philippa", "Strache Pia Philippa"), institution = "all")
+get_mandates(name = c(
+  "Stephanie Krisper",
+  "Karl Nehammer",
+  "Elisabeth Götze"
+))
 ```
 
 ```{r}
-get_mandates(names=c("Strache Pia Philippa"), institution = "all")
-get_mandates(names=c("Beck Pia Philippa"), institution = "all")
-
+get_mandates(name = c("Pia Philippa Strache"))
+get_mandates(name = c("Pia Philippa Beck"))
 ```
 
 # Get names
 ```{r}
-get_names(44127, date="01/01/2024")
-get_names(44127, date="01/01/2023")
+get_names(44127, date = "01/01/2024")
+get_names(44127, date = "01/01/2023")
 get_pad_intern("Strache")
 ```
 
@@ -76,17 +79,50 @@ name, a standard query returns multiple rows for the same MP. The `make_unique` 
 takes care of this duplications and returns only one row per MP identifier (pad_intern) and
 returns the different name variants as a list.
 
-```{r, eval=FALSE}
-
-df <- get_mps(institution="NR", party = "FPÖ", gender="female", echo=FALSE)
-class(df)
-names(df)
-
-class(df$pad_intern)
-df %>% dplyr::filter(pad_intern==41)
-
+```{r, eval=T}
+get_mps(institution = "NR", party = "FPÖ", gender = "female", echo = TRUE)
 ```
 
+# get_items()
 
+The `get_items` function is probably the most comprehensive function of this package. It facilitaes
+access to wide range of items 
+
+#| code-summary: "get_items example: get "
+
+```{r}
+df_items <- get_items(item = "J_JPR_M", legis_period = 28)
+
+
+df_items <- df_items %>%
+  dplyr::mutate(fraktionen_li = stringr::str_extract_all(
+    fraktionen, stringr::regex('\\"[^,]+\\"')
+  )) %>%
+  dplyr::mutate(fraktionen_li = purrr::map(fraktionen_li, unique)) %>%
+  dplyr::mutate(fraktionen_n = purrr::map_dbl(fraktionen_li, length)) %>%
+  dplyr::mutate(themen_li = stringr::str_extract_all(
+    themen, stringr::regex('\\"[^,]+\\"')
+  )) %>%
+  dplyr::mutate(themen_li = purrr::map(themen_li, unique)) %>%
+  dplyr::mutate(themen_n = purrr::map_dbl(themen_li, length))
+
+library(ggupset)
+library(ggplot2)
+library(dplyr)
+
+df_items %>%
+  ggplot2::ggplot(aes(x = fraktionen_li, fill = `doktyp_lang`)) +
+  ggplot2::geom_bar() +
+  ggupset::scale_x_upset() +
+  theme_minimal()
+
+df_items %>%
+  tidyr::unnest_longer(col = "fraktionen_li") %>%
+  tidyr::unnest_longer(col = "themen_li") %>%
+  ggplot2::ggplot(aes(x = themen_li, fill = fraktionen_li)) +
+  ggplot2::geom_bar() +
+  theme_minimal() +
+  facet_wrap(vars(`doktyp_lang`))
+```
 
 

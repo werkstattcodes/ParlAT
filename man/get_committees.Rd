@@ -7,53 +7,44 @@
 get_committees(
   search_string = NULL,
   institution = NULL,
-  legis_period = NULL,
+  legis_period,
   permanent = NULL,
   include_subcommittees = NULL,
+  details = FALSE,
   echo = NULL
 )
 }
 \arguments{
-\item{search_string}{A character string for free text search within committee records. Optional.}
+\item{search_string}{A character string for free text search.}
 
-\item{institution}{A character string specifying the institution ("Bundesrat" or "Nationalrat").
-This parameter is mandatory and is internally encoded to "BR" or "NR" respectively.}
+\item{institution}{A character string specifying the institution. Either NR (Nationalrat, National Council) or BR (Bundesrat/Federal Council).}
 
-\item{legis_period}{A character vector representing one or more legislative period codes.
-Each element is validated using an internal helper function.}
+\item{legis_period}{A character or numeric vector of length 1 for a specific legislative period. Required.}
 
-\item{permanent}{A logical flag indicating whether only permanent committees should be queried.
-When set to TRUE, the corresponding API parameter is adjusted accordingly. Optional.}
+\item{permanent}{A logical flag indicating whether only permanent committees should be queried.}
 
 \item{include_subcommittees}{A logical flag to indicate whether subcommittees should be included
-in the search results. Note that if permanent is TRUE, subcommittee search is disallowed.}
+in the search results. Search for subcommittees is only possible if \code{permanent} is not TRUE.}
 
-\item{echo}{Logical. If TRUE, the function prints the used search parametes and the url to the pertaining search results on website of the Austrian Parlament.}
+\item{details}{Logical. If TRUE, the function retrieves additional details for each committee, including members, documents, and reports.}
+
+\item{echo}{Logical. If TRUE, the function prints the used search parametes and the url to the pertaining search results on the website of the Austrian Parlament.}
 }
 \value{
-A data frame containing the committee data if successful. If no results match the criteria,
-a message is printed and NULL is returned.
+A data frame
 }
 \description{
-Get data on the committeses of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
-The function mirrors the search functionality of the Austrian Parliament's website for committees \href{https://www.parlament.gv.at/recherchieren/ausschuesse/index.html}{here}.
-}
-\details{
-The function constructs a JSON request body by assembling the provided parameters
-(after validation and necessary encoding) and sends a POST request to the API endpoint.
-The API response is parsed, and the data is converted into a data frame with cleaned column names.
+Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
+The function mirrors the search functionality of the Austrian Parliament's website for committees
+\if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">}}here\if{html}{\out{</a>}}.
 }
 \examples{
 \dontrun{
-  # Retrieve data for the Nationalrat with a specified legislative period and permanent flag.
-  df <- get_committees(
-    search_string = "Korruption",
-    institution = "Nationalrat",
-    legis_period = 27
-  )
-  if (!is.null(df)) {
-    print(df)
-  }
+ get_committees(
+ search_string = "Ibiza",
+legis_period=27,
+ institution = "NR",
+ echo=TRUE)
 }
 
 }

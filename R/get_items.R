@@ -3,7 +3,7 @@
 #' @description
 #' `get_items` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 #' in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
-#' mirrors the search functionality offered on the Austrian Parliament's website. See [here](https://www.parlament.gv.at/recherchieren/gegenstaende/index.html).
+#' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">here</a>).
 #'
 #' @param topic Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param institution Character string. Either "Nationalrat" (National Council) or "Bundesrat" (Federal Council). Default is "Nationalrat".
@@ -474,6 +474,7 @@ get_items <- function(
 
   checkmate::check_data_frame(df_res, min.rows = 1)
 
+  # RETURN ECHO
   if (echo == TRUE) {
     print(body_params)
     # print url to results / transparency reasons / add search string parameter
@@ -495,6 +496,22 @@ get_items <- function(
     print(nrow(df_res))
   }
 
+  #RENAME  & SELECT RELEVANT COLUMNS #PENDING
+  # renaming_map <- c(
+  #   "gp_code" = "legis_period",
+  #   "betreff" = "subject",
+  #   "phasen_bis" = "stages_n",
+  #   "his_url" = "item_url",
+  #   "not_included" = "not_included_new"
+  # )
+
+  # df_res <- df_res %>%
+  #   dplyr::rename_with(
+  #     .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+  #     .cols = any_of(names(renaming_map))
+  # )
+
+  # RETURN RESULT
   return(df_res)
 }
 
