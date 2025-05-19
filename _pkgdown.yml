@@ -3,8 +3,9 @@ template:
   bootstrap: 5
   light-switch: true
   bslib:
-    bootswatch: cosmo
-    pkgdown-navbar-bg: '#132943'
+    bootswatch: materia
+    pkgdown-navbar-bg: "#FFFFFF"
+
     
 navbar:
   structure:
