@@ -96,8 +96,8 @@
 #' * ARH2: Verlangen auf Gebarungsüberprüfung durch den Rechnungshof
 #' * AVB: Antrag auf Volksbefragung
 #' * BUA: Bericht und Antrag
-#' * UEA: Unselbständiger Entschließungsantrag #BUG
-#' * UEA: Misstrauensantrag
+#' * UEA: Unselbständiger Entschließungsantrag
+#' * UEAM: Misstrauensantrag
 #' * URH2: Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses
 #'
 #' Possible values for `doc_type` if institution=="Bundesrat" ('Federal Council'):
@@ -166,7 +166,7 @@
 get_items <- function(
   search_string = NULL,
   topic = NULL, #Themen - Themen
-  institution = "Nationalrat", #Gremium - NRBR
+  institution = "NR", #Gremium - NRBR
   legis_period = NULL, #Gesetzgebungsperiode - GB_Code
   date_start = NULL, #Datum_von - DATUM_VON
   date_end = NULL, #Datum_bis - DATUM_BIS
@@ -208,15 +208,16 @@ get_items <- function(
   #INSTITUTION
   checkmate::assert_subset(
     institution,
-    choices = c("Bundesrat", "Nationalrat"),
+    choices = c("BR", "NR"),
     empty.ok = FALSE
   )
   ##encode
-  institution_input <- switch(
-    institution,
-    Nationalrat = "NR",
-    Bundesrat = "BR"
-  )
+  institution_input <- institution
+  # institution_input <- switch(
+  #   institution,
+  #   Nationalrat = "NR",
+  #   Bundesrat = "BR"
+  # )
 
   #LEGIS PERIOD
   legis_period <- purrr::map_chr(
@@ -496,6 +497,25 @@ get_items <- function(
     print(nrow(df_res))
   }
 
+  # PARSE CONTENT TO MAKE MORE AMENABLE FOR FURTHER ANALYSIS
+
+  cols_pars <- c("personen", "themen", "fraktionen", "sw", "eurovoc")
+  fn_parse_content <- function(x) {
+    x %>%
+      stringr::str_remove_all("\\[|\\]|\"") %>%
+      stringr::str_split(",") %>%
+      unlist() %>%
+      stringr::str_trim()
+  }
+
+  df_res <- df_res %>%
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(cols_pars),
+        \(x) purrr::map(x, \(y) fn_parse_content(y))
+      )
+    )
+
   #RENAME  & SELECT RELEVANT COLUMNS #PENDING
   # renaming_map <- c(
   #   "gp_code" = "legis_period",
@@ -595,6 +615,6 @@ get_item_api_request <- function(body_params, search_string) {
   )
 
   # return result
-  print(class(resp))
+  # print(class(resp))
   return(resp)
 }
