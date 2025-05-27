@@ -59,7 +59,7 @@ and displays a message.
 \description{
 \code{get_items} searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
-mirrors the search functionality offered on the Austrian Parliament's website. See \href{https://www.parlament.gv.at/recherchieren/gegenstaende/index.html}{here}.
+mirrors the search functionality offered on the Austrian Parliament's website (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">}}here\if{html}{\out{</a>}}).
 }
 \details{
 \subsection{Topic ('Thema')}{

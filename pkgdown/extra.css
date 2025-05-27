@@ -1,0 +1,26 @@
+/* extra.css */
+
+/* .navbar-brand.me-2 {
+    color: #000000 !important;
+}
+.container {
+    color: #000000 !important;
+}
+
+.navbar.navbar-expand-lg.fixed-top.headroom.headroom--top.headroom--not-bottom.he {
+    background-color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #000000 !important;
+} */
+
+.navbar {
+ box-shadow: none !important;
+}
+
+
+.nav-link:hover, .nav-link:focus {
+    color: #fff;
+    background-color: black !important;
+}

@@ -4,23 +4,23 @@
 \alias{get_mandates}
 \title{Get mandates}
 \usage{
-get_mandates(names, date = NULL, institution = "Nationalrat")
+get_mandates(name = NULL, pad_intern = NULL, institution = NULL, date = NULL)
 }
 \arguments{
-\item{names}{A character vector of name(s). Surname first. See details.}
+\item{pad_intern}{Personal identfication number of person(s). Has to be NULL if names are provided}
+
+\item{institution}{Chamber of Parliament. NR (Nationalrat), BR (Bundesrat), KN (Konstituierende Nationalversammlung),
+or PV (Provisorische Nationalversammlung). NULL covers all institutions.}
 
 \item{date}{Date to filter mandates}
 
-\item{institution}{Institution for which mandates should be returned. Possible values are "Nationalrat" (National Council),
-"Bundesrat" (Federal Council) or "all" (returns also memberships in the executive).}
-
-\item{pad_intern}{Personal identfication number of person}
+\item{names}{A character vector of name(s). Only considered if no pad_intern(s) provided.}
 }
 \value{
-A dataframe.
+A dataframe.?g
 }
 \description{
-Takes one or multiple names as input and returns a dataframe
+Takes one or multiple names or pad_interns as input and returns a dataframe
 with all their past and present mandates. Mandates can be limited to a specific date
 or institution. Mandates cover memberships in Parliament, but also in the executive (e.g. Bundeskanzler/Chancellor).
 
@@ -32,18 +32,21 @@ of the Parliament (\if{html}{\out{<a href="https://www.parlament.gv.at/recherchi
 \details{
 \subsection{Names}{
 
-Surname first. If a person changed his or her name, the latest name
-has to be used to obtain all mandates. A search with a previous name will
-return no results. This is a design decision by the API creators.
+If a person changed his or her name, the latest name
+has to be used to obtain data on the mandates. The API does not return a
+match if a search with a previous name is made.
 }
 }
 \examples{
 \dontrun{
-  result <- get_mandates(c("Götze Elisabeth", "Kurz Sebastian"), institution="Nationalrat")
-  print(result)
-
- get_mandates(c("Strache Pia Philipp")) #returns no result since previous name
- get_mandates(c("Beck Pia Philipp")) #returns result since latest name
+  get_mandates(c("Götze Elisabeth", "Kurz Sebastian"))
+  get_mandates(c("Strache Pia Philipp")) #returns no result since previous name
+  get_mandates(c("Beck Pia Philipp")) #returns result since latest name
+  get_mandates(c("Beck Pia Philipp")) #returns result since latest name
+  get_mandates(pad_intern="44127")
 }
 
+}
+\seealso{
+\code{\link[=get_names(), get_pad_intern]{get_names(), get_pad_intern()}}
 }

@@ -3,7 +3,7 @@
 #' @description
 #' `get_items` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 #' in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
-#' mirrors the search functionality offered on the Austrian Parliament's website. See [here](https://www.parlament.gv.at/recherchieren/gegenstaende/index.html).
+#' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">here</a>).
 #'
 #' @param topic Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param institution Character string. Either "Nationalrat" (National Council) or "Bundesrat" (Federal Council). Default is "Nationalrat".
@@ -96,8 +96,8 @@
 #' * ARH2: Verlangen auf Gebarungsüberprüfung durch den Rechnungshof
 #' * AVB: Antrag auf Volksbefragung
 #' * BUA: Bericht und Antrag
-#' * UEA: Unselbständiger Entschließungsantrag #BUG
-#' * UEA: Misstrauensantrag
+#' * UEA: Unselbständiger Entschließungsantrag
+#' * UEAM: Misstrauensantrag
 #' * URH2: Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses
 #'
 #' Possible values for `doc_type` if institution=="Bundesrat" ('Federal Council'):
@@ -166,7 +166,7 @@
 get_items <- function(
   search_string = NULL,
   topic = NULL, #Themen - Themen
-  institution = "Nationalrat", #Gremium - NRBR
+  institution = "NR", #Gremium - NRBR
   legis_period = NULL, #Gesetzgebungsperiode - GB_Code
   date_start = NULL, #Datum_von - DATUM_VON
   date_end = NULL, #Datum_bis - DATUM_BIS
@@ -208,15 +208,16 @@ get_items <- function(
   #INSTITUTION
   checkmate::assert_subset(
     institution,
-    choices = c("Bundesrat", "Nationalrat"),
+    choices = c("BR", "NR"),
     empty.ok = FALSE
   )
   ##encode
-  institution_input <- switch(
-    institution,
-    Nationalrat = "NR",
-    Bundesrat = "BR"
-  )
+  institution_input <- institution
+  # institution_input <- switch(
+  #   institution,
+  #   Nationalrat = "NR",
+  #   Bundesrat = "BR"
+  # )
 
   #LEGIS PERIOD
   legis_period <- purrr::map_chr(
@@ -474,6 +475,7 @@ get_items <- function(
 
   checkmate::check_data_frame(df_res, min.rows = 1)
 
+  # RETURN ECHO
   if (echo == TRUE) {
     print(body_params)
     # print url to results / transparency reasons / add search string parameter
@@ -495,6 +497,41 @@ get_items <- function(
     print(nrow(df_res))
   }
 
+  # PARSE CONTENT TO MAKE MORE AMENABLE FOR FURTHER ANALYSIS
+
+  cols_pars <- c("personen", "themen", "fraktionen", "sw", "eurovoc")
+  fn_parse_content <- function(x) {
+    x %>%
+      stringr::str_remove_all("\\[|\\]|\"") %>%
+      stringr::str_split(",") %>%
+      unlist() %>%
+      stringr::str_trim()
+  }
+
+  df_res <- df_res %>%
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(cols_pars),
+        \(x) purrr::map(x, \(y) fn_parse_content(y))
+      )
+    )
+
+  #RENAME  & SELECT RELEVANT COLUMNS #PENDING
+  # renaming_map <- c(
+  #   "gp_code" = "legis_period",
+  #   "betreff" = "subject",
+  #   "phasen_bis" = "stages_n",
+  #   "his_url" = "item_url",
+  #   "not_included" = "not_included_new"
+  # )
+
+  # df_res <- df_res %>%
+  #   dplyr::rename_with(
+  #     .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+  #     .cols = any_of(names(renaming_map))
+  # )
+
+  # RETURN RESULT
   return(df_res)
 }
 
@@ -578,6 +615,6 @@ get_item_api_request <- function(body_params, search_string) {
   )
 
   # return result
-  print(class(resp))
+  # print(class(resp))
   return(resp)
 }
