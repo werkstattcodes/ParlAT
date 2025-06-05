@@ -4,17 +4,17 @@
 #' The function mirrors the search functionality 'Parlamentarier:innen ab 1918' _(Parliamentarians since 1918)_
 #' from the Austrian Parliament website <a href="https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918/index.html" target="_blank">here</a>.
 #' @param search_string Search string (not only names).
-#' @param institution Chamber of Parliament. NR (Nationalrat), BR (Bundesrat), KonstNatVers (Konstituierende Nationalversammlung),
-#' or ProvNatVers (Provisorische Nationalversammlung). NULL covers all institutions.
+#' @param institution Chamber of Parliament. "NR" (Nationalrat, National Council), "BR" (Bundesrat, Federal Council), "KN" (Konstituierende Nationalversammlung, Constituent National Assembly),
+#' or "PV" (Provisorische Nationalversammlung, Provisional National Assembly). NULL covers all institutions.
 #' @param gender Gender filter. One of "all", "female", or "male"
 #' @param legis_period Legislative period. Can be "all", a numeric value,
-#'        "Provisorische Nationalversammlung", or "Konstituierende Nationalversammlung"
+#'        "PV" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)
 #' @param party Political party filter. See details for permissible values.
 #' @param parl_group Parliamentary group filter
-# ' @param electoral_district Electoral district filter. See details for permissible values.
+#' @param electoral_district Electoral district filter. See details for permissible values.
 #' @param state State filter. See details for permissible values.
 #' @param presidents_only Logical. If TRUE, returns only presidents. Default is FALSE
-# # @param website logical. #PENDING
+# # @param strict logical. #PENDING
 #' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
 #'
 #' @return A dataframe containing information about the MPs. One row per MP. Important: The API returns details
@@ -265,9 +265,19 @@ get_mps <- function(
   state = NULL,
   electoral_district = NULL,
   presidents_only = NULL,
-  # website = FALSE, #PENDING
+  # strict = FALSE, #PENDING
+  date = NULL, #PENDING
   echo = TRUE
 ) {
+  if (!is.null(date) && !is.null(legis_period)) {
+    stop("Please provide either date or legis_period, not both.")
+  }
+
+  if (!is.null(date) && is.null(legis_period)) {
+    legis_period <- get_legis_periods(date = date) %>%
+      dplyr::pull(legis_period)
+  }
+
   # gender
   checkmate::assert_subset(
     x = gender,
@@ -299,8 +309,8 @@ get_mps <- function(
     choices = c(
       "NR",
       "BR",
-      "KonstNatVers",
-      "ProvNatVers"
+      "KN",
+      "PV"
     ),
     empty.ok = TRUE
   )
@@ -308,17 +318,17 @@ get_mps <- function(
   # institution
   checkmate::assert_subset(
     x = institution,
-    choices = c("KonstNatVers", "NR", "BR", "ProvNatVers"),
+    choices = c("KN", "NR", "BR", "PV"),
     empty.ok = TRUE
   )
 
   if (!is.null(institution)) {
-    institution <- switch(
+    institution_input <- switch(
       institution,
       "NR" = "Nationalrat",
       "BR" = "Bundesrat",
-      "KonstNatVers" = "Konstituierende Nationalversammlung",
-      "ProvNatVers" = "Provisorische Nationalversammlung",
+      "KN" = "Konstituierende Nationalversammlung",
+      "PV" = "Provisorische Nationalversammlung",
       institution # default: leave as is
     )
   }
@@ -330,9 +340,9 @@ get_mps <- function(
       (is.null(institution) ||
         !(institution %in%
           c(
-            "Nationalrat",
-            "Konstituierende Nationalversammlung",
-            "Provisorische Nationalversammlung"
+            "NR",
+            "KN",
+            "PV"
           )))
   ) {
     message(
@@ -599,7 +609,7 @@ get_mps <- function(
 
   body_params <- list(
     GESCHL_CODE = c(W, M),
-    ATTR_JSON.mandate_detail.gremium_name = institution,
+    ATTR_JSON.mandate_detail.gremium_name = institution_input,
     ATTR_JSON.mandate_detail.gp_text_full_short = legis_period,
     ATTR_JSON.mandate_detail.wahlpartei_full_txt = party,
     ATTR_JSON.mandate_detail.fraktion = parl_group,
@@ -675,7 +685,8 @@ get_mps <- function(
   df_res <- df_res %>%
     dplyr::select(any_of(cols_keep))
 
-  if (echo == TRUE) {
+  #echo only if query without date fitler
+  if (echo == TRUE && is.null(date)) {
     print(body_params)
     # print url to results / transparency reasons / add search string parameter
     body_params_li <- jsonlite::fromJSON(body_params) %>%
@@ -714,46 +725,92 @@ get_mps <- function(
       electoral_district = dplyr::any_of("wahlkreise")
     )
 
-  if (website == T) {
-    return(df_res)
-  }
-
-  # print(institution)
-  # print(legis_period)
-  # print(party)
-  # print(parl_group)
-  # print(electoral_district)
+  # if (strict == T) { #PENDING
 
   #EXPAND API RESULTS AND RETURN ONLY DATA PERTAINING
   #TO SPECIFIC LEGISLATIVE PERIOD
-  df_res <- df_res %>%
-    select(pad_intern, name, gender, mandate_detail) %>%
-    unnest_longer(mandate_detail) %>%
-    unnest_wider(mandate_detail)
+  # df_res <- df_res %>%
+  #   dplyr::select(pad_intern, name, gender, mandate_detail) %>%
+  #   tidyr::unnest_longer(mandate_detail) %>%
+  #   tidyr::unnest_wider(mandate_detail)
 
   # Apply filters only when arguments are not NULL
-  if (!is.null(institution)) {
-    df_res <- df_res %>% filter(gremium_name %in% institution)
-  }
+  # if (!is.null(institution)) {
+  #   df_res <- df_res %>% filter(gremium_name %in% institution)
+  # }
 
-  if (!is.null(legis_period)) {
-    df_res <- df_res %>% filter(gp_text_full_short %in% legis_period)
-  }
+  # if (!is.null(legis_period)) {
+  #   df_res <- df_res %>% filter(gp_text_full_short %in% legis_period)
+  # }
 
-  if (!is.null(party)) {
-    df_res <- df_res %>% filter(wahlpartei_full_txt %in% party)
-  }
+  # if (!is.null(party)) {
+  #   df_res <- df_res %>% filter(wahlpartei_full_txt %in% party)
+  # }
 
-  if (!is.null(parl_group)) {
-    df_res <- df_res %>% filter(fraktion %in% parl_group)
-  }
+  # if (!is.null(parl_group)) {
+  #   df_res <- df_res %>% filter(fraktion %in% parl_group)
+  # }
 
-  if (!is.null(electoral_district)) {
-    df_res <- df_res %>% filter(wahlkreis %in% electoral_district)
-  }
+  # if (!is.null(electoral_district)) {
+  #   df_res <- df_res %>% filter(wahlkreis %in% electoral_district)
+  # }
 
-  if (!is.null(state)) {
-    df_res <- df_res %>% filter(wahlkreis_bundesland %in% state)
+  # if (!is.null(state)) {
+  #   df_res <- df_res %>% filter(wahlkreis_bundesland %in% state)
+  # }
+  # }
+
+  #DATE FILTERING
+  # if date is provided, filter results by date
+  # result should only contain mandates which are also within institutional scope.
+  # otherwise possible that former NR MP who has BR mandate in relevant date is kept
+
+  if (!is.null(date)) {
+    #unnest mandates
+    df_res_filter_time <- df_res %>%
+      dplyr::select(pad_intern, mandate_detail) %>%
+      tidyr::unnest_longer(mandate_detail) %>%
+      tidyr::unnest_wider(mandate_detail) %>%
+      dplyr::mutate(
+        across(c("mandat_von", "mandat_bis"), \(x) lubridate::dmy(x))
+      )
+
+    #filter mandates by institution
+    if (institution == "NR") {
+      df_res_filter_time_inst <- df_res_filter_time %>%
+        filter(gremium_name == "Nationalrat")
+    } else if (institution == "BR") {
+      df_res_filter_time_inst <- df_res_filter_time %>%
+        filter(gremium_name == "Bundesrat")
+    } else if (institution == "KN") {
+      df_res_filter_time_inst <- df_res_filter_time %>%
+        filter(gremium_name == "Konstituierende Nationalversammlung")
+    } else if (institution == "PV") {
+      df_res_filter_time_inst <- df_res_filter_time %>%
+        filter(gremium_name == "Provisorische Nationalversammlung")
+    } #PENDING: what about Bundesrat1Rep; not mentioned on Parl Website/API
+
+    #filter by date
+    df_dates_check <- data.frame(dates_check = lubridate::dmy(date))
+
+    #keep only mandates which cover date
+    df_res_filter_time_inst <- df_res_filter_time_inst %>%
+      semi_join(
+        .,
+        df_dates_check,
+        by = join_by(between(y$dates_check, x$mandat_von, x$mandat_bis))
+      ) %>%
+      select(pad_intern)
+
+    #keep only those MPs which have mandates in relevant date
+    df_res <- df_res %>%
+      semi_join(
+        .,
+        df_res_filter_time_inst,
+        by = "pad_intern"
+      )
+
+    return(df_res)
   }
 
   return(df_res)
