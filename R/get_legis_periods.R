@@ -1,6 +1,7 @@
 #' Get start and end dates of legislative periods
 #'
-#' @param legis_period Number of legislative period(s)
+#' @param legis_period Number of legislative period(s) for which details
+#' @param date Date within a legislative period.
 #'
 #' @return A dataframe
 #' @export
@@ -9,8 +10,10 @@
 #' \dontrun{
 #' get_legis_period(c(23,23))
 #' }
-get_legis_periods <- function(legis_period = NULL) {
-  #TODO ProvNatVers, KonstNatVers, Bundesrat der 1. Rep missing
+get_legis_periods <- function(legis_period = NULL, date = NULL) {
+  if (!is.null(legis_period) && !is.null(date)) {
+    stop("Please provide either legis_period or date, not both.")
+  }
 
   res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
     httr2::req_url_query(
@@ -100,7 +103,7 @@ get_legis_periods <- function(legis_period = NULL) {
       )
     ) %>%
     dplyr::mutate(legis_period_abbrev = legis_period_rom) %>%
-    dplyr::mutate(legis_period_abbrev_num=legis_period %>% as.character()) 
+    dplyr::mutate(legis_period_abbrev_num = legis_period %>% as.character())
 
   # add missing periods:
 
@@ -121,7 +124,7 @@ get_legis_periods <- function(legis_period = NULL) {
     legis_period_current = c(FALSE, FALSE, FALSE),
     legis_period_abbrev = c("ProNatVers", "KonstNatVers", "Bundesrat1Rep")
   ) %>%
-    dplyr::mutate(legis_period_abbrev_num=legis_period_abbrev) %>%
+    dplyr::mutate(legis_period_abbrev_num = legis_period_abbrev) %>%
     dplyr::mutate(
       legis_period_name = glue::glue(
         "{format(date_start, '%d.%m.%Y')} - {format(date_end, '%d.%m.%Y')}: {legis_period_name}"
@@ -136,6 +139,28 @@ get_legis_periods <- function(legis_period = NULL) {
   if (!is.null(legis_period)) {
     df_res |>
       dplyr::filter(legis_period_abbrev_num %in% {{ legis_period }})
+  } else if (!is.null(date)) {
+    df_date <- data.frame(date = lubridate::dmy(date))
+
+    #if legis_period is not yet over, use today's date as end date
+    df_res <- df_res %>%
+      dplyr::mutate(
+        date_end_open = dplyr::case_when(
+          is.na(date_end) ~ lubridate::today(),
+          .default = date_end
+        )
+      )
+
+    #semi-join to filter dates; allows to filter for multiple dates
+    df_res <- df_res %>%
+      dplyr::semi_join(
+        .,
+        df_date,
+        by = dplyr::join_by(between(y$date, x$date_start, x$date_end_open))
+      ) %>%
+      select(-date_end_open)
+
+    return(df_res)
   } else {
     df_res
   }
