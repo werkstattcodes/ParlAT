@@ -118,6 +118,7 @@ aux_check_pad_intern_exists <- function(pad_intern) {
 
   # if request failed or gave an HTTP error, return FALSE
   if (is.null(resp) || httr2::resp_is_error(resp)) {
+    # print(glue::glue("Pad intern {pad_intern} does not exist or is invalid."))
     return(FALSE)
   }
 
