@@ -66,8 +66,10 @@ get_mandates_single <- function(pad_intern) {
 #' @param pad_intern Personal identfication number of person(s). Has to be NULL if names are provided
 #' @param names A character vector of name(s). Only considered if no pad_intern(s) provided.
 #' @param date Date to filter mandates
-#' @param institution Chamber of Parliament. NR (Nationalrat), BR (Bundesrat), KN (Konstituierende Nationalversammlung),
-#' or PV (Provisorische Nationalversammlung). NULL covers all institutions.
+#' @param institution Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
+#' or "PV" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
+#' but also presidents of the National Council, Secretaries ("Schriftführer"), and Regulators ("Ordner"). The equivalent applies to other
+#' the chambers as well.
 #' @details
 #' ## Names
 #' If a person changed his or her name, the latest name
@@ -107,10 +109,19 @@ get_mandates <- function(
   )
 
   if (is.null(pad_intern) && !is.null(name) && length(name) > 1) {
-    return(
-      purrr::map(name, \(x) get_mandates(name = x)) |>
-        purrr::list_rbind()
+    pb <- progress::progress_bar$new(
+      format = "[:bar] :percent :current/:total ETA: :eta",
+      total = length(name),
+      clear = FALSE
     )
+
+    df_res <- purrr::map(name, \(x) {
+      pb$tick()
+      get_mandates(name = x)
+    }) |>
+      purrr::list_rbind()
+
+    return(df_res)
   }
 
   if (is.null(pad_intern) && !is.na(name)) {
@@ -131,10 +142,20 @@ get_mandates <- function(
     print("Duplicate pad_interns removed")
   }
 
+  pb <- progress::progress_bar$new(
+    format = "[:bar] :percent :current/:total ETA: :eta",
+    total = length(pad_intern_unique),
+    clear = FALSE
+  )
+
   li_res <- purrr::map(
     pad_intern_unique,
-    \(x) get_mandates_single(pad_intern = x)
+    \(x) {
+      pb$tick()
+      get_mandates_single(pad_intern = x)
+    }
   )
+
   df_res <- purrr::list_rbind(li_res)
 
   if (is.null(df_res) | nrow(df_res) == 0) {
@@ -182,6 +203,45 @@ get_mandates <- function(
       contains("wahl"),
       everything()
     )
+  #rename columns
+  df_res <- df_res %>%
+    dplyr::mutate(
+      electoral_district_code = stringr::str_extract(
+        wahlkreis,
+        stringr::regex("^\\w+")
+      ) %>%
+        stringr::str_replace("Bundeswahlvorschlag", "FB"),
+      electoral_district_name = stringr::str_remove(
+        wahlkreis,
+        stringr::regex("^\\w+\\s-\\s")
+      )
+    ) %>%
+    dplyr::mutate(
+      legis_period = stringr::str_extract_all(
+        bez,
+        stringr::regex("[XVI]+(?=\\.)", ignore_case = FALSE)
+      )
+    )
+
+  renaming_map <- c(
+    "bez" = "position_text",
+    "funktion" = "position_code",
+    "funktion_text" = "position_name",
+    "funktion_von" = "position_date_start",
+    "funktion_bis" = "position_date_end",
+    "aktiv" = "position_active",
+    "klub" = "parl_group",
+    "wahlpartei" = "party",
+    "wahlpartei_text" = "party_name",
+    "eingetreten_txt" = "substitute"
+  )
+
+  df_res <- df_res %>%
+    dplyr::rename_with(
+      .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+      .cols = any_of(names(renaming_map))
+    )
+
 
   #add link to biography as means to check source
   df_res <- df_res |>
@@ -192,10 +252,32 @@ get_mandates <- function(
       )
     )
 
-  # only institution of interest
+  # # only institution of interest
   if (!is.null(institution)) {
-    df_res <- df_res |>
-      dplyr::filter(funktion %in% institution)
+    if (institution == "NR") {
+      df_res <- df_res |>
+        dplyr::filter(
+          position_code %in% c("NR", "1PNR", "2PNR", "3PNR", "ZON", "ZSN")
+        )
+    }
+    if (institution == "BR") {
+      df_res <- df_res |>
+        dplyr::filter(
+          position_code %in% c("BR", "PB", "SPB", "PRAES", "ZOB", "ZSB")
+        )
+    }
+    if (institution == "KN") {
+      df_res <- df_res |>
+        dplyr::filter(
+          position_code %in% c("PKNV", "2PKN", "3PKN", "KN")
+        )
+    }
+    if (institution == "PV") {
+      df_res <- df_res |>
+        dplyr::filter(
+          position_code %in% c("PN", "PPNV")
+        )
+    }
 
     if (nrow(df_res) == 0) {
       print(glue::glue("No mandates found for institution {institution}."))
