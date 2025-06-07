@@ -6,15 +6,6 @@
 # if all elements are ok => combine into one string and feed into httr body parameters
 # if at least one element errors => error message
 
-#' Check elements of vector 'legis_period'
-#'
-#' @param x a vector of length > 0;
-#'
-#' @return a vector of length 1
-#'
-#' @keywords internal
-#' @noRd
-#'
 fn_check_legis_period_elements <- function(x) {
   if (is.null(x)) {
     stop("`legis_period` is required.")
@@ -102,8 +93,33 @@ fn_make_tibble <- function(x) {
       if (is.list(value) && !is.atomic(value)) {
         list(value) # bleibe list-column
       } else {
-        value 
+        value
       }
     })
   )
+}
+
+
+aux_check_pad_intern_exists <- function(pad_intern) {
+  if (!is.null(pad_intern) && length(pad_intern) > 1) {
+    return(
+      pad_intern %>%
+        purrr::map_lgl(aux_check_pad_intern_exists)
+    )
+  }
+
+  url_check <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}")
+  resp <- tryCatch(
+    httr2::request(url_check) |>
+      httr2::req_method("HEAD") |>
+      httr2::req_perform(),
+    error = function(e) return(NULL)
+  )
+
+  # if request failed or gave an HTTP error, return FALSE
+  if (is.null(resp) || httr2::resp_is_error(resp)) {
+    return(FALSE)
+  }
+
+  TRUE
 }
