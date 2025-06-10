@@ -14,7 +14,7 @@
 #' @param electoral_district Electoral district filter. See details for permissible values.
 #' @param state State filter. See details for permissible values.
 #' @param presidents_only Logical. If TRUE, returns only presidents. Default is FALSE
-# # @param strict logical. #PENDING
+# # @param mandate_details logical. "all" or "filter" #PENDING
 #' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
 #'
 #' @return A dataframe containing information about the MPs. One row per MP. Important: The API returns details
@@ -273,7 +273,13 @@ get_mps <- function(
     stop("Please provide either date or legis_period, not both.")
   }
 
-  if (!is.null(date) && is.null(legis_period)) {
+  if (!is.null(legis_period) && institution != "BR") {
+    stop(
+      "Filterning the Federal Council (Bundesrat) by legislative period is not supported. Please use date instead."
+    )
+  }
+
+  if (!is.null(date) && is.null(legis_period) && institution == "NR") {
     legis_period <- get_legis_periods(date = date) %>%
       dplyr::pull(legis_period)
   }
@@ -322,14 +328,16 @@ get_mps <- function(
     empty.ok = TRUE
   )
 
-  if (!is.null(institution)) {
-    institution_input <- switch(
+  institution_input <- if (is.null(institution)) {
+    NULL
+  } else {
+    switch(
       institution,
       "NR" = "Nationalrat",
       "BR" = "Bundesrat",
       "KN" = "Konstituierende Nationalversammlung",
       "PV" = "Provisorische Nationalversammlung",
-      institution # default: leave as is
+      NULL # default if no match
     )
   }
 
@@ -529,7 +537,6 @@ get_mps <- function(
     "Niederösterreich Süd-Ost",
     "Nordtirol",
     "Oberland",
-    "Obersteier",
     "Obersteiermark",
     "Oberösterreich",
     "Oststeier",
@@ -761,6 +768,7 @@ get_mps <- function(
   # }
 
   #DATE FILTERING
+  #TODO date filtering for BR
   # if date is provided, filter results by date
   # result should only contain mandates which are also within institutional scope.
   # otherwise possible that former NR MP who has BR mandate in relevant date is kept
@@ -775,19 +783,30 @@ get_mps <- function(
         across(c("mandat_von", "mandat_bis"), \(x) lubridate::dmy(x))
       )
 
+    #active mandates: set mandat_bis to today
+    df_res_filter_time <- df_res_filter_time %>%
+      dplyr::mutate(
+        mandat_bis = dplyr::case_when(
+          is.na(mandat_bis) | mandat_bis == "" ~ lubridate::today(),
+          .default = mandat_bis
+        )
+      )
+
+    # return(df_res_filter_time)
+
     #filter mandates by institution
     if (institution == "NR") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        filter(gremium_name == "Nationalrat")
+        dplyr::filter(gremium_name == "Nationalrat")
     } else if (institution == "BR") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        filter(gremium_name == "Bundesrat")
+        dplyr::filter(gremium_name == "Bundesrat")
     } else if (institution == "KN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        filter(gremium_name == "Konstituierende Nationalversammlung")
+        dplyr::filter(gremium_name == "Konstituierende Nationalversammlung")
     } else if (institution == "PV") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        filter(gremium_name == "Provisorische Nationalversammlung")
+        dplyr::filter(gremium_name == "Provisorische Nationalversammlung")
     } #PENDING: what about Bundesrat1Rep; not mentioned on Parl Website/API
 
     #filter by date
@@ -795,16 +814,16 @@ get_mps <- function(
 
     #keep only mandates which cover date
     df_res_filter_time_inst <- df_res_filter_time_inst %>%
-      semi_join(
+      dplyr::semi_join(
         .,
         df_dates_check,
-        by = join_by(between(y$dates_check, x$mandat_von, x$mandat_bis))
+        by = dplyr::join_by(between(y$dates_check, x$mandat_von, x$mandat_bis))
       ) %>%
-      select(pad_intern)
+      dplyr::select(pad_intern)
 
     #keep only those MPs which have mandates in relevant date
     df_res <- df_res %>%
-      semi_join(
+      dplyr::semi_join(
         .,
         df_res_filter_time_inst,
         by = "pad_intern"
