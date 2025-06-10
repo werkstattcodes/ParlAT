@@ -1,14 +1,15 @@
 #' Get start and end dates of legislative periods
 #'
 #' @param legis_period Number of legislative period(s) for which details
-#' @param date Date within a legislative period.
+#' @param date Date within a legislative period. Format should be "dd.mm.yyyy".
 #'
 #' @return A dataframe
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' get_legis_period(c(23,23))
+#' get_legis_period(legis_period=c(23,XV))
+#' get_legis_period(date=c("01.01.2020", "05.05.1954"))
 #' }
 get_legis_periods <- function(legis_period = NULL, date = NULL) {
   if (!is.null(legis_period) && !is.null(date)) {
@@ -122,7 +123,7 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
       format = "%d.%m.%Y"
     ),
     legis_period_current = c(FALSE, FALSE, FALSE),
-    legis_period_abbrev = c("ProNatVers", "KonstNatVers", "Bundesrat1Rep")
+    legis_period_abbrev = c("PV", "KN", "Bundesrat1Rep")
   ) %>%
     dplyr::mutate(legis_period_abbrev_num = legis_period_abbrev) %>%
     dplyr::mutate(
@@ -158,7 +159,7 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
         df_date,
         by = dplyr::join_by(between(y$date, x$date_start, x$date_end_open))
       ) %>%
-      select(-date_end_open)
+      dplyr::select(-date_end_open)
 
     return(df_res)
   } else {
