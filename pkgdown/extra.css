@@ -17,10 +17,29 @@
 
 .navbar {
  box-shadow: none !important;
+ padding-top: 0rem;
+ padding-bottom: 0rem;
+ 
 }
 
 
 .nav-link:hover, .nav-link:focus {
     color: #fff;
     background-color: black !important;
+}
+
+/* change color of links outside of navbar */
+a:not(nav a){
+    color: #999 !important;
+}
+
+/* increase size of logo */
+img.logo {
+    width: 200px !important;
+    
+}
+
+#toc .nav-link:hover,
+#toc .nav-link:focus {
+    color: #fff !important;
 }
