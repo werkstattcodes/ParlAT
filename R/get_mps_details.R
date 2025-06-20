@@ -5,31 +5,84 @@
 
 #' Get detailed information about Members of Parliament
 #'
-#' This function retrieves detailed information about Members of Parliament (MPs)
-#' from the Austrian Parliament database based on various filter criteria.
+#' The function retrieves details on Members of Parliament (MPs) in three categories:
+#' \itemize{
+#'   \item speeches held in plenary sessions ("plenary"),
+#'   \item other relevant activities ("activities"), and
+#'   \item their participation in committees ("committees").
+#' }
+#' Depending on the requested details category, different function parameters are available.
+#' For an example of the data source on the website of the Austrian Parliament, see
+#' the different tabs e.g., <a href="https://www.parlament.gv.at/person/145?selectedtab=PLENUM" target="_blank">here.</a>
 #'
-#' @param pad_intern Internal ID of the MP in the parliamentary database
-#' @param detail_type Character string specifying the type of details to retrieve; "plenary" or "activities".
-#' @param house Character string specifying the parliamentary house (optional).
-#'   Defaults to NULL.
+#' @param pad_intern ID of the MPs. See `get_pad_intern()` for more details.
+#' @param detail_type Character string specifying the type of details to retrieve: "plenary", "activities", or "committees". For an example of plenary data on the website of the Austrian Parliament see <a href="https://www.parlament.gv.at/person/145?selectedtab=PLENUM" target="_blank">here.</a> For an example of activities data on the website of the Austrian Parliament see <a href="https://www.parlament.gv.at/person/145?selectedtab=AKT" target="_blank">here.</a>
+#' @param house Character string specifying the parliamentary house. Permissible inputs are "NR" (Nationalrat/National Council),
+#' "BR" (Bundesrat/Federal Council ) or NULL (which returns results for both houses). Defaults to NULL.
 #' @param legis_period Numeric or character specifying the legislative period (optional).
 #'   Defaults to NULL.
-#' @param item Character string specifying a particular item, used only for activities (optional).
-#'   Defaults to NULL.
+#' @param item Character string specifying the item type (Art des Verhandlungsgegenstandes) (optional).
+#'   Defaults to NULL. Used only for details category "activities". See Details below.
+#' @param committee Character string specifying the committee name (optional).
+#' @param committee_position Character string specifying the committee position (optional).
 #' @param search_string Character string for searching within activities (optional).
-#'   Defaults to NULL.
+#'   Defaults to NULL. Only available for details category "activities" and "committees".
 #' @param echo Logical indicating whether to print the API request and response details.
+#' @details
+#' ## Item type (Art des Verhandlungsgegenstandes)
+#IMPROVE #PARLSIMON
+#' Possible values for `item` are:
+#' - "A" (Gesetzesanträge, Legislative proposals)
+#' - "AA" (Abänderungsanträge, Amendment Motion)
+#' - "ABMIN" (Anfragebeantwortung durch die Bundesregierung, Responses by the Federal Government)
+#' - "ABMIN-BR" (Anfragebeantwortung durch die Bundesregierung im Bundesrat, Responses by the Federal Government in the Federal Council)
+#' - "ABPRPR" (Anfragebeantwortung durch den Präsidenten des Nationalrates, Responses by the President of the National Council)
+#' - "AE" (Selbständige Entschließungen, Independent Resolutions)
+#' - "ARH1" (Anträge gemäß $ 99 Abs. 1, Motions according to § 99 Abs. 1)
+#' - "JMIN" (Schriftliche Anfrage an die Bundesregierung, Written Questions to the Federal Government)
+#' - "JPRPR" (Schriftliche Anfrage an den Präsidenten des Nationalrates, Written Questions to the President of the National Council)
+#' - "M" (Mündliche Anfrage an die Bundesregierung, Oral Questions to the Federal Government)
+#' - "UEA" (Unselbständige Entschließungen, Dependent Resolution Motion)
+#' - "AVB" (Anträge auf Volksbefragung)
+#' - "JHR" (Schriftliche Anfrage an den RechnungshofpräsidentInnen, Written Questions to the President of the Court of Auditors)
+#' - "PET" (Petitionen, Petitions)
 #'
-#' @return A data frame or list containing the requested MP details.
-#' Note that detail_type plenary returns all speeches of the person in question (within in the house
-#' requested), #' irrespective of its mandate at the time of the speech. E.g. querying all plenary
-#' activities of Doris Bures in the National Council will return not only her speeches as an MP,
-#' but also as a member in the presidency of the National Council, and Minister.
+#' @return A data frame containing the requested MP details. The structure depends on the
+#'   \code{detail_type} parameter:
+#'
+#'   For \code{detail_type = "plenary"}: Returns all speeches of the person in the specified
+#'   house, regardless of their mandate at the time of the speech. For example, querying
+#'   all plenary activities of Doris Bures in the National Council will return not only
+#'   her speeches as an MP, but also as President of the National Council and as Minister.
+#'
+#'   For \code{detail_type = "activities"}: Returns parliamentary activities and legislative
+#'   items associated with the MP.
+#'
+#'   Common columns include:
+#'   \describe{
+#'     \item{pad_intern}{Unique identifier for the MP}
+#'     \item{name}{Full name of the MP}
+#'     \item{position_name}{List of mandates/positions held at the time}
+#'     \item{date}{Date of the speech or activity}
+#'     \item{legis_period}{Legislative period (Roman numeral)}
+#'     \item{house}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
+#'   }
+#'
+#'   Additional columns for \code{detail_type = "plenary"}:
+#'   \describe{
+#'     \item{speech_title}{Title of the speech}
+#'     \item{session_url}{URL to the session details page}
+#'     \item{session_name}{Name of the parliamentary session}
+#'     \item{speech_transcript_url}{URL to the speech transcript}
+#'     \item{speech_media_url}{URL to speech recordings, if available}
+#'   }
+#'
+#'   Returns \code{NULL} invisibly if no data is found for the given parameters.
 #'
 #' @examples
 #' \dontrun{
-#' # Get basic details for an MP
-#' get_mps_details(pad_intern = "12345", detail_type = "basic")
+#' # Get plenary details for an MP
+#' get_mps_details(pad_intern = "12345", detail_type = "plenary")
 #'
 #' # Get activities for an MP in a specific legislative period
 #' get_mps_details(
@@ -47,12 +100,21 @@ get_mps_details <- function(
     legis_period = NULL,
     item = NULL, #only for activities
     search_string = NULL, #search string for activities
+    committee = NULL, #only for committees
+    committee_position = NULL, #only for committees
     echo = TRUE
 ) {
     # detail_type must be supplied and valid
     if (missing(detail_type) || is.null(detail_type)) {
         stop(
             "`detail_type` is a required parameter (e.g. 'plenary').",
+            call. = FALSE
+        )
+    }
+
+    if (detail_type == "plenary" && !is.null(search_string)) {
+        stop(
+            "search_string is only supported for details category 'activities' and 'committees', but not for plenary details.",
             call. = FALSE
         )
     }
@@ -65,7 +127,42 @@ get_mps_details <- function(
         )
     }
 
-    checkmate::assert_choice(detail_type, choices = c("plenary", "activities"))
+    checkmate::assert_choice(
+        detail_type,
+        choices = c("plenary", "activities", "committees")
+    )
+
+    if (!is.null(item) && detail_type != "activities") {
+        stop(
+            "`item` is only supported for details category 'activities'.",
+            call. = FALSE
+        )
+    }
+
+    if (detail_type == "activities") {
+        # check if item is valid
+        checkmate::assert_choice(
+            item,
+            choices = c(
+                "A",
+                "AA",
+                "ABMIN",
+                "ABMIN-BR",
+                "ABPRPR",
+                "AE",
+                "ARH1",
+                "JMIN",
+                "JPRPR",
+                "M",
+                "UEA",
+                "AVB",
+                "JHR",
+                "PET"
+            ),
+            null.ok = TRUE
+        )
+    }
+
     if (!is.null(detail_type) && detail_type == "plenary") {
         return(get_mps_details_plenary(
             pad_intern = pad_intern,
@@ -82,14 +179,23 @@ get_mps_details <- function(
             house = house,
             legis_period = legis_period,
             item = item,
-            search_string = search_string
+            search_string = search_string,
+            echo = echo
         ))
     }
-
-    # Add other detail types here as needed
-    stop("Unsupported detail type. Currently only 'plenary' is supported.")
+    if (!is.null(detail_type) && detail_type == "committees") {
+        return(get_mps_details_committees(
+            pad_intern = pad_intern,
+            # detail_type = detail_type,
+            house = house,
+            legis_period = legis_period,
+            committee = committee,
+            committee_position = committee_position,
+            search_string = search_string,
+            echo = echo
+        ))
+    }
 }
-
 
 get_mps_details_plenary <- function(
     pad_intern = NULL,
@@ -347,7 +453,7 @@ get_mps_details_plenary <- function(
             body_params_li,
             \(x, y) {
                 glue::glue(
-                    "BIO_251{URLencode(y)}={URLencode(as.character(x))}"
+                    "BIO_250{URLencode(y)}={URLencode(as.character(x))}"
                 )
             }
         ) %>%
@@ -361,6 +467,8 @@ get_mps_details_plenary <- function(
         print(nrow(df_res))
     }
 
+    # MAKE COLUMN NAMES MEANINGFUL
+
     return(df_res)
 }
 
@@ -370,7 +478,8 @@ get_mps_details_activities <- function(
     house = NULL,
     legis_period = NULL,
     item = NULL, #Art des Verhandlungsgegenstandes
-    search_string = NULL #search string
+    search_string = NULL, #search string
+    echo = NULL
 ) {
     # House check
     checkmate::assert_subset(
@@ -501,6 +610,34 @@ get_mps_details_activities <- function(
         ) %>%
         dplyr::select(-details_html)
 
+    #rename columns; only when col available
+    renaming_map <- c(
+        # "bez" = "position_text", #REMOVE tets if failure if non-existing column included
+        # "fromdate" = "date",
+        "gp" = "legis_period",
+        "gremium" = "house",
+        # "art"= "item_type",
+        "vhg4" = "item_type",
+        "nr" = "item_number",
+        "betreff" = "title",
+        "aktualisierung" = "date_updated",
+        "link" = "item_url",
+        "details_status" = "status_text",
+        "status" = "status_numeric"
+
+        # "rede" = "speech_title",
+        # "transcript_url" = "speech_transcript_url",
+        # "sitzung_name" = "session_name",
+        # "media_url" = "speech_media_url",
+        # "sitzung_url" = "session_url"
+    )
+
+    df_res <- df_res %>%
+        dplyr::rename_with(
+            .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+            .cols = any_of(names(renaming_map))
+        )
+
     # standardize house names in output
     df_res <- df_res %>%
         dplyr::mutate(
@@ -511,5 +648,137 @@ get_mps_details_activities <- function(
             )
         )
 
+    df_res <- df_res %>%
+        dplyr::select(
+            -art
+        ) %>%
+        dplyr::relocate(item_type, .after = item_number)
+
+    # ADD MANDATE TYPE ATTIME OF SPEECH
+    #PENDING #PARLSIMON
+    # there is no date of the activity returned; only an updated date which
+    # is the latest date in the procedures related to the activity;
+    # e.g. Antrag: date_updated is e.g. when Antrag was accepted, but not when
+    # Antrag was actually submitted/tabled;
+    # df_mandates <- get_mandates(pad_intern = pad_intern) %>%
+    #     dplyr::select(
+    #         name,
+    #         pad_intern,
+    #         position_name,
+    #         position_date_start,
+    #         position_date_end,
+    #         position_active
+    #     ) %>%
+    #     dplyr::mutate(
+    #         position_date_end = dplyr::case_when(
+    #             is.na(position_date_end) & position_active == TRUE ~ Sys.Date(),
+    #             TRUE ~ position_date_end
+    #         )
+    #     ) %>%
+    #     dplyr::mutate(
+    #         pad_intern = as.character(pad_intern)
+    #     )
+
+    # df_res <- df_res %>%
+    #     dplyr::left_join(
+    #         df_mandates,
+    #         by = dplyr::join_by(
+    #             pad_intern,
+    #             between(x$date, y$position_date_start, y$position_date_end)
+    #         )
+    #     ) %>%
+    #     dplyr::select(
+    #         -any_of(c(
+    #             "position_date_start",
+    #             "position_date_end",
+    #             "position_active"
+    #         ))
+    #     )
+
+    # df_res <- df_res %>%
+    #     dplyr::group_by(dplyr::across(-position_name)) %>%
+    #     dplyr::summarise(
+    #         position_name = list(unique(position_name[!is.na(position_name)])),
+    #         .groups = "drop"
+    #     )
+
+    # df_res <- df_res %>%
+    #     dplyr::relocate(c("name", "position_name"), .after = pad_intern)
+
+    #ECHO
+    if (echo) {
+        print(body_params)
+
+        body_params_li <- jsonlite::fromJSON(body_params)
+
+        query_string <- purrr::imap(
+            body_params_li,
+            \(x, y) {
+                glue::glue(
+                    "PERS_AKTIVIT_025{URLencode(y)}={URLencode(as.character(x))}"
+                )
+            }
+        ) %>%
+            unlist() %>%
+            unname() %>%
+            paste0(collapse = "&")
+
+        print(glue::glue(
+            "https://www.parlament.gv.at/person/{pad_intern}?{query_string}&selectedtab=AKT"
+        ))
+        print(nrow(df_res))
+    }
+
     return(df_res)
+}
+
+
+get_mps_details_committees <- function(
+    pad_intern = NULL,
+    house = NULL,
+    legis_period = NULL,
+    item = NULL, #Art des Verhandlungsgegenstandes
+    search_string = NULL, #search string
+    echo = NULL
+) {
+    # house
+    checkmate::assert_subset(
+        x = house,
+        choices = c("NR", "BR"), #PENDING PN KN as well?
+        empty.ok = TRUE
+    )
+
+    if (!is.null(house)) {
+        house <- switch(
+            house,
+            "NR" = "N",
+            "BR" = "B",
+            house
+        )
+    }
+
+    # legis_period
+    if (!is.null(legis_period)) {
+        legis_period <- as.roman(legis_period)
+
+        checkmate::assert_int(
+            x = min(as.numeric(legis_period)), #min since length > 1 possible
+            lower = 20,
+            null.ok = TRUE
+        )
+
+        legis_period_input <- get_legis_periods(legis_period) %>%
+            pull(legis_period_name)
+    }
+
+    # BODY PARAMS #CONTINUE
+    body_params <- list(
+        PAD_INTERN = pad_intern,
+        GREMIUM = house,
+        GP_TEXT_FULL = legis_period_input,
+        FUNKTION = committee_position,
+        AUSSCHUSS = committee
+    ) |>
+        purrr::compact() |>
+        jsonlite::toJSON()
 }
