@@ -16,6 +16,12 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
     stop("Please provide either legis_period or date, not both.")
   }
 
+  #convert roman numerals in character format to numeric
+  if (stringr::str_detect(legis_period, "^[IVXLCDM]+$")) {
+    legis_period <- as.roman(legis_period) %>%
+      as.numeric()
+  }
+
   res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
     httr2::req_url_query(
       jsMode = "FIELDS",
