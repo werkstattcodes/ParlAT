@@ -20,7 +20,6 @@ pre {
 }
 pre code {
   white-space: pre
-  text-align: left !important;
 }
 ```
 
@@ -35,7 +34,11 @@ options(width = 10000)
 ```
 
 ```{r, setup, include=FALSE}
-library(ParlAT)
+if (!requireNamespace("ParlAT", quietly = TRUE)) {
+  devtools::load_all()
+} else {
+  library(ParlAT)
+}
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -90,7 +93,6 @@ get_legis_periods(legis_period=25)
 df_mps_25_br_date <- get_mps(date="30.10.2013", institution="BR")
 nrow(df_mps_25_br_date)
 ```
-
 
 # Get mandates
 
