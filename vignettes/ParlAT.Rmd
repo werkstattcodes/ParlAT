@@ -20,6 +20,7 @@ pre {
 }
 pre code {
   white-space: pre
+  text-align: left !important;
 }
 ```
 
@@ -33,67 +34,263 @@ knitr::opts_chunk$set(
 options(width = 10000)
 ```
 
-```{r setup}
+```{r, setup, include=FALSE}
 library(ParlAT)
 library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(tidytext)
+library(ggtext)
 ```
 
-This vignette provides an introduction how to use the ParlAT package in 
-order to the access and subseqently analyze the Open Data provided by
-the Austrian Parliament.
+This vignette provides an introduction on how to use the ParlAT package 
+to the access and subseqently analyze the Open Data provided by
+the Austrian Parliament. Below are some examples which are meant to give
+a general overview of the package's functionality.
+For details, please consult the reference section.
+
+# Get current MPs in the National Council (Nationalrat)
+
+Let's start with retrieving the compostion of the National Council (Nationalrat) 
+at the time of writing (`r format(Sys.Date(), "%d %B %Y")`). This is done 
+by the function `get_mps_current()`. 
+
+```{r}
+df_current <- get_mps_current(institution = "NR", echo=TRUE)
+nrow(df_current)
+df_current
+
+df_current %>%
+count(party, sort=T)
+```
+
+If we want to get the composition of a chamber in the past,
+the function `get_mps()` comes into play. It either returns all MPs of the
+requested chamber, who formed part of it in the course of the entire legislative period (`legis_period` argument), or at a specific date (`date` argument). The latter is a convenient way
+to get the composition of the NR at a specifc date. 
+
+Note that the `legis_period` filter is not applicable when searching MPs of Federal Council.
+
+```{r}
+#Search for all MPs in the National Council as of 1 January 2025
+mps_01012025 <- get_mps(date="01.01.2025", institution="NR")
+glimpse(mps_01012025)
+```
+
+*Example Federal Council*
+```{r, error=TRUE}
+#Search for all MPs who were members of the Federal Council during the 25th legislative period:
+#An error is returned since legis_period is no applicable filter for institution="BR".
+df_mps_25_br <- get_mps(legis_period=25, institution="BR")
+
+#Get start and ending date of legislative period 25 with an auxilary function.
+get_legis_periods(legis_period=25)
+
+#Get members of the Federal Council as of 30 September 2013.
+df_mps_25_br_date <- get_mps(date="30.10.2013", institution="BR")
+nrow(df_mps_25_br_date)
+```
 
 
 # Get mandates
 
-Get the mandates of one or more individuals. Each row in the returned
-tibble represents data on one specific mandate.
+`get_mandates()` returns all current and previous mandates of one or more individuals.
+The function takes names as well as unique identifiers (`pad_intern`) as inputs, with the 
+latter being the more specific option. 
 
-code-summary: "Get all mandates"
+Example with MP names:
 ```{r}
 get_mandates(name = c(
-  "Stephanie Krisper",
   "Karl Nehammer",
-  "Elisabeth Götze"
+  "Andreas Babler"
 ))
 ```
 
+The function allows us, e.g. to relatively easily calcualte the total number of days
+which the current MPs in the National Council have been serving as of now,
+and identify the longest serving MPs.
+
 ```{r}
-get_mandates(name = c("Pia Philippa Strache"))
-get_mandates(name = c("Pia Philippa Beck"))
+df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
+
+#keep only MP mandates in the National Council (NR)
+df_mandates <- df_mandates %>%
+  filter(position_code == "NR") 
+  
+df_mandates <- df_mandates %>%
+mutate(position_date_end=case_when(
+  is.na(position_date_end) & position_active==TRUE ~ lubridate::today(),
+  .default=position_date_end
+)) %>%
+mutate(position_duration_days = as.numeric(difftime(position_date_end, position_date_start, units = "days")), 
+.after=position_date_end)
+
+duration <- df_mandates %>%
+summarise(position_days_sum=sum(position_duration_days), .by=c("pad_intern", "name")) %>%
+arrange(desc(position_days_sum))
+
+duration %>%
+slice_head(., n=5)
 ```
 
-# Get names
+
+
+# get_mps_details()
+
+If we are interested in the work of a specific MP, the fucntion `get_mps_details()`
+is the tool of choice. There are three detail types which can be quried:
+"activities", "committee", and "plenary".
+
+Let's get a list of all speeches held in the plenary by MP Karlheinz Kopf.
+To get his pad_intern, we can resort to the auxilary function 'get_pad_intern()'
+which returns the MP's unique identifier.
 ```{r}
-get_names(44127, date = "01/01/2024")
-get_names(44127, date = "01/01/2023")
-get_pad_intern("Strache")
+get_pad_intern("Karlheinz Kopf")
+
+df_plenary_kopf <- get_mps_details(pad_intern=2822, detail_type="plenary", house="NR")
+df_plenary_kopf %>%
+  count(legis_period) %>%
+  arrange(legis_period)
 ```
+
+```{r}
+get_pad_intern("Sebastian Kurz")
+
+df_plenary_kurz <- get_mps_details(pad_intern=65321, detail_type="plenary", house="NR")
+
+df_plenary_kurz %>%
+  count(legis_period) %>%
+  arrange(legis_period)
+```
+
+Note that get_mps_details returns all activites, speeches even if the individual
+was member of the government bench at this point in time.
+
 
 # Get MPs
 
-Get all female MPs of the FPÖ.
-
-Note the importance of the `make_unique` argument. By default, the API of the Parliament
-returns a row fo each unqiue MP name. However, since MPs can change their 
-name, a standard query returns multiple rows for the same MP. The `make_unique` argument
-takes care of this duplications and returns only one row per MP identifier (pad_intern) and
-returns the different name variants as a list.
-
-```{r, eval=T}
-get_mps(institution = "NR", party = "FPÖ", gender = "female", echo = TRUE)
+```{r}
+df_mps_XXV <- get_mps(institution = "NR", legis_period = 25)
 ```
 
-# get_items()
+Note that there were `r nrow(df_mps_XXV)` members of the National Council (Nationalrat) in the 25th legislative period.
+This is due to the fluctation over the course of the entire legislative period.
 
-The `get_items` function is probably the most comprehensive function of this package. It facilitaes
-access to wide range of items 
-
-#| code-summary: "get_items example: get "
+If we are interested at the specific composition of the National Council at at specific ate, the `date` argument is available
 
 ```{r}
-df_items <- get_items(item = "J_JPR_M", legis_period = 28)
+get_legis_periods(25)
+df_mps_date <- get_mps(institution = "NR", date = "01.01.2014")
+nrow(df_mps_date)
+df_mps_date
+```
+Unless filtered by date, the data obtained by `get_mps` includes details on **all** mandate which the 
+MPs have ever held. TODO If we are intersted only in details on the present mandate, use the 
+function argument ""
+
+Get all female MPs of the FPÖ in the National Council in the 26th legislative period.
+
+```{r, eval=T}
+get_mps(institution = "NR", party = "FPÖ", gender = "female", legis_period=26, echo = TRUE)
+```
+
+# Items under consideration ('Verhandlungsgegenstände')
+
+The ability to search for different items under consideration is probably
+one of the most encompasing features offered by Open Data repository of the
+Austrian Parliament (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR" target="_blank" rel="noopener">here</a>)
+The items which can be queried comprises a wide range including Topical Debates (Aktuelle Stunden), Inquiries (Anfragen),  Government Bills (Laws) (Regierungsvorlagen (Gesetze)),... etc. 
+
+For each of these item types, further specific query parameters are available which
+allow to narrow down the search. For example, for the item type "Motions" (Anträge),
+the argument `doc_type` allows to differentiate between 
+(Self-contained motion), (Selbständiger Antrag), (Self-contained motion for resolution), (Selbständiger Entschließungsantrag), (Amendment), (Abänderungsantrag), (Independent committee motion for resolution), (Selbständiger Ausschuss-Entschließungsantrag), (Independent motion - indictment of a minister), (Selbständiger Antrag - Ministeranklage), (Request for review of financial management by the Court of Audit), (Verlangen auf Gebarungsüberprüfung durch den Rechnungshof), (Motion for referendum), (Antrag auf Volksbefragung), (Report and motion), (Bericht und Antrag), (Dependent motion for resolution), (Unselbständiger Entschließungsantrag), (Motion of no confidence), (Misstrauensantrag), (Request for review of financial management by the Standing Sub-Committee of the Audit Committee), (Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses). This is just one example to illustrate the
+breath and depth of the possible queries.
+
+For details see the help page of the `get_items()` function.
 
 
+*Example: Inquiries (Anfragen)*
+
+Below, as an example, let's query all written and oral questions (Anfragen) of the
+27 legislative period.
+
+```{r}
+df_items <- get_items(item = "J_JPR_M", legis_period = seq(20,27), echo=TRUE)
+
+# Create color mapping for Austrian political parties
+party_colors <- c(
+  "SPÖ" = "#CE000C",     # Red
+  "ÖVP" = "#63C3D0",     # Turquoise/Light Blue
+  "FPÖ" = "#0056A2",     # Dark Blue
+  "F" = "#0056A2",     # Dark Blue
+  "F-BZÖ" = "#0056A2",     # Dark Blue
+  "GRÜNE" = "#88B626",  # Green
+  "NEOS" = "#E3257B",    # Pink/Magenta
+  "NEOS/NEOS-LIF" = "#E3257B",    # Pink/Magenta
+  "Grüne" = "#88B626",   # Green (alternative name)
+  "STRONACH" = "#F47100", # Orange
+  "BZÖ" = "#F47100",     # Orange
+  "LIF" = "#FFD200",     # Yellow
+  "L" = "#FFD200",     # Yellow
+  "FRANK" = "#800080",    # Purple
+  "JETZT/PILZ"="lightgrey",
+  "OK" ="grey"
+)
+```
+
+```{r}
+df_plot <- df_items %>%
+  unnest_longer(fraktionen) %>%
+  count(gp_code, fraktionen) %>%
+  mutate(
+    fraktionen_color = case_when(
+      fraktionen == "ÖVP" & as.numeric(gp_code) < 26 ~ "black",
+      fraktionen == "ÖVP" & as.numeric(gp_code) >= 26 ~ "#63C3D0",
+      TRUE ~ party_colors[fraktionen]
+    )
+  )  
+```
+
+
+```{r}
+df_plot %>%
+  ggplot()+
+  labs(
+    title = stringr::str_to_title("Number of questions (Anfragen) submitted by party"),
+    subtitle = "20th to 27th legislative period. Questions with multiple parties are counted in each party category.
+    Data comprises written and oral questions.",
+    caption = "Date: Austrian Parliament"
+  )+
+  geom_bar(aes(x=tidytext::reorder_within(fraktionen, -n, gp_code), y=n, fill=fraktionen_color), stat="identity")+ 
+  scale_x_reordered(guide = guide_axis(n.dodge = 2), continuous.limits=c(1,7))+
+  scale_y_continuous(labels=scales::label_number(big.mark = ".", decimal.mark = ","))+  
+  scale_fill_identity()+
+  facet_wrap(vars(gp_code), scales = "free_x", labeller = labeller(gp_code = function(x) ifelse(x == min(x), paste("Legislative Period", x), x)))+
+  theme_minimal()+
+  theme(
+    strip.text.x= element_text(face = "bold", hjust = 0),
+    panel.grid.minor =  element_blank(),
+    panel.grid.major.x=  element_blank(),
+    legend.position = "none",
+    axis.title.x = element_blank(),
+    plot.subtitle=ggtext::element_textbox_simple(),
+    plot.title.position = "plot",
+    plot.title = element_text(face = "bold")
+  )
+```
+
+There were in total `r nrow(df_items)` questions submitted and posed by the
+members of the Austrian Parliament in the 27th legislative period. Note 
+that the function's echo returns not only number of rows returned, but
+also the URL to the query on the website of the Austrian Parliament.
+
+With a bit of additional data wrangling, and making use of the 'topic' 
+column in the returned data frame,  we can obtain the number of
+questions (Anfragen) submitted and posed by each party, and the pertaining
+combinations of parties.
+
+```{r}
 df_items <- df_items %>%
   dplyr::mutate(fraktionen_li = stringr::str_extract_all(
     fraktionen, stringr::regex('\\"[^,]+\\"')
@@ -106,23 +303,105 @@ df_items <- df_items %>%
   dplyr::mutate(themen_li = purrr::map(themen_li, unique)) %>%
   dplyr::mutate(themen_n = purrr::map_dbl(themen_li, length))
 
-library(ggupset)
-library(ggplot2)
-library(dplyr)
+# df_items %>%
+#   ggplot2::ggplot(.,ggplot2::aes(x = fraktionen_li, fill = `doktyp_lang`)) +
+#   ggplot2::geom_bar() +
+#   ggupset::scale_x_upset() +
+#   theme_minimal()
 
-df_items %>%
-  ggplot2::ggplot(aes(x = fraktionen_li, fill = `doktyp_lang`)) +
-  ggplot2::geom_bar() +
-  ggupset::scale_x_upset() +
-  theme_minimal()
+# df_items %>%
+#   tidyr::unnest_longer(col = "fraktionen_li") %>%
+#   tidyr::unnest_longer(col = "themen_li") %>%
+#   ggplot2::ggplot(aes(x = themen_li, fill = fraktionen_li)) +
+#   ggplot2::geom_bar() +
+#   theme_minimal() +
+#   facet_wrap(vars(`doktyp_lang`))
+```
 
-df_items %>%
-  tidyr::unnest_longer(col = "fraktionen_li") %>%
-  tidyr::unnest_longer(col = "themen_li") %>%
-  ggplot2::ggplot(aes(x = themen_li, fill = fraktionen_li)) +
-  ggplot2::geom_bar() +
-  theme_minimal() +
-  facet_wrap(vars(`doktyp_lang`))
+*Example: Government Bills ("Regierungsvorlagen")*
+
+Get the number of government bills tabled from the 20th to the 27th
+legislative period and count them.
+
+```{r, fig.width=10, out.width="100%"}
+df_govBills <- get_items(item = "RV", legis_period = seq(20,27)) 
+
+df_govBills %>%
+count(gp_code, name = "n") 
+
+df_govBillsTopicsTop5 <- df_govBills %>%
+unnest_longer(themen) %>%
+group_by(gp_code) %>%
+mutate(themen=forcats::fct_lump_n(themen, n = 5, ties.method = "first")) %>%
+ungroup() %>%
+count(gp_code, themen)
+
+df_govBillsTopicsTop5 %>%
+ggplot()+
+labs(
+  title="Number of tabled government bills by topic",
+  subtitle="Top 5 topics per legilslative period. XX to XXVII legislative period. A bill with multiple topics is counted in \neach topic category. Category 'Other' covers all other bills.",
+)+
+geom_bar(
+  aes(y=tidytext::reorder_within(themen, n, gp_code), 
+  x=n,
+  fill=themen),
+  stat="identity")+
+scale_y_reordered()+
+scale_x_continuous(
+  breaks=c(0,100,300)
+)+
+scale_fill_viridis_d()+
+facet_wrap(
+  vars(gp_code), 
+  labeller = labeller(gp_code = function(value) ifelse(value == min(value), paste("GP", value), value)),
+  scales="free_y")+
+theme_minimal()+
+theme(
+  strip.text.x = element_text(face="bold", hjust=0),
+  legend.position="none",
+  axis.title=element_blank(),
+  panel.grid.minor=element_blank(),
+  plot.title.position = "plot",
+  plot.subtitle=ggtext::element_textbox_simple(),
+  plot.title=element_text(face="bold")
+)
+```
+
+*Example: Popular Initiatives ("Volksbegehren")*
+
+Get the number of popular initiatives ("Volksbegehren") which were considered
+- in different stages - by the Austrian Parliament from the 20th to the 27th
+legislative period and count them per legislative period.
+```{r}
+get_items(item="VOLKBG", legis_period=seq(20,27), institution="NR", echo=TRUE) %>%
+count(gp_code)
 ```
 
 
+# Get names
+
+`get_names` is an 
+
+```{r}
+get_mandates(name = c("Pia Philippa Strache"))
+get_mandates(name = c("Pia Philippa Beck"))
+```
+
+
+```{r}
+get_names(44127, date = "01/01/2024")
+get_names(44127, date = "01/01/2023")
+get_pad_intern("Strache")
+```
+
+
+# Miscallaneous
+
+The *echo argument*: Whenever relevant and feasible, ParlAT functions
+provide the option to echo the query to the API. The echo prints the 
+query's search arguments as well as the resulting URL to the console. The
+latter links to the same results on the website of the Austrian Parliament.
+The echo argument was included to double-check the results, facilitate
+convenient sharing of queries, and provide an additional avenue to explore
+the data.
