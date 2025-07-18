@@ -1,12 +1,12 @@
-#' Search for Parliamentary Items
+#' Get items under negotiation ("Verhandlungsgegenstände")
 #' @encoding UTF-8
 #' @description
 #' `get_items` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
-#' in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
+#' in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
 #' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">here</a>).
 #'
 #' @param topic Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
-#' @param institution Character string. Either "Nationalrat" (National Council) or "Bundesrat" (Federal Council). Default is "Nationalrat".
+#' @param institution Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is "Nationalrat".
 #' @param legis_period Character vector or `NULL`. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is `NULL`.
 #' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy". Default is `NULL`.
 #' @param date_end Character string. End date for the search period in format "dd-mm-yyyy". Default is `NULL`.
@@ -16,15 +16,15 @@
 #' @param number Character string or `NULL`. Specific item number to search for. Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
-#' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See 'Details.'
-#' @param parl_group_names_standard Logical. If `TRUE`, the function expands and standardizes parliamentary group names. Default is `FALSE`. See 'Details.'
+#' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See Details.
+#' @param parl_group_names_standard Logical. If `TRUE`, the function expands and standardizes parliamentary group names. Default is `FALSE`. See Details.
 # TODO: add parl_group_names_standard explentation to details
 #' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
 #'
 #' @details
-#' ## Topic ('Thema')
+#' ## Topic (Thema)
 #
-#' Possible values for `topic` include:
+#' Possible values for `topic` are:
 #'
 #' * "Arbeit" (work)
 #' * "Außenpolitik" (foreign policy)
@@ -88,31 +88,31 @@
 #' If item is "ANTR", the permissible values for doc_type depend on the
 #' institution of interest.
 #' Possible values for `doc_type` if institution=="Nationalrat" ('National Council'):
-#' * A: Selbständiger Antrag
-#' * A(E): Selbständiger Entschließungsantrag
-#' * AA: Abänderungsantrag
-#' * AEA: Selbständiger Ausschuss-Entschließungsantrag
-#' * AMIN: Selbständiger Antrag - Ministeranklage
-#' * ARH2: Verlangen auf Gebarungsüberprüfung durch den Rechnungshof
-#' * AVB: Antrag auf Volksbefragung
-#' * BUA: Bericht und Antrag
-#' * UEA: Unselbständiger Entschließungsantrag
-#' * UEAM: Misstrauensantrag
-#' * URH2: Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses
+#' * "A" (Selbständiger Antrag, Independent Motion)
+#' * "A(E)" (Selbständiger Entschließungsantrag, Independent Resolution Motion)
+#' * "AA" (Abänderungsantrag, Amendment Motion)
+#' * "AEA" (Selbständiger Ausschuss-Entschließungsantrag, Independent Committee Resolution Motion)
+#' * "AMIN" (Selbständiger Antrag - Ministeranklage, Independent Motion - Ministerial Impeachment)
+#' * "ARH2" (Verlangen auf Gebarungsüberprüfung durch den Rechnungshof, Request for Audit by the Court of Audit)
+#' * "AVB" (Antrag auf Volksbefragung, Motion for Public Consultation)
+#' * "BUA" (Bericht und Antrag, Report and Motion)
+#' * "UEA" (Unselbständiger Entschließungsantrag, Dependent Resolution Motion)
+#' * "UEAM" (Misstrauensantrag, Motion of No Confidence)
+#' * "URH2" (Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses, Request for Audit by the Standing Subcommittee of the Court of Audit Committee)
 #'
 #' Possible values for `doc_type` if institution=="Bundesrat" ('Federal Council'):
-#' *  AA-BR: Abänderungsanträge
-#' *  A-BR: Selbständiger Antrag Bundesrat
-#' *  A(E): Selbständiger Entschließungsantrag Bundesrat
-#' *  AEA-BR: Selbständige Entschließungsanträge von Ausschüssen
-#' *  UEA-BR: Unselbständige Anträge
+#' *  "AA-BR" (Abänderungsanträge, Amendment Motions)
+#' *  "A-BR" (Selbständiger Antrag Bundesrat, Independent Motion Federal Council)
+#' *  "A(E)" (Selbständiger Entschließungsantrag Bundesrat, Independent Resolution Motion Federal Council)
+#' *  "AEA-BR" (Selbständiger Entschließungsantrag von Ausschüssen, Independent Committee Resolution Motion Federal Council)
+#' *  "UEA-BR" (Unselbständige Anträge)
 #'
 #' Possible values for `doc_type` if *item=="BNR"*:
-#' * BNR: Beschluss
-#' * BS: Sonstiger Beschluss
-#' * BSE: Beschluss-EU
-#' * BSESM: Beschluss-ESM
-#' * BS-BR: Sonstiger Beschluss (only if instituition=="Bundesrat")
+#' * "BNR" (Beschluss, Resolution)
+#' * "BS" (Sonstiger Beschluss, Other Resolution)
+#' * "BSE" (Beschluss-EU, EU Resolution)
+#' * "BSESM" (Beschluss-ESM, ESM Resolution)
+#' * "BS-BR" (Sonstiger Beschluss, Other Resolution (only if instituition=="Bundesrat"))
 #'
 #' ## EuroVoc
 #' EuroVoc is an international thesaurus developed primarily for use within the EU. It enables searches
@@ -123,35 +123,35 @@
 #' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
 #'
 # #TODO complete abbreviations
-#' - BZÖ    Bündnis Zkunft Österreich
-#' - CSP    Crhistlichsoziale Partei
-#' - DnP    Deutsche Nationalpartei
-#' - F      Freiheitliche Partei Österreichs
-#' - F-BZÖ  Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich
-#' - FPÖ    Freiheitliche Partei Österreichs
-#' - GdP    Großdeutsche Volkspartei
-#' - GRÜNE  Die Grünen - Die Grüne Alternative
-#' - HB     Heimatblock
-#' - JETZT  Jetzt - Liste Pilz
-#' - Konvent
-#' - KPÖ    Kommunistische Partei Österreichs
-#' - KuL
-#' - L
-#' - LB
-#' - LBd    Landbund für Österreich
-#' - NEOS   NEOS - Das Neue Österreich
-#' - NEOS-LIF NEOS - Liberales Forum
-#' - NSDAP  Nationalsozialistische Deutsche Arbeiterpartei
-#' - NWB    Nationaler Wirtschaftsblck und Landbund
-#' - OF
-#' - OK     Ohne Klub
-#' - ÖVP    Österreichische Volkspartei
-#' - PILZ   Liste Pilz
-#' - SdP
-#' - SPÖ    Sozialistische/Sozialdemokratische Partei Österreichs
-#' - STRONACH Team Stronach
-#' - VO     Wahlgemeinschafft Österreichische Volksopposition
-#' - WdU    Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen)
+#' - "BZÖ" (Bündnis Zukunft Österreich)
+#' - "CSP" (Christlichsoziale Partei)
+#' - "DnP" (Deutsche Nationalpartei)
+#' - "F" (Freiheitliche Partei Österreichs)
+#' - "F-BZÖ" (Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich)
+#' - "FPÖ" (Freiheitliche Partei Österreichs)
+#' - "GdP" (Großdeutsche Volkspartei)
+#' - "GRÜNE" (Die Grünen - Die Grüne Alternative)
+#' - "HB" (Heimatblock)
+#' - "JETZT" (Jetzt - Liste Pilz)
+#' - "Konvent"
+#' - "KPÖ" (Kommunistische Partei Österreichs)
+#' - "KuL"
+#' - "L" (Liberales Forum)
+#' - "LB"
+#' - "LBd" (Landbund für Österreich)
+#' - "NEOS" (NEOS - Das Neue Österreich)
+#' - "NEOS-LIF" (NEOS - Liberales Forum)
+#' - "NSDAP" (Nationalsozialistische Deutsche Arbeiterpartei)
+#' - "NWB" (Nationaler Wirtschaftsblck und Landbund)
+#' - "OF"
+#' - "OK" (Ohne Klub)
+#' - "ÖVP" (Österreichische Volkspartei)
+#' - "PILZ" (Liste Pilz)
+#' - "SdP"
+#' - "SPÖ" (Sozialistische/Sozialdemokratische Partei Österreichs)
+#' - "STRONACH" (Team Stronach)
+#' - "VO" (Wahlgemeinschafft Österreichische Volksopposition)
+#' - "WdU" (Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen))
 #'
 #' @return A data frame containing the search results. If no results are found, the function returns `NULL`
 #' and displays a message.
@@ -462,7 +462,7 @@ get_items <- function(
       purrr::pluck("rows") %>%
       as.data.frame()
 
-    if (length(df_res) == 0) {
+    if (nrow(df_res) == 0) {
       message("No results found for the provided search criteria.")
       return(NULL)
     }
@@ -471,9 +471,12 @@ get_items <- function(
 
     return(df_res)
   }) %>%
+    purrr::compact() %>% #remove NULL results
     purrr::list_rbind()
 
-  checkmate::check_data_frame(df_res, min.rows = 1)
+  # print(class(df_res))
+  # print(nrow(df_res))
+  # browser()
 
   # RETURN ECHO
   if (echo == TRUE) {
@@ -495,6 +498,12 @@ get_items <- function(
     ))
 
     print(nrow(df_res))
+  }
+
+  # STOP IF NO HITS
+  if (nrow(df_res) == 0) {
+    message("No results found for the provided search criteria.")
+    return(NULL)
   }
 
   # PARSE CONTENT TO MAKE MORE AMENABLE FOR FURTHER ANALYSIS

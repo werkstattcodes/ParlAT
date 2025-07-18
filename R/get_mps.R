@@ -634,7 +634,7 @@ get_mps <- function(
   ) |>
     purrr::compact() |>
     jsonlite::toJSON()
-  print(body_params)
+  #print(body_params)
 
   res <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/409"

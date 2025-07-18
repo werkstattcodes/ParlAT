@@ -130,7 +130,7 @@ get_transcripts <- function(
     }) %>%
         purrr::list_rbind()
 
-    checkmate::check_data_frame(df_res, min.rows = 1)
+    checkmate::assert_data_frame(df_res, min.rows = 1)
 
     if (echo == TRUE) {
         print(body_params)

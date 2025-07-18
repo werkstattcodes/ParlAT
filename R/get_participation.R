@@ -33,32 +33,49 @@
 #TODO: function incomplete
 
 get_participation <- function(
-  topic=NULL, #Themen - THEMEN
-  legis_period=NULL, #Gesetzgebungsperiode - GP_CODE
-  active=NULL, #Aktuelle Beteiligung - AKTIV
-  review_type=NULL, #Gegenstand - BEGUTTYP
-  initiative_type=NULL #Art der Gesetzesinitiative - DOKTYPE
-  ) {
-
+  topic = NULL, #Themen - THEMEN
+  legis_period = NULL, #Gesetzgebungsperiode - GP_CODE
+  active = NULL, #Aktuelle Beteiligung - AKTIV
+  review_type = NULL, #Gegenstand - BEGUTTYP
+  initiative_type = NULL #Art der Gesetzesinitiative - DOKTYPE
+) {
   #TOPIC
-  choices_topic=c("Arbeit", "Außenpolitik", "Bildung", "Budget und Finanzen",
-                  "Europäische Union", "Familie und Generationen", "Frauen und Gleichbehandlung",
-                  "Gesundheit und Ernährung", "Information und Medien", "Inneres und Recht",
-                  "Innovation, Technologie und Forschung", "Klima, Umwelt und Energie",
-                  "Kultur", "Land- und Forstwirtschaft", "Landesverteidigung",
-                  "Parlament und Demokratie", "Soziales", "Sport",
-                  "Verkehr und Infrastruktur", "Wirtschaft")
-  checkmate::assert_subset(topic, choices_topic, empty.ok=T)
+  choices_topic = c(
+    "Arbeit",
+    "Außenpolitik",
+    "Bildung",
+    "Budget und Finanzen",
+    "Europäische Union",
+    "Familie und Generationen",
+    "Frauen und Gleichbehandlung",
+    "Gesundheit und Ernährung",
+    "Information und Medien",
+    "Inneres und Recht",
+    "Innovation, Technologie und Forschung",
+    "Klima, Umwelt und Energie",
+    "Kultur",
+    "Land- und Forstwirtschaft",
+    "Landesverteidigung",
+    "Parlament und Demokratie",
+    "Soziales",
+    "Sport",
+    "Verkehr und Infrastruktur",
+    "Wirtschaft"
+  )
+  checkmate::assert_subset(topic, choices_topic, empty.ok = T)
 
   #LEGIS PERIOD
-  legis_period <- purrr::map_chr(legis_period, \(x) fn_check_legis_period_elements(x))
+  legis_period <- purrr::map_chr(
+    legis_period,
+    \(x) fn_check_legis_period_elements(x)
+  )
 
   #AKTIV
-  checkmate::assert_subset(active, choices="J", empty.ok = TRUE)
+  checkmate::assert_subset(active, choices = "J", empty.ok = TRUE)
   # J: Aktuelle Beteiligung möglich
 
   #REVIEW_TYPE (BEGUTTYP/Gegenstand)
-  choices_review_type <- c("RGES","ME","BI","PET","SN")
+  choices_review_type <- c("RGES", "ME", "BI", "PET", "SN")
   checkmate::assert_subset(review_type, choices_review_type, empty.ok = TRUE)
 
   # RGES: Gesetzesinitiativen
@@ -69,7 +86,11 @@ get_participation <- function(
 
   #INITIATIVE_TYPE (DOKTYPE/ART DER GESETZESINITATIVE)
   choices_initiative_type <- c("EBR", "GABR", "A", "GABR13", "RV", "VOLKBG")
-  checkmate::assert_subset(initiative_type,choices_initiative_type, empty.ok = TRUE)
+  checkmate::assert_subset(
+    initiative_type,
+    choices_initiative_type,
+    empty.ok = TRUE
+  )
 
   # EBR: Einsprüche des Bundesrats
   # GABR: Gesetzesanträge von Abgeordneten
@@ -79,22 +100,24 @@ get_participation <- function(
   # VOLKBG: Volksbegehren
 
   body_params <- list(
-      THEMEN=topic,
-      GP_CODE=legis_period,
-      AKTIV=active,
-      BEGUTTYP=review_type,
-      DOKTYP=initiative_type
-    ) |>
-      purrr::compact() |>  #keep only non-empty elements
-      jsonlite::toJSON()
+    THEMEN = topic,
+    GP_CODE = legis_period,
+    AKTIV = active,
+    BEGUTTYP = review_type,
+    DOKTYP = initiative_type
+  ) |>
+    purrr::compact() |> #keep only non-empty elements
+    jsonlite::toJSON()
 
-  res <- httr2::request("https://www.parlament.gv.at/Filter/api/filter/data/143") |>
-    httr2::  req_url_query(
+  res <- httr2::request(
+    "https://www.parlament.gv.at/Filter/api/filter/data/143"
+  ) |>
+    httr2::req_url_query(
       js = "eval",
       # page = "1",
       # pagesize = "10",
       sortrnr = "22",
-      showAll=TRUE,
+      showAll = TRUE,
       ascDesc = "DESC",
     ) |>
     httr2::req_headers(
@@ -121,9 +144,9 @@ get_participation <- function(
     purrr::pluck("rows")
   #print(class(df_res))
 
-  checkmate::check_data_frame(df_res, min.rows=1)
+  checkmate::assert_data_frame(df_res, min.rows = 1)
 
-  if (length(df_res)==0) {
+  if (length(df_res) == 0) {
     message("No results found for the provided search criteria.")
     return(NULL)
   }
@@ -133,13 +156,4 @@ get_participation <- function(
   print(nrow(df_res))
 
   return(df_res)
-
 }
-
-
-
-
-
-
-
-

@@ -95,7 +95,6 @@ get_mandates <- function(
   institution = NULL,
   date = NULL
 ) {
-  #TODO allow for pad_inten as input; either name or pad_intern
   #INSTITUTION
   checkmate::assert_subset(
     x = institution,
@@ -119,7 +118,8 @@ get_mandates <- function(
       pb$tick()
       get_mandates(name = x)
     }) |>
-      purrr::list_rbind()
+      purrr::list_rbind() %>%
+      dplyr::as_tibble()
 
     return(df_res)
   }
@@ -156,7 +156,8 @@ get_mandates <- function(
     }
   )
 
-  df_res <- purrr::list_rbind(li_res)
+  df_res <- purrr::list_rbind(li_res) %>%
+    dplyr::as_tibble()
 
   if (is.null(df_res) | nrow(df_res) == 0) {
     return(NULL)
@@ -241,7 +242,6 @@ get_mandates <- function(
       .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
       .cols = any_of(names(renaming_map))
     )
-
 
   #add link to biography as means to check source
   df_res <- df_res |>

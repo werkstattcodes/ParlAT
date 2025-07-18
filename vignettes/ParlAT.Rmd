@@ -100,22 +100,26 @@ nrow(df_mps_25_br_date)
 The function takes names as well as unique identifiers (`pad_intern`) as inputs, with the 
 latter being the more specific option. 
 
-Example with MP names:
 ```{r}
+#Example with MP names:
 get_mandates(name = c(
   "Karl Nehammer",
   "Andreas Babler"
 ))
+
+#Example with pad_intern and auxiliary function `get_pad_intern`.
+get_pad_intern("Peter Pilz")
+get_mandates(pad_intern=1210)
 ```
 
-The function allows us, e.g. to relatively easily calcualte the total number of days
+The function `get_mandates` also allows us to relatively easily calcualte the total number of days
 which the current MPs in the National Council have been serving as of now,
-and identify the longest serving MPs.
-
+and identify the longest serving MPs (top 5 are shown below).
 ```{r}
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
 
-#keep only MP mandates in the National Council (NR)
+#keep only MP mandates in the National Council (NR); `instituiton` refers only to the 
+#current position, not the preceding mandates.
 df_mandates <- df_mandates %>%
   filter(position_code == "NR") 
   
@@ -136,7 +140,6 @@ slice_head(., n=5)
 ```
 
 
-
 # get_mps_details()
 
 If we are interested in the work of a specific MP, the fucntion `get_mps_details()`
@@ -146,7 +149,9 @@ is the tool of choice. There are three detail types which can be quried:
 Let's get a list of all speeches held in the plenary by MP Karlheinz Kopf.
 To get his pad_intern, we can resort to the auxilary function 'get_pad_intern()'
 which returns the MP's unique identifier.
+
 ```{r}
+#CONTINUE
 get_pad_intern("Karlheinz Kopf")
 
 df_plenary_kopf <- get_mps_details(pad_intern=2822, detail_type="plenary", house="NR")

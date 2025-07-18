@@ -47,6 +47,53 @@
 #' - "JHR" (Schriftliche Anfrage an den RechnungshofpräsidentInnen, Written Questions to the President of the Court of Auditors)
 #' - "PET" (Petitionen, Petitions)
 #'
+#' ## Committees
+#' Possible values for `committee` are:
+#'
+#' Ausschuss für Arbeit und Soziales
+#' Ausschuss für Bauten und Wohnen
+#' Ausschuss für Familie und Jugend
+#' Ausschuss für Forschung, Innovation und Digitalisierung
+#' Ausschuss für innere Angelegenheiten
+#' Ausschuss für Konsumentenschutz
+#' Ausschuss für Land- und Forstwirtschaft
+#' Ausschuss für Menschenrechte
+#' Ausschuss für Petitionen und Bürgerinitiativen
+#' Ausschuss für Wirtschaft, Industrie und Energie
+#' Außenpolitischer Ausschuss
+#' Budgetausschuss
+#' COFAG-Untersuchungsausschuss eingesetzt am 15.12.2023 - beendet am 03.07.2024
+#' Finanzausschuss
+#' Geschäftsordnungsausschuss
+#' Gesundheitsausschuss
+#' Gleichbehandlungsausschuss
+#' Hauptausschuss
+#' Untersuchungsauschuss: Ibiza-Untersuchungsausschuss
+#' Immunitätsausschuss
+#' Justizausschuss
+#' Kulturausschuss
+#' Landesverteidigungsausschuss
+#' ÖVP-Korruptions-Untersuchungsausschuss eingesetzt am 09.12.2021 - beendet am 27.04.2023
+#' Rechnungshofausschuss
+#' "ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss" eingesetzt am 15.12.2023 - beendet am 03.07.2024
+#' Sportausschuss
+#' Ständiger gemeinsamer Ausschuss im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948
+#' Ständiger Unterausschuss des Ausschusses für innere Angelegenheiten
+#' Ständiger Unterausschuss des Budgetausschusses
+#' Ständiger Unterausschuss des Hauptausschusses
+#' Ständiger Unterausschuss des Landesverteidigungsausschusses
+#' Ständiger Unterausschuss des Rechnungshofausschusses
+#' Ständiger Unterausschuss in Angelegenheiten der Europäischen Union
+#' Ständiger Unterausschuss in ESM-Angelegenheiten
+#' Tourismusausschuss
+#' Umweltausschuss
+#' Unterrichtsausschuss
+#' Unvereinbarkeitsausschuss
+#' Verfassungsausschuss
+#' Verkehrsausschuss
+#' Volksanwaltschaftsausschuss
+#' Wissenschaftsausschuss
+#'
 #' @return A data frame containing the requested MP details. The structure depends on the
 #'   \code{detail_type} parameter:
 #'
@@ -739,6 +786,8 @@ get_mps_details_committees <- function(
     legis_period = NULL,
     item = NULL, #Art des Verhandlungsgegenstandes
     search_string = NULL, #search string
+    committee_position = NULL, #only for committees
+    committee = NULL, #only for committees
     echo = NULL
 ) {
     # house
@@ -751,8 +800,8 @@ get_mps_details_committees <- function(
     if (!is.null(house)) {
         house <- switch(
             house,
-            "NR" = "N",
-            "BR" = "B",
+            "NR" = "Nationalrat",
+            "BR" = "Bundesrat",
             house
         )
     }
@@ -768,17 +817,66 @@ get_mps_details_committees <- function(
         )
 
         legis_period_input <- get_legis_periods(legis_period) %>%
-            pull(legis_period_name)
-    }
+            dplyr::pull(legis_period_name) %>%
+            stringr::str_replace(
+                .,
+                stringr::regex("\\bGP$"),
+                "Gesetzgebungsperiode des NR"
+            )
 
-    # BODY PARAMS #CONTINUE
-    body_params <- list(
-        PAD_INTERN = pad_intern,
-        GREMIUM = house,
-        GP_TEXT_FULL = legis_period_input,
-        FUNKTION = committee_position,
-        AUSSCHUSS = committee
-    ) |>
-        purrr::compact() |>
-        jsonlite::toJSON()
+        # BODY PARAMS
+        body_params <- list(
+            PAD_INTERN = pad_intern,
+            GREMIUM = house,
+            GP_TEXT_FULL = legis_period_input,
+            FUNKTION = committee_position,
+            AUSSCHUSS = committee
+        ) |>
+            purrr::compact() |>
+            jsonlite::toJSON()
+        print(body_params)
+
+        #API CALL COMMITTEE
+        res <- request(
+            "https://www.parlament.gv.at/Filter/api/filter/data/250"
+        ) |>
+            httr2::req_method("POST") |>
+            httr2::req_url_query(
+                `1` = "1",
+                page = "1",
+                # pagesize = "20",
+                showAll = "true",
+                sortrnr = "2",
+                ascDesc = "ASC"
+            ) |>
+            httr2::req_headers(
+                accept = "*/*",
+                `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
+                origin = "https://www.parlament.gv.at",
+                priority = "u=1, i",
+                # referer = "https://www.parlament.gv.at/person/145?AUSSCHUSS_BIO_250PAD_INTERN=145&AUSSCHUSS_BIO_250GREMIUM=Nationalrat&AUSSCHUSS_BIO_250GP_TEXT_FULL=09.11.2017+-+22.10.2019%3A+XXVI.+Gesetzgebungsperiode+des+NR&AUSSCHUSS_BIO_250AUSSCHUSS=Au%C3%9Fenpolitischer+Ausschuss&AUSSCHUSS_BIO_250AUSSCHUSS=Gesch%C3%A4ftsordnungsausschuss&AUSSCHUSS_BIO_250FUNKTION=Mitglied&selectedtab=AUS",
+                `sec-ch-ua` = '"Microsoft Edge";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+                `sec-ch-ua-mobile` = "?0",
+                `sec-ch-ua-platform` = '"Windows"',
+                `sec-fetch-dest` = "empty",
+                `sec-fetch-mode` = "cors",
+                `sec-fetch-site` = "same-origin",
+                `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0",
+                cookie = "pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1750451347%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D"
+            ) |>
+            httr2::req_body_raw(
+                body_params,
+                type = "application/json"
+            ) |>
+            httr2::req_perform()
+
+        #PARSE RESPONSE
+        li_res <- res %>%
+            httr2::resp_body_json(simplifyVector = TRUE) #simplifyVector = TRUE !!
+
+        df_res <- li_res %>% pluck("rows") %>% as.data.frame()
+
+        print(nrow(df_res))
+        return(df_res)
+    }
 }

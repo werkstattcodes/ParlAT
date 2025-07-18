@@ -17,7 +17,9 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
   }
 
   #convert roman numerals in character format to numeric
-  if (stringr::str_detect(legis_period, "^[IVXLCDM]+$")) {
+  if (
+    !is.null(legis_period) && stringr::str_detect(legis_period, "^[IVXLCDM]+$")
+  ) {
     legis_period <- as.roman(legis_period) %>%
       as.numeric()
   }

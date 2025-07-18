@@ -109,7 +109,7 @@ get_committees <- function(
   colnames(df_res) <- vec_headings
   df_res <- tidyr::as_tibble(df_res)
 
-  checkmate::check_data_frame(df_res, min.rows = 1)
+  checkmate::assert_data_frame(df_res, min.rows = 1)
 
   if (length(df_res) == 0) {
     message("No results found for the provided search criteria.")

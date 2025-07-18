@@ -204,7 +204,7 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
   df_names <- df_names |>
     dplyr::select(any_of(cols_select))
 
-  if (!is.null(date)) {
+  if (!is.null(date) && "date_start" %in% names(df_names)) {
     date_filter <- lubridate::dmy(date)
     df_names <- df_names |>
       dplyr::mutate(

@@ -17,14 +17,18 @@ public..](https://www.repostatus.org/badges/latest/wip.svg)](https://www.reposta
 <!-- badges: end -->
 
 The ParlAT package seeks to provide an easy way for R users to access
-the Open Data offered by the Austrian Parliament. This includes, but is
-not limited to, data on past and current MPs, plenary sessions, or
-transcripts. For an introductory overview and some examples, please see
-the “Get started” section. For details, consult the functions’
-documentation under “References”.
+the Open Data offered by the Austrian Parliament. By laveraging the
+Parliament’s API, it allows users to retrieve data on a wide range of
+issues such as legislative proposals, committee reports, details on MPs
+and their mandates, or parliamentary sessions. The package is designed
+to be user-friendly and provides a consistent interface for accessing
+different datasets. For an introductory overview and some examples,
+please see the “Get started” section. For details, consult the
+functions’ documentation under “References”.
 
-Please note that the package is under active development. So until it
-has reached a mature state, upcoming changes may break existing code.
+Please note that the package is **in an early development stage**. So
+until it has reached a mature state, upcoming changes may break existing
+code.
 
 Also note that neither the package nor its author is affiliated to the
 Austrian Parliament.
