@@ -220,10 +220,10 @@ get_mps_current <- function(
                     wahlkreis,
                     stringr::regex("^\\w+")
                 ),
-                electoral_district_name = stringr::str_remove(
-                    wahlkreis,
-                    stringr::regex("^\\w+")
-                )
+                electoral_district_name = wahlkreis %>%
+                    as.character() %>%
+                    stringr::str_remove(stringr::regex("^\\w+")) %>%
+                    stringr::str_trim(., "both")
             ) %>%
             dplyr::select(
                 time_stamp,
