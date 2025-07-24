@@ -828,6 +828,32 @@ get_mps <- function(
       # print(nrow(df_res))
     }
 
+    # Get names of MPs (needed to get first name and last name sequence)
+
+    pb <- progress::progress_bar$new(
+      format = "Fetching MPs' names [:bar] :percent :current/:total ETA: :eta",
+      total = length(df_res$pad_intern),
+      clear = FALSE
+    )
+
+    df_names <- map2(df_res$pad_intern, format(date, "%d/%m/%Y"), \(x, y) {
+      pb$tick()
+      name_result <- get_names(x, date = y)
+      if (is.data.frame(name_result) && nrow(name_result) > 0) {
+        # Collapse multiple names into single string separated by " / "
+        name_result %>%
+          dplyr::select(pad_intern, name) %>%
+          dplyr::mutate(name = paste(name, collapse = "/"))
+      } else {
+        NULL
+      }
+    }) %>%
+      purrr::list_rbind()
+
+    df_res <- df_res %>%
+      dplyr::left_join(., df_names, by = "pad_intern") %>%
+      dplyr::relocate(name, .after = "pad_intern")
+
     if (!is.null(legis_period) && institution == "NR") {
       # print(nrow(df_res_filter_time_inst))
       # print(legis_period)
@@ -857,8 +883,33 @@ get_mps <- function(
     #     by = "pad_intern"
     #   )
 
-    return(df_res)
+    # return(df_res)
   }
+  #CONTINUE
+  #rename output to English
+  renaming_map <- c(
+    "wahlkreis_bundesland" = "state",
+    "wahlpartei_code" = "",
+    "fraktionscode" = "",
+    "gp_von" = "",
+    "wahlpartei_full_txt" = "",
+    "gp_code" = "",
+    "mandat_von" = "",
+    "mandat_bis" = "",
+    "gremium_name" = "",
+    "wahlpartei_txt" = "",
+    "mand_code" = "",
+    "wahlpartei_sort" = "",
+    "wahlkreis" = "electoral_district",
+    "fraktion" = "parl_group",
+    "politische_partei" = "party"
+  )
+
+  df_res <- df_res %>%
+    dplyr::rename_with(
+      .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+      .cols = any_of(names(renaming_map))
+    )
 
   return(df_res)
 }
