@@ -43,3 +43,51 @@ img.logo {
 #toc .nav-link:focus {
     color: #fff !important;
 }
+
+/* Dark theme colors only */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #2e3338 !important;
+    --bs-body-color: #b8bcc8 !important;
+}
+
+[data-bs-theme="dark"] .navbar {
+    background-color: #2e3338 !important;
+}
+
+[data-bs-theme="dark"] .nav-link {
+    color: #b8bcc8 !important;
+}
+
+[data-bs-theme="dark"] .nav-link:hover,
+[data-bs-theme="dark"] .nav-link:focus {
+    color: #ffffff !important;
+    background-color: #404752 !important;
+}
+
+[data-bs-theme="dark"] a:not(nav a) {
+    color: #9ca3af !important;
+}
+
+[data-bs-theme="dark"] a:not(nav a):hover {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] #toc .nav-link:hover,
+[data-bs-theme="dark"] #toc .nav-link:focus {
+    color: #ffffff !important;
+    background-color: #404752 !important;
+}
+
+[data-bs-theme="dark"] .navbar-brand {
+    color: #b8bcc8 !important;
+}
+
+[data-bs-theme="dark"] .form-control::placeholder {
+    color: #9ca3af !important;
+}
+
+[data-bs-theme="dark"] .form-control {
+    color: #b8bcc8 !important;
+    background-color: #404752 !important;
+    border-color: #555 !important;
+}
