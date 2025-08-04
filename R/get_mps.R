@@ -682,25 +682,7 @@ get_mps <- function(
     purrr::map(., fn_make_tibble) %>%
     purrr::list_rbind()
 
-  # return(df_res)
-
-  cols_keep <- c(
-    "zit",
-    "fraktionen",
-    "frak",
-    "geschlecht",
-    "gp_code",
-    "uri",
-    "mandate_detail",
-    "name_nvg",
-    "mandate_kompakt",
-    "wahlkreise",
-    "pad_intern"
-  )
-
-  df_res <- df_res %>%
-    dplyr::select(any_of(cols_keep))
-
+  # PRING ECHO
   #echo only if query without date fitler
   if (echo == TRUE && is.null(date)) {
     print(body_params)
@@ -728,38 +710,24 @@ get_mps <- function(
     return(NULL)
   }
 
-  #make column names more meaningful
+  # UNNEST DATA
+  # needed for date filtering
+  # needed to keep only mandates pertaining to legilsative relevant legislative period
+
   df_res <- df_res %>%
-    dplyr::select(
-      pad_intern = dplyr::any_of("pad_intern"),
-      name = dplyr::any_of("zit"), #previously: name_nvg; 'zit' provides first name and last name format
-      gender = dplyr::any_of("geschlecht"),
-      parl_group = dplyr::any_of("fraktionen"),
-      parl_group_code = dplyr::any_of("frak"),
-      legis_period = dplyr::any_of("gp_code"),
-      mandate_detail = dplyr::any_of("mandate_detail"),
-      electoral_district = dplyr::any_of("wahlkreise")
-    )
+    tidyr::unnest_longer(mandate_detail) %>%
+    tidyr::unnest_wider(mandate_detail, names_sep="_")
 
-  # return(df_res)
-
-  # if (strict == T) { #PENDING
-
-  #EXPAND API RESULTS AND RETURN ONLY DATA PERTAINING
-  #TO SPECIFIC LEGISLATIVE PERIOD
-  # df_res <- df_res %>%
-  #   dplyr::select(pad_intern, name, gender, mandate_detail) %>%
-  #   tidyr::unnest_longer(mandate_detail) %>%
-  #   tidyr::unnest_wider(mandate_detail)
+unique(df_res$mandate_detail_gremium_name) => use this as filter for institution  #CONTINUE
 
   # Apply filters only when arguments are not NULL
-  # if (!is.null(institution)) {
-  #   df_res <- df_res %>% filter(gremium_name %in% institution)
-  # }
+  if (!is.null(institution)) {
+    df_res <- df_res %>% filter(gremium_name %in% institution)
+  }
 
-  # if (!is.null(legis_period)) {
-  #   df_res <- df_res %>% filter(gp_text_full_short %in% legis_period)
-  # }
+  if (!is.null(legis_period)) {
+    df_res <- df_res %>% filter(nr_gp_code %in% legis_period)
+  }
 
   # if (!is.null(party)) {
   #   df_res <- df_res %>% filter(wahlpartei_full_txt %in% party)
