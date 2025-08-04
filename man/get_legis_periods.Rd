@@ -2,21 +2,24 @@
 % Please edit documentation in R/get_legis_periods.R
 \name{get_legis_periods}
 \alias{get_legis_periods}
-\title{Get start and end dates of legislative periods}
+\title{Get start and end dates of legislative periods.}
 \usage{
-get_legis_periods(legis_period = NULL)
+get_legis_periods(legis_period = NULL, date = NULL)
 }
 \arguments{
-\item{legis_period}{Number of legislative period(s)}
+\item{legis_period}{Number of legislative period(s) for which dates should be returned.}
+
+\item{date}{Date within a legislative period. Format should be "dd.mm.yyyy".}
 }
 \value{
 A dataframe
 }
 \description{
-Get start and end dates of legislative periods
+Get start and end dates of legislative periods.
 }
 \examples{
 \dontrun{
-get_legis_period(c(23,23))
+get_legis_period(legis_period=c(23,XV))
+get_legis_period(date=c("01.01.2020", "05.05.1954"))
 }
 }

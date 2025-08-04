@@ -1,6 +1,6 @@
-#' Get start and end dates of legislative periods
+#' Get start and end dates of legislative periods.
 #'
-#' @param legis_period Number of legislative period(s) for which details
+#' @param legis_period Number of legislative period(s) for which dates should be returned.
 #' @param date Date within a legislative period. Format should be "dd.mm.yyyy".
 #'
 #' @return A dataframe

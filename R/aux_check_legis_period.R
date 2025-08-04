@@ -37,10 +37,17 @@ fn_check_legis_period_elements <- function(x) {
 
 
 aux_parse_html_title <- function(html) {
-  html |>
-    rvest::read_html() |>
-    rvest::html_element("span") |>
-    rvest::html_attr("title")
+  result <- tryCatch(
+    {
+      rvest::read_html(html) |>
+        rvest::html_element("span") |>
+        rvest::html_attr("title")
+    },
+    error = function(e) {
+      html
+    }
+  )
+  result
 }
 
 aux_parse_html_text <- function(html) {

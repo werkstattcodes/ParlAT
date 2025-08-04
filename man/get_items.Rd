@@ -3,12 +3,12 @@
 \encoding{UTF-8}
 \name{get_items}
 \alias{get_items}
-\title{Search for Parliamentary Items}
+\title{Get items under negotiation ("Verhandlungsgegenstände")}
 \usage{
 get_items(
   search_string = NULL,
   topic = NULL,
-  institution = "Nationalrat",
+  institution = "NR",
   legis_period = NULL,
   date_start = NULL,
   date_end = NULL,
@@ -26,7 +26,7 @@ get_items(
 \arguments{
 \item{topic}{Character vector or \code{NULL}. Specifies the topic(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
 
-\item{institution}{Character string. Either "Nationalrat" (National Council) or "Bundesrat" (Federal Council). Default is "Nationalrat".}
+\item{institution}{Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is "Nationalrat".}
 
 \item{legis_period}{Character vector or \code{NULL}. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is \code{NULL}.}
 
@@ -46,9 +46,9 @@ get_items(
 
 \item{eurovoc}{Character vector or \code{NULL}. EuroVoc term(s) to search for. Default is \code{NULL}.}
 
-\item{parl_group}{Character vector or \code{NULL}. Parliamentary group(s) to search for. Default is \code{NULL}. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See 'Details.'}
+\item{parl_group}{Character vector or \code{NULL}. Parliamentary group(s) to search for. Default is \code{NULL}. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See Details.}
 
-\item{parl_group_names_standard}{Logical. If \code{TRUE}, the function expands and standardizes parliamentary group names. Default is \code{FALSE}. See 'Details.'}
+\item{parl_group_names_standard}{Logical. If \code{TRUE}, the function expands and standardizes parliamentary group names. Default is \code{FALSE}. See Details.}
 
 \item{echo}{Logical. If \code{TRUE}, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.}
 }
@@ -58,13 +58,13 @@ and displays a message.
 }
 \description{
 \code{get_items} searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
-in the Austrian National Council ('Nationalrat') or Federal Council ('Bundesrat'). This function
+in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
 mirrors the search functionality offered on the Austrian Parliament's website (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">}}here\if{html}{\out{</a>}}).
 }
 \details{
-\subsection{Topic ('Thema')}{
+\subsection{Topic (Thema)}{
 
-Possible values for \code{topic} include:
+Possible values for \code{topic} are:
 \itemize{
 \item "Arbeit" (work)
 \item "Außenpolitik" (foreign policy)
@@ -139,35 +139,35 @@ If item is "ANTR", the permissible values for doc_type depend on the
 institution of interest.
 Possible values for \code{doc_type} if institution=="Nationalrat" ('National Council'):
 \itemize{
-\item A: Selbständiger Antrag
-\item A(E): Selbständiger Entschließungsantrag
-\item AA: Abänderungsantrag
-\item AEA: Selbständiger Ausschuss-Entschließungsantrag
-\item AMIN: Selbständiger Antrag - Ministeranklage
-\item ARH2: Verlangen auf Gebarungsüberprüfung durch den Rechnungshof
-\item AVB: Antrag auf Volksbefragung
-\item BUA: Bericht und Antrag
-\item UEA: Unselbständiger Entschließungsantrag #BUG
-\item UEA: Misstrauensantrag
-\item URH2: Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses
+\item "A" (Selbständiger Antrag, Independent Motion)
+\item "A(E)" (Selbständiger Entschließungsantrag, Independent Resolution Motion)
+\item "AA" (Abänderungsantrag, Amendment Motion)
+\item "AEA" (Selbständiger Ausschuss-Entschließungsantrag, Independent Committee Resolution Motion)
+\item "AMIN" (Selbständiger Antrag - Ministeranklage, Independent Motion - Ministerial Impeachment)
+\item "ARH2" (Verlangen auf Gebarungsüberprüfung durch den Rechnungshof, Request for Audit by the Court of Audit)
+\item "AVB" (Antrag auf Volksbefragung, Motion for Public Consultation)
+\item "BUA" (Bericht und Antrag, Report and Motion)
+\item "UEA" (Unselbständiger Entschließungsantrag, Dependent Resolution Motion)
+\item "UEAM" (Misstrauensantrag, Motion of No Confidence)
+\item "URH2" (Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses, Request for Audit by the Standing Subcommittee of the Court of Audit Committee)
 }
 
 Possible values for \code{doc_type} if institution=="Bundesrat" ('Federal Council'):
 \itemize{
-\item AA-BR: Abänderungsanträge
-\item A-BR: Selbständiger Antrag Bundesrat
-\item A(E): Selbständiger Entschließungsantrag Bundesrat
-\item AEA-BR: Selbständige Entschließungsanträge von Ausschüssen
-\item UEA-BR: Unselbständige Anträge
+\item "AA-BR" (Abänderungsanträge, Amendment Motions)
+\item "A-BR" (Selbständiger Antrag Bundesrat, Independent Motion Federal Council)
+\item "A(E)" (Selbständiger Entschließungsantrag Bundesrat, Independent Resolution Motion Federal Council)
+\item "AEA-BR" (Selbständiger Entschließungsantrag von Ausschüssen, Independent Committee Resolution Motion Federal Council)
+\item "UEA-BR" (Unselbständige Anträge)
 }
 
 Possible values for \code{doc_type} if \emph{item=="BNR"}:
 \itemize{
-\item BNR: Beschluss
-\item BS: Sonstiger Beschluss
-\item BSE: Beschluss-EU
-\item BSESM: Beschluss-ESM
-\item BS-BR: Sonstiger Beschluss (only if instituition=="Bundesrat")
+\item "BNR" (Beschluss, Resolution)
+\item "BS" (Sonstiger Beschluss, Other Resolution)
+\item "BSE" (Beschluss-EU, EU Resolution)
+\item "BSESM" (Beschluss-ESM, ESM Resolution)
+\item "BS-BR" (Sonstiger Beschluss, Other Resolution (only if instituition=="Bundesrat"))
 }
 }
 
@@ -182,35 +182,35 @@ from the 20th legislative period onwards.
 
 \code{parl_group} specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
 \itemize{
-\item BZÖ    Bündnis Zkunft Österreich
-\item CSP    Crhistlichsoziale Partei
-\item DnP    Deutsche Nationalpartei
-\item F      Freiheitliche Partei Österreichs
-\item F-BZÖ  Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich
-\item FPÖ    Freiheitliche Partei Österreichs
-\item GdP    Großdeutsche Volkspartei
-\item GRÜNE  Die Grünen - Die Grüne Alternative
-\item HB     Heimatblock
-\item JETZT  Jetzt - Liste Pilz
-\item Konvent
-\item KPÖ    Kommunistische Partei Österreichs
-\item KuL
-\item L
-\item LB
-\item LBd    Landbund für Österreich
-\item NEOS   NEOS - Das Neue Österreich
-\item NEOS-LIF NEOS - Liberales Forum
-\item NSDAP  Nationalsozialistische Deutsche Arbeiterpartei
-\item NWB    Nationaler Wirtschaftsblck und Landbund
-\item OF
-\item OK     Ohne Klub
-\item ÖVP    Österreichische Volkspartei
-\item PILZ   Liste Pilz
-\item SdP
-\item SPÖ    Sozialistische/Sozialdemokratische Partei Österreichs
-\item STRONACH Team Stronach
-\item VO     Wahlgemeinschafft Österreichische Volksopposition
-\item WdU    Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen)
+\item "BZÖ" (Bündnis Zukunft Österreich)
+\item "CSP" (Christlichsoziale Partei)
+\item "DnP" (Deutsche Nationalpartei)
+\item "F" (Freiheitliche Partei Österreichs)
+\item "F-BZÖ" (Freiheitliche Partei Österreichs - Bündnis Zukunft Österreich)
+\item "FPÖ" (Freiheitliche Partei Österreichs)
+\item "GdP" (Großdeutsche Volkspartei)
+\item "GRÜNE" (Die Grünen - Die Grüne Alternative)
+\item "HB" (Heimatblock)
+\item "JETZT" (Jetzt - Liste Pilz)
+\item "Konvent"
+\item "KPÖ" (Kommunistische Partei Österreichs)
+\item "KuL"
+\item "L" (Liberales Forum)
+\item "LB"
+\item "LBd" (Landbund für Österreich)
+\item "NEOS" (NEOS - Das Neue Österreich)
+\item "NEOS-LIF" (NEOS - Liberales Forum)
+\item "NSDAP" (Nationalsozialistische Deutsche Arbeiterpartei)
+\item "NWB" (Nationaler Wirtschaftsblck und Landbund)
+\item "OF"
+\item "OK" (Ohne Klub)
+\item "ÖVP" (Österreichische Volkspartei)
+\item "PILZ" (Liste Pilz)
+\item "SdP"
+\item "SPÖ" (Sozialistische/Sozialdemokratische Partei Österreichs)
+\item "STRONACH" (Team Stronach)
+\item "VO" (Wahlgemeinschafft Österreichische Volksopposition)
+\item "WdU" (Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen))
 }
 }
 }

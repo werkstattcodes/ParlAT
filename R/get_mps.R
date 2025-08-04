@@ -732,10 +732,10 @@ get_mps <- function(
   df_res <- df_res %>%
     dplyr::select(
       pad_intern = dplyr::any_of("pad_intern"),
-      name = dplyr::any_of("name_nvg"),
+      name = dplyr::any_of("zit"), #previously: name_nvg; 'zit' provides first name and last name format
       gender = dplyr::any_of("geschlecht"),
       parl_group = dplyr::any_of("fraktionen"),
-      parl_group_abbrev = dplyr::any_of("frak"),
+      parl_group_code = dplyr::any_of("frak"),
       legis_period = dplyr::any_of("gp_code"),
       mandate_detail = dplyr::any_of("mandate_detail"),
       electoral_district = dplyr::any_of("wahlkreise")
@@ -778,7 +778,7 @@ get_mps <- function(
   # }
   # }
 
-  #DATE FILTERING
+  #DATE FILTERING##################################
   # if date is provided, filter results by date
   # result should only contain mandates which are also within institutional scope.
   # otherwise possible that former NR MP who has BR mandate in relevant date is kept
@@ -828,10 +828,10 @@ get_mps <- function(
       # print(nrow(df_res))
     }
 
-    # Get names of MPs (needed to get first name and last name sequence)
-
+    ##############################
+    # GET NAMES OF MPS (needed to get name of MP at specific date)
     pb <- progress::progress_bar$new(
-      format = "Fetching MPs' names [:bar] :percent :current/:total ETA: :eta",
+      format = "Fetching MPs' names at specific date [:bar] :percent :current/:total ETA: :eta",
       total = length(df_res$pad_intern),
       clear = FALSE
     )
@@ -853,7 +853,10 @@ get_mps <- function(
     df_res <- df_res %>%
       dplyr::left_join(., df_names, by = "pad_intern") %>%
       dplyr::relocate(name, .after = "pad_intern")
+    ##############################
 
+    # CHECK legis_perios is null here since we are filtering for dates in
+    # the parent condition
     if (!is.null(legis_period) && institution == "NR") {
       # print(nrow(df_res_filter_time_inst))
       # print(legis_period)
@@ -883,33 +886,50 @@ get_mps <- function(
     #     by = "pad_intern"
     #   )
 
+    #RENAME OUTPUT TO ENGLISH
+    renaming_map <- c(
+      "wahlkreis_bundesland" = "electoral_state",
+      "wahlkreis" = "electoral_district_name",
+      "wahlkreis_code" = "electoral_district_code",
+      "gremium_name" = "chamber",
+      "mand_code" = "chamber_code",
+      "politische_partei" = "party",
+      "wahlpartei_txt" = "party_name",
+      "fraktion" = "parl_group",
+      "fraktionscode" = "parl_group_code",
+      "mandat_von" = "mandate_date_start", #drop
+      "mandat_bis" = "mandate_date_end" #drop
+      # "wahlpartei_code" = "party", #drop
+      # "fraktionscode" = "", #drop?
+      # "gp_von" = "", #drop
+      # "gp_code" = "", #drop
+      # "wahlpartei_txt" = "", #drop
+      # "wahlpartei_sort" = "" #drop
+    )
+
+    df_res <- df_res %>%
+      dplyr::rename_with(
+        .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+        .cols = any_of(names(renaming_map))
+      ) %>%
+      dplyr::select(
+        pad_intern,
+        name,
+        chamber,
+        chamber_code,
+        electoral_state,
+        electoral_district,
+        electoral_district_code,
+        party,
+        party_name,
+        parl_group,
+        parl_group_code,
+        mandate_date_start,
+        mandate_date_end
+      )
+
     # return(df_res)
   }
-  #CONTINUE
-  #rename output to English
-  renaming_map <- c(
-    "wahlkreis_bundesland" = "state",
-    "wahlpartei_code" = "",
-    "fraktionscode" = "",
-    "gp_von" = "",
-    "wahlpartei_full_txt" = "",
-    "gp_code" = "",
-    "mandat_von" = "",
-    "mandat_bis" = "",
-    "gremium_name" = "",
-    "wahlpartei_txt" = "",
-    "mand_code" = "",
-    "wahlpartei_sort" = "",
-    "wahlkreis" = "electoral_district",
-    "fraktion" = "parl_group",
-    "politische_partei" = "party"
-  )
-
-  df_res <- df_res %>%
-    dplyr::rename_with(
-      .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-      .cols = any_of(names(renaming_map))
-    )
 
   return(df_res)
 }

@@ -76,8 +76,8 @@
 #'     \item "GRÜNE": Grüne Fraktion im Bundesrat
 #'     \item "OF": ohne Fraktionszugehörigkeit (Without Parliamentary Group Affiliation)
 #'   }
-#' @param postal_code Character or numeric vector of length 1. Four digit postal code filter.
-#'   Only applicable for National Council (NR).
+# @param postal_code Character or numeric vector of length 1. Four digit postal code filter.
+#   Only applicable for National Council (NR).
 #' @param state Character vector of length 1. For National Council, see \code{\link{get_mps_NR_current}}
 #'   documentation. For Federal Council, acceptable values are:
 #'   \itemize{
@@ -178,7 +178,7 @@ get_mps_current <- function(
     position = NULL,
     party = NULL,
     parl_group = NULL,
-    postal_code = NULL,
+    #postal_code = NULL,
     state = NULL,
     electoral_district = NULL,
     echo = TRUE
@@ -197,7 +197,7 @@ get_mps_current <- function(
             position = position,
             party = party,
             parl_group = parl_group,
-            postal_code = postal_code,
+            # postal_code = postal_code,
             state = state,
             electoral_district = electoral_district,
             echo = echo
@@ -205,7 +205,7 @@ get_mps_current <- function(
             dplyr::mutate(time_stamp = Sys.time()) #add timestamp to make 'current' specific
 
         #Parse output; get meaningful column names
-        df_NR <- df_NR %>%
+        df_res <- df_NR %>%
             dplyr::mutate(
                 parl_group = purrr::map_chr(klub, \(x) aux_parse_html_title(x)),
                 state = purrr::map_chr(
@@ -223,11 +223,13 @@ get_mps_current <- function(
                 electoral_district_name = wahlkreis %>%
                     as.character() %>%
                     stringr::str_remove(stringr::regex("^\\w+")) %>%
-                    stringr::str_trim(., "both")
+                    stringr::str_trim(., "both") #,
+                # name2 = map_chr(rss_description, \(x) aux_extract_name(x)) #name now called via get_names
             ) %>%
             dplyr::select(
                 time_stamp,
                 name,
+                # name2,
                 pad_intern,
                 party = sort_wp,
                 parl_group,
@@ -238,35 +240,111 @@ get_mps_current <- function(
             ) %>%
             dplyr::as_tibble()
 
-        return(df_NR)
+        # Add MP names for the specified date #CHECK
+        # df_res <- df_res %>%
+        #     dplyr::mutate(
+        #         name = purrr::map2_chr(
+        #             pad_intern,
+        #             format(date, "%d/%m/%Y"),
+        #             ~ {
+        #                 name_result <- get_names(.x, date = .y)
+        #                 if (
+        #                     is.data.frame(name_result) && nrow(name_result) > 0
+        #                 ) {
+        #                     # Collapse multiple names into single string separated by " / "
+        #                     paste(name_result$name, collapse = " / ")
+        #                 } else {
+        #                     NA_character_
+        #                 }
+        #             }
+        #         ),
+        #         .after = pad_intern
+        #     )
+
+        # return(df_NR)
     } else if (institution == "BR") {
         # For BR, postal_code and electoral_district are not applicable
-        if (!is.null(postal_code)) {
-            warning(
-                "postal_code parameter is not applicable for Federal Council (BR) and will be ignored."
-            )
-        }
+        # if (!is.null(postal_code)) {
+        #     stop("Postal code filter only applicable for Nationalrat (NR).")
+        # }
         if (!is.null(electoral_district)) {
             warning(
                 "electoral_district parameter is not applicable for Federal Council (BR) and will be ignored."
             )
         }
 
-        return(
-            get_mps_BR_current(
-                gender = gender,
-                position = position,
-                party = party,
-                parl_group = parl_group,
-                state = state,
-                echo = echo
-            ) %>%
-                dplyr::mutate(
-                    time_stamp = Sys.time() %>%
-                        dplyr::as_tibble()
-                )
+        #GET CURRENT BR MEMBERS
+        df_res <- get_mps_BR_current(
+            gender = gender,
+            position = position,
+            party = party,
+            parl_group = parl_group,
+            state = state,
+            echo = echo
         )
-    }
+
+        #add/drop/rename columns
+        df_res <- df_res %>%
+            dplyr::as_tibble() %>%
+            dplyr::mutate(
+                time_stamp = Sys.time(),
+                .before = 1
+            ) %>%
+            dplyr::mutate(
+                parl_group = purrr::map_chr(
+                    fraktion,
+                    \(x) aux_parse_html_title(x)
+                ),
+                parl_group_code = purrr::map_chr(
+                    fraktion,
+                    \(x) {
+                        rvest::read_html(x) %>%
+                            rvest::html_element("span.zeigeTooltip") %>%
+                            rvest::html_text(trim = TRUE)
+                    }
+                ),
+                party_name = map_chr(wahlpartei, \(x) aux_parse_html_title(x)),
+                party_code = map_chr(wahlpartei, \(x) {
+                    rvest::read_html(x) %>%
+                        rvest::html_element("span.zeigeTooltip") %>%
+                        rvest::html_text(trim = TRUE)
+                })
+            ) %>%
+            dplyr::rename(
+                state = bundesland,
+                electoral_district_code = wahlkreis
+            ) %>%
+            dplyr::select(
+                -pad_sortier,
+                -wahlpartei,
+                -fraktion
+            )
+    } #CONTINUE  do  order of columns; add chamber column
+
+    ##############################
+    # GET NAMES OF MPS (NR and BR) IN FIRST NAME - SECOND NAME FORMAT
+    # slows down extraction, but otherwise inconsistencies in name formatting
+    pb <- progress::progress_bar$new(
+        format = "Fetching MPs' names [:bar] :percent :current/:total ETA: :eta",
+        total = length(df_res$pad_intern),
+        clear = FALSE
+    )
+
+    df_res <- df_res %>%
+        dplyr::mutate(
+            name = purrr::map_chr(pad_intern, function(x) {
+                pb$tick()
+                get_names(pad_intern = x) %>%
+                    dplyr::filter(index == 1) %>% # latest name
+                    dplyr::pull("name")
+            }),
+            .after = 1
+        )
+
+    df_res <- df_res %>%
+        dplyr::mutate(chamber = institution)
+
+    return(df_res)
 }
 
 
@@ -292,7 +370,7 @@ get_mps_current <- function(
 #'   }
 #' @param parl_group Character. Parliamentary group filter. See Details below.
 #' @param party Character vector of length 1.
-#' @param postal_code Character or numeric vector of length 1. Four digit postal code filter.
+# @param postal_code Character or numeric vector of length 1. Four digit postal code filter.
 #' @param state Character vector of length 1. See details below
 #' @param electoral_district Character vector of length 1. See details below.
 #' @details
@@ -452,7 +530,7 @@ get_mps_NR_current <- function(
     position = NULL,
     party = NULL,
     parl_group = NULL,
-    postal_code = NULL,
+    # postal_code = NULL,
     state = NULL,
     electoral_district = NULL,
     echo = TRUE
@@ -623,15 +701,15 @@ get_mps_NR_current <- function(
     }
 
     #POSTAL CODE
-    checkmate::assert_scalar(
-        postal_code,
-        null.ok = TRUE
-    )
+    # checkmate::assert_scalar(
+    #     postal_code,
+    #     null.ok = TRUE
+    # )
 
     #REVISE API returns additional rows
-    if (!is.na(postal_code) && !is.null(postal_code)) {
-        postal_code <- as.character(postal_code)
-    }
+    # if (!is.na(postal_code) && !is.null(postal_code)) {
+    #     postal_code <- as.character(postal_code)
+    # }
 
     #ELECTORAL DISTRICT
     checkmate::assert_scalar(
@@ -706,7 +784,7 @@ get_mps_NR_current <- function(
         FUNK = position,
         WP = party,
         FR = parl_group,
-        PLZ = postal_code,
+        # PLZ = postal_code,
         BL = state,
         # R_PBW = R_PBW_input,
         WK = electoral_district
@@ -1133,4 +1211,36 @@ get_mps_BR_current_api_request <- function(body_params) {
             info = F
         ) %>%
         httr2::req_perform()
+}
+
+#auxiliary function to extract name from rss_description;
+#assembles name in the format title name familyname, title
+aux_extract_name <- function(string) {
+    title <- stringr::str_extract(string, "(?<=Ak\\. Grad:\n)(.*?)(?=\n<br)")
+    name <- stringr::str_extract(string, "(?<=Vorname:\n)(.*?)(?=\n<br)")
+    name_family <- stringr::str_extract(
+        string,
+        "(?<=Nachname:\n)(.*?)(?=\n<br)"
+    )
+    title_trailing <- stringr::str_extract(
+        string,
+        "(?<=Ak\\. Grad nachg\\.:\n)(.*?)(?=\n<br)"
+    )
+    # print(name_family)
+    # print(title_trailing)
+
+    if (is.na(title_trailing) || !nzchar(title_trailing)) {
+        stringr::str_flatten(
+            c(title, name, name_family),
+            na.rm = T,
+            collapse = " "
+        )
+    } else {
+        stringr::str_flatten(
+            c(title, name, name_family, title_trailing),
+            na.rm = T,
+            collapse = " ",
+            last = ", "
+        )
+    }
 }

@@ -11,6 +11,8 @@ get_mps_details(
   legis_period = NULL,
   item = NULL,
   search_string = NULL,
+  committee = NULL,
+  committee_position = NULL,
   echo = TRUE
 )
 }
@@ -30,6 +32,10 @@ Defaults to NULL. Used only for details category "activities". See Details below
 
 \item{search_string}{Character string for searching within activities (optional).
 Defaults to NULL. Only available for details category "activities" and "committees".}
+
+\item{committee}{Character string specifying the committee name (optional).}
+
+\item{committee_position}{Character string specifying the committee position (optional).}
 
 \item{echo}{Logical indicating whether to print the API request and response details.}
 }
@@ -97,6 +103,55 @@ Possible values for \code{item} are:
 \item "JHR" (Schriftliche Anfrage an den RechnungshofpräsidentInnen, Written Questions to the President of the Court of Auditors)
 \item "PET" (Petitionen, Petitions)
 }
+}
+
+\subsection{Committees}{
+
+Possible values for \code{committee} are:
+
+Ausschuss für Arbeit und Soziales
+Ausschuss für Bauten und Wohnen
+Ausschuss für Familie und Jugend
+Ausschuss für Forschung, Innovation und Digitalisierung
+Ausschuss für innere Angelegenheiten
+Ausschuss für Konsumentenschutz
+Ausschuss für Land- und Forstwirtschaft
+Ausschuss für Menschenrechte
+Ausschuss für Petitionen und Bürgerinitiativen
+Ausschuss für Wirtschaft, Industrie und Energie
+Außenpolitischer Ausschuss
+Budgetausschuss
+COFAG-Untersuchungsausschuss eingesetzt am 15.12.2023 - beendet am 03.07.2024
+Finanzausschuss
+Geschäftsordnungsausschuss
+Gesundheitsausschuss
+Gleichbehandlungsausschuss
+Hauptausschuss
+Untersuchungsauschuss: Ibiza-Untersuchungsausschuss
+Immunitätsausschuss
+Justizausschuss
+Kulturausschuss
+Landesverteidigungsausschuss
+ÖVP-Korruptions-Untersuchungsausschuss eingesetzt am 09.12.2021 - beendet am 27.04.2023
+Rechnungshofausschuss
+"ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss" eingesetzt am 15.12.2023 - beendet am 03.07.2024
+Sportausschuss
+Ständiger gemeinsamer Ausschuss im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948
+Ständiger Unterausschuss des Ausschusses für innere Angelegenheiten
+Ständiger Unterausschuss des Budgetausschusses
+Ständiger Unterausschuss des Hauptausschusses
+Ständiger Unterausschuss des Landesverteidigungsausschusses
+Ständiger Unterausschuss des Rechnungshofausschusses
+Ständiger Unterausschuss in Angelegenheiten der Europäischen Union
+Ständiger Unterausschuss in ESM-Angelegenheiten
+Tourismusausschuss
+Umweltausschuss
+Unterrichtsausschuss
+Unvereinbarkeitsausschuss
+Verfassungsausschuss
+Verkehrsausschuss
+Volksanwaltschaftsausschuss
+Wissenschaftsausschuss
 }
 }
 \examples{

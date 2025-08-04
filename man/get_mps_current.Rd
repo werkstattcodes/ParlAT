@@ -5,67 +5,192 @@
 \title{Get Current Members of Parliament}
 \usage{
 get_mps_current(
-  institution = NULL,
+  institution,
   gender = "all",
   position = NULL,
-  parl_group = NULL,
   party = NULL,
+  parl_group = NULL,
   state = NULL,
   electoral_district = NULL,
-  postal_code = NULL,
   echo = TRUE
 )
 }
 \arguments{
-\item{institution}{Character. The parliamentary institution, accepted values are "Nationalrat" or "Bundesrat".}
+\item{institution}{Character. The parliamentary institution, accepted values are "NR" (Nationalrat, National
+Council) or "BR" (Bundesrat, Federal Council). Note that "NR" and "BR" return all positions in the respective chamber,
+including presidents, secretaries etc.}
 
 \item{gender}{Character. Gender filter to apply; options are "all", "female", or "male". Default is "all".}
 
-\item{position}{Character. Position filter with acceptable values:
+\item{position}{Character. Position filter. For National Council (NR), acceptable values are:
 \itemize{
-\item "ALLE": Alle (all members of parliament)
+\item "all": Alle Abgeordnete (all members of parliament)
 \item "1PNR": Präsident des Nationalrates (President of the National Council)
 \item "2PNR": Zweiter Präsident des Nationalrates (Second President of the National Council)
 \item "3PNR": Dritter Präsident des Nationalrates (Third President of the National Council)
 \item "PRAES": Präsidialkonferenz (Presidential Conference)
 \item "ZON":  Ordner des Nationalrates (Regulators of the National Council)
 \item "ZSN": Schriftführer des Nationalrates (Secretary of the National Council)
+}
+For Federal Council (BR), acceptable values are:
+\itemize{
+\item "all": Alle Mitglieder des Bundesrates (All Members of the Federal Council)
+\item "PB": Präsident des Bundesrates (President of the Federal Council)
+\item "SPB": Vizepräsident des Bundesrates (Vice-President of the Federal Council)
+\item "PRAES": Präsidialkonferenz (Presidential Conference)
+\item "ZOB": Ordner des Bundesrates (Usher/Sergeant-at-Arms of the Federal Council)
+\item "ZSB": Schriftführer des Bundesrates (Secretary/Scrutineer of the Federal Council)
 }}
 
-\item{parl_group}{Character. Parliamentary group filter. Acceptable values include "all", "LBd", "CSP", "GRÜNE", "SPÖ",
-"F-BZÖ", "GdP", "F", "FPÖ", "KuL", "VO", "WdU", "LB", "NEOS-LIF", "PILZ", "NEOS", "OK", "HB", "KPÖ",
-"ÖVP", "BZÖ", "JETZT", "L", "STRONACH", "NWB", "SdP".}
+\item{party}{Character vector of length 1. For National Council, see \code{\link{get_mps_NR_current}} documentation.
+For Federal Council, acceptable values are:
+\itemize{
+\item "all": Alle Wahlparteien (All Electoral Parties)
+\item "GRÜNE": Die Grünen (The Greens)
+\item "FPÖ": Freiheitliche Partei Österreichs (Freedom Party of Austria)
+\item "NEOS": NEOS - Das neue Österreich und Liberales Forum
+\item "ÖVP": Österreichische Volkspartei (Austrian People's Party)
+\item "SPÖ": Sozialdemokratische Partei Österreichs (Social Democratic Party of Austria)
+}}
 
-\item{party}{Character. Political party filter with acceptable values such as "all", "BP", "BZÖ", "BAP", "CSP",
-"Grüne", "FPÖ", "GdP", "HB", "KuL", "KPÖ", "LBd", "L", "LB", "PILZ", "NWB", "NEOS", "ÖVP", "SdP",
-"SPÖ", "STRONACH", "VO", "WdU".}
+\item{parl_group}{Character vector of length 1. Parliamentary group filter.
+For \emph{National Council}, acceptable values are:
+\itemize{
+\item "all": All parliamentary groups
+\item "LBd": Landbund
+\item "CSP": Christlichsoziale Partei
+\item "GRÜNE": Die Grünen
+\item "SPÖ": Sozialdemokratische Partei Österreichs
+\item "F-BZÖ": Freiheitliche und Bündnis Zukunft Österreich
+\item "GdP": Großdeutsche Partei
+\item "F": Freiheitliche
+\item "FPÖ": Freiheitliche Partei Österreichs
+\item "KuL": Kunst und Leben
+\item "VO": Völkische Opposition
+\item "WdU": Wahlpartei der Unabhängigen
+\item "LB": Landbund
+\item "NEOS-LIF": NEOS – Das Neue Österreich und Liberales Forum
+\item "PILZ": Liste Peter Pilz
+\item "NEOS": NEOS – Das Neue Österreich
+\item "OK": Ohne Klub/Without parliamentary group
+\item "HB": Heimatblock
+\item "KPÖ": Kommunistische Partei Österreichs
+\item "ÖVP": Österreichische Volkspartei
+\item "BZÖ": Bündnis Zukunft Österreich
+\item "JETZT": Liste Jetzt
+\item "L": Liberale
+\item "STRONACH": Team Stronach
+\item "NWB": Nationale Wahlbewegung
+\item "SdP": Sudetendeutsche Partei
+}
+For \emph{Federal Council}, acceptable values are:
+\itemize{
+\item "all": Alle Fraktionen (All Parliamentary Groups)
+\item "ÖVP": Bundesratsfraktion der ÖVP
+\item "SPÖ": Bundesratsfraktion der SPÖ
+\item "FPÖ": Freiheitliche Bundesratsfraktion
+\item "GRÜNE": Grüne Fraktion im Bundesrat
+\item "OF": ohne Fraktionszugehörigkeit (Without Parliamentary Group Affiliation)
+}}
 
-\item{state}{Character. (Reserved) Currently not utilized.}
+\item{state}{Character vector of length 1. For National Council, see \code{\link{get_mps_NR_current}}
+documentation. For Federal Council, acceptable values are:
+\itemize{
+\item "all": Alle Bundesländer (All Federal States)
+\item "B": Burgenland
+\item "K": Kärnten (Carinthia)
+\item "N": Niederösterreich (Lower Austria)
+\item "O": Oberösterreich (Upper Austria)
+\item "S": Salzburg
+\item "St": Steiermark (Styria)
+\item "T": Tirol (Tyrol)
+\item "V": Vorarlberg
+\item "W": Wien (Vienna)
+}}
 
-\item{electoral_district}{Character. Electoral district filter. Accepted values include region names such as "all", "Bundeswahlvorschlag",
-"Burgenland", "Kärnten", "Niederösterreich", "Oberösterreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg",
-"Wien", and various sub-regions (e.g., "Burgenland Nord", "Burgenland Süd", etc.).}
+\item{electoral_district}{Character vector of length 1. Electoral district filter.
+Only applicable for National Council (NR). Valid electoral districts are:
+\itemize{
+\item "ALLE": Alle Wahlkreise (All Constituencies)
+\item "FB": Bundeswahlvorschlag (Federal Electoral Proposal)
+\item "F1": Burgenland
+\item "F1A": Burgenland Nord (Burgenland North)
+\item "F1B": Burgenland Süd (Burgenland South)
+\item "F5B": Flachgau/Tennengau
+\item "F6A": Graz und Umgebung (Graz and Surroundings)
+\item "F4C": Hausruckviertel
+\item "F7A": Innsbruck
+\item "F7B": Innsbruck-Land (Innsbruck-Country)
+\item "F4B": Innviertel
+\item "F2": Kärnten (Carinthia)
+\item "F2D": Kärnten Ost (Carinthia East)
+\item "F2C": Kärnten West (Carinthia West)
+\item "F2A": Klagenfurt
+\item "F4A": Linz und Umgebung (Linz and Surroundings)
+\item "F5C": Lungau/Pinzgau/Pongau
+\item "F3C": Mostviertel
+\item "F4E": Mühlviertel
+\item "F3": Niederösterreich (Lower Austria)
+\item "F3D": Niederösterreich Mitte (Lower Austria Central)
+\item "F3G": Niederösterreich Ost (Lower Austria East)
+\item "F3E": Niederösterreich Süd (Lower Austria South)
+\item "F0": noch offen (still open/pending)
+\item "F7D": Oberland (Oberland/Upper Country)
+\item "F4": Oberösterreich (Upper Austria)
+\item "F6D": Obersteiermark (Upper Styria)
+\item "F6B": Oststeiermark (East Styria)
+\item "F7E": Osttirol (East Tyrol)
+\item "F5": Salzburg
+\item "F5A": Salzburg Stadt (Salzburg City)
+\item "F6": Steiermark (Styria)
+\item "F3F": Thermenregion (Thermal Region)
+\item "F7": Tirol (Tyrol)
+\item "F4D": Traunviertel
+\item "F7C": Unterland (Unterland/Lower Country)
+\item "F2B": Villach
+\item "F8": Vorarlberg
+\item "F8A": Vorarlberg Nord (Vorarlberg North)
+\item "F8B": Vorarlberg Süd (Vorarlberg South)
+\item "F3B": Waldviertel
+\item "F3A": Weinviertel
+\item "F6C": Weststeiermark (West Styria)
+\item "F9": Wien (Vienna)
+\item "F9C": Wien Innen-Ost (Vienna Inner-East)
+\item "F9A": Wien Innen-Süd (Vienna Inner-South)
+\item "F9B": Wien Innen-West (Vienna Inner-West)
+\item "F9G": Wien Nord (Vienna North)
+\item "F9F": Wien Nord-West (Vienna North-West)
+\item "F9D": Wien Süd (Vienna South)
+\item "F9E": Wien Süd-West (Vienna South-West)
+}}
+
+\item{echo}{Logical. Whether to print debug information. Default is TRUE.}
 }
 \value{
 A data frame containing the list of current members of parliament that match the search criteria.
+Returns NULL if no results are found.
 }
 \description{
-Fetches current members of parliament based on provided search criteria. Mirrors
-the search functionality on the Austrian Parliament website at
-\if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/personen/nationalrat" target="_blank">}}this page\if{html}{\out{</a>}}.
+Fetches current members of parliament based on provided search criteria. Depending on the
+chamber of interest, different search parameters are applicable.
 }
 \examples{
 \dontrun{
-  df_members <- get_mps_current(
-    institution = "Nationalrat",
+  # Get all current National Council members
+  nr_members <- get_mps_current(institution = "NR")
+
+  # Get female Federal Council members from Vienna
+  br_female_vienna <- get_mps_current(
+    institution = "BR",
     gender = "female",
-    party = "SPÖ",
-    electoral_district = "Wien"
+    state = "W"
   )
 
-  if (!is.null(df_members)) {
-    print(df_members)
-  }
+  # Get SPÖ members from National Council
+  spo_nr <- get_mps_current(
+    institution = "NR",
+    party = "SPÖ"
+  )
 }
 
 }

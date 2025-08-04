@@ -14,46 +14,59 @@ get_mps(
   state = NULL,
   electoral_district = NULL,
   presidents_only = NULL,
+  date = NULL,
   echo = TRUE
 )
 }
 \arguments{
 \item{search_string}{Search string (not only names).}
 
-\item{institution}{Chamber of Parliament. NR (Nationalrat), BR (Bundesrat), KonstNatVers (Konstituierende Nationalversammlung),
-or ProvNatVers (Provisorische Nationalversammlung). NULL covers all institutions.}
+\item{institution}{Chamber of Parliament.
+\itemize{
+\item "NR" (Nationalrat, National Council)
+\item "BR" (Bundesrat, Federal Council)
+\item "KN" (Konstituierende Nationalversammlung, Constituent National Assembly)
+\item "PV" (Provisorische Nationalversammlung, Provisional National Assembly)
+\item NULL covers all institutions.
+}}
 
 \item{gender}{Gender filter. One of "all", "female", or "male"}
 
 \item{legis_period}{Legislative period. Can be "all", a numeric value,
-"Provisorische Nationalversammlung", or "Konstituierende Nationalversammlung"}
+"PV" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)}
 
-\item{party}{Political party filter. See details for possible values.}
+\item{party}{Political party filter. See details for permissible values.}
 
 \item{parl_group}{Parliamentary group filter}
 
-\item{state}{State filter}
+\item{state}{State filter. See details for permissible values.}
 
-\item{electoral_district}{Electoral district filter}
+\item{electoral_district}{Electoral district filter. See details for permissible values.}
 
 \item{presidents_only}{Logical. If TRUE, returns only presidents. Default is FALSE}
 
 \item{echo}{Logical. If \code{TRUE}, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.}
 }
 \value{
-A dataframe containing information about Members of Parliament including:
+A dataframe containing information about the MPs. One row per MP. Important: The API returns details
+on all MPs who e.g. have been member of Parliament during the requested legislative period. The details
+returned, however, are not limited to the requested period. The column \code{parl_group}
+may also contain data on the MP's membership in a parliamentary group during the requested period, but also
+also on his or her membership in other parliamentary groups in the past.
+
 \item{pad_intern}{Person's unique identification number}
 \item{name}{Name of the MP}
 \item{gender}{Gender}
-\item{parl_group}{Parliamentary group}
+\item{parl_group}{Parliamentary group; note that the groups stated comprises \emph{all} past and present groups of which the MP has been
+member of}
 \item{parl_group_abbrev}{Abbreviation of the parliamentary group}
-\item{leigs_period}{Legislative period(s)}
+\item{legis_period}{Legislative period(s)}
 \item{mandate_detail}{Details on madates in Parliament}
 \item{electoral_district}{Electoral district}
 }
 \description{
-Retrieves information about Members of Parliament from the Austrian Parliament database.
-This function mirrors the search functionality 'Parlamentarier:innen ab 1918' \emph{(Parliamentarians since 1918)}
+\code{get_mps()} retrieves information about Members of Parliament based on specified filter criteria.
+The function mirrors the search functionality 'Parlamentarier:innen ab 1918' \emph{(Parliamentarians since 1918)}
 from the Austrian Parliament website \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918/index.html" target="_blank">}}here\if{html}{\out{</a>}}.
 }
 \details{
@@ -70,6 +83,218 @@ the Provisorische Nationalversammlung. Including a legislative period argument w
 Searching for multiple legislative periods will return only one match per individual, even if the person served in multiple periods.
 The relevant information is provided in \code{gp_code} (Gesetzgbungsperiode, legislative period) which stipulates the periods served in.
 The search does not return one row per legislative period.
+}
+
+\subsection{parl_group}{
+
+Permissible values:
+\itemize{
+\item Abgeordnetenverband des Landbundes für Österreich
+\item Bundesratsfraktion der Großdeutschen Volkspartei
+\item Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat
+\item Bundesratsfraktion der SPÖ
+\item Bundesratsfraktion der WdUe
+\item Bundesratsfraktion der ÖVP
+\item Christlichsoziale Fraktion im Bundesrate
+\item Christlichsoziale Vereinigung deutscher Abgeordneter
+\item Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente
+\item Der Grüne Klub
+\item Der Grüne Klub - Klub der Grün-Alternativen Abgeordneten
+\item Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament
+\item Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament
+\item Fraktion der Freiheitlichen Bundesräte; Freiheitliche Bundesratsfraktion
+\item Fraktion der Sozialdemokratischen Bundesratsmitglieder
+\item Freiheitlicher Parlamentsklub
+\item Freiheitlicher Parlamentsklub; Freiheitlicher Parlamentsklub - BZÖ
+\item Großdeutsche Vereinigung
+\item Großdeutsche Volkspartei
+\item Klub Liberales Forum
+\item Klub der Freiheitlichen
+\item Klub der Freiheitlichen Partei Österreichs
+\item Klub der Kommunisten und Linkssozialisten
+\item Klub der Sozialistischen Abgeordneten und Bundesräte
+\item Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte
+\item Klub der Sozialistischen Partei Österreichs
+\item Klub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Abgeordneten und Bundesräte
+\item Klub der Unabhängigen; Klub der Wahlpartei der Unabhängigen
+\item Klub der Wahlpartei der Unabhängigen
+\item Klub der Österreichischen Volksopposition
+\item Klub der Österreichischen Volkspartei
+\item Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei
+\item Klub des Linksblocks (Kommunisten und Linkssozialisten)
+\item Klub von NEOS und LIF; Klub von NEOS
+\item Klub von NEOS; NEOS Parlamentsklub
+\item Liste Pilz
+\item NEOS Parlamentsklub
+\item Parlamentarischer Klub des Heimatblocks
+\item Parlamentsklub JETZT
+\item Parlamentsklub Liberales Forum
+\item Parlamentsklub Team Stronach
+\item Parlamentsklub der Kommunistischen Partei Österreichs
+\item Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs
+\item Parlamentsklub der Österreichischen Volkspartei
+\item Parlamentsklub der Österreichischen Volkspartei; Klub der Österreichischen Volkspartei
+\item Parlamentsklub des BZÖ
+\item Parlamentsklub des Liberalen Forums
+\item Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte
+\item Sozialdemokratische Vereinigung
+\item Verband der Abgeordneten der Großdeutschen Volkspartei
+\item Verband der Abgeordneten des Nationalen Wirtschaftsblocks
+\item Verband der Sozialdemokratischen Abgeordneten zum Nationalrat
+\item Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs
+\item Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs
+\item Verband der deutschnationalen Parteien und weitere deutschnationale Klubs
+\item ohne Fraktionszugehörigkeit
+\item ohne Klubzugehörigkeit
+}
+}
+
+\subsection{party}{
+
+Parties to be searched for. Use abbreviation in parentheses as function
+input.
+\itemize{
+\item Bauernpartei (BP)
+\item Bündnis Zukunft Österreich (BZÖ)
+\item Bürgerlich-demokratische Partei (BDP)
+\item Bürgerliche Arbeitspartei (BAP)
+\item Christlichsoziale Partei (CSP)
+\item Die Freiheitlichen in Kärnten - BZÖ (BZÖK)
+\item Die Freiheitlichen in Kärnten - Liste Gerhard Dörfler (FPK)
+\item Die Grünen (Grüne)
+\item Freiheitliche Partei Österreichs (FPÖ)
+\item Großdeutsche Vereinigung (GdP)
+\item Großdeutsche Volkspartei (GdP)
+\item Heimatblock (HB)
+\item Jüdisch-Nationale Partei (JNP)
+\item Kommunisten und Linkssozialisten (KuL)
+\item Kommunistische Partei Österreichs (KPÖ)
+\item Landbund (LBd)
+\item Liberales Forum (L)
+\item Linksblock (LB)
+\item Liste Fritz Dinkhauser - FRITZ (FRITZ)
+\item Liste Peter Pilz (PILZ)
+\item NEOS - Das neue Österreich und Liberales Forum (NEOS)
+\item Nationaler Wirtschaftsblock (NWB)
+\item Österreichische Volkspartei (ÖVP)
+\item Sozialdemokratische Arbeiterpartei Deutschösterreichs (SdP)
+\item Sozialdemokratische Partei Österreichs (SPÖ)
+\item Sozialistische Partei Österreichs (SPÖ)
+\item Team Frank Stronach - Frank (STRONA)
+\item Tschechische Partei (TS)
+\item Volksopposition (VO)
+\item Wahlpartei der Unabhängigen (WdU)
+\item ohne Parteizugehörigkeit (OP)
+}
+}
+
+\subsection{electoral_district}{
+
+Permissible values:
+\itemize{
+\item Bundeswahlvorschlag
+\item Burgenland
+\item Burgenland Nord
+\item Burgenland Süd
+\item Deutsch-Südtirol
+\item Flachgau/Tennengau
+\item Graz
+\item Graz und Umgebung
+\item Hausruckviertel
+\item Innsbruck-Land
+\item Innviertel
+\item Klagenfurt
+\item Kärnten
+\item Kärnten Ost
+\item Kärnten West
+\item Lienz
+\item Linz und Umgebung
+\item Lungau/Pinzgau/Pongau
+\item Mittel- und Untersteier
+\item Mostviertel
+\item Mühlviertel
+\item Niederösterreich
+\item Niederösterreich Mitte
+\item Niederösterreich Ost
+\item Niederösterreich Süd
+\item Niederösterreich Süd-Ost
+\item Nordtirol
+\item Oberland
+\item Obersteier
+\item Obersteiermark
+\item Oberösterreich
+\item Oststeier
+\item Oststeiermark
+\item Reststimmenmandat
+\item Salzburg
+\item Salzburg Stadt
+\item Steiermark
+\item Steiermark Mitte
+\item Steiermark Nord
+\item Steiermark Nord-West
+\item Steiermark Ost
+\item Steiermark Süd
+\item Steiermark Süd-Ost
+\item Steiermark West
+\item Thermenregion
+\item Tirol
+\item Traunviertel
+\item Unterland
+\item Viertel oberm Manhartsberg
+\item Viertel oberm Wienerwald
+\item Viertel unterm Manhartsberg
+\item Viertel unterm Wienerwald
+\item Villach
+\item Vorarlberg
+\item Vorarlberg Nord
+\item Vorarlberg Süd
+\item Wahlkreisverband I (Burgenland, Niederösterreich, Wien)
+\item Wahlkreisverband I (Wien)
+\item Wahlkreisverband II (K, OÖ, S, St, T u V)
+\item Wahlkreisverband II (Niederösterreich)
+\item Wahlkreisverband III (OÖ, S, T u. V)
+\item Wahlkreisverband III - Oberösterreich
+\item Wahlkreisverband III - Salzburg
+\item Wahlkreisverband III - Tirol
+\item Wahlkreisverband IV (B, K u St.)
+\item Wahlkreisverband IV - Burgenland
+\item Wahlkreisverband IV - Kärnten
+\item Wahlkreisverband IV - Steiermark
+\item Waldviertel
+\item Weinviertel
+\item Weststeiermark
+\item Wien
+\item Wien Innen-Ost
+\item Wien Innen-Süd
+\item Wien Innen-West
+\item Wien Nord
+\item Wien Nord-West
+\item Wien Nordost
+\item Wien Nordwest
+\item Wien Süd
+\item Wien Süd-West
+\item Wien Südost
+\item Wien Südwest
+\item Wien Umgebung
+\item Wien West
+}
+}
+
+\subsection{state}{
+
+Permissible values:
+\itemize{
+\item Bundeswahlvorschlag
+\item Burgenland
+\item Kärnten
+\item Niederösterreich
+\item Oberösterreich
+\item Salzburg
+\item Steiermark
+\item Tirol
+\item Vorarlberg
+\item Wien
+}
 }
 }
 \examples{
