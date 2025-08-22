@@ -161,7 +161,7 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
       format = "%d.%m.%Y"
     ),
     legis_period_current = c(FALSE, FALSE, FALSE),
-    legis_period_abbrev = c("PV", "KN", "Bundesrat1Rep")
+    legis_period_abbrev = c("PN", "KN", "Bundesrat1Rep")
   ) %>%
     dplyr::mutate(legis_period_abbrev_num = legis_period_abbrev) %>%
     dplyr::mutate(
