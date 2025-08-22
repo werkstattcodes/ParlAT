@@ -44,12 +44,14 @@
 #' ## search_string
 #' Specifying `search_string` will filter the results across all columns, not only names.
 #' ## legis_period
-#' Filtering for a legislative period is only possible for the Nationalrat, the Konstituierende Nationalversammlung, and
-#' the Provisorische Nationalversammlung. Including a legislative period argument will exclude any results for the Bundesrat.
+#' Filtering for a legislative period is only possible for the National Council (Nationalrat), the Constituent National Assembly (Konstituierende Nationalversammlung), and
+#' the Provisional National Assembly (Provisorische Nationalversammlung). Including a legislative
+#' period argument will exclude any results for the Federal Council (Bundesrat) since its composition #' follows different electoral cycles.
 #'
-#' Searching for multiple legislative periods will return only one match per individual, even if the person served in multiple periods.
-#' The relevant information is provided in `gp_code` (Gesetzgbungsperiode, legislative period) which stipulates the periods served in.
-#' The search does not return one row per legislative period.
+#' Providing a 'legis_period' input will return one row per unique combination of MP and legislative period.
+#' The list-column 'mp_details' contains all mandate details for that MP during the specified legislative period.
+#' Since an MP can change within a single legislative period, for example, family name, party affiliation, parliamentary group, or the electoral district of her mandate,
+#' 'mp_details' may include multiple rows reflecting these changes.
 #'
 #' ## parl_group
 #' Permissible values:
@@ -682,7 +684,7 @@ get_mps <- function(
     purrr::map(., fn_make_tibble) %>%
     purrr::list_rbind()
 
-  # PRING ECHO
+  # PRINT ECHO
   #echo only if query without date fitler
   if (echo == TRUE && is.null(date)) {
     print(body_params)
@@ -716,18 +718,139 @@ get_mps <- function(
 
   df_res <- df_res %>%
     tidyr::unnest_longer(mandate_detail) %>%
-    tidyr::unnest_wider(mandate_detail, names_sep="_")
-
-unique(df_res$mandate_detail_gremium_name) => use this as filter for institution  #CONTINUE
+    tidyr::unnest_wider(mandate_detail, names_sep = "_") %>%
+    dplyr::mutate(
+      across(
+        c("mandate_detail_mandat_von", "mandate_detail_mandat_bis"),
+        \(x) {
+          lubridate::dmy(x)
+        }
+      )
+    ) %>%
+    dplyr::mutate(
+      mandate_detail_mandat_bis_cutoff = dplyr::case_when(
+        is.na(mandate_detail_mandat_bis) | mandate_detail_mandat_bis == "" ~
+          lubridate::today(),
+        .default = mandate_detail_mandat_bis
+      )
+    )
 
   # Apply filters only when arguments are not NULL
   if (!is.null(institution)) {
-    df_res <- df_res %>% filter(gremium_name %in% institution)
+    df_res <- df_res %>%
+      dplyr::filter(mandate_detail_gremium_name %in% institution_input)
   }
 
   if (!is.null(legis_period)) {
-    df_res <- df_res %>% filter(nr_gp_code %in% legis_period)
+    df_res <- df_res %>%
+      dplyr::mutate(
+        mandate_detail_gp_code_chr = as.character(as.numeric(as.roman(
+          mandate_detail_gp_code
+        )))
+      ) %>%
+      dplyr::filter(mandate_detail_gp_code_chr %in% legis_period)
   }
+
+  # DATE FILTERING##################################
+  if (!is.null(date)) {
+    date <- lubridate::dmy(date)
+    # print(nrow(df_res_filter_time_inst))
+    df_res <- df_res %>%
+      dplyr::filter(
+        date >= mandate_detail_mandat_von &
+          date <= mandate_detail_mandat_bis_cutoff
+      )
+    # print(nrow(df_res))
+  }
+
+  ### SELECT COLUMNS/REARRANGING
+  cols_keep <- c(
+    "pad_intern",
+    "mandate_detail_gp_code",
+
+    "zit",
+    # "fraktionen", #refers to all mandates; not only the filtered ones
+    # "frak", #refers to all mandates; not only the filtered ones
+    "geschlecht",
+    "uri",
+    "mandate_detail_fraktion",
+    "mandate_detail_wahlkreis_bundesland",
+    "mandate_detail_wahlkreis",
+
+    "mandate_detail_wahlkreis_code",
+    "mandate_detail_gremium_name",
+    "mandate_detail_mand_code",
+    # "mandate_detail_wahlpartei_full_txt",
+    "mandate_detail_wahlpartei_txt",
+    "mandate_detail_politische_partei_code",
+    "mandate_detail_mandat_von",
+    "mandate_detail_mandat_bis",
+    "fruehere_namen",
+    "nrbr_praes"
+    # "aktiv",
+  )
+
+  df_res <- df_res %>%
+    dplyr::select(any_of(cols_keep))
+
+  # RENAME OUTPUT TO ENGLISH
+  renaming_map <- c(
+    "zit" = "name",
+    "geschlecht" = "gender",
+    "uri" = "link",
+    "mandate_detail_fraktion" = "parl_group", #parl_group_code missing
+    "mandate_detail_wahlkreis_bundesland" = "electoral_district_state",
+    "mandate_detail_wahlkreis" = "electoral_district_region",
+    "mandate_detail_wahlkreis_code" = "electoral_district_region_code",
+    "mandate_detail_gremium_name" = "chamber",
+    "mandate_detail_mand_code" = "chamber_code",
+    "mandate_detail_gp_code" = "legis_period",
+    "mandate_detail_wahlpartei_txt" = "party",
+    "mandate_detail_politische_partei_code" = "party_code",
+    "mandate_detail_mandat_von" = "mandate_date_start",
+    "mandate_detail_mandat_bis" = "mandate_date_end",
+    "fruehere_namen" = "name_previous"
+
+    # "mandate_detail_wahlpartei_full_txt",
+    # "nrbr_praes",
+    # "aktiv",
+
+    #   / "wahlkreis_bundesland" = "electoral_state",
+    #  / "wahlkreis" = "electoral_district_region",
+    #   / "wahlkreis_code" = "electoral_district_region_code",
+    #  / "gremium_name" = "chamber",
+    #   /"mand_code" = "chamber_code",
+    #   /"politische_partei" = "party",
+    #   /"wahlpartei_txt" = "party_name",
+    #   "fraktion" = "parl_group",
+    #   /"fraktionscode" = "parl_group_code",
+    #   /"mandat_von" = "mandate_date_start", #drop
+    #   /"mandat_bis" = "mandate_date_end" #drop
+
+    # "wahlpartei_code" = "party", #drop
+    # "fraktionscode" = "", #drop?
+    # "gp_von" = "", #drop
+    # "gp_code" = "", #drop
+    # "wahlpartei_txt" = "", #drop
+    # "wahlpartei_sort" = "" #drop
+  )
+
+  df_res <- df_res %>%
+    dplyr::rename_with(
+      .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+      .cols = any_of(names(renaming_map))
+    )
+
+  # SORT (most recent mandate on top)
+  df_res <- df_res %>%
+    dplyr::group_by(pad_intern) %>%
+    dplyr::arrange(desc(mandate_date_start), .by_group = TRUE)
+
+  # NESTING (return one row per MP and legislative period; mandate details are nested)
+  df_res <- df_res %>%
+    tidyr::nest(mp_details = -c(legis_period, pad_intern, link, name))
+
+  return(df_res)
 
   # if (!is.null(party)) {
   #   df_res <- df_res %>% filter(wahlpartei_full_txt %in% party)
@@ -857,8 +980,8 @@ unique(df_res$mandate_detail_gremium_name) => use this as filter for institution
     #RENAME OUTPUT TO ENGLISH
     renaming_map <- c(
       "wahlkreis_bundesland" = "electoral_state",
-      "wahlkreis" = "electoral_district_name",
-      "wahlkreis_code" = "electoral_district_code",
+      "wahlkreis" = "electoral_district_region",
+      "wahlkreis_code" = "electoral_district_region_code",
       "gremium_name" = "chamber",
       "mand_code" = "chamber_code",
       "politische_partei" = "party",
@@ -887,7 +1010,7 @@ unique(df_res$mandate_detail_gremium_name) => use this as filter for institution
         chamber_code,
         electoral_state,
         electoral_district,
-        electoral_district_code,
+        electoral_district_region_code,
         party,
         party_name,
         parl_group,
