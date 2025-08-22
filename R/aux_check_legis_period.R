@@ -107,6 +107,90 @@ fn_make_tibble <- function(x) {
 }
 
 
+#' Convert legislative period to standardized character format
+#'
+#' This auxiliary function standardizes legislative period inputs by converting:
+#' - Numeric values to character strings
+#' - Roman numerals to Arabic numbers then to character strings
+#' - Character strings (including historical abbreviations) remain as-is
+#'
+#' @param legis_period A vector of legislative periods. Can be numeric, Roman numerals (character),
+#'   or historical abbreviations like "PV", "KN", "Bundesrat1Rep"
+#'
+#' @return A character vector with standardized legislative period representations
+#'
+#' @examples
+#' aux_convert_legis_periods(27)           # "27"
+#' aux_convert_legis_periods("XXVII")      # "27"
+#' aux_convert_legis_periods("PV")         # "PV"
+#' aux_convert_legis_periods(c(26, "20","XXVII", "PV"))  # c("26", "27", "PV")
+#'
+#'
+#' @keywords internal
+aux_convert_legis_periods <- function(legis_period) {
+  if (is.null(legis_period)) {
+    return(NULL)
+  }
+
+  # Convert to character first to handle mixed input types
+  legis_period_char <- as.character(legis_period)
+
+  # Process each element
+  purrr::map_chr(legis_period_char, function(x) {
+    # Check if it's a Roman numeral (only contains Roman numeral letters)
+    if (stringr::str_detect(x, "^[IVXLCDM]+$")) {
+      # Convert Roman numeral to numeric, then to character
+      as.character(as.numeric(as.roman(x)))
+    } else {
+      # Keep as is (numeric strings or historical abbreviations like "PV", "KN")
+      x
+    }
+  })
+}
+
+
+#' Check if a parlament.gv.at person identifier exists
+#'
+#' Perform a HEAD request against the parlament.gv.at person URL to determine
+#' whether a given internal person identifier ("pad_intern") exists. The
+#' function is vectorised: if a character vector is supplied, each element is
+#' checked and a logical vector of the same length is returned.
+#'
+#' @param pad_intern A single character string or a character vector of internal
+#'   person identifiers used on parlament.gv.at. `NULL` is accepted but is not a
+#'   valid identifier; the behaviour for `NULL` is dependent on the calling
+#'   context.
+#'
+#' @return A logical value (TRUE/FALSE) for a single identifier, or a logical
+#'   vector for multiple identifiers, indicating whether the corresponding
+#'   person page exists (TRUE) or not / could not be reached (FALSE).
+#'
+#' @details The function sends a HEAD request to
+#'   "https://www.parlament.gv.at/person/{pad_intern}" using httr2. If the HTTP
+#'   request fails or the response indicates an HTTP error, the function
+#'   returns FALSE for that identifier. For vector inputs the function maps the
+#'   check over all elements and returns a logical vector.
+#'
+#' @note This function performs network I/O and may be slow for many identifiers.
+#'   Use sparingly or add your own caching/rate-limiting as needed. Because it
+#'   relies on an external website, results may change over time.
+#'
+#' @seealso Use higher-level wrappers in the package for batch operations.
+#'
+#' @keywords internal
+#' @noRd
+#' @importFrom httr2 request req_method req_perform resp_is_error
+#' @importFrom glue glue
+#' @importFrom purrr map_lgl
+#'
+#' @examples
+#' \dontrun{
+#' # Single check
+#' aux_check_pad_intern_exists("12345")
+#'
+#' # Vectorised check
+#' aux_check_pad_intern_exists(c("12345", "67890"))
+#' }
 aux_check_pad_intern_exists <- function(pad_intern) {
   if (!is.null(pad_intern) && length(pad_intern) > 1) {
     return(
@@ -128,6 +212,5 @@ aux_check_pad_intern_exists <- function(pad_intern) {
     # print(glue::glue("Pad intern {pad_intern} does not exist or is invalid."))
     return(FALSE)
   }
-
   TRUE
 }

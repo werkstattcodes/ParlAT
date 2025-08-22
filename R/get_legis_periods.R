@@ -2,7 +2,7 @@
 #'
 #' @param legis_period Number or identifier of legislative period(s) for which dates should be returned.
 #'   Accepts numeric values (e.g., 27), Roman numerals (e.g., "XXVII"), or historical period
-#'   abbreviations: "PV" (Provisorische Nationalversammlung), "KN" (Konstituierende Nationalversammlung),
+#'   abbreviations: "PN" (Provisorische Nationalversammlung), "KN" (Konstituierende Nationalversammlung),
 #'   "Bundesrat1Rep" (Bundesrat der 1. Republik). Can be a vector for multiple periods.
 #' @param date Date within a legislative period. Format should be "dd.mm.yyyy".
 #'
@@ -20,11 +20,11 @@
 #' get_legis_periods(legis_period = c("XXVI", "XXVII"))
 #'
 #' # Historical periods
-#' get_legis_periods(legis_period = "PV")
-#' get_legis_periods(legis_period = c("PV", "KN"))
+#' get_legis_periods(legis_period = "PN")
+#' get_legis_periods(legis_period = c("PN", "KN"))
 #'
 #' # Mixed input types
-#' get_legis_periods(legis_period = c(26, "XXVII", "PV"))
+#' get_legis_periods(legis_period = c(26, "XXVII", "PN"))
 #'
 #' # Filter by date
 #' get_legis_periods(date = "01.01.2020")
