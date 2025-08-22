@@ -8,11 +8,11 @@
 #' - "NR" (Nationalrat, National Council)
 #' - "BR" (Bundesrat, Federal Council)
 #' - "KN" (Konstituierende Nationalversammlung, Constituent National Assembly)
-#' - "PV" (Provisorische Nationalversammlung, Provisional National Assembly)
+#' - "PN" (Provisorische Nationalversammlung, Provisional National Assembly)
 #' - NULL covers all institutions.
 #' @param gender Gender filter. One of "all", "female", or "male"
 #' @param legis_period Legislative period. Can be "all", a numeric value,
-#'        "PV" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)
+#'        "PN" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)
 #' @param party Political party filter. See details for permissible values.
 #' @param parl_group Parliamentary group filter
 #' @param electoral_district Electoral district filter. See details for permissible values.
@@ -313,25 +313,11 @@ get_mps <- function(
     }
   )
 
-  # instiutiton
-
-  #TODO: make that institution can be also all bodies
-  checkmate::assert_subset(
-    x = institution,
-    choices = c(
-      "NR",
-      "BR",
-      "KN",
-      "PV"
-    ),
-    empty.ok = TRUE
-  )
-
   # institution
-  checkmate::assert_subset(
+  checkmate::assert_choice(
     x = institution,
-    choices = c("KN", "NR", "BR", "PV"),
-    empty.ok = TRUE
+    choices = c("KN", "NR", "BR", "PN"),
+    null.ok = TRUE
   )
 
   institution_input <- if (is.null(institution)) {
@@ -342,7 +328,7 @@ get_mps <- function(
       "NR" = "Nationalrat",
       "BR" = "Bundesrat",
       "KN" = "Konstituierende Nationalversammlung",
-      "PV" = "Provisorische Nationalversammlung",
+      "PN" = "Provisorische Nationalversammlung",
       NULL # default if no match
     )
   }
@@ -356,7 +342,7 @@ get_mps <- function(
           c(
             "NR",
             "KN",
-            "PV"
+            "PN"
           )))
   ) {
     stop(
@@ -364,7 +350,21 @@ get_mps <- function(
     )
   }
 
-  legis_period_char <- as.character(legis_period)
+  if (!is.null(legis_period)) {
+    # coerce to character to allow vectors of length > 1 (numeric or character)
+    legis_period_char <- as.character(legis_period)
+
+    legis_period_char <- purrr::map_chr(legis_period_char, \(x) {
+      # if string consists only of roman numeral letters -> treat as Roman numeral
+      if (stringr::str_detect(x, "^[XVI]+$")) {
+        as.character(as.numeric(as.roman(x)))
+      } else {
+        x
+      }
+    })
+    print(legis_period_char)
+  }
+
   checkmate::assert_subset(
     x = legis_period_char,
     choices = ParlAT::get_legis_periods()$legis_period_abbrev_num,
@@ -744,11 +744,11 @@ get_mps <- function(
   if (!is.null(legis_period)) {
     df_res <- df_res %>%
       dplyr::mutate(
-        mandate_detail_gp_code_chr = as.character(as.numeric(as.roman(
+        mandate_detail_gp_code_chr = aux_convert_legis_periods(
           mandate_detail_gp_code
-        )))
+        )
       ) %>%
-      dplyr::filter(mandate_detail_gp_code_chr %in% legis_period)
+      dplyr::filter(mandate_detail_gp_code_chr %in% legis_period_char)
   }
 
   # DATE FILTERING##################################
@@ -906,7 +906,7 @@ get_mps <- function(
     } else if (!is.null(institution) && institution == "KN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
         dplyr::filter(gremium_name == "Konstituierende Nationalversammlung")
-    } else if (!is.null(institution) && institution == "PV") {
+    } else if (!is.null(institution) && institution == "PN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
         dplyr::filter(gremium_name == "Provisorische Nationalversammlung")
     } #PENDING: what about Bundesrat1Rep; not mentioned on Parl Website/API
