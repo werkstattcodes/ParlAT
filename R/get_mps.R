@@ -371,6 +371,22 @@ get_mps <- function(
     empty.ok = TRUE
   )
 
+  # Validate PN institution requires PN legis_period
+  if (!is.null(institution) && institution == "PN") {
+    checkmate::assert_true(
+      !is.null(legis_period) && "PN" %in% as.character(legis_period),
+      .var.name = "When institution is 'PN' (Provisorische Nationalversammlung), legis_period must also be 'PN'."
+    )
+  }
+
+  # Validate PN legis_period requires PN institution
+  if (!is.null(legis_period) && "PN" %in% as.character(legis_period)) {
+    checkmate::assert_true(
+      !is.null(institution) && institution == "PN",
+      .var.name = "When legis_period is 'PN' (Provisorische Nationalversammlung), institution must also be 'PN'."
+    )
+  }
+
   if (!is.null(legis_period)) {
     legis_period_name <- get_legis_periods(legis_period = legis_period) |>
       dplyr::pull(legis_period_name)
