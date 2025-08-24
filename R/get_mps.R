@@ -350,26 +350,18 @@ get_mps <- function(
     )
   }
 
+  # Check whether provided legis period is among existing periods
   if (!is.null(legis_period)) {
-    # coerce to character to allow vectors of length > 1 (numeric or character)
-    legis_period_char <- as.character(legis_period)
+    legis_period_char <- aux_convert_legis_periods(legis_period)
 
-    legis_period_char <- purrr::map_chr(legis_period_char, \(x) {
-      # if string consists only of roman numeral letters -> treat as Roman numeral
-      if (stringr::str_detect(x, "^[XVI]+$")) {
-        as.character(as.numeric(as.roman(x)))
-      } else {
-        x
-      }
-    })
     print(legis_period_char)
-  }
 
-  checkmate::assert_subset(
-    x = legis_period_char,
-    choices = ParlAT::get_legis_periods()$legis_period_abbrev_num,
-    empty.ok = TRUE
-  )
+    checkmate::assert_subset(
+      x = legis_period_char,
+      choices = ParlAT::get_legis_periods()$legis_period_abbrev_num,
+      empty.ok = TRUE
+    )
+  }
 
   # Validate PN institution requires PN legis_period
   if (!is.null(institution) && institution == "PN") {
@@ -764,7 +756,7 @@ get_mps <- function(
           mandate_detail_gp_code
         )
       ) %>%
-      dplyr::filter(mandate_detail_gp_code_chr %in% legis_period_char)
+      dplyr::filter(mandate_detail_gp_code_chr %in% {{ legis_period_char }})
   }
 
   # DATE FILTERING##################################
