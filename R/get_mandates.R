@@ -67,7 +67,7 @@ get_mandates_single <- function(pad_intern) {
 #' @param names A character vector of name(s). Only considered if no pad_intern(s) provided.
 #' @param date Date to filter mandates
 #' @param institution Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
-#' or "PV" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
+#' or "PN" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
 #' but also presidents of the National Council, Secretaries ("Schriftführer"), and Regulators ("Ordner"). The equivalent applies to other
 #' the chambers as well.
 #' @details
@@ -207,12 +207,12 @@ get_mandates <- function(
   #rename columns
   df_res <- df_res %>%
     dplyr::mutate(
-      electoral_district_code = stringr::str_extract(
+      electoral_district_region_code = stringr::str_extract(
         wahlkreis,
         stringr::regex("^\\w+")
       ) %>%
         stringr::str_replace("Bundeswahlvorschlag", "FB"),
-      electoral_district_name = stringr::str_remove(
+      electoral_district_region = stringr::str_remove(
         wahlkreis,
         stringr::regex("^\\w+\\s-\\s")
       )
@@ -272,7 +272,7 @@ get_mandates <- function(
           position_code %in% c("PKNV", "2PKN", "3PKN", "KN")
         )
     }
-    if (institution == "PV") {
+    if (institution == "PN") {
       df_res <- df_res |>
         dplyr::filter(
           position_code %in% c("PN", "PPNV")
