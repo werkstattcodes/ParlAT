@@ -7,7 +7,6 @@ test_that("get_legis_periods returns all periods when no parameters provided", {
   expect_s3_class(result, "data.frame")
   expect_true(all(
     c(
-      "legis_period_rom",
       "legis_period",
       "legis_period_current",
       "date_start",
@@ -38,7 +37,6 @@ test_that("get_legis_periods filters by numeric legislative period", {
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 1)
   expect_equal(result$legis_period, 27)
-  expect_equal(result$legis_period_rom, "XXVII")
 })
 
 test_that("get_legis_periods filters by multiple legislative periods", {
@@ -95,13 +93,13 @@ test_that("get_legis_periods includes historical periods", {
 
   result <- get_legis_periods()
 
-  historical_periods <- c("PV", "KN", "Bundesrat1Rep")
+  historical_periods <- c("PN", "KN", "Bundesrat1Rep")
   expect_true(any(result$legis_period_abbrev %in% historical_periods))
 
-  pv_period <- result[result$legis_period_abbrev == "PV", ]
-  expect_true(nrow(pv_period) == 1)
-  expect_equal(pv_period$date_start, as.Date("1918-10-21"))
-  expect_equal(pv_period$date_end, as.Date("1919-02-16"))
+  pn_period <- result[result$legis_period_abbrev == "PN", ]
+  expect_true(nrow(pn_period) == 1) #
+  expect_equal(pn_period$date_start, as.Date("1918-10-21")) #
+  expect_equal(pn_period$date_end, as.Date("1919-02-16")) #
 })
 
 test_that("get_legis_periods date columns are properly formatted", {
@@ -195,13 +193,13 @@ test_that("get_legis_periods handles mixed input types", {
   skip_on_cran()
   skip_if_offline()
 
-  result <- get_legis_periods(legis_period = c("26", "I", "PV"))
+  result <- get_legis_periods(legis_period = c("26", "I", "PN"))
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 3)
 
-  # Should include period 26, period I (1), and historical period PV
-  expected_periods <- c("26", "1", "PV")
+  # Should include period 26, period I (1), and historical period PN
+  expected_periods <- c("26", "1", "PN")
   expect_true(all(result$legis_period_abbrev_num %in% expected_periods))
 
   # Check that all requested periods are found
