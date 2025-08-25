@@ -266,13 +266,12 @@ get_mps <- function(
   institution = NULL,
   gender = "all",
   legis_period = NULL,
+  date = NULL,
   party = NULL,
   parl_group = NULL,
   state = NULL,
   electoral_district = NULL,
   presidents_only = NULL,
-  # strict = FALSE, #PENDING
-  date = NULL, #PENDING
   echo = TRUE
 ) {
   if (!is.null(date) && !is.null(legis_period)) {
@@ -376,6 +375,22 @@ get_mps <- function(
     checkmate::assert_true(
       !is.null(institution) && institution == "PN",
       .var.name = "When legis_period is 'PN' (Provisorische Nationalversammlung), institution must also be 'PN'."
+    )
+  }
+
+  # Validate KN institution requires KN legis_period
+  if (!is.null(institution) && institution == "KN") {
+    checkmate::assert_true(
+      !is.null(legis_period) && "KN" %in% as.character(legis_period),
+      .var.name = "When institution is 'KN' (Konstituierende Nationalversammlung), legis_period must also be 'KN'."
+    )
+  }
+
+  # Validate KN legis_period requires KN institution
+  if (!is.null(legis_period) && "KN" %in% as.character(legis_period)) {
+    checkmate::assert_true(
+      !is.null(institution) && institution == "KN",
+      .var.name = "When legis_period is 'KN' (Konstituierende Nationalversammlung), institution must also be 'KN'."
     )
   }
 
@@ -496,7 +511,8 @@ get_mps <- function(
   checkmate::assert_subset(
     x = party,
     choices = choices_party,
-    empty.ok = TRUE
+    empty.ok = TRUE,
+    .var.name = "Party argument must be one of the valid party abbreviations. See function documentation for valid values."
   )
 
   if (!is.null(party)) {
@@ -743,6 +759,16 @@ get_mps <- function(
       )
     )
 
+  # Recode gender variable
+  df_res <- df_res %>%
+    dplyr::mutate(
+      geschlecht = dplyr::case_when(
+        geschlecht == "W" ~ "female",
+        geschlecht == "M" ~ "male",
+        .default = geschlecht
+      )
+    )
+
   # Apply filters only when arguments are not NULL
   if (!is.null(institution)) {
     df_res <- df_res %>%
@@ -777,6 +803,7 @@ get_mps <- function(
     "mandate_detail_gp_code",
 
     "zit",
+    "fruehere_namen_nvg",
     # "fraktionen", #refers to all mandates; not only the filtered ones
     # "frak", #refers to all mandates; not only the filtered ones
     "geschlecht",
@@ -793,7 +820,6 @@ get_mps <- function(
     "mandate_detail_politische_partei_code",
     "mandate_detail_mandat_von",
     "mandate_detail_mandat_bis",
-    "fruehere_namen",
     "nrbr_praes"
     # "aktiv",
   )
@@ -817,7 +843,7 @@ get_mps <- function(
     "mandate_detail_politische_partei_code" = "party_code",
     "mandate_detail_mandat_von" = "mandate_date_start",
     "mandate_detail_mandat_bis" = "mandate_date_end",
-    "fruehere_namen" = "name_previous"
+    "fruehere_namen_nvg" = "name_previous"
 
     # "mandate_detail_wahlpartei_full_txt",
     # "nrbr_praes",
@@ -856,9 +882,10 @@ get_mps <- function(
 
   # NESTING (return one row per MP and legislative period; mandate details are nested)
   df_res <- df_res %>%
-    tidyr::nest(mp_details = -c(legis_period, pad_intern, link, name))
+    tidyr::nest(mp_details = -c(legis_period, pad_intern, link, name, gender))
 
   return(df_res)
+  #TODO remove residual code below
 
   # if (!is.null(party)) {
   #   df_res <- df_res %>% filter(wahlpartei_full_txt %in% party)
