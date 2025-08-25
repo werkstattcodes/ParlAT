@@ -1,3 +1,5 @@
+# Test file for get_pad_intern function
+
 test_that("get_pad_intern validates input parameter", {
   expect_error(get_pad_intern(123), "Assertion on 'name' failed")
   expect_error(

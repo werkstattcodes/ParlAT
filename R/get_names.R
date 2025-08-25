@@ -19,7 +19,7 @@
 get_names <- function(pad_intern, date = NULL, latest = NULL) {
   if (length(pad_intern) > 1) {
     return(
-      purrr::map(pad_intern, \(x) get_names(x, date = date, latest = latest)) |>
+      purrr::map(pad_intern, \(x) get_names(x, date = date, latest = latest), .progress=TRUE) |>
         purrr::list_rbind()
     )
   }
