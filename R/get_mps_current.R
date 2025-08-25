@@ -216,11 +216,11 @@ get_mps_current <- function(
                     link,
                     stringr::regex("[0-9]+$")
                 ), #extract pad_intern from link
-                electoral_district_code = stringr::str_extract(
+                electoral_district_region_code = stringr::str_extract(
                     wahlkreis,
                     stringr::regex("^\\w+")
                 ),
-                electoral_district_name = wahlkreis %>%
+                electoral_district_region = wahlkreis %>%
                     as.character() %>%
                     stringr::str_remove(stringr::regex("^\\w+")) %>%
                     stringr::str_trim(., "both") #,
@@ -233,8 +233,8 @@ get_mps_current <- function(
                 pad_intern,
                 party = sort_wp,
                 parl_group,
-                electoral_district_code,
-                electoral_district_name,
+                electoral_district_region_code,
+                electoral_district_region,
                 state,
                 link
             ) %>%
@@ -312,7 +312,7 @@ get_mps_current <- function(
             ) %>%
             dplyr::rename(
                 state = bundesland,
-                electoral_district_code = wahlkreis
+                electoral_district_region_code = wahlkreis
             ) %>%
             dplyr::select(
                 -pad_sortier,
