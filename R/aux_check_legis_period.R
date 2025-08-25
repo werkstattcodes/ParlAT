@@ -115,15 +115,15 @@ fn_make_tibble <- function(x) {
 #' - Character strings (including historical abbreviations) remain as-is
 #'
 #' @param legis_period A vector of legislative periods. Can be numeric, Roman numerals (character),
-#'   or historical abbreviations like "PV", "KN", "Bundesrat1Rep"
+#'   or historical abbreviations like "PN", "KN", "Bundesrat1Rep"
 #'
 #' @return A character vector with standardized legislative period representations
 #'
 #' @examples
 #' aux_convert_legis_periods(27)           # "27"
 #' aux_convert_legis_periods("XXVII")      # "27"
-#' aux_convert_legis_periods("PV")         # "PV"
-#' aux_convert_legis_periods(c(26, "20","XXVII", "PV"))  # c("26", "27", "PV")
+#' aux_convert_legis_periods("PN")         # "PN"
+#' aux_convert_legis_periods(c(26, "20","XXVII", "PN"))  # c("26", "27", "PN")
 #'
 #'
 #' @keywords internal
@@ -142,7 +142,7 @@ aux_convert_legis_periods <- function(legis_period) {
       # Convert Roman numeral to numeric, then to character
       as.character(as.numeric(as.roman(x)))
     } else {
-      # Keep as is (numeric strings or historical abbreviations like "PV", "KN")
+      # Keep as is (numeric strings or historical abbreviations like "PN", "KN")
       x
     }
   })
