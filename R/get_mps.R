@@ -353,8 +353,6 @@ get_mps <- function(
   if (!is.null(legis_period)) {
     legis_period_char <- aux_convert_legis_periods(legis_period)
 
-    print(legis_period_char)
-
     checkmate::assert_subset(
       x = legis_period_char,
       choices = ParlAT::get_legis_periods()$legis_period_abbrev_num,

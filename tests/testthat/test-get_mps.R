@@ -9,9 +9,9 @@ test_that("get_mps returns correct number of female MPs for 27th legislative per
 test_that("get_mps accepts male gender filter", {
   skip_on_cran()
   skip_if_offline()
-  
+
   result <- get_mps(legis_period = 27, institution = "NR", gender = "male")
-  
+
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
   # Check that all returned MPs are male
@@ -22,9 +22,9 @@ test_that("get_mps accepts male gender filter", {
 test_that("get_mps accepts 'all' gender filter", {
   skip_on_cran()
   skip_if_offline()
-  
+
   result <- get_mps(legis_period = 27, institution = "NR", gender = "all")
-  
+
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
   # Should include both male and female MPs
@@ -35,7 +35,7 @@ test_that("get_mps accepts 'all' gender filter", {
 test_that("get_mps validates gender input", {
   expect_error(
     get_mps(legis_period = 27, institution = "NR", gender = "invalid"),
-    "Must be element of set"
+    "Must be a subset of"
   )
 })
 
@@ -43,14 +43,18 @@ test_that("get_mps validates gender input", {
 test_that("get_mps gender filtering returns different results", {
   skip_on_cran()
   skip_if_offline()
-  
+
   result_male <- get_mps(legis_period = 27, institution = "NR", gender = "male")
-  result_female <- get_mps(legis_period = 27, institution = "NR", gender = "female")
+  result_female <- get_mps(
+    legis_period = 27,
+    institution = "NR",
+    gender = "female"
+  )
   result_all <- get_mps(legis_period = 27, institution = "NR", gender = "all")
-  
+
   # Male and female results should be different
   expect_false(identical(result_male, result_female))
-  
+
   # All should have more rows than either male or female alone
   expect_true(nrow(result_all) >= nrow(result_male))
   expect_true(nrow(result_all) >= nrow(result_female))
@@ -60,9 +64,9 @@ test_that("get_mps gender filtering returns different results", {
 test_that("get_mps correctly recodes gender values", {
   skip_on_cran()
   skip_if_offline()
-  
+
   result <- get_mps(legis_period = 27, institution = "NR")
-  
+
   # Check that no raw W or M values remain in output
   expect_false(any(result$gender %in% c("W", "M")))
   expect_true(all(result$gender %in% c("male", "female")))
@@ -72,21 +76,29 @@ test_that("get_mps correctly recodes gender values", {
 test_that("get_mps accepts gender filter with date parameter", {
   skip_on_cran()
   skip_if_offline()
-  
-  result_female <- get_mps(date = "01.01.2020", institution = "NR", gender = "female")
-  result_male <- get_mps(date = "01.01.2020", institution = "NR", gender = "male")
+
+  result_female <- get_mps(
+    date = "01.01.2020",
+    institution = "NR",
+    gender = "female"
+  )
+  result_male <- get_mps(
+    date = "01.01.2020",
+    institution = "NR",
+    gender = "male"
+  )
   result_all <- get_mps(date = "01.01.2020", institution = "NR", gender = "all")
-  
+
   expect_s3_class(result_female, "data.frame")
   expect_s3_class(result_male, "data.frame")
   expect_s3_class(result_all, "data.frame")
-  
+
   # Check that gender filtering works with date
   expect_true(all(result_female$gender == "female"))
   expect_true(all(result_male$gender == "male"))
   expect_true(all(unique(result_all$gender) %in% c("male", "female")))
-  expect_true(nrow(result_all)==183)
-  
+  expect_true(nrow(result_all) == 183)
+
   # Results should be different
   expect_false(identical(result_female, result_male))
 })

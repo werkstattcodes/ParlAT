@@ -46,11 +46,11 @@ library(tidytext)
 library(ggtext)
 ```
 
-This vignette provides an introduction on how to use the ParlAT package 
-to the access and subseqently analyze the Open Data provided by
+This vignette provides an introduction on how to use the {ParlAT} package 
+to access and subseqently analyze open data provided by
 the Austrian Parliament. Below are some examples which are meant to give
 a general overview of the package's functionality.
-For details, please consult the reference section.
+For details, please consult the [reference section](../reference/index.html).
 
 # Get current MPs in the National Council (Nationalrat)
 
@@ -71,14 +71,33 @@ the function `get_mps()` comes into play. It either returns all MPs of the
 requested chamber, who formed part of it in the course of the entire legislative period (`legis_period` argument), or at a specific date (`date` argument). The latter is a convenient way
 to get the composition of the NR at a specifc date. 
 
-Note that the `legis_period` filter is not applicable when searching MPs of Federal Council (what includes also searches for MPs across all chambers).
+Note that the `legis_period` filter is not applicable when searching MPs of Federal Council (Bundesrat). This limitation includes also searches for MPs across all chambers.
 
 ```{r}
 #Search for all MPs in the National Council as of 1 January 2025
 mps_01012025 <- get_mps(date="01.01.2025", institution="NR")
 glimpse(mps_01012025)
 ```
+`get_mps` returns one row per MP and legislative period. The list column
+`mp_details` contains details on an MP's mandate during
+the relevant legislative period. Since such details can change over 
+the course of a legislative period (e.g. party affiliation, electoral list of
+the mandate), unnesting 'mp_details' may result in more than one row
+per MP. The example below reveals the changing 
 
+```{r}
+#get all MPs of the 26th legislative peiod
+mps_legis26 <- get_mps(legis_period=26, institution="NR")
+
+#unnest details on their mandats
+mps_legis26 <- mps_legis26  %>%
+tidyr::unnest(mp_details)
+
+#Example Peter Pilz during the 26th legislative period
+mps_legis26 %>%
+dplyr::filter(pad_intern %in% c(2349))
+```
+ 
 *Example Federal Council*
 ```{r, error=TRUE}
 #Search for all MPs who were members of the Federal Council during the 25th legislative period:
@@ -359,6 +378,8 @@ df_items <- df_items %>%
 #   theme_minimal() +
 #   facet_wrap(vars(`doktyp_lang`))
 ```
+
+
 
 *Example: Government Bills ("Regierungsvorlagen")*
 
