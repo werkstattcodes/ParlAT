@@ -2,49 +2,97 @@
 #'
 #' @description
 #' Retrieves information about plenary sessions from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsessions" target="_blank" rel="noopener">here.</a>)
-#' Data available from 20th legislative period onwards.
+#' Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards.
 #'
 #'
 #' @param institution A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).
-#' @param legis_period Numeric value specifying the legislative period. Data available from 20th legislative period onwards.
-#' @param session_and_activities A character string. One of 'sessions', 'submitted' or 'held'. Only permissible if insitution is *not* "BV".
-#' @param submitted A character string.  Specifying the type of activities that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only permissible if insitution is *not* "BV". See details below.
-#' @param held A character string. specifying the type of activities that took place. Possible values are: 'All', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'. Only permissible if insitution is *not* "BV". See details below.
-#' @return A data frame containing plenary session details.
+#' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards.
+#' @param session_and_activities A character string. One of 'sessions', 'submitted' or 'held'. Not applicable for BV (Bundesversammlung) - must be NULL for BV institution.
+#' @param submitted A character string.  Specifying the type of activities that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only used when `session_and_activities = "submitted"`. Not applicable for BV institution. See details below.
+#' @param held A character string. specifying the type of activities that took place. Possible values are: 'All', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'. Only used when `session_and_activities = "held"`. Not applicable for BV institution. See details below.
+#' @return A data frame containing plenary session details, or NULL if no results found. The structure depends on `session_and_activities` parameter:
+#'
+#' If *`session_and_activities = "sessions"`*:
+#' - `institution`: The parliamentary institution (e.g., "NR", "BR")
+#' - `legis_period`: The legislative period
+#' - `date`: The date of the session
+#' - `session_number`: The number of the session
+#' - `session_day`: The day of the session
+#' - `session_url`: The URL to the session page
+#' - `session_type_abbrev`: The abbreviation for the session type
+#' - `session_type_name`: The full name of the session type
+#' - `agenda_url`: A list column with URLs to the agenda in HTML and PDF formats
+#'
+#' If *`session_and_activities = "submitted"` or `"held"`*:
+#' - `legis_period`: The legislative period
+#' - `date`: The date of the activity
+#' - `url_session_item`: The URL to the session item
+#' - `url_session`: The URL to the session
+#' - `type_title`: The title of the activity type
+#' - `type_txt`: The text of the activity type
+#' - `topic`: The topic of the activity
+#' - `session_id`: The ID of the session
+#' - `session_number`: The number of the session
+#' - `link`, `link_2`, `link_3`: Additional links related to the activity
+#'
+#' For *BV (Bundesversammlung) institution*:
+#' - Returns basic session information without the activity-specific filtering options available for BR/NR
 #'
 #' @details
 #' Possible values for `submitted` if `session_and_activities` is set to `submitted`:
-#' *   All
-#' *   AA: Abänderungsanträge (Amendment Motions)
-#' *   G037: Anträge auf Absetzung von der Tagesordnung (Motions to Remove from Agenda)
-#' *   G080: Anträge auf Durchführung einer Volksabstimmung (Motions for Referendum)
-#' *   J: Dringliche Anfragen (Urgent Inquiries)
-#' *   AE: Dringliche Anträge (Urgent Motions)
-#' *   G015: Fristerstreckungsanträge (Deadline Extension Motions)
-#' *   G014: Fristsetzungsanträge (Deadline Setting Motions)
-#' *   AB: Kurze Debatten über Anfragebeantwortungen (Brief Debates on Inquiry Responses)
-#' *   G053: Rückverweisungsanträge (Referral Back Motions)
-#' *   UEA: Unselbständige Entschließungsanträge (Dependent Resolution Motions)
-#' *   UEAM: Unselbständige Misstrauensanträge (Dependent No-Confidence Motions)
+#' - All
+#' - AA: Abänderungsanträge (Amendment Motions)
+#' - G037: Anträge auf Absetzung von der Tagesordnung (Motions to Remove from Agenda)
+#' - G080: Anträge auf Durchführung einer Volksabstimmung (Motions for Referendum)
+#' - J: Dringliche Anfragen (Urgent Inquiries)
+#' - AE: Dringliche Anträge (Urgent Motions)
+#' - G015: Fristerstreckungsanträge (Deadline Extension Motions)
+#' - G014: Fristsetzungsanträge (Deadline Setting Motions)
+#' - AB: Kurze Debatten über Anfragebeantwortungen (Brief Debates on Inquiry Responses)
+#' - G053: Rückverweisungsanträge (Referral Back Motions)
+#' - UEA: Unselbständige Entschließungsanträge (Dependent Resolution Motions)
+#' - UEAM: Unselbständige Misstrauensanträge (Dependent No-Confidence Motions)
 #'
 #' Possible values for `held` if `session_and_activities` is set to `held`:
-#' *   All
-#' *   ASEU: Aktuelle Europastunden (Current Europe Hours)
-#' *   AS: Aktuelle Stunden (Current Hours)
-#' *   GO04: Erklärungen des Präsidenten / der Präsidentin (President's Declarations)
-#' *   FS: Fragestunden (Question Hours)
-#' *   RGER: Regierungserklärungen (Government Declarations)
-#' *   RGEU: Regierungserklärungen zu EU-Themen (Government Declarations on EU Topics)
-#' *   GO: Sonstige Geschäftsordnungsangelegenheiten (Other Procedural Matters)
-#' *   GO35: Unterrichtungen gemäß Art. 50 Abs. 5 B-VG (Notifications according to Art. 50 Para. 5 B-VG)
+#' - All
+#' - ASEU: Aktuelle Europastunden (Current Europe Hours)
+#' - AS: Aktuelle Stunden (Current Hours)
+#' - GO04: Erklarungen des Prasidenten / der Prasidentin (President Declarations)
+#' - FS: Fragestunden (Question Hours)
+#' - RGER: Regierungserklärungen (Government Declarations)
+#' - RGEU: Regierungserklärungen zu EU-Themen (Government Declarations on EU Topics)
+#' - GO: Sonstige Geschäftsordnungsangelegenheiten (Other Procedural Matters)
+#' - GO35: Unterrichtungen gemäß Art. 50 Abs. 5 B-VG (Notifications according to Art. 50 Para. 5 B-VG)
 #'
 #'
-#' @examples \dontrun{
-#' get_plenary_sessions(institution = "NR", legis_period = 26)
+#' @examples
+#' \dontrun{
+#' # Basic usage: Get sessions for National Council, period 26
+#' get_plenary_sessions(institution = "NR", legis_period = 26, session_and_activities = "sessions")
+#'
+#' # Get activities submitted during sessions
+#' get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted")
+#'
+#' # Get specific type of submitted activities (urgent inquiries)
+#' get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted", submitted = "J")
+#'
+#' # Get activities held during sessions
+#' get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "held", held = "FS")
+#'
+#' # Federal Council sessions
+#' get_plenary_sessions(institution = "BR", legis_period = 28, session_and_activities = "sessions")
+#'
+#' # Federal Assembly (BV) - no session_and_activities parameter
+#' get_plenary_sessions(institution = "BV", legis_period = 27)
+#'
+#' # Multiple legislative periods
+#' get_plenary_sessions(institution = "NR", legis_period = c(26, 27), session_and_activities = "sessions")
+#'
+#' # All periods from 20th onwards (NULL legis_period)
+#' get_plenary_sessions(institution = "NR", legis_period = NULL, session_and_activities = "sessions")
 #' }
 #'
 #' @export
-# TODO augment documentation
 
 get_plenary_sessions <- function(
     institution = NULL,
@@ -90,6 +138,14 @@ get_plenary_sessions <- function(
     }
 
     # LEGISLATIVE PERIOD; requires roman input
+    # Check that all legislative periods are >= 20 (API limitation)
+    # checkmate::assert_numeric(
+    #     legis_period,
+    #     lower = 20,
+    #     finite = TRUE,
+    #     any.missing = FALSE
+    # )
+
     if (!is.null(legis_period)) {
         legis_period_input <- as.character(as.roman(as.numeric(legis_period)))
         # print(legis_period_input)
@@ -108,7 +164,7 @@ get_plenary_sessions <- function(
         checkmate::assert_subset(
             session_and_activities,
             choices_session_and_activities,
-            empty.ok = TRUE
+            empty.ok = FALSE
         )
         ## encode
         session_and_activities_input <- switch(
