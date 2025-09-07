@@ -1,126 +1,247 @@
-#' Get Event Data from Parlament API
+#' Get Event Data from Austrian Parliament API
 #'
-#' This function retrieves event data based on search parameters from the Parlament API.
-#' It largely mirrors the search functionality on the Austrian Parliament website at
+#' This function retrieves event data based on search parameters from the Austrian Parliament API.
+#' It mirrors the search functionality on the Austrian Parliament website at
 #' <a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">this page</a>.
-
-#' @param search_string Optional character string used to further filter the search results.
-#TODO make clear what search_string is actually doing; where does it search; title of events; or body?
-#' @param institution Character specifying the institution to query. Must be one of "Bundesrat" or "Nationalrat".
-#' @param event_type Optional character string indicating the event type. See Details.
-#TODO add English translation
-#' @param place Optional character string to filter events by location. See details.
-#TODO add locations
-#' @param echo Logical indicating; prints used search parameters, number of hits, and link to results on website of parliament.
-#' @param date_start Optional character string representing the start date in "dd-mm-yyyy" format.
-#' @param date_end Optional character string representing the end date in "dd-mm-yyyy" format.
+#'
+#' @param search_string Optional character string used to filter events by searching in event titles and descriptions. Default is NULL.
+#' @param institution Character vector specifying the institution(s) to query. Must be "NR" (Nationalrat/National Council), "BR" (Bundesrat/Federal Council), or "ParlDir/Klub" ("Parliamentary Directorate/Caucus"). Can be a single value or vector for multiple institutions. NULL covers all institutions.
+#' @param event_type Optional character string indicating the event type. Must be one of the predefined event types (see Details). Default is NULL (all types).
+#' @param location Optional character string to filter events by location. Must be one of the predefined locations (see Details). Default is NULL (all locations).
+#' @param echo Logical indicating whether to print used search parameters, number of hits, and link to results on website of parliament. Default is TRUE.
+#' @param legis_period Character or numeric value of length 1, or NULL. Specifies the legislative period to search in. Only available if `date_start` and `date_end` are NULL.
+#' @param date_start Optional character string representing the start date. Default is NULL.
+#' @param date_end Optional character string representing the end date. Default is NULL.
 #' @details
 #' ## Event type
 #' Allowed event types are:
-#'   - "Plenarsitzung (Plenary Session)"
-#'   - "Ausschusssitzung oder Ausschuss (Committee Meeting or Committee)"
-#'   - "Besuch einer Plenarsitzung (Visit to a Plenary Session)"
-#'   - "Demokratiebildung (Democracy Education)"
-#'   - "Fest-/Gedenksitzung (Ceremonial/Commemorative Session)"
-#'   - "Führung (Guided Tour)"
-#'   - "Internationales (International)"
-#'   - "Klubveranstaltung (Club Event)"
-# TODO check translation
-#'   - "Konferenz (Conference)"
-#'   - "Parlamentarische Enquete (Parliamentary Inquiry)"
-#'   - "Pressekonferenz (Press Conference)"
-#'   - "Sitzung der Bundesversammlung (Federal Assembly Session)"
-# TODO check translation
-#'   - "Sonstiger Termin (Other Event)"
-#'   - "Veranstaltung (Event)".
+#'   - "Plenarsitzung" (Plenary Session)
+#'   - "Ausschusssitzung oder Ausschuss" (Committee Meeting or Committee)
+#'   - "Besuch einer Plenarsitzung" (Visit to a Plenary Session)
+#'   - "Demokratiebildung" (Democracy Education)
+#'   - "Fest-/Gedenksitzung" (Ceremonial/Commemorative Session)
+#'   - "Führung" (Guided Tour)
+#'   - "Internationales" (International)
+#'   - "Klubveranstaltung" (Club Event)
+#'   - "Konferenz" (Conference)
+#'   - "Parlamentarische Enquete" (Parliamentary Inquiry)
+#'   - "Pressekonferenz" (Press Conference)
+#'   - "Sitzung der Bundesversammlung" (Federal Assembly Session)
+#'   - "Sonstiger Termin" (Other Event)
+#'   - "Veranstaltung" (Event)
 #'
-#' ## Place
-#' Must match one of the predefined choices.
+#' ## Location
+#' Allowed locations are:
+#'   - "Abgeordneten-Sprechzimmer (alt)"
+#'   - "Auditorium"
+#'   - "Außer Haus"
+#'   - "Bertha von Suttner | Lokal 4"
+#'   - "Blauer Salon (Epstein E1)"
+#'   - "Bundesratssaal"
+#'   - "Bundesrats-Sitzungssaal (alt)"
+#'   - "Bundesversammlungssaal"
+#'   - "Burgraum (Hofburg)"
+#'   - "Camineum (ÖNB)"
+#'   - "Dachfoyer (Hofburg)"
+#'   - "Egon Schiele | Lokal 7"
+#'   - "Elise Richter | Lokal 2"
+#'   - "Empfangssalon"
+#'   - "Epstein Beletage"
+#'   - "Epstein Innenhof"
+#'   - "Erwin Schrödinger | Lokal 1"
+#'   - "Extern"
+#'   - "Festsaal (Epstein E3)"
+#'   - "Großer Prunksaal (1. OG Stubenring)"
+#'   - "Großer Redoutensaal"
+#'   - "Heldenplatz"
+#'   - "Historischer Sitzungssaal (alt)"
+#'   - "Kunschak-Saal"
+#'   - "Lise Meitner | Lokal 6"
+#'   - "Lokal I (Ministerratszimmer, alt)"
+#'   - "Lokal II (alt)"
+#'   - "Lokal III (alt)"
+#'   - "Lokal IV (alt)"
+#'   - "Lokal V (alt)"
+#'   - "Lokal VI (Budgetsaal, alt)"
+#'   - "Lokal VII (alt)"
+#'   - "Lokal VIII (alt)"
+#'   - "Lokal 1 Medienraum (EG Bibliothekshof)"
+#'   - "Lokal 2 (EG Bibliothekshof)"
+#'   - "Lokal 3 (EG Bibliothekshof)"
+#'   - "Lokal 4 (2. OG Bibliothekshof)"
+#'   - "Lokal 5 (3. OG Bibliothekshof)"
+#'   - "Lokal 6 (3. OG Bibliothekshof)"
+#'   - "Lokal 7 (Hofburg Segmentbogen)"
+#'   - "Ludwig Wittgenstein | Lokal 5"
+#'   - "Nationalratssaal"
+#'   - "Nationalrats-Sitzungssaal (alt)"
+#'   - "Palais Epstein"
+#'   - "Parlament"
+#'   - "Parliament"
+#'   - "Plenar-Lounge"
+#'   - "Portikus"
+#'   - "Pressezentrum"
+#'   - "Roter Salon (Epstein E4)"
+#'   - "Säulenhalle"
+#'   - "Säulenhalle (alt)"
+#'   - "Spielsalon (Epstein E5)"
+#'   - "Teamentwicklung"
+#'   - "Theophil Hansen | Lokal 3"
+#'   - "virtuell"
 #'
-#'
-#' @return A data frame containing event details if results are found. If no events match the criteria,
-#'   the function prints a message and returns NULL.
+#' @return A data frame containing event details with the following columns, or NULL if no results are found:
+#' - `date`: Event date (parsed as Date)
+#' - `date_time_start`: Event start date and time (parsed as POSIXct)
+#' - `date_time_end`: Event end date and time (parsed as POSIXct)
+#' - `title`: Event title/name
+#' - `event_type`: Type of event
+#' - `location`: Event location/venue
+#' - `topic`: Event topic/subject
+#' - `institution`: Institution hosting the event
+#' - `media_relevance`: Media relevance indicator
+#' - `guidance_type`: Type of guidance (if applicable)
+#' - `group`: Group information
+#' - `view`: View/visibility settings
+#' - `fully_booked`: Whether the event is fully booked
+#' - `registration`: Registration information
+#' - `livestream_url`: URL for livestream (if available)
+#' - `available`: Availability status
+#' - `language`: Event language
+#' - `link`: Primary link to event details
+#' - `link2`: Secondary link (if available)
 #'
 #' @examples
 #' \dontrun{
-#'   # Example: Retrieve events from the Nationalrat between "01-01-2022" and "31-01-2022"
+#'   # Basic example: Get all National Council events
+#'   events <- get_events(institution = "NR")
+#'
+#'   # Get events with specific search term and date range
 #'   events <- get_events(
 #'     search_string = "budget",
-#'     institution = "Nationalrat",
+#'     institution = "NR",
+#'     date_start = "01-01-2024",
+#'     date_end = "31-01-2024"
+#'   )
+#'
+#'   # Get plenary sessions in the National Council chamber
+#'   events <- get_events(
+#'     institution = "NR",
 #'     event_type = "Plenarsitzung",
-#'     place = "Nationalratssaal",
-#'     date_start = "01-01-2022",
-#'     date_end = "31-12-2022",
-#'     echo = TRUE
+#'     location = "Nationalratssaal"
+#'   )
+#'
+#'   # Get Federal Council events
+#'   events <- get_events(
+#'     institution = "BR",
+#'     event_type = "Plenarsitzung"
+#'   )
+#'
+#'   # Get events for a specific legislative period
+#'   events <- get_events(
+#'     institution = "NR",
+#'     legis_period = 28
+#'   )
+#'
+#'   # Get events from multiple institutions
+#'   events <- get_events(
+#'     institution = c("NR", "BR"),
+#'     event_type = "Plenarsitzung"
 #'   )
 #' }
 #'
 #' @export
 get_events <- function(
     search_string = NULL,
-    institution = "Nationalrat",
+    institution = NULL,
     event_type = NULL,
-    place = NULL,
-    date_start = NULL, #TODO add default
+    location = NULL,
+    legis_period = NULL,
+    date_start = NULL,
     date_end = NULL,
     echo = TRUE
 ) {
-    #INSTITUTION
+    # PARAMETER VALIDATION
+    checkmate::assert_character(search_string, len = 1, null.ok = TRUE)
+
+    if (!is.null(institution) & length(institution) > 1) {
+        li_res <- purrr::map(
+            institution,
+            \(x) {
+                get_events(
+                    institution = x,
+                    search_string = {{ search_string }},
+                    event_type = {{ event_type }},
+                    location = {{ location }},
+                    legis_period = {{ legis_period }},
+                    date_start = {{ date_start }},
+                    date_end = {{ date_end }},
+                    echo = {{ echo }}
+                )
+            }
+        )
+        return(purrr::list_rbind(li_res))
+    }
+
     checkmate::assert_subset(
         institution,
-        choices = c("Bundesrat", "Nationalrat"),
-        empty.ok = FALSE
+        choices = c("BR", "NR", "ParlDir/Klub"),
+        empty.ok = TRUE
     )
+
     ##encode
-    # institution_input <- switch(
-    #     institution,
-    #     Nationalrat = "NR",
-    #     Bundesrat = "BR"
-    # )
-
-    institution_input <- institution
-
-    #DATE START; DATE END
-    ## TODO allow for different date types such as "yyyy-mm-dd", "mm/dd/yyyy", and "dd-mm-yyyy"
-    # Date validation
-    if (!is.null(date_start)) {
-        # checkmate::assert_character(date_start, len = 1, null.ok = TRUE)?
-        checkmate::assert_true(
-            stringr::str_detect(date_start, "^\\d{2}-\\d{2}-\\d{4}$"),
-            .var.name = "date_start must be in format dd-mm-yyyy"
+    institution_input <- if (
+        is.null(institution) || (length(institution) == 1 && is.na(institution))
+    ) {
+        NULL
+    } else {
+        dplyr::case_when(
+            institution == "NR" ~ "Nationalrat",
+            institution == "BR" ~ "Bundesrat",
+            institution == "ParlDir/Klub" ~ "Parlamentsdirektion / Klubs",
+            TRUE ~ as.character(institution)
         )
-
-        # date_start <- "17-03-2025"
-        # Parse the date string (day-month-year format)
-        date_cet <- lubridate::dmy(date_start)
-        # Set the timezone to CET
-        date_cet <- lubridate::force_tz(date_cet, tzone = "CET")
-        # Convert to UTC
-        date_utc <- lubridate::with_tz(date_cet, tzone = "UTC")
-        # Format the result in ISO 8601 format
-        date_start <- format(date_utc, "%Y-%m-%dT%H:%M:%S.000Z")
     }
 
-    #date end
-    if (!is.null(date_end)) {
-        checkmate::assert_character(date_end, len = 1, null.ok = TRUE)
-        checkmate::assert_true(
-            stringr::str_detect(date_end, "^\\d{2}-\\d{2}-\\d{4}$"),
-            .var.name = "date_end must be in format dd-mm-yyyy"
+    checkmate::assert_logical(echo, len = 1, null.ok = FALSE)
+
+    #LEGIS PERIOD check
+    if (!is.null(date_start) && !is.null(date_end) && !is.null(legis_period)) {
+        stop(
+            "Input for `legis_period` only permissible if `date_start` and `date_end` are NULL. Choose either
+            `legis_period` or dates as input, not both."
         )
-        # date_end <- "19-03-2025"
-        # Parse the date string (day-month-year format)
-        date_cet <- lubridate::dmy(date_end)
-        # Set the timezone to CET
-        date_cet <- lubridate::force_tz(date_cet, tzone = "CET")
-        # Convert to UTC
-        date_utc <- lubridate::with_tz(
-            date_cet + lubridate::days(1) - lubridate::seconds(1),
-            tzone = "UTC"
-        )
-        # Format the result in ISO 8601 format
-        date_end <- format(date_utc, "%Y-%m-%dT%H:%M:%S.000Z")
     }
+
+    # Validate legis_period parameter (must be length 1)
+    if (!is.null(legis_period)) {
+        checkmate::assert(
+            checkmate::check_character(legis_period, len = 1),
+            checkmate::check_numeric(legis_period, len = 1),
+            .var.name = "legis_period must be a single character or numeric value"
+        )
+    }
+
+    if (is.null(date_start) && is.null(date_end) && !is.null(legis_period)) {
+        df_legis <- get_legis_periods(legis_period = legis_period)
+        date_start <- format(df_legis$date_start, "%d-%m-%Y")
+        if (isTRUE(df_legis$legis_period_current)) {
+            date_end <- format(lubridate::today(), "%d-%m-%Y")
+        } else {
+            date_end <- format(df_legis$date_end, "%d-%m-%Y")
+        }
+    }
+
+    # DATE PROCESSING
+    date_start <- aux_transform_event_date(
+        date_start,
+        "date_start",
+        is_end_date = FALSE
+    )
+    date_end <- aux_transform_event_date(
+        date_end,
+        "date_end",
+        is_end_date = TRUE
+    )
 
     #event type
     choices_event_type <- c(
@@ -190,7 +311,6 @@ get_events <- function(
         "Lokal 7 (Hofburg Segmentbogen)",
         "Ludwig Wittgenstein | Lokal 5",
         "Nationalratssaal",
-        "Nationalratssaal",
         "Nationalrats-Sitzungssaal (alt)",
         "Palais Epstein",
         "Parlament",
@@ -209,7 +329,7 @@ get_events <- function(
     )
 
     checkmate::assert_subset(
-        x = place,
+        x = location,
         choices = choices_place,
         empty.ok = TRUE
     )
@@ -219,27 +339,12 @@ get_events <- function(
         DATERANGE = c(date_start, date_end),
         GREMIUM = institution_input,
         TERMINART = event_type,
-        ORT = place
-    ) %>%
-        purrr::compact() %>%
+        ORT = location
+    ) |>
+        purrr::compact() |>
         jsonlite::toJSON()
 
-    # print(date_start)
-    # print(date_end)
-    # print(body_params)
-
-    # body_params <- "{\"DATERANGE\":[\"2025-03-17T23:00:00.000Z\",\"2025-03-19T22:59:59.000Z\"],\"GREMIUM\":[\"Nationalrat\"]}"
-
     res <- get_events_api_request(body_params, search_string)
-
-    #TODO alternative way to print search link
-    # if (echo == TRUE) {
-    #     print(class(res))
-    #     print(length(res))
-    #     res_request <- res[[1]] %>% httr2::resp_request()
-    #     print(res_request)
-    #     print(res_request$headers$referer)
-    # }
 
     df_res <- purrr::map(res, \(x) {
         vec_headings <- x |>
@@ -250,37 +355,34 @@ get_events <- function(
         # extract the actual substantive data
         df_res <- x |>
             httr2::resp_body_json(simplifyVector = T) |>
-            purrr::pluck("rows") %>%
+            purrr::pluck("rows") |>
             as.data.frame()
 
         if (length(df_res) == 0) {
-            message("No results found for the provided search criteria.")
+            # message("No results found for the provided search criteria.")
             return(NULL)
         }
 
         colnames(df_res) <- vec_headings
 
         return(df_res)
-    }) %>%
+    }) |>
         purrr::list_rbind()
 
-    checkmate::assert_data_frame(df_res, min.rows = 1)
-
-    if (echo == TRUE) {
+    if (isTRUE(echo)) {
         print(body_params)
 
         # # print url to results / transparency reasons / add search string parameter
-        body_params_li <- jsonlite::fromJSON(body_params) %>%
-            c(., "search" = search_string)
+        body_params_li <- jsonlite::fromJSON(body_params) |>
+            c("search" = search_string)
 
         query_string <- purrr::imap(
             body_params_li,
             \(x, y) glue::glue("TERMIN_01{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&") %>%
-            # URLencode(., reserved = TRUE)
+        ) |>
+            unlist() |>
+            unname() |>
+            paste0(collapse = "&") |>
             URLencode()
 
         print(glue::glue(
@@ -290,21 +392,84 @@ get_events <- function(
         print(nrow(df_res))
     }
 
+    if (length(df_res) == 0) {
+        message("No results found for the provided search criteria.")
+        return(NULL)
+    }
+
     if ("link2" %in% colnames(df_res)) {
-        df_res <- df_res %>%
+        df_res <- df_res |>
             dplyr::mutate(
-                link2 = map_chr(link2, \(x) {
+                link2 = purrr::map_chr(link2, \(x) {
                     if (is.na(x) | is.null(x)) {
                         return(NA)
                     } else {
-                        x %>%
-                            rvest::read_html() %>%
-                            rvest::html_element("a") %>%
+                        x |>
+                            rvest::read_html() |>
+                            rvest::html_element("a") |>
                             rvest::html_attr("href")
                     }
                 })
             )
     }
+
+    #RENAME AND SELECT COLUMNS
+    #rename
+    renaming_map <- c(
+        "datum" = "date",
+        "datum_3" = "date_time_start",
+        "datum_bis" = "date_time_end",
+        "bezeichnung" = "title",
+        "terminart" = "event_type",
+        "ort" = "location",
+        "themen" = "topic",
+        "gremium" = "institution",
+        "medienrelevant" = "media_relevance",
+        "fuhrungsformat" = "guidance_type",
+        "gruppe" = "group",
+        "sicht" = "view",
+        "ausgebucht" = "fully_booked",
+        "anmeldung" = "registration",
+        "livestreamlink" = "livestream_url",
+        "verfugbar" = "available",
+        "sprache" = "language"
+    )
+
+    df_res <- df_res |>
+        dplyr::rename_with(
+            .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+            .cols = any_of(names(renaming_map))
+        )
+
+    #select relevant columns
+    cols_select <- c(
+        "date",
+        "date_time_start",
+        "date_time_end",
+        "title",
+        "event_type",
+        "location",
+        "topic",
+        "institution",
+        "media_relevance",
+        "guidance_type",
+        "group",
+        "view",
+        "fully_booked",
+        "registration",
+        "livestream_url",
+        "available",
+        "language",
+        "link",
+        "link2"
+    )
+
+    df_res <- df_res |>
+        dplyr::select(any_of(cols_select)) %>%
+        dplyr::mutate(date = lubridate::dmy(date)) %>%
+        dplyr::mutate(date_time_start = lubridate::ymd_hms(date_time_start)) %>%
+        dplyr::mutate(date_time_end = lubridate::ymd_hms(date_time_end)) %>%
+        dplyr::arrange(desc(date))
 
     return(df_res)
 }
@@ -367,7 +532,7 @@ get_events_api_request <- function(body_params, search_string) {
             `sec-fetch-mode` = "cors",
             `sec-fetch-site` = "same-origin",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-            cookie = "JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv04e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv06e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.master:green1"
+            # cookie = "JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv04e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv06e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.master:green1"
         ) |>
         httr2::req_body_raw(body_params, type = "application/json") |>
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
@@ -385,8 +550,8 @@ get_events_api_request <- function(body_params, search_string) {
 
         # print(paste("Next page:", df_resp_current$pages))
 
-        df_resp_current <- df_resp_current %>%
-            purrr::pluck("rows") %>%
+        df_resp_current <- df_resp_current |>
+            purrr::pluck("rows") |>
             as.data.frame()
 
         # print(nrow(df_resp_current))
@@ -406,6 +571,50 @@ get_events_api_request <- function(body_params, search_string) {
     )
 
     # return result
-    # print(class(resp))
     return(resp)
+}
+
+#' Transform Event Date for API Request
+#'
+#' Helper function to convert date from dd-mm-yyyy format to ISO 8601 UTC format
+#' required by the Austrian Parliament API.
+#'
+#' @param date_string Character string in "dd-mm-yyyy" format or NULL
+#' @param param_name Name of the parameter for error messages
+#' @param is_end_date Logical indicating if this is an end date (adds 1 day minus 1 second)
+#' @return Character string in ISO 8601 format or NULL
+#' @keywords internal
+aux_transform_event_date <- function(
+    date_string,
+    param_name,
+    is_end_date = FALSE
+) {
+    if (is.null(date_string)) {
+        return(NULL)
+    }
+
+    # Validate format
+    checkmate::assert_character(date_string, len = 1)
+
+    # Parse the date string (day-month-year format)
+    date_cet <- lubridate::dmy(date_string)
+
+    # Validate that date parsing was successful
+    if (is.na(date_cet)) {
+        stop(paste(param_name, "contains an invalid date:", date_string))
+    }
+
+    # Set the timezone to CET
+    date_cet <- lubridate::force_tz(date_cet, tzone = "CET")
+
+    # For end dates, add 1 day minus 1 second to include the full end day
+    if (is_end_date) {
+        date_cet <- date_cet + lubridate::days(1) - lubridate::seconds(1)
+    }
+
+    # Convert to UTC
+    date_utc <- lubridate::with_tz(date_cet, tzone = "UTC")
+
+    # Format the result in ISO 8601 format
+    return(format(date_utc, "%Y-%m-%dT%H:%M:%S.000Z"))
 }
