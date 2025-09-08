@@ -17,12 +17,12 @@ fn_check_legis_period_elements <- function(x) {
       x %in%
         c(
           "all",
-          "Provisorische Nationalversammlung",
-          "Konstituierende Nationalversammlung"
+          "PN",
+          "KN"
         ))
   ) {
     stop(
-      "Invalid input for legis_period. Must be a numeric value or one of 'all', 'Provisorisch Nationalversammlung', or 'Konstituierende Nationalversammlung'."
+      "Invalid input for legis_period. Must be a numeric value or one of 'all', 'PN', or 'KN'."
     )
   }
 
@@ -74,6 +74,7 @@ aux_parl_group_names_standard <- function(parl_group) {
   group_BZÖ <- c("BZÖ", "F-BZÖ")
   group_NEOS <- c("NEOS", "NEOS-LIF")
   group_JETZT <- c("JETZT", "PILZ")
+  group_LIF <- c("LIF", "NEOS-LIF")
 
   #combine & make unique
   for (i in seq_along(parl_group)) {
@@ -88,6 +89,9 @@ aux_parl_group_names_standard <- function(parl_group) {
     }
     if (parl_group[i] %in% group_JETZT) {
       parl_group <- c(parl_group, group_JETZT)
+    }
+    if (parl_group[i] %in% group_LIF) {
+      parl_group <- c(parl_group, group_LIF)
     }
   }
   return(parl_group %>% unique())
@@ -127,6 +131,7 @@ fn_make_tibble <- function(x) {
 #'
 #'
 #' @keywords internal
+#' @noRd
 aux_convert_legis_periods <- function(legis_period) {
   if (is.null(legis_period)) {
     return(NULL)
