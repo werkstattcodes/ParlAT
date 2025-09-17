@@ -1,29 +1,29 @@
-#' Get items under negotiation ("Verhandlungsgegenstände")
+#' Get items under negotiation ('Verhandlungsgegenstände')
 #' @encoding UTF-8
 #' @description
 #' `get_items` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 #' in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
 #' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">here</a>).
 #'
-#' @param topic Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
-#' @param institution Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is "Nationalrat".
+#' @param search_string Character string or `NULL`. General search term to filter results. Default is `NULL`.
+#' @param topic (Thema) Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
+#' @param institution Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is `NULL` which returns both chambers.
 #' @param legis_period Character vector or `NULL`. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is `NULL`.
-#' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy". Default is `NULL`.
-#' @param date_end Character string. End date for the search period in format "dd-mm-yyyy". Default is `NULL`.
+#' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
+#' @param date_end Character string. End date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param item Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param doc_type Character vector or `NULL`. Specifies the type of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param person Character string or `NULL`. Name of a person to search for (family name, optionally followed by first name). Default is `NULL`.
-#' @param number Character string or `NULL`. Specific item number to search for. Default is `NULL`.
+#' @param number Character string, numeric, or `NULL`. Specific item number to search for. Numeric input will be converted to character. Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
 #' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See Details.
 #' @param parl_group_names_standard Logical. If `TRUE`, the function expands and standardizes parliamentary group names. Default is `FALSE`. See Details.
-# TODO: add parl_group_names_standard explentation to details
-#' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
+#' @param echo Logical. If `TRUE`, the function prints the used search parameters and the url to the pertaining search results on website of the Austrian Parliament.
 #'
 #' @details
 #' ## Topic (Thema)
-#
+#  NULL, one, or multiple topics permissible.
 #' Possible values for `topic` are:
 #'
 #' * "Arbeit" (work)
@@ -50,8 +50,8 @@
 #' ## legis_period (Gesetzgebungsperiode)
 #' `legis_period` specifies the legislative period(s). Can be one or more of the following value(s):
 #' * numbers indicating the relevant period(s),
-#' * "Provisorische Nationalversammlung" (Provisional National Assembly, 1918-1919),
-#' * and/or "Konstituierende Nationalversammlung" (Constituent National Assembly, 1919-1920).
+#' * "PN" (Provisorische Nationalversammlung, Provisional National Assembly, 1918-1919),
+#' * and/or "KN" (Konstituierende Nationalversammlung, Constituent National Assembly, 1919-1920).
 #'
 #' ## item (Gegenstand)
 #' Possible values for `item` include:
@@ -87,7 +87,7 @@
 #' ## doc_type (Art des Antrages)
 #' If item is "ANTR", the permissible values for doc_type depend on the
 #' institution of interest.
-#' Possible values for `doc_type` if institution=="Nationalrat" ('National Council'):
+#' Possible values for `doc_type` if institution=="NR" ('National Council'):
 #' * "A" (Selbständiger Antrag, Independent Motion)
 #' * "A(E)" (Selbständiger Entschließungsantrag, Independent Resolution Motion)
 #' * "AA" (Abänderungsantrag, Amendment Motion)
@@ -100,7 +100,7 @@
 #' * "UEAM" (Misstrauensantrag, Motion of No Confidence)
 #' * "URH2" (Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses, Request for Audit by the Standing Subcommittee of the Court of Audit Committee)
 #'
-#' Possible values for `doc_type` if institution=="Bundesrat" ('Federal Council'):
+#' Possible values for `doc_type` if institution=="BR" ('Federal Council'):
 #' *  "AA-BR" (Abänderungsanträge, Amendment Motions)
 #' *  "A-BR" (Selbständiger Antrag Bundesrat, Independent Motion Federal Council)
 #' *  "A(E)" (Selbständiger Entschließungsantrag Bundesrat, Independent Resolution Motion Federal Council)
@@ -112,12 +112,67 @@
 #' * "BS" (Sonstiger Beschluss, Other Resolution)
 #' * "BSE" (Beschluss-EU, EU Resolution)
 #' * "BSESM" (Beschluss-ESM, ESM Resolution)
-#' * "BS-BR" (Sonstiger Beschluss, Other Resolution (only if instituition=="Bundesrat"))
+#' * "BS-BR" (Sonstiger Beschluss, Other Resolution (only if institution=="Bundesrat"))
 #'
 #' ## EuroVoc
 #' EuroVoc is an international thesaurus developed primarily for use within the EU. It enables searches
 #' using standardized keywords across Europe. The EuroVoc search is supported for all negotiation items
 #' from the 20th legislative period onwards.
+#'
+#' ## Keywords (Schlagwort)
+#' Possible values for `keyword` include:
+#'
+#' * "Abfallwirtschaft", "Abgeordnete", "Abstimmungen, geheime", "Abstimmungen, namentliche"
+#' * "Abstimmungsangelegenheiten", "Abweichende persönliche Stellungnahmen", "Aktuelle Europastunden"
+#' * "Aktuelle Stunden", "Anfragebeantwortungen, Besprechung von", "Anfragen, Dringliche"
+#' * "Anträge, Dringliche", "Apotheken", "Arbeiterkammern", "Arbeitsinspektion", "Arbeitsmarkt"
+#' * "Arbeitsrecht I. österreichisches", "Arbeitsrecht II. internationales", "Archive", "Atomenergie"
+#' * "Außenpolitik", "Ausländer", "Ausschüsse des Nationalrates", "Bauwesen", "Bergbau"
+#' * "Betriebsräte", "Bibliotheken", "Bildungswesen I. Pflichtschulen", "Bildungswesen II. Mittlere Schulen"
+#' * "Bildungswesen III. Höhere Schulen", "Bildungswesen IV. Universitäten und Hochschulen"
+#' * "Bildungswesen V. Minderheitenschulwesen", "Bildungswesen VI. Schülerbeihilfen und Studienförderung"
+#' * "Bildungswesen VII. Erwachsenenbildung", "Bildungswesen VIII. Sonstiges", "Bundesforste"
+#' * "Bundesgesetzblatt", "Bundeshaushalt I. Bundesfinanzgesetze", "Bundeshaushalt II. Budgetüberschreitungen"
+#' * "Bundeshaushalt III. Sonstiges", "Bundesländer", "Bundespräsident:in"
+#' * "Bundesregierung I. Ernennungen, Enthebungen und Ableben", "Bundesregierung II. Regierungserklärungen"
+#' * "Bundesregierung III. Sonstiges", "Bundesverfassung", "Bundesvermögen", "Bundeswappen"
+#' * "Bürgerinitiativen", "Debattenanträge bzw. -verlangen", "Ehrenzeichen und Medaillen"
+#' * "Einsprüche des Bundesrates", "Einspruchsfrist des Bundesrates", "Elektrizität", "Elementarpädagogik"
+#' * "Energiewirtschaft", "Entwicklungszusammenarbeit", "Erklärungen Präsident/Präsidentin"
+#' * "Erste Lesungen", "Erste Lesungen, Anträge/Verlangen", "Europäische Integration", "Europarat"
+#' * "Familienlastenausgleich", "Familienpolitik", "Film", "Finanzausgleich", "Flüchtlinge"
+#' * "Fragestunden", "Frauen und Gleichbehandlung", "Fremdenverkehr", "Fristsetzungen"
+#' * "Geschäftsordnung des Nationalrates", "Gesundheit", "Glücksspiel", "Grenzen"
+#' * "Handel, Gewerbe und Industrie", "II. Einberufung und Beendigung der Tagungen"
+#' * "III. Präsidenten, Schriftführer und Ordner", "III. Sonstiges", "Immunität"
+#' * "Information und Informationsverarbeitung", "Internet", "IV. Ansprachen Präsident/Präsidentin"
+#' * "Jagd und Fischerei", "Jugend", "Kommuniques", "Kreditwesen", "Kunst und Kultur"
+#' * "Land- und Forstwirtschaft", "Landesverteidigung", "Lebensmittel", "Löhne und Gehälter"
+#' * "Maße und Gewichte", "Menschen mit Behinderung", "Menschenrechte", "Minderheitsberichte"
+#' * "Misstrauensanträge", "Museen", "Nationalfeiertag", "Neutralität", "Öffentliche Unternehmen"
+#' * "Öffentlicher Dienst", "Opferfürsorge und Opferschutz", "Ordnungsrufe", "Pässe und Ausweise"
+#' * "Pensionssystem", "Personenstandsrecht", "Petitionen", "Pflege und Betreuung"
+#' * "Politische Parteien", "Postwesen", "Preise", "Presse", "Prüfungsaufträge Rechnungshof"
+#' * "Prüfungsaufträge Rechnungshofausschuss", "Raumordnung", "Rechnungshof", "Rechtsanwälte und Notare"
+#' * "Rechtsbereinigung", "Rechtspflege", "Redezeitbeschränkungen", "Religion", "Rückverweisungen"
+#' * "Rundfunk und Fernsehen", "Sicherheitswesen", "Sitzungsunterbrechung", "Sondersitzungen"
+#' * "Sonstige Geschäftsordnungsangelegenheiten", "Sozialpolitik", "Sozialversicherung I. Allgemeine Sozialversicherung"
+#' * "Sozialversicherung II. Gewerbliche Sozialversicherung", "Sozialversicherung III. Landwirtschaftliche Sozialversicherung"
+#' * "Sozialversicherung IV. Kriegsopferversorgung", "Sozialversicherung V. Arbeitslosenversicherung"
+#' * "Sozialversicherung VI. Sonstiges", "Sport", "Staatsbürger:in", "Staatsverträge", "Statistik"
+#' * "Steuern und Gebühren", "Strafrecht", "Straßen- und Brückenbau", "Südtirol", "Tabak"
+#' * "Tagesordnung", "Telekommunikation", "Theater", "Trauerkundgebungen", "Umweltschutz"
+#' * "Untersuchungsausschüsse", "Unvereinbarkeit", "V. Sonstiges", "Vereinbarungen"
+#' * "Vereins- und Versammlungsrecht", "Vereinte Nationen", "Verfassungs- und Verwaltungsgerichtsbarkeit"
+#' * "Verkehr I. Straßenverkehr", "Verkehr II. Schienenverkehr", "Verkehr III. Luftfahrt"
+#' * "Verkehr IV. Schifffahrt", "Verkehr V. Sonstiges", "Verkürztes Verfahren", "Vermessung"
+#' * "Vermögenssicherung", "Vertragsversicherungen", "Verwaltungsorganisation", "Verwaltungsverfahren"
+#' * "Veterinärwesen und Tierschutz", "Völkerrecht", "Völkerrechtliche Vertretungen", "Volksabstimmung"
+#' * "Volksanwaltschaft", "Volksbefragung", "Volksbegehren", "Volksgruppen", "Volkszählung"
+#' * "Wahlen", "Währung", "Wasserbauten", "Wasserrecht", "Wasserwirtschaft", "Weinwirtschaft"
+#' * "Wirtschaftspolitik", "Wirtschaftstreuhänder:in", "Wissenschaft und Forschung", "Wohnungswesen"
+#' * "Wortentziehung", "Wortmeldungen zur Geschäftsbehandlung", "Zivildienst", "Zivilrecht"
+#' * "Zivilschutz", "Zollwesen"
 #'
 #' ## Parlamentary Group (Klub/Fraktion)
 #' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
@@ -153,6 +208,14 @@
 #' - "VO" (Wahlgemeinschafft Österreichische Volksopposition)
 #' - "WdU" (Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen))
 #'
+#' ## parl_group_names_standard
+#' When `parl_group_names_standard = TRUE`, the function automatically converts common party names
+#' to their official abbreviations used by the Austrian Parliament API. This feature helps users
+#' who might not know the exact abbreviations required by the API. E.g. over the years the FPÖ
+#' has featured different abbreviations for their parlamentary group: 'FPÖ','F', and 'F-BZÖ'. With
+#' parl_group_names_standard set to TRUE, an input of 'F' (or any other) will return the
+#' results for all three abbreviations.
+#'
 #' @return A data frame containing the search results. If no results are found, the function returns `NULL`
 #' and displays a message.
 #'
@@ -161,12 +224,53 @@
 #' @export
 #'
 #' @examples \dontrun{
-#' get_items(topic="Europäische Union", legis_period=28)
+#' # Search for EU-related items in the 28th legislative period
+#' get_items(topic = "Europäische Union", legis_period = 28)
+#'
+#' # Search for motions (Anträge) in National Council from February 2024
+#' get_items(
+#'   institution = "NR",
+#'   item = "ANTR",
+#'   date_start = "01-02-2024",
+#'   date_end = "29-02-2024"
+#' )
+#'
+#' # Search for items by specific parliamentary groups
+#' get_items(
+#'   parl_group = c("SPÖ", "ÖVP"),
+#'   legis_period = 27,
+#'   topic = "Bildung"
+#' )
+#'
+#' # Search for written questions with keyword
+#' get_items(
+#'   item = "J_JPR_M",
+#'   keyword = "Klimaschutz",
+#'   institution = "NR"
+#' )
+#'
+#' # Search by person (minister or MP)
+#' get_items(
+#'   person = "Nehammer",
+#'   date_start = "01-01-2023",
+#'   date_end = "31-12-2023"
+#' )
+#'
+#' # General text search across all items
+#' get_items(search_string = "Digitalisierung")
+#'
+#' # Combine multiple search criteria
+#' get_items(
+#'   topic = "Gesundheit und Ernährung",
+#'   item = "RV",  # Government bills
+#'   legis_period = 27,
+#'   institution = "NR"
+#' )
 #' }
 get_items <- function(
   search_string = NULL,
   topic = NULL, #Themen - Themen
-  institution = "NR", #Gremium - NRBR
+  institution = NULL, #Gremium - NRBR
   legis_period = NULL, #Gesetzgebungsperiode - GB_Code
   date_start = NULL, #Datum_von - DATUM_VON
   date_end = NULL, #Datum_bis - DATUM_BIS
@@ -181,7 +285,7 @@ get_items <- function(
   echo = TRUE
 ) {
   #TOPIC
-  choices_topic = c(
+  choices_topic <- c(
     "Arbeit",
     "Außenpolitik",
     "Bildung",
@@ -209,7 +313,7 @@ get_items <- function(
   checkmate::assert_subset(
     institution,
     choices = c("BR", "NR"),
-    empty.ok = FALSE
+    empty.ok = TRUE
   )
   ##encode
   institution_input <- institution
@@ -226,17 +330,17 @@ get_items <- function(
   )
 
   #DATE START; DATE END
-  ## TODO allow for different date types such as "yyyy-mm-dd", "mm/dd/yyyy", and "dd-mm-yyyy"
-  # Date validation
+  # Date validation using lubridate for flexible input formats
   if (!is.null(date_start)) {
-    # checkmate::assert_character(date_start, len = 1, null.ok = TRUE)?
-    checkmate::assert_true(
-      stringr::str_detect(date_start, "^\\d{2}-\\d{2}-\\d{4}$"),
-      .var.name = "date_start must be in format dd-mm-yyyy"
-    )
-    date_start = as.Date(date_start, format = "%d-%m-%Y")
+    checkmate::assert_character(date_start, len = 1, null.ok = TRUE)
+    date_start_parsed <- lubridate::dmy(date_start, quiet = TRUE)
+    if (is.na(date_start_parsed)) {
+      stop(
+        "date_start must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
+      )
+    }
     date_start <- format(
-      as.POSIXct(date_start),
+      as.POSIXct(date_start_parsed),
       format = "%Y-%m-%dT%H:%M:%S.000Z",
       tz = "CET"
     )
@@ -245,13 +349,14 @@ get_items <- function(
   #date end
   if (!is.null(date_end)) {
     checkmate::assert_character(date_end, len = 1, null.ok = TRUE)
-    checkmate::assert_true(
-      stringr::str_detect(date_end, "^\\d{2}-\\d{2}-\\d{4}$"),
-      .var.name = "date_end must be in format dd-mm-yyyy"
-    )
-    date_end = as.Date(date_end, format = "%d-%m-%Y")
+    date_end_parsed <- lubridate::dmy(date_end, quiet = TRUE)
+    if (is.na(date_end_parsed)) {
+      stop(
+        "date_end must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
+      )
+    }
     date_end <- format(
-      as.POSIXct(date_end),
+      as.POSIXct(date_end_parsed),
       format = "%Y-%m-%dT%H:%M:%S.000Z",
       tz = "CET"
     )
@@ -313,13 +418,13 @@ get_items <- function(
       "UEA-BR"
     )
 
-    if (institution == "Nationalrat" || is.null(institution)) {
+    if (institution == "NR" || is.null(institution)) {
       checkmate::assert_subset(
         x = doc_type,
         choices = choices_doc_type_antr_national_council,
         empty.ok = TRUE
       )
-    } else if (institution == "Bundesrat") {
+    } else if (institution == "BR") {
       checkmate::assert_subset(
         x = doc_type,
         choices = choices_doc_type_antr_federal_council,
@@ -337,7 +442,7 @@ get_items <- function(
     choices_doc_type_bnr_national_council <- c("BNR", "BS", "BSE", "BSESM")
     choices_doc_type_bnr_federal_council <- c("BNR", "BS-BR")
 
-    if (institution == "Nationalrat" || is.null(institution)) {
+    if (institution == "NR" || is.null(institution)) {
       checkmate::assert_subset(
         x = doc_type,
         choices = choices_doc_type_bnr_national_council,
@@ -345,7 +450,7 @@ get_items <- function(
       )
     }
 
-    if (institution == "Bundesrat") {
+    if (institution == "BR") {
       checkmate::assert_subset(
         x = doc_type,
         choices = choices_doc_type_bnr_federal_council,
@@ -356,8 +461,7 @@ get_items <- function(
 
   ##Gegenstand: schriftliche Anfragen
   ### Art der Anfrage
-  if (!is.null(item) && any(item %in% "J_JPR_M")) {
-  }
+  if (!is.null(item) && any(item %in% "J_JPR_M")) {}
 
   # PERSON
   ## requires pad_intern as input => auxiliary function searching pad_intern based on name needed
@@ -373,12 +477,254 @@ get_items <- function(
   }
 
   # NUMBER (number)
-  ## pending
+  if (!is.null(number)) {
+    # Convert numeric input to character first
+    if (is.numeric(number)) {
+      number <- as.character(number)
+    }
+    # Then validate as character
+    checkmate::assert_character(number, len = 1)
+  }
+
+  # Basic validation for text parameters to prevent obvious issues
+  validate_text_input <- function(text, param_name) {
+    if (is.null(text)) {
+      return(invisible(NULL))
+    }
+
+    # Check for suspicious patterns that might indicate injection attempts
+    suspicious_patterns <- c(
+      "<script",
+      "</script",
+      "javascript:",
+      "data:text/html",
+      "\\x00",
+      "\\x08",
+      "\\x0B",
+      "\\x0C",
+      "\\x0E",
+      "\\x1F"
+    )
+
+    for (pattern in suspicious_patterns) {
+      if (
+        stringr::str_detect(
+          stringr::str_to_lower(text),
+          stringr::fixed(pattern, ignore_case = TRUE)
+        )
+      ) {
+        stop(paste("Suspicious content detected in", param_name))
+      }
+    }
+
+    # Check for extremely long inputs (potential DoS)
+    if (nchar(text) > 1000) {
+      stop(paste(param_name, "exceeds maximum length of 1000 characters"))
+    }
+
+    invisible(NULL)
+  }
+
+  # Apply validation to text parameters
+  validate_text_input(search_string, "search_string")
+  validate_text_input(person, "person")
+  validate_text_input(number, "number")
 
   # KEYWORD (Schlagwort)
-  ## choices_item_keyword defined in sysdata.rda
-  ## disadvantage of defining keyword scope in vector: new keywords may be included in the future
-  ### solution: no check as alternative? OR function to scrape keywords and update vector
+  choices_item_keyword <- c(
+    "Abfallwirtschaft",
+    "Abgeordnete",
+    "Abstimmungen, geheime",
+    "Abstimmungen, namentliche",
+    "Abstimmungsangelegenheiten",
+    "Abweichende persönliche Stellungnahmen",
+    "Aktuelle Europastunden",
+    "Aktuelle Stunden",
+    "Anfragebeantwortungen, Besprechung von",
+    "Anfragen, Dringliche",
+    "Anträge, Dringliche",
+    "Apotheken",
+    "Arbeiterkammern",
+    "Arbeitsinspektion",
+    "Arbeitsmarkt",
+    "Arbeitsrecht I. österreichisches",
+    "Arbeitsrecht II. internationales",
+    "Archive",
+    "Atomenergie",
+    "Außenpolitik",
+    "Ausländer",
+    "Ausschüsse des Nationalrates",
+    "Bauwesen",
+    "Bergbau",
+    "Betriebsräte",
+    "Bibliotheken",
+    "Bildungswesen I. Pflichtschulen",
+    "Bildungswesen II. Mittlere Schulen",
+    "Bildungswesen III. Höhere Schulen",
+    "Bildungswesen IV. Universitäten und Hochschulen",
+    "Bildungswesen V. Minderheitenschulwesen",
+    "Bildungswesen VI. Schülerbeihilfen und Studienförderung",
+    "Bildungswesen VII. Erwachsenenbildung",
+    "Bildungswesen VIII. Sonstiges",
+    "Bundesforste",
+    "Bundesgesetzblatt",
+    "Bundeshaushalt I. Bundesfinanzgesetze",
+    "Bundeshaushalt II. Budgetüberschreitungen",
+    "Bundeshaushalt III. Sonstiges",
+    "Bundesländer",
+    "Bundespräsident:in",
+    "Bundesregierung I. Ernennungen, Enthebungen und Ableben",
+    "Bundesregierung II. Regierungserklärungen",
+    "Bundesregierung III. Sonstiges",
+    "Bundesverfassung",
+    "Bundesvermögen",
+    "Bundeswappen",
+    "Bürgerinitiativen",
+    "Debattenanträge bzw. -verlangen",
+    "Ehrenzeichen und Medaillen",
+    "Einsprüche des Bundesrates",
+    "Einspruchsfrist des Bundesrates",
+    "Elektrizität",
+    "Elementarpädagogik",
+    "Energiewirtschaft",
+    "Entwicklungszusammenarbeit",
+    "Erklärungen Präsident/Präsidentin",
+    "Erste Lesungen",
+    "Erste Lesungen, Anträge/Verlangen",
+    "Europäische Integration",
+    "Europarat",
+    "Familienlastenausgleich",
+    "Familienpolitik",
+    "Film",
+    "Finanzausgleich",
+    "Flüchtlinge",
+    "Fragestunden",
+    "Frauen und Gleichbehandlung",
+    "Fremdenverkehr",
+    "Fristsetzungen",
+    "Geschäftsordnung des Nationalrates",
+    "Gesundheit",
+    "Glücksspiel",
+    "Grenzen",
+    "Handel, Gewerbe und Industrie",
+    "II. Einberufung und Beendigung der Tagungen",
+    "III. Präsidenten, Schriftführer und Ordner",
+    "III. Sonstiges",
+    "Immunität",
+    "Information und Informationsverarbeitung",
+    "Internet",
+    "IV. Ansprachen Präsident/Präsidentin",
+    "Jagd und Fischerei",
+    "Jugend",
+    "Kommuniques",
+    "Kreditwesen",
+    "Kunst und Kultur",
+    "Land- und Forstwirtschaft",
+    "Landesverteidigung",
+    "Lebensmittel",
+    "Löhne und Gehälter",
+    "Maße und Gewichte",
+    "Menschen mit Behinderung",
+    "Menschenrechte",
+    "Minderheitsberichte",
+    "Misstrauensanträge",
+    "Museen",
+    "Nationalfeiertag",
+    "Neutralität",
+    "Öffentliche Unternehmen",
+    "Öffentlicher Dienst",
+    "Opferfürsorge und Opferschutz",
+    "Ordnungsrufe",
+    "Pässe und Ausweise",
+    "Pensionssystem",
+    "Personenstandsrecht",
+    "Petitionen",
+    "Pflege und Betreuung",
+    "Politische Parteien",
+    "Postwesen",
+    "Preise",
+    "Presse",
+    "Prüfungsaufträge Rechnungshof",
+    "Prüfungsaufträge Rechnungshofausschuss",
+    "Raumordnung",
+    "Rechnungshof",
+    "Rechtsanwälte und Notare",
+    "Rechtsbereinigung",
+    "Rechtspflege",
+    "Redezeitbeschränkungen",
+    "Religion",
+    "Rückverweisungen",
+    "Rundfunk und Fernsehen",
+    "Sicherheitswesen",
+    "Sitzungsunterbrechung",
+    "Sondersitzungen",
+    "Sonstige Geschäftsordnungsangelegenheiten",
+    "Sozialpolitik",
+    "Sozialversicherung I. Allgemeine Sozialversicherung",
+    "Sozialversicherung II. Gewerbliche Sozialversicherung",
+    "Sozialversicherung III. Landwirtschaftliche Sozialversicherung",
+    "Sozialversicherung IV. Kriegsopferversorgung",
+    "Sozialversicherung V. Arbeitslosenversicherung",
+    "Sozialversicherung VI. Sonstiges",
+    "Sport",
+    "Staatsbürger:in",
+    "Staatsverträge",
+    "Statistik",
+    "Steuern und Gebühren",
+    "Strafrecht",
+    "Straßen- und Brückenbau",
+    "Südtirol",
+    "Tabak",
+    "Tagesordnung",
+    "Telekommunikation",
+    "Theater",
+    "Trauerkundgebungen",
+    "Umweltschutz",
+    "Untersuchungsausschüsse",
+    "Unvereinbarkeit",
+    "V. Sonstiges",
+    "Vereinbarungen",
+    "Vereins- und Versammlungsrecht",
+    "Vereinte Nationen",
+    "Verfassungs- und Verwaltungsgerichtsbarkeit",
+    "Verkehr I. Straßenverkehr",
+    "Verkehr II. Schienenverkehr",
+    "Verkehr III. Luftfahrt",
+    "Verkehr IV. Schifffahrt",
+    "Verkehr V. Sonstiges",
+    "Verkürztes Verfahren",
+    "Vermessung",
+    "Vermögenssicherung",
+    "Vertragsversicherungen",
+    "Verwaltungsorganisation",
+    "Verwaltungsverfahren",
+    "Veterinärwesen und Tierschutz",
+    "Völkerrecht",
+    "Völkerrechtliche Vertretungen",
+    "Volksabstimmung",
+    "Volksanwaltschaft",
+    "Volksbefragung",
+    "Volksbegehren",
+    "Volksgruppen",
+    "Volkszählung",
+    "Wahlen",
+    "Währung",
+    "Wasserbauten",
+    "Wasserrecht",
+    "Wasserwirtschaft",
+    "Weinwirtschaft",
+    "Wirtschaftspolitik",
+    "Wirtschaftstreuhänder:in",
+    "Wissenschaft und Forschung",
+    "Wohnungswesen",
+    "Wortentziehung",
+    "Wortmeldungen zur Geschäftsbehandlung",
+    "Zivildienst",
+    "Zivilrecht",
+    "Zivilschutz",
+    "Zollwesen"
+  )
+
   checkmate::assert_subset(
     x = keyword,
     choices = choices_item_keyword,
@@ -439,7 +785,7 @@ get_items <- function(
     DATUM_VON = c(date_start, date_end),
     VHG = item,
     DOKTYP = doc_type,
-    #INRNUM=number,
+    INRNUM = number,
     PAD_INTERN = person_input,
     SW = keyword,
     EUROVOC = eurovoc,
@@ -459,7 +805,8 @@ get_items <- function(
     # extract the actual substantive data
     df_res <- x |>
       httr2::resp_body_json(simplifyVector = T) |>
-      purrr::pluck("rows") %>%
+      purrr::pluck("rows") |>
+      # tibble::as_tibble(.name_repair = "unique")
       as.data.frame()
 
     if (nrow(df_res) == 0) {
@@ -470,27 +817,23 @@ get_items <- function(
     colnames(df_res) <- vec_headings
 
     return(df_res)
-  }) %>%
-    purrr::compact() %>% #remove NULL results
+  }) |>
+    purrr::compact() |> #remove NULL results
     purrr::list_rbind()
-
-  # print(class(df_res))
-  # print(nrow(df_res))
-  # browser()
 
   # RETURN ECHO
   if (echo == TRUE) {
     print(body_params)
     # print url to results / transparency reasons / add search string parameter
-    body_params_li <- jsonlite::fromJSON(body_params) %>%
-      c(., "search" = search_string)
+    body_params_li <- jsonlite::fromJSON(body_params) |>
+      c("search" = search_string)
 
     query_string <- purrr::imap(
       body_params_li,
       \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
+    ) |>
+      unlist() |>
+      unname() |>
       paste0(collapse = "&")
 
     print(glue::glue(
@@ -510,14 +853,14 @@ get_items <- function(
 
   cols_pars <- c("personen", "themen", "fraktionen", "sw", "eurovoc")
   fn_parse_content <- function(x) {
-    x %>%
-      stringr::str_remove_all("\\[|\\]|\"") %>%
-      stringr::str_split(",") %>%
-      unlist() %>%
+    x |>
+      stringr::str_remove_all("\\[|\\]|\"") |>
+      stringr::str_split(",") |>
+      unlist() |>
       stringr::str_trim()
   }
 
-  df_res <- df_res %>%
+  df_res <- df_res |>
     dplyr::mutate(
       dplyr::across(
         dplyr::all_of(cols_pars),
@@ -525,20 +868,57 @@ get_items <- function(
       )
     )
 
-  #RENAME  & SELECT RELEVANT COLUMNS #PENDING
-  # renaming_map <- c(
-  #   "gp_code" = "legis_period",
-  #   "betreff" = "subject",
-  #   "phasen_bis" = "stages_n",
-  #   "his_url" = "item_url",
-  #   "not_included" = "not_included_new"
-  # )
+  #RENAME  & SELECT RELEVANT COLUMNS
+  ## rename
+  renaming_map <- c(
+    "gp_code" = "legis_period",
+    "inr" = "item_number",
+    "datum" = "date",
+    "art" = "item_type",
+    "betreff" = "subject",
+    "nummer" = "item_number_type",
+    "phasen_bis" = "stages_n",
+    "status" = "stage",
+    "doktyp" = "doc_type",
+    "doktyp_lang" = "doc_type_long",
+    "his_url" = "item_url",
+    "personen" = "persons",
+    "fraktionen" = "parl_group",
+    "themen" = "topics",
+    "nrbr" = "institution"
+  )
 
-  # df_res <- df_res %>%
-  #   dplyr::rename_with(
-  #     .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-  #     .cols = any_of(names(renaming_map))
-  # )
+  df_res <- df_res |>
+    dplyr::rename_with(
+      .fn = \(x) renaming_map[x],
+      .cols = any_of(names(renaming_map))
+    )
+
+  ##select
+  col_select <- c(
+    "legis_period",
+    "institution",
+    "date",
+    "item_type",
+    "item_number",
+    "item_number_type",
+    "item_url",
+    "doc_type",
+    "doc_type_long",
+    "subject",
+    "topics",
+    "sw",
+    "eurovoc",
+    "persons",
+    "parl_group",
+    "vhg",
+    "vhg2"
+  )
+
+  df_res <- df_res |>
+    dplyr::select(dplyr::any_of(col_select)) |>
+    dplyr::relocate(dplyr::any_of(col_select)) |> #ensures ordering of columns
+    dplyr::mutate(date = lubridate::dmy(date))
 
   # RETURN RESULT
   return(df_res)
@@ -558,7 +938,6 @@ get_items <- function(
 #' It sets various query parameters and headers to properly format the request.
 #'
 #' @keywords internal
-#'
 #' @noRd
 get_item_api_request <- function(body_params, search_string) {
   req <- httr2::request(
@@ -603,11 +982,10 @@ get_item_api_request <- function(body_params, search_string) {
     df_resp_current <- resp |>
       httr2::resp_body_json(simplifyVector = T)
 
-    df_resp_current <- df_resp_current %>%
-      purrr::pluck("rows") %>%
+    df_resp_current <- df_resp_current |>
+      purrr::pluck("rows") |>
+      # tibble::as_tibble(.name_repair = "unique")
       as.data.frame()
-
-    # print(nrow(df_resp_current))
 
     nrow(df_resp_current) < 1000 #dependent on page size parameter
   }
@@ -624,6 +1002,78 @@ get_item_api_request <- function(body_params, search_string) {
   )
 
   # return result
-  # print(class(resp))
   return(resp)
+}
+
+
+# my_item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24?selectedStage=105"
+# get_item_details(my_item_url)
+
+#' Prepare or normalize an item URL for the Austrian Parliament site
+#'
+#' Ensure that an item URL is a full URL pointing to the Austrian Parliament
+#' website (https://www.parlament.gv.at/). If a relative path is provided
+#' (e.g., starting with one or more leading slashes), it will be converted
+#' into an absolute URL by prefixing it with the site base.
+#'
+#' @param item_url Character. A single URL or path to an item on the Austrian
+#'   Parliament website. Can be an absolute URL already starting with
+#'   "https://www.parlament.gv.at/" or a relative path (with or without
+#'   leading slashes).
+#'
+#' @return Character. The normalized URL(s) pointing to the Austrian Parliament
+#'   site. The same length as \code{item_url}.
+#'
+#' @details
+#' This function performs a simple normalization:
+#' - If \code{item_url} already starts with "https://www.parlament.gv.at/",
+#'   it is returned unchanged.
+#' - Otherwise, any leading slashes are removed and the site prefix is prepended.
+#'
+#' The implementation relies on functions from the \pkg{stringr} package.
+#'
+#' @examples
+#' \dontrun{
+#' get_item_details("https://www.parlament.gv.at/WWER/PARL")
+#' get_item_details("/WWER/PARL")
+#' }
+#'
+#' @noRd
+#' @keywords internal
+get_item_details <- function(item_url) {
+  prefix <- "https://www.parlament.gv.at/"
+
+  if (!stringr::str_starts(item_url, prefix)) {
+    item_url <- item_url %>%
+      stringr::str_replace("^/+", "") %>%
+      stringr::str_c(prefix, .)
+  }
+
+  page <- rvest::read_html(item_url)
+
+  # Assume your html code is in a variable named 'html_code'
+  # Pipe to extract and parse the data
+  data_list <- page |>
+    rvest::html_elements("script") |>
+    rvest::html_text2() |>
+    (\(x) x[stringr::str_detect(x, "props:")])() |>
+    stringr::str_extract("(?s)props:.*") |>
+    stringr::str_remove("props:\\s*") |>
+    stringr::str_remove("\\}\\);\\s*$") |>
+    jsonlite::fromJSON() |>
+    (\(x) x$data)()
+
+  return(data_list$content)
+
+  # return(
+  #   data_list$content$phase %>%
+  #     tidyr::unnest(stages) %>%
+  #     dplyr::mutate(
+  #       text = map_chr(text, \(x) {
+  #         paste0("<html><body>", x, "</body></html>") |>
+  #           rvest::read_html() |>
+  #           rvest::html_text()
+  #       })
+  #     )
+  # )
 }
