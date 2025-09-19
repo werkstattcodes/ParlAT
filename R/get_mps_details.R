@@ -826,7 +826,6 @@ get_mps_details_committees <- function(
                 stringr::regex("\\bGP$"),
                 "Gesetzgebungsperiode des NR"
             )
-
     }
     # BODY PARAMS
     body_params <- list(
@@ -875,12 +874,56 @@ get_mps_details_committees <- function(
         ) |>
         httr2::req_perform()
 
+    # return(res)
+
     #PARSE RESPONSE
     li_res <- res %>%
         httr2::resp_body_json(simplifyVector = TRUE) #simplifyVector = TRUE !!
 
+    # return(li_res)
+
     df_res <- li_res %>% pluck("rows") %>% as.data.frame()
 
-    # print(nrow(df_res))
+    #RENAME AND SELECT VARIALBES
+
+    renaming_map <- c(
+        "V1" = "legis_period",
+        "V9" = "committee_name",
+        "V3" = "committee_position",
+        "V4" = "committee_name_dates",
+        "V5" = "institution",
+        "V6" = "committee_url"
+        # "V8" = "committee_session_date_start",
+        # "V11" = "committee_duration"
+    )
+
+    df_res <- df_res |>
+        dplyr::rename_with(
+            .fn = \(x) renaming_map[x],
+            .cols = any_of(names(renaming_map))
+        )
+
+    df_res <- df_res |>
+        dplyr::select(dplyr::any_of(unname(renaming_map))) |>
+        dplyr::relocate(dplyr::any_of(unname(renaming_map))) |>
+        dplyr::mutate(
+            committee_date_start = stringr::str_extract(
+                committee_name_dates,
+                stringr::regex("(?<=\\()\\d+\\.\\d+\\.\\d+")
+            ),
+            committee_date_end = stringr::str_extract(
+                committee_name_dates,
+                stringr::regex("(?<=-\\s)[\\d.]+(?=\\)$)")
+            )
+        ) |>
+        dplyr::select(-committee_name_dates) |>
+        dplyr::mutate(
+            committee_active = ifelse(is.na(committee_date_end), TRUE, FALSE)
+        ) |>
+        dplyr::mutate(across(starts_with("committee_date"), \(x)
+            lubridate::dmy(x)
+        )) |>
+        dplyr::relocate(committee_url, .after = dplyr::last_col())
+
     return(df_res)
 }
