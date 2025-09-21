@@ -70,6 +70,10 @@ aux_parse_html_text <- function(html) {
 #' @keywords internal
 #' @noRd
 aux_parl_group_names_standard <- function(parl_group) {
+  if (is.null(parl_group) || length(parl_group) == 0) {
+    return(parl_group)
+  }
+
   group_FPÖ <- c("F", "FPÖ", "F-BZÖ")
   group_BZÖ <- c("BZÖ", "F-BZÖ")
   group_NEOS <- c("NEOS", "NEOS-LIF")
@@ -203,6 +207,14 @@ aux_check_pad_intern_exists <- function(pad_intern) {
         purrr::map_lgl(aux_check_pad_intern_exists)
     )
   }
+
+  # Validate that pad_intern contains only numeric characters
+  checkmate::assert_string(
+    pad_intern,
+    pattern = "^[0-9]+$",
+    null.ok = FALSE,
+    .var.name = "`pad_intern` can only contain numeric characters"
+  )
 
   url_check <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}")
   resp <- tryCatch(
