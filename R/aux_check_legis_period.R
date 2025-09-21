@@ -208,6 +208,17 @@ aux_check_pad_intern_exists <- function(pad_intern) {
     )
   }
 
+  #if input de facto empty, return NULL
+  if (
+    is.null(pad_intern) ||
+      length(pad_intern) == 0 ||
+      is.na(pad_intern) ||
+      !nzchar(pad_intern)
+  ) {
+    return(FALSE)
+  }
+
+  pad_intern <- stringr::str_trim(as.character(pad_intern), side = "both")
   # Validate that pad_intern contains only numeric characters
   checkmate::assert_string(
     pad_intern,
