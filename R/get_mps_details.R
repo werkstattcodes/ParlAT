@@ -15,19 +15,22 @@
 #' For an example of the data source on the website of the Austrian Parliament, see
 #' the different tabs e.g., <a href="https://www.parlament.gv.at/person/145?selectedtab=PLENUM" target="_blank">here.</a>
 #'
-#' @param pad_intern ID of the MPs. See `get_pad_intern()` for more details.
+#' @param pad_intern  ID of MP. Vector of length 1. See `get_pad_intern()` for more details.
 #' @param detail_type Character string specifying the type of details to retrieve: "plenary", "activities", or "committees". For examples see here:  <a href="https://www.parlament.gv.at/person/145?selectedtab=PLENUM" target="_blank">plenary </a>; <a href="https://www.parlament.gv.at/person/145?selectedtab=AKT" target="_blank">activities</a>; <a href="https://www.parlament.gv.at/person/145?selectedtab=AUS" target="_blank">committees</a>.
 #' @param institution Character string specifying the parliamentary house. Permissible inputs are "NR" (Nationalrat/National Council),
 #' "BR" (Bundesrat/Federal Council ) or NULL (which returns results for both houses). Defaults to NULL.
 #' @param legis_period Numeric or character specifying the legislative period (optional).
-#'   Defaults to NULL.
+#'   Accepts numeric values (e.g., 27), Roman numerals (e.g., "XXVII"), or historical abbreviations.
+#'   Must be >= 20 for valid periods. Defaults to NULL.
 #' @param item Character string specifying the item type (Art des Verhandlungsgegenstandes) (optional).
 #'   Defaults to NULL. Used only for details category "activities". See Details below.
-#' @param committee Character string specifying the committee name (optional). Only if `detail_type`== "committees".
-#' @param committee_position Character string specifying the committee position (optional). Only if `detail_type`== "committees".
+#' @param committee Character string specifying the committee name (optional). Only if `detail_type == "committees"`.
+#'   See Details section for valid committee names.
+#' @param committee_position Character string specifying the committee position (optional). Only if `detail_type == "committees"`.
+#'   Common values include "Mitglied", "Vorsitzende/r", "Stellvertretende/r Vorsitzende/r".
 #' @param search_string Character string for searching within activities (optional).
-#'   Defaults to NULL. Only available for details category "activities" and "committees".
-#' @param echo Logical indicating whether to print the API request and response details.
+#'   Defaults to NULL. Currently only implemented for details category "activities".
+#' @param echo Logical indicating whether to print the API request and response details. Defaults to TRUE.
 #' @details
 #' ## Item type (Art des Verhandlungsgegenstandes)
 #IMPROVE #PARLSIMON
@@ -101,22 +104,14 @@
 #'   house, regardless of their mandate at the time of the speech. For example, querying
 #'   all plenary activities of Doris Bures in the National Council will return not only
 #'   her speeches as an MP, but also as President of the National Council and as Minister.
-#'
-#'   For \code{detail_type = "activities"}: Returns parliamentary activities and legislative
-#'   items associated with the MP.
-#'
-#'   Common columns include:
+#'   Columns returned:
 #'   \describe{
 #'     \item{pad_intern}{Unique identifier for the MP}
 #'     \item{name}{Full name of the MP}
-#'     \item{position_name}{List of mandates/positions held at the time}
-#'     \item{date}{Date of the speech or activity}
+#'     \item{position_name}{List of mandates/positions held at the time of speech}
+#'     \item{date}{Date of the speech}
 #'     \item{legis_period}{Legislative period (Roman numeral)}
 #'     \item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
-#'   }
-#'
-#'   Additional columns for \code{detail_type = "plenary"}:
-#'   \describe{
 #'     \item{speech_title}{Title of the speech}
 #'     \item{session_url}{URL to the session details page}
 #'     \item{session_name}{Name of the parliamentary session}
@@ -124,21 +119,65 @@
 #'     \item{speech_media_url}{URL to speech recordings, if available}
 #'   }
 #'
+#'   For \code{detail_type = "activities"}: Returns parliamentary activities and legislative
+#'   items associated with the MP. Columns returned:
+#'   \describe{
+#'     \item{pad_intern}{Unique identifier for the MP}
+#'     \item{legis_period}{Legislative period}
+#'     \item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
+#'     \item{frmdate}{Date field}
+#'     \item{ityp_komm}{Item type comment}
+#'     \item{item_number}{Number of the parliamentary item}
+#'     \item{item_type}{Type of parliamentary item (e.g., "A", "JMIN")}
+#'     \item{title}{Title/subject of the item}
+#'     \item{date_updated}{Last update date of the item}
+#'     \item{item_url}{URL to the item details}
+#'     \item{status_text}{Current status description}
+#'     \item{status_numeric}{Numeric status code}
+#'   }
+#'
+#'   For \code{detail_type = "committees"}: Returns committee memberships and participation.
+#'   Columns returned:
+#'   \describe{
+#'     \item{pad_intern}{Unique identifier for the MP}
+#'     \item{name}{Full name of the MP}
+#'     \item{legis_period}{Legislative period}
+#'     \item{committee_name}{Name of the committee}
+#'     \item{committee_position}{Position in the committee (e.g., "Mitglied", "Vorsitzende/r")}
+#'     \item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
+#'     \item{committee_position_start}{Start date of committee membership}
+#'     \item{committee_position_end}{End date of committee membership (NA if still active)}
+#'     \item{committee_active}{Logical indicating if membership is currently active}
+#'     \item{committee_url}{URL to committee details}
+#'   }
+#'
 #'   Returns \code{NULL} invisibly if no data is found for the given parameters.
 #'
 #' @examples
 #' \dontrun{
-#' # Get plenary details for an MP
-#' get_mps_details(pad_intern = "12345", detail_type = "plenary")
-#'
-#' # Get activities for an MP in a specific legislative period
-#' get_mps_details(
-#'   pad_intern = "12345",
-#'   detail_type = "activities",
-#'   legis_period = "XXVII"
+#' # Get Stephanie Krisper's plenary speeches in National Council only for the 27th legislative period
+#' plenary_nr <- get_mps_details(
+#'   pad_intern = 2344,
+#'   detail_type = "plenary",
+#'   institution = "NR",
+#'   legis_period = 27
 #' )
-#' }
 #'
+#' # Get only legislative proposals (item type "A")
+#' proposals <- get_mps_details(
+#'   pad_intern = 2344,
+#'   detail_type = "activities",
+#'   item = "A",
+#'   legis_period = 27
+#' )
+#'
+#' # Get committee memberships for Stephanie Krisper
+#' committees <- get_mps_details(
+#'   pad_intern = 2344,
+#'   detail_type = "committees",
+#'   legis_period = 27
+#' )
+#'}
 #' @export
 get_mps_details <- function(
     pad_intern,
@@ -166,10 +205,15 @@ get_mps_details <- function(
         )
     }
 
-    #check if pad_intern is valid
-    if (any(aux_check_pad_intern_exists(pad_intern) == FALSE)) {
+    #check if pad_intern is valid and of length 1
+    checkmate::assert_scalar(
+        pad_intern,
+        .var.name = "`pad_intern` must be a vector of length 1"
+    )
+
+    if (aux_check_pad_intern_exists(pad_intern) == FALSE) {
         stop(
-            "One or more `pad_intern` values do not exist or are invalid.",
+            "`pad_intern` value is invalid. No entry found under this id.",
             call. = FALSE
         )
     }
@@ -244,6 +288,10 @@ get_mps_details <- function(
     }
 }
 
+#' Internal function for plenary details
+#'
+#' @noRd
+#' @keywords internal
 get_mps_details_plenary <- function(
     pad_intern = NULL,
     # detail_type = NULL,
@@ -518,6 +566,10 @@ get_mps_details_plenary <- function(
 }
 
 
+#' Internal function for activities details
+#'
+#' @noRd
+#' @keywords internal
 get_mps_details_activities <- function(
     pad_intern = NULL,
     institution = NULL,
@@ -778,6 +830,10 @@ get_mps_details_activities <- function(
 }
 
 
+#' Internal function for committees details
+#'
+#' @noRd
+#' @keywords internal
 get_mps_details_committees <- function(
     pad_intern = NULL,
     institution = NULL,
@@ -788,12 +844,16 @@ get_mps_details_committees <- function(
     committee = NULL, #only for committees
     echo = NULL
 ) {
-    # institution
+    # parameter validation
     checkmate::assert_subset(
         x = institution,
         choices = c("NR", "BR"), #PENDING PN KN as well?
         empty.ok = TRUE
     )
+
+    checkmate::assert_character(committee, null.ok = TRUE)
+    checkmate::assert_character(committee_position, null.ok = TRUE)
+    checkmate::assert_logical(echo, null.ok = TRUE)
 
     if (!is.null(institution)) {
         institution <- switch(
@@ -884,6 +944,12 @@ get_mps_details_committees <- function(
 
     df_res <- li_res %>% pluck("rows") %>% as.data.frame()
 
+    # Exit if no match
+    if (nrow(df_res) == 0 || is.null(df_res)) {
+        message("No committee data found for the given parameters.")
+        return(invisible(NULL))
+    }
+
     #RENAME AND SELECT VARIALBES
 
     renaming_map <- c(
@@ -907,23 +973,55 @@ get_mps_details_committees <- function(
         dplyr::select(dplyr::any_of(unname(renaming_map))) |>
         dplyr::relocate(dplyr::any_of(unname(renaming_map))) |>
         dplyr::mutate(
-            committee_date_start = stringr::str_extract(
+            committee_position_start = stringr::str_extract(
                 committee_name_dates,
                 stringr::regex("(?<=\\()\\d+\\.\\d+\\.\\d+")
             ),
-            committee_date_end = stringr::str_extract(
+            committee_position_end = stringr::str_extract(
                 committee_name_dates,
                 stringr::regex("(?<=-\\s)[\\d.]+(?=\\)$)")
             )
         ) |>
         dplyr::select(-committee_name_dates) |>
         dplyr::mutate(
-            committee_active = ifelse(is.na(committee_date_end), TRUE, FALSE)
+            committee_active = ifelse(is.na(committee_position_end), TRUE, FALSE)
         ) |>
-        dplyr::mutate(across(starts_with("committee_date"), \(x)
+        dplyr::mutate(across(starts_with("committee_date"), \(x) {
             lubridate::dmy(x)
-        )) |>
+        })) |>
         dplyr::relocate(committee_url, .after = dplyr::last_col())
+
+    #ADD MPinfo
+
+    mp_name <- get_names(pad_intern = pad_intern)$name
+
+    df_res <- df_res |>
+        dplyr::mutate(pad_intern = pad_intern, .before = 1) |>
+        dplyr::mutate(name = mp_name, .after = pad_intern)
+
+    #ECHO
+    if (echo) {
+        print(body_params)
+
+        body_params_li <- jsonlite::fromJSON(body_params)
+
+        query_string <- purrr::imap(
+            body_params_li,
+            \(x, y) {
+                glue::glue(
+                    "AUSSCHUSS_BIO_250{URLencode(y)}={URLencode(as.character(x))}"
+                )
+            }
+        ) %>%
+            unlist() %>%
+            unname() %>%
+            paste0(collapse = "&")
+
+        print(glue::glue(
+            "https://www.parlament.gv.at/person/{pad_intern}?{query_string}&selectedtab=AUS"
+        ))
+        print(nrow(df_res))
+    }
 
     return(df_res)
 }

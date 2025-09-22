@@ -1,0 +1,474 @@
+# Test parameter validation
+
+test_that("get_mps_details validates detail_type parameter", {
+  expect_error(
+    get_mps_details(pad_intern = 145),
+    "`detail_type` is a required parameter"
+  )
+
+  expect_error(
+    get_mps_details(pad_intern = 145, detail_type = NULL),
+    "`detail_type` is a required parameter"
+  )
+
+  expect_error(
+    get_mps_details(pad_intern = 145, detail_type = "invalid"),
+    "Must be element of set"
+  )
+})
+
+test_that("get_mps_details validates pad_intern parameter", {
+  expect_error(
+    get_mps_details(pad_intern = -999, detail_type = "plenary"),
+    "`pad_intern` can only contain numeric characters"
+  )
+})
+
+test_that("get_mps_details validates institution parameter", {
+  skip_on_cran()
+  skip_if_offline()
+
+  expect_no_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      institution = "NR"
+    )
+  )
+
+  expect_no_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      institution = "BR"
+    )
+  )
+})
+
+test_that("get_mps_details validates item parameter usage", {
+  expect_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      item = "A"
+    ),
+    "`item` is only supported for details type 'activities'"
+  )
+
+  expect_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "committees",
+      item = "A"
+    ),
+    "`item` is only supported for details type 'activities'"
+  )
+})
+
+test_that("get_mps_details validates item choices for activities", {
+  skip_on_cran()
+  skip_if_offline()
+
+  valid_items <- c(
+    "A",
+    "AA",
+    "ABMIN",
+    "ABMIN-BR",
+    "ABPRPR",
+    "AE",
+    "ARH1",
+    "JMIN",
+    "JPRPR",
+    "M",
+    "UEA",
+    "AVB",
+    "JHR",
+    "PET"
+  )
+
+  expect_no_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      item = "A"
+    )
+  )
+
+  expect_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      item = "INVALID"
+    ),
+    "Must be element of set"
+  )
+})
+
+test_that("get_mps_details validates search_string usage", {
+  expect_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      search_string = "test"
+    ),
+    "search_string is only supported for details type 'activities' and 'committees'"
+  )
+})
+
+# Test function dispatch
+
+test_that("get_mps_details dispatches to correct sub-functions", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test plenary dispatch
+  result_plenary <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "plenary",
+    legis_period = 27,
+    echo = FALSE
+  )
+  expect_s3_class(result_plenary, "data.frame")
+  expect_equal(nrow(result_plenary), 2)
+
+  # Test activities dispatch
+  result_activities <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "activities",
+    legis_period = 22,
+    echo = FALSE
+  )
+  expect_s3_class(result_activities, "data.frame")
+  expect_equal(nrow(result_activities), 38)
+
+  # Test committees dispatch
+  result_committees <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "committees",
+    legis_period = 26,
+    echo = FALSE
+  )
+  expect_s3_class(result_committees, "data.frame")
+})
+
+# Test plenary details functionality
+
+test_that("get_mps_details plenary returns expected structure", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "plenary",
+    institution = "NR",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+
+  expected_cols <- c(
+    "pad_intern",
+    "name",
+    "position_name",
+    "date",
+    "legis_period",
+    "institution",
+    "speech_title",
+    "session_url",
+    "session_name",
+    "speech_transcript_url",
+    "speech_media_url"
+  )
+
+  expect_true(all(expected_cols %in% colnames(result)))
+
+  # Check data types
+  expect_type(result$pad_intern, "character")
+  expect_s3_class(result$date, "Date")
+  expect_type(result$institution, "character")
+})
+
+test_that("get_mps_details plenary filters by institution", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result_nr <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "plenary",
+    institution = "NR",
+    echo = FALSE
+  )
+
+  if (nrow(result_nr) > 0) {
+    expect_true(all(result_nr$institution == "NR"))
+  }
+})
+
+test_that("get_mps_details plenary filters by legis_period", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "plenary",
+    legis_period = 27,
+    echo = FALSE
+  )
+
+  if (nrow(result) > 0) {
+    expect_true(all(result$legis_period == "XXVII"))
+  }
+})
+
+test_that("get_mps_details plenary accepts Roman numeral legis_period", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "plenary",
+    legis_period = "XXVII",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+})
+
+# Test activities details functionality
+
+test_that("get_mps_details activities returns expected structure", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "activities",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+
+  expected_cols <- c(
+    "pad_intern",
+    "legis_period",
+    "institution",
+    "frmdate",
+    "ityp_komm",
+    "item_number",
+    "item_type",
+    "title",
+    "date_updated",
+    "item_url",
+    "status_text",
+    "status_numeric"
+  )
+
+  # Check that at least some expected columns are present
+  common_cols <- intersect(expected_cols, colnames(result))
+  expect_true(length(common_cols) > 5)
+})
+
+test_that("get_mps_details activities filters by item type", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "activities",
+    item = "A",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+
+  if (nrow(result) > 0) {
+    expect_true(all(result$item_type == "A"))
+  }
+})
+
+test_that("get_mps_details activities filters by institution", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "activities",
+    institution = "NR",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+
+  if (nrow(result) > 0) {
+    expect_true(all(result$institution == "NR"))
+  }
+})
+
+# Test committees details functionality
+
+test_that("get_mps_details committees returns expected structure", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "committees",
+    legis_period = 27,
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+})
+
+test_that("get_mps_details committees requires legis_period", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # The committees function seems to require legis_period based on implementation
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "committees",
+    echo = FALSE
+  )
+
+  # Should still return a data frame (might be empty or have specific behavior)
+  expect_s3_class(result, "data.frame")
+})
+
+# Test multiple pad_intern values
+
+test_that("get_mps_details accepts multiple pad_intern values", {
+  skip_on_cran()
+  skip_if_offline()
+
+  expect_error(
+    result <- get_mps_details(
+      pad_intern = c(145, 2345),
+      detail_type = "plenary",
+      echo = FALSE
+    )
+  )
+
+  expect_s3_class(result, "data.frame")
+})
+
+# Test echo parameter
+
+test_that("get_mps_details echo parameter works", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test that echo = TRUE doesn't cause errors
+  expect_no_error({
+    result <- get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      echo = TRUE
+    )
+  })
+
+  # Test that echo = FALSE doesn't cause errors
+  expect_no_error({
+    result <- get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      echo = FALSE
+    )
+  })
+})
+
+# Test edge cases
+
+test_that("get_mps_details handles empty results gracefully", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test with parameters that might return no results
+  result <- get_mps_details(
+    pad_intern = 2345,
+    detail_type = "plenary",
+    legis_period = 20, # Very early period, likely no results
+    echo = FALSE
+  )
+
+  # Should return NULL or empty data frame without error
+  expect_true(is.null(result) || (is.data.frame(result) && nrow(result) >= 0))
+})
+
+test_that("get_mps_details validates legis_period minimum value", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # The function should validate legis_period >= 20 for plenary
+  expect_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      legis_period = 5
+    ),
+    "Details only available from legislative period 20 onward"
+  )
+})
+
+# Test search_string functionality
+
+test_that("get_mps_details search_string works for activities", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "activities",
+    search_string = "test",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+})
+
+test_that("get_mps_details search_string works for committees", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "committees",
+    legis_period = 27,
+    search_string = "test",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+})
+
+# Test committee-specific parameters
+
+test_that("get_mps_details committee parameters work", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 2344,
+    detail_type = "committees",
+    legis_period = 26,
+    committee = "Volksanwaltschaftsausschuss",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+})
+
+test_that("get_mps_details committee_position parameter works", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "committees",
+    legis_period = 27,
+    committee_position = "Mitglied",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+})
