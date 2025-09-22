@@ -19,9 +19,19 @@
 get_names <- function(pad_intern, date = NULL, latest = NULL) {
   if (length(pad_intern) > 1) {
     return(
-      purrr::map(pad_intern, \(x) get_names(x, date = date, latest = latest), .progress=TRUE) |>
+      purrr::map(
+        pad_intern,
+        \(x) get_names(x, date = date, latest = latest),
+        .progress = TRUE
+      ) |>
         purrr::list_rbind()
     )
+  }
+
+  # check if pad_intern actually exists
+  if (aux_check_pad_intern_exists(pad_intern = pad_intern) != TRUE) {
+    message(paste0("No MP registered under this pad_intern: ", pad_intern))
+    return(NULL)
   }
 
   link_file_json <- glue::glue(
