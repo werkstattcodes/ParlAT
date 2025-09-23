@@ -472,3 +472,65 @@ test_that("get_mps_details committee_position parameter works", {
 
   expect_s3_class(result, "data.frame")
 })
+
+# Test multiple legis_periods functionality
+
+test_that("get_mps_details accepts multiple legis_periods for plenary", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "plenary",
+    legis_period = c(26, 27),
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+
+  if (nrow(result) > 0) {
+    unique_periods <- unique(result$legis_period)
+    expect_true(length(unique_periods) >= 1)
+    expect_true(all(unique_periods %in% c("XXVI", "XXVII")))
+  }
+})
+
+test_that("get_mps_details accepts multiple legis_periods for activities", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "activities",
+    legis_period = c(22, 23),
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+
+  if (nrow(result) > 0) {
+    unique_periods <- unique(result$legis_period)
+    expect_true(length(unique_periods) >= 1)
+    expect_true(all(unique_periods %in% c("XXII", "XXIII")))
+  }
+})
+
+test_that("get_mps_details accepts multiple legis_periods for committees", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_mps_details(
+    pad_intern = 145,
+    detail_type = "committees",
+    legis_period = c(25, 26),
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+
+  if (nrow(result) > 0) {
+    unique_periods <- unique(result$legis_period)
+    expect_true(length(unique_periods) >= 1)
+    expect_true(all(unique_periods %in% c("XXV", "XXVI")))
+  }
+})
