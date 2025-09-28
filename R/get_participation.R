@@ -1,20 +1,71 @@
 #' Get Participation Data from Austrian Parliament
 #'
 #' This function retrieves participation data from the Austrian Parliament's API based on various filter criteria.
+#' For the pertaining website by the Austrian Parliament see [here](https://www.parlament.gv.at/beteiligen/stellung-nehmen/?FP_143SNFLAG=J){target="_blank"}
 #'
-#' @param topic (*Themen*)Character vector. Optional. Specifies the topic(s) of interest. Must be one or more of: "Arbeit", "Außenpolitik", "Bildung", "Budget und Finanzen", "Europäische Union", "Familie und Generationen", "Frauen und Gleichbehandlung", "Gesundheit und Ernährung", "Information und Medien", "Inneres und Recht", "Innovation, Technologie und Forschung", "Klima, Umwelt und Energie", "Kultur", "Land- und Forstwirtschaft", "Landesverteidigung", "Parlament und Demokratie", "Soziales", "Sport", "Verkehr und Infrastruktur", "Wirtschaft".
-#' @param legis_period (*Gesetzgebungsperiode*)Character vector. Optional. Specifies the legislative period(s).
+#' Once a legislative initiative, citizens' initiative, or petition has been submitted to Parliament, one can submit a statement.
+#' This allows the author to express his/her opinion and participate in the parliamentary process.
+#' For ministerial drafts statements can be submitted during the pre-parlamentary process.
+#' If you don't want to no own statement is submitted, statements of other authors can be supported.
+#'
+#' @param topic (*Themen*) Character vector. Optional. Specifies the topic(s) of interest. See details for valid values.
+#' @param legis_period (*Gesetzgebungsperiode*) Character vector. Optional. Specifies the legislative period(s).
 #' @param active (*Aktuelle Beteiligung*) Character. Optional. If "J", only includes current participations.
-#' @param review_type (*Gegenstand*) Character vector. Optional. Specifies the type of review. Must be one or more of: "RGES" (Gesetzesinitiativen), "ME" (Ministerialentwürfe), "BI" (Bürgerinitiativen), "PET" (Petitionen), "SN" (Stellungnahmen).
-#' @param initiative_type (*Art der Gesetzesinitiative*) Character vector. Optional. Specifies the type of legislative initiative. Must be one or more of: "EBR" (Einsprüche des Bundesrats), "GABR" (Gesetzesanträge von Abgeordneten), "A" (Gesetzesanträge von Abgeordneten), "GABR13" (Gesetzesanträge von 1/3 der Mitglieder des Bundesrats), "RV" (Regierungsvorlagen), "VOLKBG" (Volksbegehren).
-#' @param department (*Ressort*) Character vector. Optional. Only available if `review_type=='ME' (Ministerialentwürfe). Specifies the administrative unit which initiated the draft law.
-#' Must be one or more of: "BMJ (BM f. Justiz)", "BMK (BM f. Klimaschutz, Umwelt, Energie, Mobilität, Innovation u. Technologie)", "BMNT (BM f. Nachhaltigkeit u. Tourismus)", "BMLV (BM f. Landesverteidigung)", "BMVRDJ (BM f. Verfassung, Reformen, Deregulierung u. Justiz)", "BML (BM f. Land- u. Forstwirtschaft, Regionen u. Wasserwirtschaft)", "BMLRT (BM f. Landwirtschaft, Regionen u. Tourismus)", "BMSGPK (BM f. Soziales, Gesundheit, Pflege u. Konsumentenschutz)", "BMI (BM f. Inneres)", "BMF (BM f. Finanzen)", "BMDW (BM f. Digitalisierung u. Wirtschaftsstandort)", "BMBWF (BM f. Bildung, Wissenschaft u. Forschung)", "BMAW (BM f. Arbeit u. Wirtschaft)", "BMASGK (BM f. Arbeit, Soziales, Gesundheit u. Konsumentenschutz)", "BMAFJ (BM f. Arbeit, Familie u. Jugend)", "BMA (BM f. Arbeit)", "BMEIA (BM f. europäische u. internationale Angelegenheiten)", "BMKÖS (BM f. Kunst, Kultur, öffentlichen Dienst u. Sport)", "BMFFIM (Büro der Bundesministerin f. Frauen, Familie, Integration u. Medien)", "BMEUV (Büro der Bundesministerin f. EU u. Verfassung)", "BKA (Bundeskanzleramt)")
-#'
+#' @param item (*Gegenstand*) Character vector. Optional. Specifies the type of review. See details for valid values.
+#' @param initiative_type (*Art der Gesetzesinitiative*) Character vector. Only if item="RGES". Optional. Specifies the type of legislative initiative. See details for valid values.
+#' @param statement_type (*Art der Stellungnahme*) Character vector. Only if item="SN". Optionl. Specifies the destination of a statement. See details for valid values.
 #' @return A data frame containing the participation data, or NULL if no results are found.
 #'
 #'
 #' @details
 #' This function sends a request to the Austrian Parliament's API to retrieve participation data based on the provided filter criteria. It performs input validation for each parameter and constructs the API request accordingly.
+#'
+#' **Valid values for `topic`:**
+#' * "Arbeit" (Labor)
+#' * "Außenpolitik" (Foreign Policy)
+#' * "Bildung" (Education)
+#' * "Budget und Finanzen" (Budget and Finance)
+#' * "Europäische Union" (European Union)
+#' * "Familie und Generationen" (Family and Generations)
+#' * "Frauen und Gleichbehandlung" (Women and Equal Treatment)
+#' * "Gesundheit und Ernährung" (Health and Nutrition)
+#' * "Information und Medien" (Information and Media)
+#' * "Inneres und Recht" (Interior and Justice)
+#' * "Innovation, Technologie und Forschung" (Innovation, Technology and Research)
+#' * "Klima, Umwelt und Energie" (Climate, Environment and Energy)
+#' * "Kultur" (Culture)
+#' * "Land- und Forstwirtschaft" (Agriculture and Forestry)
+#' * "Landesverteidigung" (National Defense)
+#' * "Parlament und Demokratie" (Parliament and Democracy)
+#' * "Soziales" (Social Affairs)
+#' * "Sport" (Sports)
+#' * "Verkehr und Infrastruktur" (Transport and Infrastructure)
+#' * "Wirtschaft" (Economy)
+#'#' Setting `topic = NULL` returns values for all topics listed above.
+#'
+#' **Valid values for `item`:**
+#' * "RGES" (Gesetzesinitiativen / Legislative Initiatives)
+#' * "ME" (Ministerialentwürfe / Ministerial Drafts)
+#' * "BI" (Bürgerinitiativen / Citizens' Initiatives)
+#' * "PET" (Petitionen / Petitions)
+#' * "SN" (Stellungnahmen / Statements)
+#' Setting `item = NULL` returns values for all review types listed above.
+#'
+#' **Valid values for `initiative_type`:** #' Only if item=="RGES"
+#' * "A" (Gesetzesanträge von Abgeordneten / Legislative Motions by Members)
+#' * "BUA" (Gesetzesanträge von Ausschüssen / Legislative Motions by Committees)
+#' * "RV" (Regierungsvorlagen / Government Bills)
+#' Setting `item = NULL` returns values for all review types listed above.
+#'
+#' **Valid vales for `statement_type`:**
+#' Only if item=="SN"
+#' **"SNME" (Stellungnahme Ministerialentwurf / Statement on Ministerial Draft)
+#' **"SN" (Stellnungnahme Gesetzesinitiative / Statement on Legislative Initiative)
+#' **"SPET" (Stellnungnahme zur Petition / Statement on Petition)
+#' **"SPET-BR" (Stellnungnahme zur Petition Bundesrat / Statement on Petition Federal Council)
+#' **"SBI" (Stellnungnahme Bürgerinitiative / Statement on Citizens' Initiative)
+#'#' Setting `initiative_type = NULL` returns values for all initiative types listed above.
+#'
 #'
 #' @examples
 #' # Get participation data for the topic "Bildung"
@@ -24,19 +75,17 @@
 #' multi_data <- get_participation(
 #'   topic = c("Arbeit", "Soziales"),
 #'   legis_period = c("27", "26"),
-#'   review_type = "RGES"
+#'   item = "RGES"
 #' )
 #'
 #'
 #' @export
 
-#TODO: function incomplete
-
 get_participation <- function(
   topic = NULL, #Themen - THEMEN
   legis_period = NULL, #Gesetzgebungsperiode - GP_CODE
   active = NULL, #Aktuelle Beteiligung - AKTIV
-  review_type = NULL, #Gegenstand - BEGUTTYP
+  item = NULL, #Gegenstand - BEGUTTYP
   initiative_type = NULL #Art der Gesetzesinitiative - DOKTYPE
 ) {
   #TOPIC
@@ -74,9 +123,9 @@ get_participation <- function(
   checkmate::assert_subset(active, choices = "J", empty.ok = TRUE)
   # J: Aktuelle Beteiligung möglich
 
-  #REVIEW_TYPE (BEGUTTYP/Gegenstand)
-  choices_review_type <- c("RGES", "ME", "BI", "PET", "SN")
-  checkmate::assert_subset(review_type, choices_review_type, empty.ok = TRUE)
+  #item (BEGUTTYP/Gegenstand)
+  choices_item <- c("RGES", "ME", "BI", "PET", "SN")
+  checkmate::assert_subset(item, choices_item, empty.ok = TRUE)
 
   # RGES: Gesetzesinitiativen
   # ME: Ministerialentwürfe
@@ -84,6 +133,7 @@ get_participation <- function(
   # PET: Petitionen
   # SN: Stellungnahmen
 
+#CHECK
   #INITIATIVE_TYPE (DOKTYPE/ART DER GESETZESINITATIVE)
   choices_initiative_type <- c("EBR", "GABR", "A", "GABR13", "RV", "VOLKBG")
   checkmate::assert_subset(
@@ -103,7 +153,7 @@ get_participation <- function(
     THEMEN = topic,
     GP_CODE = legis_period,
     AKTIV = active,
-    BEGUTTYP = review_type,
+    BEGUTTYP = item,
     DOKTYP = initiative_type
   ) |>
     purrr::compact() |> #keep only non-empty elements
@@ -141,7 +191,8 @@ get_participation <- function(
   # extract the actual substantive data
   df_res <- res |>
     httr2::resp_body_json(simplifyVector = T) |>
-    purrr::pluck("rows")
+    purrr::pluck("rows") %>%
+    as.data.frame()
   #print(class(df_res))
 
   checkmate::assert_data_frame(df_res, min.rows = 1)
@@ -151,9 +202,37 @@ get_participation <- function(
     return(NULL)
   }
 
+  #assing column names
   colnames(df_res) <- vec_headings
 
-  print(nrow(df_res))
+  #assign more meaningful col names/translate
+
+  renaming_map <- c(
+    "gp_code" = "legis_period",
+    "datum" = "date",
+    "aktiv" = "active",
+    "nr" = "item_id",
+    "ityp" = "item_code",
+    "gegenstand" = "item",
+    "betreff" = "title",
+    "doktype" = "doc_type",
+    # "beteiligen"?
+    "themen" = "topic",
+    "b" = "item_url",
+    "stellungnahmen" = "statments",
+    "unterstutzungen" = "support",
+    "ressort" = "ministry"
+  )
+
+  df_res <- df_res |>
+    dplyr::rename_with(
+      .fn = \(x) renaming_map[x],
+      .cols = any_of(names(renaming_map))
+    )
+
+  df_res <- df_res |>
+    # dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
+    dplyr::mutate(date = lubridate::dmy(date))
 
   return(df_res)
 }
