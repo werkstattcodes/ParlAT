@@ -13,6 +13,7 @@
 #' @param gender Gender filter. One of "all", "female", or "male"
 #' @param legis_period Legislative period. Can be "all", a numeric value,
 #'        "PN" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)
+#' @param  date  Date for which active MPs are queried.
 #' @param party Political party filter. See details for permissible values.
 #' @param parl_group Parliamentary group filter
 #' @param electoral_district Electoral district filter. See details for permissible values.
@@ -737,6 +738,8 @@ get_mps <- function(
   # UNNEST DATA
   # needed for date filtering
   # needed to keep only mandates pertaining to legilsative relevant legislative period
+
+  # return(df_res) #REMOVE
 
   df_res <- df_res %>%
     tidyr::unnest_longer(mandate_detail) %>%
