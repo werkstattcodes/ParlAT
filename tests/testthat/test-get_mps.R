@@ -1,4 +1,7 @@
 test_that("get_mps returns correct number of female MPs for 27th legislative period", {
+  skip_on_cran()
+  skip_if_offline()
+
   result <- get_mps(legis_period = 27, institution = "NR", gender = "female")
 
   expect_s3_class(result, "data.frame")
