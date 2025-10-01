@@ -1,21 +1,20 @@
 #' Get Participation Data from Austrian Parliament
 #'
 #' This function retrieves participation data from the Austrian Parliament's API based on various filter criteria.
-#' For the pertaining website by the Austrian Parliament see [here](https://www.parlament.gv.at/beteiligen/stellung-nehmen/?FP_143SNFLAG=J){target="_blank"}
-#'
-#' Once a legislative initiative, citizens' initiative, or petition has been submitted to Parliament, one can submit a statement.
+#' For the pertaining website by the Austrian Parliament see <a href="https://www.parlament.gv.at/beteiligen/stellung-nehmen/?FP_143SNFLAG=J" target="_blank">here</a>.<br>
+#' Once a legislative initiative, citizens' initiative, or petition has been submitted to Parliament, pertaining statements
+#' expressing the author's opinion regarding the pending issue can be submitted.
 #' This allows the author to express his/her opinion and participate in the parliamentary process.
 #' For ministerial drafts statements can be submitted during the pre-parlamentary process.
-#' If you don't want to no own statement is submitted, statements of other authors can be supported.
+#' Furthermore it is possible to submit statements of other authors can be supported.
 #'
 #' @param topic (*Themen*) Character vector. Optional. Specifies the topic(s) of interest. See details for valid values.
 #' @param legis_period (*Gesetzgebungsperiode*) Character vector. Optional. Specifies the legislative period(s).
 #' @param active (*Aktuelle Beteiligung*) Character. Optional. If "J", only includes current participations.
 #' @param item (*Gegenstand*) Character vector. Optional. Specifies the type of review. See details for valid values.
-#' @param initiative_type (*Art der Gesetzesinitiative*) Character vector. Only if item="RGES". Optional. Specifies the type of legislative initiative. See details for valid values.
-#' @param statement_type (*Art der Stellungnahme*) Character vector. Only if item="SN". Optionl. Specifies the destination of a statement. See details for valid values.
+#' @param initiative_type (*Art der Gesetzesinitiative*) Optional character vector. Only if item="RGES" (Gesetzesinitiativen/Legislative Initiatives). Specifies the type of legislative initiative. See details for valid values.
+#' @param statement_type (*Art der Stellungnahme*) Optional character vector. Only if item="SN" (Stellungnahmen/Statements). Specifies the destination of a statement. See details for valid values.
 #' @return A data frame containing the participation data, or NULL if no results are found.
-#'
 #'
 #' @details
 #' This function sends a request to the Austrian Parliament's API to retrieve participation data based on the provided filter criteria. It performs input validation for each parameter and constructs the API request accordingly.
@@ -51,21 +50,19 @@
 #' * "SN" (Stellungnahmen / Statements)
 #' Setting `item = NULL` returns values for all review types listed above.
 #'
-#' **Valid values for `initiative_type`:** #' Only if item=="RGES"
+#' **Valid values for `initiative_type`** (Only if item=="RGES"):
 #' * "A" (Gesetzesanträge von Abgeordneten / Legislative Motions by Members)
 #' * "BUA" (Gesetzesanträge von Ausschüssen / Legislative Motions by Committees)
 #' * "RV" (Regierungsvorlagen / Government Bills)
 #' Setting `item = NULL` returns values for all review types listed above.
 #'
-#' **Valid vales for `statement_type`:**
-#' Only if item=="SN"
-#' **"SNME" (Stellungnahme Ministerialentwurf / Statement on Ministerial Draft)
-#' **"SN" (Stellnungnahme Gesetzesinitiative / Statement on Legislative Initiative)
-#' **"SPET" (Stellnungnahme zur Petition / Statement on Petition)
-#' **"SPET-BR" (Stellnungnahme zur Petition Bundesrat / Statement on Petition Federal Council)
-#' **"SBI" (Stellnungnahme Bürgerinitiative / Statement on Citizens' Initiative)
-#'#' Setting `initiative_type = NULL` returns values for all initiative types listed above.
-#'
+#' **Valid vales for `statement_type`** (Only if item=="SN"):
+#' * "SNME" (Stellungnahme Ministerialentwurf / Statement on Ministerial Draft)
+#' * "SN" (Stellnungnahme Gesetzesinitiative / Statement on Legislative Initiative)
+#' * "SPET" (Stellnungnahme zur Petition / Statement on Petition)
+#' * "SPET-BR" (Stellnungnahme zur Petition Bundesrat / Statement on Petition Federal Council)
+#' * "SBI" (Stellnungnahme Bürgerinitiative / Statement on Citizens' Initiative)
+#' Setting `initiative_type = NULL` returns values for all initiative types listed above.
 #'
 #' @examples
 #' # Get participation data for the topic "Bildung"
@@ -133,7 +130,7 @@ get_participation <- function(
   # PET: Petitionen
   # SN: Stellungnahmen
 
-#CHECK
+  #CHECK
   #INITIATIVE_TYPE (DOKTYPE/ART DER GESETZESINITATIVE)
   choices_initiative_type <- c("EBR", "GABR", "A", "GABR13", "RV", "VOLKBG")
   checkmate::assert_subset(
