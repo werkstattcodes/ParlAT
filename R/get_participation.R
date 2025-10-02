@@ -5,16 +5,31 @@
 #' Once a legislative initiative, citizens' initiative, or petition has been submitted to Parliament, pertaining statements
 #' expressing the author's opinion regarding the pending issue can be submitted.
 #' This allows the author to express his/her opinion and participate in the parliamentary process.
-#' For ministerial drafts statements can be submitted during the pre-parlamentary process.
-#' Furthermore it is possible to submit statements of other authors can be supported.
+#' For ministerial drafts, statements can be submitted during the pre-parliamentary process.
+#' Furthermore, statements of other authors can be supported.
 #'
 #' @param topic (*Themen*) Character vector. Optional. Specifies the topic(s) of interest. See details for valid values.
 #' @param legis_period (*Gesetzgebungsperiode*) Character vector. Optional. Specifies the legislative period(s).
 #' @param active (*Aktuelle Beteiligung*) Character. Optional. If "J", only includes current participations.
 #' @param item (*Gegenstand*) Character vector. Optional. Specifies the type of review. See details for valid values.
 #' @param initiative_type (*Art der Gesetzesinitiative*) Optional character vector. Only if item="RGES" (Gesetzesinitiativen/Legislative Initiatives). Specifies the type of legislative initiative. See details for valid values.
-#' @param statement_type (*Art der Stellungnahme*) Optional character vector. Only if item="SN" (Stellungnahmen/Statements). Specifies the destination of a statement. See details for valid values.
-#' @return A data frame containing the participation data, or NULL if no results are found.
+#' @param statement_type (*Art der Stellungnahme*) Optional character vector. Only if item="SN" (Stellungnahmen/Statements). Specifies the type of statement. See details for valid values.
+#' @return A tibble containing the participation data with the following columns:
+#' * `legis_period`: Legislative period
+#' * `date`: Date of the participation item (Date class)
+#' * `active`: Indicates if current participation is possible
+#' * `item_id`: Item identifier
+#' * `item_code`: Item type code
+#' * `item`: Description of the item type
+#' * `title`: Title of the participation item
+#' * `doc_type`: Document type
+#' * `topic`: Topic(s) associated with the item
+#' * `item_url`: URL to the item on the Parliament website
+#' * `statements`: Number of statements submitted
+#' * `support`: Number of supporters
+#' * `ministry`: Responsible ministry
+#'
+#' Returns NULL if no results are found for the provided search criteria.
 #'
 #' @details
 #' This function sends a request to the Austrian Parliament's API to retrieve participation data based on the provided filter criteria. It performs input validation for each parameter and constructs the API request accordingly.
@@ -40,7 +55,8 @@
 #' * "Sport" (Sports)
 #' * "Verkehr und Infrastruktur" (Transport and Infrastructure)
 #' * "Wirtschaft" (Economy)
-#'#' Setting `topic = NULL` returns values for all topics listed above.
+#'
+#' Setting `topic = NULL` returns values for all topics listed above.
 #'
 #' **Valid values for `item`:**
 #' * "RGES" (Gesetzesinitiativen / Legislative Initiatives)
@@ -54,27 +70,42 @@
 #' * "A" (Gesetzesanträge von Abgeordneten / Legislative Motions by Members)
 #' * "BUA" (Gesetzesanträge von Ausschüssen / Legislative Motions by Committees)
 #' * "RV" (Regierungsvorlagen / Government Bills)
-#' Setting `item = NULL` returns values for all review types listed above.
 #'
-#' **Valid vales for `statement_type`** (Only if item=="SN"):
-#' * "SNME" (Stellungnahme Ministerialentwurf / Statement on Ministerial Draft)
-#' * "SN" (Stellnungnahme Gesetzesinitiative / Statement on Legislative Initiative)
-#' * "SPET" (Stellnungnahme zur Petition / Statement on Petition)
-#' * "SPET-BR" (Stellnungnahme zur Petition Bundesrat / Statement on Petition Federal Council)
-#' * "SBI" (Stellnungnahme Bürgerinitiative / Statement on Citizens' Initiative)
 #' Setting `initiative_type = NULL` returns values for all initiative types listed above.
 #'
+#' **Valid values for `statement_type`** (Only if item=="SN"):
+#' * "SNME" (Stellungnahme Ministerialentwurf / Statement on Ministerial Draft)
+#' * "SN" (Stellungnahme Gesetzesinitiative / Statement on Legislative Initiative)
+#' * "SPET" (Stellungnahme zur Petition / Statement on Petition)
+#' * "SPET-BR" (Stellungnahme zur Petition Bundesrat / Statement on Petition Federal Council)
+#' * "SBI" (Stellungnahme Bürgerinitiative / Statement on Citizens' Initiative)
+#'
+#' Setting `statement_type = NULL` returns values for all statement types listed above.
+#'
 #' @examples
+#' \dontrun{
 #' # Get participation data for the topic "Bildung"
-#' education_data <- get_participation(topic = "Bildung")
+#' get_participation(topic = "Bildung")
 #'
 #' # Get participation data for multiple topics and legislative periods
-#' multi_data <- get_participation(
+#' get_participation(
 #'   topic = c("Arbeit", "Soziales"),
 #'   legis_period = c("27", "26"),
 #'   item = "RGES"
 #' )
 #'
+#' # Get participation data on all ministerial drafts for legislative periods 26 and 27
+#' get_participation(
+#'   legis_period = c(26, 27),
+#'   item = "ME"
+#' )
+#'
+#' # Get participation data on legislative initiatives with specific initiative type
+#' get_participation(
+#'   item = "RGES",
+#'   initiative_type = "RV"
+#' )
+#' }
 #'
 #' @export
 
@@ -83,7 +114,8 @@ get_participation <- function(
   legis_period = NULL, #Gesetzgebungsperiode - GP_CODE
   active = NULL, #Aktuelle Beteiligung - AKTIV
   item = NULL, #Gegenstand - BEGUTTYP
-  initiative_type = NULL #Art der Gesetzesinitiative - DOKTYPE
+  initiative_type = NULL, #Art der Gesetzesinitiative - DOKTYPE
+  statement_type = NULL #Art der Stellungnahme - SNTYP
 ) {
   #TOPIC
   choices_topic = c(
@@ -132,26 +164,48 @@ get_participation <- function(
 
   #CHECK
   #INITIATIVE_TYPE (DOKTYPE/ART DER GESETZESINITATIVE)
-  choices_initiative_type <- c("EBR", "GABR", "A", "GABR13", "RV", "VOLKBG")
+  # Only allowed when item = "RGES"
+  if (!is.null(initiative_type) && (is.null(item) || !("RGES" %in% item))) {
+    stop("initiative_type can only be specified when item = \"RGES\"")
+  }
+
+  choices_initiative_type <- c("A", "BUA", "RV")
   checkmate::assert_subset(
     initiative_type,
     choices_initiative_type,
     empty.ok = TRUE
   )
 
-  # EBR: Einsprüche des Bundesrats
-  # GABR: Gesetzesanträge von Abgeordneten
   # A: Gesetzesanträge von Abgeordneten
-  # GABR13: Gesetzesanträge von 1/3 der Mitglieder des Bundesrats
+  # BUA: Gesetzesanträge von Ausschüssen
   # RV: Regierungsvorlagen
-  # VOLKBG: Volksbegehren
+
+  #STATEMENT_TYPE (SNTYP/ART DER STELLUNGNAHME)
+  # Only allowed when item = "SN"
+  if (!is.null(statement_type) && (is.null(item) || !("SN" %in% item))) {
+    stop("statement_type can only be specified when item = \"SN\"")
+  }
+
+  choices_statement_type <- c("SNME", "SN", "SPET", "SPET-BR", "SBI")
+  checkmate::assert_subset(
+    statement_type,
+    choices_statement_type,
+    empty.ok = TRUE
+  )
+
+  # SNME: Stellungnahme Ministerialentwurf
+  # SN: Stellungnahme Gesetzesinitiative
+  # SPET: Stellungnahme zur Petition
+  # SPET-BR: Stellungnahme zur Petition Bundesrat
+  # SBI: Stellungnahme Bürgerinitiative
 
   body_params <- list(
     THEMEN = topic,
     GP_CODE = legis_period,
     AKTIV = active,
     BEGUTTYP = item,
-    DOKTYP = initiative_type
+    DOKTYP = initiative_type,
+    SNTYP = statement_type
   ) |>
     purrr::compact() |> #keep only non-empty elements
     jsonlite::toJSON()
@@ -199,7 +253,7 @@ get_participation <- function(
     return(NULL)
   }
 
-  #assing column names
+  #assign column names
   colnames(df_res) <- vec_headings
 
   #assign more meaningful col names/translate
@@ -216,7 +270,7 @@ get_participation <- function(
     # "beteiligen"?
     "themen" = "topic",
     "b" = "item_url",
-    "stellungnahmen" = "statments",
+    "stellungnahmen" = "statements",
     "unterstutzungen" = "support",
     "ressort" = "ministry"
   )
@@ -228,7 +282,7 @@ get_participation <- function(
     )
 
   df_res <- df_res |>
-    # dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
+    dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
     dplyr::mutate(date = lubridate::dmy(date))
 
   return(df_res)
