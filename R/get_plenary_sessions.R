@@ -1,15 +1,16 @@
 #' @title Get Plenary Sessions from Austrian Parliament
 #'
 #' @description
-#' Retrieves information about plenary sessions from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsessions" target="_blank" rel="noopener">here.</a>)
+#' Retrieves information about plenary sessions from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">here.</a>)
 #' Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards.
 #'
 #'
 #' @param institution A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).
 #' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards.
-#' @param session_and_activities A character string. One of 'sessions', 'submitted' or 'held'. Not applicable for BV (Bundesversammlung) - must be NULL for BV institution.
-#' @param submitted A character string.  Specifying the type of activities that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only used when `session_and_activities = "submitted"`. Not applicable for BV institution. See details below.
-#' @param held A character string. specifying the type of activities that took place. Possible values are: 'All', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'. Only used when `session_and_activities = "held"`. Not applicable for BV institution. See details below.
+#' @param session_and_activities A character string. One of 'sessions', 'submitted', or 'held'. Not applicable for BV (Bundesversammlung) - must be NULL for BV institution.
+#' @param submitted A character string specifying the type of activities that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only used when `session_and_activities = "submitted"`. Not applicable for BV institution. See details below.
+#' @param held A character string specifying the type of activities that took place. Possible values are: 'All', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'. Only used when `session_and_activities = "held"`. Not applicable for BV institution. See details below.
+#' @param echo Logical. If `TRUE`, prints the API request body parameters and the number of results. Default is `FALSE`.
 #' @return A data frame containing plenary session details, or NULL if no results found. The structure depends on `session_and_activities` parameter:
 #'
 #' If *`session_and_activities = "sessions"`*:
@@ -57,7 +58,7 @@
 #' - All
 #' - ASEU: Aktuelle Europastunden (Current Europe Hours)
 #' - AS: Aktuelle Stunden (Current Hours)
-#' - GO04: Erklarungen des Prasidenten / der Prasidentin (President Declarations)
+#' - GO04: Erklärungen des Präsidenten / der Präsidentin (President Declarations)
 #' - FS: Fragestunden (Question Hours)
 #' - RGER: Regierungserklärungen (Government Declarations)
 #' - RGEU: Regierungserklärungen zu EU-Themen (Government Declarations on EU Topics)
@@ -99,7 +100,8 @@ get_plenary_sessions <- function(
     legis_period = NULL,
     session_and_activities = NULL,
     submitted = NULL,
-    held = NULL
+    held = NULL,
+    echo = FALSE
 ) {
     # INSTITUTION
     checkmate::assert_subset(
@@ -128,12 +130,18 @@ get_plenary_sessions <- function(
                     institution = institution,
                     session_and_activities = session_and_activities,
                     submitted = submitted,
-                    held = held
+                    held = held,
+                    echo = echo
                 )
             },
             .progress = TRUE
         ) |>
             purrr::list_rbind()
+
+        if (isTRUE(echo)) {
+            print(paste("Total number of rows: ", nrow(df_res)))
+        }
+
         return(df_res)
     }
 
@@ -189,7 +197,8 @@ get_plenary_sessions <- function(
         )
     }
     if (
-        !is.null(held) &&
+        institution != "BV" &&
+            !is.null(held) &&
             session_and_activities != "held"
     ) {
         stop(
@@ -327,6 +336,12 @@ get_plenary_sessions <- function(
                 .cols = any_of(names(renaming_map))
             )
 
+        # Convert date column to Date class
+        df_res <- df_res |>
+            dplyr::mutate(
+                date = as.Date(date, format = "%d.%m.%Y")
+            )
+
         #select columns
         col_select <- c(
             "legis_period",
@@ -347,6 +362,27 @@ get_plenary_sessions <- function(
         df_res <- df_res |>
             dplyr::select(dplyr::any_of(col_select)) |>
             dplyr::relocate(dplyr::any_of(col_select)) #ensures ordering of columns
+
+        # PRINT ECHO
+        if (echo == TRUE) {
+            print(paste("Request parameters: ", body_params))
+            # print url to results / transparency reasons
+            body_params_li <- jsonlite::fromJSON(body_params)
+
+            query_string <- purrr::imap(
+                body_params_li,
+                \(x, y) glue::glue("WFP_007{URLencode(y)}={URLencode(x)}")
+            ) |>
+                unlist() |>
+                unname() |>
+                paste0(collapse = "&")
+
+            print(glue::glue(
+                "URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?{query_string}"
+            ))
+
+            print(paste("Number of rows: ", nrow(df_res)))
+        }
 
         return(df_res)
     }
@@ -447,6 +483,12 @@ get_plenary_sessions <- function(
                 .cols = any_of(names(renaming_map))
             )
 
+        # Convert date column to Date class
+        df_res <- df_res |>
+            dplyr::mutate(
+                date = as.Date(date, format = "%d.%m.%Y")
+            )
+
         #select columns
         col_select <- c(
             "institution",
@@ -463,6 +505,27 @@ get_plenary_sessions <- function(
         df_res <- df_res |>
             dplyr::select(dplyr::any_of(col_select)) |>
             dplyr::relocate(dplyr::any_of(col_select))
+
+        # PRINT ECHO
+        if (echo == TRUE) {
+            print(paste("Request parameters: ", body_params))
+            # print url to results / transparency reasons
+            body_params_li <- jsonlite::fromJSON(body_params)
+
+            query_string <- purrr::imap(
+                body_params_li,
+                \(x, y) glue::glue("WFP_007{URLencode(y)}={URLencode(x)}")
+            ) |>
+                unlist() |>
+                unname() |>
+                paste0(collapse = "&")
+
+            print(glue::glue(
+                "URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?{query_string}"
+            ))
+
+            print(paste("Number of rows: ", nrow(df_res)))
+        }
 
         return(df_res)
     }
