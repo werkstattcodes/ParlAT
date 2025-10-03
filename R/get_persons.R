@@ -140,20 +140,25 @@ get_persons_single <- function(
 #' The `get_persons` function searches for current and former individuals
 #' active in the Austrian parliament as well as other related political
 #' institutions of Austria. It allows filtering by specific institutions
-#' and gender.
-#' It mirrors the search functionality 'Personen' on the website of the
-#'  Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/))
+#' and gender and mirrors the "Personen" search on the website of the
+#' Austrian Parliament (see [here](https://www.parlament.gv.at/recherchieren/personen/)).
 #'
-#' @details Note that `get_person` only return matches for the latest
-#' name of an individual. MPs' pervious names, e.g. before marriage, do
-#' not return a match.
+#' @details
+#' Note that `get_persons` only returns matches for the latest
+#' name of an individual. MPs' previous names, e.g. before marriage, do
+#' not return a match. When `names` is `NULL`, the function returns all
+#' available persons for the supplied filters.
 #'
-#' @param names A character vector of name(s). Surname first.
-#' @param search_strict Logical. If `TRUE`, only exact matches are returned. Default is `TRUE`.
+#' @param names A character vector of name(s) in the format "Surname Givenname". Defaults to `NULL`.
+#' @param search_strict Logical. If `TRUE`, only exact matches are returned when `names` are supplied. Default is `TRUE`.
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param mandates Logical. If `TRUE`, mandates are retrieved for each person. Default is `FALSE`.
-#' @param date A date to filter mandates. Default is `NULL`.
-#' @param gender A character vector. Possible values are "all", "female", or "male". Default is "all".
+#' @param date A `Date` or character coercible to `Date` used to filter mandates. Default is `NULL`.
+#' @param gender A character string. Possible values are `"all"`, `"female"`, or `"male"`. Default is `"all"`.
+#'
+#' @return A tibble with one row per matching person and the columns `pad_intern`,
+#'   `name`, `gender`, `position`, and `link`. When `mandates = TRUE`, the
+#'   returned tibble additionally contains mandate details for each person.
 
 #' @examples \dontrun{
 #' get_persons(c("Kogler Werner", "Kurz Sebastian"))}
