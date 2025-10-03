@@ -35,7 +35,7 @@ get_persons_single <- function(
 
   institution <- purrr::map_chr(
     institution,
-    \(x)
+    \(x) {
       switch(
         x,
         "Bundespräsident" = "BP",
@@ -51,6 +51,7 @@ get_persons_single <- function(
         "Rechnungshof" = "PRRH",
         "Volksanwaltschaft" = "VA"
       )
+    }
   )
 
   # gender <- NULL
@@ -174,13 +175,14 @@ get_persons <- function(
   } else {
     li_persons <- purrr::map(
       names,
-      \(x)
+      \(x) {
         get_persons_single(
           search_string = x,
           search_strict = search_strict,
           institution = institution,
           gender = gender
         )
+      }
     )
   }
 
