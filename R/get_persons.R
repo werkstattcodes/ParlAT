@@ -7,9 +7,9 @@
 
 get_persons_single <- function(
   search_string = NULL,
-  search_strict = NULL,
   institution = NULL,
-  gender = c("all", "female", "male")
+  gender = c("all", "female", "male"),
+  echo = FALSE
 ) {
   # INSTITUTION
 
@@ -118,16 +118,26 @@ get_persons_single <- function(
       position = stringr::str_remove(position, pattern = stringr::regex("<.*$"))
     )
 
-  if (
-    !is.null(search_strict) && search_strict == TRUE && !is.null(search_string)
-  ) {
-    regex_search_string <- glue::glue("\\b{search_string}\\b") |> as.character()
-    df_res <- df_res |>
-      dplyr::filter(stringr::str_detect(
-        name,
-        stringr::regex(regex_search_string)
-      ))
-    return(df_res)
+  # PRINT ECHO
+  if (echo == TRUE) {
+    print(body_params)
+    # print url to results / transparency reasons / add search string parameter
+    body_params_li <- jsonlite::fromJSON(body_params) |>
+      c("search" = search_string)
+
+    query_string <- purrr::imap(
+      body_params_li,
+      \(x, y) glue::glue("PERSON_10400{URLencode(y)}={URLencode(x)}")
+    ) |>
+      unlist() |>
+      unname() |>
+      paste0(collapse = "&")
+
+    print(glue::glue(
+      "https://www.parlament.gv.at/recherchieren/personen?{query_string}"
+    ))
+
+    print(nrow(df_res))
   }
 
   return(df_res)
@@ -150,11 +160,11 @@ get_persons_single <- function(
 #' available persons for the supplied filters.
 #'
 #' @param names A character vector of name(s) in the format "Surname Givenname". Defaults to `NULL`.
-#' @param search_strict Logical. If `TRUE`, only exact matches are returned when `names` are supplied. Default is `TRUE`.
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param mandates Logical. If `TRUE`, mandates are retrieved for each person. Default is `FALSE`.
 #' @param date A `Date` or character coercible to `Date` used to filter mandates. Default is `NULL`.
 #' @param gender A character string. Possible values are `"all"`, `"female"`, or `"male"`. Default is `"all"`.
+#' @param echo Logical. If `TRUE`, prints the API request body parameters, the constructed URL, and the number of results. Default is `FALSE`.
 #'
 #' @return A tibble with one row per matching person and the columns `pad_intern`,
 #'   `name`, `gender`, `position`, and `link`. When `mandates = TRUE`, the
@@ -165,17 +175,17 @@ get_persons_single <- function(
 
 get_persons <- function(
   names = NULL,
-  search_strict = TRUE,
   institution = NULL,
   mandates = FALSE,
   date = NULL,
-  gender = "all"
+  gender = "all",
+  echo = FALSE
 ) {
   if (is.null(names) || length(names) == 0) {
     li_persons <- list(get_persons_single(
-      search_strict = search_strict,
       institution = institution,
-      gender = gender
+      gender = gender,
+      echo = echo
     ))
   } else {
     li_persons <- purrr::map(
@@ -183,9 +193,9 @@ get_persons <- function(
       \(x) {
         get_persons_single(
           search_string = x,
-          search_strict = search_strict,
           institution = institution,
-          gender = gender
+          gender = gender,
+          echo = echo
         )
       }
     )
