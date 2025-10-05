@@ -1,15 +1,16 @@
-#' @title Get Plenary Sessions from Austrian Parliament
+#' @title Get Plenary Sessions of the Austrian Parliament
 #'
 #' @description
 #' Retrieves information about plenary sessions from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">here.</a>)
-#' Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards.
+#' Data available from 20th legislative period onwards.
 #'
 #'
 #' @param institution A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).
-#' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards.
-#' @param session_and_activities A character string. One of 'sessions', 'submitted', or 'held'. Not applicable for BV (Bundesversammlung) - must be NULL for BV institution.
-#' @param submitted A character string specifying the type of activities that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only used when `session_and_activities = "submitted"`. Not applicable for BV institution. See details below.
-#' @param held A character string specifying the type of activities that took place. Possible values are: 'All', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'. Only used when `session_and_activities = "held"`. Not applicable for BV institution. See details below.
+#' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards. Note that
+#' filtering is not possible for institution=="BV".
+#' @param session_and_activities A character string. One of 'sessions', 'submitted', or 'held'. Not applicable for if institution is "BV" (Bundesversammlung);  must be NULL for BV institution.
+#' @param submitted A character string specifying the type of submissions that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only used when `session_and_activities = "submitted"`. Not applicable for BV institution. See details below.
+#' @param held A character string specifying the type of sessions that were held. Possible values are: 'All', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'. Only used when `session_and_activities = "held"`. Not applicable for BV institution. See details below.
 #' @param echo Logical. If `TRUE`, prints the API request body parameters and the number of results. Default is `FALSE`.
 #' @return A data frame containing plenary session details, or NULL if no results found. The structure depends on `session_and_activities` parameter:
 #'
@@ -40,6 +41,11 @@
 #' - Returns basic session information without the activity-specific filtering options available for BR/NR
 #'
 #' @details
+#' The function argument `session_and_activities` allows for three different inputs:
+#' `sessions`: Returns details on the plenary sessions held.
+#' `submitted`: Returns details on the submissions made during the plenary sessions.
+#' `held`: Returns details on the type of sessions held during the plenary sessions.
+#'
 #' Possible values for `submitted` if `session_and_activities` is set to `submitted`:
 #' - All
 #' - AA: Abänderungsanträge (Amendment Motions)
@@ -68,8 +74,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Basic usage: Get sessions for National Council, period 26
-#' get_plenary_sessions(institution = "NR", legis_period = 26, session_and_activities = "sessions")
+#' # Basic usage: Get sessions for National Council from 20 to 27 legislative period
+#' sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20,27), session_and_activities = "sessions", echo=T)
 #'
 #' # Get activities submitted during sessions
 #' get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted")
@@ -121,7 +127,8 @@ get_plenary_sessions <- function(
     }
 
     # if length(legis_period)>1 => apply function to each legis_period
-    if (length(legis_period) > 1) {
+    # institution !=BV because API returns full results with only one legis period called
+    if (length(legis_period) > 1 & institution != "BV") {
         df_res <- purrr::map(
             legis_period,
             \(x) {
@@ -146,13 +153,23 @@ get_plenary_sessions <- function(
     }
 
     # LEGISLATIVE PERIOD; requires roman input
+    # BV institution requires NULL legis_period (filtering not supported by API)
+    if (institution == "BV" && !is.null(legis_period)) {
+        stop(
+            "legis_period must be NULL for BV institution. Filtering by legislative period is not supported for Bundesversammlung."
+        )
+    }
+
     # Check that all legislative periods are >= 20 (API limitation)
-    # checkmate::assert_numeric(
-    #     legis_period,
-    #     lower = 20,
-    #     finite = TRUE,
-    #     any.missing = FALSE
-    # )
+    if (institution != "BV") {
+        checkmate::assert_numeric(
+            legis_period,
+            lower = 20,
+            finite = TRUE,
+            any.missing = FALSE,
+            .var.name = "legis_period must be >= 20. Only legislative periods from the 20th onwards are permissible for this query."
+        )
+    }
 
     if (!is.null(legis_period)) {
         legis_period_input <- as.character(as.roman(as.numeric(legis_period)))
@@ -387,7 +404,10 @@ get_plenary_sessions <- function(
         return(df_res)
     }
 
-    if (institution != "BV" && session_and_activities == "sessions") {
+    if (
+        (institution != "BV" && session_and_activities == "sessions") ||
+            institution == "BV"
+    ) {
         # extract institution type
         df_res <- df_res |>
             dplyr::mutate(
@@ -400,7 +420,9 @@ get_plenary_sessions <- function(
             )
 
         # extract session type if "session_and_activities" == held
-        if (session_and_activities == "held") {
+        if (
+            !is.null(session_and_activities) && session_and_activities == "held"
+        ) {
             df_res <- df_res |>
                 dplyr::mutate(
                     session_type_abbrev = purrr::map_chr(art, \(x) {

@@ -18,7 +18,7 @@ test_that("get_plenary_sessions returns valid data structure", {
 
   # Test data types
   expect_true(is.character(x$institution))
-  expect_true(inherits(x$date, "Date"))
+  expect_s3_class(x$date, "Date")
   expect_true(is.character(x$session_number) || is.numeric(x$session_number))
 
   # Test institution filter works
@@ -106,6 +106,11 @@ test_that("get_plenary_sessions works with submitted parameter values", {
       is.data.frame(x) || is.null(x),
       info = paste("Failed for submitted =", sub_val)
     )
+
+    # Test date column is Date class
+    if (!is.null(x) && nrow(x) > 0 && "date" %in% colnames(x)) {
+      expect_s3_class(x$date, "Date")
+    }
   }
 })
 
@@ -126,6 +131,11 @@ test_that("get_plenary_sessions works with held parameter values", {
       is.data.frame(x) || is.null(x),
       info = paste("Failed for held =", held_val)
     )
+
+    # Test date column is Date class
+    if (!is.null(x) && nrow(x) > 0 && "date" %in% colnames(x)) {
+      expect_s3_class(x$date, "Date")
+    }
   }
 })
 
@@ -135,19 +145,30 @@ test_that("get_plenary_sessions works with BV institution", {
 
   x <- get_plenary_sessions(
     institution = "BV",
-    legis_period = 27
+    legis_period = NULL
   )
 
   # BV should return data or NULL, not error
   expect_true(is.data.frame(x) || is.null(x))
+})
 
+test_that("get_plenary_sessions validates BV institution parameters", {
   # BV should not accept session_and_activities parameter
   expect_error(
     get_plenary_sessions(
-      institution = "BV", 
-      legis_period = 27,
+      institution = "BV",
+      legis_period = NULL,
       session_and_activities = "sessions"
     )
+  )
+
+  # BV should not accept non-NULL legis_period
+  expect_error(
+    get_plenary_sessions(
+      institution = "BV",
+      legis_period = 27
+    ),
+    "legis_period must be NULL for BV institution"
   )
 })
 
@@ -157,27 +178,27 @@ test_that("get_plenary_sessions validates parameters correctly", {
     get_plenary_sessions(institution = "INVALID", legis_period = 27),
     "Must be a subset of"
   )
-  
+
   # NULL institution
   expect_error(
     get_plenary_sessions(institution = NULL, legis_period = 27),
     "not empty"
   )
-  
+
   # Invalid session_and_activities
   expect_error(
     get_plenary_sessions(
-      institution = "NR", 
-      legis_period = 27, 
+      institution = "NR",
+      legis_period = 27,
       session_and_activities = "invalid"
     ),
     "Must be a subset of"
   )
-  
+
   # Non-numeric legislative period
   expect_error(
     get_plenary_sessions(institution = "NR", legis_period = "invalid"),
-    "invalid 'type' \\(character\\) of argument"
+    "Assertion on"
   )
 })
 
@@ -192,7 +213,7 @@ test_that("get_plenary_sessions validates parameter combinations", {
     ),
     "'submitted' parameter can only be used when session_and_activities is 'submitted'"
   )
-  
+
   # held parameter used with wrong session_and_activities
   expect_error(
     get_plenary_sessions(
@@ -208,15 +229,15 @@ test_that("get_plenary_sessions validates parameter combinations", {
 test_that("get_plenary_sessions handles multiple legislative periods", {
   skip_on_cran()
   skip_if_offline()
-  
+
   x <- get_plenary_sessions(
     institution = "NR",
     legis_period = c(27, 28),
     session_and_activities = "sessions"
   )
-  
+
   expect_true(is.data.frame(x) || is.null(x))
-  
+
   if (!is.null(x) && nrow(x) > 0) {
     # Should contain data from both periods
     legis_periods_found <- unique(x$legis_period)
@@ -228,37 +249,40 @@ test_that("get_plenary_sessions handles multiple legislative periods", {
 test_that("get_plenary_sessions handles NULL legislative period", {
   skip_on_cran()
   skip_if_offline()
-  
+
   # This should get all periods from 20 onwards - limit to recent ones for testing
   x <- get_plenary_sessions(
     institution = "NR",
     legis_period = NULL,
     session_and_activities = "sessions"
   )
-  
+
   expect_true(is.data.frame(x) || is.null(x))
-  
+
   if (!is.null(x) && nrow(x) > 0) {
     # Should contain data from multiple periods (20+)
     expect_true(length(unique(x$legis_period)) > 1)
   }
 })
 
-test_that("get_plenary_sessions handles early legislative periods", {
-  skip_on_cran()
-  skip_if_offline()
-  
-  # Test that early legislative periods work (no lower boundary)
-  x <- get_plenary_sessions(
-    institution = "NR",
-    legis_period = 1,
-    session_and_activities = "sessions"
+test_that("get_plenary_sessions validates legis_period >= 20", {
+  # Test that early legislative periods are rejected
+  expect_error(
+    get_plenary_sessions(
+      institution = "NR",
+      legis_period = 1,
+      session_and_activities = "sessions"
+    ),
+    "legis_period must be >= 20"
   )
-  
-  # Should return data or NULL, not error
-  expect_true(is.data.frame(x) || is.null(x))
-  
-  if (!is.null(x) && nrow(x) > 0) {
-    expect_true(all(x$legis_period == "I"))  # 1 in Roman numerals
-  }
+
+  # Test that legis_period = 19 is also rejected
+  expect_error(
+    get_plenary_sessions(
+      institution = "NR",
+      legis_period = 19,
+      session_and_activities = "sessions"
+    ),
+    "legis_period must be >= 20"
+  )
 })
