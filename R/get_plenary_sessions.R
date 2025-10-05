@@ -89,9 +89,6 @@
 #' # Federal Council sessions
 #' get_plenary_sessions(institution = "BR", legis_period = 28, session_and_activities = "sessions")
 #'
-#' # Federal Assembly (BV) - no session_and_activities parameter
-#' get_plenary_sessions(institution = "BV", legis_period = 27)
-#'
 #' # Multiple legislative periods
 #' get_plenary_sessions(institution = "NR", legis_period = c(26, 27), session_and_activities = "sessions")
 #'
