@@ -1,11 +1,9 @@
 #' Retrieve Transcripts from the Austrian Parliament API
 #'
-#' This function sends a POST request to the Austrian Parliament's API to retrieve transcript data
-#' based on the provided filters such as search string, legislative period, session type, and date range.
+#' `get_transcripts()` retrieves the transcripts of parlamentary sessions via Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">here.</a>)
 #'
 #' @param search_string Optional character string to filter transcripts by keywords. Defaults to NULL.
-#' @param legis_period Optional numeric value representing the legislative period. This value is converted
-#'   to its Roman numeral representation internally. Defaults to NULL.
+#' @param legis_period Legislative period(x). Default NULL queries for all legislative periods. Accepts numeric, character or roman numerals in character format as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
 #' @param session_type Optional character string specifying the type of session (e.g., "NRSITZ", "BRSITZ",
 #'   "USA", etc.). Defaults to NULL.
 #' @param date_start Optional start date (as character or Date) for filtering transcripts. Defaults to NULL.
@@ -27,7 +25,7 @@
 #' @examples
 #' \dontrun{
 #'   # Retrieve all available transcripts with default filters.
-#'   get_transcripts()
+#'   get_transcripts()?
 #'
 #'   # Retrieve transcripts using a search string and specifying a legislative period.
 #'   get_transcripts(search_string = "gesundheit", legis_period = 28, session_type = "NRSITZ",
@@ -42,7 +40,11 @@ get_transcripts <- function(
     echo = TRUE
 ) {
     # LEGISLATIVE PERIOD
-    legis_period_input <- as.character(utils::as.roman(legis_period))
+    # legis_period_input <- as.character(utils::as.roman(legis_period)) #wrong if PN or KN
+    legis_period_input <- aux_convert_legis_periods(
+        legis_period,
+        output = "roman"
+    )
 
     # SESSION TYPES
     choices_session_type <- c(
@@ -106,31 +108,43 @@ get_transcripts <- function(
         jsonlite::toJSON()
 
     res <- get_transcripts_api_request(body_params, search_string)
+    # print(length(res))
+    #return(res)
 
-    df_res <- purrr::map(res, \(x) {
-        vec_headings <- x |>
-            httr2::resp_body_json(simplifyVector = T) |>
-            purrr::pluck("header", "label") |>
-            janitor::make_clean_names()
+    df_res <- purrr::map(
+        res,
+        \(x) {
+            # extract the actual substantive data
 
-        # extract the actual substantive data
-        df_res <- x |>
-            httr2::resp_body_json(simplifyVector = T) |>
-            purrr::pluck("rows") %>%
-            as.data.frame()
+            df_x <- x |>
+                httr2::resp_body_json(simplifyVector = T) |>
+                purrr::pluck("rows") %>%
+                as.data.frame()
 
-        if (length(df_res) == 0) {
-            message("No results found for the provided search criteria.")
-            return(NULL)
+            if (nrow(df_x) == 0) {
+                return(NULL)
+            }
+
+            vec_headings <- x |>
+                httr2::resp_body_json(simplifyVector = T) |>
+                purrr::pluck("header", "label") |>
+                janitor::make_clean_names()
+
+            colnames(df_x) <- vec_headings
+
+            return(df_x)
         }
-
-        colnames(df_res) <- vec_headings
-
-        return(df_res)
-    }) %>%
+    ) %>%
+        purrr::compact() %>%
         purrr::list_rbind()
 
-    checkmate::assert_data_frame(df_res, min.rows = 1)
+    if (length(df_res) == 0) {
+        print(length(df_res))
+        message("No results found for the provided search criteria.")
+        return(NULL)
+    }
+
+    # checkmate::assert_data_frame(df_res, min.rows = 1)
 
     if (echo == TRUE) {
         print(body_params)
@@ -154,6 +168,92 @@ get_transcripts <- function(
     }
 
     return(df_res)
+
+    # SELECT AND RENAME COLUMNS
+    renaming_map <- c(
+        "datum" = "date",
+        "uri" = "session_url",
+        "gp_code" = "legis_period",
+        "art" = "session_type",
+        "zitation" = "session_number",
+        "sitzung" = "session",
+        "gesamtprotokoll" = "session_transcript"
+    )
+
+    df_res <- df_res |>
+        dplyr::rename_with(
+            .fn = \(x) renaming_map[x],
+            .cols = any_of(names(renaming_map))
+        )
+
+    df_res <- df_res |>
+        dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
+        dplyr::mutate(date = lubridate::dmy(date))
+
+    aux_fn_get_hrefs <- function(html_string) {
+        if (is.na(html_string) || html_string == "") {
+            return(c(
+                html = NA_character_,
+                pdf = NA_character_
+            ))
+        }
+
+        extract_all_hrefs <- purrr::possibly(
+            \(html) {
+                hrefs <- html |>
+                    rvest::read_html() |>
+                    rvest::html_elements("a") |>
+                    rvest::html_attr("href")
+
+                # Filter and separate HTML and PDF links
+                html_href <- hrefs[stringr::str_ends(
+                    hrefs,
+                    "\\.html"
+                )]
+                pdf_href <- hrefs[stringr::str_ends(
+                    hrefs,
+                    "\\.pdf"
+                )]
+
+                # Create named vector: [html, pdf]
+                html_url <- if (length(html_href) > 0) {
+                    html_href[1]
+                } else {
+                    NA_character_
+                }
+                pdf_url <- if (length(pdf_href) > 0) {
+                    pdf_href[1]
+                } else {
+                    NA_character_
+                }
+
+                return(c(html = html_url, pdf = pdf_url))
+            },
+            otherwise = c(
+                html = NA_character_,
+                pdf = NA_character_
+            )
+        )
+
+        extract_all_hrefs(html_string)
+    }
+
+    df_res <- df_res |>
+        dplyr::mutate(
+            session_transcript = map(session_transcript, \(x) {
+                aux_fn_get_hrefs(x)
+            })
+        ) |>
+        tidyr::unnest_wider(session_transcript, names_sep = "_") |>
+        dplyr::mutate(across(starts_with("session_transcript"), \(x) {
+            dplyr::if_else(
+                is.na(x) | stringr::str_starts(x, "http"),
+                x,
+                paste0("https://www.parlament.gv.at", x)
+            )
+        }))
+
+    return(df_res %>% dplyr::arrange(date))
 }
 
 
@@ -197,7 +297,7 @@ get_transcripts_api_request <- function(body_params, search_string) {
         httr2::req_method("POST") |>
         req_url_query(
             js = "eval",
-            page = "1",
+            page = "page", # = 1,
             pagesize = "10",
             search = search_string,
             ascDesc = "DESC"
@@ -248,6 +348,7 @@ get_transcripts_api_request <- function(body_params, search_string) {
         next_req = httr2::iterate_with_offset(
             param_name = "page",
             start = 1,
+            # start = 0,
             offset = 1,
             resp_complete = \(resp) is_complete(resp)
         ),
