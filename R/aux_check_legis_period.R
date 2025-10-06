@@ -118,9 +118,14 @@ fn_make_tibble <- function(x) {
 #' Convert legislative period to standardized character format
 #'
 #' This auxiliary function standardizes legislative period inputs by converting:
+#' When output=="numeric"
 #' - Numeric values to character strings
 #' - Roman numerals to Arabic numbers then to character strings
 #' - Character strings (including historical abbreviations) remain as-is
+#' When output=="roman"
+#' - roman numerals remain
+#' - character and numeric values to roman numerals
+#' - historical abbreviations remain as-is
 #'
 #' @param legis_period A vector of legislative periods. Can be numeric, Roman numerals (character),
 #'   or historical abbreviations like "PN", "KN", "Bundesrat1Rep"
@@ -136,7 +141,7 @@ fn_make_tibble <- function(x) {
 #'
 #' @keywords internal
 #' @noRd
-aux_convert_legis_periods <- function(legis_period) {
+aux_convert_legis_periods <- function(legis_period, output = "numeric") {
   if (is.null(legis_period)) {
     return(NULL)
   }
@@ -145,16 +150,31 @@ aux_convert_legis_periods <- function(legis_period) {
   legis_period_char <- as.character(legis_period)
 
   # Process each element
-  purrr::map_chr(legis_period_char, function(x) {
-    # Check if it's a Roman numeral (only contains Roman numeral letters)
-    if (stringr::str_detect(x, "^[IVXLCDM]+$")) {
-      # Convert Roman numeral to numeric, then to character
-      as.character(as.numeric(as.roman(x)))
-    } else {
-      # Keep as is (numeric strings or historical abbreviations like "PN", "KN")
-      x
-    }
-  })
+  if (output == "numeric") {
+    return(purrr::map_chr(legis_period_char, function(x) {
+      # Check if it's a Roman numeral (only contains Roman numeral letters)
+      if (stringr::str_detect(x, "^[IVXLCDM]+$")) {
+        # Convert Roman numeral to numeric, then to character
+        return(as.character(as.numeric(as.roman(x))))
+      } else {
+        # Keep as is (numeric strings or historical abbreviations like "PN", "KN")
+        return(x)
+      }
+    }))
+  }
+  if (output == "roman") {
+    return(purrr::map_chr(legis_period_char, function(x) {
+      if (stringr::str_detect(x, "^[IVXLCDM]+$")) {
+        return(x)
+      }
+      if (x %in% c("KN", "PN")) {
+        return(x)
+      }
+      if (!is.na(as.numeric(x))) {
+        return(as.character(as.roman(x)))
+      }
+    }))
+  }
 }
 
 
