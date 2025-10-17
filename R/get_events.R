@@ -344,30 +344,58 @@ get_events <- function(
         purrr::compact() |>
         jsonlite::toJSON()
 
-    res <- get_events_api_request(body_params, search_string)
+    req <- httr2::request(
+        "https://www.parlament.gv.at/Filter/api/filter/data/600"
+    ) |>
+        httr2::req_method("POST") |>
+        httr2::req_url_query(
+            js = "eval",
+            showAll = TRUE,
+            search = search_string,
+            ascDesc = "ASC"
+        ) |>
+        httr2::req_headers(
+            accept = "*/*",
+            `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
+            dnt = "1",
+            origin = "https://www.parlament.gv.at",
+            priority = "u=1, i",
+            `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+            `sec-ch-ua-mobile` = "?0",
+            `sec-ch-ua-platform` = '"Windows"',
+            `sec-fetch-dest` = "empty",
+            `sec-fetch-mode` = "cors",
+            `sec-fetch-site` = "same-origin",
+            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+        ) |>
+        httr2::req_body_raw(body_params, type = "application/json") |>
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        httr2::req_verbose(
+            body_req = F,
+            header_req = F,
+            header_resp = F,
+            body_resp = F,
+            info = F
+        )
 
-    df_res <- purrr::map(res, \(x) {
-        vec_headings <- x |>
-            httr2::resp_body_json(simplifyVector = T) |>
-            purrr::pluck("header", "label") |>
-            janitor::make_clean_names()
+    resp <- httr2::req_perform(req)
 
-        # extract the actual substantive data
-        df_res <- x |>
-            httr2::resp_body_json(simplifyVector = T) |>
-            purrr::pluck("rows") |>
+    resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
+
+    vec_headings <- resp_json |>
+        purrr::pluck("header", "label") |>
+        janitor::make_clean_names()
+
+    rows <- purrr::pluck(resp_json, "rows")
+
+    if (length(rows) == 0) {
+        df_res <- NULL
+    } else {
+        df_res <- rows |>
             as.data.frame()
 
-        if (length(df_res) == 0) {
-            # message("No results found for the provided search criteria.")
-            return(NULL)
-        }
-
         colnames(df_res) <- vec_headings
-
-        return(df_res)
-    }) |>
-        purrr::list_rbind()
+    }
 
     if (isTRUE(echo)) {
         print(body_params)
@@ -389,10 +417,10 @@ get_events <- function(
             "https://www.parlament.gv.at/aktuelles/termine/index.html?{query_string}"
         ))
 
-        print(nrow(df_res))
+        print(if (is.null(df_res)) 0 else nrow(df_res))
     }
 
-    if (length(df_res) == 0) {
+    if (is.null(df_res) || nrow(df_res) == 0) {
         message("No results found for the provided search criteria.")
         return(NULL)
     }
@@ -475,107 +503,8 @@ get_events <- function(
 }
 
 
-#' Retrieve Event Data from the Parliamentary API
-#'
-#' Constructs and executes a POST API request to fetch event data from the
-#' Austrian Parliament's filter endpoint. The function handles pagination by
-#' iteratively fetching additional pages until a page is returned with fewer entries
-#' than the specified pagesize.
-#'
-#' @param body_params A JSON formatted string containing the body parameters needed for the API call.
-#' @param search_string A string used to filter the events based on the search term.
-#'
-#' @return A response object containing aggregated event data from multiple API calls.
-#' @keywords internal
-#' @details
-#' The API request is constructed using a series of pipe operators to set the method,
-#' query parameters, headers, and body. The request leverages the `httr2` package to perform
-#' the call and manage verbose settings. Pagination is implemented via the function
-#' `req_perform_iterative`, which continues to fetch data until a page returns less than
-#' 1000 entries (as checked by the helper function `is_complete`).
-#' @noMd
-#' @examples
-#' \dontrun{
-#'   # Example body parameters and search string
-#'   body <- '{"key1": "value1", "key2": "value2"}'
-#'   search <- "Plenarsitzung"
-#'
-#'   # Retrieve event data
-#'   response <- get_events_api_request(body, search)
-#'
-#'   # Process the response as needed
-#'   print(response)
-#' }
-get_events_api_request <- function(body_params, search_string) {
-    req <- httr2::request(
-        "https://www.parlament.gv.at/Filter/api/filter/data/600"
-    ) |>
-        httr2::req_method("POST") |>
-        httr2::req_url_query(
-            js = "eval",
-            page = "1",
-            pagesize = "50",
-            search = search_string,
-            ascDesc = "ASC"
-        ) |>
-        httr2::req_headers(
-            accept = "*/*",
-            `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-            dnt = "1",
-            origin = "https://www.parlament.gv.at",
-            priority = "u=1, i",
-            # referer = "https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2023-03-16T23%3A00%3A00.000Z&TERMIN_01DATERANGE=2025-03-17T23%3A59%3A59.999Z",
-            `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-            `sec-ch-ua-mobile` = "?0",
-            `sec-ch-ua-platform` = '"Windows"',
-            `sec-fetch-dest` = "empty",
-            `sec-fetch-mode` = "cors",
-            `sec-fetch-site` = "same-origin",
-            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-            # cookie = "JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv04e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv06e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.master:green1"
-        ) |>
-        httr2::req_body_raw(body_params, type = "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-        httr2::req_verbose(
-            body_req = F,
-            header_req = F,
-            header_resp = F,
-            body_resp = F,
-            info = F
-        )
-
-    is_complete <- function(resp) {
-        df_resp_current <- resp |>
-            httr2::resp_body_json(simplifyVector = T)
-
-        # print(paste("Next page:", df_resp_current$pages))
-
-        df_resp_current <- df_resp_current |>
-            purrr::pluck("rows") |>
-            as.data.frame()
-
-        # print(nrow(df_resp_current))
-
-        nrow(df_resp_current) < 50 #dependent on page size parameter
-    }
-
-    resp <- httr2::req_perform_iterative(
-        req,
-        next_req = httr2::iterate_with_offset(
-            param_name = "page",
-            start = 1,
-            offset = 1,
-            resp_complete = \(resp) is_complete(resp)
-        ),
-        max_reqs = Inf
-    )
-
-    # return result
-    return(resp)
-}
-
 #' Transform Event Date for API Request
-#'
+#' 
 #' Helper function to convert date from dd-mm-yyyy format to ISO 8601 UTC format
 #' required by the Austrian Parliament API.
 #'

@@ -105,32 +105,60 @@ get_transcripts <- function(
         purrr::compact() |> #keep only non-empty elements
         jsonlite::toJSON()
 
-    res <- get_transcripts_api_request(body_params, search_string)
+    req <- httr2::request(
+        "https://www.parlament.gv.at/Filter/api/filter/data/211"
+    ) |>
+        httr2::req_method("POST") |>
+        httr2::req_url_query(
+            js = "eval",
+            showAll = TRUE,
+            search = search_string,
+            ascDesc = "DESC"
+        ) |>
+        httr2::req_headers(
+            accept = "*/*",
+            `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
+            origin = "https://www.parlament.gv.at",
+            priority = "u=1, i",
+            `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
+            `sec-ch-ua-mobile` = "?0",
+            `sec-ch-ua-platform` = '"Windows"',
+            `sec-fetch-dest` = "empty",
+            `sec-fetch-mode` = "cors",
+            `sec-fetch-site` = "same-origin",
+            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0"
+        ) |>
+        httr2::req_body_raw(
+            body_params,
+            type = "application/json"
+        ) |>
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        httr2::req_verbose(
+            body_req = F,
+            header_req = F,
+            header_resp = F,
+            body_resp = F,
+            info = F
+        )
 
-    df_res <- purrr::map(res, \(x) {
-        vec_headings <- x |>
-            httr2::resp_body_json(simplifyVector = T) |>
-            purrr::pluck("header", "label") |>
-            janitor::make_clean_names()
+    resp <- httr2::req_perform(req)
 
-        # extract the actual substantive data
-        df_res <- x |>
-            httr2::resp_body_json(simplifyVector = T) |>
-            purrr::pluck("rows") %>%
+    resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
+
+    vec_headings <- resp_json |>
+        purrr::pluck("header", "label") |>
+        janitor::make_clean_names()
+
+    rows <- purrr::pluck(resp_json, "rows")
+
+    if (length(rows) == 0) {
+        df_res <- NULL
+    } else {
+        df_res <- rows %>%
             as.data.frame()
 
-        if (length(df_res) == 0) {
-            message("No results found for the provided search criteria.")
-            return(NULL)
-        }
-
         colnames(df_res) <- vec_headings
-
-        return(df_res)
-    }) %>%
-        purrr::list_rbind()
-
-    checkmate::assert_data_frame(df_res, min.rows = 1)
+    }
 
     if (echo == TRUE) {
         print(body_params)
@@ -150,110 +178,15 @@ get_transcripts <- function(
             "https://www.parlament.gv.at/recherchieren/protokolle/index.html?{query_string}"
         ))
 
-        print(nrow(df_res))
+        print(if (is.null(df_res)) 0 else nrow(df_res))
     }
+
+    if (is.null(df_res) || nrow(df_res) == 0) {
+        message("No results found for the provided search criteria.")
+        return(NULL)
+    }
+
+    checkmate::assert_data_frame(df_res, min.rows = 1)
 
     return(df_res)
-}
-
-
-# Retrieve Transcripts via API Request
-#
-# This function constructs and sends a POST request to the ParlAT API endpoint
-# for retrieving transcript data. It uses the httr2 package to build the request,
-# including setting specific query parameters (such as page, pagesize, search term, and sort order)
-# and necessary headers (like Accept, User-Agent, and others) to emulate a browser request.
-#
-# The function supports iterative fetching by automatically handling pagination.
-# It continues making requests until the number of rows returned is less than the specified page size,
-# indicating that the final page has been reached.
-#
-# body_params: A JSON string representing the body parameters for the POST request.
-# search_string: A string used as a search parameter in the query to filter transcripts.
-#
-# Returns:
-# A list containing the concatenated responses from all successful paginated API requests.
-#
-# Details:
-# Internally, the function defines a helper 'is_complete' to determine if the current response
-# indicates that there is no further data to fetch. The pagination is managed by incrementing the
-# 'page' parameter until fewer items than the page size are returned.
-#
-# Examples:
-# Define JSON body parameters and a search string:
-#   json_body <- '{"key": "value"}'
-#   search_query <- "health"
-#
-# Retrieve transcripts from the API:
-#   transcripts <- get_transcripts_api_request(json_body, search_query)
-#
-# View the structure of the result:
-#   print(str(transcripts))
-
-get_transcripts_api_request <- function(body_params, search_string) {
-    req <- httr2::request(
-        "https://www.parlament.gv.at/Filter/api/filter/data/211"
-    ) |>
-        httr2::req_method("POST") |>
-        req_url_query(
-            js = "eval",
-            page = "1",
-            pagesize = "10",
-            search = search_string,
-            ascDesc = "DESC"
-        ) |>
-        httr2::req_headers(
-            accept = "*/*",
-            `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
-            origin = "https://www.parlament.gv.at",
-            priority = "u=1, i",
-            # referer = "https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211GP_CODE=XXVIII&STENO_211NBVS=NRSITZ&STENO_211DATUM=2024-01-01T00%3A00%3A00.000Z&STENO_211DATUM=null&STENO_211search=gesundheit",
-            `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
-            `sec-ch-ua-mobile` = "?0",
-            `sec-ch-ua-platform` = '"Windows"',
-            `sec-fetch-dest` = "empty",
-            `sec-fetch-mode` = "cors",
-            `sec-fetch-site` = "same-origin",
-            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0" #,
-            # cookie = "pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1742538939%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D; _pk_ses.1.26ca=1"
-        ) |>
-        httr2::req_body_raw(
-            body_params,
-            type = "application/json"
-        ) |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-        httr2::req_verbose(
-            body_req = F,
-            header_req = F,
-            header_resp = F,
-            body_resp = F,
-            info = F
-        )
-
-    is_complete <- function(resp) {
-        df_resp_current <- resp |>
-            httr2::resp_body_json(simplifyVector = T)
-
-        df_resp_current <- df_resp_current %>%
-            purrr::pluck("rows") %>%
-            as.data.frame()
-
-        # print(nrow(df_resp_current))
-
-        nrow(df_resp_current) < 10 #dependent on page size parameter
-    }
-
-    resp <- httr2::req_perform_iterative(
-        req,
-        next_req = httr2::iterate_with_offset(
-            param_name = "page",
-            start = 1,
-            offset = 1,
-            resp_complete = \(resp) is_complete(resp)
-        ),
-        max_reqs = Inf
-    )
-
-    # return result
-    return(resp)
 }

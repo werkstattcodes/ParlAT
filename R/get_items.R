@@ -794,32 +794,59 @@ get_items <- function(
     purrr::compact() |> #keep only non-empty elements
     jsonlite::toJSON()
 
-  res <- get_item_api_request(body_params, search_string)
+  req <- httr2::request(
+    "https://www.parlament.gv.at/Filter/api/filter/data/101"
+  ) |>
+    httr2::req_method("POST") |>
+    httr2::req_url_query(
+      js = "eval",
+      showAll = TRUE,
+      search = search_string,
+      sortrnr = "17",
+      ascDesc = "DESC"
+    ) |>
+    httr2::req_headers(
+      accept = "*/*",
+      `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
+      dnt = "1",
+      origin = "https://www.parlament.gv.at",
+      priority = "u=1, i",
+      `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+      `sec-ch-ua-mobile` = "?0",
+      `sec-ch-ua-platform` = '"Windows"',
+      `sec-fetch-dest` = "empty",
+      `sec-fetch-mode` = "cors",
+      `sec-fetch-site` = "same-origin",
+      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+    ) |>
+    httr2::req_body_raw(body_params, "application/json") |>
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+    httr2::req_verbose(
+      body_req = F,
+      header_req = F,
+      header_resp = F,
+      body_resp = F,
+      info = F
+    )
 
-  df_res <- purrr::map(res, \(x) {
-    vec_headings <- x |>
-      httr2::resp_body_json(simplifyVector = T) |>
-      purrr::pluck("header", "label") |>
-      janitor::make_clean_names()
+  resp <- httr2::req_perform(req)
 
-    # extract the actual substantive data
-    df_res <- x |>
-      httr2::resp_body_json(simplifyVector = T) |>
-      purrr::pluck("rows") |>
-      # tibble::as_tibble(.name_repair = "unique")
+  resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
+
+  vec_headings <- resp_json |>
+    purrr::pluck("header", "label") |>
+    janitor::make_clean_names()
+
+  rows <- purrr::pluck(resp_json, "rows")
+
+  if (length(rows) == 0) {
+    df_res <- NULL
+  } else {
+    df_res <- rows |>
       as.data.frame()
 
-    if (nrow(df_res) == 0) {
-      message("No results found for the provided search criteria.")
-      return(NULL)
-    }
-
     colnames(df_res) <- vec_headings
-
-    return(df_res)
-  }) |>
-    purrr::compact() |> #remove NULL results
-    purrr::list_rbind()
+  }
 
   # RETURN ECHO
   if (echo == TRUE) {
@@ -840,11 +867,11 @@ get_items <- function(
       "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
     ))
 
-    print(nrow(df_res))
+    print(if (is.null(df_res)) 0 else nrow(df_res))
   }
 
   # STOP IF NO HITS
-  if (nrow(df_res) == 0) {
+  if (is.null(df_res) || nrow(df_res) == 0) {
     message("No results found for the provided search criteria.")
     return(NULL)
   }
@@ -931,81 +958,12 @@ get_items <- function(
 #'
 #' @param body_params JSON string or raw object containing the parameters to be sent in the request body
 #'
-#' @return An httr2 response object containing the API response
-#'
+#' @return A list containing a single httr2 response object with the API response
+#' 
 #' @details
 #' The function makes a request to the parliament.at API endpoint for filtering data.
 #' It sets various query parameters and headers to properly format the request.
-#'
-#' @keywords internal
-#' @noRd
-get_item_api_request <- function(body_params, search_string) {
-  req <- httr2::request(
-    "https://www.parlament.gv.at/Filter/api/filter/data/101"
-  ) |>
-    httr2::req_method("POST") |>
-    httr2::req_url_query(
-      js = "eval",
-      page = "1",
-      pagesize = "1000",
-      search = search_string,
-      sortrnr = "17",
-      ascDesc = "DESC"
-    ) |>
-    httr2::req_headers(
-      accept = "*/*",
-      `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-      dnt = "1",
-      origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      # referer = "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR&FP_001DATUM_VON=2024-02-01T01%3A00%3A00.000Z&FP_001DATUM_VON=2024-02-29T01%3A00%3A00.000Z&FP_001VHG=ANTR&FP_001search=gesundheit",
-      `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-      `sec-ch-ua-mobile` = "?0",
-      `sec-ch-ua-platform` = '"Windows"',
-      `sec-fetch-dest` = "empty",
-      `sec-fetch-mode` = "cors",
-      `sec-fetch-site` = "same-origin",
-      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-      # cookie = "JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv04e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.appsrv04e; JSESSIONID=cIGy7LD1aNKtp0tEQJfecl33xhjjA0K2wyRxrLDv.master:green1"
-    ) |>
-    httr2::req_body_raw(body_params, "application/json") |>
-    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
-    httr2::req_verbose(
-      body_req = F,
-      header_req = F,
-      header_resp = F,
-      body_resp = F,
-      info = F
-    )
-
-  is_complete <- function(resp) {
-    df_resp_current <- resp |>
-      httr2::resp_body_json(simplifyVector = T)
-
-    df_resp_current <- df_resp_current |>
-      purrr::pluck("rows") |>
-      # tibble::as_tibble(.name_repair = "unique")
-      as.data.frame()
-
-    nrow(df_resp_current) < 1000 #dependent on page size parameter
-  }
-
-  resp <- httr2::req_perform_iterative(
-    req,
-    next_req = httr2::iterate_with_offset(
-      param_name = "page",
-      start = 1,
-      offset = 1,
-      resp_complete = \(resp) is_complete(resp)
-    ),
-    max_reqs = Inf
-  )
-
-  # return result
-  return(resp)
-}
-
-
+#' The query uses `showAll = TRUE` to request all matching rows in a single response,
 # my_item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24?selectedStage=105"
 # get_item_details(my_item_url)
 
