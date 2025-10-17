@@ -486,50 +486,6 @@ get_items <- function(
     checkmate::assert_character(number, len = 1)
   }
 
-  # Basic validation for text parameters to prevent obvious issues
-  validate_text_input <- function(text, param_name) {
-    if (is.null(text)) {
-      return(invisible(NULL))
-    }
-
-    # Check for suspicious patterns that might indicate injection attempts
-    suspicious_patterns <- c(
-      "<script",
-      "</script",
-      "javascript:",
-      "data:text/html",
-      "\\x00",
-      "\\x08",
-      "\\x0B",
-      "\\x0C",
-      "\\x0E",
-      "\\x1F"
-    )
-
-    for (pattern in suspicious_patterns) {
-      if (
-        stringr::str_detect(
-          stringr::str_to_lower(text),
-          stringr::fixed(pattern, ignore_case = TRUE)
-        )
-      ) {
-        stop(paste("Suspicious content detected in", param_name))
-      }
-    }
-
-    # Check for extremely long inputs (potential DoS)
-    if (nchar(text) > 1000) {
-      stop(paste(param_name, "exceeds maximum length of 1000 characters"))
-    }
-
-    invisible(NULL)
-  }
-
-  # Apply validation to text parameters
-  validate_text_input(search_string, "search_string")
-  validate_text_input(person, "person")
-  validate_text_input(number, "number")
-
   # KEYWORD (Schlagwort)
   choices_item_keyword <- c(
     "Abfallwirtschaft",
@@ -802,8 +758,9 @@ get_items <- function(
       js = "eval",
       showAll = TRUE,
       search = search_string,
-      sortrnr = "17",
-      ascDesc = "DESC"
+      # sortrnr = "17",
+      # ascDesc = "DESC",
+      export = TRUE
     ) |>
     httr2::req_headers(
       accept = "*/*",
@@ -844,6 +801,16 @@ get_items <- function(
   } else {
     df_res <- rows |>
       as.data.frame()
+
+    #patch: API returns colums and header labels of different lenghts. Those
+    #labels which exceed the number of cols appear to be irrelevant; not clear why
+    #they were included
+
+    if (ncol(df_res) != length(vec_headings)) {
+      print("Warning: Columns and labels of different length!")
+
+      vec_headings <- vec_headings[1:ncol(df_res)]
+    }
 
     colnames(df_res) <- vec_headings
   }
@@ -890,7 +857,7 @@ get_items <- function(
   df_res <- df_res |>
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(cols_pars),
+        dplyr::any_of(cols_pars),
         \(x) purrr::map(x, \(y) fn_parse_content(y))
       )
     )
@@ -941,6 +908,8 @@ get_items <- function(
     "vhg",
     "vhg2"
   )
+
+  return(df_res)
 
   df_res <- df_res |>
     dplyr::select(dplyr::any_of(col_select)) |>
