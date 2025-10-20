@@ -1,8 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:www.parlament.gv.at)"
+      "WebFetch(domain:www.parlament.gv.at)",
+      "WebFetch(domain:docs.anthropic.com)"
     ],
     "deny": []
-  }
+  },
+  "outputStyle": "default"
 }

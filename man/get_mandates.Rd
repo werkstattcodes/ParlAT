@@ -10,7 +10,7 @@ get_mandates(name = NULL, pad_intern = NULL, institution = NULL, date = NULL)
 \item{pad_intern}{Personal identfication number of person(s). Has to be NULL if names are provided}
 
 \item{institution}{Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
-or "PV" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
+or "PN" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
 but also presidents of the National Council, Secretaries ("Schriftführer"), and Regulators ("Ordner"). The equivalent applies to other
 the chambers as well.}
 

@@ -19,8 +19,8 @@
 #' @param detail_type Character string specifying the type of details to retrieve: "plenary", "activities", or "committees". For examples see here:  <a href="https://www.parlament.gv.at/person/145?selectedtab=PLENUM" target="_blank">plenary </a>; <a href="https://www.parlament.gv.at/person/145?selectedtab=AKT" target="_blank">activities</a>; <a href="https://www.parlament.gv.at/person/145?selectedtab=AUS" target="_blank">committees</a>.
 #' @param institution Character string specifying the parliamentary house. Permissible inputs are "NR" (Nationalrat/National Council),
 #' "BR" (Bundesrat/Federal Council ) or NULL (which returns results for both houses). Defaults to NULL.
-#' @param legis_period Numeric or character specifying the legislative period (optional).
-#'   Accepts numeric values (e.g., 27), Roman numerals (e.g., "XXVII"), or historical abbreviations.
+#' @param legis_period Numeric or character vector specifying one or more legislative periods (optional).
+#'   Accepts numeric values (e.g., 27 or c(26, 27)), Roman numerals (e.g., "XXVII"), or historical abbreviations.
 #'   Must be >= 20 for valid periods. Defaults to NULL.
 #' @param item Character string specifying the item type (Art des Verhandlungsgegenstandes) (optional).
 #'   Defaults to NULL. Used only for details category "activities". See Details below.
@@ -163,12 +163,26 @@
 #'   legis_period = 27
 #' )
 #'
+#' # Get plenary speeches for multiple legislative periods
+#' plenary_multiple <- get_mps_details(
+#'   pad_intern = 2344,
+#'   detail_type = "plenary",
+#'   legis_period = c(26, 27)
+#' )
+#'
 #' # Get only legislative proposals (item type "A")
 #' proposals <- get_mps_details(
 #'   pad_intern = 2344,
 #'   detail_type = "activities",
 #'   item = "A",
 #'   legis_period = 27
+#' )
+#'
+#' # Get activities for multiple legislative periods
+#' activities_multiple <- get_mps_details(
+#'   pad_intern = 2344,
+#'   detail_type = "activities",
+#'   legis_period = c(25, 26, 27)
 #' )
 #'
 #' # Get committee memberships for Stephanie Krisper
@@ -984,7 +998,11 @@ get_mps_details_committees <- function(
         ) |>
         dplyr::select(-committee_name_dates) |>
         dplyr::mutate(
-            committee_active = ifelse(is.na(committee_position_end), TRUE, FALSE)
+            committee_active = ifelse(
+                is.na(committee_position_end),
+                TRUE,
+                FALSE
+            )
         ) |>
         dplyr::mutate(across(starts_with("committee_date"), \(x) {
             lubridate::dmy(x)

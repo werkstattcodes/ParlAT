@@ -1,6 +1,6 @@
 #' Retrieve Transcripts from the Austrian Parliament API
 #'
-#' `get_transcripts()` retrieves the transcripts of parliamentary sessions via Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">here</a>).
+#' `get_transcripts()` retrieves the transcripts of parliamentary sessions via Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">here.</a>)
 #'
 #' @param search_string Optional character string to filter transcripts by keywords. Defaults to NULL.
 #' @param legis_period Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric, character or roman numerals in character format as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
@@ -32,12 +32,6 @@
 #' * GFT: Gedenk-, Fest- und Trauersitzungen (Memorial, Celebratory, and Condolence Sessions)
 #' * PARL: Jugend- und Lehrlingsparlament (Youth and Apprentice Parliament)
 #' * VER: Veranstaltungen (Events)
-#'
-#' ## Implementation Notes
-#' The function uses a two-step API approach: first fetching the total count of matching
-#' records, then retrieving all results in a single request. This avoids duplicate records
-#' that can occur with pagination. Queries returning more than 10,000 results will raise
-#' an error; use more specific filters to refine your query in such cases.
 
 #' @examples
 #' \dontrun{
@@ -45,10 +39,10 @@
 #'   get_transcripts()
 #'
 #'   # Retrieve transcripts using a search string and specifying a legislative period.
-#'   get_transcripts(search_string = "gesundheit", legis_period = 28, session_type = "NRSITZ",
-#'                 date_start = NULL, date_end = NULL)
+#'   get_transcripts_showAll(search_string = "gesundheit", legis_period = 28, session_type = "NRSITZ",
+#'                 date_start = "01-01-2024", date_end = NULL)
 #' }
-get_transcripts <- function(
+get_transcripts_showAll <- function(
     search_string = NULL,
     legis_period = NULL,
     session_type = NULL,
@@ -114,17 +108,7 @@ get_transcripts <- function(
         )
     }
 
-    # if is.null(date_start) and !is.null(date_end) date_start has to be fed as character "null" into API call;
-    # otherwise date_start is not part of url and date_end is interpreted as date_start; same for date_end.
-    if (is.null(date_start) && !is.null(date_end)) {
-        date_start <- "null"
-    }
-    if (!is.null(date_start) && is.null(date_end)) {
-        date_end <- "null"
-    }
-
-    
-# COLLECT PARAMETERS
+    # COLLECT PARAMETERS
     body_params <- list(
         GP_CODE = legis_period_input,
         NBVS = session_type,
@@ -133,103 +117,47 @@ get_transcripts <- function(
         purrr::compact() |> #keep only non-empty elements
         jsonlite::toJSON()
 
-    # DEFINITION NESTED HELPER FUNCTION 1: Get total count from API
-    get_total_count <- function() {
-        resp <- httr2::request(
-            "https://www.parlament.gv.at/Filter/api/filter/data/211"
+    # API REQUEST - using showAll=TRUE to get all data in a single call
+    resp <- httr2::request(
+        "https://www.parlament.gv.at/Filter/api/filter/data/211"
+    ) |>
+        httr2::req_method("POST") |>
+        httr2::req_url_query(
+            js = "eval",
+            showAll = TRUE,
+            search = search_string,
+            ascDesc = "desc",
+            export = TRUE
         ) |>
-            httr2::req_method("POST") |>
-            httr2::req_url_query(
-                js = "eval",
-                page = "1",
-                pagesize = "1",
-                search = search_string,
-                export = TRUE
-            ) |>
-            httr2::req_headers(
-                accept = "*/*",
-                `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
-                origin = "https://www.parlament.gv.at",
-                priority = "u=1, i",
-                `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
-                `sec-ch-ua-mobile` = "?0",
-                `sec-ch-ua-platform` = '"Windows"',
-                `sec-fetch-dest` = "empty",
-                `sec-fetch-mode` = "cors",
-                `sec-fetch-site` = "same-origin",
-                `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0"
-            ) |>
-            httr2::req_body_raw(
-                body_params,
-                type = "application/json"
-            ) |>
-            httr2::req_user_agent(
-                "ParlAT R package (http://werk.statt.codes)"
-            ) |>
-            httr2::req_perform()
-
-        resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
-        total_count <- resp_json$count
-
-        return(total_count)
-    }
-
-    # DEFINITION NESTED HELPER FUNCTION 2: Get all data with specified pagesize
-    get_all_data <- function(total_count) {
-        resp <- httr2::request(
-            "https://www.parlament.gv.at/Filter/api/filter/data/211"
+        httr2::req_headers(
+            accept = "*/*",
+            `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
+            origin = "https://www.parlament.gv.at",
+            priority = "u=1, i",
+            `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
+            `sec-ch-ua-mobile` = "?0",
+            `sec-ch-ua-platform` = '"Windows"',
+            `sec-fetch-dest` = "empty",
+            `sec-fetch-mode` = "cors",
+            `sec-fetch-site` = "same-origin",
+            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0"
         ) |>
-            httr2::req_method("POST") |>
-            httr2::req_url_query(
-                js = "eval",
-                page = "1",
-                pagesize = as.character(total_count),
-                search = search_string,
-                export = TRUE
-            ) |>
-            httr2::req_headers(
-                accept = "*/*",
-                `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
-                origin = "https://www.parlament.gv.at",
-                priority = "u=1, i",
-                `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
-                `sec-ch-ua-mobile` = "?0",
-                `sec-ch-ua-platform` = '"Windows"',
-                `sec-fetch-dest` = "empty",
-                `sec-fetch-mode` = "cors",
-                `sec-fetch-site` = "same-origin",
-                `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0"
-            ) |>
-            httr2::req_body_raw(
-                body_params,
-                type = "application/json"
-            ) |>
-            httr2::req_user_agent(
-                "ParlAT R package (http://werk.statt.codes)"
-            ) |>
-            httr2::req_perform()
+        httr2::req_body_raw(
+            body_params,
+            type = "application/json"
+        ) |>
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        httr2::req_verbose(
+            body_req = F,
+            header_req = F,
+            header_resp = F,
+            body_resp = F,
+            info = F
+        ) |>
+        httr2::req_perform()
 
-        resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
-        return(resp_json)
-    }
-
-    # TWO-STEP API CALL PROCESS
-    # Step 1: Get total count
-    total_count <- get_total_count()
-
-    # Check hard limit
-    if (total_count > 100000) {
-        stop(
-            "Query returns ",
-            total_count,
-            " results, which exceeds the limit of 10,000. ",
-            "Please refine your query using more specific filters (e.g., narrower date range, ",
-            "specific legislative period, or session type)."
-        )
-    }
-
-    # Step 2: Get all data with the total count as pagesize
-    resp_json <- get_all_data(total_count)
+    # EXTRACT DATA - single response with all data
+    resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
 
     vec_headings <- resp_json |>
         purrr::pluck("header", "label") |>
@@ -245,7 +173,7 @@ get_transcripts <- function(
         df_res <- rows |>
             as.data.frame()
 
-        #PATCH: API returns colums and header labels of different lenghts. Those
+        #patch: API returns colums and header labels of different lenghts. Those
         #labels which exceed the number of cols appear to be irrelevant; not clear why
         #they were included
 

@@ -15,23 +15,45 @@ get_committees(
 )
 }
 \arguments{
-\item{search_string}{A character string for free text search.}
+\item{search_string}{A character string for free text search. Optional.}
 
-\item{institution}{A character string specifying the institution. Either NR (Nationalrat, National Council) or BR (Bundesrat/Federal Council).}
+\item{institution}{A character string specifying the institution. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat/Federal Council). Required.}
 
 \item{legis_period}{A character or numeric vector of length 1 for a specific legislative period. Required.}
 
-\item{permanent}{A logical flag indicating whether only permanent committees should be queried.}
+\item{permanent}{A logical flag indicating whether only permanent committees should be queried. Default is NULL (both permanent and non-permanent).}
 
 \item{include_subcommittees}{A logical flag to indicate whether subcommittees should be included
-in the search results. Search for subcommittees is only possible if \code{permanent} is not TRUE.}
+in the search results. Search for subcommittees is only possible if \code{permanent} is not TRUE. Default is NULL.}
 
-\item{details}{Logical. If TRUE, the function retrieves additional details for each committee, including members, documents, and reports.}
+\item{details}{Logical. If TRUE, the function retrieves additional details for each committee, including members, documents, and reports. Default is FALSE.}
 
-\item{echo}{Logical. If TRUE, the function prints the used search parametes and the url to the pertaining search results on the website of the Austrian Parlament.}
+\item{echo}{Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.}
 }
 \value{
-A data frame
+A data frame with the following columns:
+\itemize{
+\item \code{committee}: Name of the committee
+\item \code{url_committee}: URL to the committee page
+}
+
+If \code{details = TRUE}, additional columns are included:
+\itemize{
+\item \code{legis_period}: Legislative period code (relocated to first column)
+\item \code{title}: Full title of the committee
+\item \code{citation}: Citation information
+\item \code{committee_id}: Committee ID
+\item \code{date_start}: Committee start date
+\item \code{date_end}: Committee end date
+\item \code{names}: List column with committee member names
+\item \code{documents}: List column with committee documents
+\item \code{assignments}: List column with committee assignments
+\item \code{recentagenda}: List column with recent agenda items
+\item \code{recentreports}: List column with recent reports
+\item \code{stages}: List column with committee stages
+}
+
+Returns NULL if no results are found.
 }
 \description{
 Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
@@ -40,11 +62,39 @@ The function mirrors the search functionality of the Austrian Parliament's websi
 }
 \examples{
 \dontrun{
- get_committees(
- search_string = "Ibiza",
-legis_period=27,
- institution = "NR",
- echo=TRUE)
+# Basic search for committees in National Council
+get_committees(
+  institution = "NR",
+  legis_period = 27
+)
+
+# Search with specific text and details
+get_committees(
+  search_string = "Ibiza",
+  legis_period = 27,
+  institution = "NR",
+  details = TRUE
+)
+
+# Search only permanent committees
+get_committees(
+  institution = "NR",
+  legis_period = 28,
+  permanent = TRUE
+)
+
+# Include subcommittees (only works when permanent = FALSE or NULL)
+get_committees(
+  institution = "NR",
+  legis_period = 27,
+  include_subcommittees = TRUE
+)
+
+# Federal Council committees
+get_committees(
+  institution = "BR",
+  legis_period = 27
+)
 }
 
 }

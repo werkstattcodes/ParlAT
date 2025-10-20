@@ -8,43 +8,135 @@ get_participation(
   topic = NULL,
   legis_period = NULL,
   active = NULL,
-  review_type = NULL,
-  initiative_type = NULL
+  item = NULL,
+  initiative_type = NULL,
+  statement_type = NULL
 )
 }
 \arguments{
-\item{topic}{(\emph{Themen})Character vector. Optional. Specifies the topic(s) of interest. Must be one or more of: "Arbeit", "Außenpolitik", "Bildung", "Budget und Finanzen", "Europäische Union", "Familie und Generationen", "Frauen und Gleichbehandlung", "Gesundheit und Ernährung", "Information und Medien", "Inneres und Recht", "Innovation, Technologie und Forschung", "Klima, Umwelt und Energie", "Kultur", "Land- und Forstwirtschaft", "Landesverteidigung", "Parlament und Demokratie", "Soziales", "Sport", "Verkehr und Infrastruktur", "Wirtschaft".}
+\item{topic}{(\emph{Themen}) Character vector. Optional. Specifies the topic(s) of interest. See details for valid values.}
 
-\item{legis_period}{(\emph{Gesetzgebungsperiode})Character vector. Optional. Specifies the legislative period(s).}
+\item{legis_period}{(\emph{Gesetzgebungsperiode}) Character vector. Optional. Specifies the legislative period(s).}
 
 \item{active}{(\emph{Aktuelle Beteiligung}) Character. Optional. If "J", only includes current participations.}
 
-\item{review_type}{(\emph{Gegenstand}) Character vector. Optional. Specifies the type of review. Must be one or more of: "RGES" (Gesetzesinitiativen), "ME" (Ministerialentwürfe), "BI" (Bürgerinitiativen), "PET" (Petitionen), "SN" (Stellungnahmen).}
+\item{item}{(\emph{Gegenstand}) Character vector. Optional. Specifies the type of review. See details for valid values.}
 
-\item{initiative_type}{(\emph{Art der Gesetzesinitiative}) Character vector. Optional. Specifies the type of legislative initiative. Must be one or more of: "EBR" (Einsprüche des Bundesrats), "GABR" (Gesetzesanträge von Abgeordneten), "A" (Gesetzesanträge von Abgeordneten), "GABR13" (Gesetzesanträge von 1/3 der Mitglieder des Bundesrats), "RV" (Regierungsvorlagen), "VOLKBG" (Volksbegehren).}
+\item{initiative_type}{(\emph{Art der Gesetzesinitiative}) Optional character vector. Only if item="RGES" (Gesetzesinitiativen/Legislative Initiatives). Specifies the type of legislative initiative. See details for valid values.}
 
-\item{department}{(\emph{Ressort}) Character vector. Optional. Only available if `review_type=='ME' (Ministerialentwürfe). Specifies the administrative unit which initiated the draft law.
-Must be one or more of: "BMJ (BM f. Justiz)", "BMK (BM f. Klimaschutz, Umwelt, Energie, Mobilität, Innovation u. Technologie)", "BMNT (BM f. Nachhaltigkeit u. Tourismus)", "BMLV (BM f. Landesverteidigung)", "BMVRDJ (BM f. Verfassung, Reformen, Deregulierung u. Justiz)", "BML (BM f. Land- u. Forstwirtschaft, Regionen u. Wasserwirtschaft)", "BMLRT (BM f. Landwirtschaft, Regionen u. Tourismus)", "BMSGPK (BM f. Soziales, Gesundheit, Pflege u. Konsumentenschutz)", "BMI (BM f. Inneres)", "BMF (BM f. Finanzen)", "BMDW (BM f. Digitalisierung u. Wirtschaftsstandort)", "BMBWF (BM f. Bildung, Wissenschaft u. Forschung)", "BMAW (BM f. Arbeit u. Wirtschaft)", "BMASGK (BM f. Arbeit, Soziales, Gesundheit u. Konsumentenschutz)", "BMAFJ (BM f. Arbeit, Familie u. Jugend)", "BMA (BM f. Arbeit)", "BMEIA (BM f. europäische u. internationale Angelegenheiten)", "BMKÖS (BM f. Kunst, Kultur, öffentlichen Dienst u. Sport)", "BMFFIM (Büro der Bundesministerin f. Frauen, Familie, Integration u. Medien)", "BMEUV (}
+\item{statement_type}{(\emph{Art der Stellungnahme}) Optional character vector. Only if item="SN" (Stellungnahmen/Statements). Specifies the type of statement. See details for valid values.}
 }
 \value{
-A data frame containing the participation data, or NULL if no results are found.
+A tibble containing the participation data with the following columns:
+\itemize{
+\item \code{legis_period}: Legislative period
+\item \code{date}: Date of the participation item (Date class)
+\item \code{active}: Indicates if current participation is possible
+\item \code{item_id}: Item identifier
+\item \code{item_code}: Item type code
+\item \code{item}: Description of the item type
+\item \code{title}: Title of the participation item
+\item \code{doc_type}: Document type
+\item \code{topic}: Topic(s) associated with the item
+\item \code{item_url}: URL to the item on the Parliament website
+\item \code{statements}: Number of statements submitted
+\item \code{support}: Number of supporters
+\item \code{ministry}: Responsible ministry
+}
+
+Returns NULL if no results are found for the provided search criteria.
 }
 \description{
 This function retrieves participation data from the Austrian Parliament's API based on various filter criteria.
+For the pertaining website by the Austrian Parliament see \if{html}{\out{<a href="https://www.parlament.gv.at/beteiligen/stellung-nehmen/?FP_143SNFLAG=J" target="_blank">}}here\if{html}{\out{</a>}}.\if{html}{\out{<br>}}
+Once a legislative initiative, citizens' initiative, or petition has been submitted to Parliament, pertaining statements
+expressing the author's opinion regarding the pending issue can be submitted.
+This allows the author to express his/her opinion and participate in the parliamentary process.
+For ministerial drafts, statements can be submitted during the pre-parliamentary process.
+Furthermore, statements of other authors can be supported.
 }
 \details{
 This function sends a request to the Austrian Parliament's API to retrieve participation data based on the provided filter criteria. It performs input validation for each parameter and constructs the API request accordingly.
+
+\strong{Valid values for \code{topic}:}
+\itemize{
+\item "Arbeit" (Labor)
+\item "Außenpolitik" (Foreign Policy)
+\item "Bildung" (Education)
+\item "Budget und Finanzen" (Budget and Finance)
+\item "Europäische Union" (European Union)
+\item "Familie und Generationen" (Family and Generations)
+\item "Frauen und Gleichbehandlung" (Women and Equal Treatment)
+\item "Gesundheit und Ernährung" (Health and Nutrition)
+\item "Information und Medien" (Information and Media)
+\item "Inneres und Recht" (Interior and Justice)
+\item "Innovation, Technologie und Forschung" (Innovation, Technology and Research)
+\item "Klima, Umwelt und Energie" (Climate, Environment and Energy)
+\item "Kultur" (Culture)
+\item "Land- und Forstwirtschaft" (Agriculture and Forestry)
+\item "Landesverteidigung" (National Defense)
+\item "Parlament und Demokratie" (Parliament and Democracy)
+\item "Soziales" (Social Affairs)
+\item "Sport" (Sports)
+\item "Verkehr und Infrastruktur" (Transport and Infrastructure)
+\item "Wirtschaft" (Economy)
+}
+
+Setting \code{topic = NULL} returns values for all topics listed above.
+
+\strong{Valid values for \code{item}:}
+\itemize{
+\item "RGES" (Gesetzesinitiativen / Legislative Initiatives)
+\item "ME" (Ministerialentwürfe / Ministerial Drafts)
+\item "BI" (Bürgerinitiativen / Citizens' Initiatives)
+\item "PET" (Petitionen / Petitions)
+\item "SN" (Stellungnahmen / Statements)
+Setting \code{item = NULL} returns values for all review types listed above.
+}
+
+\strong{Valid values for \code{initiative_type}} (Only if item=="RGES"):
+\itemize{
+\item "A" (Gesetzesanträge von Abgeordneten / Legislative Motions by Members)
+\item "BUA" (Gesetzesanträge von Ausschüssen / Legislative Motions by Committees)
+\item "RV" (Regierungsvorlagen / Government Bills)
+}
+
+Setting \code{initiative_type = NULL} returns values for all initiative types listed above.
+
+\strong{Valid values for \code{statement_type}} (Only if item=="SN"):
+\itemize{
+\item "SNME" (Stellungnahme Ministerialentwurf / Statement on Ministerial Draft)
+\item "SN" (Stellungnahme Gesetzesinitiative / Statement on Legislative Initiative)
+\item "SPET" (Stellungnahme zur Petition / Statement on Petition)
+\item "SPET-BR" (Stellungnahme zur Petition Bundesrat / Statement on Petition Federal Council)
+\item "SBI" (Stellungnahme Bürgerinitiative / Statement on Citizens' Initiative)
+}
+
+Setting \code{statement_type = NULL} returns values for all statement types listed above.
 }
 \examples{
+\dontrun{
 # Get participation data for the topic "Bildung"
-education_data <- get_participation(topic = "Bildung")
+get_participation(topic = "Bildung")
 
 # Get participation data for multiple topics and legislative periods
-multi_data <- get_participation(
+get_participation(
   topic = c("Arbeit", "Soziales"),
   legis_period = c("27", "26"),
-  review_type = "RGES"
+  item = "RGES"
 )
 
+# Get participation data on all ministerial drafts for legislative periods 26 and 27
+get_participation(
+  legis_period = c(26, 27),
+  item = "ME"
+)
+
+# Get participation data on legislative initiatives with specific initiative type
+get_participation(
+  item = "RGES",
+  initiative_type = "RV"
+)
+}
 
 }

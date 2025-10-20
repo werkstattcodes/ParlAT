@@ -34,6 +34,9 @@ reference:
      - get_legis_periods
  
 
+exclude:
+  - CLAUDE.md
+
 authors:
   Roland Schmidt:
     href: https://werk.statt.codes  

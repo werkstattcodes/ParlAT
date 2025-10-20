@@ -6,25 +6,28 @@
 \usage{
 get_persons(
   names = NULL,
-  search_strict = TRUE,
   institution = NULL,
   mandates = FALSE,
-  date = NULL,
-  gender = "all"
+  gender = "all",
+  echo = FALSE
 )
 }
 \arguments{
 \item{names}{A character vector of name(s) in the format "Surname Givenname". Defaults to \code{NULL}.}
 
-\item{search_strict}{Logical. If \code{TRUE}, only exact matches are returned when \code{names} are supplied. Default is \code{TRUE}.}
-
 \item{institution}{A character vector specifying one or more institutions to search within. Possible values are \code{"Bundespräsident"}, \code{"Bundesrat"}, \code{"Bundesregierung"}, \code{"Europäisches Parlament"}, \code{"Konstituierende Nationalversammlung"}, \code{"Landeshauptleute"}, \code{"Nationalrat"}, \code{"Parlamentsdirektion"}, \code{"Politische Mandate"}, \code{"Provisorische Nationalversammlung"}, \code{"Rechnungshof"}, and \code{"Volksanwaltschaft"}. Defaults to all institutions.}
 
 \item{mandates}{Logical. If \code{TRUE}, mandates are retrieved for each person. Default is \code{FALSE}.}
 
-\item{date}{A \code{Date} or character coercible to \code{Date} used to filter mandates. Default is \code{NULL}.}
-
 \item{gender}{A character string. Possible values are \code{"all"}, \code{"female"}, or \code{"male"}. Default is \code{"all"}.}
+
+\item{echo}{Logical. If \code{TRUE}, prints the API request body parameters, the constructed URL, and the number of results. Default is \code{FALSE}.}
+}
+\value{
+A data frame with one row per matching person and the columns \code{pad_intern},
+\code{name}, \code{gender}, \code{position}, and \code{link}. When \code{mandates = TRUE}, the
+returned data frame additionally contains mandate details for each person.
+Returns \code{NULL} with a message if no persons are found.
 }
 \description{
 The \code{get_persons} function searches for current and former individuals
@@ -35,14 +38,9 @@ Austrian Parliament (see \href{https://www.parlament.gv.at/recherchieren/persone
 }
 \details{
 Note that \code{get_persons} only returns matches for the latest
-name of an individual. MPs' previous names, e.g. before marriage, do
+name of an individual. MPs' previous names (e.g., before marriage) do
 not return a match. When \code{names} is \code{NULL}, the function returns all
 available persons for the supplied filters.
-}
-\value{
-A tibble with one row per matching person and the columns \code{pad_intern},
-\code{name}, \code{gender}, \code{position}, and \code{link}. When \code{mandates = TRUE}, the
-returned tibble additionally contains mandate details for each person.
 }
 \examples{
 \dontrun{

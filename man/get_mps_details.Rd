@@ -7,7 +7,7 @@
 get_mps_details(
   pad_intern,
   detail_type,
-  house = NULL,
+  institution = NULL,
   legis_period = NULL,
   item = NULL,
   search_string = NULL,
@@ -17,27 +17,30 @@ get_mps_details(
 )
 }
 \arguments{
-\item{pad_intern}{ID of the MPs. See \code{get_pad_intern()} for more details.}
+\item{pad_intern}{ID of MP. Vector of length 1. See \code{get_pad_intern()} for more details.}
 
-\item{detail_type}{Character string specifying the type of details to retrieve: "plenary", "activities", or "committees". For an example of plenary data on the website of the Austrian Parliament see \if{html}{\out{<a href="https://www.parlament.gv.at/person/145?selectedtab=PLENUM" target="_blank">}}here.\if{html}{\out{</a>}} For an example of activities data on the website of the Austrian Parliament see \if{html}{\out{<a href="https://www.parlament.gv.at/person/145?selectedtab=AKT" target="_blank">}}here.\if{html}{\out{</a>}}}
+\item{detail_type}{Character string specifying the type of details to retrieve: "plenary", "activities", or "committees". For examples see here:  \if{html}{\out{<a href="https://www.parlament.gv.at/person/145?selectedtab=PLENUM" target="_blank">}}plenary \if{html}{\out{</a>}}; \if{html}{\out{<a href="https://www.parlament.gv.at/person/145?selectedtab=AKT" target="_blank">}}activities\if{html}{\out{</a>}}; \if{html}{\out{<a href="https://www.parlament.gv.at/person/145?selectedtab=AUS" target="_blank">}}committees\if{html}{\out{</a>}}.}
 
-\item{house}{Character string specifying the parliamentary house. Permissible inputs are "NR" (Nationalrat/National Council),
+\item{institution}{Character string specifying the parliamentary house. Permissible inputs are "NR" (Nationalrat/National Council),
 "BR" (Bundesrat/Federal Council ) or NULL (which returns results for both houses). Defaults to NULL.}
 
-\item{legis_period}{Numeric or character specifying the legislative period (optional).
-Defaults to NULL.}
+\item{legis_period}{Numeric or character vector specifying one or more legislative periods (optional).
+Accepts numeric values (e.g., 27 or c(26, 27)), Roman numerals (e.g., "XXVII"), or historical abbreviations.
+Must be >= 20 for valid periods. Defaults to NULL.}
 
 \item{item}{Character string specifying the item type (Art des Verhandlungsgegenstandes) (optional).
 Defaults to NULL. Used only for details category "activities". See Details below.}
 
 \item{search_string}{Character string for searching within activities (optional).
-Defaults to NULL. Only available for details category "activities" and "committees".}
+Defaults to NULL. Currently only implemented for details category "activities".}
 
-\item{committee}{Character string specifying the committee name (optional).}
+\item{committee}{Character string specifying the committee name (optional). Only if \code{detail_type == "committees"}.
+See Details section for valid committee names.}
 
-\item{committee_position}{Character string specifying the committee position (optional).}
+\item{committee_position}{Character string specifying the committee position (optional). Only if \code{detail_type == "committees"}.
+Common values include "Mitglied", "Vorsitzende/r", "Stellvertretende/r Vorsitzende/r".}
 
-\item{echo}{Logical indicating whether to print the API request and response details.}
+\item{echo}{Logical indicating whether to print the API request and response details. Defaults to TRUE.}
 }
 \value{
 A data frame containing the requested MP details. The structure depends on the
@@ -47,27 +50,51 @@ For \code{detail_type = "plenary"}: Returns all speeches of the person in the sp
 house, regardless of their mandate at the time of the speech. For example, querying
 all plenary activities of Doris Bures in the National Council will return not only
 her speeches as an MP, but also as President of the National Council and as Minister.
-
-For \code{detail_type = "activities"}: Returns parliamentary activities and legislative
-items associated with the MP.
-
-Common columns include:
+Columns returned:
 \describe{
 \item{pad_intern}{Unique identifier for the MP}
 \item{name}{Full name of the MP}
-\item{position_name}{List of mandates/positions held at the time}
-\item{date}{Date of the speech or activity}
+\item{position_name}{List of mandates/positions held at the time of speech}
+\item{date}{Date of the speech}
 \item{legis_period}{Legislative period (Roman numeral)}
-\item{house}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
-}
-
-Additional columns for \code{detail_type = "plenary"}:
-\describe{
+\item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
 \item{speech_title}{Title of the speech}
 \item{session_url}{URL to the session details page}
 \item{session_name}{Name of the parliamentary session}
 \item{speech_transcript_url}{URL to the speech transcript}
 \item{speech_media_url}{URL to speech recordings, if available}
+}
+
+For \code{detail_type = "activities"}: Returns parliamentary activities and legislative
+items associated with the MP. Columns returned:
+\describe{
+\item{pad_intern}{Unique identifier for the MP}
+\item{legis_period}{Legislative period}
+\item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
+\item{frmdate}{Date field}
+\item{ityp_komm}{Item type comment}
+\item{item_number}{Number of the parliamentary item}
+\item{item_type}{Type of parliamentary item (e.g., "A", "JMIN")}
+\item{title}{Title/subject of the item}
+\item{date_updated}{Last update date of the item}
+\item{item_url}{URL to the item details}
+\item{status_text}{Current status description}
+\item{status_numeric}{Numeric status code}
+}
+
+For \code{detail_type = "committees"}: Returns committee memberships and participation.
+Columns returned:
+\describe{
+\item{pad_intern}{Unique identifier for the MP}
+\item{name}{Full name of the MP}
+\item{legis_period}{Legislative period}
+\item{committee_name}{Name of the committee}
+\item{committee_position}{Position in the committee (e.g., "Mitglied", "Vorsitzende/r")}
+\item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
+\item{committee_position_start}{Start date of committee membership}
+\item{committee_position_end}{End date of committee membership (NA if still active)}
+\item{committee_active}{Logical indicating if membership is currently active}
+\item{committee_url}{URL to committee details}
 }
 
 Returns \code{NULL} invisibly if no data is found for the given parameters.
@@ -108,63 +135,90 @@ Possible values for \code{item} are:
 \subsection{Committees}{
 
 Possible values for \code{committee} are:
-
-Ausschuss für Arbeit und Soziales
-Ausschuss für Bauten und Wohnen
-Ausschuss für Familie und Jugend
-Ausschuss für Forschung, Innovation und Digitalisierung
-Ausschuss für innere Angelegenheiten
-Ausschuss für Konsumentenschutz
-Ausschuss für Land- und Forstwirtschaft
-Ausschuss für Menschenrechte
-Ausschuss für Petitionen und Bürgerinitiativen
-Ausschuss für Wirtschaft, Industrie und Energie
-Außenpolitischer Ausschuss
-Budgetausschuss
-COFAG-Untersuchungsausschuss eingesetzt am 15.12.2023 - beendet am 03.07.2024
-Finanzausschuss
-Geschäftsordnungsausschuss
-Gesundheitsausschuss
-Gleichbehandlungsausschuss
-Hauptausschuss
-Untersuchungsauschuss: Ibiza-Untersuchungsausschuss
-Immunitätsausschuss
-Justizausschuss
-Kulturausschuss
-Landesverteidigungsausschuss
-ÖVP-Korruptions-Untersuchungsausschuss eingesetzt am 09.12.2021 - beendet am 27.04.2023
-Rechnungshofausschuss
-"ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss" eingesetzt am 15.12.2023 - beendet am 03.07.2024
-Sportausschuss
-Ständiger gemeinsamer Ausschuss im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948
-Ständiger Unterausschuss des Ausschusses für innere Angelegenheiten
-Ständiger Unterausschuss des Budgetausschusses
-Ständiger Unterausschuss des Hauptausschusses
-Ständiger Unterausschuss des Landesverteidigungsausschusses
-Ständiger Unterausschuss des Rechnungshofausschusses
-Ständiger Unterausschuss in Angelegenheiten der Europäischen Union
-Ständiger Unterausschuss in ESM-Angelegenheiten
-Tourismusausschuss
-Umweltausschuss
-Unterrichtsausschuss
-Unvereinbarkeitsausschuss
-Verfassungsausschuss
-Verkehrsausschuss
-Volksanwaltschaftsausschuss
-Wissenschaftsausschuss
+\itemize{
+\item Ausschuss für Arbeit und Soziales
+\item Ausschuss für Bauten und Wohnen
+\item Ausschuss für Familie und Jugend
+\item Ausschuss für Forschung, Innovation und Digitalisierung
+\item Ausschuss für innere Angelegenheiten
+\item Ausschuss für Konsumentenschutz
+\item Ausschuss für Land- und Forstwirtschaft
+\item Ausschuss für Menschenrechte
+\item Ausschuss für Petitionen und Bürgerinitiativen
+\item Ausschuss für Wirtschaft, Industrie und Energie
+\item Außenpolitischer Ausschuss
+\item Budgetausschuss
+\item COFAG-Untersuchungsausschuss eingesetzt am 15.12.2023 - beendet am 03.07.2024
+\item Finanzausschuss
+\item Geschäftsordnungsausschuss
+\item Gesundheitsausschuss
+\item Gleichbehandlungsausschuss
+\item Hauptausschuss
+\item Untersuchungsauschuss: Ibiza-Untersuchungsausschuss
+\item Immunitätsausschuss
+\item Justizausschuss
+\item Kulturausschuss
+\item Landesverteidigungsausschuss
+\item ÖVP-Korruptions-Untersuchungsausschuss eingesetzt am 09.12.2021 - beendet am 27.04.2023
+\item Rechnungshofausschuss
+\item "ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss" eingesetzt am 15.12.2023 - beendet am 03.07.2024
+\item Sportausschuss
+\item Ständiger gemeinsamer Ausschuss im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948
+\item Ständiger Unterausschuss des Ausschusses für innere Angelegenheiten
+\item Ständiger Unterausschuss des Budgetausschusses
+\item Ständiger Unterausschuss des Hauptausschusses
+\item Ständiger Unterausschuss des Landesverteidigungsausschusses
+\item Ständiger Unterausschuss des Rechnungshofausschusses
+\item Ständiger Unterausschuss in Angelegenheiten der Europäischen Union
+\item Ständiger Unterausschuss in ESM-Angelegenheiten
+\item Tourismusausschuss
+\item Umweltausschuss
+\item Unterrichtsausschuss
+\item Unvereinbarkeitsausschuss
+\item Verfassungsausschuss
+\item Verkehrsausschuss
+\item Volksanwaltschaftsausschuss
+\item Wissenschaftsausschuss
+}
 }
 }
 \examples{
 \dontrun{
-# Get plenary details for an MP
-get_mps_details(pad_intern = "12345", detail_type = "plenary")
+# Get Stephanie Krisper's plenary speeches in National Council only for the 27th legislative period
+plenary_nr <- get_mps_details(
+  pad_intern = 2344,
+  detail_type = "plenary",
+  institution = "NR",
+  legis_period = 27
+)
 
-# Get activities for an MP in a specific legislative period
-get_mps_details(
-  pad_intern = "12345",
+# Get plenary speeches for multiple legislative periods
+plenary_multiple <- get_mps_details(
+  pad_intern = 2344,
+  detail_type = "plenary",
+  legis_period = c(26, 27)
+)
+
+# Get only legislative proposals (item type "A")
+proposals <- get_mps_details(
+  pad_intern = 2344,
   detail_type = "activities",
-  legis_period = "XXVII"
+  item = "A",
+  legis_period = 27
+)
+
+# Get activities for multiple legislative periods
+activities_multiple <- get_mps_details(
+  pad_intern = 2344,
+  detail_type = "activities",
+  legis_period = c(25, 26, 27)
+)
+
+# Get committee memberships for Stephanie Krisper
+committees <- get_mps_details(
+  pad_intern = 2344,
+  detail_type = "committees",
+  legis_period = 27
 )
 }
-
 }

@@ -2,40 +2,63 @@
 % Please edit documentation in R/get_events.R
 \name{get_events}
 \alias{get_events}
-\title{Get Event Data from Parlament API}
+\title{Get Event Data from Austrian Parliament API}
 \usage{
 get_events(
   search_string = NULL,
-  institution = "Nationalrat",
+  institution = NULL,
   event_type = NULL,
-  place = NULL,
+  location = NULL,
+  legis_period = NULL,
   date_start = NULL,
   date_end = NULL,
   echo = TRUE
 )
 }
 \arguments{
-\item{search_string}{Optional character string used to further filter the search results.}
+\item{search_string}{Optional character string used to filter events by searching in event titles and descriptions. Default is NULL.}
 
-\item{institution}{Character specifying the institution to query. Must be one of "Bundesrat" or "Nationalrat".}
+\item{institution}{Character vector specifying the institution(s) to query. Must be "NR" (Nationalrat/National Council), "BR" (Bundesrat/Federal Council), or "ParlDir/Klub" ("Parliamentary Directorate/Caucus"). Can be a single value or vector for multiple institutions. NULL covers all institutions.}
 
-\item{event_type}{Optional character string indicating the event type. See Details.}
+\item{event_type}{Optional character string indicating the event type. Must be one of the predefined event types (see Details). Default is NULL (all types).}
 
-\item{place}{Optional character string to filter events by location. See details.}
+\item{location}{Optional character string to filter events by location. Must be one of the predefined locations (see Details). Default is NULL (all locations).}
 
-\item{date_start}{Optional character string representing the start date in "dd-mm-yyyy" format.}
+\item{legis_period}{Character or numeric value of length 1, or NULL. Specifies the legislative period to search in. Only available if \code{date_start} and \code{date_end} are NULL.}
 
-\item{date_end}{Optional character string representing the end date in "dd-mm-yyyy" format.}
+\item{date_start}{Optional character string representing the start date. Default is NULL.}
 
-\item{echo}{Logical indicating; prints used search parameters, number of hits, and link to results on website of parliament.}
+\item{date_end}{Optional character string representing the end date. Default is NULL.}
+
+\item{echo}{Logical indicating whether to print used search parameters, number of hits, and link to results on website of parliament. Default is TRUE.}
 }
 \value{
-A data frame containing event details if results are found. If no events match the criteria,
-the function prints a message and returns NULL.
+A data frame containing event details with the following columns, or NULL if no results are found:
+\itemize{
+\item \code{date}: Event date (parsed as Date)
+\item \code{date_time_start}: Event start date and time (parsed as POSIXct)
+\item \code{date_time_end}: Event end date and time (parsed as POSIXct)
+\item \code{title}: Event title/name
+\item \code{event_type}: Type of event
+\item \code{location}: Event location/venue
+\item \code{topic}: Event topic/subject
+\item \code{institution}: Institution hosting the event
+\item \code{media_relevance}: Media relevance indicator
+\item \code{guidance_type}: Type of guidance (if applicable)
+\item \code{group}: Group information
+\item \code{view}: View/visibility settings
+\item \code{fully_booked}: Whether the event is fully booked
+\item \code{registration}: Registration information
+\item \code{livestream_url}: URL for livestream (if available)
+\item \code{available}: Availability status
+\item \code{language}: Event language
+\item \code{link}: Primary link to event details
+\item \code{link2}: Secondary link (if available)
+}
 }
 \description{
-This function retrieves event data based on search parameters from the Parlament API.
-It largely mirrors the search functionality on the Austrian Parliament website at
+This function retrieves event data based on search parameters from the Austrian Parliament API.
+It mirrors the search functionality on the Austrian Parliament website at
 \if{html}{\out{<a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">}}this page\if{html}{\out{</a>}}.
 }
 \details{
@@ -43,39 +66,122 @@ It largely mirrors the search functionality on the Austrian Parliament website a
 
 Allowed event types are:
 \itemize{
-\item "Plenarsitzung (Plenary Session)"
-\item "Ausschusssitzung oder Ausschuss (Committee Meeting or Committee)"
-\item "Besuch einer Plenarsitzung (Visit to a Plenary Session)"
-\item "Demokratiebildung (Democracy Education)"
-\item "Fest-/Gedenksitzung (Ceremonial/Commemorative Session)"
-\item "Führung (Guided Tour)"
-\item "Internationales (International)"
-\item "Klubveranstaltung (Club Event)"
-\item "Konferenz (Conference)"
-\item "Parlamentarische Enquete (Parliamentary Inquiry)"
-\item "Pressekonferenz (Press Conference)"
-\item "Sitzung der Bundesversammlung (Federal Assembly Session)"
-\item "Sonstiger Termin (Other Event)"
-\item "Veranstaltung (Event)".
+\item "Plenarsitzung" (Plenary Session)
+\item "Ausschusssitzung oder Ausschuss" (Committee Meeting or Committee)
+\item "Besuch einer Plenarsitzung" (Visit to a Plenary Session)
+\item "Demokratiebildung" (Democracy Education)
+\item "Fest-/Gedenksitzung" (Ceremonial/Commemorative Session)
+\item "Führung" (Guided Tour)
+\item "Internationales" (International)
+\item "Klubveranstaltung" (Club Event)
+\item "Konferenz" (Conference)
+\item "Parlamentarische Enquete" (Parliamentary Inquiry)
+\item "Pressekonferenz" (Press Conference)
+\item "Sitzung der Bundesversammlung" (Federal Assembly Session)
+\item "Sonstiger Termin" (Other Event)
+\item "Veranstaltung" (Event)
 }
 }
 
-\subsection{Place}{
+\subsection{Location}{
 
-Must match one of the predefined choices.
+Allowed locations are:
+\itemize{
+\item "Abgeordneten-Sprechzimmer (alt)"
+\item "Auditorium"
+\item "Außer Haus"
+\item "Bertha von Suttner | Lokal 4"
+\item "Blauer Salon (Epstein E1)"
+\item "Bundesratssaal"
+\item "Bundesrats-Sitzungssaal (alt)"
+\item "Bundesversammlungssaal"
+\item "Burgraum (Hofburg)"
+\item "Camineum (ÖNB)"
+\item "Dachfoyer (Hofburg)"
+\item "Egon Schiele | Lokal 7"
+\item "Elise Richter | Lokal 2"
+\item "Empfangssalon"
+\item "Epstein Beletage"
+\item "Epstein Innenhof"
+\item "Erwin Schrödinger | Lokal 1"
+\item "Extern"
+\item "Festsaal (Epstein E3)"
+\item "Großer Prunksaal (1. OG Stubenring)"
+\item "Großer Redoutensaal"
+\item "Heldenplatz"
+\item "Historischer Sitzungssaal (alt)"
+\item "Kunschak-Saal"
+\item "Lise Meitner | Lokal 6"
+\item "Lokal I (Ministerratszimmer, alt)"
+\item "Lokal II (alt)"
+\item "Lokal III (alt)"
+\item "Lokal IV (alt)"
+\item "Lokal V (alt)"
+\item "Lokal VI (Budgetsaal, alt)"
+\item "Lokal VII (alt)"
+\item "Lokal VIII (alt)"
+\item "Lokal 1 Medienraum (EG Bibliothekshof)"
+\item "Lokal 2 (EG Bibliothekshof)"
+\item "Lokal 3 (EG Bibliothekshof)"
+\item "Lokal 4 (2. OG Bibliothekshof)"
+\item "Lokal 5 (3. OG Bibliothekshof)"
+\item "Lokal 6 (3. OG Bibliothekshof)"
+\item "Lokal 7 (Hofburg Segmentbogen)"
+\item "Ludwig Wittgenstein | Lokal 5"
+\item "Nationalratssaal"
+\item "Nationalrats-Sitzungssaal (alt)"
+\item "Palais Epstein"
+\item "Parlament"
+\item "Parliament"
+\item "Plenar-Lounge"
+\item "Portikus"
+\item "Pressezentrum"
+\item "Roter Salon (Epstein E4)"
+\item "Säulenhalle"
+\item "Säulenhalle (alt)"
+\item "Spielsalon (Epstein E5)"
+\item "Teamentwicklung"
+\item "Theophil Hansen | Lokal 3"
+\item "virtuell"
+}
 }
 }
 \examples{
 \dontrun{
-  # Example: Retrieve events from the Nationalrat between "01-01-2022" and "31-01-2022"
+  # Basic example: Get all National Council events
+  events <- get_events(institution = "NR")
+
+  # Get events with specific search term and date range
   events <- get_events(
     search_string = "budget",
-    institution = "Nationalrat",
+    institution = "NR",
+    date_start = "01-01-2024",
+    date_end = "31-01-2024"
+  )
+
+  # Get plenary sessions in the National Council chamber
+  events <- get_events(
+    institution = "NR",
     event_type = "Plenarsitzung",
-    place = "Nationalratssaal",
-    date_start = "01-01-2022",
-    date_end = "31-12-2022",
-    echo = TRUE
+    location = "Nationalratssaal"
+  )
+
+  # Get Federal Council events
+  events <- get_events(
+    institution = "BR",
+    event_type = "Plenarsitzung"
+  )
+
+  # Get events for a specific legislative period
+  events <- get_events(
+    institution = "NR",
+    legis_period = 28
+  )
+
+  # Get events from multiple institutions
+  events <- get_events(
+    institution = c("NR", "BR"),
+    event_type = "Plenarsitzung"
   )
 }
 

@@ -174,7 +174,7 @@ which returns the MP's unique identifier.
 get_pad_intern("Karlheinz Kopf")
 
 #get all statements held in the plenary of the National Council by Karlheinz Kopf
-df_plenary_kopf <- get_mps_details(pad_intern=2822, detail_type="plenary", house="NR")
+df_plenary_kopf <- get_mps_details(pad_intern=2822, detail_type="plenary", institution = "NR")
 
 df_plenary_kopf %>%
   count(legis_period) %>%
@@ -222,7 +222,7 @@ filter(between(date, df_mandates_kopf_2pnr$position_date_start, df_mandates_kopf
 
 get_pad_intern("Sebastian Kurz")
 
-df_plenary_kurz <- get_mps_details(pad_intern=65321, detail_type="plenary", house="NR") 
+df_plenary_kurz <- get_mps_details(pad_intern=65321, detail_type="plenary", institution = "NR") 
 ```
 
 
@@ -231,7 +231,7 @@ df_plenary_kurz <- get_mps_details(pad_intern=65321, detail_type="plenary", hous
 #Example of get_mps_details with Sebastian Kurz, highlighting different positions
 get_pad_intern("Sebastian Kurz")
 
-df_plenary_kurz <- get_mps_details(pad_intern=65321, detail_type="plenary", house="NR") %>%
+df_plenary_kurz <- get_mps_details(pad_intern=65321, detail_type="plenary", institution ="NR") %>%
   mutate(position_name_chr=map_chr(position_name, \(x) paste(x, collapse=", "))) %>%
   mutate(position_name_n=map_dbl(position_name, \(x) length(x)))
 
@@ -447,6 +447,30 @@ legislative period and count them per legislative period.
 ```{r, cache=TRUE}
 df_volkbg <- get_items(item = "VOLKBG", legis_period = seq(20, 27), institution = "NR", echo = TRUE)
 ```
+
+# Get data on Plenary Sessions
+
+```{r, cache=TRUE}
+sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20,27), session_and_activities = "sessions", echo=T)
+sessions_20_27 %>%
+dplyr::count(legis_period)
+```
+
+```{r, cache=TRUE}
+sessions_20_27_dringliche <- get_plenary_sessions(
+institution = "NR", legis_period = seq(20,27), session_and_activities = "submitted", 
+submitted="J", echo=T)
+
+sessions_20_27_dringliche
+
+sessions_20_27_dringliche %>%
+dplyr::count(legis_period)
+```
+
+ 
+
+
+
 
 # Get names
 

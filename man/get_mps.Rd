@@ -35,6 +35,8 @@ get_mps(
 \item{legis_period}{Legislative period. Can be "all", a numeric value,
 "PN" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)}
 
+\item{date}{Date for which active MPs are queried.}
+
 \item{party}{Political party filter. See details for permissible values.}
 
 \item{parl_group}{Parliamentary group filter}
