@@ -10,6 +10,8 @@
 #' @param date_end Optional end date (as character or Date) for filtering transcripts. Defaults to NULL.
 #' @param echo Logical flag to indicate whether to print details of the request process. Defaults to TRUE.
 #' @return An object containing the API response, which typically includes the transcript data in JSON format.
+#' @keywords internal
+#' @noRd
 #' @details
 #' ## Session Type ('Art der Sitzung')
 #' * NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary sessions)
