@@ -4,7 +4,7 @@
 #'
 #' @param search_string Optional character string to filter transcripts by keywords. Defaults to NULL.
 #' @param legis_period Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric, character or roman numerals in character format as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
-#' @param session_type Optional character string specifying the type of session (e.g., "NRSITZ", "BRSITZ",
+#' @param session_type Optional character string specifying the type(s) of session (e.g., "NRSITZ", "BRSITZ",
 #'   "USA", etc.). Defaults to NULL. See Details for complete list of session types.
 #' @param date_start Optional start date for filtering transcripts. Defaults to NULL.
 #' @param date_end Optional end date for filtering transcripts. Defaults to NULL.
@@ -123,8 +123,7 @@ get_transcripts <- function(
         date_end <- "null"
     }
 
-    
-# COLLECT PARAMETERS
+    # COLLECT PARAMETERS
     body_params <- list(
         GP_CODE = legis_period_input,
         NBVS = session_type,
@@ -216,6 +215,22 @@ get_transcripts <- function(
     # TWO-STEP API CALL PROCESS
     # Step 1: Get total count
     total_count <- get_total_count()
+
+    # Check if no results (API returns HTTP 500 if we request pagesize = 0)
+    if (total_count == 0) {
+        message("Query returned 0 results.")
+        # Return empty tibble with correct column structure
+        return(tibble::tibble(
+            date = lubridate::Date(),
+            session_url = character(),
+            legis_period = character(),
+            session_type = character(),
+            session_number = character(),
+            session = character(),
+            session_transcript_html = character(),
+            session_transcript_pdf = character()
+        ))
+    }
 
     # Check hard limit
     if (total_count > 100000) {
