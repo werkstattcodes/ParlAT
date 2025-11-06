@@ -3,12 +3,14 @@
 #' `get_transcripts()` retrieves the transcripts of parliamentary sessions via Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">here</a>).
 #'
 #' @param search_string Optional character string to filter transcripts by keywords. Defaults to NULL.
-#' @param legis_period Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric, character or roman numerals in character format as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
+#' @param legis_period Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric (10), character ("10") or roman numerals in character format ("X") as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
 #' @param session_type Optional character string specifying the type(s) of session (e.g., "NRSITZ", "BRSITZ",
 #'   "USA", etc.). Defaults to NULL. See Details for complete list of session types.
-#' @param date_start Optional start date for filtering transcripts. Defaults to NULL.
-#' @param date_end Optional end date for filtering transcripts. Defaults to NULL.
-#' @param echo Logical flag to indicate whether to print details of the request process. Defaults to TRUE.
+#' @param date_start Optional start date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
+#' @param date_end Optional end date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
+#' @param echo Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.
+#' @param export Optional character string to enable PDF downloads. Set to "pdf" to download transcript PDFs. Defaults to NULL (no export).
+#' @param export_destination Character string specifying the directory path where PDFs will be saved. Defaults to "transcripts" (a folder in the current working directory). If the folder does not exist, the user will be prompted to create it in interactive sessions.
 #' @return A tibble containing transcript data with the following columns:
 #'   \describe{
 #'     \item{date}{Date of the session}
@@ -38,7 +40,14 @@
 #' records, then retrieving all results in a single request. This avoids duplicate records
 #' that can occur with pagination. Queries returning more than 10,000 results will raise
 #' an error; use more specific filters to refine your query in such cases.
-
+#'
+#' ## PDF Export
+#' When `export = "pdf"`, the function downloads PDF transcripts after retrieving the data.
+#' PDF filenames follow the pattern: `YYYY-MM-DD_LegislativePeriod_SessionType_SessionNumber.pdf`.
+#' The function includes a progress bar during downloads and provides a summary of successful
+#' and failed downloads. In interactive sessions, users are prompted to create the destination
+#' folder if it doesn't exist. The function returns the same tibble regardless of export settings.
+#'
 #' @examples
 #' \dontrun{
 #'   # Retrieve all available transcripts with default filters.
@@ -47,6 +56,15 @@
 #'   # Retrieve transcripts using a search string and specifying a legislative period.
 #'   get_transcripts(search_string = "gesundheit", legis_period = 28, session_type = "NRSITZ",
 #'                 date_start = NULL, date_end = NULL)
+#'
+#'   # Retrieve transcripts and download PDFs to default "transcripts" folder.
+#'   get_transcripts(legis_period = 27, session_type = "NRSITZ",
+#'                 date_start = "01-01-2020", date_end = "31-12-2020",
+#'                 export = "pdf")
+#'
+#'   # Download PDFs to a custom folder.
+#'   get_transcripts(legis_period = 27, session_type = "NRSITZ",
+#'                 export = "pdf", export_destination = "my_pdfs")
 #' }
 get_transcripts <- function(
     search_string = NULL,
@@ -54,7 +72,9 @@ get_transcripts <- function(
     session_type = NULL,
     date_start = NULL,
     date_end = NULL,
-    echo = TRUE
+    echo = TRUE,
+    export = NULL,
+    export_destination = "transcripts"
 ) {
     # LEGISLATIVE PERIOD
     # legis_period_input <- as.character(utils::as.roman(legis_period)) #wrong if PN or KN
@@ -83,17 +103,31 @@ get_transcripts <- function(
         empty.ok = TRUE
     )
 
+    # EXPORT PARAMETERS
+    checkmate::assert_choice(
+        export,
+        choices = c("pdf"),
+        null.ok = TRUE
+    )
+
+    checkmate::assert_character(
+        export_destination,
+        len = 1,
+        null.ok = FALSE
+    )
+
     # DATE START; DATE END
     # Date validation
     if (!is.null(date_start)) {
-        checkmate::assert_character(date_start, len = 1, null.ok = TRUE)
+        # Expect a character string parseable by lubridate::dmy()
+        checkmate::assert_character(date_start, len = 1, null.ok = FALSE)
+        parsed_date_start <- lubridate::dmy(date_start, quiet = TRUE)
         checkmate::assert_true(
-            stringr::str_detect(date_start, "^\\d{2}-\\d{2}-\\d{4}$"),
-            .var.name = "date_start must be in format dd-mm-yyyy"
+            !is.na(parsed_date_start),
+            .var.name = "date_start must be a valid date (day-month-year order)"
         )
-        date_start <- as.Date(date_start, format = "%d-%m-%Y")
         date_start <- format(
-            as.POSIXct(date_start),
+            as.POSIXct(parsed_date_start),
             format = "%Y-%m-%dT%H:%M:%S.000Z",
             tz = "CET"
         )
@@ -101,14 +135,15 @@ get_transcripts <- function(
 
     # Date end
     if (!is.null(date_end)) {
-        checkmate::assert_character(date_end, len = 1, null.ok = TRUE)
+        # Expect a character string parseable by lubridate::dmy()
+        checkmate::assert_character(date_end, len = 1, null.ok = FALSE)
+        parsed_date_end <- lubridate::dmy(date_end, quiet = TRUE)
         checkmate::assert_true(
-            stringr::str_detect(date_end, "^\\d{2}-\\d{2}-\\d{4}$"),
-            .var.name = "date_end must be in format dd-mm-yyyy"
+            !is.na(parsed_date_end),
+            .var.name = "date_end must be a valid date (day-month-year order)"
         )
-        date_end <- as.Date(date_end, format = "%d-%m-%Y")
         date_end <- format(
-            as.POSIXct(date_end),
+            as.POSIXct(parsed_date_end),
             format = "%Y-%m-%dT%H:%M:%S.000Z",
             tz = "CET"
         )
@@ -382,6 +417,161 @@ get_transcripts <- function(
                 paste0("https://www.parlament.gv.at", x)
             )
         }))
+
+    # PDF EXPORT FUNCTIONALITY
+    if (!is.null(export) && export == "pdf") {
+        # HELPER FUNCTION: Check and create destination folder
+        ensure_destination_folder <- function(dest_path) {
+            # Convert to absolute path if relative
+            dest_path <- normalizePath(
+                dest_path,
+                winslash = "/",
+                mustWork = FALSE
+            )
+
+            if (!dir.exists(dest_path)) {
+                if (interactive()) {
+                    message(sprintf(
+                        "Folder '%s' does not exist.",
+                        dest_path
+                    ))
+                    response <- readline(prompt = "Create it? (y/n): ")
+                    if (tolower(trimws(response)) == "y") {
+                        dir.create(dest_path, recursive = TRUE)
+                        message(sprintf("Created folder: %s", dest_path))
+                        return(dest_path)
+                    } else {
+                        stop(
+                            "PDF export cancelled: destination folder not created.",
+                            call. = FALSE
+                        )
+                    }
+                } else {
+                    stop(
+                        sprintf(
+                            "Destination folder '%s' does not exist. ",
+                            "Please create it before running in non-interactive mode."
+                        ),
+                        call. = FALSE
+                    )
+                }
+            }
+            return(dest_path)
+        }
+
+        # HELPER FUNCTION: Generate filename
+        generate_pdf_filename <- function(
+            date,
+            session_type,
+            session_number,
+            legis_period
+        ) {
+            # Clean session_number for filename (remove special characters)
+            session_clean <- session_number |>
+                stringr::str_replace_all("[^A-Za-z0-9_-]", "_")
+
+            filename <- sprintf(
+                "%s_%s_%s_%s.pdf",
+                legis_period,
+                format(date, "%Y-%m-%d"),
+                session_type,
+                session_clean
+            )
+
+            return(filename)
+        }
+
+        # HELPER FUNCTION: Download single PDF
+        download_pdf <- function(url, dest_file) {
+            tryCatch(
+                {
+                    httr2::request(url) |>
+                        httr2::req_user_agent(
+                            "ParlAT R package (http://werk.statt.codes)"
+                        ) |>
+                        httr2::req_perform(path = dest_file)
+                    return(TRUE)
+                },
+                error = function(e) {
+                    return(FALSE)
+                }
+            )
+        }
+
+        # Ensure destination folder exists
+        dest_path <- ensure_destination_folder(export_destination)
+
+        # Filter rows with valid PDF URLs
+        df_to_download <- df_res |>
+            dplyr::filter(!is.na(session_transcript_pdf))
+
+        n_pdfs <- nrow(df_to_download)
+
+        if (n_pdfs == 0) {
+            message("No PDF transcripts available for download.")
+        } else {
+            message(sprintf(
+                "Downloading %d PDF(s) to '%s'...",
+                n_pdfs,
+                dest_path
+            ))
+
+            # Initialize progress bar
+            pb <- progress::progress_bar$new(
+                format = "  [:bar] :current/:total (:percent) eta: :eta",
+                total = n_pdfs,
+                clear = FALSE,
+                width = 60
+            )
+
+            # Download PDFs
+            results <- purrr::pmap_lgl(
+                list(
+                    df_to_download$session_transcript_pdf,
+                    df_to_download$date,
+                    df_to_download$session_type,
+                    df_to_download$session_number,
+                    df_to_download$legis_period
+                ),
+                function(
+                    url,
+                    date,
+                    session_type,
+                    session_number,
+                    legis_period
+                ) {
+                    filename <- generate_pdf_filename(
+                        date,
+                        session_type,
+                        session_number,
+                        legis_period
+                    )
+                    dest_file <- file.path(dest_path, filename)
+
+                    success <- download_pdf(url, dest_file)
+                    pb$tick()
+                    return(success)
+                }
+            )
+
+            # Summary
+            n_success <- sum(results)
+            n_failed <- n_pdfs - n_success
+
+            if (n_failed == 0) {
+                message(sprintf(
+                    "Successfully downloaded %d PDF(s).",
+                    n_success
+                ))
+            } else {
+                warning(sprintf(
+                    "Downloaded %d PDF(s). %d download(s) failed.",
+                    n_success,
+                    n_failed
+                ))
+            }
+        }
+    }
 
     return(df_res |> dplyr::arrange(date))
 }

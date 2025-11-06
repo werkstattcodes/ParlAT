@@ -6,14 +6,105 @@ test_that("get_transcripts returns data frame with correct number of sessions", 
   skip_on_cran()
   skip_if_offline()
 
-  result <- get_transcripts(
+  #Nationalrat
+  result_nr <- get_transcripts(
     session_type = "NRSITZ",
     legis_period = 15,
     echo = FALSE
   )
 
-  expect_s3_class(result, "data.frame")
-  expect_true(nrow(result) == 149)
+  expect_s3_class(result_nr, "data.frame")
+  expect_true(nrow(result_nr) == 149)
+
+  #Bundesrat
+  result_br <- get_transcripts(
+    session_type = c("BRSITZ"),
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_br, "data.frame")
+  expect_true(nrow(result_br) == 50)
+
+  #USA
+  result_usa <- get_transcripts(
+    session_type = "USA",
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_usa, "data.frame")
+  expect_true(nrow(result_usa) == 168)
+
+  #ENQ
+  result_enq <- get_transcripts(
+    session_type = "ENQ",
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_enq, "data.frame")
+  expect_true(nrow(result_enq) == 27)
+
+  #BVSITZ
+  result_bvsitz <- get_transcripts(
+    session_type = "BVSITZ",
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_bvsitz, "data.frame")
+  expect_true(nrow(result_bvsitz) == 1)
+
+  #AUS
+  result_aus <- get_transcripts(
+    session_type = "AUS",
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_aus, "data.frame")
+  expect_true(nrow(result_aus) == 10)
+
+  #EU
+  result_eu <- get_transcripts(
+    session_type = "EU",
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_eu, "data.frame")
+  expect_true(nrow(result_eu) == 99)
+
+  #GFT
+  result_gft <- get_transcripts(
+    session_type = "GFT",
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_gft, "data.frame")
+  expect_true(nrow(result_gft) == 8)
+
+  #PARL
+  result_parl <- get_transcripts(
+    session_type = "PARL",
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_parl, "data.frame")
+  expect_true(nrow(result_parl) == 9)
+
+  #VER
+  result_ver <- get_transcripts(
+    session_type = "VER",
+    legis_period = "XXV",
+    echo = FALSE
+  )
+
+  expect_s3_class(result_ver, "data.frame")
+  expect_true(nrow(result_ver) == 1)
 })
 
 test_that("get_transcripts returns correct column names", {
@@ -22,7 +113,18 @@ test_that("get_transcripts returns correct column names", {
 
   result <- get_transcripts(
     legis_period = 27,
-    session_type = "NRSITZ",
+    session_type = c(
+      "NRSITZ",
+      "BRSITZ",
+      "USA",
+      "ENQ",
+      "BVSITZ",
+      "AUS",
+      "EU",
+      "GFT",
+      "PARL",
+      "VER"
+    ),
     echo = FALSE
   )
 
@@ -137,30 +239,6 @@ test_that("get_transcripts allows for multiple legislative periods", {
 })
 
 
-# Session type filtering tests
-
-test_that("get_transcripts accepts valid session types", {
-  skip_on_cran()
-  skip_if_offline()
-
-  # Test NRSITZ
-  result_nr <- get_transcripts(
-    legis_period = 27,
-    session_type = "NRSITZ",
-    echo = FALSE
-  )
-  expect_s3_class(result_nr, "data.frame")
-  expect_true(nrow(result_nr) > 0)
-
-  # Test BRSITZ
-  result_br <- get_transcripts(
-    legis_period = 27,
-    session_type = "BRSITZ",
-    echo = FALSE
-  )
-  expect_s3_class(result_br, "data.frame")
-})
-
 test_that("get_transcripts rejects invalid session type", {
   expect_error(
     get_transcripts(session_type = "INVALID", echo = FALSE),
@@ -245,22 +323,39 @@ test_that("get_transcripts accepts both date_start and date_end", {
 })
 
 test_that("get_transcripts validates date format", {
+  # ISO Y-m-d should fail (not dmy)
+  # only check that an error is raised (no message assertion)
   expect_error(
     get_transcripts(
       legis_period = 27,
       date_start = "2024-01-01",
       echo = FALSE
-    ),
-    "date_start must be in format dd-mm-yyyy"
+    )
   )
 
-  expect_error(
-    get_transcripts(
+  # dmy variants should be accepted
+  expect_silent(
+    date1 <- get_transcripts(
       legis_period = 27,
-      date_end = "01/01/2024",
+      date_start = "01-01-2024",
       echo = FALSE
-    ),
-    "date_end must be in format dd-mm-yyyy"
+    )
+  )
+
+  expect_silent(
+    date2 <- get_transcripts(
+      legis_period = 27,
+      date_start = "01/01/2024",
+      echo = FALSE
+    )
+  )
+
+  expect_silent(
+    date3 <- get_transcripts(
+      legis_period = 27,
+      date_start = "01.01.2024",
+      echo = FALSE
+    )
   )
 })
 
@@ -274,10 +369,12 @@ test_that("get_transcripts accepts search_string parameter", {
     legis_period = 27,
     session_type = "NRSITZ",
     search_string = "budget",
-    echo = FALSE
+    echo = TRUE
   )
-
+  expect_true(nrow(result) == 24)
   expect_s3_class(result, "data.frame")
+
+  expect_true(nrow(janitor::get_dupes(result)) == 0)
 })
 
 test_that("get_transcripts with search_string returns fewer results", {
@@ -373,10 +470,12 @@ test_that("get_transcripts handles multiple filters simultaneously", {
   skip_if_offline()
 
   result <- get_transcripts(
-    legis_period = 27,
+    # legis_period = 27,
     session_type = "NRSITZ",
-    date_start = "01-01-2024",
-    date_end = "31-12-2024",
+    # date_start = "01-01-2024",
+    date_start = "01/01/2024",
+    # date_end = "31-12-2024",
+    date_end = "31/12/2024",
     search_string = "budget",
     echo = FALSE
   )
@@ -414,4 +513,46 @@ test_that("get_transcripts returns tibble (not just data.frame)", {
 
   # Should be a tibble (which is also a data.frame)
   expect_s3_class(result, "data.frame")
+})
+
+test_that("get_transcripts exports file from recorded fixture", {
+  skip_on_cran()
+  skip_if_offline() # ensure we only run this test when network is available
+  skip_if_not_installed("curl") # optional: ensure downloading support
+
+  # create transcripts folder in project root and ensure cleanup after the test
+  transcripts_dir <- "transcripts"
+  if (!dir.exists(transcripts_dir)) {
+    dir.create(transcripts_dir, recursive = TRUE, showWarnings = FALSE)
+  }
+  on.exit(
+    {
+      if (dir.exists(transcripts_dir)) unlink(transcripts_dir, recursive = TRUE)
+    },
+    add = TRUE
+  )
+
+  # This is an integration check that will perform real downloads.
+  # Use parameters that previously produced 8 PDFs in manual runs.
+  res <- get_transcripts(
+    legis_period = 26,
+    session_type = "AUS",
+    export = "pdf",
+    echo = FALSE
+  )
+
+  # ensure files were written to the transcripts folder
+  expect_true(
+    length(list.files(transcripts_dir, recursive = FALSE, all.files = FALSE)) >=
+      1,
+    info = "No files found in transcripts directory after export"
+  )
+
+  # Optional stronger assertion if you want exact count (may vary with live data)
+  expect_equal(
+    length(list.files(transcripts_dir, recursive = FALSE, all.files = FALSE)),
+    8
+  )
+
+  if (dir.exists(transcripts_dir)) unlink(transcripts_dir, recursive = TRUE)
 })
