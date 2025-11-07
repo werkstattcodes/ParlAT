@@ -50,5 +50,5 @@ match if a search with a previous name is made.
 
 }
 \seealso{
-\code{\link[=get_names(), get_pad_intern]{get_names(), get_pad_intern()}}
+\code{\link[=get_names]{get_names()}}, \code{\link[=get_pad_intern]{get_pad_intern()}}
 }

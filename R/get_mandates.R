@@ -79,7 +79,7 @@ get_mandates_single <- function(pad_intern) {
 #' @return A dataframe.?g
 #'
 #' @export
-#' @seealso [get_names(), get_pad_intern()]
+#' @seealso [get_names()], [get_pad_intern()]
 #' @examples
 #' \dontrun{
 #'   get_mandates(c("Götze Elisabeth", "Kurz Sebastian"))
