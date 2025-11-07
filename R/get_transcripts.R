@@ -36,35 +36,37 @@
 #' * VER: Veranstaltungen (Events)
 #'
 #' ## Implementation Notes
-#' The function uses a two-step API approach: first fetching the total count of matching
-#' records, then retrieving all results in a single request. This avoids duplicate records
-#' that can occur with pagination. Queries returning more than 10,000 results will raise
-#' an error; use more specific filters to refine your query in such cases.
+#' Queries returning more than 10,000 results will raise
+#' an error; in these cases it is recommended to cut your query into
+#' multiple steps (e.g. by using the purrr package).
 #'
 #' ## PDF Export
-#' When `export = "pdf"`, the function downloads PDF transcripts after retrieving the data.
+#' When `export = "pdf"`, the function additionaly downloads the PDF files of the transcripts.
+#' The default destination is the folder "transcripts", which will be created in the root of the
+#' project. In interactive sessions, users are prompted to create the destination
+#' folder if it doesn't exist, and if prefered, to provide an alternative destination name.
 #' PDF filenames follow the pattern: `YYYY-MM-DD_LegislativePeriod_SessionType_SessionNumber.pdf`.
-#' The function includes a progress bar during downloads and provides a summary of successful
-#' and failed downloads. In interactive sessions, users are prompted to create the destination
-#' folder if it doesn't exist. The function returns the same tibble regardless of export settings.
+#' A summary of successful and failed downloads is printed at the conclusion of the download.
 #'
 #' @examples
 #' \dontrun{
-#'   # Retrieve all available transcripts with default filters.
-#'   get_transcripts()
+#'   # Get transcripts using a search string and specifying a legislative period.
+#'   get_transcripts(search_string = "gesundheit",
+#'                   legis_period = 28,
+#'                   session_type = "NRSITZ",
+#'                   echo=TRUE)
 #'
-#'   # Retrieve transcripts using a search string and specifying a legislative period.
-#'   get_transcripts(search_string = "gesundheit", legis_period = 28, session_type = "NRSITZ",
-#'                 date_start = NULL, date_end = NULL)
+#'  # Get transcript data for a specific period of time.
+#'  get_transcripts(session_type = "USA",
+#'                  date_start = "01-01-2024",
+#'                  date_end = "30-06-2024",
+#'                  echo = TRUE)
 #'
-#'   # Retrieve transcripts and download PDFs to default "transcripts" folder.
-#'   get_transcripts(legis_period = 27, session_type = "NRSITZ",
-#'                 date_start = "01-01-2020", date_end = "31-12-2020",
-#'                 export = "pdf")
+#'   # Retrieve all transcripts of committees (Ausschüsse) and download PDFs to default "transcripts" folder.
+#'   get_transcripts(session_type = "AUS",
+#'                  legis_period=26,
+#'                  export = "pdf")
 #'
-#'   # Download PDFs to a custom folder.
-#'   get_transcripts(legis_period = 27, session_type = "NRSITZ",
-#'                 export = "pdf", export_destination = "my_pdfs")
 #' }
 get_transcripts <- function(
     search_string = NULL,
