@@ -688,8 +688,8 @@ get_items <- function(
   )
 
   # EUROVOC
-  ## include scope testing?
-  checkmate::assert_class(x = eurovoc, classes = "character", null.ok = TRUE)
+  ## ensure eurovoc is a character vector (or NULL)
+  checkmate::assert_character(x = eurovoc, null.ok = TRUE)
 
   # PARL_GROUP (Klub/Fraktion)
   ## web: option "Klub/Fraktion" only visible after selecting legislative period; party options depend on chosen legislative period
@@ -758,8 +758,8 @@ get_items <- function(
       js = "eval",
       showAll = TRUE,
       search = search_string,
-      # sortrnr = "17",
-      # ascDesc = "DESC",
+      # page = "1",
+      # pagesize = "9179",
       export = TRUE
     ) |>
     httr2::req_headers(
@@ -787,7 +787,6 @@ get_items <- function(
     )
 
   resp <- httr2::req_perform(req)
-
   resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
 
   vec_headings <- resp_json |>
@@ -807,7 +806,7 @@ get_items <- function(
     #they were included
 
     if (ncol(df_res) != length(vec_headings)) {
-      print("Warning: Columns and labels of different length!")
+      # print("Warning: Columns and labels of different length!")
 
       vec_headings <- vec_headings[1:ncol(df_res)]
     }
@@ -865,21 +864,22 @@ get_items <- function(
   #RENAME  & SELECT RELEVANT COLUMNS
   ## rename
   renaming_map <- c(
-    "gp_code" = "legis_period",
+    "gp" = "legis_period",
     "inr" = "item_number",
     "datum" = "date",
-    "art" = "item_type",
+    "ityp" = "item_type",
     "betreff" = "subject",
     "nummer" = "item_number_type",
-    "phasen_bis" = "stages_n",
+    "phasen_bis" = "stages_n", #no longer returned by API?
     "status" = "stage",
     "doktyp" = "doc_type",
     "doktyp_lang" = "doc_type_long",
-    "his_url" = "item_url",
-    "personen" = "persons",
-    "fraktionen" = "parl_group",
-    "themen" = "topics",
-    "nrbr" = "institution"
+    # "his_url" = "item_url",
+    "geschichtsseite_url" = "item_url",
+    "personen_id" = "persons",
+    "klub_fraktionen" = "parl_group",
+    "thema" = "topics",
+    "gremium" = "institution"
   )
 
   df_res <- df_res |>
@@ -896,6 +896,8 @@ get_items <- function(
     "item_type",
     "item_number",
     "item_number_type",
+    "stages_n",
+    "stage",
     "item_url",
     "doc_type",
     "doc_type_long",
@@ -909,7 +911,7 @@ get_items <- function(
     "vhg2"
   )
 
-  return(df_res)
+  # return(df_res)
 
   df_res <- df_res |>
     dplyr::select(dplyr::any_of(col_select)) |>
@@ -928,7 +930,7 @@ get_items <- function(
 #' @param body_params JSON string or raw object containing the parameters to be sent in the request body
 #'
 #' @return A list containing a single httr2 response object with the API response
-#' 
+#'
 #' @details
 #' The function makes a request to the parliament.at API endpoint for filtering data.
 #' It sets various query parameters and headers to properly format the request.
