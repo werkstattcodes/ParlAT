@@ -1,7 +1,7 @@
-#' @title Get Plenary Sessions of the Austrian Parliament
+#' @title Get Data on Plenary Sessions of the Austrian Parliament
 #'
 #' @description
-#' Retrieves information about plenary sessions from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">here.</a>)
+#' Retrieves information about plenary sessions from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">here</a>).
 #' Data available from 20th legislative period onwards.
 #'
 #'

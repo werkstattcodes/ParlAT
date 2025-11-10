@@ -71,7 +71,7 @@ the function `get_mps()` comes into play. It either returns all MPs of the
 requested chamber, who formed part of it in the course of the entire legislative period (`legis_period` argument), or at a specific date (`date` argument). The latter is a convenient way
 to get the composition of the NR at a specifc date. 
 
-Note that the `legis_period` filter is not applicable when searching MPs of Federal Council (Bundesrat). This limitation includes also searches for MPs across all chambers.
+Note that the `legis_period` filter is not applicable when searching MPs of the Federal Council (Bundesrat). This limitation includes also searches for MPs across all chambers.
 
 ```{r}
 #Search for all MPs in the National Council as of 1 January 2025
@@ -87,16 +87,16 @@ the mandate), unnesting `mp_details` may result in more than one row
 per MP. The example below reveals the changing 
 
 ```{r}
-#get all MPs of the 26th legislative peiod
-mps_legis26 <- get_mps(legis_period=26, institution="NR")
+#get all MPs of the 22th legislative peiod
+mps_legis22 <- get_mps(legis_period=22, institution="NR")
 
 #unnest details on their mandats
-mps_legis26 <- mps_legis26  %>%
+mps_legis22 <- mps_legis22  %>%
 tidyr::unnest(mp_details)
 
-#Example Alma Zadic during the 26th legislative period
-mps_legis26 %>%
-dplyr::filter(pad_intern %in% c(2345))
+#Example Scheibner during the 22th legislative period
+mps_legis22 %>%
+dplyr::filter(stringr::str_detect(name, "Scheibner"))
 ```
  
 *Example Federal Council*
@@ -163,7 +163,7 @@ slice_head(., n=5)
 
 If we are interested in the work of a specific MP, the fucntion `get_mps_details()`
 is the tool of choice. There are three detail types which can be quried:
-"activities", "committee", and "plenary".
+"plenary" (Plenum), "committee" (Ausschüsse), and "activities" (Aktivitäten). 
 
 For a start, let's get a list of all speeches held in the plenary by MP Karlheinz Kopf.
 To get his required pad_intern, we can resort to the auxilary function 'get_pad_intern()'
@@ -175,6 +175,7 @@ get_pad_intern("Karlheinz Kopf")
 
 #get all statements held in the plenary of the National Council by Karlheinz Kopf
 df_plenary_kopf <- get_mps_details(pad_intern=2822, detail_type="plenary", institution = "NR")
+
 
 df_plenary_kopf %>%
   count(legis_period) %>%
@@ -190,8 +191,8 @@ relevant house* at the time of the plenary statement.
 #BUG
 #why does Karlheinz Kopf feature only 4 speeches as 2nd president of the Nationalrat?
 df_plenary_kopf %>%
-count(position_name) %>%
-tidyr::unnest_longer(position_name)
+unnest(position_name) %>%
+count(position_name)
 
 #statements given as 2PNR and Abg.
 df_plenary_kopf %>%
@@ -223,6 +224,10 @@ filter(between(date, df_mandates_kopf_2pnr$position_date_start, df_mandates_kopf
 get_pad_intern("Sebastian Kurz")
 
 df_plenary_kurz <- get_mps_details(pad_intern=65321, detail_type="plenary", institution = "NR") 
+
+df_plenary_kurz %>%
+unnest(position_name) %>%
+count(position_name, sort=TRUE)
 ```
 
 
@@ -242,7 +247,8 @@ select(
   position_name_chr,
   legis_period,
   date,
-  speech_title
+  speech_title,
+  speech_transcript_url
 )
 
 #reveals that there were speeches made by Kurz where he was Abg as well as Kanzler or Minister?
@@ -256,7 +262,7 @@ get_mandates(name="Sebastian Kurz")
 The ability to search for different items under consideration is probably
 one of the most encompassing features offered by the Open Data repository of the
 Austrian Parliament (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR" target="_blank" rel="noopener">here</a>).
-The items which can be queried comprise a wide range including Topical Debates (*Aktuelle Stunden*), Inquiries (*Anfragen*), Government Bills (*Regierungsvorlagen*) etc. All items can be accessed via the general `get_items()` functions. For a full list of available items see [here](../reference/get_items.html#item-gegenstand-). 
+The items which can be queried comprise a wide range including Topical Debates (*Aktuelle Stunden*), Inquiries (*Anfragen*), Government Bills (*Regierungsvorlagen*) etc. All items can be accessed via the general `get_items()` function. For a full list of available items see [here](../reference/get_items.html#item-gegenstand-). 
 
 For some of these items, additional parameter(s) are available to further
 specifiy the query. E.g. the item "ANTR" (Anträge, Motions) allows for 
@@ -446,6 +452,7 @@ legislative period and count them per legislative period.
 
 ```{r, cache=TRUE}
 df_volkbg <- get_items(item = "VOLKBG", legis_period = seq(20, 27), institution = "NR", echo = TRUE)
+df_volkbg %>% count(legis_period)
 ```
 
 # Get data on Plenary Sessions
