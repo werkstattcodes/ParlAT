@@ -64,29 +64,26 @@ get_mandates_single <- function(pad_intern) {
 #' The function partly mimics the behavior of the 'Personensuche' on the website
 #' of the Parliament (<a href="https://www.parlament.gv.at/recherchieren/personen/" target="_blank">here</a>).
 #' @param pad_intern Personal identfication number of person(s). Has to be NULL if names are provided
-#' @param names A character vector of name(s). Only considered if no pad_intern(s) provided.
-#' @param date Date to filter mandates
+#' @param names A character vector of name(s). First name followed by given name. Only considered if no pad_intern(s) provided.
+#' @param date Date to filter mandates (dmy format).
 #' @param institution Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
 #' or "PN" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
 #' but also presidents of the National Council, Secretaries ("Schriftführer"), and Regulators ("Ordner"). The equivalent applies to other
 #' the chambers as well.
 #' @details
-#' ## Names
-#' If a person changed his or her name, the latest name
-#' has to be used to obtain data on the mandates. The API does not return a
-#' match if a search with a previous name is made.
-#TODO dataframe details to be added
-#' @return A dataframe.?g
-#'
+#' ## Names: The API will always return the latest name of an MP, even if the MP had a different name at a previous point in time.
+#' See examples.
+#' @return A dataframe.
 #' @export
 #' @seealso [get_names()], [get_pad_intern()]
 #' @examples
 #' \dontrun{
-#'   get_mandates(c("Götze Elisabeth", "Kurz Sebastian"))
-#'   get_mandates(c("Strache Pia Philipp")) #returns no result since previous name
-#'   get_mandates(c("Beck Pia Philipp")) #returns result since latest name
-#'   get_mandates(c("Beck Pia Philipp")) #returns result since latest name
-#'   get_mandates(pad_intern="44127")
+#'   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
+#'   get_mandates(c("Pia Philippa Strache")) #returns results with latest name (Beck)
+#'
+#'   get_names(pad_intern="83124") #Michael Pöck changed name to Michael Bernhard.
+#'   get_mandates(name="Michael Pöck") #Query for Micheal Pöck returns all results under the name Michael Bernhard, even for periods where Michael Pöck was still valid.
+#'   get_mandate(name="Michael Bernhard") #Query for Michael Bernhard returns all results, including for those with the name Michael Pöck.
 #' }
 #'
 get_mandates <- function(
