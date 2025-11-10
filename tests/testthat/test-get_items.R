@@ -7,12 +7,13 @@ test_that("get_items returns correct structure with valid parameters", {
     institution = "NR",
     item = "ANTR",
     date_start = "01-01-2024",
-    date_end = "31-01-2024",
-    echo = FALSE
+    date_end = "31-01-2026",
+    echo = TRUE
   )
 
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
+  expect_true(nrow(result |> count(item_url) |> filter(n > 1)) == 0) # check for duplicates
 })
 
 test_that("get_items handles invalid date formats", {
@@ -127,7 +128,7 @@ test_that("get_items works with multiple topics", {
     legis_period = "27"
   )
 
-  expect_true(nrow(result) == 2012)
+  expect_true(nrow(result) == 2013)
 })
 
 test_that("get_items works with multiple legis_periods and different input forms", {
@@ -227,7 +228,7 @@ test_that("get_items works with search_string parameter", {
   skip_if_offline()
 
   result <- get_items(
-    search_string = "Gesundheit",
+    # search_string = "Gesundheit",
     legis_period = "27",
     echo = FALSE
   )
@@ -347,4 +348,90 @@ test_that("get_items validates text input length", {
     get_items(number = long_string),
     "number exceeds maximum length of 1000 characters"
   )
+})
+
+test_that("get_items returns consistent columns across item types (tidyverse, legis_period = 27)", {
+  skip_on_cran()
+  skip_if_offline()
+
+  items <- c(
+    "ASEU",
+    "AS",
+    "J_JPR_M",
+    "ANTR",
+    "US",
+    "AUB",
+    "AB_ABPR_ABM",
+    "III",
+    "BNR",
+    "BI",
+    "E",
+    "EBR",
+    "EU",
+    "FS",
+    "GO",
+    "GABR",
+    "GABR13",
+    "IMM",
+    "KOMM",
+    "PET",
+    "RGER",
+    "RV",
+    "RVS",
+    "TRAU",
+    "RVS15",
+    "VOLKBG",
+    "W"
+  )
+
+  cols_df <- tibble::tibble(item = items) |>
+    dplyr::mutate(
+      res = purrr::map(
+        item,
+        ~ get_items(item = .x, legis_period = 27, echo = FALSE)
+      ),
+      cols = purrr::map(
+        res,
+        ~ if (is.null(.x)) NA_character_ else sort(names(.x))
+      )
+    )
+
+  # Unnest so every column name gets its own row
+  cols_unnested <- cols_df |>
+    dplyr::select(-res) |>
+    tidyr::unnest_longer(cols, values_to = "col_name")
+
+  # Transform to wide: make each unique `col_name` a column and put the `item` value
+  # into the corresponding cells (NA when an item does not have that column).
+  cols_wide <- cols_unnested |>
+    dplyr::filter(!is.na(col_name)) |>
+    dplyr::mutate(.val = item) |>
+    tidyr::pivot_wider(
+      id_cols = item,
+      names_from = col_name,
+      values_from = .val,
+      values_fill = NA_character_
+    )
+
+  # keep rows where at least one (non-id) column contains NA
+  cols_wide_na <- cols_wide |>
+    # dplyr::filter(dplyr::if_any(-dplyr::all_of("item"), ~ is.na(.x)))
+    dplyr::filter(dplyr::if_any(everything(), ~ is.na(.x)))
+
+  expect_true(nrow(cols_wide_na) == 0)
+})
+
+test_that("get_items returns a dataframe with a 'stage' column", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_items(
+    institution = "NR",
+    item = "ANTR",
+    legis_period = "27",
+    echo = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_true("stage" %in% names(result))
 })

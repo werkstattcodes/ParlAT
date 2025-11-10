@@ -174,7 +174,7 @@
 #' * "Wortentziehung", "Wortmeldungen zur Geschäftsbehandlung", "Zivildienst", "Zivilrecht"
 #' * "Zivilschutz", "Zollwesen"
 #'
-#' ## Parlamentary Group (Klub/Fraktion)
+#' ## Parliamentary Group (Klub/Fraktion)
 #' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
 #'
 # #TODO complete abbreviations
@@ -212,9 +212,9 @@
 #' When `parl_group_names_standard = TRUE`, the function automatically converts common party names
 #' to their official abbreviations used by the Austrian Parliament API. This feature helps users
 #' who might not know the exact abbreviations required by the API. E.g. over the years the FPÖ
-#' has featured different abbreviations for their parlamentary group: 'FPÖ','F', and 'F-BZÖ'. With
-#' parl_group_names_standard set to TRUE, an input of 'F' (or any other) will return the
-#' results for all three abbreviations.
+#' has featured different abbreviations for their parliamentary group: "FPÖ", "F", and "F-BZÖ". With
+#' `parl_group_names_standard = TRUE`, an input of "F" (or any other variant) will return
+#' the results for all three abbreviations.
 #'
 #' @return A data frame containing the search results. If no results are found, the function returns `NULL`
 #' and displays a message.
@@ -307,7 +307,8 @@ get_items <- function(
     "Verkehr und Infrastruktur",
     "Wirtschaft"
   )
-  checkmate::assert_subset(topic, choices_topic, empty.ok = T)
+  # topic must be one of documented choices (allow NULL)
+  checkmate::assert_subset(topic, choices_topic, empty.ok = TRUE)
 
   #INSTITUTION
   checkmate::assert_subset(
@@ -450,7 +451,7 @@ get_items <- function(
       )
     }
 
-    if (institution == "BR") {
+    if (institution == "BR" && !is.null(institution)) {
       checkmate::assert_subset(
         x = doc_type,
         choices = choices_doc_type_bnr_federal_council,
@@ -727,7 +728,7 @@ get_items <- function(
     "VO",
     "WdU"
   )
-  checkmate::assert_subset(parl_group, choices_parl_group, empty.ok = T)
+  checkmate::assert_subset(parl_group, choices_parl_group, empty.ok = TRUE)
 
   if (parl_group_names_standard == TRUE) {
     parl_group <- aux_parl_group_names_standard(parl_group)
