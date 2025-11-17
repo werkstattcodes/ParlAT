@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_plenary_sessions.R
 \name{get_plenary_sessions}
 \alias{get_plenary_sessions}
-\title{Get Plenary Sessions of the Austrian Parliament}
+\title{Get Data on Plenary Sessions of the Austrian Parliament}
 \usage{
 get_plenary_sessions(
   institution = NULL,
@@ -63,7 +63,7 @@ For \emph{BV (Bundesversammlung) institution}:
 }
 }
 \description{
-Retrieves information about plenary sessions from the Austrian Parliament's API (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">}}here.\if{html}{\out{</a>}})
+Retrieves information about plenary sessions from the Austrian Parliament's API (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">}}here\if{html}{\out{</a>}}).
 Data available from 20th legislative period onwards.
 }
 \details{

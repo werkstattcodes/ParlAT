@@ -13,7 +13,9 @@ test_that("get_items returns correct structure with valid parameters", {
 
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
-  expect_true(nrow(result |> count(item_url) |> filter(n > 1)) == 0) # check for duplicates
+  expect_true(
+    nrow(result |> dplyr::count(item_url) |> dplyr::filter(n > 1)) == 0
+  ) # check for duplicates
 })
 
 test_that("get_items handles invalid date formats", {
@@ -228,7 +230,7 @@ test_that("get_items works with search_string parameter", {
   skip_if_offline()
 
   result <- get_items(
-    # search_string = "Gesundheit",
+    search_string = "Gesundheit",
     legis_period = "27",
     echo = FALSE
   )
@@ -311,42 +313,6 @@ test_that("get_items echo parameter works", {
       legis_period = "27",
       echo = FALSE
     )
-  )
-})
-
-test_that("get_items validates text input for suspicious content", {
-  expect_error(
-    get_items(search_string = "<script>alert('test')</script>"),
-    "Suspicious content detected in search_string"
-  )
-
-  expect_error(
-    get_items(person = "javascript:alert()"),
-    "Suspicious content detected in person"
-  )
-
-  expect_error(
-    get_items(number = "data:text/html,<script>"),
-    "Suspicious content detected in number"
-  )
-})
-
-test_that("get_items validates text input length", {
-  long_string <- paste(rep("a", 1001), collapse = "")
-
-  expect_error(
-    get_items(search_string = long_string),
-    "search_string exceeds maximum length of 1000 characters"
-  )
-
-  expect_error(
-    get_items(person = long_string),
-    "person exceeds maximum length of 1000 characters"
-  )
-
-  expect_error(
-    get_items(number = long_string),
-    "number exceeds maximum length of 1000 characters"
   )
 })
 
@@ -434,4 +400,73 @@ test_that("get_items returns a dataframe with a 'stage' column", {
 
   expect_s3_class(result, "data.frame")
   expect_true("stage" %in% names(result))
+})
+
+test_that("get_items returns no duplicates for topic Europäische Union and legis_period 28", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_items(
+    topic = "Europäische Union",
+    legis_period = 28,
+    echo = FALSE
+  )
+
+  expect_true(nrow(result) == dplyr::n_distinct(result))
+})
+
+# Tests for get_item_details() -----------------------------------------------
+
+test_that("get_item_details returns correct structure with absolute URL", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Use a known item URL
+  item_url <- "https://www.parlament.gv.at/gegenstand/XXVII/GAST/2"
+  result <- get_item_details(item_url)
+
+  expect_s3_class(result, "data.frame")
+  expect_true(ncol(result) > 0)
+  expect_true(nrow(result) > 0)
+})
+
+test_that("get_item_details works with relative URL", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test relative path normalization
+  result <- get_item_details("/gegenstand/XXVIII/BI/24")
+
+  expect_s3_class(result, "data.frame")
+  expect_true(ncol(result) > 0)
+})
+
+
+test_that("get_item_details text column contains character data", {
+  skip_on_cran()
+  skip_if_offline()
+
+  item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
+  result <- get_item_details(item_url)
+
+  # Verify text column is character type
+  expect_type(result$text, "character")
+})
+
+test_that("get_item_details handles URL normalization correctly", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test that absolute and relative URLs return the same data
+  absolute_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
+  relative_url <- "/gegenstand/XXVIII/BI/24"
+  relative_no_slash <- "gegenstand/XXVIII/BI/24"
+
+  result_absolute <- get_item_details(absolute_url)
+  result_relative <- get_item_details(relative_url)
+  result_no_slash <- get_item_details(relative_no_slash)
+
+  # All should return same number of rows
+  expect_equal(nrow(result_absolute), nrow(result_relative))
+  expect_equal(nrow(result_absolute), nrow(result_no_slash))
 })

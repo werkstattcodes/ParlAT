@@ -55,8 +55,30 @@ get_items(
 \item{echo}{Logical. If \code{TRUE}, the function prints the used search parameters and the url to the pertaining search results on website of the Austrian Parliament.}
 }
 \value{
-A data frame containing the search results. If no results are found, the function returns \code{NULL}
-and displays a message.
+A tibble (data.frame) with one row per parliamentary item matching the search.
+The returned object contains the most commonly used columns (some are optional
+or returned as list-columns for multi-valued fields):
+\itemize{
+\item legis_period (character): legislative period (e.g. "XXVIII").
+\item institution (character): chamber code, typically "NR" (Nationalrat) or "BR" (Bundesrat).
+\item date (Date): date of the item (class Date).
+\item item_type (character): short item type code.
+\item item_number (character): numeric identifier of the item (stored as character).
+\item item_number_type (character): combined number/type string (e.g. "46/M").
+\item stage (character/integer): current stage code of the item.
+\item item_url (character): normalized URL pointing to the item on parlament.gv.at.
+\item doc_type (character): short document type code (when applicable).
+\item doc_type_long (character): human readable document type (when available).
+\item subject (character): subject / title of the item.
+\item topics (list): list-column; each element is a character vector of topics.
+\item keywords (list): list-column of keywords (Schlagwort).
+\item eurovoc (list): list-column of EuroVoc terms.
+\item persons (list): list-column of person identifiers (pad_intern) related to the item.
+\item parl_group (list): list-column of parliamentary group codes associated with the item.
+}
+
+The function returns a tibble (invisible) on success. If no matching rows are found
+the function returns NULL and emits a message "No results found for the provided search criteria."
 }
 \description{
 \code{get_items} searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
@@ -66,6 +88,7 @@ mirrors the search functionality offered on the Austrian Parliament's website (s
 \details{
 \subsection{Topic (Thema)}{
 
+NULL, one, or multiple topics permissible.
 Possible values for \code{topic} are:
 \itemize{
 \item "Arbeit" (work)
@@ -238,7 +261,7 @@ Possible values for \code{keyword} include:
 }
 }
 
-\subsection{Parlamentary Group (Klub/Fraktion)}{
+\subsection{Parliamentary Group (Klub/Fraktion)}{
 
 \code{parl_group} specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
 \itemize{
@@ -261,7 +284,7 @@ Possible values for \code{keyword} include:
 \item "NEOS" (NEOS - Das Neue Österreich)
 \item "NEOS-LIF" (NEOS - Liberales Forum)
 \item "NSDAP" (Nationalsozialistische Deutsche Arbeiterpartei)
-\item "NWB" (Nationaler Wirtschaftsblck und Landbund)
+\item "NWB" (Nationaler Wirtschaftsblock und Landbund)
 \item "OF"
 \item "OK" (Ohne Klub)
 \item "ÖVP" (Österreichische Volkspartei)
@@ -269,7 +292,7 @@ Possible values for \code{keyword} include:
 \item "SdP"
 \item "SPÖ" (Sozialistische/Sozialdemokratische Partei Österreichs)
 \item "STRONACH" (Team Stronach)
-\item "VO" (Wahlgemeinschafft Österreichische Volksopposition)
+\item "VO" (Wahlgemeinschaft Österreichische Volksopposition)
 \item "WdU" (Wahlpartei der Unabhängigen (VdU, Verband der Unabhängigen))
 }
 }
@@ -279,13 +302,36 @@ Possible values for \code{keyword} include:
 When \code{parl_group_names_standard = TRUE}, the function automatically converts common party names
 to their official abbreviations used by the Austrian Parliament API. This feature helps users
 who might not know the exact abbreviations required by the API. E.g. over the years the FPÖ
-has featured different abbreviations for their parlamentary group: 'FPÖ','F', and 'F-BZÖ'. With
-parl_group_names_standard set to TRUE, an input of 'F' (or any other) will return the
-results for all three abbreviations.
+has featured different abbreviations for their parliamentary group: "FPÖ", "F", and "F-BZÖ". With
+\code{parl_group_names_standard = TRUE}, an input of "F" (or any other variant) will return
+the results for all three abbreviations.
+}
+
+\subsection{API Result Limits}{
+
+The Austrian Parliament API imposes a maximum limit of \strong{100,000 rows} per query. When a query
+reaches this limit, the function issues a warning because the results may be incomplete.
+
+\strong{Strategies to handle large result sets:}
+\itemize{
+\item Refine search criteria (narrower date ranges, specific topics, individual legislative periods)
+\item Split queries into multiple requests and combine results using \code{purrr::map()} and \code{purrr::list_rbind()}
+}
+
+\strong{Example of splitting by legislative period:}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{library(purrr)
+
+# Query items for multiple legislative periods separately
+periods <- c(25, 26, 27, 28)
+all_results <- periods |>
+  map(\\(period) get_items(legis_period = period, echo = FALSE)) |>
+  list_rbind()
+}\if{html}{\out{</div>}}
 }
 }
 \note{
-The API currently has a limitation of returning a maximum of 100,000 rows.
+Date columns are parsed into Date using lubridate::dmy().
 }
 \examples{
 \dontrun{
@@ -321,9 +367,6 @@ get_items(
   date_end = "31-12-2023"
 )
 
-# General text search across all items
-get_items(search_string = "Digitalisierung")
-
 # Combine multiple search criteria
 get_items(
   topic = "Gesundheit und Ernährung",
@@ -331,5 +374,13 @@ get_items(
   legis_period = 27,
   institution = "NR"
 )
+}
+}
+\seealso{
+\itemize{
+\item \code{\link[=get_persons]{get_persons()}} for searching person identifiers used in the \code{person} parameter
+\item \code{\link[=get_legis_periods]{get_legis_periods()}} for retrieving available legislative periods
+\item \code{\link[=get_committees]{get_committees()}} for committee information
+\item \code{\link[=get_plenary_sessions]{get_plenary_sessions()}} for plenary session data
 }
 }

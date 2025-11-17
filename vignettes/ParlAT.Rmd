@@ -285,7 +285,7 @@ dplyr::glimpse(df_items %>% head())
 There were in total `r nrow(df_items) |> scales::number()` questions submitted in writing and asked orally by the
 members of the National Council from the 20th to 27th legislative period. With a few additional steps, we can easily visualise the results.
 
-```{r, fig.width=10, out.width="100%", cache=TRUE, dependson="get_questions"}
+```{r, fig.width=10, fig.height=8, out.width="100%", cache=TRUE, dependson="get_questions"}
 # Create color mapping for Austrian political parties
 party_colors <- c(
   "SPÖ" = "#CE000C",
@@ -389,7 +389,7 @@ legislative period and count them. Furthermore, making use of the `topic` column
 which is returned by the API, one can easily differentiate between the bills' 
 various topical foci and obtain the pertaining subtotals.
 
-```{r, fig.width=10, out.width="100%", cache=TRUE}
+```{r, fig.width=10, fig.height=8, out.width="100%", cache=TRUE}
 df_govBills <- get_items(item = "RV", legis_period = seq(20,27)) 
 
 glimpse(df_govBills %>% head())
