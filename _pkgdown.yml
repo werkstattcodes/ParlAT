@@ -18,6 +18,7 @@ reference:
       - get_committees
       - get_events
       - get_items
+      - get_item_details
       - get_mandates
       - get_mps
       - get_mps_current

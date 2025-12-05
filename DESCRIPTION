@@ -16,6 +16,7 @@ Imports:
     httr2,
     janitor,
     jsonlite,
+    lifecycle,
     magrittr,
     padr,
     progress,

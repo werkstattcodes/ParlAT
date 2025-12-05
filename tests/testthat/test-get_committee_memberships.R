@@ -10,7 +10,7 @@ test_that("get_committee_memberships returns valid data structure with name sear
   skip_on_cran()
   skip_if_offline()
 
-  x <- get_committee_memberships(name = "Maurer")
+  x <- get_committee_memberships(name = "Krisper")
 
   # Test basic structure
   expect_true(is.data.frame(x) || is.null(x))
@@ -152,14 +152,6 @@ test_that("get_committee_memberships validates parameters correctly", {
     "Provide either 'name' OR 'pad_intern', not both"
   )
 
-  # Invalid details parameter
-  expect_error(
-    get_committee_memberships(
-      name = "Test",
-      details = "yes"
-    )
-  )
-
   # Invalid echo parameter
   expect_error(
     get_committee_memberships(
@@ -293,28 +285,6 @@ test_that("get_committee_memberships URLs are properly formatted", {
 # ------------------------------------------------------------------------------
 # 6. OPTIONAL PARAMETERS TESTS
 # ------------------------------------------------------------------------------
-
-test_that("get_committee_memberships details parameter works", {
-  skip_on_cran()
-  skip_if_offline()
-
-  x <- get_committee_memberships(
-    name = "Maurer",
-    details = TRUE
-  )
-
-  if (!is.null(x) && nrow(x) > 0) {
-    # With details, should have additional columns
-    expect_true(is.data.frame(x))
-
-    # Basic columns should still exist
-    expect_true("committee_name" %in% colnames(x))
-
-    # Details should add more columns (exact structure depends on implementation)
-    # Just verify it doesn't break
-    expect_gt(ncol(x), 9) # More than basic 9 columns
-  }
-})
 
 test_that("get_committee_memberships echo parameter prints messages", {
   skip_on_cran()

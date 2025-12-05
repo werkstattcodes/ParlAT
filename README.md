@@ -1,20 +1,15 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # ParlAT: Accessing Open Data of the Austrian Parliament
 
 <!-- badges: start -->
-<!-- badges: end -->
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# Overview
-
-<!-- badges: start -->
-
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public..](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
+
+# Overview
 
 The ParlAT package seeks to provide an easy way for R users to access
 the Open Data offered by the Austrian Parliament. By laveraging the

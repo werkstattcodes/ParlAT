@@ -15,8 +15,6 @@
 #'   Optional if `name` is provided. Allows direct lookup by person ID. Can be obtained
 #'   from `get_persons()` or `get_mps()`. Numeric values will be automatically converted
 #'   to character.
-#' @param details Logical. If `TRUE`, fetches additional details for each committee
-#'   membership including full committee information. Default is `FALSE`.
 #' @param echo Logical. If `TRUE`, prints the API request parameters and number of
 #'   results found. Default is `FALSE`.
 #'
@@ -33,10 +31,10 @@
 #'   \item{committee_url}{URL to the committee page}
 #' }
 #'
-#' If `details = TRUE`, additional columns from committee details are included.
-#'
 #' Returns NULL if no committee memberships are found.
 #'
+#' @keywords internal
+#' @noRd
 #' @details
 #' ## Parameter Usage
 #'
@@ -50,9 +48,7 @@
 #' Data is available from the 20th legislative period onwards. Committee structures vary
 #' across legislative periods, and investigation committees (Untersuchungsausschüsse) are
 #' established during specific periods.
-#'
-#' **Note:** Federal Council committees are not bound to National Council legislative periods.
-#'
+#'#'
 #' ## Multiple Matches
 #'
 #' If the `name` parameter matches multiple persons, committee memberships for all
@@ -66,34 +62,14 @@
 #' )
 #'
 #' # Search by person ID (PAD_INTERN) - character or numeric
-#' get_committee_memberships(pad_intern = "12345")
+#' get_committee_memberships(pad_intern = "2344")
 #' get_committee_memberships(pad_intern = 12345)  # Numeric also works
-#'
-#' # Get detailed committee information
-#' get_committee_memberships(
-#'   name = "Krisper",
-#'   details = TRUE
-#' )
-#'
-#' # Multiple person IDs
-#' person_ids <- get_persons(names = c("Maurer", "Krisper"), institution = "NR")$pad_intern
-#' get_committee_memberships(pad_intern = person_ids)
-#'
-#' # With echo for transparency
-#' get_committee_memberships(
-#'   name = "Nehammer",
-#'   echo = TRUE
-#' )
 #' }
-#'
-#' @export
 get_committee_memberships <- function(
-    name = NULL,
-    pad_intern = NULL,
-    details = FALSE,
-    echo = FALSE
+  name = NULL,
+  pad_intern = NULL,
+  echo = FALSE
 ) {
-
   # PARAMETER VALIDATION
 
   # Exactly one of name or pad_intern must be provided
@@ -116,7 +92,9 @@ get_committee_memberships <- function(
   )
 
   ## allow numeric/integer pad_intern inputs by coercing to character
-  if (!is.null(pad_intern) && (is.numeric(pad_intern) || is.integer(pad_intern))) {
+  if (
+    !is.null(pad_intern) && (is.numeric(pad_intern) || is.integer(pad_intern))
+  ) {
     pad_intern <- as.character(pad_intern)
   }
 
@@ -127,21 +105,20 @@ get_committee_memberships <- function(
     null.ok = TRUE
   )
 
-  # Validate details and echo
-  checkmate::assert_logical(details, len = 1, null.ok = FALSE)
+  # Validate echo
   checkmate::assert_logical(echo, len = 1, null.ok = FALSE)
-
 
   # PERSON LOOKUP
 
   if (!is.null(name)) {
-    
     # Search by name using get_pad_intern()
     df_persons <- get_pad_intern(name)
 
     if (is.null(df_persons) || nrow(df_persons) == 0) {
       message(
-        "No persons found with name '", name, "'."
+        "No persons found with name '",
+        name,
+        "'."
       )
       return(NULL)
     }
@@ -152,20 +129,22 @@ get_committee_memberships <- function(
 
     if (echo) {
       message(
-        "Found ", length(vec_pad_intern), " person(s) matching '",
-        name, "': ", paste(df_persons$names_variants, collapse = "; ")
+        "Found ",
+        length(vec_pad_intern),
+        " person(s) matching '",
+        name,
+        "': ",
+        paste(df_persons$names_variants, collapse = "; ")
       )
     }
-    
+
     # Prepare df_persons for join later (rename names_variants to name)
     df_persons <- df_persons |>
-        dplyr::rename(name = names_variants)
-
+      dplyr::rename(name = names_variants)
   } else {
     # Use provided pad_intern directly
     vec_pad_intern <- unique(pad_intern)
   }
-
 
   # API REQUEST
 
@@ -205,7 +184,6 @@ get_committee_memberships <- function(
     stop("API request failed with status: ", httr2::resp_status(res))
   }
 
-
   # EXTRACT DATA
 
   vec_headings <- res |>
@@ -226,21 +204,22 @@ get_committee_memberships <- function(
 
   colnames(df_res) <- vec_headings
 
-
   # DATA PROCESSING
 
   # Parse HTML content in committee names
-  safe_parse_text <- purrr::possibly(aux_parse_html_text, otherwise = NA_character_)
+  safe_parse_text <- purrr::possibly(
+    aux_parse_html_text,
+    otherwise = NA_character_
+  )
 
   # Rename columns to package conventions
   renaming_map <- c(
     "gp" = "legis_period",
     "funktion" = "committee_function",
-    "ausschuss" = "committee_name",
+    "ausschuss_2" = "committee_name",
     "nrbr" = "institution",
-    "link" = "committee_url",
-    "pad_intern" = "pad_intern",
-    "von" = "committee_date_start"
+    "url" = "committee_url",
+    "from_date" = "committee_date_start"
   )
 
   df_res <- df_res |>
@@ -249,46 +228,33 @@ get_committee_memberships <- function(
       .cols = any_of(names(renaming_map))
     )
 
-  # Parse HTML in committee names
-  if ("committee_name" %in% colnames(df_res)) {
-    df_res <- df_res |>
-      dplyr::mutate(
-        committee_name = purrr::map_chr(committee_name, safe_parse_text)
-      )
-  }
-
   # Extract dates from committee_name if they're embedded (format: "von dd.mm.yyyy bis dd.mm.yyyy")
-  if ("committee_name" %in% colnames(df_res)) {
-    df_res <- df_res |>
-      dplyr::mutate(
-        # Extract end date if present in format
-        committee_date_end = stringr::str_extract(
-          committee_name,
-          "(?<=bis\\s)\\d{2}\\.\\d{2}\\.\\d{4}"
-        ),
-        # Clean committee name by removing date ranges
-        committee_name = stringr::str_remove(
-          committee_name,
-          "\\s*von\\s+\\d{2}\\.\\d{2}\\.\\d{4}.*$"
-        ) |>
-          stringr::str_trim()
+  df_res <- df_res %>%
+    dplyr::mutate(
+      date_membership = stringr::str_extract(
+        ausschuss,
+        stringr::regex("\\([^\\(]+\\)$")
       )
-  }
+    ) %>%
+    dplyr::mutate(
+      date_membership_start = stringr::str_extract(
+        date_membership,
+        stringr::regex("(?<=\\()\\d{2}\\.\\d{2}\\.\\d{4}")
+      )
+    ) %>%
+    dplyr::mutate(
+      date_membership_end = stringr::str_extract(
+        date_membership,
+        stringr::regex("\\d{2}\\.\\d{2}\\.\\d{4}(?=\\)$)")
+      )
+    )
 
   # Parse dates to Date class
-  if ("committee_date_start" %in% colnames(df_res)) {
-    df_res <- df_res |>
-      dplyr::mutate(
-        committee_date_start = lubridate::dmy(committee_date_start)
-      )
-  }
-
-  if ("committee_date_end" %in% colnames(df_res)) {
-    df_res <- df_res |>
-      dplyr::mutate(
-        committee_date_end = lubridate::dmy(committee_date_end)
-      )
-  }
+  df_res <- df_res %>%
+    dplyr::mutate(across(
+      c("date_membership_start", "date_membership_end"),
+      \(x) lubridate::dmy(x)
+    ))
 
   # Add URL prefix
   if ("committee_url" %in% colnames(df_res)) {
@@ -301,46 +267,8 @@ get_committee_memberships <- function(
       )
   }
 
-  # Add person name if we have it from get_persons
-  if (!is.null(name) && exists("df_persons")) {
-    df_res <- df_res |>
-      dplyr::left_join(
-        df_persons |> dplyr::select(pad_intern, name),
-        by = "pad_intern"
-      )
-  }
-
   # Convert to tibble
   df_res <- tidyr::as_tibble(df_res)
-
-
-  # DETAILS FUNCTIONALITY
-
-  if (details && "committee_url" %in% colnames(df_res)) {
-    df_res <- df_res |>
-      dplyr::mutate(
-        committee_details = purrr::map(
-          committee_url,
-          \(url) {
-            if (is.na(url)) {
-              return(tibble::tibble())
-            }
-            tryCatch(
-              {
-                get_committee_details(url)
-              },
-              error = function(e) {
-                warning("Failed to fetch details for: ", url)
-                return(tibble::tibble())
-              }
-            )
-          },
-          .progress = TRUE
-        )
-      ) |>
-      tidyr::unnest_wider(committee_details, names_sep = "_")
-  }
-
 
   # SELECT AND ORDER COLUMNS
 
@@ -349,24 +277,24 @@ get_committee_memberships <- function(
     "name",
     "legis_period",
     "institution",
-    "committee_function",
     "committee_name",
-    "committee_date_start",
+    "committee_function",
+    # "committee_date_start",
     "committee_date_end",
-    "committee_url"
+    "committee_url",
+    "date_membership_start",
+    "date_membership_end"
   )
 
   df_res <- df_res |>
-    dplyr::select(any_of(c(cols_select, names(df_res)))) |>
+    dplyr::select(any_of(c(cols_select))) |>
     dplyr::relocate(any_of(cols_select))
-
 
   # ECHO OUTPUT
 
   if (echo) {
     message("Results found: ", nrow(df_res), " committee membership(s)")
   }
-
 
   # RETURN
 

@@ -4,7 +4,7 @@ test_that("get_committees returns valid data structure", {
 
   x <- get_committees(
     institution = "NR",
-    legis_period = 27
+    legis_period = 20
   )
 
   # Test basic structure
@@ -39,14 +39,18 @@ test_that("get_committees validates parameters correctly", {
 
   # Missing legis_period
   expect_error(
-    get_committees(institution = "NR"),
-    'argument "legis_period" is missing'
+    get_committees(institution = "NR")
   )
 
   # Multiple legis_period values
   expect_error(
     get_committees(institution = "NR", legis_period = c(26, 27)),
-    "legis_period must be of length 1"
+    "Function allows only for one single legislative period"
+  )
+
+  # Invalid legis_period type (not numeric or character)
+  expect_error(
+    get_committees(institution = "NR", legis_period = TRUE)
   )
 
   # Invalid search_string
@@ -57,12 +61,6 @@ test_that("get_committees validates parameters correctly", {
       search_string = c("a", "b")
     ),
     "Must have length 1"
-  )
-
-  # Invalid details parameter
-  expect_error(
-    get_committees(institution = "NR", legis_period = 27, details = "invalid"),
-    "Must be of type 'logical'"
   )
 
   # Invalid echo parameter
@@ -83,6 +81,40 @@ test_that("get_committees parameter combination validation works", {
     ),
     "Searching for subcommittees is only possible if `permanent` is not TRUE"
   )
+})
+
+test_that("get_committees warns for legislative periods before 20", {
+  # Test period 19 triggers warning and returns NULL
+  expect_warning(
+    result <- get_committees(
+      institution = "NR",
+      legis_period = 19
+    ),
+    "Data only available from legislative period 20 onwards"
+  )
+
+  # Should return NULL for periods before 20
+  expect_null(result)
+
+  # Test with period 1 as well
+  expect_warning(
+    result2 <- get_committees(
+      institution = "NR",
+      legis_period = 1
+    ),
+    "Data only available from legislative period 20 onwards"
+  )
+  expect_null(result2)
+
+  # Test with Roman numeral input
+  expect_warning(
+    result3 <- get_committees(
+      institution = "NR",
+      legis_period = "XIX"
+    ),
+    "Data only available from legislative period 20 onwards"
+  )
+  expect_null(result3)
 })
 
 test_that("get_committees works with different institutions", {
@@ -146,35 +178,6 @@ test_that("get_committees with search_string works", {
   expect_true(is.data.frame(x) || is.null(x))
 })
 
-test_that("get_committees with details = TRUE works", {
-  skip_on_cran()
-  skip_if_offline()
-
-  x <- get_committees(
-    institution = "NR",
-    legis_period = 27,
-    details = TRUE
-  )
-
-  expect_true(is.data.frame(x))
-
-  if (!is.null(x) && nrow(x) > 0) {
-    # Should have additional detail columns
-    detail_cols <- c(
-      "legis_period",
-      "title", 
-      "citation",
-      "committee_id",
-      "date_start",
-      "date_end"
-    )
-    expect_true(any(detail_cols %in% colnames(x)))
-    
-    # legis_period should be the first column when details = TRUE
-    expect_equal(colnames(x)[1], "legis_period")
-  }
-})
-
 test_that("get_committees handles empty results gracefully", {
   skip_on_cran()
   skip_if_offline()
@@ -209,13 +212,127 @@ test_that("get_committees works with different legis_period types", {
   expect_true(is.data.frame(x2))
 })
 
-test_that("get_committee_details handles errors gracefully", {
-  # Test with invalid URL
-  expect_warning(
-    result <- get_committee_details("https://invalid.url.com/test"),
-    "Failed to fetch committee details"
+test_that("get_committees returns identical results for different legis_period formats", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Get results with numeric input
+  result_numeric <- get_committees(
+    institution = "NR",
+    legis_period = 27
   )
 
-  expect_true(is.data.frame(result))
-  expect_equal(nrow(result), 0)
+  # Get results with character numeric input
+  result_character <- get_committees(
+    institution = "NR",
+    legis_period = "27"
+  )
+
+  # Get results with Roman numeral input
+  result_roman <- get_committees(
+    institution = "NR",
+    legis_period = "XXVII"
+  )
+
+  # All three should produce data frames
+  expect_true(is.data.frame(result_numeric))
+  expect_true(is.data.frame(result_character))
+  expect_true(is.data.frame(result_roman))
+
+  # All should have the same number of rows
+  expect_equal(nrow(result_numeric), nrow(result_character))
+  expect_equal(nrow(result_numeric), nrow(result_roman))
+
+  # All should have the same columns
+  expect_equal(colnames(result_numeric), colnames(result_character))
+  expect_equal(colnames(result_numeric), colnames(result_roman))
+
+  # The actual data should be identical (ignoring row order)
+  # Sort by committee name to ensure consistent ordering
+  result_numeric_sorted <- result_numeric[order(result_numeric$committee), ]
+  result_character_sorted <- result_character[order(result_character$committee), ]
+  result_roman_sorted <- result_roman[order(result_roman$committee), ]
+
+  # Reset row names for comparison
+  rownames(result_numeric_sorted) <- NULL
+  rownames(result_character_sorted) <- NULL
+  rownames(result_roman_sorted) <- NULL
+
+  # Compare the sorted data frames
+  expect_equal(result_numeric_sorted, result_character_sorted)
+  expect_equal(result_numeric_sorted, result_roman_sorted)
+})
+
+test_that("get_committees handles committees with empty documents", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test the specific case from legis_period 22 that had empty documents
+  x <- get_committees(
+    legis_period = 22,
+    institution = "NR",
+    details_type = "members",
+    citation = "1/SA-BU"
+  )
+
+  expect_true(is.data.frame(x))
+
+  if (!is.null(x) && nrow(x) > 0) {
+    # Should have url_pdf and url_html columns even if they're NA
+    expect_true("url_pdf" %in% colnames(x))
+    expect_true("url_html" %in% colnames(x))
+    expect_true("members" %in% colnames(x))
+  }
+})
+
+test_that("get_committees with details_type='members' has no unexpected list-columns", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Fetch committee membership data across multiple legislative periods
+  all_members <- seq(20, 28, 1) %>%
+    purrr::map(., \(x) {
+      get_committees(
+        legis_period = x,
+        institution = "NR",
+        details_type = "members"
+      )
+    })
+
+  # Check each result
+  all_members %>%
+    purrr::iwalk(., \(result, idx) {
+      if (!is.null(result) && nrow(result) > 0) {
+        # Get column types using map
+        col_types <- result %>%
+          purrr::map(class)
+
+        # Find list-columns (columns where class contains "list" or "data.frame")
+        list_cols <- col_types %>%
+          purrr::keep(\(x) "list" %in% x | "data.frame" %in% x) %>%
+          names()
+
+        # Only "members" should be a list-column
+        expect_true(
+          all(list_cols == "members") || length(list_cols) == 0,
+          info = paste(
+            "Unexpected list-columns found in legis_period",
+            19 + idx,
+            ":",
+            paste(setdiff(list_cols, "members"), collapse = ", ")
+          )
+        )
+
+        # If members column exists, it should be a list
+        if ("members" %in% colnames(result)) {
+          expect_true(
+            "list" %in% class(result$members),
+            info = paste(
+              "members column should be a list in legis_period",
+              19 + idx
+            )
+          )
+        }
+      }
+    })
 })
