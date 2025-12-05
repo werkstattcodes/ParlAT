@@ -96,12 +96,6 @@ documentation in the reference section.
 | Mitteilungen des EU-Ausschusses BR (Communications of the EU Subcommittee - Federal Council) | not yet implemented |
 | Stellungnahmen des EU-Ausschusses BR (Statements of the EU Committee Federal Council) | not yet implemented |
 
-## Code of Conduct
-
-Please note that this project is released with a [Contributor Code of
-Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its terms.
-
 ## References
 
 <!--  -->
