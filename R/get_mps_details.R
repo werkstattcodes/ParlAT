@@ -1007,7 +1007,13 @@ get_mps_details_committees <- function(
         dplyr::mutate(across(starts_with("committee_date"), \(x) {
             lubridate::dmy(x)
         })) |>
-        dplyr::relocate(committee_url, .after = dplyr::last_col())
+        dplyr::relocate(committee_url, .after = dplyr::last_col()) %>%
+        dplyr::mutate(
+            committee_url = paste0(
+                "https://www.parlament.gv.at/",
+                committee_url
+            )
+        )
 
     #ADD MPinfo
 

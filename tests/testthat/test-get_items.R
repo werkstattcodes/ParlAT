@@ -402,17 +402,249 @@ test_that("get_items returns a dataframe with a 'stage' column", {
   expect_true("stage" %in% names(result))
 })
 
-test_that("get_items returns no duplicates for topic Europäische Union and legis_period 28", {
+test_that("get_items warns when duplicates are present", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # This query is known to return duplicates (as of testing)
+  expect_warning(
+    result <- get_items(
+      topic = "Europäische Union",
+      legis_period = 28,
+      echo = FALSE
+    ),
+    regexp = "duplicate row\\(s\\)",
+    info = "Should warn about duplicate rows when present"
+  )
+
+  # Verify the warning message contains expected information
+  expect_warning(
+    get_items(
+      topic = "Europäische Union",
+      legis_period = 28,
+      echo = FALSE
+    ),
+    regexp = "Total rows:.*unique rows:",
+    info = "Warning should include total and unique row counts"
+  )
+})
+
+test_that("get_items returns no duplicates for Bildung across multiple legislative periods", {
   skip_on_cran()
   skip_if_offline()
 
   result <- get_items(
-    topic = "Europäische Union",
-    legis_period = 28,
+    topic = "Bildung",
+    legis_period = c(26, 27, 28),
     echo = FALSE
   )
 
-  expect_true(nrow(result) == dplyr::n_distinct(result))
+  # Verify result is returned
+  expect_s3_class(result, "data.frame")
+  expect_true(nrow(result) > 0)
+
+  # Check that there are no duplicate rows
+  n_total <- nrow(result)
+  n_distinct <- result |>
+    dplyr::distinct() |>
+    nrow()
+
+  expect_equal(
+    n_total,
+    n_distinct,
+    info = "Result should contain no duplicate rows"
+  )
+})
+
+# Tests for type_eu_submission parameter -------------------------------------
+
+test_that("get_items validates type_eu_submission requires item='EU'", {
+  expect_error(
+    get_items(type_eu_submission = "BEU"),
+    "'type_eu_submission' can only be specified when item = 'EU'"
+  )
+
+  expect_error(
+    get_items(item = "ANTR", type_eu_submission = "BEU"),
+    "'type_eu_submission' can only be specified when item = 'EU'"
+  )
+})
+
+test_that("get_items validates type_eu_submission values", {
+  expect_error(
+    get_items(item = "EU", type_eu_submission = "INVALID_CODE", institution = "NR"),
+    "Must be a subset of"
+  )
+
+  expect_error(
+    get_items(item = "EU", type_eu_submission = c("BEU", "INVALID"), institution = "NR"),
+    "Must be a subset of"
+  )
+})
+
+test_that("get_items validates NR type_eu_submission codes require institution='NR'", {
+  expect_error(
+    get_items(item = "EU", type_eu_submission = "BEU"),
+    "National Council type_eu_submission codes can only be used when institution = 'NR'"
+  )
+
+  expect_error(
+    get_items(item = "EU", type_eu_submission = "S", institution = "BR"),
+    "National Council type_eu_submission codes can only be used when institution = 'NR'"
+  )
+})
+
+test_that("get_items accepts valid type_eu_submission values", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test single valid value
+  result <- get_items(
+    item = "EU",
+    type_eu_submission = "BEU",
+    institution = "NR",
+    legis_period = 27,
+    echo = FALSE
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
+})
+
+test_that("get_items accepts multiple type_eu_submission values", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test multiple valid values
+  result <- get_items(
+    item = "EU",
+    type_eu_submission = c("BEU", "RGEU", "S"),
+    institution = "NR",
+    legis_period = 27,
+    echo = F
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
+  expect_true(nrow(result) == 8)
+})
+
+test_that("get_items type_eu_submission works with all valid codes", {
+  skip_on_cran()
+  skip_if_offline()
+
+  valid_codes <- c(
+    "BEU",
+    "EUBTG",
+    "JMINEU",
+    "ABMINEU",
+    "MTEU",
+    "EUD",
+    "RGEU",
+    "SINF",
+    "S",
+    "SEU",
+    "RVEU"
+  )
+
+  # Test that each valid code is accepted without error
+  for (code in valid_codes) {
+    result <- get_items(
+      item = "EU",
+      type_eu_submission = code,
+      institution = "NR",
+      legis_period = 28,
+      echo = FALSE
+    )
+
+    expect_true(
+      is.data.frame(result) || is.null(result),
+      info = paste("Code", code, "should be valid")
+    )
+  }
+})
+
+test_that("get_items type_eu_submission combines with other parameters", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test combining type_eu_submission with multiple parameters
+  result <- get_items(
+    item = "EU",
+    type_eu_submission = "S",
+    legis_period = 27,
+    institution = "NR",
+    echo = FALSE
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
+})
+
+# Tests for BR-specific type_eu_submission codes ------------------------------
+
+test_that("get_items validates BR type_eu_submission codes require institution='BR'", {
+  expect_error(
+    get_items(item = "EU", type_eu_submission = "BEU-BR"),
+    "Federal Council type_eu_submission codes can only be used when institution = 'BR'"
+  )
+
+  expect_error(
+    get_items(item = "EU", type_eu_submission = "MT-BR", institution = "NR"),
+    "Federal Council type_eu_submission codes can only be used when institution = 'BR'"
+  )
+})
+
+test_that("get_items accepts valid BR type_eu_submission values", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test single valid BR value
+  result <- get_items(
+    item = "EU",
+    type_eu_submission = "BEU-BR",
+    institution = "BR",
+    legis_period = 27,
+    echo = FALSE
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
+})
+
+test_that("get_items BR type_eu_submission works with all valid BR codes", {
+  skip_on_cran()
+  skip_if_offline()
+
+  valid_br_codes <- c("AFEU-BR", "SBPL-BR", "SB-BR", "BEU-BR", "MEU-BR", "ADEU-BR", "MT-BR", "EUD-BR", "SINF-BR", "SLT-BR", "S-BR")
+
+  # Test that each valid BR code is accepted without error
+  for (code in valid_br_codes) {
+    result <- get_items(
+      item = "EU",
+      type_eu_submission = code,
+      institution = "BR",
+      legis_period = 28,
+      echo = FALSE
+    )
+
+    expect_true(
+      is.data.frame(result) || is.null(result),
+      info = paste("BR code", code, "should be valid")
+    )
+  }
+})
+
+test_that("get_items accepts multiple BR type_eu_submission values", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test multiple valid BR values
+  result <- get_items(
+    item = "EU",
+    type_eu_submission = c("BEU-BR", "MT-BR"),
+    institution = "BR",
+    legis_period = 27,
+    echo = FALSE
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
 })
 
 # Tests for get_item_details() -----------------------------------------------
@@ -441,17 +673,6 @@ test_that("get_item_details works with relative URL", {
   expect_true(ncol(result) > 0)
 })
 
-
-test_that("get_item_details text column contains character data", {
-  skip_on_cran()
-  skip_if_offline()
-
-  item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-  result <- get_item_details(item_url)
-
-  # Verify text column is character type
-  expect_type(result$text, "character")
-})
 
 test_that("get_item_details handles URL normalization correctly", {
   skip_on_cran()

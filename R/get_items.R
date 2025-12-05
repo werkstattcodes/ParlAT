@@ -10,8 +10,9 @@
 #' @param legis_period Character vector or `NULL`. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is `NULL`.
 #' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param date_end Character string. End date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
-#' @param item Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
-#' @param doc_type Character vector or `NULL`. Specifies the type of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
+#' @param item (Gegenstad) Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
+#' @param type_eu_submission (Art der EU-Vorlage) Character vector or `NULL`. Type(s) of EU submission to search for. Can only be specified when `item = "EU"`. See 'Details' for possible values. Default is `NULL`.
+#' @param doc_type (Art des Antrages) Character vector or `NULL`. Specifies the type of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param person Character string or `NULL`. Name of a person to search for (family name, optionally followed by first name). Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
@@ -112,6 +113,40 @@
 #' * "BSE" (Beschluss-EU, EU Resolution)
 #' * "BSESM" (Beschluss-ESM, ESM Resolution)
 #' * "BS-BR" (Sonstiger Beschluss, Other Resolution (only if institution=="Bundesrat"))
+#'
+#' ## type_eu_submission (Art der EU-Vorlage)
+#' The `type_eu_submission` parameter allows filtering for specific types of EU-related submissions.
+#' Different codes are available depending on the institution.
+#'
+#' ### National Council Codes (institution = "NR")
+#' These codes can only be used when `item = "EU"` AND `institution = "NR"`:
+#'
+#' * "BEU" (Berichte der Bundesregierung zu EU-Themen, Federal Government Reports on EU Topics)
+#' * "EUBTG" (Berichte über Sitzungen von EU-Gremien, Reports on EU Committee Meetings)
+#' * "JMINEU" (Dokumentenanfrage betr. EU an die Bundesregierung, Document Requests to Federal Government Regarding EU)
+#' * "ABMINEU" (Dokumentenanfragebeantwortungen durch die Bundesregierung, Document Request Responses by Federal Government)
+#' * "MTEU" (Mitteilungen des EU-Unterausschusses, Communications from EU Subcommittee)
+#' * "EUD" (Politischer Dialog, Political Dialogue)
+#' * "RGEU" (Regierungserklärungen zu EU-Themen, Government Statements on EU Topics)
+#' * "SINF" (Schriftliche Informationen gem. § 6 EU-InfoG, Written Information According to § 6 EU Information Act)
+#' * "S" (Stellungnahmen des Hauptausschusses, Opinions of the Main Committee)
+#' * "SEU" (Stellungnahmen des UA des Hauptausschusses (EU), Opinions of the Main Committee Subcommittee (EU))
+#' * "RVEU" (Vorlagen ü. Initiativen und Beschlüsse EU, Submissions on EU Initiatives and Resolutions)
+#'
+#' ### Federal Council Codes (institution = "BR")
+#' These codes can only be used when `item = "EU"` AND `institution = "BR"`:
+#'
+#' * "AFEU-BR" (Ausschussfeststelungen, Committee Findings)
+#' * "SBPL-BR" (Begründete Stellungnahmen des Bundesrates, Reasoned Opinions of the Federal Council)
+#' * "SB-BR" (Begründete Stellungnahmen des EU-BR, Reasoned Opinions of the EU Federal Council)
+#' * "BEU-BR" (Berichte der Bundesregierung zu EU-Themen, Federal Government Reports on EU Topics)
+#' * "MEU-BR" (EU-Vorblätter und Dossiers BR, EU Cover Sheets and Dossiers BR)
+#' * "ADEU-BR" (IV der Beilagen, Addendum/Supplement IV)
+#' * "MT-BR" (Mitteilungen des EU-BR, Communications from EU Federal Council)
+#' * "EUD-BR" (Politischer Dialog BR, Political Dialogue BR)
+#' * "SINF-BR" (Schriftliche Informationen BR gem. § 6 EU-InfoG BR, Written Information Federal Council According to § 6 EU Information Act)
+#' * "SLT-BR" (Stellungnahmen der Landtage, Opinions of State Parliaments)
+#' * "S-BR" (Stellungnahmen des EU-Ausschusses, Opinions of the EU Committee)
 #'
 #' ## EuroVoc
 #' EuroVoc is an international thesaurus developed primarily for use within the EU. It enables searches
@@ -451,6 +486,21 @@
 #'   legis_period = 27,
 #'   institution = "NR"
 #' )
+#'
+#' # Get all positions of the Hauptausschuss on EU related matters in the 27th legislative period
+#' get_items(
+#'   legis_period = 27,
+#'   item = "EU",
+#'   type_eu_submission = "S"
+#' )
+#'
+#' #Get all statements of the sub-committee on EU affairs (EU-Unterausschuss) during the 27th legislative period.
+#' get_items(
+#'   tem="EU",
+#'   type_eu_submission = "MTEU",
+#'   legis_period=27
+#' )
+#'
 #' }
 get_items <- function(
   topic = NULL, #Themen - Themen
@@ -459,6 +509,7 @@ get_items <- function(
   date_start = NULL, #Datum_von - DATUM_VON
   date_end = NULL, #Datum_bis - DATUM_BIS
   item = NULL, #Gegenstand - VHG
+  type_eu_submission = NULL, #Art der EU-Vorlage - VHG2
   doc_type = NULL, #Art der Anfrage - DOKTYP
   person = NULL, #Person - PAD_intern (via person_input)
   keyword = NULL, #Schlagwort - SW
@@ -651,6 +702,71 @@ get_items <- function(
         choices = choices_doc_type_bnr_federal_council,
         empty.ok = FALSE
       )
+    }
+  }
+
+  # TYPE_EU_SUBMISSION (Art der EU-Vorlage)
+  # Can only be specified when item = "EU"
+  if (!is.null(type_eu_submission) && (is.null(item) || !any(item %in% "EU"))) {
+    stop("'type_eu_submission' can only be specified when item = 'EU'")
+  }
+
+  if (!is.null(type_eu_submission)) {
+    # Define NR-specific codes
+    choices_type_eu_submission_nr <- c(
+      "BEU",
+      "EUBTG",
+      "JMINEU",
+      "ABMINEU",
+      "MTEU",
+      "EUD",
+      "RGEU",
+      "SINF",
+      "S",
+      "SEU",
+      "RVEU"
+    )
+
+    # Define BR-specific codes
+    choices_type_eu_submission_br <- c(
+      "AFEU-BR",
+      "SBPL-BR",
+      "SB-BR",
+      "BEU-BR",
+      "MEU-BR",
+      "ADEU-BR",
+      "MT-BR",
+      "EUD-BR",
+      "SINF-BR",
+      "SLT-BR",
+      "S-BR"
+    )
+
+    # All valid codes (NR + BR)
+    choices_type_eu_submission <- c(
+      choices_type_eu_submission_nr,
+      choices_type_eu_submission_br
+    )
+
+    # Validate against all valid codes
+    checkmate::assert_subset(
+      x = type_eu_submission,
+      choices = choices_type_eu_submission,
+      empty.ok = TRUE
+    )
+
+    # Check if NR-specific codes are used without institution="NR"
+    if (any(type_eu_submission %in% choices_type_eu_submission_nr)) {
+      if (is.null(institution) || institution != "NR") {
+        stop("National Council type_eu_submission codes can only be used when institution = 'NR'")
+      }
+    }
+
+    # Check if BR-specific codes are used without institution="BR"
+    if (any(type_eu_submission %in% choices_type_eu_submission_br)) {
+      if (is.null(institution) || institution != "BR") {
+        stop("Federal Council type_eu_submission codes can only be used when institution = 'BR'")
+      }
     }
   }
 
@@ -921,6 +1037,7 @@ get_items <- function(
     GP_CODE = legis_period,
     DATUM_VON = c(date_start, date_end),
     VHG = item,
+    VHG2 = type_eu_submission,
     DOKTYP = doc_type,
     PAD_INTERN = person_input,
     SW = keyword,

@@ -12,6 +12,10 @@ test_that("get_plenary_sessions returns valid data structure", {
   expect_true(is.data.frame(x))
   expect_gt(nrow(x), 0)
 
+  # Test for no duplicate sessions (check by session_url and session day)
+  dupes_sessions <- janitor::get_dupes(x, session_url, session_day)
+  expect_true(nrow(dupes_sessions) == 0)
+
   # Test expected columns exist
   expected_cols <- c("institution", "legis_period", "date", "session_number")
   expect_true(all(expected_cols %in% colnames(x)))
@@ -28,7 +32,7 @@ test_that("get_plenary_sessions returns valid data structure", {
   expect_true(all(x$legis_period == as.character(as.roman(28))))
 })
 
-test_that("get_plenary_sessions handles agenda_url column correctly", {
+test_that("get_plenary_sessions handles agenda_url columns correctly", {
   skip_on_cran()
   skip_if_offline()
 
@@ -38,21 +42,90 @@ test_that("get_plenary_sessions handles agenda_url column correctly", {
     legis_period = 28
   )
 
-  # Test agenda_url column if it exists
-  if ("agenda_url" %in% colnames(x)) {
-    expect_true(is.list(x$agenda_url))
+  # Test agenda_url columns exist and are character type (not list)
+  if ("agenda_url_html" %in% colnames(x)) {
+    expect_true(is.character(x$agenda_url_html))
+    expect_true(is.character(x$agenda_url_pdf))
 
-    # Test structure of agenda_url elements
-    non_null_agenda <- x$agenda_url |>
-      purrr::discard(\(y) all(is.na(y)))
+    # Check that non-NA URLs have the correct prefix
+    non_na_html <- x$agenda_url_html[!is.na(x$agenda_url_html)]
+    non_na_pdf <- x$agenda_url_pdf[!is.na(x$agenda_url_pdf)]
 
-    if (length(non_null_agenda) > 0) {
-      # Check that elements are named vectors with 'html' and 'pdf'
-      structure_check <- non_null_agenda |>
-        purrr::map_lgl(\(y) {
-          is.character(y) && length(y) == 2 && all(names(y) == c("html", "pdf"))
-        })
-      expect_true(all(structure_check))
+    if (length(non_na_html) > 0) {
+      expect_true(all(stringr::str_starts(
+        non_na_html,
+        "https://www.parlament.gv.at"
+      )))
+    }
+    if (length(non_na_pdf) > 0) {
+      expect_true(all(stringr::str_starts(
+        non_na_pdf,
+        "https://www.parlament.gv.at"
+      )))
+    }
+  }
+})
+
+test_that("get_plenary_sessions adds URL prefix to all url columns", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test sessions mode
+  x_sessions <- get_plenary_sessions(
+    institution = "NR",
+    legis_period = 28,
+    session_and_activities = "sessions"
+  )
+
+  if (!is.null(x_sessions) && nrow(x_sessions) > 0) {
+    # Check session_url has prefix
+    if ("session_url" %in% colnames(x_sessions)) {
+      non_na_urls <- x_sessions$session_url[!is.na(x_sessions$session_url)]
+      if (length(non_na_urls) > 0) {
+        expect_true(all(stringr::str_starts(
+          non_na_urls,
+          "https://www.parlament.gv.at"
+        )))
+      }
+    }
+
+    # Check agenda URLs have prefix
+    if ("agenda_url_html" %in% colnames(x_sessions)) {
+      non_na_html <- x_sessions$agenda_url_html[
+        !is.na(x_sessions$agenda_url_html)
+      ]
+      if (length(non_na_html) > 0) {
+        expect_true(all(stringr::str_starts(
+          non_na_html,
+          "https://www.parlament.gv.at"
+        )))
+      }
+    }
+  }
+
+  # Test submitted mode
+  x_submitted <- get_plenary_sessions(
+    institution = "NR",
+    legis_period = 28,
+    session_and_activities = "submitted"
+  )
+
+  if (!is.null(x_submitted) && nrow(x_submitted) > 0) {
+    # Check url_session and url_session_item have prefix
+    url_cols <- c("url_session", "url_session_item")
+    for (col in url_cols) {
+      if (col %in% colnames(x_submitted)) {
+        non_na_urls <- x_submitted[[col]][!is.na(x_submitted[[col]])]
+        if (length(non_na_urls) > 0) {
+          expect_true(
+            all(stringr::str_starts(
+              non_na_urls,
+              "https://www.parlament.gv.at"
+            )),
+            info = paste("Failed for column:", col)
+          )
+        }
+      }
     }
   }
 })
@@ -152,6 +225,29 @@ test_that("get_plenary_sessions works with BV institution", {
   expect_true(is.data.frame(x) || is.null(x))
 })
 
+test_that("get_plenary_sessions BV does not include legis_period column", {
+  skip_on_cran()
+  skip_if_offline()
+
+  x <- get_plenary_sessions(
+    institution = "BV",
+    legis_period = NULL
+  )
+
+  if (!is.null(x) && nrow(x) > 0) {
+    # BV should NOT have legis_period column
+    expect_false(
+      "legis_period" %in% colnames(x),
+      info = "BV results should not include legis_period column"
+    )
+
+    # Check required columns exist
+    expect_true("institution" %in% colnames(x))
+    expect_true("date" %in% colnames(x))
+    expect_true(all(x$institution == "BV"))
+  }
+})
+
 test_that("get_plenary_sessions validates BV institution parameters", {
   # BV should not accept session_and_activities parameter
   expect_error(
@@ -168,7 +264,7 @@ test_that("get_plenary_sessions validates BV institution parameters", {
       institution = "BV",
       legis_period = 27
     ),
-    "legis_period must be NULL for BV institution"
+    "legis_period must be NULL for institution 'BV'"
   )
 })
 
@@ -239,12 +335,11 @@ test_that("get_plenary_sessions handles multiple legislative periods", {
   expect_true(is.data.frame(x) || is.null(x))
 
   if (!is.null(x) && nrow(x) > 0) {
-    # Should contain data from both periods
-    legis_periods_found <- unique(x$legis_period)
-    expect_true(length(legis_periods_found) >= 1)
-    expect_true(all(x$institution == "NR"))
+    session_dupes <- janitor::get_dupes(x, session_url, session_day)
   }
+  expect_true(nrow(session_dupes) == 0)
 })
+
 
 test_that("get_plenary_sessions handles NULL legislative period", {
   skip_on_cran()

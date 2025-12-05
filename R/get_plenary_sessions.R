@@ -4,41 +4,42 @@
 #' Retrieves information about plenary sessions from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">here</a>).
 #' Data available from 20th legislative period onwards.
 #'
-#'
 #' @param institution A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).
-#' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards. Note that
-#' filtering is not possible for institution=="BV".
-#' @param session_and_activities A character string. One of 'sessions', 'submitted', or 'held'. Not applicable for if institution is "BV" (Bundesversammlung);  must be NULL for BV institution.
+#' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. **Must be NULL when institution is "BV"** (Bundesversammlung does not use legislative periods).
+#' @param session_and_activities A character string. One of 'sessions', 'submitted', or 'held'. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.
 #' @param submitted A character string specifying the type of submissions that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only used when `session_and_activities = "submitted"`. Not applicable for BV institution. See details below.
 #' @param held A character string specifying the type of sessions that were held. Possible values are: 'All', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'. Only used when `session_and_activities = "held"`. Not applicable for BV institution. See details below.
 #' @param echo Logical. If `TRUE`, prints the API request body parameters and the number of results. Default is `FALSE`.
 #' @return A data frame containing plenary session details, or NULL if no results found. The structure depends on `session_and_activities` parameter:
 #'
 #' If *`session_and_activities = "sessions"`*:
-#' - `institution`: The parliamentary institution (e.g., "NR", "BR")
-#' - `legis_period`: The legislative period
-#' - `date`: The date of the session
-#' - `session_number`: The number of the session
-#' - `session_day`: The day of the session
-#' - `session_url`: The URL to the session page
-#' - `session_type_abbrev`: The abbreviation for the session type
-#' - `session_type_name`: The full name of the session type
-#' - `agenda_url`: A list column with URLs to the agenda in HTML and PDF formats
+#' - `institution`: parliamentary institution (e.g., "NR", "BR")
+#' - `legis_period`: legislative period (not returned if institution is 'BV')
+#' - `date`: date of the session
+#' - `session_number`: number of the session
+#' - `session_day`: day of  session
+#' - `session_url`: URL to the session page
+#' - `agenda_url_html`: URL to the agenda in HTML format
+#' - `agenda_url_pdf`: URL to the agenda in PDF format
 #'
 #' If *`session_and_activities = "submitted"` or `"held"`*:
-#' - `legis_period`: The legislative period
-#' - `date`: The date of the activity
-#' - `url_session_item`: The URL to the session item
-#' - `url_session`: The URL to the session
-#' - `type_title`: The title of the activity type
-#' - `type_txt`: The text of the activity type
-#' - `topic`: The topic of the activity
-#' - `session_id`: The ID of the session
-#' - `session_number`: The number of the session
+#' - `legis_period`: legislative period
+#' - `date`: date of the activity
+#' - `url_session_item`: URL to the session item
+#' - `url_session`: URL to the session
+#' - `type_title`: title of the activity type
+#' - `type_txt`: text of the activity type
+#' - `topic`: topic of the activity
+#' - `session_id`: ID of session
+#' - `session_number`: number of session
+#' - `session_type_abbrev`: abbreviation for the session type
+#' - `session_type_name`: full name of session type
 #' - `link`, `link_2`, `link_3`: Additional links related to the activity
 #'
 #' For *BV (Bundesversammlung) institution*:
 #' - Returns basic session information without the activity-specific filtering options available for BR/NR
+#' - Does NOT include `legis_period` column (not applicable for Federal Assembly)
+#' - Columns returned: `institution`, `date`, `session_number`, `session_day`, `session_url`, `agenda_url_html`, `agenda_url_pdf`
 #'
 #' @details
 #' The function argument `session_and_activities` allows for three different inputs:
@@ -74,8 +75,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Basic usage: Get sessions for National Council from 20 to 27 legislative period
-#' sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20,27), session_and_activities = "sessions", echo=T)
+#' # Basic usage: Get sessions for National Council, legislative periods 20-27
+#' sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20, 27), session_and_activities = "sessions", echo = TRUE)
 #'
 #' # Get activities submitted during sessions
 #' get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted")
@@ -115,9 +116,16 @@ get_plenary_sessions <- function(
     ## encode
     institution_input <- institution
 
+    # Enforce BV constraint early to avoid overwriting a NULL later
+    if (institution == "BV" && !is.null(legis_period)) {
+        stop(
+            "legis_period must be NULL for institution 'BV'. Filtering by legislative period is not supported for 'Bundesversammlung'."
+        )
+    }
+
     # HANDLE MULTIPLE LEGIS PERIODS
-    # NULL means every legis_period from 20 onwards
-    if (is.null(legis_period)) {
+    # NULL means every legis_period from 20 onwards — but only for non-BV institutions
+    if (is.null(legis_period) && institution != "BV") {
         legis_period <- get_legis_periods() |>
             dplyr::filter(legis_period > 19) |>
             dplyr::pull(legis_period)
@@ -143,20 +151,13 @@ get_plenary_sessions <- function(
             purrr::list_rbind()
 
         if (isTRUE(echo)) {
-            print(paste("Total number of rows: ", nrow(df_res)))
+            print(paste("Hits total: ", nrow(df_res)))
         }
 
         return(df_res)
     }
 
     # LEGISLATIVE PERIOD; requires roman input
-    # BV institution requires NULL legis_period (filtering not supported by API)
-    if (institution == "BV" && !is.null(legis_period)) {
-        stop(
-            "legis_period must be NULL for BV institution. Filtering by legislative period is not supported for Bundesversammlung."
-        )
-    }
-
     # Check that all legislative periods are >= 20 (API limitation)
     if (institution != "BV") {
         checkmate::assert_numeric(
@@ -170,7 +171,6 @@ get_plenary_sessions <- function(
 
     if (!is.null(legis_period)) {
         legis_period_input <- as.character(as.roman(as.numeric(legis_period)))
-        # print(legis_period_input)
     } else {
         legis_period_input <- NULL
     }
@@ -311,7 +311,10 @@ get_plenary_sessions <- function(
 
     colnames(df_res) <- vec_headings
 
-    df_res <- as.data.frame(df_res)
+    df_res <- as.data.frame(df_res) |>
+        dplyr::mutate(
+            gp_code = as.numeric(as.roman(gp_code))
+        )
 
     #COLS DEPEND ON SEARCH PARAMETERS => DIFFERENT RENAMINGS NEEDED
     if (
@@ -323,11 +326,20 @@ get_plenary_sessions <- function(
                 sitzung = stringr::str_extract(sitzung, stringr::regex("\\d+"))
             )
 
-        #parse text from art
+        #parse text from art with error handling
+        safe_parse_title <- purrr::possibly(
+            aux_parse_html_title,
+            otherwise = NA_character_
+        )
+        safe_parse_text <- purrr::possibly(
+            aux_parse_html_text,
+            otherwise = NA_character_
+        )
+
         df_res <- df_res |>
             dplyr::mutate(
-                art_title = purrr::map_chr(art, \(x) aux_parse_html_title(x)),
-                art_txt = purrr::map_chr(art, \(x) aux_parse_html_text(x))
+                art_title = purrr::map_chr(art, safe_parse_title),
+                art_txt = purrr::map_chr(art, safe_parse_text)
             )
 
         #rename columns
@@ -354,6 +366,20 @@ get_plenary_sessions <- function(
         df_res <- df_res |>
             dplyr::mutate(
                 date = as.Date(date, format = "%d.%m.%Y")
+            )
+
+        # Add https://www.parlament.gv.at/ prefix to all URL columns
+        df_res <- df_res |>
+            dplyr::mutate(
+                dplyr::across(
+                    tidyselect::contains("url"),
+                    \(x) {
+                        dplyr::case_when(
+                            is.na(x) | x == "" ~ NA_character_,
+                            .default = paste0("https://www.parlament.gv.at", x)
+                        )
+                    }
+                )
             )
 
         #select columns
@@ -395,7 +421,7 @@ get_plenary_sessions <- function(
                 "URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?{query_string}"
             ))
 
-            print(paste("Number of rows: ", nrow(df_res)))
+            print(paste("Hits: ", nrow(df_res)))
         }
 
         return(df_res)
@@ -508,6 +534,26 @@ get_plenary_sessions <- function(
                 date = as.Date(date, format = "%d.%m.%Y")
             )
 
+        # Unnest agenda_url with prefix
+        if ("agenda_url" %in% colnames(df_res)) {
+            df_res <- df_res |>
+                tidyr::unnest_wider(agenda_url, names_sep = "_")
+        }
+
+        # Add https://www.parlament.gv.at/ prefix to all URL columns
+        df_res <- df_res |>
+            dplyr::mutate(
+                dplyr::across(
+                    tidyselect::contains("url"),
+                    \(x) {
+                        dplyr::case_when(
+                            is.na(x) | x == "" ~ NA_character_,
+                            .default = paste0("https://www.parlament.gv.at", x)
+                        )
+                    }
+                )
+            )
+
         #select columns
         col_select <- c(
             "institution",
@@ -518,7 +564,8 @@ get_plenary_sessions <- function(
             "session_url",
             "session_type_abbrev",
             "session_type_name",
-            "agenda_url"
+            "agenda_url_html",
+            "agenda_url_pdf"
         )
 
         df_res <- df_res |>
@@ -543,9 +590,13 @@ get_plenary_sessions <- function(
                 "URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?{query_string}"
             ))
 
-            print(paste("Number of rows: ", nrow(df_res)))
+            print(paste("Hits: ", nrow(df_res)))
         }
 
-        return(df_res)
+        if (institution == "BV") {
+            return(df_res %>% dplyr::select(-legis_period)) #when institution is "BV", API returns "BV" for legis_period; creates to var class conflicts
+        } else {
+            return(df_res)
+        }
     }
 }
