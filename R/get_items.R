@@ -5,7 +5,6 @@
 #' in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
 #' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">here</a>).
 #'
-#' @param search_string Character string or `NULL`. General search term to filter results. Default is `NULL`.
 #' @param topic (Thema) Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param institution Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is `NULL` which returns both chambers.
 #' @param legis_period Character vector or `NULL`. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is `NULL`.
@@ -14,7 +13,6 @@
 #' @param item Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param doc_type Character vector or `NULL`. Specifies the type of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param person Character string or `NULL`. Name of a person to search for (family name, optionally followed by first name). Default is `NULL`.
-#' @param number Character string, numeric, or `NULL`. Specific item number to search for. Numeric input will be converted to character. Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
 #' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See Details.
@@ -22,6 +20,7 @@
 #' @param echo Logical. If `TRUE`, the function prints the used search parameters and the url to the pertaining search results on website of the Austrian Parliament.
 #'
 #' @details
+#'
 #' ## Topic (Thema)
 #' NULL, one, or multiple topics permissible.
 #' Possible values for `topic` are:
@@ -122,57 +121,197 @@
 #' ## Keywords (Schlagwort)
 #' Possible values for `keyword` include:
 #'
-#' * "Abfallwirtschaft", "Abgeordnete", "Abstimmungen, geheime", "Abstimmungen, namentliche"
-#' * "Abstimmungsangelegenheiten", "Abweichende persönliche Stellungnahmen", "Aktuelle Europastunden"
-#' * "Aktuelle Stunden", "Anfragebeantwortungen, Besprechung von", "Anfragen, Dringliche"
-#' * "Anträge, Dringliche", "Apotheken", "Arbeiterkammern", "Arbeitsinspektion", "Arbeitsmarkt"
-#' * "Arbeitsrecht I. österreichisches", "Arbeitsrecht II. internationales", "Archive", "Atomenergie"
-#' * "Außenpolitik", "Ausländer", "Ausschüsse des Nationalrates", "Bauwesen", "Bergbau"
-#' * "Betriebsräte", "Bibliotheken", "Bildungswesen I. Pflichtschulen", "Bildungswesen II. Mittlere Schulen"
-#' * "Bildungswesen III. Höhere Schulen", "Bildungswesen IV. Universitäten und Hochschulen"
-#' * "Bildungswesen V. Minderheitenschulwesen", "Bildungswesen VI. Schülerbeihilfen und Studienförderung"
-#' * "Bildungswesen VII. Erwachsenenbildung", "Bildungswesen VIII. Sonstiges", "Bundesforste"
-#' * "Bundesgesetzblatt", "Bundeshaushalt I. Bundesfinanzgesetze", "Bundeshaushalt II. Budgetüberschreitungen"
-#' * "Bundeshaushalt III. Sonstiges", "Bundesländer", "Bundespräsident:in"
-#' * "Bundesregierung I. Ernennungen, Enthebungen und Ableben", "Bundesregierung II. Regierungserklärungen"
-#' * "Bundesregierung III. Sonstiges", "Bundesverfassung", "Bundesvermögen", "Bundeswappen"
-#' * "Bürgerinitiativen", "Debattenanträge bzw. -verlangen", "Ehrenzeichen und Medaillen"
-#' * "Einsprüche des Bundesrates", "Einspruchsfrist des Bundesrates", "Elektrizität", "Elementarpädagogik"
-#' * "Energiewirtschaft", "Entwicklungszusammenarbeit", "Erklärungen Präsident/Präsidentin"
-#' * "Erste Lesungen", "Erste Lesungen, Anträge/Verlangen", "Europäische Integration", "Europarat"
-#' * "Familienlastenausgleich", "Familienpolitik", "Film", "Finanzausgleich", "Flüchtlinge"
-#' * "Fragestunden", "Frauen und Gleichbehandlung", "Fremdenverkehr", "Fristsetzungen"
-#' * "Geschäftsordnung des Nationalrates", "Gesundheit", "Glücksspiel", "Grenzen"
-#' * "Handel, Gewerbe und Industrie", "II. Einberufung und Beendigung der Tagungen"
-#' * "III. Präsidenten, Schriftführer und Ordner", "III. Sonstiges", "Immunität"
-#' * "Information und Informationsverarbeitung", "Internet", "IV. Ansprachen Präsident/Präsidentin"
-#' * "Jagd und Fischerei", "Jugend", "Kommuniques", "Kreditwesen", "Kunst und Kultur"
-#' * "Land- und Forstwirtschaft", "Landesverteidigung", "Lebensmittel", "Löhne und Gehälter"
-#' * "Maße und Gewichte", "Menschen mit Behinderung", "Menschenrechte", "Minderheitsberichte"
-#' * "Misstrauensanträge", "Museen", "Nationalfeiertag", "Neutralität", "Öffentliche Unternehmen"
-#' * "Öffentlicher Dienst", "Opferfürsorge und Opferschutz", "Ordnungsrufe", "Pässe und Ausweise"
-#' * "Pensionssystem", "Personenstandsrecht", "Petitionen", "Pflege und Betreuung"
-#' * "Politische Parteien", "Postwesen", "Preise", "Presse", "Prüfungsaufträge Rechnungshof"
-#' * "Prüfungsaufträge Rechnungshofausschuss", "Raumordnung", "Rechnungshof", "Rechtsanwälte und Notare"
-#' * "Rechtsbereinigung", "Rechtspflege", "Redezeitbeschränkungen", "Religion", "Rückverweisungen"
-#' * "Rundfunk und Fernsehen", "Sicherheitswesen", "Sitzungsunterbrechung", "Sondersitzungen"
-#' * "Sonstige Geschäftsordnungsangelegenheiten", "Sozialpolitik", "Sozialversicherung I. Allgemeine Sozialversicherung"
-#' * "Sozialversicherung II. Gewerbliche Sozialversicherung", "Sozialversicherung III. Landwirtschaftliche Sozialversicherung"
-#' * "Sozialversicherung IV. Kriegsopferversorgung", "Sozialversicherung V. Arbeitslosenversicherung"
-#' * "Sozialversicherung VI. Sonstiges", "Sport", "Staatsbürger:in", "Staatsverträge", "Statistik"
-#' * "Steuern und Gebühren", "Strafrecht", "Straßen- und Brückenbau", "Südtirol", "Tabak"
-#' * "Tagesordnung", "Telekommunikation", "Theater", "Trauerkundgebungen", "Umweltschutz"
-#' * "Untersuchungsausschüsse", "Unvereinbarkeit", "V. Sonstiges", "Vereinbarungen"
-#' * "Vereins- und Versammlungsrecht", "Vereinte Nationen", "Verfassungs- und Verwaltungsgerichtsbarkeit"
-#' * "Verkehr I. Straßenverkehr", "Verkehr II. Schienenverkehr", "Verkehr III. Luftfahrt"
-#' * "Verkehr IV. Schifffahrt", "Verkehr V. Sonstiges", "Verkürztes Verfahren", "Vermessung"
-#' * "Vermögenssicherung", "Vertragsversicherungen", "Verwaltungsorganisation", "Verwaltungsverfahren"
-#' * "Veterinärwesen und Tierschutz", "Völkerrecht", "Völkerrechtliche Vertretungen", "Volksabstimmung"
-#' * "Volksanwaltschaft", "Volksbefragung", "Volksbegehren", "Volksgruppen", "Volkszählung"
-#' * "Wahlen", "Währung", "Wasserbauten", "Wasserrecht", "Wasserwirtschaft", "Weinwirtschaft"
-#' * "Wirtschaftspolitik", "Wirtschaftstreuhänder:in", "Wissenschaft und Forschung", "Wohnungswesen"
-#' * "Wortentziehung", "Wortmeldungen zur Geschäftsbehandlung", "Zivildienst", "Zivilrecht"
-#' * "Zivilschutz", "Zollwesen"
+#' * "Abfallwirtschaft"
+#' * "Abgeordnete"
+#' * "Abstimmungen, geheime"
+#' * "Abstimmungen, namentliche"
+#' * "Abstimmungsangelegenheiten"
+#' * "Abweichende persönliche Stellungnahmen"
+#' * "Aktuelle Europastunden"
+#' * "Aktuelle Stunden"
+#' * "Anfragebeantwortungen, Besprechung von"
+#' * "Anfragen, Dringliche"
+#' * "Anträge, Dringliche"
+#' * "Apotheken"
+#' * "Arbeiterkammern"
+#' * "Arbeitsinspektion"
+#' * "Arbeitsmarkt"
+#' * "Arbeitsrecht I. österreichisches"
+#' * "Arbeitsrecht II. internationales"
+#' * "Archive"
+#' * "Atomenergie"
+#' * "Außenpolitik"
+#' * "Ausländer"
+#' * "Ausschüsse des Nationalrates"
+#' * "Bauwesen"
+#' * "Bergbau"
+#' * "Betriebsräte"
+#' * "Bibliotheken"
+#' * "Bildungswesen I. Pflichtschulen"
+#' * "Bildungswesen II. Mittlere Schulen"
+#' * "Bildungswesen III. Höhere Schulen"
+#' * "Bildungswesen IV. Universitäten und Hochschulen"
+#' * "Bildungswesen V. Minderheitenschulwesen"
+#' * "Bildungswesen VI. Schülerbeihilfen und Studienförderung"
+#' * "Bildungswesen VII. Erwachsenenbildung"
+#' * "Bildungswesen VIII. Sonstiges"
+#' * "Bundesforste"
+#' * "Bundesgesetzblatt"
+#' * "Bundeshaushalt I. Bundesfinanzgesetze"
+#' * "Bundeshaushalt II. Budgetüberschreitungen"
+#' * "Bundeshaushalt III. Sonstiges"
+#' * "Bundesländer"
+#' * "Bundespräsident:in"
+#' * "Bundesregierung I. Ernennungen, Enthebungen und Ableben"
+#' * "Bundesregierung II. Regierungserklärungen"
+#' * "Bundesregierung III. Sonstiges"
+#' * "Bundesverfassung"
+#' * "Bundesvermögen"
+#' * "Bundeswappen"
+#' * "Bürgerinitiativen"
+#' * "Debattenanträge bzw. -verlangen"
+#' * "Ehrenzeichen und Medaillen"
+#' * "Einsprüche des Bundesrates"
+#' * "Einspruchsfrist des Bundesrates"
+#' * "Elektrizität"
+#' * "Elementarpädagogik"
+#' * "Energiewirtschaft"
+#' * "Entwicklungszusammenarbeit"
+#' * "Erklärungen Präsident/Präsidentin"
+#' * "Erste Lesungen"
+#' * "Erste Lesungen, Anträge/Verlangen"
+#' * "Europäische Integration"
+#' * "Europarat"
+#' * "Familienlastenausgleich"
+#' * "Familienpolitik"
+#' * "Film"
+#' * "Finanzausgleich"
+#' * "Flüchtlinge"
+#' * "Fragestunden"
+#' * "Frauen und Gleichbehandlung"
+#' * "Fremdenverkehr"
+#' * "Fristsetzungen"
+#' * "Geschäftsordnung des Nationalrates"
+#' * "Gesundheit"
+#' * "Glücksspiel"
+#' * "Grenzen"
+#' * "Handel, Gewerbe und Industrie"
+#' * "II. Einberufung und Beendigung der Tagungen"
+#' * "III. Präsidenten, Schriftführer und Ordner"
+#' * "III. Sonstiges"
+#' * "Immunität"
+#' * "Information und Informationsverarbeitung"
+#' * "Internet"
+#' * "IV. Ansprachen Präsident/Präsidentin"
+#' * "Jagd und Fischerei"
+#' * "Jugend"
+#' * "Kommuniques"
+#' * "Kreditwesen"
+#' * "Kunst und Kultur"
+#' * "Land- und Forstwirtschaft"
+#' * "Landesverteidigung"
+#' * "Lebensmittel"
+#' * "Löhne und Gehälter"
+#' * "Maße und Gewichte"
+#' * "Menschen mit Behinderung"
+#' * "Menschenrechte"
+#' * "Minderheitsberichte"
+#' * "Misstrauensanträge"
+#' * "Museen"
+#' * "Nationalfeiertag"
+#' * "Neutralität"
+#' * "Öffentliche Unternehmen"
+#' * "Öffentlicher Dienst"
+#' * "Opferfürsorge und Opferschutz"
+#' * "Ordnungsrufe"
+#' * "Pässe und Ausweise"
+#' * "Pensionssystem"
+#' * "Personenstandsrecht"
+#' * "Petitionen"
+#' * "Pflege und Betreuung"
+#' * "Politische Parteien"
+#' * "Postwesen"
+#' * "Preise"
+#' * "Presse"
+#' * "Prüfungsaufträge Rechnungshof"
+#' * "Prüfungsaufträge Rechnungshofausschuss"
+#' * "Raumordnung"
+#' * "Rechnungshof"
+#' * "Rechtsanwälte und Notare"
+#' * "Rechtsbereinigung"
+#' * "Rechtspflege"
+#' * "Redezeitbeschränkungen"
+#' * "Religion"
+#' * "Rückverweisungen"
+#' * "Rundfunk und Fernsehen"
+#' * "Sicherheitswesen"
+#' * "Sitzungsunterbrechung"
+#' * "Sondersitzungen"
+#' * "Sonstige Geschäftsordnungsangelegenheiten"
+#' * "Sozialpolitik"
+#' * "Sozialversicherung I. Allgemeine Sozialversicherung"
+#' * "Sozialversicherung II. Gewerbliche Sozialversicherung"
+#' * "Sozialversicherung III. Landwirtschaftliche Sozialversicherung"
+#' * "Sozialversicherung IV. Kriegsopferversorgung"
+#' * "Sozialversicherung V. Arbeitslosenversicherung"
+#' * "Sozialversicherung VI. Sonstiges"
+#' * "Sport"
+#' * "Staatsbürger:in"
+#' * "Staatsverträge"
+#' * "Statistik"
+#' * "Steuern und Gebühren"
+#' * "Strafrecht"
+#' * "Straßen- und Brückenbau"
+#' * "Südtirol"
+#' * "Tabak"
+#' * "Tagesordnung"
+#' * "Telekommunikation"
+#' * "Theater"
+#' * "Trauerkundgebungen"
+#' * "Umweltschutz"
+#' * "Untersuchungsausschüsse"
+#' * "Unvereinbarkeit"
+#' * "V. Sonstiges"
+#' * "Vereinbarungen"
+#' * "Vereins- und Versammlungsrecht"
+#' * "Vereinte Nationen"
+#' * "Verfassungs- und Verwaltungsgerichtsbarkeit"
+#' * "Verkehr I. Straßenverkehr"
+#' * "Verkehr II. Schienenverkehr"
+#' * "Verkehr III. Luftfahrt"
+#' * "Verkehr IV. Schifffahrt"
+#' * "Verkehr V. Sonstiges"
+#' * "Verkürztes Verfahren"
+#' * "Vermessung"
+#' * "Vermögenssicherung"
+#' * "Vertragsversicherungen"
+#' * "Verwaltungsorganisation"
+#' * "Verwaltungsverfahren"
+#' * "Veterinärwesen und Tierschutz"
+#' * "Völkerrecht"
+#' * "Völkerrechtliche Vertretungen"
+#' * "Volksabstimmung"
+#' * "Volksanwaltschaft"
+#' * "Volksbefragung"
+#' * "Volksbegehren"
+#' * "Volksgruppen"
+#' * "Volkszählung"
+#' * "Wahlen"
+#' * "Währung"
+#' * "Wasserbauten"
+#' * "Wasserrecht"
+#' * "Wasserwirtschaft"
+#' * "Weinwirtschaft"
+#' * "Wirtschaftspolitik"
+#' * "Wirtschaftstreuhänder:in"
+#' * "Wissenschaft und Forschung"
+#' * "Wohnungswesen"
+#' * "Wortentziehung"
+#' * "Wortmeldungen zur Geschäftsbehandlung"
+#' * "Zivildienst"
+#' * "Zivilrecht"
+#' * "Zivilschutz"
+#' * "Zollwesen"
 #'
 #' ## Parliamentary Group (Klub/Fraktion)
 #' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
@@ -215,6 +354,9 @@
 #' `parl_group_names_standard = TRUE`, an input of "F" (or any other variant) will return
 #' the results for all three abbreviations.
 #'
+#' ## Free Text Search
+#' Due to limitations of the underlying API, this function does not currently support a general free text search across all fields. Search functionality is restricted to the specific parameters provided (e.g., `keyword`, `topic`, `person`).
+
 #' ## API Result Limits
 #' The Austrian Parliament API imposes a maximum limit of **100,000 rows** per query. When a query
 #' reaches this limit, the function issues a warning because the results may be incomplete.
@@ -311,7 +453,6 @@
 #' )
 #' }
 get_items <- function(
-  search_string = NULL,
   topic = NULL, #Themen - Themen
   institution = NULL, #Gremium - NRBR
   legis_period = NULL, #Gesetzgebungsperiode - GB_Code
@@ -320,7 +461,6 @@ get_items <- function(
   item = NULL, #Gegenstand - VHG
   doc_type = NULL, #Art der Anfrage - DOKTYP
   person = NULL, #Person - PAD_intern (via person_input)
-  number = NULL, #Nummer - INRNUM PENDING
   keyword = NULL, #Schlagwort - SW
   eurovoc = NULL, #EuroVoc - EUROVOC
   parl_group = NULL, #Klub/Fraktion - FRAK_CODE
@@ -525,16 +665,6 @@ get_items <- function(
       as.character()
   } else {
     person_input <- NULL
-  }
-
-  # NUMBER (number)
-  if (!is.null(number)) {
-    # Convert numeric input to character first
-    if (is.numeric(number)) {
-      number <- as.character(number)
-    }
-    # Then validate as character
-    checkmate::assert_character(number, len = 1)
   }
 
   # KEYWORD (Schlagwort)
@@ -792,7 +922,6 @@ get_items <- function(
     DATUM_VON = c(date_start, date_end),
     VHG = item,
     DOKTYP = doc_type,
-    INRNUM = number,
     PAD_INTERN = person_input,
     SW = keyword,
     EUROVOC = eurovoc,
@@ -808,7 +937,6 @@ get_items <- function(
     httr2::req_url_query(
       js = "eval",
       showAll = TRUE,
-      search = search_string,
       # page = "1",
       # pagesize = "449",
       export = TRUE
@@ -863,8 +991,7 @@ get_items <- function(
   if (echo == TRUE) {
     print(body_params)
     # print url to results / transparency reasons / add search string parameter
-    body_params_li <- jsonlite::fromJSON(body_params) |>
-      c("search" = search_string)
+    body_params_li <- jsonlite::fromJSON(body_params)
 
     query_string <- purrr::imap(
       body_params_li,
@@ -899,7 +1026,13 @@ get_items <- function(
 
   # PARSE CONTENT TO MAKE MORE AMENABLE FOR FURTHER ANALYSIS
 
-  cols_pars <- c("personen", "themen", "fraktionen", "sw", "eurovoc")
+  cols_pars <- c(
+    "personen_id",
+    "thema",
+    "klub_fraktion",
+    "schlagwort",
+    "euro_voc"
+  )
   fn_parse_content <- function(x) {
     x |>
       stringr::str_remove_all("\\[|\\]|\"") |>
@@ -970,11 +1103,37 @@ get_items <- function(
     dplyr::relocate(dplyr::any_of(col_select)) |> #ensures ordering of columns
     dplyr::mutate(date = lubridate::dmy(date))
 
+  # CHECK FOR DUPLICATES
+  # Check for completely duplicate rows across all columns
+  n_total_rows <- nrow(df_res)
+  n_distinct_rows <- df_res |>
+    dplyr::distinct() |>
+    nrow()
+
+  if (n_total_rows > n_distinct_rows) {
+    n_duplicates <- n_total_rows - n_distinct_rows
+
+    warning(
+      "The result contains ",
+      n_duplicates,
+      " duplicate row(s). ",
+      "Total rows: ",
+      n_total_rows,
+      ", unique rows: ",
+      n_distinct_rows,
+      ". ",
+      "This may indicate data quality issues.",
+      call. = FALSE
+    )
+  }
+
   # RETURN RESULT
   return(df_res)
 }
 
 #' Get detailed stage information for a parliamentary item
+#'
+#' `r lifecycle::badge("experimental")`
 #'
 #' Retrieves detailed stage information for a specific parliamentary item by
 #' scraping its detail page on the Austrian Parliament website. The function
@@ -1043,8 +1202,6 @@ get_item_details <- function(item_url, type = "stages") {
     state_statements = data_list$content$statementsstage,
     state_approval = data_list$content$approvalstate
   )
-
-  # browser()
 
   #GET STAGES DETAILS - IF STRUCTURE IS PHASE/STAGES
   if (type == "stages" && !is.null(data_list$content$phase$stages)) {
