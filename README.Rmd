@@ -109,10 +109,6 @@ For details see the function documentation in the reference section.
 | Stellungnahmen des EU-Ausschusses BR (Statements of the EU Committee Federal Council)| `get_items(item="EU", type_eu_submission="S-BR", institution="BR")` |
 
 
-## Code of Conduct
-
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
-
 ## References
 
 <!--  -->

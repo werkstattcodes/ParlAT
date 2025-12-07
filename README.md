@@ -97,12 +97,6 @@ documentation in the reference section.
 | Schriftliche Anfragen BR (Written questions Federal Council) | `get_items(item="J_JPR_M", institution="Bundesrat")` |
 | Stellungnahmen im EU-Hauptausschusses (Statements of the EU Main Committee) | `get_items(item="EU", type_eu_submission="S", institution="NR") | | Mitteilungen des EU-Unterausschusses (Communications of the EU Subcommittee)|`get_items(item=“EU”, type_eu_submission=“MTEU”, institution=“NR”)`| | Stellungnahmen des Ständigen Unterausschusses des Hauptausschusses (Statements of the Permanent Subcommittee of the Main Committee)  | not yet implemented| | Begründete Stellungnahmen des EU-Ausschusses (Reasoned Opinions of the EU Committee)|`get_items(item=“EU”, type_eu_submission=“SBPL-BR”, institution=“BR”)`| | Mitteilungen des EU-Ausschusses BR (Communications of the EU Committee - Federal Council)|`get_items(item=“EU”, type_eu_submission=“MT-BR”, institution=“BR”)`| | Stellungnahmen des EU-Ausschusses BR (Statements of the EU Committee Federal Council)|`get_items(item=“EU”, type_eu_submission=“S-BR”, institution=“BR”)\` |
 
-## Code of Conduct
-
-Please note that this project is released with a [Contributor Code of
-Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its terms.
-
 ## References
 
 <!--  -->
