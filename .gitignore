@@ -13,6 +13,6 @@ inst/doc
 renv/library/
 renv/local/
 renv/staging/
-
+.claude/
 /.quarto/
 **/*.quarto_ipynb
