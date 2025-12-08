@@ -9,12 +9,12 @@ get_mps(
   institution = NULL,
   gender = "all",
   legis_period = NULL,
+  date = NULL,
   party = NULL,
   parl_group = NULL,
   state = NULL,
   electoral_district = NULL,
   presidents_only = NULL,
-  date = NULL,
   echo = TRUE
 )
 }
@@ -26,14 +26,16 @@ get_mps(
 \item "NR" (Nationalrat, National Council)
 \item "BR" (Bundesrat, Federal Council)
 \item "KN" (Konstituierende Nationalversammlung, Constituent National Assembly)
-\item "PV" (Provisorische Nationalversammlung, Provisional National Assembly)
+\item "PN" (Provisorische Nationalversammlung, Provisional National Assembly)
 \item NULL covers all institutions.
 }}
 
 \item{gender}{Gender filter. One of "all", "female", or "male"}
 
 \item{legis_period}{Legislative period. Can be "all", a numeric value,
-"PV" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)}
+"PN" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)}
+
+\item{date}{Date for which active MPs are queried.}
 
 \item{party}{Political party filter. See details for permissible values.}
 
@@ -45,7 +47,7 @@ get_mps(
 
 \item{presidents_only}{Logical. If TRUE, returns only presidents. Default is FALSE}
 
-\item{echo}{Logical. If \code{TRUE}, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.}
+\item{echo}{Logical. If \code{TRUE}, the function prints the used search parameters and the url to the  pertaining search results on website of the Austrian Parliament.}
 }
 \value{
 A dataframe containing information about the MPs. One row per MP. Important: The API returns details
@@ -54,15 +56,17 @@ returned, however, are not limited to the requested period. The column \code{par
 may also contain data on the MP's membership in a parliamentary group during the requested period, but also
 also on his or her membership in other parliamentary groups in the past.
 
-\item{pad_intern}{Person's unique identification number}
-\item{name}{Name of the MP}
-\item{gender}{Gender}
-\item{parl_group}{Parliamentary group; note that the groups stated comprises \emph{all} past and present groups of which the MP has been
-member of}
-\item{parl_group_abbrev}{Abbreviation of the parliamentary group}
-\item{legis_period}{Legislative period(s)}
-\item{mandate_detail}{Details on madates in Parliament}
-\item{electoral_district}{Electoral district}
+Columns returned:
+\itemize{
+\item \code{pad_intern}: Person's unique identification number
+\item \code{name}: Name of the MP
+\item \code{gender}: Gender
+\item \code{parl_group}: Parliamentary group; note that the groups stated comprises \emph{all} past and present groups of which the MP has been member of
+\item \code{parl_group_abbrev}: Abbreviation of the parliamentary group
+\item \code{legis_period}: Legislative period(s)
+\item \code{mandate_detail}: Details on mandates in Parliament
+\item \code{electoral_district}: Electoral district
+}
 }
 \description{
 \code{get_mps()} retrieves information about Members of Parliament based on specified filter criteria.
@@ -77,12 +81,14 @@ Specifying \code{search_string} will filter the results across all columns, not 
 
 \subsection{legis_period}{
 
-Filtering for a legislative period is only possible for the Nationalrat, the Konstituierende Nationalversammlung, and
-the Provisorische Nationalversammlung. Including a legislative period argument will exclude any results for the Bundesrat.
+Filtering for a legislative period is only possible for the National Council (Nationalrat), the Constituent National Assembly (Konstituierende Nationalversammlung), and
+the Provisional National Assembly (Provisorische Nationalversammlung). Including a legislative
+period argument will exclude any results for the Federal Council (Bundesrat) since its composition #' follows different electoral cycles.
 
-Searching for multiple legislative periods will return only one match per individual, even if the person served in multiple periods.
-The relevant information is provided in \code{gp_code} (Gesetzgbungsperiode, legislative period) which stipulates the periods served in.
-The search does not return one row per legislative period.
+Providing a 'legis_period' input will return one row per unique combination of MP and legislative period.
+The list-column 'mp_details' contains all mandate details for that MP during the specified legislative period.
+Since an MP can change within a single legislative period, for example, family name, party affiliation, parliamentary group, or the electoral district of her mandate,
+'mp_details' may include multiple rows reflecting these changes.
 }
 
 \subsection{parl_group}{
@@ -93,7 +99,7 @@ Permissible values:
 \item Bundesratsfraktion der Großdeutschen Volkspartei
 \item Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat
 \item Bundesratsfraktion der SPÖ
-\item Bundesratsfraktion der WdUe
+\item Bundesratsfraktion der WdU
 \item Bundesratsfraktion der ÖVP
 \item Christlichsoziale Fraktion im Bundesrate
 \item Christlichsoziale Vereinigung deutscher Abgeordneter

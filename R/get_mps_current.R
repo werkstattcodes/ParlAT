@@ -149,8 +149,20 @@
 #'   }
 #' @param echo Logical. Whether to print debug information. Default is TRUE.
 #'
-#' @return A data frame containing the list of current members of parliament that match the search criteria.
-#'   Returns NULL if no results are found.
+#' @return A data frame containing the list of current members of parliament that match the search criteria with the following columns:
+#' - `time_stamp`: Timestamp of when the data was retrieved
+#' - `pad_intern`: Person's unique identification number
+#' - `name`: Full name of the MP
+#' - `gender`: Gender of the MP
+#' - `parl_group`: Full name of the parliamentary group
+#' - `parl_group_code`: Code/abbreviation of the parliamentary group
+#' - `party_name`: Full name of the political party
+#' - `party_code`: Code/abbreviation of the political party
+#' - `state`: Federal state (Bundesland)
+#' - `electoral_district_region_code`: Electoral district region code
+#' - `chamber`: Chamber of Parliament ("NR" or "BR")
+#'
+#' Returns NULL if no results are found.
 #'
 #' @examples
 #' \dontrun{
@@ -216,11 +228,11 @@ get_mps_current <- function(
                     link,
                     stringr::regex("[0-9]+$")
                 ), #extract pad_intern from link
-                electoral_district_code = stringr::str_extract(
+                electoral_district_region_code = stringr::str_extract(
                     wahlkreis,
                     stringr::regex("^\\w+")
                 ),
-                electoral_district_name = wahlkreis %>%
+                electoral_district_region = wahlkreis %>%
                     as.character() %>%
                     stringr::str_remove(stringr::regex("^\\w+")) %>%
                     stringr::str_trim(., "both") #,
@@ -233,8 +245,8 @@ get_mps_current <- function(
                 pad_intern,
                 party = sort_wp,
                 parl_group,
-                electoral_district_code,
-                electoral_district_name,
+                electoral_district_region_code,
+                electoral_district_region,
                 state,
                 link
             ) %>%
@@ -303,8 +315,10 @@ get_mps_current <- function(
                             rvest::html_text(trim = TRUE)
                     }
                 ),
-                party_name = map_chr(wahlpartei, \(x) aux_parse_html_title(x)),
-                party_code = map_chr(wahlpartei, \(x) {
+                party_name = purrr::map_chr(wahlpartei, \(x) {
+                    aux_parse_html_title(x)
+                }),
+                party_code = purrr::map_chr(wahlpartei, \(x) {
                     rvest::read_html(x) %>%
                         rvest::html_element("span.zeigeTooltip") %>%
                         rvest::html_text(trim = TRUE)
@@ -312,7 +326,7 @@ get_mps_current <- function(
             ) %>%
             dplyr::rename(
                 state = bundesland,
-                electoral_district_code = wahlkreis
+                electoral_district_region_code = wahlkreis
             ) %>%
             dplyr::select(
                 -pad_sortier,
@@ -520,7 +534,10 @@ get_mps_current <- function(
 #'   }
 #' }
 #'
-#' @import checkmate httr2 jsonlite purrr janitor
+#' @importFrom checkmate assert_choice assert_scalar assert_subset
+#' @importFrom httr2 request req_method req_perform req_body_raw req_headers req_url_query req_user_agent req_verbose resp_body_json
+#' @importFrom jsonlite toJSON
+#' @importFrom purrr map_chr map2_chr compact pluck imap
 #' @keywords internal
 #' @noRd
 # TODO make two functions; NR and BR
@@ -798,7 +815,8 @@ get_mps_NR_current <- function(
     vec_headings <- res |>
         httr2::resp_body_json(simplifyVector = T) |>
         purrr::pluck("header", "label") |>
-        janitor::make_clean_names()
+        stringr::str_to_snake() |>
+        make.unique(sep = "_")
 
     # EXTRACT THE ACTUAL SUBSTANTIVE DATA
     df_res <- res |>
@@ -1111,7 +1129,8 @@ get_mps_BR_current <- function(
     vec_headings <- res |>
         httr2::resp_body_json(simplifyVector = T) |>
         purrr::pluck("header", "label") |>
-        janitor::make_clean_names()
+        stringr::str_to_snake() |>
+        make.unique(sep = "_")
 
     # EXTRACT THE ACTUAL SUBSTANTIVE DATA
     df_res <- res |>

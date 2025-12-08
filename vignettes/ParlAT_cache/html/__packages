@@ -1,0 +1,13 @@
+base
+methods
+utils
+datasets
+grDevices
+graphics
+stats
+ParlAT
+dplyr
+ggplot2
+tidyr
+tidytext
+ggtext

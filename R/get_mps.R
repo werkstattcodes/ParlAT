@@ -8,48 +8,49 @@
 #' - "NR" (Nationalrat, National Council)
 #' - "BR" (Bundesrat, Federal Council)
 #' - "KN" (Konstituierende Nationalversammlung, Constituent National Assembly)
-#' - "PV" (Provisorische Nationalversammlung, Provisional National Assembly)
+#' - "PN" (Provisorische Nationalversammlung, Provisional National Assembly)
 #' - NULL covers all institutions.
 #' @param gender Gender filter. One of "all", "female", or "male"
 #' @param legis_period Legislative period. Can be "all", a numeric value,
-#'        "PV" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)
+#'        "PN" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)
+#' @param  date  Date for which active MPs are queried.
 #' @param party Political party filter. See details for permissible values.
 #' @param parl_group Parliamentary group filter
 #' @param electoral_district Electoral district filter. See details for permissible values.
 #' @param state State filter. See details for permissible values.
 #' @param presidents_only Logical. If TRUE, returns only presidents. Default is FALSE
 # # @param mandate_details logical. "all" or "filter" #PENDING
-#' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
+#' @param echo Logical. If `TRUE`, the function prints the used search parameters and the url to the  pertaining search results on website of the Austrian Parliament.
 #'
 #' @return A dataframe containing information about the MPs. One row per MP. Important: The API returns details
 #' on all MPs who e.g. have been member of Parliament during the requested legislative period. The details
 #' returned, however, are not limited to the requested period. The column `parl_group`
 #' may also contain data on the MP's membership in a parliamentary group during the requested period, but also
 #' also on his or her membership in other parliamentary groups in the past.
-# However, if the interest is in getting MP details only within the scope of filter criteria set
-# the function arugment `strict` to TRUE. #REVISE
 #'
-#'   \item{pad_intern}{Person's unique identification number}
-#'   \item{name}{Name of the MP}
-#'   \item{gender}{Gender}
-#'   \item{parl_group}{Parliamentary group; note that the groups stated comprises *all* past and present groups of which the MP has been
-#' member of}
-#'   \item{parl_group_abbrev}{Abbreviation of the parliamentary group}
-#'   \item{legis_period}{Legislative period(s)}
-#'   \item{mandate_detail}{Details on madates in Parliament}
-#'   \item{electoral_district}{Electoral district}
+#' Columns returned:
+#' - `pad_intern`: Person's unique identification number
+#' - `name`: Name of the MP
+#' - `gender`: Gender
+#' - `parl_group`: Parliamentary group; note that the groups stated comprises *all* past and present groups of which the MP has been member of
+#' - `parl_group_abbrev`: Abbreviation of the parliamentary group
+#' - `legis_period`: Legislative period(s)
+#' - `mandate_detail`: Details on mandates in Parliament
+#' - `electoral_district`: Electoral district
 #'
 #' @details
 #'
 #' ## search_string
 #' Specifying `search_string` will filter the results across all columns, not only names.
 #' ## legis_period
-#' Filtering for a legislative period is only possible for the Nationalrat, the Konstituierende Nationalversammlung, and
-#' the Provisorische Nationalversammlung. Including a legislative period argument will exclude any results for the Bundesrat.
+#' Filtering for a legislative period is only possible for the National Council (Nationalrat), the Constituent National Assembly (Konstituierende Nationalversammlung), and
+#' the Provisional National Assembly (Provisorische Nationalversammlung). Including a legislative
+#' period argument will exclude any results for the Federal Council (Bundesrat) since its composition #' follows different electoral cycles.
 #'
-#' Searching for multiple legislative periods will return only one match per individual, even if the person served in multiple periods.
-#' The relevant information is provided in `gp_code` (Gesetzgbungsperiode, legislative period) which stipulates the periods served in.
-#' The search does not return one row per legislative period.
+#' Providing a 'legis_period' input will return one row per unique combination of MP and legislative period.
+#' The list-column 'mp_details' contains all mandate details for that MP during the specified legislative period.
+#' Since an MP can change within a single legislative period, for example, family name, party affiliation, parliamentary group, or the electoral district of her mandate,
+#' 'mp_details' may include multiple rows reflecting these changes.
 #'
 #' ## parl_group
 #' Permissible values:
@@ -57,7 +58,7 @@
 #'   - Bundesratsfraktion der Großdeutschen Volkspartei
 #'   - Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat
 #'   - Bundesratsfraktion der SPÖ
-#'   - Bundesratsfraktion der WdUe
+#'   - Bundesratsfraktion der WdU
 #'   - Bundesratsfraktion der ÖVP
 #'   - Christlichsoziale Fraktion im Bundesrate
 #'   - Christlichsoziale Vereinigung deutscher Abgeordneter
@@ -264,13 +265,12 @@ get_mps <- function(
   institution = NULL,
   gender = "all",
   legis_period = NULL,
+  date = NULL,
   party = NULL,
   parl_group = NULL,
   state = NULL,
   electoral_district = NULL,
   presidents_only = NULL,
-  # strict = FALSE, #PENDING
-  date = NULL, #PENDING
   echo = TRUE
 ) {
   if (!is.null(date) && !is.null(legis_period)) {
@@ -311,25 +311,11 @@ get_mps <- function(
     }
   )
 
-  # instiutiton
-
-  #TODO: make that institution can be also all bodies
-  checkmate::assert_subset(
-    x = institution,
-    choices = c(
-      "NR",
-      "BR",
-      "KN",
-      "PV"
-    ),
-    empty.ok = TRUE
-  )
-
   # institution
-  checkmate::assert_subset(
+  checkmate::assert_choice(
     x = institution,
-    choices = c("KN", "NR", "BR", "PV"),
-    empty.ok = TRUE
+    choices = c("KN", "NR", "BR", "PN"),
+    null.ok = TRUE
   )
 
   institution_input <- if (is.null(institution)) {
@@ -340,7 +326,7 @@ get_mps <- function(
       "NR" = "Nationalrat",
       "BR" = "Bundesrat",
       "KN" = "Konstituierende Nationalversammlung",
-      "PV" = "Provisorische Nationalversammlung",
+      "PN" = "Provisorische Nationalversammlung",
       NULL # default if no match
     )
   }
@@ -354,7 +340,7 @@ get_mps <- function(
           c(
             "NR",
             "KN",
-            "PV"
+            "PN"
           )))
   ) {
     stop(
@@ -362,12 +348,48 @@ get_mps <- function(
     )
   }
 
-  legis_period_char <- as.character(legis_period)
-  checkmate::assert_subset(
-    x = legis_period_char,
-    choices = ParlAT::get_legis_periods()$legis_period_abbrev_num,
-    empty.ok = TRUE
-  )
+  # Check whether provided legis period is among existing periods
+  if (!is.null(legis_period)) {
+    legis_period_char <- aux_convert_legis_periods(legis_period)
+
+    checkmate::assert_subset(
+      x = legis_period_char,
+      choices = ParlAT::get_legis_periods()$legis_period_abbrev_num,
+      empty.ok = TRUE
+    )
+  }
+
+  # Validate PN institution requires PN legis_period
+  if (!is.null(institution) && institution == "PN") {
+    checkmate::assert_true(
+      !is.null(legis_period) && "PN" %in% as.character(legis_period),
+      .var.name = "When institution is 'PN' (Provisorische Nationalversammlung), legis_period must also be 'PN'."
+    )
+  }
+
+  # Validate PN legis_period requires PN institution
+  if (!is.null(legis_period) && "PN" %in% as.character(legis_period)) {
+    checkmate::assert_true(
+      !is.null(institution) && institution == "PN",
+      .var.name = "When legis_period is 'PN' (Provisorische Nationalversammlung), institution must also be 'PN'."
+    )
+  }
+
+  # Validate KN institution requires KN legis_period
+  if (!is.null(institution) && institution == "KN") {
+    checkmate::assert_true(
+      !is.null(legis_period) && "KN" %in% as.character(legis_period),
+      .var.name = "When institution is 'KN' (Konstituierende Nationalversammlung), legis_period must also be 'KN'."
+    )
+  }
+
+  # Validate KN legis_period requires KN institution
+  if (!is.null(legis_period) && "KN" %in% as.character(legis_period)) {
+    checkmate::assert_true(
+      !is.null(institution) && institution == "KN",
+      .var.name = "When legis_period is 'KN' (Konstituierende Nationalversammlung), institution must also be 'KN'."
+    )
+  }
 
   if (!is.null(legis_period)) {
     legis_period_name <- get_legis_periods(legis_period = legis_period) |>
@@ -486,7 +508,8 @@ get_mps <- function(
   checkmate::assert_subset(
     x = party,
     choices = choices_party,
-    empty.ok = TRUE
+    empty.ok = TRUE,
+    .var.name = "Party argument must be one of the valid party abbreviations. See function documentation for valid values."
   )
 
   if (!is.null(party)) {
@@ -634,7 +657,6 @@ get_mps <- function(
   ) |>
     purrr::compact() |>
     jsonlite::toJSON()
-  #print(body_params)
 
   res <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/409"
@@ -676,31 +698,13 @@ get_mps <- function(
   li_res <- res %>%
     httr2::resp_body_json() |>
     purrr::pluck("rows") %>%
-    map(., \(x) x[[8]])
+    purrr::map(., \(x) x[[8]])
 
   df_res <- li_res %>%
     purrr::map(., fn_make_tibble) %>%
     purrr::list_rbind()
 
-  # return(df_res)
-
-  cols_keep <- c(
-    "zit",
-    "fraktionen",
-    "frak",
-    "geschlecht",
-    "gp_code",
-    "uri",
-    "mandate_detail",
-    "name_nvg",
-    "mandate_kompakt",
-    "wahlkreise",
-    "pad_intern"
-  )
-
-  df_res <- df_res %>%
-    dplyr::select(any_of(cols_keep))
-
+  # PRINT ECHO
   #echo only if query without date fitler
   if (echo == TRUE && is.null(date)) {
     print(body_params)
@@ -728,38 +732,158 @@ get_mps <- function(
     return(NULL)
   }
 
-  #make column names more meaningful
+  # UNNEST DATA
+  # needed for date filtering
+  # needed to keep only mandates pertaining to legilsative relevant legislative period
+
+  # return(df_res) #REMOVE
+
   df_res <- df_res %>%
-    dplyr::select(
-      pad_intern = dplyr::any_of("pad_intern"),
-      name = dplyr::any_of("zit"), #previously: name_nvg; 'zit' provides first name and last name format
-      gender = dplyr::any_of("geschlecht"),
-      parl_group = dplyr::any_of("fraktionen"),
-      parl_group_code = dplyr::any_of("frak"),
-      legis_period = dplyr::any_of("gp_code"),
-      mandate_detail = dplyr::any_of("mandate_detail"),
-      electoral_district = dplyr::any_of("wahlkreise")
+    tidyr::unnest_longer(mandate_detail) %>%
+    tidyr::unnest_wider(mandate_detail, names_sep = "_") %>%
+    dplyr::mutate(
+      across(
+        c("mandate_detail_mandat_von", "mandate_detail_mandat_bis"),
+        \(x) {
+          lubridate::dmy(x)
+        }
+      )
+    ) %>%
+    dplyr::mutate(
+      mandate_detail_mandat_bis_cutoff = dplyr::case_when(
+        is.na(mandate_detail_mandat_bis) | mandate_detail_mandat_bis == "" ~
+          lubridate::today(),
+        .default = mandate_detail_mandat_bis
+      )
     )
 
-  # return(df_res)
-
-  # if (strict == T) { #PENDING
-
-  #EXPAND API RESULTS AND RETURN ONLY DATA PERTAINING
-  #TO SPECIFIC LEGISLATIVE PERIOD
-  # df_res <- df_res %>%
-  #   dplyr::select(pad_intern, name, gender, mandate_detail) %>%
-  #   tidyr::unnest_longer(mandate_detail) %>%
-  #   tidyr::unnest_wider(mandate_detail)
+  # Recode gender variable
+  df_res <- df_res %>%
+    dplyr::mutate(
+      geschlecht = dplyr::case_when(
+        geschlecht == "W" ~ "female",
+        geschlecht == "M" ~ "male",
+        .default = geschlecht
+      )
+    )
 
   # Apply filters only when arguments are not NULL
-  # if (!is.null(institution)) {
-  #   df_res <- df_res %>% filter(gremium_name %in% institution)
-  # }
+  if (!is.null(institution)) {
+    df_res <- df_res %>%
+      dplyr::filter(mandate_detail_gremium_name %in% institution_input)
+  }
 
-  # if (!is.null(legis_period)) {
-  #   df_res <- df_res %>% filter(gp_text_full_short %in% legis_period)
-  # }
+  if (!is.null(legis_period)) {
+    df_res <- df_res %>%
+      dplyr::mutate(
+        mandate_detail_gp_code_chr = aux_convert_legis_periods(
+          mandate_detail_gp_code
+        )
+      ) %>%
+      dplyr::filter(mandate_detail_gp_code_chr %in% {{ legis_period_char }})
+  }
+
+  # DATE FILTERING##################################
+  if (!is.null(date)) {
+    date <- lubridate::dmy(date)
+    # print(nrow(df_res_filter_time_inst))
+    df_res <- df_res %>%
+      dplyr::filter(
+        date >= mandate_detail_mandat_von &
+          date <= mandate_detail_mandat_bis_cutoff
+      )
+    # print(nrow(df_res))
+  }
+
+  ### SELECT COLUMNS/REARRANGING
+  cols_keep <- c(
+    "pad_intern",
+    "mandate_detail_gp_code",
+
+    "zit",
+    "fruehere_namen_nvg",
+    # "fraktionen", #refers to all mandates; not only the filtered ones
+    # "frak", #refers to all mandates; not only the filtered ones
+    "geschlecht",
+    "uri",
+    "mandate_detail_fraktion",
+    "mandate_detail_wahlkreis_bundesland",
+    "mandate_detail_wahlkreis",
+
+    "mandate_detail_wahlkreis_code",
+    "mandate_detail_gremium_name",
+    "mandate_detail_mand_code",
+    # "mandate_detail_wahlpartei_full_txt",
+    "mandate_detail_wahlpartei_txt",
+    "mandate_detail_politische_partei_code",
+    "mandate_detail_mandat_von",
+    "mandate_detail_mandat_bis",
+    "nrbr_praes"
+    # "aktiv",
+  )
+
+  df_res <- df_res %>%
+    dplyr::select(any_of(cols_keep))
+
+  # RENAME OUTPUT TO ENGLISH
+  renaming_map <- c(
+    "zit" = "name",
+    "geschlecht" = "gender",
+    "uri" = "link",
+    "mandate_detail_fraktion" = "parl_group", #parl_group_code missing
+    "mandate_detail_wahlkreis_bundesland" = "electoral_district_state",
+    "mandate_detail_wahlkreis" = "electoral_district_region",
+    "mandate_detail_wahlkreis_code" = "electoral_district_region_code",
+    "mandate_detail_gremium_name" = "chamber",
+    "mandate_detail_mand_code" = "chamber_code",
+    "mandate_detail_gp_code" = "legis_period",
+    "mandate_detail_wahlpartei_txt" = "party",
+    "mandate_detail_politische_partei_code" = "party_code",
+    "mandate_detail_mandat_von" = "mandate_date_start",
+    "mandate_detail_mandat_bis" = "mandate_date_end",
+    "fruehere_namen_nvg" = "name_previous"
+
+    # "mandate_detail_wahlpartei_full_txt",
+    # "nrbr_praes",
+    # "aktiv",
+
+    #   / "wahlkreis_bundesland" = "electoral_state",
+    #  / "wahlkreis" = "electoral_district_region",
+    #   / "wahlkreis_code" = "electoral_district_region_code",
+    #  / "gremium_name" = "chamber",
+    #   /"mand_code" = "chamber_code",
+    #   /"politische_partei" = "party",
+    #   /"wahlpartei_txt" = "party_name",
+    #   "fraktion" = "parl_group",
+    #   /"fraktionscode" = "parl_group_code",
+    #   /"mandat_von" = "mandate_date_start", #drop
+    #   /"mandat_bis" = "mandate_date_end" #drop
+
+    # "wahlpartei_code" = "party", #drop
+    # "fraktionscode" = "", #drop?
+    # "gp_von" = "", #drop
+    # "gp_code" = "", #drop
+    # "wahlpartei_txt" = "", #drop
+    # "wahlpartei_sort" = "" #drop
+  )
+
+  df_res <- df_res %>%
+    dplyr::rename_with(
+      .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
+      .cols = any_of(names(renaming_map))
+    )
+
+  # SORT (most recent mandate on top)
+  df_res <- df_res %>%
+    dplyr::group_by(pad_intern) %>%
+    dplyr::arrange(desc(mandate_date_start), .by_group = TRUE)
+
+  # NESTING (return one row per MP and legislative period; mandate details are nested)
+  df_res <- df_res %>%
+    tidyr::nest(mp_details = -c(legis_period, pad_intern, link, name, gender))
+
+  return(df_res)
+  #TODO remove residual code below
 
   # if (!is.null(party)) {
   #   df_res <- df_res %>% filter(wahlpartei_full_txt %in% party)
@@ -815,7 +939,7 @@ get_mps <- function(
     } else if (!is.null(institution) && institution == "KN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
         dplyr::filter(gremium_name == "Konstituierende Nationalversammlung")
-    } else if (!is.null(institution) && institution == "PV") {
+    } else if (!is.null(institution) && institution == "PN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
         dplyr::filter(gremium_name == "Provisorische Nationalversammlung")
     } #PENDING: what about Bundesrat1Rep; not mentioned on Parl Website/API
@@ -889,8 +1013,8 @@ get_mps <- function(
     #RENAME OUTPUT TO ENGLISH
     renaming_map <- c(
       "wahlkreis_bundesland" = "electoral_state",
-      "wahlkreis" = "electoral_district_name",
-      "wahlkreis_code" = "electoral_district_code",
+      "wahlkreis" = "electoral_district_region",
+      "wahlkreis_code" = "electoral_district_region_code",
       "gremium_name" = "chamber",
       "mand_code" = "chamber_code",
       "politische_partei" = "party",
@@ -919,7 +1043,7 @@ get_mps <- function(
         chamber_code,
         electoral_state,
         electoral_district,
-        electoral_district_code,
+        electoral_district_region_code,
         party,
         party_name,
         parl_group,

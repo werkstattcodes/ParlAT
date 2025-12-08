@@ -3,13 +3,19 @@ get_inquiries_and_responses <- function(
     legis_period = NULL,
     search_term = NULL,
     inquiry_or_response = NULL,
-    type = "ALLE") {
+    type = "ALLE"
+) {
     # PENDING
 
     # INSTITUTION
-    checkmate::assert_subset(institution, choices = c("Bundesrat", "Nationalrat", "Bundesversammlung"), empty.ok = FALSE)
+    checkmate::assert_subset(
+        institution,
+        choices = c("Bundesrat", "Nationalrat", "Bundesversammlung"),
+        empty.ok = FALSE
+    )
     ## encode
-    institution_input <- switch(institution,
+    institution_input <- switch(
+        institution,
         Nationalrat = "NR",
         Bundesrat = "BR",
         Bundesversammlung = "BV"
@@ -19,9 +25,14 @@ get_inquiries_and_responses <- function(
     legis_period_input <- as.character(utils::as.roman(legis_period))
 
     # INQUIRY OR RESPONSE
-    checkmate::assert_subset(inquiry_or_response, choices = c("inquiry", "response"), empty.ok = FALSE)
+    checkmate::assert_subset(
+        inquiry_or_response,
+        choices = c("inquiry", "response"),
+        empty.ok = FALSE
+    )
     ## encode
-    inquiry_or_response_input <- switch(inquiry_or_response,
+    inquiry_or_response_input <- switch(
+        inquiry_or_response,
         inquiry = "J_JPR_M",
         response = "AB_ABPR_ABM"
     )
@@ -42,7 +53,7 @@ get_inquiries_and_responses <- function(
     ) |>
         purrr::compact() |> # keep only non-empty elements
         jsonlite::toJSON()
-    
+
     # PERFORM REQUEST
     res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
         httr2::req_url_query(
@@ -75,7 +86,8 @@ get_inquiries_and_responses <- function(
     vec_headings <- res |>
         httr2::resp_body_json(simplifyVector = T) |>
         purrr::pluck("header", "label") |>
-        janitor::make_clean_names()
+        stringr::str_to_snake() |>
+        make.unique(sep = "_")
 
     # extract the actual substantive data
     df_res <- res |>

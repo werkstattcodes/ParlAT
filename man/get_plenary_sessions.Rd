@@ -2,37 +2,81 @@
 % Please edit documentation in R/get_plenary_sessions.R
 \name{get_plenary_sessions}
 \alias{get_plenary_sessions}
-\title{Get Plenary Sessions from Austrian Parliament}
+\title{Get Data on Plenary Sessions of the Austrian Parliament}
 \usage{
 get_plenary_sessions(
   institution = NULL,
   legis_period = NULL,
-  session_and_activities = "Sitzungen",
-  eingebracht = NULL,
-  stattgefunden = NULL
+  session_and_activities = NULL,
+  submitted = NULL,
+  held = NULL,
+  echo = FALSE
 )
 }
 \arguments{
-\item{institution}{A character string specifying the institution. "Bundesrat", "Nationalrat", or "Bundesversammlung"}
+\item{institution}{A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).}
 
-\item{legis_period}{Numeric value specifying the legislative period. Data available from 20th legislative period onwards.}
+\item{legis_period}{Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. \strong{Must be NULL when institution is "BV"} (Bundesversammlung does not use legislative periods).}
 
-\item{session_and_activities}{A character string. 'Sitzungen', 'eingebracht wurden' or 'stattgefunden haben'.}
+\item{session_and_activities}{A character string. One of 'sessions', 'submitted', or 'held'. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.}
 
-\item{eingebracht}{A character string.  Specifying the type of activities that were introduced. Possible values are: 'ALLE', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'.}
+\item{submitted}{A character string specifying the type of submissions that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only used when \code{session_and_activities = "submitted"}. Not applicable for BV institution. See details below.}
 
-\item{stattgefunden}{A character string. specifying the type of activities that took place. Possible values are: 'ALLE', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'.}
+\item{held}{A character string specifying the type of sessions that were held. Possible values are: 'All', 'ASEU', 'AS', 'GO04', 'FS', 'RGER', 'RGEU', 'GO', 'GO35'. Only used when \code{session_and_activities = "held"}. Not applicable for BV institution. See details below.}
+
+\item{echo}{Logical. If \code{TRUE}, prints the API request body parameters and the number of results. Default is \code{FALSE}.}
 }
 \value{
-A data frame containing plenary session details.
+A data frame containing plenary session details, or NULL if no results found. The structure depends on \code{session_and_activities} parameter:
+
+If \emph{\code{session_and_activities = "sessions"}}:
+\itemize{
+\item \code{institution}: parliamentary institution (e.g., "NR", "BR")
+\item \code{legis_period}: legislative period (not returned if institution is 'BV')
+\item \code{date}: date of the session
+\item \code{session_number}: number of the session
+\item \code{session_day}: day of  session
+\item \code{session_url}: URL to the session page
+\item \code{agenda_url_html}: URL to the agenda in HTML format
+\item \code{agenda_url_pdf}: URL to the agenda in PDF format
+}
+
+If \emph{\code{session_and_activities = "submitted"} or \code{"held"}}:
+\itemize{
+\item \code{legis_period}: legislative period
+\item \code{date}: date of the activity
+\item \code{url_session_item}: URL to the session item
+\item \code{url_session}: URL to the session
+\item \code{type_title}: title of the activity type
+\item \code{type_txt}: text of the activity type
+\item \code{topic}: topic of the activity
+\item \code{citation}:  item citation
+\item \code{session_number}: number of session
+\item \code{session_type_abbrev}: abbreviation for the session type
+\item \code{session_type_name}: full name of session type
+\item \code{link}, \code{link_2}, \code{link_3}: Additional links related to the activity
+}
+
+For \emph{BV (Bundesversammlung) institution}:
+\itemize{
+\item Returns basic session information without the activity-specific filtering options available for BR/NR
+\item Does NOT include \code{legis_period} column (not applicable for Federal Assembly)
+\item Columns returned: \code{institution}, \code{date}, \code{session_number}, \code{session_day}, \code{session_url}, \code{agenda_url_html}, \code{agenda_url_pdf}
+}
 }
 \description{
-Retrieves information about plenary sessions from the Austrian Parliament's API.
+Retrieves information about plenary sessions from the Austrian Parliament's API (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">}}here\if{html}{\out{</a>}}).
+Data available from 20th legislative period onwards.
 }
 \details{
-Possible values for \code{eingebracht} if \code{session_and_activities} is set to \verb{eingebracht wurden}:
+The function argument \code{session_and_activities} allows for three different inputs:
+\code{sessions}: Returns details on the plenary sessions held.
+\code{submitted}: Returns details on the submissions made during the plenary sessions.
+\code{held}: Returns details on the type of sessions held during the plenary sessions.
+
+Possible values for \code{submitted} if \code{session_and_activities} is set to \code{submitted}:
 \itemize{
-\item ALLE: Alles (All)
+\item All
 \item AA: Abänderungsanträge (Amendment Motions)
 \item G037: Anträge auf Absetzung von der Tagesordnung (Motions to Remove from Agenda)
 \item G080: Anträge auf Durchführung einer Volksabstimmung (Motions for Referendum)
@@ -46,12 +90,12 @@ Possible values for \code{eingebracht} if \code{session_and_activities} is set t
 \item UEAM: Unselbständige Misstrauensanträge (Dependent No-Confidence Motions)
 }
 
-Possible values for \code{stattgefunden} if \code{session_and_activities} is set to \verb{stattgefunden haben}:
+Possible values for \code{held} if \code{session_and_activities} is set to \code{held}:
 \itemize{
-\item ALLE: Alles (All)
+\item All
 \item ASEU: Aktuelle Europastunden (Current Europe Hours)
 \item AS: Aktuelle Stunden (Current Hours)
-\item GO04: Erklärungen des Präsidenten / der Präsidentin (President's Declarations)
+\item GO04: Erklärungen des Präsidenten / der Präsidentin (President Declarations)
 \item FS: Fragestunden (Question Hours)
 \item RGER: Regierungserklärungen (Government Declarations)
 \item RGEU: Regierungserklärungen zu EU-Themen (Government Declarations on EU Topics)
@@ -61,7 +105,26 @@ Possible values for \code{stattgefunden} if \code{session_and_activities} is set
 }
 \examples{
 \dontrun{
-get_plenary_session(instition = "Nationalrat", legis_period = 26)
+# Basic usage: Get sessions for National Council, legislative periods 20-27
+sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20, 27), session_and_activities = "sessions", echo = TRUE)
+
+# Get activities submitted during sessions
+get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted")
+
+# Get specific type of submitted activities (urgent inquiries)
+get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted", submitted = "J")
+
+# Get activities held during sessions
+get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "held", held = "FS")
+
+# Federal Council sessions
+get_plenary_sessions(institution = "BR", legis_period = 28, session_and_activities = "sessions")
+
+# Multiple legislative periods
+get_plenary_sessions(institution = "NR", legis_period = c(26, 27), session_and_activities = "sessions")
+
+# All periods from 20th onwards (NULL legis_period)
+get_plenary_sessions(institution = "NR", legis_period = NULL, session_and_activities = "sessions")
 }
 
 }

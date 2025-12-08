@@ -4,43 +4,47 @@
 # ParlAT: Accessing Open Data of the Austrian Parliament
 
 <!-- badges: start -->
-<!-- badges: end -->
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# Overview
-
-<!-- badges: start -->
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public..](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
 
 The ParlAT package seeks to provide an easy way for R users to access
-the Open Data offered by the Austrian Parliament. By laveraging the
+the Open Data offered by the Austrian Parliament. By leveraging the
 Parliament’s API, it allows users to retrieve data on a wide range of
 issues such as legislative proposals, committee reports, details on MPs
 and their mandates, or parliamentary sessions. The package is designed
-to be user-friendly and provides a consistent interface for accessing
-different datasets. For an introductory overview and some examples,
-please see the “Get started” section. For details, consult the
-functions’ documentation under “References”.
+to provide a consistent interface for accessing different datasets. For
+an introductory overview and some examples, please see the “Get started”
+section. For details, consult the functions’ documentation under
+“References”.
 
-Please note that the package is **in an early development stage**. So
-until it has reached a mature state, upcoming changes may break existing
-code.
+Please note that the package is **in a development stage**. So until it
+has reached a mature state, upcoming changes may break existing code. If
+you encounter any bug etc., you are welcome to file a pertaining issue
+at the package’s
+<a href="https://github.com/werkstattcodes/ParlAT/issues"
+target="_blank">github repo</a>.
 
 Also note that neither the package nor its author is affiliated to the
 Austrian Parliament.
 
 ## Installation
 
-You can install the development version of ParlAT from
-[GitHub](https://github.com/) with:
+You can install ParlAT from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
 pak::pak("werkstattcodes/ParlAT")
+```
+
+To install the latest development version from the dev branch use
+
+``` r
+pak::pak("werkstattcodes/ParlAT@dev")
 ```
 
 ## The Open Data Offer of the Austrian Parliament
@@ -55,10 +59,10 @@ accessing the latter.
 
 Mirroring the structure of the API, some of ParlAT’s functions cover
 more than one dataset. Other functions are specific to a single dataset.
-In addition, ParlAT offers several utility functions which either render
-the raw output provided by Parliament’s API more amenable for further
-processing or return results which are likely to be of interest for the
-user but are not directly returned by the API (see
+In addition, ParlAT offers several additional utility functions which
+either render the raw output provided by Parliament’s API more amenable
+for further processing or return results which are likely to be of
+interest for the user but are not directly returned by the API (see
 [references](#references) for details).
 
 ### Datasets and pertaining functions by ParlAT
@@ -86,21 +90,15 @@ documentation in the reference section.
 | Parlamentskorrespondenz (Corrspondance) | not yet implemented |
 | Termine (Events) | `get_events()` |
 | Ausschüsse (Committees) | `get_committees()` |
-| Ausschussmitgliedschaften (Committee membership) | not yet implemented |
+| Ausschussmitgliedschaften (Committee membership) | `get_mps_details(..., detail_type="committees")` |
 | Schriftliche Anfragen NR (Written questions National Council) | `get_items(item="J_JPR_M", institution="Nationalrat")` |
 | Schriftliche Anfragen BR (Written questions Federal Council) | `get_items(item="J_JPR_M", institution="Bundesrat")` |
-| Stellungnahmen im EU-Hauptausschusses (Statements of the EU Main Committee) | not yet implemented |
-| Mitteilungen des EU-Unterausschusses (Communications of the EU Subcommittee) | not yet implemented |
-| Stellungnahmen des Ständigen Unterausschusses des Hauptausschusses (Statements of the Permanent Subcommittee of the Main Committee) | `get_proceedings()` |
-| Begründete Stellungnahmen des EU-Ausschusses () | not yet implemented |
-| Mitteilungen des EU-Ausschusses BR (Communications of the EU Subcommittee - Federal Council) | not yet implemented |
-| Stellungnahmen des EU-Ausschusses BR (Statements of the EU Committee Federal Council) | not yet implemented |
-
-## Code of Conduct
-
-Please note that this project is released with a [Contributor Code of
-Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its terms.
+| Stellungnahmen im EU-Hauptausschusses (Statements of the EU Main Committee) | `get_items(item="EU", type_eu_submission="S", institution="NR")` |
+| Mitteilungen des EU-Unterausschusses (Communications of the EU Subcommittee) | `get_items(item="EU", type_eu_submission="MTEU", institution="NR")` |
+| Stellungnahmen des Ständigen Unterausschusses des Hauptausschusses (Statements of the Permanent Subcommittee of the Main Committee) | not yet implemented |
+| Begründete Stellungnahmen des EU-Ausschusses (Reasoned Opinions of the EU Committee) | `get_items(item="EU", type_eu_submission="SBPL-BR", institution="BR")` |
+| Mitteilungen des EU-Ausschusses BR (Communications of the EU Committee - Federal Council) | `get_items(item="EU", type_eu_submission="MT-BR", institution="BR")` |
+| Stellungnahmen des EU-Ausschusses BR (Statements of the EU Committee Federal Council) | `get_items(item="EU", type_eu_submission="S-BR", institution="BR")` |
 
 ## References
 

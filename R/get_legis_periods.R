@@ -1,27 +1,63 @@
 #' Get start and end dates of legislative periods.
 #'
-#' @param legis_period Number of legislative period(s) for which dates should be returned.
+#' @param legis_period Number or identifier of legislative period(s) for which dates should be returned.
+#'   Accepts numeric values (e.g., 27), Roman numerals (e.g., "XXVII"), or historical period
+#'   abbreviations: "PN" (Provisorische Nationalversammlung), "KN" (Konstituierende Nationalversammlung),
+#'   "Bundesrat1Rep" (Bundesrat der 1. Republik). Can be a vector for multiple periods.
 #' @param date Date within a legislative period. Format should be "dd.mm.yyyy".
 #'
-#' @return A dataframe
+#' @return A dataframe with the following columns:
+#' - `legis_period_rom`: Legislative period in Roman numerals
+#' - `legis_period`: Legislative period as numeric value
+#' - `legis_period_current`: Logical indicating if this is the current period
+#' - `date_start`: Start date of the legislative period (Date)
+#' - `date_end`: End date of the legislative period (Date, NA if current)
+#' - `legis_period_name`: Name/description of the legislative period
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' get_legis_period(legis_period=c(23,XV))
-#' get_legis_period(date=c("01.01.2020", "05.05.1954"))
+#' # Numeric periods
+#' get_legis_periods(legis_period = 27)
+#' get_legis_periods(legis_period = c(26, 27))
+#'
+#' # Roman numerals
+#' get_legis_periods(legis_period = "XXVII")
+#' get_legis_periods(legis_period = c("XXVI", "XXVII"))
+#'
+#' # Historical periods
+#' get_legis_periods(legis_period = "PN")
+#' get_legis_periods(legis_period = c("PN", "KN"))
+#'
+#' # Mixed input types
+#' get_legis_periods(legis_period = c(26, "XXVII", "PN"))
+#'
+#' # Filter by date
+#' get_legis_periods(date = "01.01.2020")
+#' get_legis_periods(date = c("01.01.2020", "05.05.1954"))
 #' }
 get_legis_periods <- function(legis_period = NULL, date = NULL) {
   if (!is.null(legis_period) && !is.null(date)) {
     stop("Please provide either legis_period or date, not both.")
   }
 
-  #convert roman numerals in character format to numeric
-  if (
-    !is.null(legis_period) && stringr::str_detect(legis_period, "^[IVXLCDM]+$")
-  ) {
-    legis_period <- as.roman(legis_period) %>%
-      as.numeric()
+  #convert roman numerals in character format to numeric, ensure all inputs are character
+  if (!is.null(legis_period)) {
+    if (is.character(legis_period)) {
+      # Convert each element individually if it's a Roman numeral
+      legis_period <- purrr::map_chr(legis_period, function(x) {
+        if (stringr::str_detect(x, "^[IVXLCDM]+$")) {
+          # Convert Roman numeral to numeric, then to character
+          as.character(as.numeric(as.roman(x)))
+        } else {
+          # Keep as is (could be numeric string or historical abbreviation)
+          x
+        }
+      })
+    } else {
+      # Convert numeric input to character
+      legis_period <- as.character(legis_period)
+    }
   }
 
   res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
@@ -131,7 +167,7 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
       format = "%d.%m.%Y"
     ),
     legis_period_current = c(FALSE, FALSE, FALSE),
-    legis_period_abbrev = c("PV", "KN", "Bundesrat1Rep")
+    legis_period_abbrev = c("PN", "KN", "Bundesrat1Rep")
   ) %>%
     dplyr::mutate(legis_period_abbrev_num = legis_period_abbrev) %>%
     dplyr::mutate(
@@ -146,8 +182,11 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
 
   #filter full result by requested period
   if (!is.null(legis_period)) {
-    df_res |>
-      dplyr::filter(legis_period_abbrev_num %in% {{ legis_period }})
+    df_res <- df_res |>
+      dplyr::filter(
+        legis_period_abbrev_num %in% as.character({{ legis_period }})
+      )
+    return(df_res)
   } else if (!is.null(date)) {
     df_date <- data.frame(date = lubridate::dmy(date))
 
@@ -169,8 +208,8 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
       ) %>%
       dplyr::select(-date_end_open)
 
-    return(df_res)
+    return(df_res %>% dplyr::select(-legis_period_rom))
   } else {
-    df_res
+    df_res %>% dplyr::select(-legis_period_rom)
   }
 }

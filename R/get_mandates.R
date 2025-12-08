@@ -64,29 +64,42 @@ get_mandates_single <- function(pad_intern) {
 #' The function partly mimics the behavior of the 'Personensuche' on the website
 #' of the Parliament (<a href="https://www.parlament.gv.at/recherchieren/personen/" target="_blank">here</a>).
 #' @param pad_intern Personal identfication number of person(s). Has to be NULL if names are provided
-#' @param names A character vector of name(s). Only considered if no pad_intern(s) provided.
-#' @param date Date to filter mandates
+#' @param names A character vector of name(s). First name followed by given name. Only considered if no pad_intern(s) provided.
+#' @param date Date to filter mandates (dmy format).
 #' @param institution Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
-#' or "PV" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
+#' or "PN" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
 #' but also presidents of the National Council, Secretaries ("Schriftführer"), and Regulators ("Ordner"). The equivalent applies to other
 #' the chambers as well.
 #' @details
-#' ## Names
-#' If a person changed his or her name, the latest name
-#' has to be used to obtain data on the mandates. The API does not return a
-#' match if a search with a previous name is made.
-#TODO dataframe details to be added
-#' @return A dataframe.?g
-#'
+#' ## Names: The API will always return the latest name of an MP, even if the MP had a different name at a previous point in time.
+#' See examples.
+#' @return A dataframe with the following columns:
+#' - `pad_intern`: Person's unique identification number
+#' - `name`: Name of the person
+#' - `position_text`: Full description of the position
+#' - `position_code`: Code for the position type
+#' - `position_name`: Name of the position/function
+#' - `position_date_start`: Start date of the position (Date)
+#' - `position_date_end`: End date of the position (Date, NA if currently active)
+#' - `position_active`: Logical indicating if the position is currently active
+#' - `parl_group`: Parliamentary group affiliation
+#' - `party`: Political party code
+#' - `party_name`: Full name of the political party
+#' - `substitute`: Information about substitute status
+#' - `electoral_district_region_code`: Electoral district region code
+#' - `electoral_district_region`: Electoral district region name
+#' - `legis_period`: Legislative period(s) (list-column)
+#' - `url_biography`: URL to the person's biography page
 #' @export
-#' @seealso [get_names(), get_pad_intern()]
+#' @seealso [get_names()], [get_pad_intern()]
 #' @examples
 #' \dontrun{
-#'   get_mandates(c("Götze Elisabeth", "Kurz Sebastian"))
-#'   get_mandates(c("Strache Pia Philipp")) #returns no result since previous name
-#'   get_mandates(c("Beck Pia Philipp")) #returns result since latest name
-#'   get_mandates(c("Beck Pia Philipp")) #returns result since latest name
-#'   get_mandates(pad_intern="44127")
+#'   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
+#'   get_mandates(c("Pia Philippa Strache")) #returns results with latest name (Beck)
+#'
+#'   get_names(pad_intern="83124") #Michael Pöck changed name to Michael Bernhard.
+#'   get_mandates(name="Michael Pöck") #Query for Micheal Pöck returns all results under the name Michael Bernhard, even for periods where Michael Pöck was still valid.
+#'   get_mandate(name="Michael Bernhard") #Query for Michael Bernhard returns all results, including for those with the name Michael Pöck.
 #' }
 #'
 get_mandates <- function(
@@ -207,12 +220,12 @@ get_mandates <- function(
   #rename columns
   df_res <- df_res %>%
     dplyr::mutate(
-      electoral_district_code = stringr::str_extract(
+      electoral_district_region_code = stringr::str_extract(
         wahlkreis,
         stringr::regex("^\\w+")
       ) %>%
         stringr::str_replace("Bundeswahlvorschlag", "FB"),
-      electoral_district_name = stringr::str_remove(
+      electoral_district_region = stringr::str_remove(
         wahlkreis,
         stringr::regex("^\\w+\\s-\\s")
       )
@@ -272,7 +285,7 @@ get_mandates <- function(
           position_code %in% c("PKNV", "2PKN", "3PKN", "KN")
         )
     }
-    if (institution == "PV") {
+    if (institution == "PN") {
       df_res <- df_res |>
         dplyr::filter(
           position_code %in% c("PN", "PPNV")
@@ -319,7 +332,7 @@ get_pad_intern <- function(name) {
       # dplyr::rename(name = name_nvg) %>%
       dplyr::distinct(pad_intern, name) %>%
       dplyr::mutate(pad_intern = as.character(pad_intern)) %>%
-      dplyr::mutate(names_previous = map(pad_intern, \(x) get_names(x)))
+      dplyr::mutate(names_previous = purrr::map(pad_intern, \(x) get_names(x)))
 
     res <- pad_intern_mps %>%
       tidyr::unnest_longer(names_previous) %>%

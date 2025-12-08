@@ -91,3 +91,9 @@ img.logo {
     background-color: #404752 !important;
     border-color: #555 !important;
 }
+
+/* Reduce spacing for paragraphs inside list items within the "Details" section */
+.section.level2:has(h2#details) ul li p {
+    margin-bottom: 0.25em;
+    line-height: 1.4;
+}

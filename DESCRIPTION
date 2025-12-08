@@ -8,31 +8,40 @@ Description: The ParlAT package wraps the API of the Austrian Parliament and see
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2
-Imports: 
+RoxygenNote: 7.3.3
+Imports:
     checkmate,
     dplyr,
     glue,
     httr2,
-    janitor,
     jsonlite,
+    lifecycle,
+    lubridate,
     magrittr,
     padr,
     progress,
     purrr,
     rvest,
-    stringr,
+    stringr (>= 1.6.0),
     tibble,
-    utils
+    tidyr,
+    tidyselect,
+    utils,
+    xml2 (>= 1.4.0)
 URL: https://github.com/werkstattcodes/ParlAT, https://werkstattcodes.github.io/ParlAT/
 BugReports: https://github.com/werkstattcodes/ParlAT/issues
 Roxygen: list(markdown = TRUE)
 Depends: 
     R (>= 2.10)
-Suggests: 
+Suggests:
+    forcats,
+    ggplot2,
+    ggtext,
     httptest2,
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    scales,
+    testthat (>= 3.0.0),
+    tidytext
 Config/testthat/edition: 3
 VignetteBuilder: knitr
