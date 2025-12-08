@@ -14,5 +14,6 @@ renv/library/
 renv/local/
 renv/staging/
 .claude/
+.gemini/
 /.quarto/
 **/*.quarto_ipynb
