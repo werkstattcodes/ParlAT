@@ -22,7 +22,7 @@
 #' * `item_code`: Item type code
 #' * `item`: Description of the item type
 #' * `title`: Title of the participation item
-#' * `doc_type`: Document type
+#' * `type_doc`: Document type
 #' * `topic`: Topic(s) associated with the item
 #' * `item_url`: URL to the item on the Parliament website
 #' * `statements`: Number of statements submitted
@@ -237,14 +237,14 @@ get_participation <- function(
   vec_headings <- res |>
     httr2::resp_body_json(simplifyVector = T) |>
     purrr::pluck("header", "label") |>
-    janitor::make_clean_names()
+    stringr::str_to_snake() |>
+    make.unique(sep = "_")
 
   # extract the actual substantive data
   df_res <- res |>
     httr2::resp_body_json(simplifyVector = T) |>
     purrr::pluck("rows") %>%
     as.data.frame()
-  #print(class(df_res))
 
   checkmate::assert_data_frame(df_res, min.rows = 1)
 
@@ -266,7 +266,7 @@ get_participation <- function(
     "ityp" = "item_code",
     "gegenstand" = "item",
     "betreff" = "title",
-    "doktype" = "doc_type",
+    "doktype" = "type_doc",
     # "beteiligen"?
     "themen" = "topic",
     "b" = "item_url",

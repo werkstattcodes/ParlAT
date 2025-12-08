@@ -10,4 +10,9 @@
 docs
 inst/doc
 /doc/
+renv/library/
+renv/local/
+renv/staging/
 
+/.quarto/
+**/*.quarto_ipynb

@@ -10,9 +10,9 @@
 #' @param legis_period Character vector or `NULL`. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is `NULL`.
 #' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param date_end Character string. End date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
-#' @param item (Gegenstad) Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
+#' @param item (Gegenstand) Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
+#' @param type_doc (Art des Antrages / Art der Anfrage) Character vector or `NULL`. Specifies the document type for certain item types. Permissible values depend on both `item` and `institution`. See 'Details' for possible values. Default is `NULL`.
 #' @param type_eu_submission (Art der EU-Vorlage) Character vector or `NULL`. Type(s) of EU submission to search for. Can only be specified when `item = "EU"`. See 'Details' for possible values. Default is `NULL`.
-#' @param doc_type (Art des Antrages) Character vector or `NULL`. Specifies the type of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param person Character string or `NULL`. Name of a person to search for (family name, optionally followed by first name). Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
@@ -21,8 +21,7 @@
 #' @param echo Logical. If `TRUE`, the function prints the used search parameters and the url to the pertaining search results on website of the Austrian Parliament.
 #'
 #' @details
-#'
-#' ## Topic (Thema)
+#' ## topic (Thema)
 #' NULL, one, or multiple topics permissible.
 #' Possible values for `topic` are:
 #'
@@ -49,7 +48,7 @@
 #'
 #' ## legis_period (Gesetzgebungsperiode)
 #' `legis_period` specifies the legislative period(s). Can be one or more of the following value(s):
-#' * numbers indicating the relevant period(s),
+#' * number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV",
 #' * "PN" (Provisorische Nationalversammlung, Provisional National Assembly, 1918-1919),
 #' * and/or "KN" (Konstituierende Nationalversammlung, Constituent National Assembly, 1919-1920).
 #'
@@ -84,10 +83,13 @@
 #' * "VOLKBG" (Volksbegehren, Popular Initiatives)
 #' * "W" (Wahlen, Elections)
 #'
-#' ## doc_type (Art des Antrages)
-#' If item is "ANTR", the permissible values for doc_type depend on the
-#' institution of interest.
-#' Possible values for `doc_type` if institution=="NR" ('National Council'):
+#' ## type_doc (Art)
+#' The `type_doc` parameter specifies different document types depending on the `item` parameter value.
+#'
+#' ### For `item = "ANTR"` (Motions, Anträge)
+#' Possible values for `type_doc` depend on the institution.
+#'
+#' National Council (`institution = "NR"`):
 #' * "A" (Selbständiger Antrag, Independent Motion)
 #' * "A(E)" (Selbständiger Entschließungsantrag, Independent Resolution Motion)
 #' * "AA" (Abänderungsantrag, Amendment Motion)
@@ -100,25 +102,42 @@
 #' * "UEAM" (Misstrauensantrag, Motion of No Confidence)
 #' * "URH2" (Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses, Request for Audit by the Standing Subcommittee of the Court of Audit Committee)
 #'
-#' Possible values for `doc_type` if institution=="BR" ('Federal Council'):
-#' *  "AA-BR" (Abänderungsanträge, Amendment Motions)
-#' *  "A-BR" (Selbständiger Antrag Bundesrat, Independent Motion Federal Council)
-#' *  "A(E)" (Selbständiger Entschließungsantrag Bundesrat, Independent Resolution Motion Federal Council)
-#' *  "AEA-BR" (Selbständiger Entschließungsantrag von Ausschüssen, Independent Committee Resolution Motion Federal Council)
-#' *  "UEA-BR" (Unselbständige Anträge)
+#' Federal Council (`institution = "BR"`):
+#' * "AA-BR" (Abänderungsanträge, Amendment Motions)
+#' * "A-BR" (Selbständiger Antrag Bundesrat, Independent Motion Federal Council)
+#' * "A(E)" (Selbständiger Entschließungsantrag Bundesrat, Independent Resolution Motion Federal Council)
+#' * "AEA-BR" (Selbständiger Entschließungsantrag von Ausschüssen, Independent Committee Resolution Motion Federal Council)
+#' * "UEA-BR" (Unselbständige Anträge)
 #'
-#' Possible values for `doc_type` if *item=="BNR"*:
+#' ### For `item = "J_JPR_M"` (Questions, Anfragen)
+#' Possible values for `type_doc` depend on the institution.
+#'
+#' National Council (`institution = "NR"`):
+#' * "J" (Mündliche Anfragen, Oral Questions)
+#' * "JPR" (Schriftliche Anfragen an die Bundesregierung, Written Questions to Federal Government)
+#' * "M" (Schriftliche Anfragen an Präsidenten des Bundesrates, Written Questions to Presidents of Federal Council)
+#'
+#' Federal Council (`institution = "BR"`):
+#' * "M-BR" (Mündliche Anfragen, Oral Questions)
+#' * "JMIN-BR" (Schriftliche Anfragen an die Bundesregierung, Written Questions to Federal Government)
+#' * "JPRPR-BR" (Schriftliche Anfragen an Präsidenten des Bundesrates, Written Questions to Presidents of Federal Council)
+#'
+#' ### For `item = "BNR"` (Resolutions, Beschlüsse)
+#' National Council (`institution = "NR"`):
 #' * "BNR" (Beschluss, Resolution)
 #' * "BS" (Sonstiger Beschluss, Other Resolution)
 #' * "BSE" (Beschluss-EU, EU Resolution)
 #' * "BSESM" (Beschluss-ESM, ESM Resolution)
-#' * "BS-BR" (Sonstiger Beschluss, Other Resolution (only if institution=="Bundesrat"))
+#'
+#' Federal Council (`institution = "BR"`):
+#' * "BNR" (Beschluss, Resolution)
+#' * "BS-BR" (Sonstiger Beschluss, Other Resolution)
 #'
 #' ## type_eu_submission (Art der EU-Vorlage)
 #' The `type_eu_submission` parameter allows filtering for specific types of EU-related submissions.
 #' Different codes are available depending on the institution.
 #'
-#' ### National Council Codes (institution = "NR")
+#' #### National Council Codes (institution = "NR")
 #' These codes can only be used when `item = "EU"` AND `institution = "NR"`:
 #'
 #' * "BEU" (Berichte der Bundesregierung zu EU-Themen, Federal Government Reports on EU Topics)
@@ -133,27 +152,27 @@
 #' * "SEU" (Stellungnahmen des UA des Hauptausschusses (EU), Opinions of the Main Committee Subcommittee (EU))
 #' * "RVEU" (Vorlagen ü. Initiativen und Beschlüsse EU, Submissions on EU Initiatives and Resolutions)
 #'
-#' ### Federal Council Codes (institution = "BR")
+#' #### Federal Council Codes (institution = "BR")
 #' These codes can only be used when `item = "EU"` AND `institution = "BR"`:
 #'
-#' * "AFEU-BR" (Ausschussfeststelungen, Committee Findings)
+#' * "AFEU-BR" (Ausschussfeststellungen, Committee Findings)
 #' * "SBPL-BR" (Begründete Stellungnahmen des Bundesrates, Reasoned Opinions of the Federal Council)
-#' * "SB-BR" (Begründete Stellungnahmen des EU-BR, Reasoned Opinions of the EU Federal Council)
+#' * "SB-BR" (Begründete Stellungnahmen des EU-BR, Reasoned Opinions of the EU Federal Council). Note: Details on parlamentary procedures only available from 24th legis period onwards, see <a href="https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/begruendete-stellungnahmen-eu-ausschuss-br/index.html" target="_blank">here</a>
 #' * "BEU-BR" (Berichte der Bundesregierung zu EU-Themen, Federal Government Reports on EU Topics)
 #' * "MEU-BR" (EU-Vorblätter und Dossiers BR, EU Cover Sheets and Dossiers BR)
 #' * "ADEU-BR" (IV der Beilagen, Addendum/Supplement IV)
-#' * "MT-BR" (Mitteilungen des EU-BR, Communications from EU Federal Council)
+#' * "MT-BR" (Mitteilungen des EU-BR, Communications from EU Federal Council). Note: Details on parlamentary procedures only available from 24th legis period onwards, see <a href="https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/stellungnahmen-eu-ausschuss-br/index.html" target="_blank">here</a>
 #' * "EUD-BR" (Politischer Dialog BR, Political Dialogue BR)
 #' * "SINF-BR" (Schriftliche Informationen BR gem. § 6 EU-InfoG BR, Written Information Federal Council According to § 6 EU Information Act)
 #' * "SLT-BR" (Stellungnahmen der Landtage, Opinions of State Parliaments)
-#' * "S-BR" (Stellungnahmen des EU-Ausschusses, Opinions of the EU Committee)
+#' * "S-BR" (Stellungnahmen des EU-Ausschusses, Opinions of the EU Committee). Note: Details on parlamentary procedures only available from 24th legis period onwards, see <a href="https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/stellungnahmen-eu-ausschuss-br/index.html" target="_blank">here</a>
 #'
-#' ## EuroVoc
+#' ## eurovoc
 #' EuroVoc is an international thesaurus developed primarily for use within the EU. It enables searches
 #' using standardized keywords across Europe. The EuroVoc search is supported for all negotiation items
 #' from the 20th legislative period onwards.
 #'
-#' ## Keywords (Schlagwort)
+#' ## keyword (Schlagwort)
 #' Possible values for `keyword` include:
 #'
 #' * "Abfallwirtschaft"
@@ -348,7 +367,7 @@
 #' * "Zivilschutz"
 #' * "Zollwesen"
 #'
-#' ## Parliamentary Group (Klub/Fraktion)
+#' ## parl_group (Parliamentary Group, Klub/Fraktion)
 #' `parl_group` specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
 #'
 #' - "BZÖ" (Bündnis Zukunft Österreich)
@@ -389,9 +408,32 @@
 #' `parl_group_names_standard = TRUE`, an input of "F" (or any other variant) will return
 #' the results for all three abbreviations.
 #'
+#' @return
+#' A tibble (data.frame) with one row per parliamentary item matching the search.
+#' The returned object contains the most commonly used columns (some are optional
+#' or returned as list-columns for multi-valued fields):
+#'
+#' -` legis_period` (character): legislative period (e.g. "XXVIII").
+#' - `institution` (character): chamber code, typically "NR" (Nationalrat) or "BR" (Bundesrat).
+#' - `date` (Date): date of the item (class Date).
+#' - `item_type` (character): short item type code.
+#' - `item_number` (character): numeric identifier of the item (stored as character).
+#' - `item_number_type` (character): combined number/type string (e.g. "46/M").
+#' - `stage` (character/integer): current stage code of the item.
+#' - `item_url` (character): normalized URL pointing to the item on parlament.gv.at.
+#' - `type_doc` (character): short document type code (when applicable).
+#' - `type_doc_long` (character): human readable document type (when available).
+#' - `subject` (character): subject / title of the item.
+#' - `topics` (list): list-column; each element is a character vector of topics.
+#' - `keywords` (list): list-column of keywords (Schlagwort).
+#' - `eurovoc` (list): list-column of EuroVoc terms.
+#' - `persons` (list): list-column of person identifiers (pad_intern) related to the item.
+#' - `parl_group` (list): list-column of parliamentary group codes associated with the item.
+#'
+#' @note
 #' ## Free Text Search
 #' Due to limitations of the underlying API, this function does not currently support a general free text search across all fields. Search functionality is restricted to the specific parameters provided (e.g., `keyword`, `topic`, `person`).
-
+#'
 #' ## API Result Limits
 #' The Austrian Parliament API imposes a maximum limit of **100,000 rows** per query. When a query
 #' reaches this limit, the function issues a warning because the results may be incomplete.
@@ -410,33 +452,6 @@
 #'   map(\(period) get_items(legis_period = period, echo = FALSE)) |>
 #'   list_rbind()
 #' ```
-#'
-#' @return
-#' A tibble (data.frame) with one row per parliamentary item matching the search.
-#' The returned object contains the most commonly used columns (some are optional
-#' or returned as list-columns for multi-valued fields):
-#'
-#' - legis_period (character): legislative period (e.g. "XXVIII").
-#' - institution (character): chamber code, typically "NR" (Nationalrat) or "BR" (Bundesrat).
-#' - date (Date): date of the item (class Date).
-#' - item_type (character): short item type code.
-#' - item_number (character): numeric identifier of the item (stored as character).
-#' - item_number_type (character): combined number/type string (e.g. "46/M").
-#' - stage (character/integer): current stage code of the item.
-#' - item_url (character): normalized URL pointing to the item on parlament.gv.at.
-#' - doc_type (character): short document type code (when applicable).
-#' - doc_type_long (character): human readable document type (when available).
-#' - subject (character): subject / title of the item.
-#' - topics (list): list-column; each element is a character vector of topics.
-#' - keywords (list): list-column of keywords (Schlagwort).
-#' - eurovoc (list): list-column of EuroVoc terms.
-#' - persons (list): list-column of person identifiers (pad_intern) related to the item.
-#' - parl_group (list): list-column of parliamentary group codes associated with the item.
-#'
-#' The function returns a tibble (invisible) on success. If no matching rows are found
-#' the function returns NULL and emits a message "No results found for the provided search criteria."
-#'
-#' @note Date columns are parsed into Date using lubridate::dmy().
 #'
 #' @seealso
 #' * [get_persons()] for searching person identifiers used in the `person` parameter
@@ -468,7 +483,7 @@
 #' # Search for written questions with keyword
 #' get_items(
 #'   item = "J_JPR_M",
-#'   keyword = "Klimaschutz",
+#'   keyword = "Flüchtlinge",
 #'   institution = "NR"
 #' )
 #'
@@ -491,14 +506,16 @@
 #' get_items(
 #'   legis_period = 27,
 #'   item = "EU",
-#'   type_eu_submission = "S"
+#'   type_eu_submission = "S",
+#'   institution = "NR"
 #' )
 #'
-#' #Get all statements of the sub-committee on EU affairs (EU-Unterausschuss) during the 27th legislative period.
+#' # Get all statements of the sub-committee on EU affairs (EU-Unterausschuss) during the 27th legislative period.
 #' get_items(
-#'   tem="EU",
+#'   item = "EU",
 #'   type_eu_submission = "MTEU",
-#'   legis_period=27
+#'   legis_period = 27,
+#'   institution = "NR"
 #' )
 #'
 #' }
@@ -509,8 +526,8 @@ get_items <- function(
   date_start = NULL, #Datum_von - DATUM_VON
   date_end = NULL, #Datum_bis - DATUM_BIS
   item = NULL, #Gegenstand - VHG
+  type_doc = NULL, #Art der Anfrage - DOKTYP
   type_eu_submission = NULL, #Art der EU-Vorlage - VHG2
-  doc_type = NULL, #Art der Anfrage - DOKTYP
   person = NULL, #Person - PAD_intern (via person_input)
   keyword = NULL, #Schlagwort - SW
   eurovoc = NULL, #EuroVoc - EUROVOC
@@ -641,9 +658,15 @@ get_items <- function(
 
   checkmate::assert_subset(x = item, choices = choices_item, empty.ok = TRUE)
 
+  # type_doc (Art des Antrages / Art der Anfrage)
+  if (!is.null(type_doc) && is.null(item)) {
+    stop("'type_doc' can be only specified in combination with 'item'")
+  }
+
+  # Validation for item = "ANTR" (Motions)
   if (!is.null(item) && any(item %in% "ANTR")) {
     ## depending on institution, different set of permissble values
-    choices_doc_type_antr_national_council <- c(
+    choices_type_doc_antr_national_council <- c(
       "A",
       "A(E)",
       "AA",
@@ -656,7 +679,7 @@ get_items <- function(
       "UEAM",
       "URH2"
     )
-    choices_doc_type_antr_federal_council <- c(
+    choices_type_doc_antr_federal_council <- c(
       "AA-BR",
       "A-BR",
       "A(E)",
@@ -666,40 +689,64 @@ get_items <- function(
 
     if (institution == "NR" || is.null(institution)) {
       checkmate::assert_subset(
-        x = doc_type,
-        choices = choices_doc_type_antr_national_council,
+        x = type_doc,
+        choices = choices_type_doc_antr_national_council,
         empty.ok = TRUE
       )
     } else if (institution == "BR") {
       checkmate::assert_subset(
-        x = doc_type,
-        choices = choices_doc_type_antr_federal_council,
+        x = type_doc,
+        choices = choices_type_doc_antr_federal_council,
         empty.ok = FALSE
       )
     }
   }
 
-  # DOC_TYPE (Art des Antrages)
-  if (!is.null(doc_type) && is.null(item)) {
-    stop("'doc_type' can be only specified in combination with 'item'")
-  }
-
-  if (!is.null(item) && any(item %in% "BNR")) {
-    choices_doc_type_bnr_national_council <- c("BNR", "BS", "BSE", "BSESM")
-    choices_doc_type_bnr_federal_council <- c("BNR", "BS-BR")
+  # Validation for item = "J_JPR_M" (Written Questions)
+  if (!is.null(item) && any(item %in% "J_JPR_M")) {
+    choices_type_doc_j_jpr_m_national_council <- c(
+      "J",
+      "JPR",
+      "M"
+    )
+    choices_type_doc_j_jpr_m_federal_council <- c(
+      "M-BR",
+      "JMIN-BR",
+      "JPRPR-BR"
+    )
 
     if (institution == "NR" || is.null(institution)) {
       checkmate::assert_subset(
-        x = doc_type,
-        choices = choices_doc_type_bnr_national_council,
+        x = type_doc,
+        choices = choices_type_doc_j_jpr_m_national_council,
+        empty.ok = TRUE
+      )
+    } else if (institution == "BR") {
+      checkmate::assert_subset(
+        x = type_doc,
+        choices = choices_type_doc_j_jpr_m_federal_council,
+        empty.ok = FALSE
+      )
+    }
+  }
+
+  # Validation for item = "BNR" (Resolutions)
+  if (!is.null(item) && any(item %in% "BNR")) {
+    choices_type_doc_bnr_national_council <- c("BNR", "BS", "BSE", "BSESM")
+    choices_type_doc_bnr_federal_council <- c("BNR", "BS-BR")
+
+    if (institution == "NR" || is.null(institution)) {
+      checkmate::assert_subset(
+        x = type_doc,
+        choices = choices_type_doc_bnr_national_council,
         empty.ok = TRUE
       )
     }
 
     if (institution == "BR" && !is.null(institution)) {
       checkmate::assert_subset(
-        x = doc_type,
-        choices = choices_doc_type_bnr_federal_council,
+        x = type_doc,
+        choices = choices_type_doc_bnr_federal_council,
         empty.ok = FALSE
       )
     }
@@ -758,14 +805,18 @@ get_items <- function(
     # Check if NR-specific codes are used without institution="NR"
     if (any(type_eu_submission %in% choices_type_eu_submission_nr)) {
       if (is.null(institution) || institution != "NR") {
-        stop("National Council type_eu_submission codes can only be used when institution = 'NR'")
+        stop(
+          "National Council type_eu_submission codes can only be used when institution = 'NR'"
+        )
       }
     }
 
     # Check if BR-specific codes are used without institution="BR"
     if (any(type_eu_submission %in% choices_type_eu_submission_br)) {
       if (is.null(institution) || institution != "BR") {
-        stop("Federal Council type_eu_submission codes can only be used when institution = 'BR'")
+        stop(
+          "Federal Council type_eu_submission codes can only be used when institution = 'BR'"
+        )
       }
     }
   }
@@ -1038,7 +1089,7 @@ get_items <- function(
     DATUM_VON = c(date_start, date_end),
     VHG = item,
     VHG2 = type_eu_submission,
-    DOKTYP = doc_type,
+    DOKTYP = type_doc,
     PAD_INTERN = person_input,
     SW = keyword,
     EUROVOC = eurovoc,
@@ -1081,7 +1132,8 @@ get_items <- function(
 
   vec_headings <- resp_json |>
     purrr::pluck("header", "label") |>
-    janitor::make_clean_names()
+    stringr::str_to_snake() |>
+    make.unique(sep = "_")
 
   rows <- purrr::pluck(resp_json, "rows")
 
@@ -1177,8 +1229,8 @@ get_items <- function(
     "nummer" = "item_number_type",
     "phasen_bis" = "stages_n", #no longer returned by API?
     "status" = "stage",
-    "doktyp" = "doc_type",
-    "doktyp_lang" = "doc_type_long",
+    "doktyp" = "type_doc",
+    "doktyp_lang" = "type_doc_long",
     # "his_url" = "item_url",
     "euro_voc" = "eurovoc",
     "geschichtsseite_url" = "item_url",
@@ -1205,8 +1257,8 @@ get_items <- function(
     "item_number_type",
     "stage",
     "item_url",
-    "doc_type",
-    "doc_type_long",
+    "type_doc",
+    "type_doc_long",
     "subject",
     "topics",
     "keywords",
@@ -1262,8 +1314,21 @@ get_items <- function(
 #'   "https://www.parlament.gv.at/" or a relative path (with or without
 #'   leading slashes). The function will normalize relative paths automatically.
 #'
-#' @return A tibble containing detailed information about each stage of the
-#'   parliamentary item, including stage text and metadata.
+#' @return A tibble containing detailed information about the parliamentary item and its stages.
+#'   Returns `NULL` if no stages are found.
+#'
+#' - `item_url` (character): The URL of the parliamentary item.
+#' - `type` (character): The type of the item (e.g., BI for Bürgerinitiativen).
+#' - `title` (character): The title of the item.
+#' - `item_number` (character): The citation number of the item.
+#' - `item_description` (character): A brief description of the item.
+#' - `state_approval` (character): The current approval state of the item.
+#' - `phase` (character): The phase of the legislative stage.
+#' - `id` (character): Unique identifier for the stage.
+#' - `stage_date` (Date): The date of the stage.
+#' - `stage_name` (character): The name/description of the stage.
+#' - `stage_priority` (numeric): Priority of the stage.
+#' - `documents` (list): List-column of associated documents for the stage.
 #'
 #' @details
 #' The function performs the following steps:

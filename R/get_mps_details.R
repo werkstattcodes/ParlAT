@@ -105,51 +105,45 @@
 #'   all plenary activities of Doris Bures in the National Council will return not only
 #'   her speeches as an MP, but also as President of the National Council and as Minister.
 #'   Columns returned:
-#'   \describe{
-#'     \item{pad_intern}{Unique identifier for the MP}
-#'     \item{name}{Full name of the MP}
-#'     \item{position_name}{List of mandates/positions held at the time of speech}
-#'     \item{date}{Date of the speech}
-#'     \item{legis_period}{Legislative period (Roman numeral)}
-#'     \item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
-#'     \item{speech_title}{Title of the speech}
-#'     \item{session_url}{URL to the session details page}
-#'     \item{session_name}{Name of the parliamentary session}
-#'     \item{speech_transcript_url}{URL to the speech transcript}
-#'     \item{speech_media_url}{URL to speech recordings, if available}
-#'   }
+#'   - `pad_intern`: Unique identifier for the MP
+#'   - `name`: Full name of the MP
+#'   - `position_name`: List of mandates/positions held at the time of speech
+#'   - `date`: Date of the speech
+#'   - `legis_period`: Legislative period (Roman numeral)
+#'   - `institution`: Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)
+#'   - `speech_title`: Title of the speech
+#'   - `session_url`: URL to the session details page
+#'   - `session_name`: Name of the parliamentary session
+#'   - `speech_transcript_url`: URL to the speech transcript
+#'   - `speech_media_url`: URL to speech recordings, if available
 #'
 #'   For \code{detail_type = "activities"}: Returns parliamentary activities and legislative
 #'   items associated with the MP. Columns returned:
-#'   \describe{
-#'     \item{pad_intern}{Unique identifier for the MP}
-#'     \item{legis_period}{Legislative period}
-#'     \item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
-#'     \item{frmdate}{Date field}
-#'     \item{ityp_komm}{Item type comment}
-#'     \item{item_number}{Number of the parliamentary item}
-#'     \item{item_type}{Type of parliamentary item (e.g., "A", "JMIN")}
-#'     \item{title}{Title/subject of the item}
-#'     \item{date_updated}{Last update date of the item}
-#'     \item{item_url}{URL to the item details}
-#'     \item{status_text}{Current status description}
-#'     \item{status_numeric}{Numeric status code}
-#'   }
+#'   - `pad_intern`: Unique identifier for the MP
+#'   - `legis_period`: Legislative period
+#'   - `institution`: Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)
+#'   - `frmdate`: Date field
+#'   - `ityp_komm`: Item type comment
+#'   - `item_number`: Number of the parliamentary item
+#'   - `item_type`: Type of parliamentary item (e.g., "A", "JMIN")
+#'   - `title`: Title/subject of the item
+#'   - `date_updated`: Last update date of the item
+#'   - `item_url`: URL to the item details
+#'   - `status_text`: Current status description
+#'   - `status_numeric`: Numeric status code
 #'
 #'   For \code{detail_type = "committees"}: Returns committee memberships and participation.
 #'   Columns returned:
-#'   \describe{
-#'     \item{pad_intern}{Unique identifier for the MP}
-#'     \item{name}{Full name of the MP}
-#'     \item{legis_period}{Legislative period}
-#'     \item{committee_name}{Name of the committee}
-#'     \item{committee_position}{Position in the committee (e.g., "Mitglied", "Vorsitzende/r")}
-#'     \item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
-#'     \item{committee_position_start}{Start date of committee membership}
-#'     \item{committee_position_end}{End date of committee membership (NA if still active)}
-#'     \item{committee_active}{Logical indicating if membership is currently active}
-#'     \item{committee_url}{URL to committee details}
-#'   }
+#'   - `pad_intern`: Unique identifier for the MP
+#'   - `name`: Full name of the MP
+#'   - `legis_period`: Legislative period
+#'   - `committee_name`: Name of the committee
+#'   - `committee_position`: Position in the committee (e.g., "Mitglied", "Vorsitzende/r")
+#'   - `institution`: Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)
+#'   - `committee_position_start`: Start date of committee membership
+#'   - `committee_position_end`: End date of committee membership (NA if still active)
+#'   - `committee_active`: Logical indicating if membership is currently active
+#'   - `committee_url`: URL to committee details
 #'
 #'   Returns \code{NULL} invisibly if no data is found for the given parameters.
 #'
@@ -222,7 +216,7 @@ get_mps_details <- function(
     #check if pad_intern is valid and of length 1
     checkmate::assert_scalar(
         pad_intern,
-        .var.name = "`pad_intern` must be a vector of length 1"
+        .var.name = "`pad_intern` must be a vector of length 1. Only one single value accepted."
     )
 
     if (aux_check_pad_intern_exists(pad_intern) == FALSE) {
@@ -333,11 +327,13 @@ get_mps_details_plenary <- function(
     if (!is.null(legis_period)) {
         legis_period <- as.roman(legis_period)
 
-        checkmate::assert_int(
-            x = min(as.numeric(legis_period)), #min since length > 1 possible
-            lower = 20,
-            null.ok = TRUE
-        )
+        if (min(as.numeric(legis_period)) < 20) {
+            stop(
+                "Only data from the 20th legislative period onwards can be queried. ",
+                "You provided legis_period = ", min(as.numeric(legis_period)), ".",
+                call. = FALSE
+            )
+        }
     }
 
     # BODY PARAMS
@@ -612,11 +608,13 @@ get_mps_details_activities <- function(
     if (!is.null(legis_period)) {
         legis_period <- as.roman(legis_period)
 
-        checkmate::assert_int(
-            x = min(as.numeric(legis_period)), #min since length > 1 possible
-            lower = 20,
-            null.ok = TRUE
-        )
+        if (min(as.numeric(legis_period)) < 20) {
+            stop(
+                "Only data from the 20th legislative period onwards can be queried. ",
+                "You provided legis_period = ", min(as.numeric(legis_period)), ".",
+                call. = FALSE
+            )
+        }
     }
 
     # BODY PARAMS
@@ -883,11 +881,13 @@ get_mps_details_committees <- function(
     if (!is.null(legis_period)) {
         legis_period_roman <- as.roman(legis_period)
 
-        checkmate::assert_int(
-            x = min(as.numeric(legis_period_roman)), #min since length > 1 possible
-            lower = 20,
-            null.ok = TRUE
-        )
+        if (min(as.numeric(legis_period_roman)) < 20) {
+            stop(
+                "Only data from the 20th legislative period onwards can be queried. ",
+                "You provided legis_period = ", min(as.numeric(legis_period_roman)), ".",
+                call. = FALSE
+            )
+        }
 
         df_legis_period_input <- get_legis_periods(
             legis_period

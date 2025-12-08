@@ -285,11 +285,10 @@ get_transcripts <- function(
 
     vec_headings <- resp_json |>
         purrr::pluck("header", "label") |>
-        janitor::make_clean_names()
+        stringr::str_to_snake() |>
+        make.unique(sep = "_")
 
     rows <- purrr::pluck(resp_json, "rows")
-
-    # browser()
 
     if (length(rows) == 0) {
         df_res <- NULL

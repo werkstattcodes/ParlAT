@@ -19,7 +19,25 @@ the chambers as well.}
 \item{names}{A character vector of name(s). First name followed by given name. Only considered if no pad_intern(s) provided.}
 }
 \value{
-A dataframe.
+A dataframe with the following columns:
+\itemize{
+\item \code{pad_intern}: Person's unique identification number
+\item \code{name}: Name of the person
+\item \code{position_text}: Full description of the position
+\item \code{position_code}: Code for the position type
+\item \code{position_name}: Name of the position/function
+\item \code{position_date_start}: Start date of the position (Date)
+\item \code{position_date_end}: End date of the position (Date, NA if currently active)
+\item \code{position_active}: Logical indicating if the position is currently active
+\item \code{parl_group}: Parliamentary group affiliation
+\item \code{party}: Political party code
+\item \code{party_name}: Full name of the political party
+\item \code{substitute}: Information about substitute status
+\item \code{electoral_district_region_code}: Electoral district region code
+\item \code{electoral_district_region}: Electoral district region name
+\item \code{legis_period}: Legislative period(s) (list-column)
+\item \code{url_biography}: URL to the person's biography page
+}
 }
 \description{
 Takes one or multiple names or pad_interns as input and returns a dataframe

@@ -40,8 +40,13 @@ if (!requireNamespace("ParlAT", quietly = TRUE)) {
   library(ParlAT)
 }
 library(dplyr)
-library(ggplot2)
 library(tidyr)
+library(purrr)
+library(ggplot2)
+library(stringr)
+library(forcats)
+library(lubridate)
+library(scales)
 library(tidytext)
 library(ggtext)
 ```
@@ -266,7 +271,7 @@ The items which can be queried comprise a wide range including Topical Debates (
 
 For some of these items, additional parameter(s) are available to further
 specifiy the query. E.g. the item "ANTR" (Anträge, Motions) allows for 
-the specification of the type of motion via the `doc_type` attribute. For 
+the specification of the type of motion via the `type_doc` attribute. For 
 details see the reference section [here](../reference/get_items.html#doc-type-art-des-antrages-).
 
 
@@ -275,9 +280,10 @@ details see the reference section [here](../reference/get_items.html#doc-type-ar
 Below, as an example, let's query all written and oral questions (*Anfragen*) from the
 20 to the 27 legislative period (for the relevant item abbreviations see the function reference), and subsequently visualise the count by party and legislative period.
  
-```{r, include=T, eval=T, cache=TRUE, name="get_questions"}
+```{r, include=T, eval=T, cache=FALSE, name="get_questions"}
 #get items
 df_items <- get_items(item = "J_JPR_M", legis_period = seq(20,27), echo=TRUE)
+
 
 dplyr::glimpse(df_items %>% head())
 ```
@@ -285,7 +291,7 @@ dplyr::glimpse(df_items %>% head())
 There were in total `r nrow(df_items) |> scales::number()` questions submitted in writing and asked orally by the
 members of the National Council from the 20th to 27th legislative period. With a few additional steps, we can easily visualise the results.
 
-```{r, fig.width=10, fig.height=8, out.width="100%", cache=TRUE, dependson="get_questions"}
+```{r, fig.width=10, fig.height=8, out.width="100%", cache=FALSE, dependson="get_questions"}
 # Create color mapping for Austrian political parties
 party_colors <- c(
   "SPÖ" = "#CE000C",
@@ -324,7 +330,7 @@ df_plot %>%
   labs(
     title = stringr::str_to_title("Austrian National Council: Number of questions submitted by party ('Anfragen')"),
     subtitle = "Questions submitted from the 20th to 27th legislative period. Questions submitted by multiple parties are counted for each party.",
-    caption = "Data: https://www.parlament.gv.at/recherchieren/open-data; retrieved via ParlAT package."
+    caption = "Data: https://www.parlament.gv.at/recherchieren/open-data; retrieved via {ParlAT} package."
   )+
   geom_bar(aes(x=tidytext::reorder_within(parl_group, -n, legis_period), y=n, fill=parl_group_color), stat="identity")+ 
   scale_x_reordered(guide = guide_axis(n.dodge = 2), continuous.limits=c(1,7))+
@@ -396,17 +402,17 @@ glimpse(df_govBills %>% head())
 
 #count number of bills by legis period
 df_govBills %>%
-count(gp_code, name = "n") 
+count(legis_period, name = "n") 
 
 df_govBillsTopicsTop5 <- df_govBills %>%
-unnest_longer(themen) %>%
-group_by(gp_code) %>%
-mutate(themen=forcats::fct_lump_n(themen, n = 5, ties.method = "first")) %>%
+unnest_longer(topics) %>%
+group_by(legis_period) %>%
+mutate(topics=forcats::fct_lump_n(topics, n = 5, ties.method = "first")) %>%
 ungroup() %>%
-count(gp_code, themen)
+count(legis_period, topics)
 
 df_govBillsTopicsTop5 %>%
-filter(themen!="Other") %>%
+filter(topics!="Other") %>%
 ggplot()+
 labs(
   title="Austrian Parliament: Number of tabled government bills by topic",
@@ -414,9 +420,9 @@ labs(
   caption = "Data: https://www.parlament.gv.at/recherchieren/open-data; retrieved via ParlAT package."
 )+
 geom_bar(
-  aes(y=tidytext::reorder_within(themen, n, gp_code), 
+  aes(y=tidytext::reorder_within(topics, n, legis_period), 
   x=n,
-  fill=themen),
+  fill=topics),
   stat="identity")+
 scale_y_reordered()+
 scale_x_continuous(
@@ -424,8 +430,8 @@ scale_x_continuous(
 )+
 scale_fill_viridis_d()+
 facet_wrap(
-  vars(gp_code), 
-  labeller = labeller(gp_code = function(value) ifelse(value == min(value), paste("GP", value), value)),
+  vars(legis_period), 
+  labeller = labeller(legis_period = function(value) ifelse(value == min(value), paste("GP", value), value)),
   scales="free_y")+
 theme_minimal()+
 theme(
@@ -451,30 +457,79 @@ Get the number of popular initiatives ("Volksbegehren") which were considered
 legislative period and count them per legislative period.
 
 ```{r, cache=TRUE}
-df_volkbg <- get_items(item = "VOLKBG", legis_period = seq(20, 27), institution = "NR", echo = TRUE)
-df_volkbg %>% count(legis_period)
+df_petition <- get_items(item = "VOLKBG", legis_period = seq(20, 27), institution = "NR", echo = TRUE)
+df_petition %>% count(legis_period)
 ```
 
 # Get data on Plenary Sessions
 
-```{r, cache=TRUE}
-sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20,27), session_and_activities = "sessions", echo=T)
-sessions_20_27 %>%
-dplyr::count(legis_period)
-```
+What to know how often the National Council had plenary sessions? The function `get_plenary_sessions` returns this and releated meta data
+starting from the 20th legislative period.
 
 ```{r, cache=TRUE}
-sessions_20_27_dringliche <- get_plenary_sessions(
-institution = "NR", legis_period = seq(20,27), session_and_activities = "submitted", 
-submitted="J", echo=T)
 
-sessions_20_27_dringliche
+df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20,27), session_and_activities = "sessions", echo=TRUE)
 
-sessions_20_27_dringliche %>%
-dplyr::count(legis_period)
+df_sessions_20_27 %>%
+  count(legis_period) %>%
+  ggplot() +
+  labs(
+    title="Number of plenary sessions of the National Council",
+    subtitle="20th to 27th legislative period.",
+    caption = "Data: https://www.parlament.gv.at/recherchieren/open-data; retrieved via {ParlAT} package."
+  )+
+  geom_bar(aes(x=legis_period, y=n), stat="identity", fill="#132943")+
+  scale_y_continuous(expand = expansion(mult = c(0, 0)))+
+  scale_x_continuous(
+    breaks = 20:27,
+    labels = function(x) as.character(as.roman(x))
+  )+
+  theme_minimal()+
+  theme(
+    strip.text.x= element_text(face = "plain", hjust = 0,color="grey30"),
+    panel.grid.minor =  element_blank(),
+    panel.grid.major.x=  element_blank(),
+    legend.position = "none",
+    axis.title.x = element_blank(),
+    axis.text.x=element_text(size=rel(0.8)),
+    axis.text.y=element_text(size=rel(0.8)),
+    axis.title.y=element_blank(),
+    plot.caption = element_text(color="grey30", size=rel(.8)),
+    plot.subtitle=ggtext::element_textbox_simple(color="grey30", margin = ggplot2::margin(b = 10)),
+    plot.title.position = "plot",
+    plot.title = element_text(face = "bold")
+  )
 ```
 
- 
+# Get data on commitees
+
+Which committees of the National Council were active during the 27th legisative period:
+```{r, cache=TRUE}
+committesNR27 <- get_committees(legis_period=27, institution="NR")
+committesNR27
+```
+
+How many committees of inquiry (Untersuchungsausschüsse) have there been over the different legislative period (API returns data from 20 legisative
+period onward):
+```{r, cache=TRUE}
+get_committees(legis_period="XXVIII", citation="USA", institution="NR")
+
+committeeInquiry <- map(seq(20,28,1), \(x) get_committees(legis_period=x, institution="NR", citation="USA")) %>% list_rbind()
+committeeInquiry %>%
+  dplyr::mutate(legis_period = factor(legis_period, levels = as.character(as.roman(20:28)))) %>%
+  dplyr::count(legis_period, .drop=F)
+```
+
+Additional details on a committee can be retrieved by specifying the attribute `details_type`. As of now, `members` is the only available option.
+```{r, cache=TRUE}
+committeeIbiza <- get_committees(legis_period=27, search_string="Ibiza", institution="NR", details_type="members")
+
+#unnest members
+members <- committeeIbiza %>%
+  tidyr::unnest(members)
+members
+```
+
 
 
 

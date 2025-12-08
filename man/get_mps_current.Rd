@@ -167,7 +167,21 @@ Only applicable for National Council (NR). Valid electoral districts are:
 \item{echo}{Logical. Whether to print debug information. Default is TRUE.}
 }
 \value{
-A data frame containing the list of current members of parliament that match the search criteria.
+A data frame containing the list of current members of parliament that match the search criteria with the following columns:
+\itemize{
+\item \code{time_stamp}: Timestamp of when the data was retrieved
+\item \code{pad_intern}: Person's unique identification number
+\item \code{name}: Full name of the MP
+\item \code{gender}: Gender of the MP
+\item \code{parl_group}: Full name of the parliamentary group
+\item \code{parl_group_code}: Code/abbreviation of the parliamentary group
+\item \code{party_name}: Full name of the political party
+\item \code{party_code}: Code/abbreviation of the political party
+\item \code{state}: Federal state (Bundesland)
+\item \code{electoral_district_region_code}: Electoral district region code
+\item \code{chamber}: Chamber of Parliament ("NR" or "BR")
+}
+
 Returns NULL if no results are found.
 }
 \description{

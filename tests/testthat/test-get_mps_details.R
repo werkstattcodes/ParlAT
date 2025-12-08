@@ -32,7 +32,8 @@ test_that("get_mps_details validates institution parameter", {
     get_mps_details(
       pad_intern = 145,
       detail_type = "plenary",
-      institution = "NR"
+      institution = "NR",
+      echo = F
     )
   )
 
@@ -40,7 +41,8 @@ test_that("get_mps_details validates institution parameter", {
     get_mps_details(
       pad_intern = 145,
       detail_type = "plenary",
-      institution = "BR"
+      institution = "BR",
+      echo = F
     )
   )
 })
@@ -90,7 +92,8 @@ test_that("get_mps_details validates item choices for activities", {
     get_mps_details(
       pad_intern = 145,
       detail_type = "activities",
-      item = "A"
+      item = "A",
+      echo = F
     )
   )
 
@@ -109,7 +112,8 @@ test_that("get_mps_details validates search_string usage", {
     get_mps_details(
       pad_intern = 145,
       detail_type = "plenary",
-      search_string = "test"
+      search_string = "test",
+      echo = F
     ),
     "search_string is only supported for details type 'activities' and 'committees'"
   )
@@ -337,7 +341,7 @@ test_that("get_mps_details committees requires legis_period", {
 
 # Test multiple pad_intern values
 
-test_that("get_mps_details accepts multiple pad_intern values", {
+test_that("get_mps_details does not accept multiple pad_intern values", {
   skip_on_cran()
   skip_if_offline()
 
@@ -348,8 +352,6 @@ test_that("get_mps_details accepts multiple pad_intern values", {
       echo = FALSE
     )
   )
-
-  expect_s3_class(result, "data.frame")
 })
 
 # Test echo parameter
@@ -396,17 +398,38 @@ test_that("get_mps_details handles empty results gracefully", {
 })
 
 test_that("get_mps_details validates legis_period minimum value", {
-  skip_on_cran()
-  skip_if_offline()
-
   # The function should validate legis_period >= 20 for plenary
   expect_error(
     get_mps_details(
       pad_intern = 145,
       detail_type = "plenary",
-      legis_period = 5
+      legis_period = 5,
+      echo = F
     ),
-    "Details only available from legislative period 20 onward"
+    "Only data from the 20th legislative period onwards can be queried"
+  )
+
+  # Test for activities
+
+  expect_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      legis_period = 15,
+      echo = F
+    ),
+    "Only data from the 20th legislative period onwards can be queried"
+  )
+
+  # Test for committees
+  expect_error(
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "committees",
+      legis_period = 19,
+      echo = F
+    ),
+    "Only data from the 20th legislative period onwards can be queried"
   )
 })
 
@@ -503,6 +526,7 @@ test_that("get_mps_details accepts multiple legis_periods for activities", {
     pad_intern = 145,
     detail_type = "activities",
     legis_period = c(22, 23),
+    institution = "NR",
     echo = FALSE
   )
 

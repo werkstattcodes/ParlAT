@@ -7,7 +7,17 @@
 #' @param date Optional. A specific date to retrieve the name used at that time. When omitted, returns all name variants.
 #' @param latest Logical. If TRUE, only the latest name is returned.
 #'
-#' @return A dataframe containing name variant(s) of the specified person, including metadata such as dates and name types.
+#' @return A dataframe containing name variant(s) of the specified person with the following columns:
+#' - `index`: Sequential index of name variants
+#' - `pad_intern`: Person's unique identification number
+#' - `name`: Full name with titles and formatting
+#' - `date_start`: Start date when this name variant was valid (Date)
+#' - `date_end`: End date when this name variant was valid (Date, NA if currently valid)
+#' - `name_clean`: Cleaned version of the name without titles
+#' - `name_family`: Family name/surname
+#' - `name_given`: Given name/first name
+#' - `note`: Raw value from the source data
+#' @seealso [get_pad_intern()] to retrieve an MP's `pad_intern`
 #' @export
 #'
 #' @examples \dontrun{
@@ -213,6 +223,12 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
 
   df_names <- df_names |>
     dplyr::select(any_of(cols_select))
+
+  # Only rename 'value' to 'note' if 'value' column exists
+  if ("value" %in% names(df_names)) {
+    df_names <- df_names %>%
+      dplyr::rename(note = value)
+  }
 
   if (!is.null(date) && "date_start" %in% names(df_names)) {
     date_filter <- lubridate::dmy(date)

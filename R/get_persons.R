@@ -103,12 +103,19 @@ get_persons_single <- function(
   vec_headings <- res |>
     httr2::resp_body_json(simplifyVector = TRUE) |>
     purrr::pluck("header", "label") |>
-    janitor::make_clean_names()
+    stringr::str_to_snake() |>
+    make.unique(sep = "_")
 
   colnames(df_res) <- vec_headings
 
   df_res <- df_res |>
-    dplyr::select(pad_intern, name, gender = geschl, position = funktion, link) |>
+    dplyr::select(
+      pad_intern,
+      name,
+      gender = geschl,
+      position = funktion,
+      link
+    ) |>
     dplyr::mutate(
       position = stringr::str_remove(position, pattern = stringr::regex("<.*$"))
     )

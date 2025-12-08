@@ -15,7 +15,15 @@ abbreviations: "PN" (Provisorische Nationalversammlung), "KN" (Konstituierende N
 \item{date}{Date within a legislative period. Format should be "dd.mm.yyyy".}
 }
 \value{
-A dataframe
+A dataframe with the following columns:
+\itemize{
+\item \code{legis_period_rom}: Legislative period in Roman numerals
+\item \code{legis_period}: Legislative period as numeric value
+\item \code{legis_period_current}: Logical indicating if this is the current period
+\item \code{date_start}: Start date of the legislative period (Date)
+\item \code{date_end}: End date of the legislative period (Date, NA if current)
+\item \code{legis_period_name}: Name/description of the legislative period
+}
 }
 \description{
 Get start and end dates of legislative periods.

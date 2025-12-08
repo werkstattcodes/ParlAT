@@ -51,50 +51,50 @@ house, regardless of their mandate at the time of the speech. For example, query
 all plenary activities of Doris Bures in the National Council will return not only
 her speeches as an MP, but also as President of the National Council and as Minister.
 Columns returned:
-\describe{
-\item{pad_intern}{Unique identifier for the MP}
-\item{name}{Full name of the MP}
-\item{position_name}{List of mandates/positions held at the time of speech}
-\item{date}{Date of the speech}
-\item{legis_period}{Legislative period (Roman numeral)}
-\item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
-\item{speech_title}{Title of the speech}
-\item{session_url}{URL to the session details page}
-\item{session_name}{Name of the parliamentary session}
-\item{speech_transcript_url}{URL to the speech transcript}
-\item{speech_media_url}{URL to speech recordings, if available}
+\itemize{
+\item \code{pad_intern}: Unique identifier for the MP
+\item \code{name}: Full name of the MP
+\item \code{position_name}: List of mandates/positions held at the time of speech
+\item \code{date}: Date of the speech
+\item \code{legis_period}: Legislative period (Roman numeral)
+\item \code{institution}: Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)
+\item \code{speech_title}: Title of the speech
+\item \code{session_url}: URL to the session details page
+\item \code{session_name}: Name of the parliamentary session
+\item \code{speech_transcript_url}: URL to the speech transcript
+\item \code{speech_media_url}: URL to speech recordings, if available
 }
 
 For \code{detail_type = "activities"}: Returns parliamentary activities and legislative
 items associated with the MP. Columns returned:
-\describe{
-\item{pad_intern}{Unique identifier for the MP}
-\item{legis_period}{Legislative period}
-\item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
-\item{frmdate}{Date field}
-\item{ityp_komm}{Item type comment}
-\item{item_number}{Number of the parliamentary item}
-\item{item_type}{Type of parliamentary item (e.g., "A", "JMIN")}
-\item{title}{Title/subject of the item}
-\item{date_updated}{Last update date of the item}
-\item{item_url}{URL to the item details}
-\item{status_text}{Current status description}
-\item{status_numeric}{Numeric status code}
+\itemize{
+\item \code{pad_intern}: Unique identifier for the MP
+\item \code{legis_period}: Legislative period
+\item \code{institution}: Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)
+\item \code{frmdate}: Date field
+\item \code{ityp_komm}: Item type comment
+\item \code{item_number}: Number of the parliamentary item
+\item \code{item_type}: Type of parliamentary item (e.g., "A", "JMIN")
+\item \code{title}: Title/subject of the item
+\item \code{date_updated}: Last update date of the item
+\item \code{item_url}: URL to the item details
+\item \code{status_text}: Current status description
+\item \code{status_numeric}: Numeric status code
 }
 
 For \code{detail_type = "committees"}: Returns committee memberships and participation.
 Columns returned:
-\describe{
-\item{pad_intern}{Unique identifier for the MP}
-\item{name}{Full name of the MP}
-\item{legis_period}{Legislative period}
-\item{committee_name}{Name of the committee}
-\item{committee_position}{Position in the committee (e.g., "Mitglied", "Vorsitzende/r")}
-\item{institution}{Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)}
-\item{committee_position_start}{Start date of committee membership}
-\item{committee_position_end}{End date of committee membership (NA if still active)}
-\item{committee_active}{Logical indicating if membership is currently active}
-\item{committee_url}{URL to committee details}
+\itemize{
+\item \code{pad_intern}: Unique identifier for the MP
+\item \code{name}: Full name of the MP
+\item \code{legis_period}: Legislative period
+\item \code{committee_name}: Name of the committee
+\item \code{committee_position}: Position in the committee (e.g., "Mitglied", "Vorsitzende/r")
+\item \code{institution}: Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)
+\item \code{committee_position_start}: Start date of committee membership
+\item \code{committee_position_end}: End date of committee membership (NA if still active)
+\item \code{committee_active}: Logical indicating if membership is currently active
+\item \code{committee_url}: URL to committee details
 }
 
 Returns \code{NULL} invisibly if no data is found for the given parameters.

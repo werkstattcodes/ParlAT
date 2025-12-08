@@ -16,10 +16,9 @@ get_plenary_sessions(
 \arguments{
 \item{institution}{A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).}
 
-\item{legis_period}{Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. Basic data available from 1st legislative period onwards, detailed information from 20th legislative period onwards. Note that
-filtering is not possible for institution=="BV".}
+\item{legis_period}{Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. \strong{Must be NULL when institution is "BV"} (Bundesversammlung does not use legislative periods).}
 
-\item{session_and_activities}{A character string. One of 'sessions', 'submitted', or 'held'. Not applicable for if institution is "BV" (Bundesversammlung);  must be NULL for BV institution.}
+\item{session_and_activities}{A character string. One of 'sessions', 'submitted', or 'held'. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.}
 
 \item{submitted}{A character string specifying the type of submissions that were introduced. Possible values are: 'All', 'AA', 'G037', 'G080', 'J', 'AE', 'G015', 'G014', 'AB', 'G053', 'UEA', 'UEAM'. Only used when \code{session_and_activities = "submitted"}. Not applicable for BV institution. See details below.}
 
@@ -32,34 +31,37 @@ A data frame containing plenary session details, or NULL if no results found. Th
 
 If \emph{\code{session_and_activities = "sessions"}}:
 \itemize{
-\item \code{institution}: The parliamentary institution (e.g., "NR", "BR")
-\item \code{legis_period}: The legislative period
-\item \code{date}: The date of the session
-\item \code{session_number}: The number of the session
-\item \code{session_day}: The day of the session
-\item \code{session_url}: The URL to the session page
-\item \code{session_type_abbrev}: The abbreviation for the session type
-\item \code{session_type_name}: The full name of the session type
-\item \code{agenda_url}: A list column with URLs to the agenda in HTML and PDF formats
+\item \code{institution}: parliamentary institution (e.g., "NR", "BR")
+\item \code{legis_period}: legislative period (not returned if institution is 'BV')
+\item \code{date}: date of the session
+\item \code{session_number}: number of the session
+\item \code{session_day}: day of  session
+\item \code{session_url}: URL to the session page
+\item \code{agenda_url_html}: URL to the agenda in HTML format
+\item \code{agenda_url_pdf}: URL to the agenda in PDF format
 }
 
 If \emph{\code{session_and_activities = "submitted"} or \code{"held"}}:
 \itemize{
-\item \code{legis_period}: The legislative period
-\item \code{date}: The date of the activity
-\item \code{url_session_item}: The URL to the session item
-\item \code{url_session}: The URL to the session
-\item \code{type_title}: The title of the activity type
-\item \code{type_txt}: The text of the activity type
-\item \code{topic}: The topic of the activity
-\item \code{session_id}: The ID of the session
-\item \code{session_number}: The number of the session
+\item \code{legis_period}: legislative period
+\item \code{date}: date of the activity
+\item \code{url_session_item}: URL to the session item
+\item \code{url_session}: URL to the session
+\item \code{type_title}: title of the activity type
+\item \code{type_txt}: text of the activity type
+\item \code{topic}: topic of the activity
+\item \code{citation}:  item citation
+\item \code{session_number}: number of session
+\item \code{session_type_abbrev}: abbreviation for the session type
+\item \code{session_type_name}: full name of session type
 \item \code{link}, \code{link_2}, \code{link_3}: Additional links related to the activity
 }
 
 For \emph{BV (Bundesversammlung) institution}:
 \itemize{
 \item Returns basic session information without the activity-specific filtering options available for BR/NR
+\item Does NOT include \code{legis_period} column (not applicable for Federal Assembly)
+\item Columns returned: \code{institution}, \code{date}, \code{session_number}, \code{session_day}, \code{session_url}, \code{agenda_url_html}, \code{agenda_url_pdf}
 }
 }
 \description{
@@ -103,8 +105,8 @@ Possible values for \code{held} if \code{session_and_activities} is set to \code
 }
 \examples{
 \dontrun{
-# Basic usage: Get sessions for National Council from 20 to 27 legislative period
-sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20,27), session_and_activities = "sessions", echo=T)
+# Basic usage: Get sessions for National Council, legislative periods 20-27
+sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20, 27), session_and_activities = "sessions", echo = TRUE)
 
 # Get activities submitted during sessions
 get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted")

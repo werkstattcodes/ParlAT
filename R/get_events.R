@@ -2,18 +2,23 @@
 #'
 #' This function retrieves event data based on search parameters from the Austrian Parliament API.
 #' It mirrors the search functionality on the Austrian Parliament website at
-#' <a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">this page</a>.
+#' <a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">this page</a>, and additionally
+#' facilitates searches by legislative period.
 #'
-#' @param search_string Optional character string used to filter events by searching in event titles and descriptions. Default is NULL.
 #' @param institution Character vector specifying the institution(s) to query. Must be "NR" (Nationalrat/National Council), "BR" (Bundesrat/Federal Council), or "ParlDir/Klub" ("Parliamentary Directorate/Caucus"). Can be a single value or vector for multiple institutions. NULL covers all institutions.
 #' @param event_type Optional character string indicating the event type. Must be one of the predefined event types (see Details). Default is NULL (all types).
 #' @param location Optional character string to filter events by location. Must be one of the predefined locations (see Details). Default is NULL (all locations).
 #' @param echo Logical indicating whether to print used search parameters, number of hits, and link to results on website of parliament. Default is TRUE.
 #' @param legis_period Character or numeric value of length 1, or NULL. Specifies the legislative period to search in. Only available if `date_start` and `date_end` are NULL.
-#' @param date_start Optional character string representing the start date. Default is NULL.
-#' @param date_end Optional character string representing the end date. Default is NULL.
+#' @param date_start Optional character string representing the start date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.
+#' @param date_end Optional character string representing the end date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.
+#'
+#' @note Free Text Search: Due to limitations of the underlying API, this function does not currently support a general free
+#' text search across all fields. Search functionality is restricted to the specific parameters
+#' provided.
+#'
 #' @details
-#' ## Event type
+#' ## event_type
 #' Allowed event types are:
 #'   - "Plenarsitzung" (Plenary Session)
 #'   - "Ausschusssitzung oder Ausschuss" (Committee Meeting or Committee)
@@ -30,7 +35,7 @@
 #'   - "Sonstiger Termin" (Other Event)
 #'   - "Veranstaltung" (Event)
 #'
-#' ## Location
+#' ## location
 #' Allowed locations are:
 #'   - "Abgeordneten-Sprechzimmer (alt)"
 #'   - "Auditorium"
@@ -115,9 +120,8 @@
 #'   # Basic example: Get all National Council events
 #'   events <- get_events(institution = "NR")
 #'
-#'   # Get events with specific search term and date range
+#'   # Get events with specific date range
 #'   events <- get_events(
-#'     search_string = "budget",
 #'     institution = "NR",
 #'     date_start = "01-01-2024",
 #'     date_end = "31-01-2024"
@@ -151,7 +155,6 @@
 #'
 #' @export
 get_events <- function(
-    search_string = NULL,
     institution = NULL,
     event_type = NULL,
     location = NULL,
@@ -161,7 +164,6 @@ get_events <- function(
     echo = TRUE
 ) {
     # PARAMETER VALIDATION
-    checkmate::assert_character(search_string, len = 1, null.ok = TRUE)
 
     if (!is.null(institution) & length(institution) > 1) {
         li_res <- purrr::map(
@@ -169,7 +171,6 @@ get_events <- function(
             \(x) {
                 get_events(
                     institution = x,
-                    search_string = {{ search_string }},
                     event_type = {{ event_type }},
                     location = {{ location }},
                     legis_period = {{ legis_period }},
@@ -351,7 +352,6 @@ get_events <- function(
         httr2::req_url_query(
             js = "eval",
             showAll = TRUE,
-            search = search_string,
             ascDesc = "ASC"
         ) |>
         httr2::req_headers(
@@ -384,7 +384,8 @@ get_events <- function(
 
     vec_headings <- resp_json |>
         purrr::pluck("header", "label") |>
-        janitor::make_clean_names()
+        stringr::str_to_snake() |>
+        make.unique(sep = "_")
 
     rows <- purrr::pluck(resp_json, "rows")
 
@@ -400,9 +401,8 @@ get_events <- function(
     if (isTRUE(echo)) {
         print(body_params)
 
-        # # print url to results / transparency reasons / add search string parameter
-        body_params_li <- jsonlite::fromJSON(body_params) |>
-            c("search" = search_string)
+        # # print url to results / transparency reasons
+        body_params_li <- jsonlite::fromJSON(body_params)
 
         query_string <- purrr::imap(
             body_params_li,
@@ -493,18 +493,18 @@ get_events <- function(
     )
 
     df_res <- df_res |>
-        dplyr::select(any_of(cols_select)) %>%
-        dplyr::mutate(date = lubridate::dmy(date)) %>%
-        dplyr::mutate(date_time_start = lubridate::ymd_hms(date_time_start)) %>%
-        dplyr::mutate(date_time_end = lubridate::ymd_hms(date_time_end)) %>%
-        dplyr::arrange(desc(date))
+        dplyr::select(dplyr::any_of(cols_select)) |>
+        dplyr::mutate(dplyr::across(dplyr::any_of("date"), lubridate::dmy)) |>
+        dplyr::mutate(dplyr::across(dplyr::any_of("date_time_start"), lubridate::ymd_hms)) |>
+        dplyr::mutate(dplyr::across(dplyr::any_of("date_time_end"), lubridate::ymd_hms)) |>
+        dplyr::arrange(dplyr::desc(date))
 
     return(df_res)
 }
 
 
 #' Transform Event Date for API Request
-#' 
+#'
 #' Helper function to convert date from dd-mm-yyyy format to ISO 8601 UTC format
 #' required by the Austrian Parliament API.
 #'
@@ -526,11 +526,15 @@ aux_transform_event_date <- function(
     checkmate::assert_character(date_string, len = 1)
 
     # Parse the date string (day-month-year format)
-    date_cet <- lubridate::dmy(date_string)
+    date_cet <- lubridate::dmy(date_string, quiet = TRUE)
 
     # Validate that date parsing was successful
     if (is.na(date_cet)) {
-        stop(paste(param_name, "contains an invalid date:", date_string))
+        stop(paste0(
+            param_name, " must be in day-month-year (DMY) format. ",
+            "Expected formats: '26-10-2025', '26.10.2025', or '26/10/2025'. ",
+            "Received: '", date_string, "'"
+        ), call. = FALSE)
     }
 
     # Set the timezone to CET

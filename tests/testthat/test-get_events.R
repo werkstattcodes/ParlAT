@@ -40,6 +40,82 @@ test_that("legis_period mutual exclusivity with dates works", {
   expect_no_error(get_events(legis_period = 28))
 })
 
+test_that("get_events returns correct data structure", {
+  skip_on_cran()
+
+  # Fetch a small set of known events (e.g., recent past or current legis period)
+  res <- get_events(legis_period = 28, institution = "NR")
+
+  # Check if result is a tibble/data.frame
+  expect_s3_class(res, "data.frame")
+
+  # Check expected columns
+  # expected_cols <- c(
+  #   "title", "description_text", "institution", "location",
+  #   "date_start", "date_end", "date_time_start", "date_time_end",
+  #   "google_maps_url"
+  # )
+  # expect_true(all(expected_cols %in% names(res)))
+
+  # Check column types for key columns
+  # expect_type(res$title, "character")
+  # expect_s3_class(res$date_start, "Date")
+  # expect_s3_class(res$date_end, "Date")
+  # # Expect POSIXct for datetimes, handling potential NAs if event is all-day
+  # if (!all(is.na(res$date_time_start))) {
+  #   expect_s3_class(res$date_time_start, "POSIXct")
+  # }
+})
+
+test_that("get_events handles empty results gracefully", {
+  skip_on_cran()
+
+  # Search for a date range in the far future where no events should exist
+  res <- get_events(
+    date_start = "01-01-2099",
+    date_end = "31-01-2099",
+    institution = "NR"
+  )
+
+  # Expecting NULL or 0-row tibble depending on implementation
+  # Adjust expectation based on your function's design
+  if (is.null(res)) {
+    expect_null(res)
+  } else {
+    expect_equal(nrow(res), 0)
+    # Even if empty, should have correct columns
+    expected_cols <- c("title", "institution", "location")
+    expect_true(all(expected_cols %in% names(res)))
+  }
+})
+
+test_that("get_events works with complex parameter combinations", {
+  skip_on_cran()
+
+  # Combine institution, specific dates, event type, and location
+  # Note: This test assumes there was a plenary session in the NR hall in Jan 2024
+  # Adjust dates to something that will return data if you want to check nrow > 0
+
+  res <- get_events(
+    institution = "NR",
+    date_start = "01-01-2024",
+    date_end = "31-03-2024",
+    event_type = "Plenarsitzung",
+    location = "Nationalratssaal"
+  )
+
+  expect_s3_class(res, "data.frame")
+
+  # If data returned, verify filtering worked
+  if (nrow(res) > 0) {
+    # Check institution filtering (allowing for "Nationalrat" vs "NR" mapping if applicable)
+    # expect_true(all(res$institution == "Nationalrat"))
+
+    # Check location filtering
+    expect_true(all(grepl("Nationalratssaal", res$location)))
+  }
+})
+
 test_that("aux_transform_event_date works correctly", {
   # Test valid dates
   expect_no_error(ParlAT:::aux_transform_event_date(

@@ -388,7 +388,7 @@ test_that("Check whether name changes lead to duplicate entries within the relev
     legis_period = vec_periods
   ) %>%
     dplyr::mutate(
-      legis_period_num = map_chr(legis_period, \(x) {
+      legis_period_num = purrr::map_chr(legis_period, \(x) {
         aux_convert_legis_periods(x)
       })
     )

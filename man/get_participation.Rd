@@ -36,7 +36,7 @@ A tibble containing the participation data with the following columns:
 \item \code{item_code}: Item type code
 \item \code{item}: Description of the item type
 \item \code{title}: Title of the participation item
-\item \code{doc_type}: Document type
+\item \code{type_doc}: Document type
 \item \code{topic}: Topic(s) associated with the item
 \item \code{item_url}: URL to the item on the Parliament website
 \item \code{statements}: Number of statements submitted

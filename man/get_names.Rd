@@ -14,7 +14,18 @@ get_names(pad_intern, date = NULL, latest = NULL)
 \item{latest}{Logical. If TRUE, only the latest name is returned.}
 }
 \value{
-A dataframe containing name variant(s) of the specified person, including metadata such as dates and name types.
+A dataframe containing name variant(s) of the specified person with the following columns:
+\itemize{
+\item \code{index}: Sequential index of name variants
+\item \code{pad_intern}: Person's unique identification number
+\item \code{name}: Full name with titles and formatting
+\item \code{date_start}: Start date when this name variant was valid (Date)
+\item \code{date_end}: End date when this name variant was valid (Date, NA if currently valid)
+\item \code{name_clean}: Cleaned version of the name without titles
+\item \code{name_family}: Family name/surname
+\item \code{name_given}: Given name/first name
+\item \code{note}: Raw value from the source data
+}
 }
 \description{
 Returns all name variants of an person or a specific name used on a given date.
@@ -27,4 +38,7 @@ get_names(44127, latest=T) #Philippa Pia Beck, formerly Strache
 get_names(44127, date="01/01/2023") #Philippa Pia Strache
 get_names(c(1130,83124)) #multiple pad_interns possible; e.g. Michael Pock/Bernhard; Freda Blau-Meissner/Meissner-Blau
 }
+}
+\seealso{
+\code{\link[=get_pad_intern]{get_pad_intern()}} to retrieve an MP's \code{pad_intern}
 }

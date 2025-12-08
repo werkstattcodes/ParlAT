@@ -6,7 +6,13 @@
 #'   "Bundesrat1Rep" (Bundesrat der 1. Republik). Can be a vector for multiple periods.
 #' @param date Date within a legislative period. Format should be "dd.mm.yyyy".
 #'
-#' @return A dataframe
+#' @return A dataframe with the following columns:
+#' - `legis_period_rom`: Legislative period in Roman numerals
+#' - `legis_period`: Legislative period as numeric value
+#' - `legis_period_current`: Logical indicating if this is the current period
+#' - `date_start`: Start date of the legislative period (Date)
+#' - `date_end`: End date of the legislative period (Date, NA if current)
+#' - `legis_period_name`: Name/description of the legislative period
 #' @export
 #'
 #' @examples

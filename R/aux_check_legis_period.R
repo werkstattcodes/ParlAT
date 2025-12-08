@@ -10,7 +10,6 @@ fn_check_legis_period_elements <- function(x) {
   if (is.null(x)) {
     stop("`legis_period` is required.")
   }
-  #print("check 2")
 
   if (
     !(stringr::str_detect(x, stringr::regex("\\D"), negate = TRUE) ||
@@ -118,7 +117,7 @@ fn_make_tibble <- function(x) {
 #' Convert legislative period to standardized character format
 #'
 #' This auxiliary function standardizes legislative period inputs by converting:
-#' When output=="numeric"
+#' When output=="character"
 #' - Numeric values to character strings
 #' - Roman numerals to Arabic numbers then to character strings
 #' - Character strings (including historical abbreviations) remain as-is
@@ -138,10 +137,9 @@ fn_make_tibble <- function(x) {
 #' aux_convert_legis_periods("PN")         # "PN"
 #' aux_convert_legis_periods(c(26, "20","XXVII", "PN"))  # c("26", "27", "PN")
 #'
-#'
 #' @keywords internal
 #' @noRd
-aux_convert_legis_periods <- function(legis_period, output = "numeric") {
+aux_convert_legis_periods <- function(legis_period, output = "character") {
   if (is.null(legis_period)) {
     return(NULL)
   }
@@ -150,7 +148,7 @@ aux_convert_legis_periods <- function(legis_period, output = "numeric") {
   legis_period_char <- as.character(legis_period)
 
   # Process each element
-  if (output == "numeric") {
+  if (output == "character") {
     return(purrr::map_chr(legis_period_char, function(x) {
       # Check if it's a Roman numeral (only contains Roman numeral letters)
       if (stringr::str_detect(x, "^[IVXLCDM]+$")) {

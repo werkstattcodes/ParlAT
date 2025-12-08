@@ -13,8 +13,7 @@ test_that("get_plenary_sessions returns valid data structure", {
   expect_gt(nrow(x), 0)
 
   # Test for no duplicate sessions (check by session_url and session day)
-  dupes_sessions <- janitor::get_dupes(x, session_url, session_day)
-  expect_true(nrow(dupes_sessions) == 0)
+  expect_false(any(duplicated(x[, c("session_url", "session_day")])))
 
   # Test expected columns exist
   expected_cols <- c("institution", "legis_period", "date", "session_number")
@@ -29,7 +28,7 @@ test_that("get_plenary_sessions returns valid data structure", {
   expect_true(all(x$institution == "NR"))
 
   # Test legis_period filter works
-  expect_true(all(x$legis_period == as.character(as.roman(28))))
+  expect_true(all(x$legis_period == as.character(28)))
 })
 
 test_that("get_plenary_sessions handles agenda_url columns correctly", {
@@ -106,7 +105,7 @@ test_that("get_plenary_sessions adds URL prefix to all url columns", {
   # Test submitted mode
   x_submitted <- get_plenary_sessions(
     institution = "NR",
-    legis_period = 28,
+    legis_period = 27,
     session_and_activities = "submitted"
   )
 
@@ -294,7 +293,7 @@ test_that("get_plenary_sessions validates parameters correctly", {
   # Non-numeric legislative period
   expect_error(
     get_plenary_sessions(institution = "NR", legis_period = "invalid"),
-    "Assertion on"
+    "Invalid legislative period\\(s\\) provided"
   )
 })
 
@@ -335,9 +334,8 @@ test_that("get_plenary_sessions handles multiple legislative periods", {
   expect_true(is.data.frame(x) || is.null(x))
 
   if (!is.null(x) && nrow(x) > 0) {
-    session_dupes <- janitor::get_dupes(x, session_url, session_day)
+    expect_false(any(duplicated(x[, c("session_url", "session_day")])))
   }
-  expect_true(nrow(session_dupes) == 0)
 })
 
 
@@ -368,7 +366,7 @@ test_that("get_plenary_sessions validates legis_period >= 20", {
       legis_period = 1,
       session_and_activities = "sessions"
     ),
-    "legis_period must be >= 20"
+    "Only data from the 20th legislative period onwards can be queried"
   )
 
   # Test that legis_period = 19 is also rejected
@@ -376,8 +374,8 @@ test_that("get_plenary_sessions validates legis_period >= 20", {
     get_plenary_sessions(
       institution = "NR",
       legis_period = 19,
-      session_and_activities = "sessions"
+      session_and_activities = "submitted"
     ),
-    "legis_period must be >= 20"
+    "Only data from the 20th legislative period onwards can be queried"
   )
 })

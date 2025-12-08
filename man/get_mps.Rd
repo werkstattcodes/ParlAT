@@ -47,7 +47,7 @@ get_mps(
 
 \item{presidents_only}{Logical. If TRUE, returns only presidents. Default is FALSE}
 
-\item{echo}{Logical. If \code{TRUE}, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.}
+\item{echo}{Logical. If \code{TRUE}, the function prints the used search parameters and the url to the  pertaining search results on website of the Austrian Parliament.}
 }
 \value{
 A dataframe containing information about the MPs. One row per MP. Important: The API returns details
@@ -56,15 +56,17 @@ returned, however, are not limited to the requested period. The column \code{par
 may also contain data on the MP's membership in a parliamentary group during the requested period, but also
 also on his or her membership in other parliamentary groups in the past.
 
-\item{pad_intern}{Person's unique identification number}
-\item{name}{Name of the MP}
-\item{gender}{Gender}
-\item{parl_group}{Parliamentary group; note that the groups stated comprises \emph{all} past and present groups of which the MP has been
-member of}
-\item{parl_group_abbrev}{Abbreviation of the parliamentary group}
-\item{legis_period}{Legislative period(s)}
-\item{mandate_detail}{Details on madates in Parliament}
-\item{electoral_district}{Electoral district}
+Columns returned:
+\itemize{
+\item \code{pad_intern}: Person's unique identification number
+\item \code{name}: Name of the MP
+\item \code{gender}: Gender
+\item \code{parl_group}: Parliamentary group; note that the groups stated comprises \emph{all} past and present groups of which the MP has been member of
+\item \code{parl_group_abbrev}: Abbreviation of the parliamentary group
+\item \code{legis_period}: Legislative period(s)
+\item \code{mandate_detail}: Details on mandates in Parliament
+\item \code{electoral_district}: Electoral district
+}
 }
 \description{
 \code{get_mps()} retrieves information about Members of Parliament based on specified filter criteria.
@@ -97,7 +99,7 @@ Permissible values:
 \item Bundesratsfraktion der Großdeutschen Volkspartei
 \item Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat
 \item Bundesratsfraktion der SPÖ
-\item Bundesratsfraktion der WdUe
+\item Bundesratsfraktion der WdU
 \item Bundesratsfraktion der ÖVP
 \item Christlichsoziale Fraktion im Bundesrate
 \item Christlichsoziale Vereinigung deutscher Abgeordneter

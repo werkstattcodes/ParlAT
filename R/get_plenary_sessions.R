@@ -30,7 +30,7 @@
 #' - `type_title`: title of the activity type
 #' - `type_txt`: text of the activity type
 #' - `topic`: topic of the activity
-#' - `session_id`: ID of session
+#' - `citation`:  item citation
 #' - `session_number`: number of session
 #' - `session_type_abbrev`: abbreviation for the session type
 #' - `session_type_name`: full name of session type
@@ -159,14 +159,46 @@ get_plenary_sessions <- function(
 
     # LEGISLATIVE PERIOD; requires roman input
     # Check that all legislative periods are >= 20 (API limitation)
+
     if (institution != "BV") {
-        checkmate::assert_numeric(
+        # Store original input for error messages
+        legis_period_original <- legis_period
+        legis_period_char <- as.character(legis_period)
+
+        # Validate input format before conversion (avoids warnings)
+        # Valid formats: numeric, Roman numerals (I, V, X, L, C, D, M), or special codes
+        is_valid_format <- purrr::map_lgl(legis_period_char, function(x) {
+            is_numeric <- grepl("^\\d+$", x)
+            is_roman <- grepl("^[IVXLCDM]+$", x)
+            is_numeric || is_roman
+        })
+
+        if (!all(is_valid_format)) {
+            invalid_values <- legis_period_original[!is_valid_format]
+            stop(
+                "Invalid legislative period(s) provided: ",
+                paste(invalid_values, collapse = ", "), ". ",
+                "Permissible inputs are numeric values (e.g., 27) or ",
+                "Roman numerals (e.g., 'XXVII').",
+                call. = FALSE
+            )
+        }
+
+        # Now safe to convert without warnings
+        legis_period <- aux_convert_legis_periods(
             legis_period,
-            lower = 20,
-            finite = TRUE,
-            any.missing = FALSE,
-            .var.name = "legis_period must be >= 20. Only legislative periods from the 20th onwards are permissible for this query."
-        )
+            output = "character"
+        ) %>%
+            as.numeric()
+
+        # Check minimum value constraint
+        if (any(legis_period < 20)) {
+            stop(
+                "Only data from the 20th legislative period onwards can be queried. ",
+                "You provided: ", paste(legis_period_original, collapse = ", "), ".",
+                call. = FALSE
+            )
+        }
     }
 
     if (!is.null(legis_period)) {
@@ -297,13 +329,14 @@ get_plenary_sessions <- function(
     vec_headings <- res |>
         httr2::resp_body_json(simplifyVector = T) |>
         purrr::pluck("header", "label") |>
-        janitor::make_clean_names()
+        stringr::str_to_snake() |>
+        make.unique(sep = "_")
 
     # extract the actual substantive data
     df_res <- res |>
         httr2::resp_body_json(simplifyVector = T) |>
         purrr::pluck("rows")
-
+    #
     if (length(df_res) == 0) {
         message("No results found for the provided search criteria.")
         return(NULL)
@@ -311,9 +344,19 @@ get_plenary_sessions <- function(
 
     colnames(df_res) <- vec_headings
 
-    df_res <- as.data.frame(df_res) |>
+    #session_and_activities = "submitted" - inconsistency in API response gp instead of gp_code
+
+    df_res <- as.data.frame(df_res)
+
+    if ("gp" %in% colnames(df_res)) {
+        df_res <- df_res %>%
+            dplyr::rename(gp_code = gp)
+    }
+
+    # browser()
+    df_res <- df_res |>
         dplyr::mutate(
-            gp_code = as.numeric(as.roman(gp_code))
+            gp_code = aux_convert_legis_periods(gp_code, output = "character")
         )
 
     #COLS DEPEND ON SEARCH PARAMETERS => DIFFERENT RENAMINGS NEEDED
@@ -352,7 +395,7 @@ get_plenary_sessions <- function(
             "art_title" = "type_title",
             "art_txt" = "type_txt",
             "betreff" = "topic", #REVISE
-            "nr" = "session_id",
+            "nr" = "citation",
             "sitzung" = "session_number"
         )
 
@@ -392,7 +435,7 @@ get_plenary_sessions <- function(
             "type_title",
             "type_txt",
             "topic",
-            "session_id",
+            "citation",
             "session_number",
             "link",
             "link_2",

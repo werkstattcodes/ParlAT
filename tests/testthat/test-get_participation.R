@@ -97,8 +97,8 @@ test_that("get_participation returns data for RGES item type", {
   skip_on_cran()
   skip_if_offline()
 
-  result <- get_participation(item = "RGES")
+  result <- get_participation(item = "RGES", legis_period = 27)
 
   expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 14906)
+  expect_equal(nrow(result), 1403)
 })

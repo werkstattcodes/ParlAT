@@ -180,13 +180,13 @@ get_committees <- function(
   vec_headings <- res |>
     httr2::resp_body_json(simplifyVector = T) |>
     purrr::pluck("header", "label") |>
-    janitor::make_clean_names()
+    stringr::str_to_snake() |>
+    make.unique(sep = "_")
 
   # extract the actual substantive data
   df_res <- res |>
     httr2::resp_body_json(simplifyVector = T) |>
     purrr::pluck("rows")
-  #print(class(df_res))
 
   # Handle empty results
   if (length(df_res) == 0) {
@@ -224,8 +224,6 @@ get_committees <- function(
         url_committee
       )
     )
-
-  # browser()
 
   # Pseudo filter
   if (!is.null(citation)) {
@@ -473,7 +471,6 @@ get_committee_details <- function(url_committee, details_type) {
     }
 
     #remove links to member list with fotos; would duplicate retrieval of members & features different page structure
-    # browser()
     df_details <- df_details %>%
       dplyr::filter(!is.na(url_html)) %>%
       dplyr::filter(

@@ -9,8 +9,9 @@ get_committees(
   institution = NULL,
   legis_period,
   permanent = NULL,
+  citation = NULL,
   include_subcommittees = NULL,
-  details = FALSE,
+  details_type = NULL,
   echo = NULL
 )
 }
@@ -19,46 +20,58 @@ get_committees(
 
 \item{institution}{A character string specifying the institution. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat/Federal Council). Required.}
 
-\item{legis_period}{A character or numeric vector of length 1 for a specific legislative period. Required.}
+\item{legis_period}{A character or numeric vector of length 1 for a specific legislative period. Required. Data available starting from the 20th legislative period.}
 
 \item{permanent}{A logical flag indicating whether only permanent committees should be queried. Default is NULL (both permanent and non-permanent).}
+
+\item{citation}{A character vector for filtering results by committee citation code (e.g., "1/SA-BU"). This is applied as a post-processing filter after API results are retrieved. Default is NULL (no filtering).}
 
 \item{include_subcommittees}{A logical flag to indicate whether subcommittees should be included
 in the search results. Search for subcommittees is only possible if \code{permanent} is not TRUE. Default is NULL.}
 
-\item{details}{Logical. If TRUE, the function retrieves additional details for each committee, including members, documents, and reports. Default is FALSE.}
+\item{details_type}{A character string specifying the type of details to retrieve. Currently supports "members" to extract committee membership information. Default is NULL (no additional details).}
 
 \item{echo}{Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.}
 }
 \value{
-A data frame with the following columns:
+A tibble (data frame) with different structures depending on \code{details_type}:
+
+\strong{When \code{details_type = NULL} (default):}
 \itemize{
+\item \code{legis_period}: Legislative period code (character)
 \item \code{committee}: Name of the committee
+\item \code{citation}: Citation information
+\item \code{id_number}: Committee ID number (integer)
 \item \code{url_committee}: URL to the committee page
 }
 
-If \code{details = TRUE}, additional columns are included:
+\strong{When \code{details_type = "members"}:}
 \itemize{
-\item \code{legis_period}: Legislative period code (relocated to first column)
-\item \code{title}: Full title of the committee
+\item \code{legis_period}: Legislative period code (character, relocated to first column)
+\item \code{committee}: Name of the committee
 \item \code{citation}: Citation information
-\item \code{committee_id}: Committee ID
-\item \code{date_start}: Committee start date
-\item \code{date_end}: Committee end date
-\item \code{names}: List column with committee member names
-\item \code{documents}: List column with committee documents
-\item \code{assignments}: List column with committee assignments
-\item \code{recentagenda}: List column with recent agenda items
-\item \code{recentreports}: List column with recent reports
-\item \code{stages}: List column with committee stages
+\item \code{id_number}: Committee ID number (integer)
+\item \code{url_committee}: URL to the committee page
+\item \code{date_start}: Committee start date (POSIXct)
+\item \code{date_end}: Committee end date (POSIXct)
+\item \code{url_pdf}: URL to PDF version of member list (character, may be NA)
+\item \code{url_html}: URL to HTML version of member list (character, may be NA)
+\item \code{members}: List-column containing tibbles with member information. Each tibble has:
+\itemize{
+\item \code{name}: Member name (character)
+\item \code{member_type}: Type of membership - "member", "substitute", or leadership role (character)
+\item \code{party}: Party affiliation (character, may be NA)
+\item \code{member_url}: URL to member's profile page (character)
+}
 }
 
-Returns NULL if no results are found.
+Returns NULL if no results are found for the provided search criteria.
 }
 \description{
 Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
-The function mirrors the search functionality of the Austrian Parliament's website for committees
-\if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">}}here\if{html}{\out{</a>}}.
+The function partly mirrors the search functionality of the Austrian Parliament's website for committees
+\if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">}}here\if{html}{\out{</a>}} and extends it by
+e.g. incorporating the extraction of data from membership lists. Data available starting from the 20th legislative period.
 }
 \examples{
 \dontrun{
@@ -68,12 +81,12 @@ get_committees(
   legis_period = 27
 )
 
-# Search with specific text and details
+# Search with specific text and extract member details
 get_committees(
   search_string = "Ibiza",
   legis_period = 27,
   institution = "NR",
-  details = TRUE
+  details_type = "members"
 )
 
 # Search only permanent committees

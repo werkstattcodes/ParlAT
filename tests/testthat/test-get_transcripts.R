@@ -229,12 +229,9 @@ test_that("get_transcripts allows for multiple legislative periods", {
   expect_true(all(unique(result_15_20$legis_period) %in% c("XX", "XV")))
   expect_true(nrow(result_15_20) == 332)
 
-  result_15_20_dupes <- janitor::get_dupes(
-    result_15_20,
-    date,
-    session_number,
-    legis_period
-  )
+  result_15_20_dupes <- result_15_20[
+    duplicated(result_15_20[, c("date", "session_number", "legis_period")]),
+  ]
   expect_true(nrow(result_15_20_dupes) == 0)
 })
 
@@ -374,7 +371,7 @@ test_that("get_transcripts accepts search_string parameter", {
   expect_true(nrow(result) == 24)
   expect_s3_class(result, "data.frame")
 
-  expect_true(nrow(janitor::get_dupes(result)) == 0)
+  expect_true(nrow(result[duplicated(result), ]) == 0)
 })
 
 test_that("get_transcripts with search_string returns fewer results", {

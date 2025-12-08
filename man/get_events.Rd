@@ -5,7 +5,6 @@
 \title{Get Event Data from Austrian Parliament API}
 \usage{
 get_events(
-  search_string = NULL,
   institution = NULL,
   event_type = NULL,
   location = NULL,
@@ -16,8 +15,6 @@ get_events(
 )
 }
 \arguments{
-\item{search_string}{Optional character string used to filter events by searching in event titles and descriptions. Default is NULL.}
-
 \item{institution}{Character vector specifying the institution(s) to query. Must be "NR" (Nationalrat/National Council), "BR" (Bundesrat/Federal Council), or "ParlDir/Klub" ("Parliamentary Directorate/Caucus"). Can be a single value or vector for multiple institutions. NULL covers all institutions.}
 
 \item{event_type}{Optional character string indicating the event type. Must be one of the predefined event types (see Details). Default is NULL (all types).}
@@ -26,9 +23,9 @@ get_events(
 
 \item{legis_period}{Character or numeric value of length 1, or NULL. Specifies the legislative period to search in. Only available if \code{date_start} and \code{date_end} are NULL.}
 
-\item{date_start}{Optional character string representing the start date. Default is NULL.}
+\item{date_start}{Optional character string representing the start date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.}
 
-\item{date_end}{Optional character string representing the end date. Default is NULL.}
+\item{date_end}{Optional character string representing the end date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.}
 
 \item{echo}{Logical indicating whether to print used search parameters, number of hits, and link to results on website of parliament. Default is TRUE.}
 }
@@ -59,10 +56,11 @@ A data frame containing event details with the following columns, or NULL if no 
 \description{
 This function retrieves event data based on search parameters from the Austrian Parliament API.
 It mirrors the search functionality on the Austrian Parliament website at
-\if{html}{\out{<a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">}}this page\if{html}{\out{</a>}}.
+\if{html}{\out{<a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">}}this page\if{html}{\out{</a>}}, and additionally
+facilitates searches by legislative period.
 }
 \details{
-\subsection{Event type}{
+\subsection{event_type}{
 
 Allowed event types are:
 \itemize{
@@ -83,7 +81,7 @@ Allowed event types are:
 }
 }
 
-\subsection{Location}{
+\subsection{location}{
 
 Allowed locations are:
 \itemize{
@@ -146,14 +144,18 @@ Allowed locations are:
 }
 }
 }
+\note{
+Free Text Search: Due to limitations of the underlying API, this function does not currently support a general free
+text search across all fields. Search functionality is restricted to the specific parameters
+provided.
+}
 \examples{
 \dontrun{
   # Basic example: Get all National Council events
   events <- get_events(institution = "NR")
 
-  # Get events with specific search term and date range
+  # Get events with specific date range
   events <- get_events(
-    search_string = "budget",
     institution = "NR",
     date_start = "01-01-2024",
     date_end = "31-01-2024"

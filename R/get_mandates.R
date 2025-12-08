@@ -73,7 +73,23 @@ get_mandates_single <- function(pad_intern) {
 #' @details
 #' ## Names: The API will always return the latest name of an MP, even if the MP had a different name at a previous point in time.
 #' See examples.
-#' @return A dataframe.
+#' @return A dataframe with the following columns:
+#' - `pad_intern`: Person's unique identification number
+#' - `name`: Name of the person
+#' - `position_text`: Full description of the position
+#' - `position_code`: Code for the position type
+#' - `position_name`: Name of the position/function
+#' - `position_date_start`: Start date of the position (Date)
+#' - `position_date_end`: End date of the position (Date, NA if currently active)
+#' - `position_active`: Logical indicating if the position is currently active
+#' - `parl_group`: Parliamentary group affiliation
+#' - `party`: Political party code
+#' - `party_name`: Full name of the political party
+#' - `substitute`: Information about substitute status
+#' - `electoral_district_region_code`: Electoral district region code
+#' - `electoral_district_region`: Electoral district region name
+#' - `legis_period`: Legislative period(s) (list-column)
+#' - `url_biography`: URL to the person's biography page
 #' @export
 #' @seealso [get_names()], [get_pad_intern()]
 #' @examples
@@ -316,7 +332,7 @@ get_pad_intern <- function(name) {
       # dplyr::rename(name = name_nvg) %>%
       dplyr::distinct(pad_intern, name) %>%
       dplyr::mutate(pad_intern = as.character(pad_intern)) %>%
-      dplyr::mutate(names_previous = map(pad_intern, \(x) get_names(x)))
+      dplyr::mutate(names_previous = purrr::map(pad_intern, \(x) get_names(x)))
 
     res <- pad_intern_mps %>%
       tidyr::unnest_longer(names_previous) %>%

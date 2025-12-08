@@ -20,25 +20,23 @@
 #' @param state State filter. See details for permissible values.
 #' @param presidents_only Logical. If TRUE, returns only presidents. Default is FALSE
 # # @param mandate_details logical. "all" or "filter" #PENDING
-#' @param echo Logical. If `TRUE`, the function prints the used search parametes and the url to the  pertaining search results on website of the Austrian Parlament.
+#' @param echo Logical. If `TRUE`, the function prints the used search parameters and the url to the  pertaining search results on website of the Austrian Parliament.
 #'
 #' @return A dataframe containing information about the MPs. One row per MP. Important: The API returns details
 #' on all MPs who e.g. have been member of Parliament during the requested legislative period. The details
 #' returned, however, are not limited to the requested period. The column `parl_group`
 #' may also contain data on the MP's membership in a parliamentary group during the requested period, but also
 #' also on his or her membership in other parliamentary groups in the past.
-# However, if the interest is in getting MP details only within the scope of filter criteria set
-# the function arugment `strict` to TRUE. #REVISE
 #'
-#'   \item{pad_intern}{Person's unique identification number}
-#'   \item{name}{Name of the MP}
-#'   \item{gender}{Gender}
-#'   \item{parl_group}{Parliamentary group; note that the groups stated comprises *all* past and present groups of which the MP has been
-#' member of}
-#'   \item{parl_group_abbrev}{Abbreviation of the parliamentary group}
-#'   \item{legis_period}{Legislative period(s)}
-#'   \item{mandate_detail}{Details on madates in Parliament}
-#'   \item{electoral_district}{Electoral district}
+#' Columns returned:
+#' - `pad_intern`: Person's unique identification number
+#' - `name`: Name of the MP
+#' - `gender`: Gender
+#' - `parl_group`: Parliamentary group; note that the groups stated comprises *all* past and present groups of which the MP has been member of
+#' - `parl_group_abbrev`: Abbreviation of the parliamentary group
+#' - `legis_period`: Legislative period(s)
+#' - `mandate_detail`: Details on mandates in Parliament
+#' - `electoral_district`: Electoral district
 #'
 #' @details
 #'
@@ -60,7 +58,7 @@
 #'   - Bundesratsfraktion der Großdeutschen Volkspartei
 #'   - Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat
 #'   - Bundesratsfraktion der SPÖ
-#'   - Bundesratsfraktion der WdUe
+#'   - Bundesratsfraktion der WdU
 #'   - Bundesratsfraktion der ÖVP
 #'   - Christlichsoziale Fraktion im Bundesrate
 #'   - Christlichsoziale Vereinigung deutscher Abgeordneter
@@ -659,7 +657,6 @@ get_mps <- function(
   ) |>
     purrr::compact() |>
     jsonlite::toJSON()
-  #print(body_params)
 
   res <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/409"
@@ -701,7 +698,7 @@ get_mps <- function(
   li_res <- res %>%
     httr2::resp_body_json() |>
     purrr::pluck("rows") %>%
-    map(., \(x) x[[8]])
+    purrr::map(., \(x) x[[8]])
 
   df_res <- li_res %>%
     purrr::map(., fn_make_tibble) %>%

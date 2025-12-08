@@ -6,16 +6,15 @@
 \title{Get items under negotiation ('Verhandlungsgegenstände')}
 \usage{
 get_items(
-  search_string = NULL,
   topic = NULL,
   institution = NULL,
   legis_period = NULL,
   date_start = NULL,
   date_end = NULL,
   item = NULL,
-  doc_type = NULL,
+  type_doc = NULL,
+  type_eu_submission = NULL,
   person = NULL,
-  number = NULL,
   keyword = NULL,
   eurovoc = NULL,
   parl_group = NULL,
@@ -24,8 +23,6 @@ get_items(
 )
 }
 \arguments{
-\item{search_string}{Character string or \code{NULL}. General search term to filter results. Default is \code{NULL}.}
-
 \item{topic}{(Thema) Character vector or \code{NULL}. Specifies the topic(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
 
 \item{institution}{Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is \code{NULL} which returns both chambers.}
@@ -36,13 +33,13 @@ get_items(
 
 \item{date_end}{Character string. End date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is \code{NULL}.}
 
-\item{item}{Character vector or \code{NULL}. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
+\item{item}{(Gegenstand) Character vector or \code{NULL}. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
 
-\item{doc_type}{Character vector or \code{NULL}. Specifies the type of parliamentary item(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
+\item{type_doc}{(Art des Antrages / Art der Anfrage) Character vector or \code{NULL}. Specifies the document type for certain item types. Permissible values depend on both \code{item} and \code{institution}. See 'Details' for possible values. Default is \code{NULL}.}
+
+\item{type_eu_submission}{(Art der EU-Vorlage) Character vector or \code{NULL}. Type(s) of EU submission to search for. Can only be specified when \code{item = "EU"}. See 'Details' for possible values. Default is \code{NULL}.}
 
 \item{person}{Character string or \code{NULL}. Name of a person to search for (family name, optionally followed by first name). Default is \code{NULL}.}
-
-\item{number}{Character string, numeric, or \code{NULL}. Specific item number to search for. Numeric input will be converted to character. Default is \code{NULL}.}
 
 \item{keyword}{Character vector or \code{NULL}. Keyword(s) to search for. Default is \code{NULL}.}
 
@@ -58,27 +55,25 @@ get_items(
 A tibble (data.frame) with one row per parliamentary item matching the search.
 The returned object contains the most commonly used columns (some are optional
 or returned as list-columns for multi-valued fields):
-\itemize{
-\item legis_period (character): legislative period (e.g. "XXVIII").
-\item institution (character): chamber code, typically "NR" (Nationalrat) or "BR" (Bundesrat).
-\item date (Date): date of the item (class Date).
-\item item_type (character): short item type code.
-\item item_number (character): numeric identifier of the item (stored as character).
-\item item_number_type (character): combined number/type string (e.g. "46/M").
-\item stage (character/integer): current stage code of the item.
-\item item_url (character): normalized URL pointing to the item on parlament.gv.at.
-\item doc_type (character): short document type code (when applicable).
-\item doc_type_long (character): human readable document type (when available).
-\item subject (character): subject / title of the item.
-\item topics (list): list-column; each element is a character vector of topics.
-\item keywords (list): list-column of keywords (Schlagwort).
-\item eurovoc (list): list-column of EuroVoc terms.
-\item persons (list): list-column of person identifiers (pad_intern) related to the item.
-\item parl_group (list): list-column of parliamentary group codes associated with the item.
-}
 
-The function returns a tibble (invisible) on success. If no matching rows are found
-the function returns NULL and emits a message "No results found for the provided search criteria."
+-\code{ legis_period} (character): legislative period (e.g. "XXVIII").
+\itemize{
+\item \code{institution} (character): chamber code, typically "NR" (Nationalrat) or "BR" (Bundesrat).
+\item \code{date} (Date): date of the item (class Date).
+\item \code{item_type} (character): short item type code.
+\item \code{item_number} (character): numeric identifier of the item (stored as character).
+\item \code{item_number_type} (character): combined number/type string (e.g. "46/M").
+\item \code{stage} (character/integer): current stage code of the item.
+\item \code{item_url} (character): normalized URL pointing to the item on parlament.gv.at.
+\item \code{type_doc} (character): short document type code (when applicable).
+\item \code{type_doc_long} (character): human readable document type (when available).
+\item \code{subject} (character): subject / title of the item.
+\item \code{topics} (list): list-column; each element is a character vector of topics.
+\item \code{keywords} (list): list-column of keywords (Schlagwort).
+\item \code{eurovoc} (list): list-column of EuroVoc terms.
+\item \code{persons} (list): list-column of person identifiers (pad_intern) related to the item.
+\item \code{parl_group} (list): list-column of parliamentary group codes associated with the item.
+}
 }
 \description{
 \code{get_items} searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
@@ -86,7 +81,7 @@ in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundes
 mirrors the search functionality offered on the Austrian Parliament's website (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">}}here\if{html}{\out{</a>}}).
 }
 \details{
-\subsection{Topic (Thema)}{
+\subsection{topic (Thema)}{
 
 NULL, one, or multiple topics permissible.
 Possible values for \code{topic} are:
@@ -118,7 +113,7 @@ Possible values for \code{topic} are:
 
 \code{legis_period} specifies the legislative period(s). Can be one or more of the following value(s):
 \itemize{
-\item numbers indicating the relevant period(s),
+\item number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV",
 \item "PN" (Provisorische Nationalversammlung, Provisional National Assembly, 1918-1919),
 \item and/or "KN" (Konstituierende Nationalversammlung, Constituent National Assembly, 1919-1920).
 }
@@ -158,11 +153,14 @@ Possible values for \code{item} include:
 }
 }
 
-\subsection{doc_type (Art des Antrages)}{
+\subsection{type_doc (Art)}{
 
-If item is "ANTR", the permissible values for doc_type depend on the
-institution of interest.
-Possible values for \code{doc_type} if institution=="NR" ('National Council'):
+The \code{type_doc} parameter specifies different document types depending on the \code{item} parameter value.
+\subsection{For \code{item = "ANTR"} (Motions, Anträge)}{
+
+Possible values for \code{type_doc} depend on the institution.
+
+National Council (\code{institution = "NR"}):
 \itemize{
 \item "A" (Selbständiger Antrag, Independent Motion)
 \item "A(E)" (Selbständiger Entschließungsantrag, Independent Resolution Motion)
@@ -177,7 +175,7 @@ Possible values for \code{doc_type} if institution=="NR" ('National Council'):
 \item "URH2" (Verlangen auf Gebarungsüberprüfung durch den Ständigen UA des Rechnungshofausschusses, Request for Audit by the Standing Subcommittee of the Court of Audit Committee)
 }
 
-Possible values for \code{doc_type} if institution=="BR" ('Federal Council'):
+Federal Council (\code{institution = "BR"}):
 \itemize{
 \item "AA-BR" (Abänderungsanträge, Amendment Motions)
 \item "A-BR" (Selbständiger Antrag Bundesrat, Independent Motion Federal Council)
@@ -185,83 +183,294 @@ Possible values for \code{doc_type} if institution=="BR" ('Federal Council'):
 \item "AEA-BR" (Selbständiger Entschließungsantrag von Ausschüssen, Independent Committee Resolution Motion Federal Council)
 \item "UEA-BR" (Unselbständige Anträge)
 }
+}
 
-Possible values for \code{doc_type} if \emph{item=="BNR"}:
+\subsection{For \code{item = "J_JPR_M"} (Questions, Anfragen)}{
+
+Possible values for \code{type_doc} depend on the institution.
+
+National Council (\code{institution = "NR"}):
+\itemize{
+\item "J" (Mündliche Anfragen, Oral Questions)
+\item "JPR" (Schriftliche Anfragen an die Bundesregierung, Written Questions to Federal Government)
+\item "M" (Schriftliche Anfragen an Präsidenten des Bundesrates, Written Questions to Presidents of Federal Council)
+}
+
+Federal Council (\code{institution = "BR"}):
+\itemize{
+\item "M-BR" (Mündliche Anfragen, Oral Questions)
+\item "JMIN-BR" (Schriftliche Anfragen an die Bundesregierung, Written Questions to Federal Government)
+\item "JPRPR-BR" (Schriftliche Anfragen an Präsidenten des Bundesrates, Written Questions to Presidents of Federal Council)
+}
+}
+
+\subsection{For \code{item = "BNR"} (Resolutions, Beschlüsse)}{
+
+National Council (\code{institution = "NR"}):
 \itemize{
 \item "BNR" (Beschluss, Resolution)
 \item "BS" (Sonstiger Beschluss, Other Resolution)
 \item "BSE" (Beschluss-EU, EU Resolution)
 \item "BSESM" (Beschluss-ESM, ESM Resolution)
-\item "BS-BR" (Sonstiger Beschluss, Other Resolution (only if institution=="Bundesrat"))
+}
+
+Federal Council (\code{institution = "BR"}):
+\itemize{
+\item "BNR" (Beschluss, Resolution)
+\item "BS-BR" (Sonstiger Beschluss, Other Resolution)
 }
 }
 
-\subsection{EuroVoc}{
+}
+
+\subsection{type_eu_submission (Art der EU-Vorlage)}{
+
+The \code{type_eu_submission} parameter allows filtering for specific types of EU-related submissions.
+Different codes are available depending on the institution.
+\subsection{National Council Codes (institution = "NR")}{
+
+These codes can only be used when \code{item = "EU"} AND \code{institution = "NR"}:
+\itemize{
+\item "BEU" (Berichte der Bundesregierung zu EU-Themen, Federal Government Reports on EU Topics)
+\item "EUBTG" (Berichte über Sitzungen von EU-Gremien, Reports on EU Committee Meetings)
+\item "JMINEU" (Dokumentenanfrage betr. EU an die Bundesregierung, Document Requests to Federal Government Regarding EU)
+\item "ABMINEU" (Dokumentenanfragebeantwortungen durch die Bundesregierung, Document Request Responses by Federal Government)
+\item "MTEU" (Mitteilungen des EU-Unterausschusses, Communications from EU Subcommittee)
+\item "EUD" (Politischer Dialog, Political Dialogue)
+\item "RGEU" (Regierungserklärungen zu EU-Themen, Government Statements on EU Topics)
+\item "SINF" (Schriftliche Informationen gem. § 6 EU-InfoG, Written Information According to § 6 EU Information Act)
+\item "S" (Stellungnahmen des Hauptausschusses, Opinions of the Main Committee)
+\item "SEU" (Stellungnahmen des UA des Hauptausschusses (EU), Opinions of the Main Committee Subcommittee (EU))
+\item "RVEU" (Vorlagen ü. Initiativen und Beschlüsse EU, Submissions on EU Initiatives and Resolutions)
+}
+}
+
+\subsection{Federal Council Codes (institution = "BR")}{
+
+These codes can only be used when \code{item = "EU"} AND \code{institution = "BR"}:
+\itemize{
+\item "AFEU-BR" (Ausschussfeststellungen, Committee Findings)
+\item "SBPL-BR" (Begründete Stellungnahmen des Bundesrates, Reasoned Opinions of the Federal Council)
+\item "SB-BR" (Begründete Stellungnahmen des EU-BR, Reasoned Opinions of the EU Federal Council). Note: Details on parlamentary procedures only available from 24th legis period onwards, see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/begruendete-stellungnahmen-eu-ausschuss-br/index.html" target="_blank">}}here\if{html}{\out{</a>}}
+\item "BEU-BR" (Berichte der Bundesregierung zu EU-Themen, Federal Government Reports on EU Topics)
+\item "MEU-BR" (EU-Vorblätter und Dossiers BR, EU Cover Sheets and Dossiers BR)
+\item "ADEU-BR" (IV der Beilagen, Addendum/Supplement IV)
+\item "MT-BR" (Mitteilungen des EU-BR, Communications from EU Federal Council). Note: Details on parlamentary procedures only available from 24th legis period onwards, see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/stellungnahmen-eu-ausschuss-br/index.html" target="_blank">}}here\if{html}{\out{</a>}}
+\item "EUD-BR" (Politischer Dialog BR, Political Dialogue BR)
+\item "SINF-BR" (Schriftliche Informationen BR gem. § 6 EU-InfoG BR, Written Information Federal Council According to § 6 EU Information Act)
+\item "SLT-BR" (Stellungnahmen der Landtage, Opinions of State Parliaments)
+\item "S-BR" (Stellungnahmen des EU-Ausschusses, Opinions of the EU Committee). Note: Details on parlamentary procedures only available from 24th legis period onwards, see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/stellungnahmen-eu-ausschuss-br/index.html" target="_blank">}}here\if{html}{\out{</a>}}
+}
+}
+
+}
+
+\subsection{eurovoc}{
 
 EuroVoc is an international thesaurus developed primarily for use within the EU. It enables searches
 using standardized keywords across Europe. The EuroVoc search is supported for all negotiation items
 from the 20th legislative period onwards.
 }
 
-\subsection{Keywords (Schlagwort)}{
+\subsection{keyword (Schlagwort)}{
 
 Possible values for \code{keyword} include:
 \itemize{
-\item "Abfallwirtschaft", "Abgeordnete", "Abstimmungen, geheime", "Abstimmungen, namentliche"
-\item "Abstimmungsangelegenheiten", "Abweichende persönliche Stellungnahmen", "Aktuelle Europastunden"
-\item "Aktuelle Stunden", "Anfragebeantwortungen, Besprechung von", "Anfragen, Dringliche"
-\item "Anträge, Dringliche", "Apotheken", "Arbeiterkammern", "Arbeitsinspektion", "Arbeitsmarkt"
-\item "Arbeitsrecht I. österreichisches", "Arbeitsrecht II. internationales", "Archive", "Atomenergie"
-\item "Außenpolitik", "Ausländer", "Ausschüsse des Nationalrates", "Bauwesen", "Bergbau"
-\item "Betriebsräte", "Bibliotheken", "Bildungswesen I. Pflichtschulen", "Bildungswesen II. Mittlere Schulen"
-\item "Bildungswesen III. Höhere Schulen", "Bildungswesen IV. Universitäten und Hochschulen"
-\item "Bildungswesen V. Minderheitenschulwesen", "Bildungswesen VI. Schülerbeihilfen und Studienförderung"
-\item "Bildungswesen VII. Erwachsenenbildung", "Bildungswesen VIII. Sonstiges", "Bundesforste"
-\item "Bundesgesetzblatt", "Bundeshaushalt I. Bundesfinanzgesetze", "Bundeshaushalt II. Budgetüberschreitungen"
-\item "Bundeshaushalt III. Sonstiges", "Bundesländer", "Bundespräsident:in"
-\item "Bundesregierung I. Ernennungen, Enthebungen und Ableben", "Bundesregierung II. Regierungserklärungen"
-\item "Bundesregierung III. Sonstiges", "Bundesverfassung", "Bundesvermögen", "Bundeswappen"
-\item "Bürgerinitiativen", "Debattenanträge bzw. -verlangen", "Ehrenzeichen und Medaillen"
-\item "Einsprüche des Bundesrates", "Einspruchsfrist des Bundesrates", "Elektrizität", "Elementarpädagogik"
-\item "Energiewirtschaft", "Entwicklungszusammenarbeit", "Erklärungen Präsident/Präsidentin"
-\item "Erste Lesungen", "Erste Lesungen, Anträge/Verlangen", "Europäische Integration", "Europarat"
-\item "Familienlastenausgleich", "Familienpolitik", "Film", "Finanzausgleich", "Flüchtlinge"
-\item "Fragestunden", "Frauen und Gleichbehandlung", "Fremdenverkehr", "Fristsetzungen"
-\item "Geschäftsordnung des Nationalrates", "Gesundheit", "Glücksspiel", "Grenzen"
-\item "Handel, Gewerbe und Industrie", "II. Einberufung und Beendigung der Tagungen"
-\item "III. Präsidenten, Schriftführer und Ordner", "III. Sonstiges", "Immunität"
-\item "Information und Informationsverarbeitung", "Internet", "IV. Ansprachen Präsident/Präsidentin"
-\item "Jagd und Fischerei", "Jugend", "Kommuniques", "Kreditwesen", "Kunst und Kultur"
-\item "Land- und Forstwirtschaft", "Landesverteidigung", "Lebensmittel", "Löhne und Gehälter"
-\item "Maße und Gewichte", "Menschen mit Behinderung", "Menschenrechte", "Minderheitsberichte"
-\item "Misstrauensanträge", "Museen", "Nationalfeiertag", "Neutralität", "Öffentliche Unternehmen"
-\item "Öffentlicher Dienst", "Opferfürsorge und Opferschutz", "Ordnungsrufe", "Pässe und Ausweise"
-\item "Pensionssystem", "Personenstandsrecht", "Petitionen", "Pflege und Betreuung"
-\item "Politische Parteien", "Postwesen", "Preise", "Presse", "Prüfungsaufträge Rechnungshof"
-\item "Prüfungsaufträge Rechnungshofausschuss", "Raumordnung", "Rechnungshof", "Rechtsanwälte und Notare"
-\item "Rechtsbereinigung", "Rechtspflege", "Redezeitbeschränkungen", "Religion", "Rückverweisungen"
-\item "Rundfunk und Fernsehen", "Sicherheitswesen", "Sitzungsunterbrechung", "Sondersitzungen"
-\item "Sonstige Geschäftsordnungsangelegenheiten", "Sozialpolitik", "Sozialversicherung I. Allgemeine Sozialversicherung"
-\item "Sozialversicherung II. Gewerbliche Sozialversicherung", "Sozialversicherung III. Landwirtschaftliche Sozialversicherung"
-\item "Sozialversicherung IV. Kriegsopferversorgung", "Sozialversicherung V. Arbeitslosenversicherung"
-\item "Sozialversicherung VI. Sonstiges", "Sport", "Staatsbürger:in", "Staatsverträge", "Statistik"
-\item "Steuern und Gebühren", "Strafrecht", "Straßen- und Brückenbau", "Südtirol", "Tabak"
-\item "Tagesordnung", "Telekommunikation", "Theater", "Trauerkundgebungen", "Umweltschutz"
-\item "Untersuchungsausschüsse", "Unvereinbarkeit", "V. Sonstiges", "Vereinbarungen"
-\item "Vereins- und Versammlungsrecht", "Vereinte Nationen", "Verfassungs- und Verwaltungsgerichtsbarkeit"
-\item "Verkehr I. Straßenverkehr", "Verkehr II. Schienenverkehr", "Verkehr III. Luftfahrt"
-\item "Verkehr IV. Schifffahrt", "Verkehr V. Sonstiges", "Verkürztes Verfahren", "Vermessung"
-\item "Vermögenssicherung", "Vertragsversicherungen", "Verwaltungsorganisation", "Verwaltungsverfahren"
-\item "Veterinärwesen und Tierschutz", "Völkerrecht", "Völkerrechtliche Vertretungen", "Volksabstimmung"
-\item "Volksanwaltschaft", "Volksbefragung", "Volksbegehren", "Volksgruppen", "Volkszählung"
-\item "Wahlen", "Währung", "Wasserbauten", "Wasserrecht", "Wasserwirtschaft", "Weinwirtschaft"
-\item "Wirtschaftspolitik", "Wirtschaftstreuhänder:in", "Wissenschaft und Forschung", "Wohnungswesen"
-\item "Wortentziehung", "Wortmeldungen zur Geschäftsbehandlung", "Zivildienst", "Zivilrecht"
-\item "Zivilschutz", "Zollwesen"
+\item "Abfallwirtschaft"
+\item "Abgeordnete"
+\item "Abstimmungen, geheime"
+\item "Abstimmungen, namentliche"
+\item "Abstimmungsangelegenheiten"
+\item "Abweichende persönliche Stellungnahmen"
+\item "Aktuelle Europastunden"
+\item "Aktuelle Stunden"
+\item "Anfragebeantwortungen, Besprechung von"
+\item "Anfragen, Dringliche"
+\item "Anträge, Dringliche"
+\item "Apotheken"
+\item "Arbeiterkammern"
+\item "Arbeitsinspektion"
+\item "Arbeitsmarkt"
+\item "Arbeitsrecht I. österreichisches"
+\item "Arbeitsrecht II. internationales"
+\item "Archive"
+\item "Atomenergie"
+\item "Außenpolitik"
+\item "Ausländer"
+\item "Ausschüsse des Nationalrates"
+\item "Bauwesen"
+\item "Bergbau"
+\item "Betriebsräte"
+\item "Bibliotheken"
+\item "Bildungswesen I. Pflichtschulen"
+\item "Bildungswesen II. Mittlere Schulen"
+\item "Bildungswesen III. Höhere Schulen"
+\item "Bildungswesen IV. Universitäten und Hochschulen"
+\item "Bildungswesen V. Minderheitenschulwesen"
+\item "Bildungswesen VI. Schülerbeihilfen und Studienförderung"
+\item "Bildungswesen VII. Erwachsenenbildung"
+\item "Bildungswesen VIII. Sonstiges"
+\item "Bundesforste"
+\item "Bundesgesetzblatt"
+\item "Bundeshaushalt I. Bundesfinanzgesetze"
+\item "Bundeshaushalt II. Budgetüberschreitungen"
+\item "Bundeshaushalt III. Sonstiges"
+\item "Bundesländer"
+\item "Bundespräsident:in"
+\item "Bundesregierung I. Ernennungen, Enthebungen und Ableben"
+\item "Bundesregierung II. Regierungserklärungen"
+\item "Bundesregierung III. Sonstiges"
+\item "Bundesverfassung"
+\item "Bundesvermögen"
+\item "Bundeswappen"
+\item "Bürgerinitiativen"
+\item "Debattenanträge bzw. -verlangen"
+\item "Ehrenzeichen und Medaillen"
+\item "Einsprüche des Bundesrates"
+\item "Einspruchsfrist des Bundesrates"
+\item "Elektrizität"
+\item "Elementarpädagogik"
+\item "Energiewirtschaft"
+\item "Entwicklungszusammenarbeit"
+\item "Erklärungen Präsident/Präsidentin"
+\item "Erste Lesungen"
+\item "Erste Lesungen, Anträge/Verlangen"
+\item "Europäische Integration"
+\item "Europarat"
+\item "Familienlastenausgleich"
+\item "Familienpolitik"
+\item "Film"
+\item "Finanzausgleich"
+\item "Flüchtlinge"
+\item "Fragestunden"
+\item "Frauen und Gleichbehandlung"
+\item "Fremdenverkehr"
+\item "Fristsetzungen"
+\item "Geschäftsordnung des Nationalrates"
+\item "Gesundheit"
+\item "Glücksspiel"
+\item "Grenzen"
+\item "Handel, Gewerbe und Industrie"
+\item "II. Einberufung und Beendigung der Tagungen"
+\item "III. Präsidenten, Schriftführer und Ordner"
+\item "III. Sonstiges"
+\item "Immunität"
+\item "Information und Informationsverarbeitung"
+\item "Internet"
+\item "IV. Ansprachen Präsident/Präsidentin"
+\item "Jagd und Fischerei"
+\item "Jugend"
+\item "Kommuniques"
+\item "Kreditwesen"
+\item "Kunst und Kultur"
+\item "Land- und Forstwirtschaft"
+\item "Landesverteidigung"
+\item "Lebensmittel"
+\item "Löhne und Gehälter"
+\item "Maße und Gewichte"
+\item "Menschen mit Behinderung"
+\item "Menschenrechte"
+\item "Minderheitsberichte"
+\item "Misstrauensanträge"
+\item "Museen"
+\item "Nationalfeiertag"
+\item "Neutralität"
+\item "Öffentliche Unternehmen"
+\item "Öffentlicher Dienst"
+\item "Opferfürsorge und Opferschutz"
+\item "Ordnungsrufe"
+\item "Pässe und Ausweise"
+\item "Pensionssystem"
+\item "Personenstandsrecht"
+\item "Petitionen"
+\item "Pflege und Betreuung"
+\item "Politische Parteien"
+\item "Postwesen"
+\item "Preise"
+\item "Presse"
+\item "Prüfungsaufträge Rechnungshof"
+\item "Prüfungsaufträge Rechnungshofausschuss"
+\item "Raumordnung"
+\item "Rechnungshof"
+\item "Rechtsanwälte und Notare"
+\item "Rechtsbereinigung"
+\item "Rechtspflege"
+\item "Redezeitbeschränkungen"
+\item "Religion"
+\item "Rückverweisungen"
+\item "Rundfunk und Fernsehen"
+\item "Sicherheitswesen"
+\item "Sitzungsunterbrechung"
+\item "Sondersitzungen"
+\item "Sonstige Geschäftsordnungsangelegenheiten"
+\item "Sozialpolitik"
+\item "Sozialversicherung I. Allgemeine Sozialversicherung"
+\item "Sozialversicherung II. Gewerbliche Sozialversicherung"
+\item "Sozialversicherung III. Landwirtschaftliche Sozialversicherung"
+\item "Sozialversicherung IV. Kriegsopferversorgung"
+\item "Sozialversicherung V. Arbeitslosenversicherung"
+\item "Sozialversicherung VI. Sonstiges"
+\item "Sport"
+\item "Staatsbürger:in"
+\item "Staatsverträge"
+\item "Statistik"
+\item "Steuern und Gebühren"
+\item "Strafrecht"
+\item "Straßen- und Brückenbau"
+\item "Südtirol"
+\item "Tabak"
+\item "Tagesordnung"
+\item "Telekommunikation"
+\item "Theater"
+\item "Trauerkundgebungen"
+\item "Umweltschutz"
+\item "Untersuchungsausschüsse"
+\item "Unvereinbarkeit"
+\item "V. Sonstiges"
+\item "Vereinbarungen"
+\item "Vereins- und Versammlungsrecht"
+\item "Vereinte Nationen"
+\item "Verfassungs- und Verwaltungsgerichtsbarkeit"
+\item "Verkehr I. Straßenverkehr"
+\item "Verkehr II. Schienenverkehr"
+\item "Verkehr III. Luftfahrt"
+\item "Verkehr IV. Schifffahrt"
+\item "Verkehr V. Sonstiges"
+\item "Verkürztes Verfahren"
+\item "Vermessung"
+\item "Vermögenssicherung"
+\item "Vertragsversicherungen"
+\item "Verwaltungsorganisation"
+\item "Verwaltungsverfahren"
+\item "Veterinärwesen und Tierschutz"
+\item "Völkerrecht"
+\item "Völkerrechtliche Vertretungen"
+\item "Volksabstimmung"
+\item "Volksanwaltschaft"
+\item "Volksbefragung"
+\item "Volksbegehren"
+\item "Volksgruppen"
+\item "Volkszählung"
+\item "Wahlen"
+\item "Währung"
+\item "Wasserbauten"
+\item "Wasserrecht"
+\item "Wasserwirtschaft"
+\item "Weinwirtschaft"
+\item "Wirtschaftspolitik"
+\item "Wirtschaftstreuhänder:in"
+\item "Wissenschaft und Forschung"
+\item "Wohnungswesen"
+\item "Wortentziehung"
+\item "Wortmeldungen zur Geschäftsbehandlung"
+\item "Zivildienst"
+\item "Zivilrecht"
+\item "Zivilschutz"
+\item "Zollwesen"
 }
 }
 
-\subsection{Parliamentary Group (Klub/Fraktion)}{
+\subsection{parl_group (Parliamentary Group, Klub/Fraktion)}{
 
 \code{parl_group} specifies the parliamentary group(s) to search for. The API of the Austrian Parliament accepts only specific abbreviations for each group:
 \itemize{
@@ -306,6 +515,12 @@ has featured different abbreviations for their parliamentary group: "FPÖ", "F",
 \code{parl_group_names_standard = TRUE}, an input of "F" (or any other variant) will return
 the results for all three abbreviations.
 }
+}
+\note{
+\subsection{Free Text Search}{
+
+Due to limitations of the underlying API, this function does not currently support a general free text search across all fields. Search functionality is restricted to the specific parameters provided (e.g., \code{keyword}, \code{topic}, \code{person}).
+}
 
 \subsection{API Result Limits}{
 
@@ -330,9 +545,6 @@ all_results <- periods |>
 }\if{html}{\out{</div>}}
 }
 }
-\note{
-Date columns are parsed into Date using lubridate::dmy().
-}
 \examples{
 \dontrun{
 # Search for EU-related items in the 28th legislative period
@@ -356,7 +568,7 @@ get_items(
 # Search for written questions with keyword
 get_items(
   item = "J_JPR_M",
-  keyword = "Klimaschutz",
+  keyword = "Flüchtlinge",
   institution = "NR"
 )
 
@@ -374,6 +586,23 @@ get_items(
   legis_period = 27,
   institution = "NR"
 )
+
+# Get all positions of the Hauptausschuss on EU related matters in the 27th legislative period
+get_items(
+  legis_period = 27,
+  item = "EU",
+  type_eu_submission = "S",
+  institution = "NR"
+)
+
+# Get all statements of the sub-committee on EU affairs (EU-Unterausschuss) during the 27th legislative period.
+get_items(
+  item = "EU",
+  type_eu_submission = "MTEU",
+  legis_period = 27,
+  institution = "NR"
+)
+
 }
 }
 \seealso{

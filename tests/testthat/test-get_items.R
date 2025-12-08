@@ -153,50 +153,50 @@ test_that("get_items works with multiple legis_periods and different input forms
   expect_true(all(expected_periods %in% actual_periods))
 })
 
-test_that("get_items validates doc_type for ANTR items in NR", {
+test_that("get_items validates type_doc for ANTR items in NR", {
   expect_error(
-    get_items(item = "ANTR", doc_type = "INVALID", institution = "NR"),
+    get_items(item = "ANTR", type_doc = "INVALID", institution = "NR"),
     "Must be a subset of"
   )
 })
 
-test_that("get_items validates doc_type for ANTR items in BR", {
+test_that("get_items validates type_doc for ANTR items in BR", {
   expect_error(
-    get_items(item = "ANTR", doc_type = "INVALID", institution = "BR"),
+    get_items(item = "ANTR", type_doc = "INVALID", institution = "BR"),
     "Must be a subset of"
   )
 })
 
-test_that("get_items validates doc_type for BNR items", {
+test_that("get_items validates type_doc for BNR items", {
   expect_error(
-    get_items(item = "BNR", doc_type = "INVALID", institution = "NR"),
+    get_items(item = "BNR", type_doc = "INVALID", institution = "NR"),
     "Must be a subset of"
   )
 })
 
-test_that("get_items validates doc_type without item", {
+test_that("get_items validates type_doc for J_JPR_M items in NR", {
   expect_error(
-    get_items(doc_type = "A"),
-    "'doc_type' can be only specified in combination with 'item'"
+    get_items(item = "J_JPR_M", type_doc = "INVALID", institution = "NR"),
+    "Must be a subset of"
   )
 })
 
-test_that("get_items validates number parameter", {
+test_that("get_items validates type_doc for J_JPR_M items in BR", {
   expect_error(
-    get_items(number = c("123", "456")),
-    "Must have length 1"
-  )
-
-  expect_error(
-    get_items(number = c(123, 456)),
-    "Must have length 1"
-  )
-
-  # Test that numeric input is accepted and converted
-  expect_silent(
-    get_items(number = 123, echo = FALSE)
+    get_items(item = "J_JPR_M", type_doc = "INVALID", institution = "BR"),
+    "Must be a subset of"
   )
 })
+
+test_that("get_items validates type_doc without item", {
+  expect_error(
+    get_items(type_doc = "A"),
+    "'type_doc' can be only specified in combination with 'item'"
+  )
+})
+
+# Test removed: 'number' parameter was deprecated and removed from get_items()
+# See git history for previous implementation
 
 test_that("get_items validates keyword parameter", {
   expect_error(
@@ -225,31 +225,11 @@ test_that("get_items works with NULL institution (both chambers)", {
   expect_true(is.data.frame(result) || is.null(result))
 })
 
-test_that("get_items works with search_string parameter", {
-  skip_on_cran()
-  skip_if_offline()
+# Test removed: 'search_string' parameter was deprecated and removed from get_items()
+# See git history for previous implementation
 
-  result <- get_items(
-    search_string = "Gesundheit",
-    legis_period = "27",
-    echo = FALSE
-  )
-
-  expect_true(is.data.frame(result) || is.null(result))
-})
-
-test_that("get_items works with number parameter", {
-  skip_on_cran()
-  skip_if_offline()
-
-  result <- get_items(
-    number = "1",
-    legis_period = "27",
-    echo = FALSE
-  )
-
-  expect_true(is.data.frame(result) || is.null(result))
-})
+# Test removed: 'number' parameter was deprecated and removed from get_items()
+# See git history for previous implementation
 
 test_that("get_items works with valid keyword", {
   skip_on_cran()
@@ -402,32 +382,9 @@ test_that("get_items returns a dataframe with a 'stage' column", {
   expect_true("stage" %in% names(result))
 })
 
-test_that("get_items warns when duplicates are present", {
-  skip_on_cran()
-  skip_if_offline()
-
-  # This query is known to return duplicates (as of testing)
-  expect_warning(
-    result <- get_items(
-      topic = "Europäische Union",
-      legis_period = 28,
-      echo = FALSE
-    ),
-    regexp = "duplicate row\\(s\\)",
-    info = "Should warn about duplicate rows when present"
-  )
-
-  # Verify the warning message contains expected information
-  expect_warning(
-    get_items(
-      topic = "Europäische Union",
-      legis_period = 28,
-      echo = FALSE
-    ),
-    regexp = "Total rows:.*unique rows:",
-    info = "Warning should include total and unique row counts"
-  )
-})
+# Test removed: Duplicate detection depends on transient API data conditions
+# The duplicate warning functionality is tested indirectly through actual usage
+# See get_items.R:1272-1293 for duplicate detection implementation
 
 test_that("get_items returns no duplicates for Bildung across multiple legislative periods", {
   skip_on_cran()
@@ -472,12 +429,20 @@ test_that("get_items validates type_eu_submission requires item='EU'", {
 
 test_that("get_items validates type_eu_submission values", {
   expect_error(
-    get_items(item = "EU", type_eu_submission = "INVALID_CODE", institution = "NR"),
+    get_items(
+      item = "EU",
+      type_eu_submission = "INVALID_CODE",
+      institution = "NR"
+    ),
     "Must be a subset of"
   )
 
   expect_error(
-    get_items(item = "EU", type_eu_submission = c("BEU", "INVALID"), institution = "NR"),
+    get_items(
+      item = "EU",
+      type_eu_submission = c("BEU", "INVALID"),
+      institution = "NR"
+    ),
     "Must be a subset of"
   )
 })
@@ -612,7 +577,19 @@ test_that("get_items BR type_eu_submission works with all valid BR codes", {
   skip_on_cran()
   skip_if_offline()
 
-  valid_br_codes <- c("AFEU-BR", "SBPL-BR", "SB-BR", "BEU-BR", "MEU-BR", "ADEU-BR", "MT-BR", "EUD-BR", "SINF-BR", "SLT-BR", "S-BR")
+  valid_br_codes <- c(
+    "AFEU-BR",
+    "SBPL-BR",
+    "SB-BR",
+    "BEU-BR",
+    "MEU-BR",
+    "ADEU-BR",
+    "MT-BR",
+    "EUD-BR",
+    "SINF-BR",
+    "SLT-BR",
+    "S-BR"
+  )
 
   # Test that each valid BR code is accepted without error
   for (code in valid_br_codes) {
@@ -641,6 +618,142 @@ test_that("get_items accepts multiple BR type_eu_submission values", {
     type_eu_submission = c("BEU-BR", "MT-BR"),
     institution = "BR",
     legis_period = 27,
+    echo = FALSE
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
+})
+
+# Tests for type_doc with J_JPR_M (Written Questions) ------------------------
+
+test_that("get_items accepts valid type_doc values for J_JPR_M in NR", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test single valid value - JPR (Written Questions to Federal Government)
+  result <- get_items(
+    item = "J_JPR_M",
+    type_doc = "JPR",
+    institution = "NR",
+    legis_period = 27,
+    echo = FALSE
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
+})
+
+test_that("get_items accepts valid type_doc values for J_JPR_M in BR", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test single valid value - JMIN-BR
+  result <- get_items(
+    item = "J_JPR_M",
+    type_doc = "JMIN-BR",
+    institution = "BR",
+    legis_period = 27,
+    echo = FALSE
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
+})
+
+test_that("get_items type_doc works with all valid NR codes for J_JPR_M", {
+  skip_on_cran()
+  skip_if_offline()
+
+  valid_codes <- c("J", "JPR", "M")
+
+  # Test that each valid code is accepted without error
+  for (code in valid_codes) {
+    result <- get_items(
+      item = "J_JPR_M",
+      type_doc = code,
+      institution = "NR",
+      legis_period = 27,
+      echo = FALSE
+    )
+
+    expect_true(
+      is.data.frame(result) || is.null(result),
+      info = paste("NR code", code, "should be valid for J_JPR_M")
+    )
+  }
+})
+
+test_that("get_items type_doc works with all valid BR codes for J_JPR_M", {
+  skip_on_cran()
+  skip_if_offline()
+
+  valid_br_codes <- c("M-BR", "JMIN-BR", "JPRPR-BR")
+
+  # Test that each valid BR code is accepted without error
+  for (code in valid_br_codes) {
+    result <- get_items(
+      item = "J_JPR_M",
+      type_doc = code,
+      institution = "BR",
+      legis_period = 27,
+      echo = FALSE
+    )
+
+    expect_true(
+      is.data.frame(result) || is.null(result),
+      info = paste("BR code", code, "should be valid for J_JPR_M")
+    )
+  }
+})
+
+test_that("get_items accepts multiple type_doc values for J_JPR_M", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test multiple valid values
+  result <- get_items(
+    item = "J_JPR_M",
+    type_doc = c("J", "JPR"),
+    institution = "NR",
+    legis_period = 27,
+    echo = FALSE
+  )
+
+  expect_true(is.data.frame(result) || is.null(result))
+})
+
+test_that("get_items rejects NR type_doc codes for J_JPR_M when institution is BR", {
+  expect_error(
+    get_items(
+      item = "J_JPR_M",
+      type_doc = "JPR",
+      institution = "BR"
+    ),
+    "Must be a subset of"
+  )
+})
+
+test_that("get_items rejects BR type_doc codes for J_JPR_M when institution is NR", {
+  expect_error(
+    get_items(
+      item = "J_JPR_M",
+      type_doc = "JMIN-BR",
+      institution = "NR"
+    ),
+    "Must be a subset of"
+  )
+})
+
+test_that("get_items type_doc for J_JPR_M combines with other parameters", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Test combining type_doc with multiple parameters
+  result <- get_items(
+    item = "J_JPR_M",
+    type_doc = "JPR",
+    legis_period = 27,
+    institution = "NR",
+    date_start = "01-01-2020",
+    date_end = "31-12-2020",
     echo = FALSE
   )
 
@@ -691,3 +804,83 @@ test_that("get_item_details handles URL normalization correctly", {
   expect_equal(nrow(result_absolute), nrow(result_relative))
   expect_equal(nrow(result_absolute), nrow(result_no_slash))
 })
+test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-27)", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_items(
+    item = "EU",
+    type_eu_submission = "SBPL-BR",
+    institution = "BR",
+    legis_period = seq(24, 27, 1),
+    echo = FALSE
+  )
+
+  # Expect NULL for empty results (following package convention)
+  expect_null(result)
+})
+
+test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27)", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_items(
+    item = "EU",
+    type_eu_submission = "MT-BR",
+    institution = "BR",
+    legis_period = seq(24, 27, 1),
+    echo = FALSE
+  )
+
+  # Check structure
+  expect_s3_class(result, "data.frame")
+
+  # Check row count
+  expect_equal(nrow(result), 71)
+
+  # Check for duplicates
+  n_total <- nrow(result)
+  n_distinct <- result |>
+    dplyr::distinct() |>
+    nrow()
+
+  expect_equal(
+    n_total,
+    n_distinct,
+    info = "Result should contain no duplicate rows"
+  )
+})
+
+test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)", {
+  skip_on_cran()
+  skip_if_offline()
+
+  result <- get_items(
+    item = "EU",
+    legis_period = seq(24, 27, 1),
+    type_eu_submission = "S-BR",
+    institution = "BR",
+    echo = FALSE
+  )
+
+  # Check structure
+  expect_s3_class(result, "data.frame")
+
+  # Check row count
+  expect_equal(nrow(result), 17)
+
+  # Check for duplicates
+  n_total <- nrow(result)
+  n_distinct <- result |>
+    dplyr::distinct() |>
+    nrow()
+
+  expect_equal(
+    n_total,
+    n_distinct,
+    info = "Result should contain no duplicate rows"
+  )
+})
+
+
+get_items(item=)

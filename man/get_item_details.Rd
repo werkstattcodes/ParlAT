@@ -13,16 +13,32 @@ Parliament website. Can be an absolute URL starting with
 leading slashes). The function will normalize relative paths automatically.}
 }
 \value{
-A tibble containing detailed information about each stage of the
-parliamentary item, including stage text and metadata.
+A tibble containing detailed information about the parliamentary item and its stages.
+Returns \code{NULL} if no stages are found.
+\itemize{
+\item \code{item_url} (character): The URL of the parliamentary item.
+\item \code{type} (character): The type of the item (e.g., BI for Bürgerinitiativen).
+\item \code{title} (character): The title of the item.
+\item \code{item_number} (character): The citation number of the item.
+\item \code{item_description} (character): A brief description of the item.
+\item \code{state_approval} (character): The current approval state of the item.
+\item \code{phase} (character): The phase of the legislative stage.
+\item \code{id} (character): Unique identifier for the stage.
+\item \code{stage_date} (Date): The date of the stage.
+\item \code{stage_name} (character): The name/description of the stage.
+\item \code{stage_priority} (numeric): Priority of the stage.
+\item \code{documents} (list): List-column of associated documents for the stage.
+}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\details{
 Retrieves detailed stage information for a specific parliamentary item by
 scraping its detail page on the Austrian Parliament website. The function
 extracts structured data about the item's progression through different
 legislative stages.
-}
-\details{
+
 The function performs the following steps:
 \enumerate{
 \item Normalizes the URL (prepends "https://www.parlament.gv.at/" if needed)
