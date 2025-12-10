@@ -471,8 +471,8 @@ starting from the 20th legislative period.
 df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20,27), session_and_activities = "sessions", echo=TRUE)
 
 df_sessions_20_27 %>%
-  count(legis_period) %>%
   mutate(legis_period=as.integer(legis_period)) %>%
+  count(legis_period) %>%
   ggplot() + 
   labs(
     title="Number of plenary sessions of the National Council",
