@@ -1,21 +1,25 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://werkstattcodes.github.io/ParlAT/404.html</loc></url>
+<url><loc>https://werkstattcodes.github.io/ParlAT/CLAUDE.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/LICENSE-text.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/LICENSE.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/articles/ParlAT.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/articles/index.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/authors.html</loc></url>
+<url><loc>https://werkstattcodes.github.io/ParlAT/copilot-instructions.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/index.html</loc></url>
+<url><loc>https://werkstattcodes.github.io/ParlAT/news/index.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/ParlAT-package.html</loc></url>
-<url><loc>https://werkstattcodes.github.io/ParlAT/reference/create_panel.html</loc></url>
+<url><loc>https://werkstattcodes.github.io/ParlAT/reference/aux_transform_event_date.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_committees.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_events.html</loc></url>
-<url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_events_api_request.html</loc></url>
+<url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_item_details.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_items.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_legis_periods.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_mandates.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_mps.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_mps_current.html</loc></url>
+<url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_mps_details.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_names.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_pad_intern.html</loc></url>
 <url><loc>https://werkstattcodes.github.io/ParlAT/reference/get_participation.html</loc></url>

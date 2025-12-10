@@ -1,0 +1,3 @@
+# License
+
+    GPL-3
