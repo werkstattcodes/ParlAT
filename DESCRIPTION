@@ -42,7 +42,9 @@ Suggests:
     knitr,
     rmarkdown,
     scales,
+    spelling,
     testthat (>= 3.0.0),
     tidytext
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Language: en-US
