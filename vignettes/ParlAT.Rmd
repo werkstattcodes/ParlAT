@@ -551,7 +551,7 @@ get_names(44127, date = "01/01/2024")
 ``` 
 
 
-# Miscallaneous
+# Miscellaneous
 
 The *echo argument*: Whenever relevant and feasible, ParlAT functions
 provide the option to echo the query to the API. The echo prints the 
