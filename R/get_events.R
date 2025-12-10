@@ -341,19 +341,19 @@ get_events <- function(
         GREMIUM = institution_input,
         TERMINART = event_type,
         ORT = location
-    ) |>
-        purrr::compact() |>
+    ) %>%
+        purrr::compact() %>%
         jsonlite::toJSON()
 
     req <- httr2::request(
         "https://www.parlament.gv.at/Filter/api/filter/data/600"
-    ) |>
-        httr2::req_method("POST") |>
+    ) %>%
+        httr2::req_method("POST") %>%
         httr2::req_url_query(
             js = "eval",
             showAll = TRUE,
             ascDesc = "ASC"
-        ) |>
+        ) %>%
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
@@ -367,9 +367,9 @@ get_events <- function(
             `sec-fetch-mode` = "cors",
             `sec-fetch-site` = "same-origin",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
-        ) |>
-        httr2::req_body_raw(body_params, type = "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        ) %>%
+        httr2::req_body_raw(body_params, type = "application/json") %>%
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_verbose(
             body_req = F,
             header_req = F,
@@ -382,9 +382,9 @@ get_events <- function(
 
     resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
 
-    vec_headings <- resp_json |>
-        purrr::pluck("header", "label") |>
-        stringr::str_to_snake() |>
+    vec_headings <- resp_json %>%
+        purrr::pluck("header", "label") %>%
+        stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     rows <- purrr::pluck(resp_json, "rows")
@@ -392,7 +392,7 @@ get_events <- function(
     if (length(rows) == 0) {
         df_res <- NULL
     } else {
-        df_res <- rows |>
+        df_res <- rows %>%
             as.data.frame()
 
         colnames(df_res) <- vec_headings
@@ -407,10 +407,10 @@ get_events <- function(
         query_string <- purrr::imap(
             body_params_li,
             \(x, y) glue::glue("TERMIN_01{URLencode(y)}={URLencode(x)}")
-        ) |>
-            unlist() |>
-            unname() |>
-            paste0(collapse = "&") |>
+        ) %>%
+            unlist() %>%
+            unname() %>%
+            paste0(collapse = "&") %>%
             URLencode()
 
         print(glue::glue(
@@ -426,15 +426,15 @@ get_events <- function(
     }
 
     if ("link2" %in% colnames(df_res)) {
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
-                link2 = purrr::map_chr(link2, \(x) {
+                link2 = purrr::map_chr(.data$link2, \(x) {
                     if (is.na(x) | is.null(x)) {
                         return(NA)
                     } else {
-                        x |>
-                            rvest::read_html() |>
-                            rvest::html_element("a") |>
+                        x %>%
+                            rvest::read_html() %>%
+                            rvest::html_element("a") %>%
                             rvest::html_attr("href")
                     }
                 })
@@ -463,7 +463,7 @@ get_events <- function(
         "sprache" = "language"
     )
 
-    df_res <- df_res |>
+    df_res <- df_res %>%
         dplyr::rename_with(
             .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
             .cols = any_of(names(renaming_map))
@@ -492,11 +492,11 @@ get_events <- function(
         "link2"
     )
 
-    df_res <- df_res |>
-        dplyr::select(dplyr::any_of(cols_select)) |>
-        dplyr::mutate(dplyr::across(dplyr::any_of("date"), lubridate::dmy)) |>
-        dplyr::mutate(dplyr::across(dplyr::any_of("date_time_start"), lubridate::ymd_hms)) |>
-        dplyr::mutate(dplyr::across(dplyr::any_of("date_time_end"), lubridate::ymd_hms)) |>
+    df_res <- df_res %>%
+        dplyr::select(dplyr::any_of(cols_select)) %>%
+        dplyr::mutate(dplyr::across(dplyr::any_of("date"), lubridate::dmy)) %>%
+        dplyr::mutate(dplyr::across(dplyr::any_of("date_time_start"), lubridate::ymd_hms)) %>%
+        dplyr::mutate(dplyr::across(dplyr::any_of("date_time_end"), lubridate::ymd_hms)) %>%
         dplyr::arrange(dplyr::desc(date))
 
     return(df_res)

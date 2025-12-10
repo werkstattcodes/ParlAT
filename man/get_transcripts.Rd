@@ -96,10 +96,13 @@ A summary of successful and failed downloads is printed at the conclusion of the
                  date_end = "30-06-2024",
                  echo = TRUE)
 
-  # Retrieve all transcripts of committees (Ausschüsse) and download PDFs to default "transcripts" folder.
-  get_transcripts(session_type = "AUS",
-                 legis_period=26,
-                 export = "pdf")
+  # Retrieve all transcripts of committees (Ausschuesse)
+  # and download PDFs to default "transcripts" folder.
+  get_transcripts(
+    session_type = "AUS",
+    legis_period = 26,
+    export = "pdf"
+  )
 
 }
 }

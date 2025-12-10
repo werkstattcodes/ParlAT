@@ -62,10 +62,13 @@
 #'                  date_end = "30-06-2024",
 #'                  echo = TRUE)
 #'
-#'   # Retrieve all transcripts of committees (Ausschüsse) and download PDFs to default "transcripts" folder.
-#'   get_transcripts(session_type = "AUS",
-#'                  legis_period=26,
-#'                  export = "pdf")
+#'   # Retrieve all transcripts of committees (Ausschuesse)
+#'   # and download PDFs to default "transcripts" folder.
+#'   get_transcripts(
+#'     session_type = "AUS",
+#'     legis_period = 26,
+#'     export = "pdf"
+#'   )
 #'
 #' }
 get_transcripts <- function(
@@ -165,23 +168,23 @@ get_transcripts <- function(
         GP_CODE = legis_period_input,
         NBVS = session_type,
         DATUM = c(date_start, date_end)
-    ) |>
-        purrr::compact() |> #keep only non-empty elements
+    ) %>%
+        purrr::compact() %>% #keep only non-empty elements
         jsonlite::toJSON()
 
     # DEFINITION NESTED HELPER FUNCTION 1: Get total count from API
     get_total_count <- function() {
         resp <- httr2::request(
             "https://www.parlament.gv.at/Filter/api/filter/data/211"
-        ) |>
-            httr2::req_method("POST") |>
+        ) %>%
+            httr2::req_method("POST") %>%
             httr2::req_url_query(
                 js = "eval",
                 page = "1",
                 pagesize = "1",
                 search = search_string,
                 export = TRUE
-            ) |>
+            ) %>%
             httr2::req_headers(
                 accept = "*/*",
                 `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
@@ -194,14 +197,14 @@ get_transcripts <- function(
                 `sec-fetch-mode` = "cors",
                 `sec-fetch-site` = "same-origin",
                 `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0"
-            ) |>
+            ) %>%
             httr2::req_body_raw(
                 body_params,
                 type = "application/json"
-            ) |>
+            ) %>%
             httr2::req_user_agent(
                 "ParlAT R package (http://werk.statt.codes)"
-            ) |>
+            ) %>%
             httr2::req_perform()
 
         resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
@@ -214,15 +217,15 @@ get_transcripts <- function(
     get_all_data <- function(total_count) {
         resp <- httr2::request(
             "https://www.parlament.gv.at/Filter/api/filter/data/211"
-        ) |>
-            httr2::req_method("POST") |>
+        ) %>%
+            httr2::req_method("POST") %>%
             httr2::req_url_query(
                 js = "eval",
                 page = "1",
                 pagesize = as.character(total_count),
                 search = search_string,
                 export = TRUE
-            ) |>
+            ) %>%
             httr2::req_headers(
                 accept = "*/*",
                 `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
@@ -235,14 +238,14 @@ get_transcripts <- function(
                 `sec-fetch-mode` = "cors",
                 `sec-fetch-site` = "same-origin",
                 `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0"
-            ) |>
+            ) %>%
             httr2::req_body_raw(
                 body_params,
                 type = "application/json"
-            ) |>
+            ) %>%
             httr2::req_user_agent(
                 "ParlAT R package (http://werk.statt.codes)"
-            ) |>
+            ) %>%
             httr2::req_perform()
 
         resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
@@ -283,9 +286,9 @@ get_transcripts <- function(
     # Step 2: Get all data with the total count as pagesize
     resp_json <- get_all_data(total_count)
 
-    vec_headings <- resp_json |>
-        purrr::pluck("header", "label") |>
-        stringr::str_to_snake() |>
+    vec_headings <- resp_json %>%
+        purrr::pluck("header", "label") %>%
+        stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     rows <- purrr::pluck(resp_json, "rows")
@@ -293,7 +296,7 @@ get_transcripts <- function(
     if (length(rows) == 0) {
         df_res <- NULL
     } else {
-        df_res <- rows |>
+        df_res <- rows %>%
             as.data.frame()
 
         #PATCH: API returns colums and header labels of different lenghts. Those
@@ -310,22 +313,22 @@ get_transcripts <- function(
     }
 
     # Convert inr to numeric
-    df_res <- df_res |>
-        dplyr::mutate(inr = as.numeric(inr))
+    df_res <- df_res %>%
+        dplyr::mutate(inr = as.numeric(.data$inr))
 
     # ECHO - print request details if requested
     if (echo == TRUE) {
         print(body_params)
         # print url to results / transparency reasons / add search string parameter
-        body_params_li <- jsonlite::fromJSON(body_params) |>
+        body_params_li <- jsonlite::fromJSON(body_params) %>%
             c("search" = search_string)
 
         query_string <- purrr::imap(
             body_params_li,
             \(x, y) glue::glue("STENO_211{URLencode(y)}={URLencode(x)}")
-        ) |>
-            unlist() |>
-            unname() |>
+        ) %>%
+            unlist() %>%
+            unname() %>%
             paste0(collapse = "&")
 
         print(glue::glue(
@@ -346,15 +349,15 @@ get_transcripts <- function(
         "gesamtprotokoll" = "session_transcript"
     )
 
-    df_res <- df_res |>
+    df_res <- df_res %>%
         dplyr::rename_with(
             .fn = \(x) renaming_map[x],
             .cols = any_of(names(renaming_map))
         )
 
-    df_res <- df_res |>
-        dplyr::select(dplyr::any_of(unname(renaming_map))) |>
-        dplyr::mutate(date = lubridate::dmy(date))
+    df_res <- df_res %>%
+        dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
+        dplyr::mutate(date = lubridate::dmy(.data$date))
 
     aux_fn_get_hrefs <- function(html_string) {
         if (is.na(html_string) || html_string == "") {
@@ -366,9 +369,9 @@ get_transcripts <- function(
 
         extract_all_hrefs <- purrr::possibly(
             \(html) {
-                hrefs <- html |>
-                    rvest::read_html() |>
-                    rvest::html_elements("a") |>
+                hrefs <- html %>%
+                    rvest::read_html() %>%
+                    rvest::html_elements("a") %>%
                     rvest::html_attr("href")
 
                 # Filter and separate HTML and PDF links
@@ -404,13 +407,13 @@ get_transcripts <- function(
         extract_all_hrefs(html_string)
     }
 
-    df_res <- df_res |>
+    df_res <- df_res %>%
         dplyr::mutate(
-            session_transcript = purrr::map(session_transcript, \(x) {
+            session_transcript = purrr::map(.data$session_transcript, \(x) {
                 aux_fn_get_hrefs(x)
             })
-        ) |>
-        tidyr::unnest_wider(session_transcript, names_sep = "_") |>
+        ) %>%
+        tidyr::unnest_wider("session_transcript", names_sep = "_") %>%
         dplyr::mutate(across(starts_with("session_transcript"), \(x) {
             dplyr::if_else(
                 is.na(x) | stringr::str_starts(x, "http"),
@@ -468,7 +471,7 @@ get_transcripts <- function(
             legis_period
         ) {
             # Clean session_number for filename (remove special characters)
-            session_clean <- session_number |>
+            session_clean <- session_number %>%
                 stringr::str_replace_all("[^A-Za-z0-9_-]", "_")
 
             filename <- sprintf(
@@ -486,10 +489,10 @@ get_transcripts <- function(
         download_pdf <- function(url, dest_file) {
             tryCatch(
                 {
-                    httr2::request(url) |>
+                    httr2::request(url) %>%
                         httr2::req_user_agent(
                             "ParlAT R package (http://werk.statt.codes)"
-                        ) |>
+                        ) %>%
                         httr2::req_perform(path = dest_file)
                     return(TRUE)
                 },
@@ -503,8 +506,8 @@ get_transcripts <- function(
         dest_path <- ensure_destination_folder(export_destination)
 
         # Filter rows with valid PDF URLs
-        df_to_download <- df_res |>
-            dplyr::filter(!is.na(session_transcript_pdf))
+        df_to_download <- df_res %>%
+            dplyr::filter(!is.na(.data$session_transcript_pdf))
 
         n_pdfs <- nrow(df_to_download)
 
@@ -574,5 +577,5 @@ get_transcripts <- function(
         }
     }
 
-    return(df_res |> dplyr::arrange(date))
+    return(df_res %>% dplyr::arrange(.data$date))
 }

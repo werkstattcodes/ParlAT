@@ -16,3 +16,9 @@
 ^\.claude$
 ^\.quarto$
 ^\.vscode$
+^debug_committees\.R$
+^reproduce_issue\.R$
+^run_tests\.R$
+^run_tests_committees\.R$
+^run_tests_debug\.R$
+^test_results\.csv$

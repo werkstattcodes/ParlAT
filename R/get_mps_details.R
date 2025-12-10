@@ -341,15 +341,15 @@ get_mps_details_plenary <- function(
         PAD_INTERN = pad_intern,
         GREMIUM = institution,
         GP_CODE = as.character(legis_period) #not roman
-    ) |>
-        purrr::compact() |>
+    ) %>%
+        purrr::compact() %>%
         jsonlite::toJSON()
 
     #API CALL PLENARY
     res <- httr2::request(
         "https://www.parlament.gv.at/Filter/api/filter/data/251"
-    ) |>
-        httr2::req_method("POST") |>
+    ) %>%
+        httr2::req_method("POST") %>%
         httr2::req_url_query(
             js = "eval",
             page = "1",
@@ -357,7 +357,7 @@ get_mps_details_plenary <- function(
             showAll = "true",
             sortrnr = "10",
             ascDesc = "DESC"
-        ) |>
+        ) %>%
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
@@ -372,12 +372,12 @@ get_mps_details_plenary <- function(
             `sec-fetch-site` = "same-origin",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0",
             cookie = "pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1749197886%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D; _pk_ses.1.26ca=1"
-        ) |>
+        ) %>%
         httr2::req_body_raw(
             body_params,
             # '{"PAD_INTERN":[145]}',
             type = "application/json"
-        ) |>
+        ) %>%
         httr2::req_perform()
 
     #PARSE RESPONSE
@@ -423,55 +423,55 @@ get_mps_details_plenary <- function(
     # parse html elements & format
     df_res <- df_res %>%
         dplyr::mutate(
-            sitzung_url = purrr::map_chr(sitzung, \(x) {
-                x |>
-                    # rvest::read_html() |>
+            sitzung_url = purrr::map_chr(.data$sitzung, \(x) {
+                x %>%
+                    # rvest::read_html() %>%
                     rvest::minimal_html(x) %>%
-                    rvest::html_element("a") |>
+                    rvest::html_element("a") %>%
                     rvest::html_attr("href")
             }) %>%
                 stringr::str_c("https://www.parlament.gv.at", .)
         ) %>%
         dplyr::mutate(
-            sitzung_name = purrr::map_chr(sitzung, \(x) {
+            sitzung_name = purrr::map_chr(.data$sitzung, \(x) {
                 if (is.na(x)) {
                     return(NA_character_)
                 }
-                x |>
-                    # rvest::read_html() |>
+                x %>%
+                    # rvest::read_html() %>%
                     rvest::minimal_html(x) %>%
-                    rvest::html_element("a") |>
+                    rvest::html_element("a") %>%
                     rvest::html_text()
             })
         ) %>%
-        dplyr::select(-sitzung) %>%
+        dplyr::select(-"sitzung") %>%
         dplyr::mutate(
-            transcript_url = purrr::map_chr(transcript, \(x) {
+            transcript_url = purrr::map_chr(.data$transcript, \(x) {
                 if (is.na(x)) {
                     return(NA_character_)
                 }
-                x |>
-                    rvest::read_html() |>
-                    rvest::html_element("a") |>
+                x %>%
+                    rvest::read_html() %>%
+                    rvest::html_element("a") %>%
                     rvest::html_attr("href")
             }) %>%
                 stringr::str_c("https://www.parlament.gv.at", .)
         ) %>%
-        dplyr::select(-transcript) %>%
+        dplyr::select(-"transcript") %>%
         dplyr::mutate(
-            media_url = purrr::map_chr(media, \(x) {
+            media_url = purrr::map_chr(.data$media, \(x) {
                 if (is.na(x)) {
                     return(NA_character_)
                 }
-                x |>
-                    rvest::read_html() |>
-                    rvest::html_element("a") |>
+                x %>%
+                    rvest::read_html() %>%
+                    rvest::html_element("a") %>%
                     rvest::html_attr("href")
             }) %>%
                 stringr::str_c("https://www.parlament.gv.at", .)
         ) %>%
-        dplyr::select(-media) %>%
-        dplyr::mutate(fromdate = lubridate::ymd_hms(fromdate) %>% as.Date())
+        dplyr::select(-"media") %>%
+        dplyr::mutate(fromdate = lubridate::ymd_hms(.data$fromdate) %>% as.Date())
 
     #rename columns; only when col available
     renaming_map <- c(
@@ -496,30 +496,30 @@ get_mps_details_plenary <- function(
     df_res <- df_res %>%
         dplyr::mutate(
             institution = dplyr::case_when(
-                institution == "N" ~ "NR",
-                institution == "B" ~ "BR",
-                TRUE ~ institution
+                .data$institution == "N" ~ "NR",
+                .data$institution == "B" ~ "BR",
+                TRUE ~ .data$institution
             )
         )
 
     # ADD MANDATE TYPE ATTIME OF SPEECH
     df_mandates <- get_mandates(pad_intern = pad_intern) %>%
         dplyr::select(
-            name,
-            pad_intern,
-            position_name,
-            position_date_start,
-            position_date_end,
-            position_active
+            "name",
+            "pad_intern",
+            "position_name",
+            "position_date_start",
+            "position_date_end",
+            "position_active"
         ) %>%
         dplyr::mutate(
             position_date_end = dplyr::case_when(
-                is.na(position_date_end) & position_active == TRUE ~ Sys.Date(),
-                TRUE ~ position_date_end
+                is.na(.data$position_date_end) & .data$position_active == TRUE ~ Sys.Date(),
+                TRUE ~ .data$position_date_end
             )
         ) %>%
         dplyr::mutate(
-            pad_intern = as.character(pad_intern)
+            pad_intern = as.character(.data$pad_intern)
         )
 
     df_res <- df_res %>%
@@ -539,9 +539,9 @@ get_mps_details_plenary <- function(
         )
 
     df_res <- df_res %>%
-        dplyr::group_by(dplyr::across(-position_name)) %>%
+        dplyr::group_by(dplyr::across(-"position_name")) %>%
         dplyr::summarise(
-            position_name = list(unique(position_name[!is.na(position_name)])),
+            position_name = list(unique(.data$position_name[!is.na(.data$position_name)])),
             .groups = "drop"
         )
 
@@ -623,14 +623,14 @@ get_mps_details_activities <- function(
         gremium = institution,
         gp_text_full = as.character(legis_period),
         vhg4 = item
-    ) |>
-        purrr::compact() |>
+    ) %>%
+        purrr::compact() %>%
         jsonlite::toJSON()
 
     res <- httr2::request(
         "https://www.parlament.gv.at/Filter/api/filter/data/25"
-    ) |>
-        httr2::req_method("POST") |>
+    ) %>%
+        httr2::req_method("POST") %>%
         httr2::req_url_query(
             js = "eval",
             page = "1",
@@ -638,7 +638,7 @@ get_mps_details_activities <- function(
             showAll = "true",
             sortrnr = "9",
             ascDesc = "DESC"
-        ) |>
+        ) %>%
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
@@ -653,11 +653,11 @@ get_mps_details_activities <- function(
             `sec-fetch-site` = "same-origin",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0",
             cookie = "pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1749223177%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D"
-        ) |>
+        ) %>%
         httr2::req_body_raw(
             body_params,
             type = "application/json"
-        ) |>
+        ) %>%
         httr2::req_perform()
 
     li_res <- res %>%
@@ -704,7 +704,7 @@ get_mps_details_activities <- function(
     # parse html elements & format
     df_res <- df_res %>%
         dplyr::mutate(
-            details_html = stringr::str_squish(details_html) %>%
+            details_html = stringr::str_squish(.data$details_html) %>%
                 stringr::str_remove_all(
                     .,
                     stringr::regex("<br />", literal = TRUE)
@@ -712,12 +712,12 @@ get_mps_details_activities <- function(
         ) %>%
         dplyr::mutate(
             details_status = stringr::str_extract(
-                details_html,
+                .data$details_html,
                 stringr::regex("(?<=Status: ).*(?=Phase)")
             ) %>%
                 stringr::str_squish()
         ) %>%
-        dplyr::select(-details_html)
+        dplyr::select(-"details_html")
 
     #rename columns; only when col available
     renaming_map <- c(
@@ -751,17 +751,17 @@ get_mps_details_activities <- function(
     df_res <- df_res %>%
         dplyr::mutate(
             institution = dplyr::case_when(
-                institution == "N" ~ "NR",
-                institution == "B" ~ "BR",
-                TRUE ~ institution
+                .data$institution == "N" ~ "NR",
+                .data$institution == "B" ~ "BR",
+                TRUE ~ .data$institution
             )
         )
 
     df_res <- df_res %>%
         dplyr::select(
-            -art
+            -"art"
         ) %>%
-        dplyr::relocate(item_type, .after = item_number)
+        dplyr::relocate("item_type", .after = "item_number")
 
     # ADD MANDATE TYPE ATTIME OF SPEECH
     #PENDING #PARLSIMON
@@ -894,7 +894,7 @@ get_mps_details_committees <- function(
         )
 
         legis_period_input <- df_legis_period_input %>%
-            dplyr::pull(legis_period_name) %>%
+            dplyr::pull("legis_period_name") %>%
             stringr::str_replace(
                 .,
                 stringr::regex("\\bGP$"),
@@ -908,8 +908,8 @@ get_mps_details_committees <- function(
         GP_TEXT_FULL = legis_period_input,
         FUNKTION = committee_position,
         AUSSCHUSS = committee
-    ) |>
-        purrr::compact() |>
+    ) %>%
+        purrr::compact() %>%
         jsonlite::toJSON()
 
     # print(body_params)
@@ -917,8 +917,8 @@ get_mps_details_committees <- function(
     #API CALL COMMITTEE
     res <- httr2::request(
         "https://www.parlament.gv.at/Filter/api/filter/data/250"
-    ) |>
-        httr2::req_method("POST") |>
+    ) %>%
+        httr2::req_method("POST") %>%
         httr2::req_url_query(
             `1` = "1",
             page = "1",
@@ -926,7 +926,7 @@ get_mps_details_committees <- function(
             showAll = "true",
             sortrnr = "2",
             ascDesc = "ASC"
-        ) |>
+        ) %>%
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
@@ -941,11 +941,11 @@ get_mps_details_committees <- function(
             `sec-fetch-site` = "same-origin",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0",
             cookie = "pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1750451347%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D"
-        ) |>
+        ) %>%
         httr2::req_body_raw(
             body_params,
             type = "application/json"
-        ) |>
+        ) %>%
         httr2::req_perform()
 
     # return(res)
@@ -977,41 +977,41 @@ get_mps_details_committees <- function(
         # "V11" = "committee_duration"
     )
 
-    df_res <- df_res |>
+    df_res <- df_res %>%
         dplyr::rename_with(
             .fn = \(x) renaming_map[x],
             .cols = any_of(names(renaming_map))
         )
 
-    df_res <- df_res |>
-        dplyr::select(dplyr::any_of(unname(renaming_map))) |>
-        dplyr::relocate(dplyr::any_of(unname(renaming_map))) |>
+    df_res <- df_res %>%
+        dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
+        dplyr::relocate(dplyr::any_of(unname(renaming_map))) %>%
         dplyr::mutate(
             committee_position_start = stringr::str_extract(
-                committee_name_dates,
+                .data$committee_name_dates,
                 stringr::regex("(?<=\\()\\d+\\.\\d+\\.\\d+")
             ),
             committee_position_end = stringr::str_extract(
-                committee_name_dates,
+                .data$committee_name_dates,
                 stringr::regex("(?<=-\\s)[\\d.]+(?=\\)$)")
             )
-        ) |>
-        dplyr::select(-committee_name_dates) |>
+        ) %>%
+        dplyr::select(-"committee_name_dates") %>%
         dplyr::mutate(
             committee_active = ifelse(
-                is.na(committee_position_end),
+                is.na(.data$committee_position_end),
                 TRUE,
                 FALSE
             )
-        ) |>
+        ) %>%
         dplyr::mutate(across(starts_with("committee_date"), \(x) {
             lubridate::dmy(x)
-        })) |>
-        dplyr::relocate(committee_url, .after = dplyr::last_col()) %>%
+        })) %>%
+        dplyr::relocate("committee_url", .after = dplyr::last_col()) %>%
         dplyr::mutate(
             committee_url = paste0(
                 "https://www.parlament.gv.at/",
-                committee_url
+                .data$committee_url
             )
         )
 
@@ -1019,9 +1019,9 @@ get_mps_details_committees <- function(
 
     mp_name <- get_names(pad_intern = pad_intern)$name
 
-    df_res <- df_res |>
-        dplyr::mutate(pad_intern = pad_intern, .before = 1) |>
-        dplyr::mutate(name = mp_name, .after = pad_intern)
+    df_res <- df_res %>%
+        dplyr::mutate(pad_intern = !!pad_intern, .before = 1) %>%
+        dplyr::mutate(name = !!mp_name, .after = "pad_intern")
 
     #ECHO
     if (echo) {

@@ -14,7 +14,7 @@ test_that("get_items returns correct structure with valid parameters", {
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
   expect_true(
-    nrow(result |> dplyr::count(item_url) |> dplyr::filter(n > 1)) == 0
+    nrow(result %>% dplyr::count(item_url) %>% dplyr::filter(n > 1)) == 0
   ) # check for duplicates
 })
 
@@ -330,7 +330,7 @@ test_that("get_items returns consistent columns across item types (tidyverse, le
     "W"
   )
 
-  cols_df <- tibble::tibble(item = items) |>
+  cols_df <- tibble::tibble(item = items) %>%
     dplyr::mutate(
       res = purrr::map(
         item,
@@ -343,15 +343,15 @@ test_that("get_items returns consistent columns across item types (tidyverse, le
     )
 
   # Unnest so every column name gets its own row
-  cols_unnested <- cols_df |>
-    dplyr::select(-res) |>
+  cols_unnested <- cols_df %>%
+    dplyr::select(-res) %>%
     tidyr::unnest_longer(cols, values_to = "col_name")
 
   # Transform to wide: make each unique `col_name` a column and put the `item` value
   # into the corresponding cells (NA when an item does not have that column).
-  cols_wide <- cols_unnested |>
-    dplyr::filter(!is.na(col_name)) |>
-    dplyr::mutate(.val = item) |>
+  cols_wide <- cols_unnested %>%
+    dplyr::filter(!is.na(col_name)) %>%
+    dplyr::mutate(.val = item) %>%
     tidyr::pivot_wider(
       id_cols = item,
       names_from = col_name,
@@ -360,7 +360,7 @@ test_that("get_items returns consistent columns across item types (tidyverse, le
     )
 
   # keep rows where at least one (non-id) column contains NA
-  cols_wide_na <- cols_wide |>
+  cols_wide_na <- cols_wide %>%
     # dplyr::filter(dplyr::if_any(-dplyr::all_of("item"), ~ is.na(.x)))
     dplyr::filter(dplyr::if_any(everything(), ~ is.na(.x)))
 
@@ -402,8 +402,8 @@ test_that("get_items returns no duplicates for Bildung across multiple legislati
 
   # Check that there are no duplicate rows
   n_total <- nrow(result)
-  n_distinct <- result |>
-    dplyr::distinct() |>
+  n_distinct <- result %>%
+    dplyr::distinct() %>%
     nrow()
 
   expect_equal(
@@ -840,8 +840,8 @@ test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27
 
   # Check for duplicates
   n_total <- nrow(result)
-  n_distinct <- result |>
-    dplyr::distinct() |>
+  n_distinct <- result %>%
+    dplyr::distinct() %>%
     nrow()
 
   expect_equal(
@@ -871,8 +871,8 @@ test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)
 
   # Check for duplicates
   n_total <- nrow(result)
-  n_distinct <- result |>
-    dplyr::distinct() |>
+  n_distinct <- result %>%
+    dplyr::distinct() %>%
     nrow()
 
   expect_equal(
@@ -881,6 +881,3 @@ test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)
     info = "Result should contain no duplicate rows"
   )
 })
-
-
-get_items(item=)

@@ -11,6 +11,9 @@ get_item_details(item_url, type = "stages")
 Parliament website. Can be an absolute URL starting with
 "https://www.parlament.gv.at/" or a relative path (with or without
 leading slashes). The function will normalize relative paths automatically.}
+
+\item{type}{Character. Type of data to extract. Currently only "stages" is
+supported (default).}
 }
 \value{
 A tibble containing detailed information about the parliamentary item and its stages.

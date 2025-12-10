@@ -38,8 +38,8 @@ fn_check_legis_period_elements <- function(x) {
 aux_parse_html_title <- function(html) {
   result <- tryCatch(
     {
-      rvest::read_html(html) |>
-        rvest::html_element("span") |>
+      rvest::read_html(html) %>%
+        rvest::html_element("span") %>%
         rvest::html_attr("title")
     },
     error = function(e) {
@@ -50,9 +50,9 @@ aux_parse_html_title <- function(html) {
 }
 
 aux_parse_html_text <- function(html) {
-  html |>
-    rvest::read_html() |>
-    rvest::html_elements("span") |>
+  html %>%
+    rvest::read_html() %>%
+    rvest::html_elements("span") %>%
     rvest::html_text()
 }
 
@@ -247,8 +247,8 @@ aux_check_pad_intern_exists <- function(pad_intern) {
 
   url_check <- glue::glue("https://www.parlament.gv.at/person/{pad_intern}")
   resp <- tryCatch(
-    httr2::request(url_check) |>
-      httr2::req_method("HEAD") |>
+    httr2::request(url_check) %>%
+      httr2::req_method("HEAD") %>%
       httr2::req_perform(),
     error = function(e) return(NULL)
   )

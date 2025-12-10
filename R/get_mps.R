@@ -285,7 +285,7 @@ get_mps <- function(
 
   if (!is.null(date) && is.null(legis_period) && institution == "NR") {
     legis_period_num <- get_legis_periods(date = date) %>%
-      dplyr::pull(legis_period)
+      dplyr::pull("legis_period")
   }
 
   # gender
@@ -392,8 +392,8 @@ get_mps <- function(
   }
 
   if (!is.null(legis_period)) {
-    legis_period_name <- get_legis_periods(legis_period = legis_period) |>
-      dplyr::pull(legis_period_name)
+    legis_period_name <- get_legis_periods(legis_period = legis_period) %>%
+      dplyr::pull("legis_period_name")
   } else {
     legis_period_name <- NULL
   }
@@ -654,14 +654,14 @@ get_mps <- function(
     ATTR_JSON.mandate_detail.wahlkreis_bundesland = state,
     ATTR_JSON.mandate_detail.wahlkreis = electoral_district,
     PRAES = presidents_only
-  ) |>
-    purrr::compact() |>
+  ) %>%
+    purrr::compact() %>%
     jsonlite::toJSON()
 
   res <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/409"
-  ) |>
-    httr2::req_method("POST") |>
+  ) %>%
+    httr2::req_method("POST") %>%
     httr2::req_url_query(
       `1` = "1",
       page = "1",
@@ -670,7 +670,7 @@ get_mps <- function(
       # showAll = "true",
       sortrnr = "1",
       ascDesc = "ASC"
-    ) |>
+    ) %>%
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
@@ -685,18 +685,18 @@ get_mps <- function(
       `sec-fetch-site` = "same-origin",
       # `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0",
       # cookie = "JSESSIONID=pN97GWuE97dOwd5gd4SG5E0J43ZVqtoIrKulcoal.appsrv05e; JSESSIONID=xfhR-hntwcCuRSfdJx-vH3jQPmU6JPJ3SadXoMcm.appsrv06e; JSESSIONID=xfhR-hntwcCuRSfdJx-vH3jQPmU6JPJ3SadXoMcm.appsrv06e; pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1745953947%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D; _pk_ses.1.26ca=1"
-    ) |>
+    ) %>%
     httr2::req_body_raw(
       body_params,
       # '{"ATTR_JSON.mandate_detail.gp_text_full_short":["ab 24.10.2024: XXVIII. Gesetzgebungsperiode"]}',
       type = "application/json"
-    ) |>
+    ) %>%
     httr2::req_perform()
 
   # new format of returned data
 
   li_res <- res %>%
-    httr2::resp_body_json() |>
+    httr2::resp_body_json() %>%
     purrr::pluck("rows") %>%
     purrr::map(., \(x) x[[8]])
 
@@ -739,21 +739,21 @@ get_mps <- function(
   # return(df_res) #REMOVE
 
   df_res <- df_res %>%
-    tidyr::unnest_longer(mandate_detail) %>%
-    tidyr::unnest_wider(mandate_detail, names_sep = "_") %>%
+    tidyr::unnest_longer("mandate_detail") %>%
+    tidyr::unnest_wider("mandate_detail", names_sep = "_") %>%
     dplyr::mutate(
       across(
         c("mandate_detail_mandat_von", "mandate_detail_mandat_bis"),
-        \(x) {
+        function(x) {
           lubridate::dmy(x)
         }
       )
     ) %>%
     dplyr::mutate(
       mandate_detail_mandat_bis_cutoff = dplyr::case_when(
-        is.na(mandate_detail_mandat_bis) | mandate_detail_mandat_bis == "" ~
+        is.na(.data$mandate_detail_mandat_bis) | .data$mandate_detail_mandat_bis == "" ~
           lubridate::today(),
-        .default = mandate_detail_mandat_bis
+        .default = .data$mandate_detail_mandat_bis
       )
     )
 
@@ -761,36 +761,36 @@ get_mps <- function(
   df_res <- df_res %>%
     dplyr::mutate(
       geschlecht = dplyr::case_when(
-        geschlecht == "W" ~ "female",
-        geschlecht == "M" ~ "male",
-        .default = geschlecht
+        .data$geschlecht == "W" ~ "female",
+        .data$geschlecht == "M" ~ "male",
+        .default = .data$geschlecht
       )
     )
 
   # Apply filters only when arguments are not NULL
   if (!is.null(institution)) {
     df_res <- df_res %>%
-      dplyr::filter(mandate_detail_gremium_name %in% institution_input)
+      dplyr::filter(.data$mandate_detail_gremium_name %in% institution_input)
   }
 
   if (!is.null(legis_period)) {
     df_res <- df_res %>%
       dplyr::mutate(
         mandate_detail_gp_code_chr = aux_convert_legis_periods(
-          mandate_detail_gp_code
+          .data$mandate_detail_gp_code
         )
       ) %>%
-      dplyr::filter(mandate_detail_gp_code_chr %in% {{ legis_period_char }})
+      dplyr::filter(.data$mandate_detail_gp_code_chr %in% {{ legis_period_char }})
   }
 
   # DATE FILTERING##################################
   if (!is.null(date)) {
-    date <- lubridate::dmy(date)
+    date_filter <- lubridate::dmy(date)
     # print(nrow(df_res_filter_time_inst))
     df_res <- df_res %>%
       dplyr::filter(
-        date >= mandate_detail_mandat_von &
-          date <= mandate_detail_mandat_bis_cutoff
+        date_filter >= .data$mandate_detail_mandat_von &
+          date_filter <= .data$mandate_detail_mandat_bis_cutoff
       )
     # print(nrow(df_res))
   }
@@ -875,12 +875,12 @@ get_mps <- function(
 
   # SORT (most recent mandate on top)
   df_res <- df_res %>%
-    dplyr::group_by(pad_intern) %>%
-    dplyr::arrange(desc(mandate_date_start), .by_group = TRUE)
+    dplyr::group_by(.data$pad_intern) %>%
+    dplyr::arrange(desc(.data$mandate_date_start), .by_group = TRUE)
 
   # NESTING (return one row per MP and legislative period; mandate details are nested)
   df_res <- df_res %>%
-    tidyr::nest(mp_details = -c(legis_period, pad_intern, link, name, gender))
+    tidyr::nest(mp_details = -c("legis_period", "pad_intern", "link", "name", "gender"))
 
   return(df_res)
   #TODO remove residual code below
@@ -910,20 +910,20 @@ get_mps <- function(
   if (!is.null(date)) {
     #unnest mandates
     df_res_filter_time <- df_res %>%
-      dplyr::select(pad_intern, mandate_detail) %>%
-      tidyr::unnest_longer(mandate_detail) %>%
-      tidyr::unnest_wider(mandate_detail) %>%
+      dplyr::select("pad_intern", "mandate_detail") %>%
+      tidyr::unnest_longer("mandate_detail") %>%
+      tidyr::unnest_wider("mandate_detail") %>%
       dplyr::mutate(
         across(c("mandat_von", "mandat_bis"), \(x) lubridate::dmy(x))
       ) %>%
-      dplyr::relocate(mandat_bis, .after = "mandat_von")
+      dplyr::relocate("mandat_bis", .after = "mandat_von")
 
     #active mandates: set mandat_bis to today
     df_res_filter_time <- df_res_filter_time %>%
       dplyr::mutate(
         mandat_bis = dplyr::case_when(
-          is.na(mandat_bis) | mandat_bis == "" ~ lubridate::today(),
-          .default = mandat_bis
+          is.na(.data$mandat_bis) | .data$mandat_bis == "" ~ lubridate::today(),
+          .default = .data$mandat_bis
         )
       )
 
@@ -932,23 +932,23 @@ get_mps <- function(
     #filter mandates by institution
     if (!is.null(institution) && institution == "NR") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        dplyr::filter(gremium_name == "Nationalrat")
+        dplyr::filter(.data$gremium_name == "Nationalrat")
     } else if (!is.null(institution) && institution == "BR") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        dplyr::filter(gremium_name == "Bundesrat")
+        dplyr::filter(.data$gremium_name == "Bundesrat")
     } else if (!is.null(institution) && institution == "KN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        dplyr::filter(gremium_name == "Konstituierende Nationalversammlung")
+        dplyr::filter(.data$gremium_name == "Konstituierende Nationalversammlung")
     } else if (!is.null(institution) && institution == "PN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        dplyr::filter(gremium_name == "Provisorische Nationalversammlung")
+        dplyr::filter(.data$gremium_name == "Provisorische Nationalversammlung")
     } #PENDING: what about Bundesrat1Rep; not mentioned on Parl Website/API
 
     if (!is.null(date)) {
       date <- lubridate::dmy(date)
       # print(nrow(df_res_filter_time_inst))
       df_res <- df_res_filter_time_inst %>%
-        dplyr::filter(date >= mandat_von & date <= mandat_bis)
+        dplyr::filter(date >= .data$mandat_von & date <= .data$mandat_bis)
       # print(nrow(df_res))
     }
 
@@ -966,8 +966,8 @@ get_mps <- function(
       if (is.data.frame(name_result) && nrow(name_result) > 0) {
         # Collapse multiple names into single string separated by " / "
         name_result %>%
-          dplyr::select(pad_intern, name) %>%
-          dplyr::mutate(name = paste(name, collapse = "/"))
+          dplyr::select("pad_intern", "name") %>%
+          dplyr::mutate(name = paste(.data$name, collapse = "/"))
       } else {
         NULL
       }
@@ -976,7 +976,7 @@ get_mps <- function(
 
     df_res <- df_res %>%
       dplyr::left_join(., df_names, by = "pad_intern") %>%
-      dplyr::relocate(name, .after = "pad_intern")
+      dplyr::relocate("name", .after = "pad_intern")
     ##############################
 
     # CHECK legis_perios is null here since we are filtering for dates in
@@ -986,7 +986,7 @@ get_mps <- function(
       # print(legis_period)
       # return(df_res_filter_time_inst)
       df_res <- df_res_filter_time_inst %>%
-        dplyr::filter(as.roman(gp_code) %in% as.roman(legis_period))
+        dplyr::filter(as.roman(.data$gp_code) %in% as.roman(legis_period))
       # print(nrow(df_res))
     } #possible that MPs has multiple mandates in the same chamber during the legislative period; needs nesting
 
@@ -994,6 +994,7 @@ get_mps <- function(
     #df_dates_check <- data.frame(dates_check = lubridate::dmy(date))
 
     #keep only mandates which cover date
+    # x <- y <- NULL # Silence R CMD check note
     # df_res_filter_time_inst <- df_res_filter_time_inst %>%
     #   dplyr::semi_join(
     #     .,
@@ -1037,19 +1038,19 @@ get_mps <- function(
         .cols = any_of(names(renaming_map))
       ) %>%
       dplyr::select(
-        pad_intern,
-        name,
-        chamber,
-        chamber_code,
-        electoral_state,
-        electoral_district,
-        electoral_district_region_code,
-        party,
-        party_name,
-        parl_group,
-        parl_group_code,
-        mandate_date_start,
-        mandate_date_end
+        "pad_intern",
+        "name",
+        "chamber",
+        "chamber_code",
+        "electoral_state",
+        "electoral_district",
+        "electoral_district_region_code",
+        "party",
+        "party_name",
+        "parl_group",
+        "parl_group_code",
+        "mandate_date_start",
+        "mandate_date_end"
       )
 
     # return(df_res)

@@ -97,11 +97,11 @@ mps_legis22 <- get_mps(legis_period=22, institution="NR")
 
 #unnest details on their mandats
 mps_legis22 <- mps_legis22  %>%
-tidyr::unnest(mp_details)
+    tidyr::unnest(mp_details)
 
 #Example Scheibner during the 22th legislative period
 mps_legis22 %>%
-dplyr::filter(stringr::str_detect(name, "Scheibner"))
+    dplyr::filter(stringr::str_detect(name, "Scheibner"))
 ```
  
 *Example Federal Council*
@@ -146,14 +146,14 @@ df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR"
 #keep only MP mandates in the National Council (NR); `instituiton` refers only to the 
 #current position, not the preceding mandates.
 df_mandates <- df_mandates %>%
-  filter(position_code == "NR") 
+    filter(position_code == "NR") 
   
 df_mandates <- df_mandates %>%
 mutate(position_date_end=case_when(
   is.na(position_date_end) & position_active==TRUE ~ lubridate::today(),
   .default=position_date_end
 )) %>%
-mutate(position_duration_days = as.numeric(difftime(position_date_end, position_date_start, units = "days")), 
+mutate(position_duration_days = as.numeric(difftime(position_date_end, position_date_start, units = "days")),
 .after=position_date_end)
 
 duration <- df_mandates %>%
@@ -272,13 +272,13 @@ The items which can be queried comprise a wide range including Topical Debates (
 For some of these items, additional parameter(s) are available to further
 specifiy the query. E.g. the item "ANTR" (Anträge, Motions) allows for 
 the specification of the type of motion via the `type_doc` attribute. For 
-details see the reference section [here](../reference/get_items.html#doc-type-art-des-antrages-).
+details see the reference section [here](../reference/get_items.html#doc-type-art-des-antrages-). 
 
 
 *Example: Inquiries (Anfragen)*
 
 Below, as an example, let's query all written and oral questions (*Anfragen*) from the
-20 to the 27 legislative period (for the relevant item abbreviations see the function reference), and subsequently visualise the count by party and legislative period.
+20 to the 27 legislative period (for the relevant item abbreviations see the function reference), and subsequently visualise the count by party and legislative period. 
  
 ```{r, include=T, eval=T, cache=FALSE, name="get_questions"}
 #get items
@@ -288,7 +288,7 @@ df_items <- get_items(item = "J_JPR_M", legis_period = seq(20,27), echo=TRUE)
 dplyr::glimpse(df_items %>% head())
 ```
 
-There were in total `r nrow(df_items) |> scales::number()` questions submitted in writing and asked orally by the
+There were in total `r nrow(df_items) %>% scales::number()` questions submitted in writing and asked orally by the
 members of the National Council from the 20th to 27th legislative period. With a few additional steps, we can easily visualise the results.
 
 ```{r, fig.width=10, fig.height=8, out.width="100%", cache=FALSE, dependson="get_questions"}
@@ -336,7 +336,7 @@ df_plot %>%
   scale_x_reordered(guide = guide_axis(n.dodge = 2), continuous.limits=c(1,7))+
   scale_y_continuous(labels=scales::label_number(big.mark = ".", decimal.mark = ","))+  
   scale_fill_identity()+
-  facet_wrap(vars(legis_period), scales = "free_x", labeller = labeller(legis_period = function(x) ifelse(x == min(x), paste("Legislative Period", x), x)))+
+  facet_wrap(vars(legis_period), scales = "free_x", labeller = labeller(legis_period = function(x) ifelse(x == min(x), paste("Legislative Period", x), x)))+ 
   theme_minimal()+
   theme(
     strip.text.x= element_text(face = "plain", hjust = 0,color="grey30"),
@@ -373,17 +373,17 @@ df_items <- df_items %>%
   dplyr::mutate(themen_n = purrr::map_dbl(themen_li, length))
 
 # df_items %>%
-#   ggplot2::ggplot(.,ggplot2::aes(x = fraktionen_li, fill = `doktyp_lang`)) +
-#   ggplot2::geom_bar() +
-#   ggupset::scale_x_upset() +
+#   ggplot2::ggplot(.,ggplot2::aes(x = fraktionen_li, fill = `doktyp_lang`)) + 
+#   ggplot2::geom_bar() + 
+#   ggupset::scale_x_upset() + 
 #   theme_minimal()
 
 # df_items %>%
 #   tidyr::unnest_longer(col = "fraktionen_li") %>%
 #   tidyr::unnest_longer(col = "themen_li") %>%
-#   ggplot2::ggplot(aes(x = themen_li, fill = fraktionen_li)) +
-#   ggplot2::geom_bar() +
-#   theme_minimal() +
+#   ggplot2::ggplot(aes(x = themen_li, fill = fraktionen_li)) + 
+#   ggplot2::geom_bar() + 
+#   theme_minimal() + 
 #   facet_wrap(vars(`doktyp_lang`))
 ```
 
@@ -418,7 +418,7 @@ labs(
   title="Austrian Parliament: Number of tabled government bills by topic",
   subtitle="Top-5 topics per frequency and legilslative period. 20th to 27th legislative period. A bill with multiple topics is counted in \neach topic category.",
   caption = "Data: https://www.parlament.gv.at/recherchieren/open-data; retrieved via ParlAT package."
-)+
+)+ 
 geom_bar(
   aes(y=tidytext::reorder_within(topics, n, legis_period), 
   x=n,
@@ -472,14 +472,15 @@ df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq
 
 df_sessions_20_27 %>%
   count(legis_period) %>%
-  ggplot() +
+  mutate(legis_period=as.integer(legis_period)) %>%
+  ggplot() + 
   labs(
     title="Number of plenary sessions of the National Council",
     subtitle="20th to 27th legislative period.",
     caption = "Data: https://www.parlament.gv.at/recherchieren/open-data; retrieved via {ParlAT} package."
   )+
   geom_bar(aes(x=legis_period, y=n), stat="identity", fill="#132943")+
-  scale_y_continuous(expand = expansion(mult = c(0, 0)))+
+  scale_y_continuous(expand = expansion(mult = c(0, 0)))+ 
   scale_x_continuous(
     breaks = 20:27,
     labels = function(x) as.character(as.roman(x))
@@ -531,10 +532,7 @@ members
 ```
 
 
-
-
-
-# Get names
+# Get names & pad_interns
 
 `get_names` is an auxiliary function to get an MP's different names (due
 to marriage, divorce, or other reasons). Below an example with
@@ -562,3 +560,5 @@ latter links to the same results on the website of the Austrian Parliament.
 The echo argument was included to double-check the results, facilitate
 convenient sharing of queries, and provide an additional avenue to explore
 the data.
+
+```

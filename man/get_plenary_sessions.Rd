@@ -106,25 +106,56 @@ Possible values for \code{held} if \code{session_and_activities} is set to \code
 \examples{
 \dontrun{
 # Basic usage: Get sessions for National Council, legislative periods 20-27
-sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20, 27), session_and_activities = "sessions", echo = TRUE)
+sessions_20_27 <- get_plenary_sessions(
+  institution = "NR",
+  legis_period = seq(20, 27),
+  session_and_activities = "sessions",
+  echo = TRUE
+)
 
 # Get activities submitted during sessions
-get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted")
+get_plenary_sessions(
+  institution = "NR",
+  legis_period = 27,
+  session_and_activities = "submitted"
+)
 
 # Get specific type of submitted activities (urgent inquiries)
-get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted", submitted = "J")
+get_plenary_sessions(
+  institution = "NR",
+  legis_period = 27,
+  session_and_activities = "submitted",
+  submitted = "J"
+)
 
 # Get activities held during sessions
-get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "held", held = "FS")
+get_plenary_sessions(
+  institution = "NR",
+  legis_period = 27,
+  session_and_activities = "held",
+  held = "FS"
+)
 
 # Federal Council sessions
-get_plenary_sessions(institution = "BR", legis_period = 28, session_and_activities = "sessions")
+get_plenary_sessions(
+  institution = "BR",
+  legis_period = 28,
+  session_and_activities = "sessions"
+)
 
 # Multiple legislative periods
-get_plenary_sessions(institution = "NR", legis_period = c(26, 27), session_and_activities = "sessions")
+get_plenary_sessions(
+  institution = "NR",
+  legis_period = c(26, 27),
+  session_and_activities = "sessions"
+)
 
 # All periods from 20th onwards (NULL legis_period)
-get_plenary_sessions(institution = "NR", legis_period = NULL, session_and_activities = "sessions")
+get_plenary_sessions(
+  institution = "NR",
+  legis_period = NULL,
+  session_and_activities = "sessions"
+)
 }
 
 }

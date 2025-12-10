@@ -206,13 +206,13 @@ get_participation <- function(
     BEGUTTYP = item,
     DOKTYP = initiative_type,
     SNTYP = statement_type
-  ) |>
-    purrr::compact() |> #keep only non-empty elements
+  ) %>%
+    purrr::compact() %>% #keep only non-empty elements
     jsonlite::toJSON()
 
   res <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/143"
-  ) |>
+  ) %>%
     httr2::req_url_query(
       js = "eval",
       # page = "1",
@@ -220,7 +220,7 @@ get_participation <- function(
       sortrnr = "22",
       showAll = TRUE,
       ascDesc = "DESC",
-    ) |>
+    ) %>%
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
@@ -230,19 +230,19 @@ get_participation <- function(
       origin = "https://www.parlament.gv.at",
       priority = "u=1, i",
       `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-    ) |>
-    httr2::req_body_raw(body_params, "application/json") |>
+    ) %>%
+    httr2::req_body_raw(body_params, "application/json") %>%
     httr2::req_perform()
 
-  vec_headings <- res |>
-    httr2::resp_body_json(simplifyVector = T) |>
-    purrr::pluck("header", "label") |>
-    stringr::str_to_snake() |>
+  vec_headings <- res %>%
+    httr2::resp_body_json(simplifyVector = T) %>%
+    purrr::pluck("header", "label") %>%
+    stringr::str_to_snake() %>%
     make.unique(sep = "_")
 
   # extract the actual substantive data
-  df_res <- res |>
-    httr2::resp_body_json(simplifyVector = T) |>
+  df_res <- res %>%
+    httr2::resp_body_json(simplifyVector = T) %>%
     purrr::pluck("rows") %>%
     as.data.frame()
 
@@ -275,13 +275,13 @@ get_participation <- function(
     "ressort" = "ministry"
   )
 
-  df_res <- df_res |>
+  df_res <- df_res %>%
     dplyr::rename_with(
       .fn = \(x) renaming_map[x],
       .cols = any_of(names(renaming_map))
     )
 
-  df_res <- df_res |>
+  df_res <- df_res %>%
     dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
     dplyr::mutate(date = lubridate::dmy(date))
 

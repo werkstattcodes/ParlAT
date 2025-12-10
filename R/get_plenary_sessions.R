@@ -76,25 +76,56 @@
 #' @examples
 #' \dontrun{
 #' # Basic usage: Get sessions for National Council, legislative periods 20-27
-#' sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20, 27), session_and_activities = "sessions", echo = TRUE)
+#' sessions_20_27 <- get_plenary_sessions(
+#'   institution = "NR",
+#'   legis_period = seq(20, 27),
+#'   session_and_activities = "sessions",
+#'   echo = TRUE
+#' )
 #'
 #' # Get activities submitted during sessions
-#' get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted")
+#' get_plenary_sessions(
+#'   institution = "NR",
+#'   legis_period = 27,
+#'   session_and_activities = "submitted"
+#' )
 #'
 #' # Get specific type of submitted activities (urgent inquiries)
-#' get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "submitted", submitted = "J")
+#' get_plenary_sessions(
+#'   institution = "NR",
+#'   legis_period = 27,
+#'   session_and_activities = "submitted",
+#'   submitted = "J"
+#' )
 #'
 #' # Get activities held during sessions
-#' get_plenary_sessions(institution = "NR", legis_period = 27, session_and_activities = "held", held = "FS")
+#' get_plenary_sessions(
+#'   institution = "NR",
+#'   legis_period = 27,
+#'   session_and_activities = "held",
+#'   held = "FS"
+#' )
 #'
 #' # Federal Council sessions
-#' get_plenary_sessions(institution = "BR", legis_period = 28, session_and_activities = "sessions")
+#' get_plenary_sessions(
+#'   institution = "BR",
+#'   legis_period = 28,
+#'   session_and_activities = "sessions"
+#' )
 #'
 #' # Multiple legislative periods
-#' get_plenary_sessions(institution = "NR", legis_period = c(26, 27), session_and_activities = "sessions")
+#' get_plenary_sessions(
+#'   institution = "NR",
+#'   legis_period = c(26, 27),
+#'   session_and_activities = "sessions"
+#' )
 #'
 #' # All periods from 20th onwards (NULL legis_period)
-#' get_plenary_sessions(institution = "NR", legis_period = NULL, session_and_activities = "sessions")
+#' get_plenary_sessions(
+#'   institution = "NR",
+#'   legis_period = NULL,
+#'   session_and_activities = "sessions"
+#' )
 #' }
 #'
 #' @export
@@ -126,9 +157,9 @@ get_plenary_sessions <- function(
     # HANDLE MULTIPLE LEGIS PERIODS
     # NULL means every legis_period from 20 onwards — but only for non-BV institutions
     if (is.null(legis_period) && institution != "BV") {
-        legis_period <- get_legis_periods() |>
-            dplyr::filter(legis_period > 19) |>
-            dplyr::pull(legis_period)
+        legis_period <- get_legis_periods() %>%
+            dplyr::filter(.data$legis_period > 19) %>%
+            dplyr::pull("legis_period")
     }
 
     # if length(legis_period)>1 => apply function to each legis_period
@@ -147,7 +178,7 @@ get_plenary_sessions <- function(
                 )
             },
             .progress = TRUE
-        ) |>
+        ) %>%
             purrr::list_rbind()
 
         if (isTRUE(echo)) {
@@ -299,42 +330,42 @@ get_plenary_sessions <- function(
         R_SISTEI = session_and_activities_input,
         EING = submitted,
         STATT = held
-    ) |>
-        purrr::compact() |> # keep only non-empty elements
+    ) %>%
+        purrr::compact() %>% # keep only non-empty elements
         jsonlite::toJSON()
 
     # API REQUEST
-    res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
+    res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") %>%
         httr2::req_url_query(
             jsMode = "EVAL",
             FBEZ = "WFP_007",
             listeId = "undefined",
             showAll = TRUE,
             ascDesc = "ASC"
-        ) |>
+        ) %>%
         httr2::req_headers(
             accept = "*/*",
             `content-type` = "application/json",
             origin = "https://www.parlament.gv.at"
-        ) |>
-        httr2::req_body_raw(body_params, "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        ) %>%
+        httr2::req_body_raw(body_params, "application/json") %>%
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_verbose(
             body_req = FALSE,
             header_req = FALSE,
             header_resp = FALSE
-        ) |>
+        ) %>%
         httr2::req_perform()
 
-    vec_headings <- res |>
-        httr2::resp_body_json(simplifyVector = T) |>
-        purrr::pluck("header", "label") |>
-        stringr::str_to_snake() |>
+    vec_headings <- res %>%
+        httr2::resp_body_json(simplifyVector = T) %>%
+        purrr::pluck("header", "label") %>%
+        stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # extract the actual substantive data
-    df_res <- res |>
-        httr2::resp_body_json(simplifyVector = T) |>
+    df_res <- res %>%
+        httr2::resp_body_json(simplifyVector = T) %>%
         purrr::pluck("rows")
     #
     if (length(df_res) == 0) {
@@ -350,13 +381,13 @@ get_plenary_sessions <- function(
 
     if ("gp" %in% colnames(df_res)) {
         df_res <- df_res %>%
-            dplyr::rename(gp_code = gp)
+            dplyr::rename(gp_code = "gp")
     }
 
     # browser()
-    df_res <- df_res |>
+    df_res <- df_res %>%
         dplyr::mutate(
-            gp_code = aux_convert_legis_periods(gp_code, output = "character")
+            gp_code = aux_convert_legis_periods(.data$gp_code, output = "character")
         )
 
     #COLS DEPEND ON SEARCH PARAMETERS => DIFFERENT RENAMINGS NEEDED
@@ -364,9 +395,9 @@ get_plenary_sessions <- function(
         institution != "BV" &&
             session_and_activities %in% c("held", "submitted")
     ) {
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
-                sitzung = stringr::str_extract(sitzung, stringr::regex("\\d+"))
+                sitzung = stringr::str_extract(.data$sitzung, stringr::regex("\\d+"))
             )
 
         #parse text from art with error handling
@@ -379,10 +410,10 @@ get_plenary_sessions <- function(
             otherwise = NA_character_
         )
 
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
-                art_title = purrr::map_chr(art, safe_parse_title),
-                art_txt = purrr::map_chr(art, safe_parse_text)
+                art_title = purrr::map_chr(.data$art, safe_parse_title),
+                art_txt = purrr::map_chr(.data$art, safe_parse_text)
             )
 
         #rename columns
@@ -399,20 +430,18 @@ get_plenary_sessions <- function(
             "sitzung" = "session_number"
         )
 
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::rename_with(
                 .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
                 .cols = any_of(names(renaming_map))
             )
 
         # Convert date column to Date class
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
-                date = as.Date(date, format = "%d.%m.%Y")
+                date = as.Date(.data$date, format = "%d.%m.%Y")
             )
-
-        # Add https://www.parlament.gv.at/ prefix to all URL columns
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
                 dplyr::across(
                     tidyselect::contains("url"),
@@ -442,8 +471,8 @@ get_plenary_sessions <- function(
             "link_3"
         )
 
-        df_res <- df_res |>
-            dplyr::select(dplyr::any_of(col_select)) |>
+        df_res <- df_res %>%
+            dplyr::select(dplyr::any_of(col_select)) %>%
             dplyr::relocate(dplyr::any_of(col_select)) #ensures ordering of columns
 
         # PRINT ECHO
@@ -455,9 +484,9 @@ get_plenary_sessions <- function(
             query_string <- purrr::imap(
                 body_params_li,
                 \(x, y) glue::glue("WFP_007{URLencode(y)}={URLencode(x)}")
-            ) |>
-                unlist() |>
-                unname() |>
+            ) %>%
+                unlist() %>%
+                unname() %>%
                 paste0(collapse = "&")
 
             print(glue::glue(
@@ -475,26 +504,26 @@ get_plenary_sessions <- function(
             institution == "BV"
     ) {
         # extract institution type
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
-                institution = stringr::str_extract(ityp, stringr::regex("^.."))
+                institution = stringr::str_extract(.data$ityp, stringr::regex("^.."))
             )
 
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
-                sitzung = stringr::str_extract(sitzung, stringr::regex("^\\d+"))
+                sitzung = stringr::str_extract(.data$sitzung, stringr::regex("^\\d+"))
             )
 
         # extract session type if "session_and_activities" == held
         if (
             !is.null(session_and_activities) && session_and_activities == "held"
         ) {
-            df_res <- df_res |>
+            df_res <- df_res %>%
                 dplyr::mutate(
-                    session_type_abbrev = purrr::map_chr(art, \(x) {
+                    session_type_abbrev = purrr::map_chr(.data$art, \(x) {
                         aux_parse_html_title(x)
                     }),
-                    session_type_name = purrr::map_chr(art, \(x) {
+                    session_type_name = purrr::map_chr(.data$art, \(x) {
                         aux_parse_html_text(x)
                     })
                 )
@@ -502,9 +531,9 @@ get_plenary_sessions <- function(
 
         # parse html to extract HTML and pdf document links (if tagesordnung column exists)
         if ("tagesordnung" %in% colnames(df_res)) {
-            df_res <- df_res |>
+            df_res <- df_res %>%
                 dplyr::mutate(
-                    tagesordnung = tagesordnung |>
+                    tagesordnung = .data$tagesordnung %>%
                         purrr::map(\(html_string) {
                             if (is.na(html_string) || html_string == "") {
                                 return(c(
@@ -515,9 +544,9 @@ get_plenary_sessions <- function(
 
                             extract_all_hrefs <- purrr::possibly(
                                 \(html) {
-                                    hrefs <- html |>
-                                        rvest::read_html() |>
-                                        rvest::html_elements("a") |>
+                                    hrefs <- html %>%
+                                        rvest::read_html() %>%
+                                        rvest::html_elements("a") %>%
                                         rvest::html_attr("href")
 
                                     # Filter and separate HTML and PDF links
@@ -565,26 +594,26 @@ get_plenary_sessions <- function(
             "link" = "session_url"
         )
 
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::rename_with(
                 .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
                 .cols = any_of(names(renaming_map))
             )
 
         # Convert date column to Date class
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
-                date = as.Date(date, format = "%d.%m.%Y")
+                date = as.Date(.data$date, format = "%d.%m.%Y")
             )
 
         # Unnest agenda_url with prefix
         if ("agenda_url" %in% colnames(df_res)) {
-            df_res <- df_res |>
-                tidyr::unnest_wider(agenda_url, names_sep = "_")
+            df_res <- df_res %>%
+                tidyr::unnest_wider("agenda_url", names_sep = "_")
         }
 
         # Add https://www.parlament.gv.at/ prefix to all URL columns
-        df_res <- df_res |>
+        df_res <- df_res %>%
             dplyr::mutate(
                 dplyr::across(
                     tidyselect::contains("url"),
@@ -611,8 +640,8 @@ get_plenary_sessions <- function(
             "agenda_url_pdf"
         )
 
-        df_res <- df_res |>
-            dplyr::select(dplyr::any_of(col_select)) |>
+        df_res <- df_res %>%
+            dplyr::select(dplyr::any_of(col_select)) %>%
             dplyr::relocate(dplyr::any_of(col_select))
 
         # PRINT ECHO
@@ -624,9 +653,9 @@ get_plenary_sessions <- function(
             query_string <- purrr::imap(
                 body_params_li,
                 \(x, y) glue::glue("WFP_007{URLencode(y)}={URLencode(x)}")
-            ) |>
-                unlist() |>
-                unname() |>
+            ) %>%
+                unlist() %>%
+                unname() %>%
                 paste0(collapse = "&")
 
             print(glue::glue(
@@ -637,7 +666,7 @@ get_plenary_sessions <- function(
         }
 
         if (institution == "BV") {
-            return(df_res %>% dplyr::select(-legis_period)) #when institution is "BV", API returns "BV" for legis_period; creates to var class conflicts
+            return(df_res %>% dplyr::select(-"legis_period")) #when institution is "BV", API returns "BV" for legis_period; creates to var class conflicts
         } else {
             return(df_res)
         }
