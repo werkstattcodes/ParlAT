@@ -448,8 +448,8 @@
 #'
 #' # Query items for multiple legislative periods separately
 #' periods <- c(25, 26, 27, 28)
-#' all_results <- periods |>
-#'   map(\(period) get_items(legis_period = period, echo = FALSE)) |>
+#' all_results <- periods %>%
+#'   map(\(period) get_items(legis_period = period, echo = FALSE)) %>%
 #'   list_rbind()
 #' ```
 #'
@@ -510,7 +510,8 @@
 #'   institution = "NR"
 #' )
 #'
-#' # Get all statements of the sub-committee on EU affairs (EU-Unterausschuss) during the 27th legislative period.
+#' # Get all statements of the sub-committee on EU affairs
+#' # (EU-Unterausschuss) during the 27th legislative period.
 #' get_items(
 #'   item = "EU",
 #'   type_eu_submission = "MTEU",
@@ -826,9 +827,9 @@ get_items <- function(
   ## accepts multiple values
   ## pad_intern needs to be character, not numeric
   if (!is.null(person)) {
-    person_input <- get_persons(names = person, institution = institution) |>
-      dplyr::pull(pad_intern) |>
-      unique() |>
+    person_input <- get_persons(names = person, institution = institution) %>%
+      dplyr::pull("pad_intern") %>%
+      unique() %>%
       as.character()
   } else {
     person_input <- NULL
@@ -1094,21 +1095,21 @@ get_items <- function(
     SW = keyword,
     EUROVOC = eurovoc,
     FRAK_CODE = parl_group
-  ) |>
-    purrr::compact() |> #keep only non-empty elements
+  ) %>%
+    purrr::compact() %>% #keep only non-empty elements
     jsonlite::toJSON()
 
   req <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/101"
-  ) |>
-    httr2::req_method("POST") |>
+  ) %>%
+    httr2::req_method("POST") %>%
     httr2::req_url_query(
       js = "eval",
       showAll = TRUE,
       # page = "1",
       # pagesize = "449",
       export = TRUE
-    ) |>
+    ) %>%
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
@@ -1122,17 +1123,17 @@ get_items <- function(
       `sec-fetch-mode` = "cors",
       `sec-fetch-site` = "same-origin",
       `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
-    ) |>
-    httr2::req_body_raw(body_params, "application/json") |>
-    # httr2::req_body_json(body_params) |>
+    ) %>%
+    httr2::req_body_raw(body_params, "application/json") %>%
+    # httr2::req_body_json(body_params) %>%
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)")
 
   resp <- httr2::req_perform(req)
   resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
 
-  vec_headings <- resp_json |>
-    purrr::pluck("header", "label") |>
-    stringr::str_to_snake() |>
+  vec_headings <- resp_json %>%
+    purrr::pluck("header", "label") %>%
+    stringr::str_to_snake() %>%
     make.unique(sep = "_")
 
   rows <- purrr::pluck(resp_json, "rows")
@@ -1140,7 +1141,7 @@ get_items <- function(
   if (length(rows) == 0) {
     df_res <- NULL
   } else {
-    df_res <- rows |>
+    df_res <- rows %>%
       as.data.frame()
 
     #patch: API returns colums and header labels of different lenghts. Those
@@ -1165,9 +1166,9 @@ get_items <- function(
     query_string <- purrr::imap(
       body_params_li,
       \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
-    ) |>
-      unlist() |>
-      unname() |>
+    ) %>%
+      unlist() %>%
+      unname() %>%
       paste0(collapse = "&")
 
     print(glue::glue(
@@ -1203,14 +1204,14 @@ get_items <- function(
     "euro_voc"
   )
   fn_parse_content <- function(x) {
-    x |>
-      stringr::str_remove_all("\\[|\\]|\"") |>
-      stringr::str_split(",") |>
-      unlist() |>
+    x %>%
+      stringr::str_remove_all("\\[|\\]|\"") %>%
+      stringr::str_split(",") %>%
+      unlist() %>%
       stringr::str_trim()
   }
 
-  df_res <- df_res |>
+  df_res <- df_res %>%
     dplyr::mutate(
       dplyr::across(
         dplyr::any_of(cols_pars),
@@ -1241,7 +1242,7 @@ get_items <- function(
     "gremium" = "institution"
   )
 
-  df_res <- df_res |>
+  df_res <- df_res %>%
     dplyr::rename_with(
       .fn = \(x) renaming_map[x],
       .cols = any_of(names(renaming_map))
@@ -1267,16 +1268,16 @@ get_items <- function(
     "parl_group"
   )
 
-  df_res <- df_res |>
-    dplyr::select(dplyr::any_of(col_select)) |>
-    dplyr::relocate(dplyr::any_of(col_select)) |> #ensures ordering of columns
-    dplyr::mutate(date = lubridate::dmy(date))
+  df_res <- df_res %>%
+    dplyr::select(dplyr::any_of(col_select)) %>%
+    dplyr::relocate(dplyr::any_of(col_select)) %>% #ensures ordering of columns
+    dplyr::mutate(date = lubridate::dmy(.data$date))
 
   # CHECK FOR DUPLICATES
   # Check for completely duplicate rows across all columns
   n_total_rows <- nrow(df_res)
-  n_distinct_rows <- df_res |>
-    dplyr::distinct() |>
+  n_distinct_rows <- df_res %>%
+    dplyr::distinct() %>%
     nrow()
 
   if (n_total_rows > n_distinct_rows) {
@@ -1313,6 +1314,8 @@ get_items <- function(
 #'   Parliament website. Can be an absolute URL starting with
 #'   "https://www.parlament.gv.at/" or a relative path (with or without
 #'   leading slashes). The function will normalize relative paths automatically.
+#' @param type Character. Type of data to extract. Currently only "stages" is
+#'   supported (default).
 #'
 #' @return A tibble containing detailed information about the parliamentary item and its stages.
 #'   Returns `NULL` if no stages are found.
@@ -1356,22 +1359,22 @@ get_item_details <- function(item_url, type = "stages") {
   prefix <- "https://www.parlament.gv.at/"
 
   if (!stringr::str_starts(item_url, prefix)) {
-    item_url <- item_url |>
-      stringr::str_replace("^/+", "") |>
+    item_url <- item_url %>%
+      stringr::str_replace("^/+", "") %>%
       (\(x) stringr::str_c(prefix, x))()
   }
 
   page <- rvest::read_html(item_url)
 
   # Extract and parse embedded data from JavaScript
-  data_list <- page |>
-    rvest::html_elements("script") |>
-    rvest::html_text2() |>
-    (\(x) x[stringr::str_detect(x, "props:")])() |>
-    stringr::str_extract("(?s)props:.*") |>
-    stringr::str_remove("props:\\s*") |>
-    stringr::str_remove("\\}\\);\\s*$") |>
-    jsonlite::fromJSON() |>
+  data_list <- page %>%
+    rvest::html_elements("script") %>%
+    rvest::html_text2() %>%
+    (\(x) x[stringr::str_detect(x, "props:")])() %>%
+    stringr::str_extract("(?s)props:.*") %>%
+    stringr::str_remove("props:\\s*") %>%
+    stringr::str_remove("\\}\\);\\s*$") %>%
+    jsonlite::fromJSON() %>%
     (\(x) x$data)()
 
   #GET METADATA ON ITEM
@@ -1387,18 +1390,18 @@ get_item_details <- function(item_url, type = "stages") {
 
   #GET STAGES DETAILS - IF STRUCTURE IS PHASE/STAGES
   if (type == "stages" && !is.null(data_list$content$phase$stages)) {
-    df_stages <- data_list$content$phase |>
-      dplyr::rename(stage = stages) |>
-      tidyr::unnest_longer(stage) |>
-      tidyr::unnest_wider(stage, names_sep = "_") |>
-      dplyr::rename(phase = name, stage_name = stage_text)
+    df_stages <- data_list$content$phase %>%
+      dplyr::rename(stage = "stages") %>%
+      tidyr::unnest_longer("stage") %>%
+      tidyr::unnest_wider("stage", names_sep = "_") %>%
+      dplyr::rename(phase = "name", stage_name = "stage_text")
 
-    df_stages <- df_stages |>
+    df_stages <- df_stages %>%
       dplyr::mutate(
-        stage_name = purrr::map_chr(stage_name, \(x) {
+        stage_name = purrr::map_chr(.data$stage_name, \(x) {
           tryCatch(
             {
-              x |> rvest::read_html() |> rvest::html_text2()
+              x %>% rvest::read_html() %>% rvest::html_text2()
             },
             error = function(e) {
               # If it fails, it's probably plain text already
@@ -1409,8 +1412,8 @@ get_item_details <- function(item_url, type = "stages") {
       )
 
     # Expand df_res to match df_stages and combine
-    result <- df_res |>
-      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) |>
+    result <- df_res %>%
+      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
       dplyr::bind_cols(df_stages)
 
     return(result)
@@ -1418,18 +1421,18 @@ get_item_details <- function(item_url, type = "stages") {
 
   #GET STAGES DETAILS - IF STRUCTURE IS STAGES
   if (type == "stages" && !is.null(data_list$content$stages)) {
-    df_stages <- data_list$content$stages |>
-      tidyr::unnest_longer(fsth) |>
-      tidyr::unnest_wider(fsth, names_sep = "_") %>%
-      dplyr::rename(session_number = fsth_sitzung_id) %>%
-      dplyr::select(-fsth_fund_von, -fsth_fund_bis)
+    df_stages <- data_list$content$stages %>%
+      tidyr::unnest_longer("fsth") %>%
+      tidyr::unnest_wider("fsth", names_sep = "_") %>%
+      dplyr::rename(session_number = "fsth_sitzung_id") %>%
+      dplyr::select(-c("fsth_fund_von", "fsth_fund_bis"))
 
-    df_stages <- df_stages |>
+    df_stages <- df_stages %>%
       dplyr::mutate(
-        text = purrr::map_chr(text, \(x) {
+        text = purrr::map_chr(.data$text, \(x) {
           tryCatch(
             {
-              x |> rvest::read_html() |> rvest::html_text2()
+              x %>% rvest::read_html() %>% rvest::html_text2()
             },
             error = function(e) {
               # If it fails, it's probably plain text already
@@ -1442,8 +1445,8 @@ get_item_details <- function(item_url, type = "stages") {
     # browser()
 
     # Expand df_res to match df_stages and combine
-    result <- df_res |>
-      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) |>
+    result <- df_res %>%
+      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
       dplyr::bind_cols(df_stages)
 
     return(result)

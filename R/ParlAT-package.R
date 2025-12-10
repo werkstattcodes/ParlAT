@@ -2,10 +2,15 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom dplyr across any_of contains everything starts_with desc between
 #' @importFrom jsonlite fromJSON
 #' @importFrom jsonlite read_json
 #' @importFrom jsonlite toJSON
 #' @importFrom lifecycle deprecated
-#' @importFrom utils as.roman
+#' @importFrom magrittr %>%
+#' @importFrom purrr map2
+#' @importFrom rlang .data
+#' @importFrom stats setNames
+#' @importFrom utils as.roman URLencode
 ## usethis namespace: end
 NULL

@@ -539,8 +539,8 @@ reaches this limit, the function issues a warning because the results may be inc
 
 # Query items for multiple legislative periods separately
 periods <- c(25, 26, 27, 28)
-all_results <- periods |>
-  map(\\(period) get_items(legis_period = period, echo = FALSE)) |>
+all_results <- periods \%>\%
+  map(\\(period) get_items(legis_period = period, echo = FALSE)) \%>\%
   list_rbind()
 }\if{html}{\out{</div>}}
 }
@@ -595,7 +595,8 @@ get_items(
   institution = "NR"
 )
 
-# Get all statements of the sub-committee on EU affairs (EU-Unterausschuss) during the 27th legislative period.
+# Get all statements of the sub-committee on EU affairs
+# (EU-Unterausschuss) during the 27th legislative period.
 get_items(
   item = "EU",
   type_eu_submission = "MTEU",

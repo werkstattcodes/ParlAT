@@ -38,7 +38,7 @@ test_that("get_participation validates item parameter", {
 test_that("get_participation validates initiative_type parameter", {
   expect_error(
     get_participation(initiative_type = "INVALID"),
-    "Must be a subset of"
+    'initiative_type can only be specified when item = "RGES"'
   )
 })
 
@@ -64,7 +64,7 @@ test_that("get_participation validates legislative period input", {
 test_that("get_participation validates statement_type parameter", {
   expect_error(
     get_participation(statement_type = "INVALID"),
-    "Must be a subset of"
+    'statement_type can only be specified when item = "SN"'
   )
 })
 

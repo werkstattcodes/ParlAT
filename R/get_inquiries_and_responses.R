@@ -50,12 +50,12 @@ get_inquiries_and_responses <- function(
         SUCH = search_term_input,
         JMAB = inquiry_or_response_input,
         VHG2 = type_input
-    ) |>
-        purrr::compact() |> # keep only non-empty elements
+    ) %>%
+        purrr::compact() %>% # keep only non-empty elements
         jsonlite::toJSON()
 
     # PERFORM REQUEST
-    res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
+    res <- httr2::request("https://www.parlament.gv.at/Filter/api/json/post") %>%
         httr2::req_url_query(
             jsMode = "EVAL",
             FBEZ = "WFP_005",
@@ -63,7 +63,7 @@ get_inquiries_and_responses <- function(
             showAll = TRUE,
             feldRnr = "1",
             ascDesc = "DESC",
-        ) |>
+        ) %>%
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
@@ -73,25 +73,25 @@ get_inquiries_and_responses <- function(
             origin = "https://www.parlament.gv.at",
             priority = "u=1, i",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        ) |>
-        httr2::req_body_raw(body_params, "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        ) %>%
+        httr2::req_body_raw(body_params, "application/json") %>%
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_verbose(
             body_req = T,
             header_req = F,
             header_resp = F
-        ) |>
+        ) %>%
         httr2::req_perform()
 
-    vec_headings <- res |>
-        httr2::resp_body_json(simplifyVector = T) |>
-        purrr::pluck("header", "label") |>
-        stringr::str_to_snake() |>
+    vec_headings <- res %>%
+        httr2::resp_body_json(simplifyVector = T) %>%
+        purrr::pluck("header", "label") %>%
+        stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # extract the actual substantive data
-    df_res <- res |>
-        httr2::resp_body_json(simplifyVector = T) |>
+    df_res <- res %>%
+        httr2::resp_body_json(simplifyVector = T) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {

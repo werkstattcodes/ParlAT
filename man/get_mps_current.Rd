@@ -42,7 +42,8 @@ For Federal Council (BR), acceptable values are:
 \item "ZSB": Schriftführer des Bundesrates (Secretary/Scrutineer of the Federal Council)
 }}
 
-\item{party}{Character vector of length 1. For National Council, see \code{\link{get_mps_NR_current}} documentation.
+\item{party}{Character vector of length 1. For National Council, acceptable values include
+"all", "SPÖ", "ÖVP", "FPÖ", "GRÜNE", "NEOS", and historical parties.
 For Federal Council, acceptable values are:
 \itemize{
 \item "all": Alle Wahlparteien (All Electoral Parties)
@@ -93,8 +94,9 @@ For \emph{Federal Council}, acceptable values are:
 \item "OF": ohne Fraktionszugehörigkeit (Without Parliamentary Group Affiliation)
 }}
 
-\item{state}{Character vector of length 1. For National Council, see \code{\link{get_mps_NR_current}}
-documentation. For Federal Council, acceptable values are:
+\item{state}{Character vector of length 1. For National Council, acceptable values include
+"all", "B", "K", "N", "O", "S", "St", "T", "V", "W", and "BWV".
+For Federal Council, acceptable values are:
 \itemize{
 \item "all": Alle Bundesländer (All Federal States)
 \item "B": Burgenland

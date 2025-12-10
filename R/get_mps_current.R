@@ -27,7 +27,8 @@
 #'     \item "ZOB": Ordner des Bundesrates (Usher/Sergeant-at-Arms of the Federal Council)
 #'     \item "ZSB": Schriftführer des Bundesrates (Secretary/Scrutineer of the Federal Council)
 #'   }
-#' @param party Character vector of length 1. For National Council, see \code{\link{get_mps_NR_current}} documentation.
+#' @param party Character vector of length 1. For National Council, acceptable values include
+#'   "all", "SPÖ", "ÖVP", "FPÖ", "GRÜNE", "NEOS", and historical parties.
 #'   For Federal Council, acceptable values are:
 #'   \itemize{
 #'     \item "all": Alle Wahlparteien (All Electoral Parties)
@@ -78,8 +79,9 @@
 #'   }
 # @param postal_code Character or numeric vector of length 1. Four digit postal code filter.
 #   Only applicable for National Council (NR).
-#' @param state Character vector of length 1. For National Council, see \code{\link{get_mps_NR_current}}
-#'   documentation. For Federal Council, acceptable values are:
+#' @param state Character vector of length 1. For National Council, acceptable values include
+#'   "all", "B", "K", "N", "O", "S", "St", "T", "V", "W", and "BWV".
+#'   For Federal Council, acceptable values are:
 #'   \itemize{
 #'     \item "all": Alle Bundesländer (All Federal States)
 #'     \item "B": Burgenland
@@ -219,36 +221,36 @@ get_mps_current <- function(
         #Parse output; get meaningful column names
         df_res <- df_NR %>%
             dplyr::mutate(
-                parl_group = purrr::map_chr(klub, \(x) aux_parse_html_title(x)),
+                parl_group = purrr::map_chr(.data$klub, function(x) aux_parse_html_title(x)),
                 state = purrr::map_chr(
-                    bundesland,
-                    \(x) aux_parse_html_title(x)
+                    .data$bundesland,
+                    function(x) aux_parse_html_title(x)
                 ),
                 pad_intern = stringr::str_extract(
-                    link,
+                    .data$link,
                     stringr::regex("[0-9]+$")
                 ), #extract pad_intern from link
                 electoral_district_region_code = stringr::str_extract(
-                    wahlkreis,
+                    .data$wahlkreis,
                     stringr::regex("^\\w+")
                 ),
-                electoral_district_region = wahlkreis %>%
+                electoral_district_region = .data$wahlkreis %>%
                     as.character() %>%
                     stringr::str_remove(stringr::regex("^\\w+")) %>%
-                    stringr::str_trim(., "both") #,
+                    stringr::str_trim("both") #,
                 # name2 = map_chr(rss_description, \(x) aux_extract_name(x)) #name now called via get_names
             ) %>%
             dplyr::select(
-                time_stamp,
-                name,
+                "time_stamp",
+                "name",
                 # name2,
-                pad_intern,
-                party = sort_wp,
-                parl_group,
-                electoral_district_region_code,
-                electoral_district_region,
-                state,
-                link
+                "pad_intern",
+                party = "sort_wp",
+                "parl_group",
+                "electoral_district_region_code",
+                "electoral_district_region",
+                "state",
+                "link"
             ) %>%
             dplyr::as_tibble()
 
@@ -304,34 +306,34 @@ get_mps_current <- function(
             ) %>%
             dplyr::mutate(
                 parl_group = purrr::map_chr(
-                    fraktion,
+                    .data$fraktion,
                     \(x) aux_parse_html_title(x)
                 ),
                 parl_group_code = purrr::map_chr(
-                    fraktion,
+                    .data$fraktion,
                     \(x) {
                         rvest::read_html(x) %>%
                             rvest::html_element("span.zeigeTooltip") %>%
                             rvest::html_text(trim = TRUE)
                     }
                 ),
-                party_name = purrr::map_chr(wahlpartei, \(x) {
+                party_name = purrr::map_chr(.data$wahlpartei, \(x) {
                     aux_parse_html_title(x)
                 }),
-                party_code = purrr::map_chr(wahlpartei, \(x) {
+                party_code = purrr::map_chr(.data$wahlpartei, \(x) {
                     rvest::read_html(x) %>%
                         rvest::html_element("span.zeigeTooltip") %>%
                         rvest::html_text(trim = TRUE)
                 })
             ) %>%
             dplyr::rename(
-                state = bundesland,
-                electoral_district_region_code = wahlkreis
+                state = "bundesland",
+                electoral_district_region_code = "wahlkreis"
             ) %>%
             dplyr::select(
-                -pad_sortier,
-                -wahlpartei,
-                -fraktion
+                -"pad_sortier",
+                -"wahlpartei",
+                -"fraktion"
             )
     } #CONTINUE  do  order of columns; add chamber column
 
@@ -346,10 +348,10 @@ get_mps_current <- function(
 
     df_res <- df_res %>%
         dplyr::mutate(
-            name = purrr::map_chr(pad_intern, function(x) {
+            name = purrr::map_chr(.data$pad_intern, function(x) {
                 pb$tick()
                 get_names(pad_intern = x) %>%
-                    dplyr::filter(index == 1) %>% # latest name
+                    dplyr::filter(.data$index == 1) %>% # latest name
                     dplyr::pull("name")
             }),
             .after = 1
@@ -805,22 +807,22 @@ get_mps_NR_current <- function(
         BL = state,
         # R_PBW = R_PBW_input,
         WK = electoral_district
-    ) |>
-        purrr::compact() |>
+    ) %>%
+        purrr::compact() %>%
         jsonlite::toJSON()
 
     # PERFORM REQUEST
     res <- get_mps_NR_current_api_request(body_params)
 
-    vec_headings <- res |>
-        httr2::resp_body_json(simplifyVector = T) |>
-        purrr::pluck("header", "label") |>
-        stringr::str_to_snake() |>
+    vec_headings <- res %>%
+        httr2::resp_body_json(simplifyVector = T) %>%
+        purrr::pluck("header", "label") %>%
+        stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # EXTRACT THE ACTUAL SUBSTANTIVE DATA
-    df_res <- res |>
-        httr2::resp_body_json(simplifyVector = T) |>
+    df_res <- res %>%
+        httr2::resp_body_json(simplifyVector = T) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
@@ -835,12 +837,11 @@ get_mps_NR_current <- function(
         print(nrow(df_res))
         print(body_params)
 
-        query_string <- body_params %>%
-            fromJSON() %>%
-            imap(
-                .,
-                \(x, y) glue::glue("WFW_002{URLencode(y)}={URLencode(x)}")
-            ) %>%
+        params_list <- jsonlite::fromJSON(body_params)
+        query_string <- purrr::imap(
+            params_list,
+            \(x, y) glue::glue("WFW_002{URLencode(y)}={URLencode(x)}")
+        ) %>%
             unlist() %>%
             unname() %>%
             paste0(collapse = "&")
@@ -851,7 +852,7 @@ get_mps_NR_current <- function(
     }
 
     # #PARSE HTML STRINGS
-    # df_res <- df_res |>
+    # df_res <- df_res %>%
     #     dplyr::mutate(across(
     #         # c("klub", "bundesland", "rss_description"),
     #         c("klub", "bundesland"),
@@ -860,7 +861,7 @@ get_mps_NR_current <- function(
     # dplyr::mutate(
     #     parl_group = map_chr(rss_description, \(x) {
     #         x %>%
-    #             rvest::read_html() |>
+    #             rvest::read_html() %>%
     #             rvest::html_elements("span") %>%
     #             rvest::html_attr("title")
     #     })
@@ -886,8 +887,8 @@ get_mps_NR_current <- function(
 #'
 #' @noRd
 get_mps_NR_current_api_request <- function(body_params) {
-    httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
-        httr2::req_method("POST") |>
+    httr2::request("https://www.parlament.gv.at/Filter/api/json/post") %>%
+        httr2::req_method("POST") %>%
         httr2::req_url_query(
             jsMode = "EVAL",
             FBEZ = "WFW_002",
@@ -896,7 +897,7 @@ get_mps_NR_current_api_request <- function(body_params) {
             pagesize = "200",
             feldRnr = "1",
             ascDesc = "ASC"
-        ) |>
+        ) %>%
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
@@ -911,9 +912,9 @@ get_mps_NR_current_api_request <- function(body_params) {
             `sec-fetch-site` = "same-origin",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0",
             # cookie = "JSESSIONID=8W7-0Ik_IGTvMWFmcUDtc42xP_c-TZhjBqdTemqY.appsrv05e; pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1742568811%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D; _pk_ses.1.26ca=1"
-        ) |>
-        httr2::req_body_raw(body_params, type = "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        ) %>%
+        httr2::req_body_raw(body_params, type = "application/json") %>%
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_verbose(
             body_req = F,
             header_req = F,
@@ -1119,22 +1120,22 @@ get_mps_BR_current <- function(
         WP = party,
         FR = parl_group,
         BL = state
-    ) |>
-        purrr::compact() |>
+    ) %>%
+        purrr::compact() %>%
         jsonlite::toJSON()
 
     # PERFORM REQUEST
     res <- get_mps_BR_current_api_request(body_params)
 
-    vec_headings <- res |>
-        httr2::resp_body_json(simplifyVector = T) |>
-        purrr::pluck("header", "label") |>
-        stringr::str_to_snake() |>
+    vec_headings <- res %>%
+        httr2::resp_body_json(simplifyVector = T) %>%
+        purrr::pluck("header", "label") %>%
+        stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # EXTRACT THE ACTUAL SUBSTANTIVE DATA
-    df_res <- res |>
-        httr2::resp_body_json(simplifyVector = T) |>
+    df_res <- res %>%
+        httr2::resp_body_json(simplifyVector = T) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
@@ -1149,12 +1150,11 @@ get_mps_BR_current <- function(
         print(nrow(df_res))
         print(body_params)
 
-        query_string <- body_params %>%
-            fromJSON() %>%
-            imap(
-                .,
-                \(x, y) glue::glue("WFW_005{URLencode(y)}={URLencode(x)}")
-            ) %>%
+        params_list <- jsonlite::fromJSON(body_params)
+        query_string <- purrr::imap(
+            params_list,
+            \(x, y) glue::glue("WFW_005{URLencode(y)}={URLencode(x)}")
+        ) %>%
             unlist() %>%
             unname() %>%
             paste0(collapse = "&")
@@ -1165,7 +1165,7 @@ get_mps_BR_current <- function(
     }
 
     # #PARSE HTML STRINGS
-    # df_res <- df_res |>
+    # df_res <- df_res %>%
     #     dplyr::mutate(across(
     #         # c("klub", "bundesland", "rss_description"),
     #         c("klub", "bundesland"),
@@ -1174,7 +1174,7 @@ get_mps_BR_current <- function(
     # dplyr::mutate(
     #     parl_group = map_chr(rss_description, \(x) {
     #         x %>%
-    #             rvest::read_html() |>
+    #             rvest::read_html() %>%
     #             rvest::html_elements("span") %>%
     #             rvest::html_attr("title")
     #     })
@@ -1191,8 +1191,8 @@ get_mps_BR_current <- function(
 
 
 get_mps_BR_current_api_request <- function(body_params) {
-    httr2::request("https://www.parlament.gv.at/Filter/api/json/post") |>
-        httr2::req_method("POST") |>
+    httr2::request("https://www.parlament.gv.at/Filter/api/json/post") %>%
+        httr2::req_method("POST") %>%
         httr2::req_url_query(
             jsMode = "EVAL",
             FBEZ = "WFW_005",
@@ -1201,7 +1201,7 @@ get_mps_BR_current_api_request <- function(body_params) {
             pagesize = "100",
             feldRnr = "2",
             ascDesc = "ASC"
-        ) |>
+        ) %>%
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
@@ -1215,13 +1215,13 @@ get_mps_BR_current_api_request <- function(body_params) {
             `sec-fetch-mode` = "cors",
             `sec-fetch-site` = "same-origin",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"
-        ) |>
+        ) %>%
         httr2::req_body_raw(
             body_params,
             type = "application/json"
-        ) |>
-        httr2::req_body_raw(body_params, type = "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        ) %>%
+        httr2::req_body_raw(body_params, type = "application/json") %>%
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_verbose(
             body_req = F,
             header_req = F,

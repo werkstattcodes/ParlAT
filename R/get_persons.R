@@ -61,19 +61,19 @@ get_persons_single <- function(
   body_params <- list(
     PERSART = institution,
     GESCHL = gender_code
-  ) |>
-    purrr::compact() |> # keep only non-empty elements
+  ) %>%
+    purrr::compact() %>% # keep only non-empty elements
     jsonlite::toJSON()
 
   res <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/10400"
-  ) |>
+  ) %>%
     httr2::req_url_query(
       js = "eval",
       pagesize = "10000",
       search = search_string,
       ascDesc = "ASC",
-    ) |>
+    ) %>%
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
@@ -81,57 +81,57 @@ get_persons_single <- function(
       dnt = "1",
       origin = "https://www.parlament.gv.at",
       priority = "u=1, i"
-    ) |>
-    httr2::req_body_raw(body_params, "application/json") |>
-    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+    ) %>%
+    httr2::req_body_raw(body_params, "application/json") %>%
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
     httr2::req_verbose(
       body_req = FALSE,
       header_req = FALSE,
       header_resp = FALSE
-    ) |>
+    ) %>%
     httr2::req_perform()
 
-  df_res <- res |>
-    httr2::resp_body_json(simplifyVector = TRUE) |>
-    purrr::pluck("rows") |>
+  df_res <- res %>%
+    httr2::resp_body_json(simplifyVector = TRUE) %>%
+    purrr::pluck("rows") %>%
     as.data.frame()
 
   if (nrow(df_res) == 0) {
     return(NULL)
   }
 
-  vec_headings <- res |>
-    httr2::resp_body_json(simplifyVector = TRUE) |>
-    purrr::pluck("header", "label") |>
-    stringr::str_to_snake() |>
+  vec_headings <- res %>%
+    httr2::resp_body_json(simplifyVector = TRUE) %>%
+    purrr::pluck("header", "label") %>%
+    stringr::str_to_snake() %>%
     make.unique(sep = "_")
 
   colnames(df_res) <- vec_headings
 
-  df_res <- df_res |>
+  df_res <- df_res %>%
     dplyr::select(
-      pad_intern,
-      name,
-      gender = geschl,
-      position = funktion,
-      link
-    ) |>
+      "pad_intern",
+      "name",
+      gender = "geschl",
+      position = "funktion",
+      "link"
+    ) %>%
     dplyr::mutate(
-      position = stringr::str_remove(position, pattern = stringr::regex("<.*$"))
+      position = stringr::str_remove(.data$position, pattern = stringr::regex("<.*$"))
     )
 
   # PRINT ECHO
   if (isTRUE(echo)) {
     print(body_params)
-    body_params_li <- jsonlite::fromJSON(body_params) |>
+    body_params_li <- jsonlite::fromJSON(body_params) %>%
       c("search" = search_string)
 
     query_string <- purrr::imap(
       body_params_li,
       \(x, y) glue::glue("PERSON_10400{URLencode(y)}={URLencode(x)}")
-    ) |>
-      unlist() |>
-      unname() |>
+    ) %>%
+      unlist() %>%
+      unname() %>%
       paste0(collapse = "&")
 
     print(glue::glue(
@@ -203,7 +203,7 @@ get_persons <- function(
     )
   }
 
-  df_persons <- li_persons |> purrr::list_rbind()
+  df_persons <- li_persons %>% purrr::list_rbind()
 
   if (nrow(df_persons) == 0) {
     message("No person found for the given search criteria.")
@@ -211,14 +211,14 @@ get_persons <- function(
   }
 
   if (isTRUE(mandates)) {
-    df_persons <- df_persons |>
+    df_persons <- df_persons %>%
       dplyr::mutate(
         mandates = purrr::map(
-          pad_intern,
+          .data$pad_intern,
           \(x) get_mandates(pad_intern = x)
         )
-      ) |>
-      tidyr::unnest_longer(mandates, keep_empty = TRUE) |>
+      ) %>%
+      tidyr::unnest_longer(mandates, keep_empty = TRUE) %>%
       tidyr::unnest_wider(mandates, names_sep = "_")
   }
 

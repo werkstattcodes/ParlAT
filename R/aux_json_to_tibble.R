@@ -10,7 +10,7 @@
 aux_json_to_tibble <- function(json_data) {
   # Function to identify complex nested structures that should become list-columns
   is_complex <- function(x) {
-    is.list(x) && (length(x) > 1 || purrr::map_lgl(x, is.list) |> any())
+    is.list(x) && (length(x) > 1 || purrr::map_lgl(x, is.list) %>% any())
   }
 
   # Convert the JSON data to a flat structure for tibble creation

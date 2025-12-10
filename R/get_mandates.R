@@ -32,21 +32,21 @@ get_mandates_single <- function(pad_intern) {
   person_name <- content$headingbox$title_plain
 
   biography <- file_json$content$biografie
-  df_biography <- biography |> tibble::enframe()
-  df_biography_wide <- df_biography |> tidyr::pivot_wider()
-  df_biography_wide <- df_biography_wide |>
-    tidyr::unnest_wider(mandatefunktionen)
+  df_biography <- biography %>% tibble::enframe()
+  df_biography_wide <- df_biography %>% tidyr::pivot_wider()
+  df_biography_wide <- df_biography_wide %>%
+    tidyr::unnest_wider("mandatefunktionen")
 
-  df_biography_wide |>
-    dplyr::select(mandate) |>
-    tidyr::unnest_longer(mandate) |>
-    tidyr::unnest_wider(mandate) |>
-    dplyr::mutate(pad_intern = pad_intern, .before = 1) |>
+  df_biography_wide %>%
+    dplyr::select("mandate") %>%
+    tidyr::unnest_longer("mandate") %>%
+    tidyr::unnest_wider("mandate") %>%
+    dplyr::mutate(pad_intern = !!pad_intern, .before = 1) %>%
     dplyr::mutate(dplyr::across(
       dplyr::any_of(c("funktion_von", "funktion_bis")),
       \(x) lubridate::dmy(x)
-    )) |>
-    dplyr::mutate(name = person_name, .before = 1) %>%
+    )) %>%
+    dplyr::mutate(name = !!person_name, .before = 1) %>%
     dplyr::select(
       -any_of(c("mandatVon", "mandatBis", "zeitraum", "gremium", "mandat"))
     )
@@ -63,8 +63,8 @@ get_mandates_single <- function(pad_intern) {
 #'
 #' The function partly mimics the behavior of the 'Personensuche' on the website
 #' of the Parliament (<a href="https://www.parlament.gv.at/recherchieren/personen/" target="_blank">here</a>).
-#' @param pad_intern Personal identfication number of person(s). Has to be NULL if names are provided
-#' @param names A character vector of name(s). First name followed by given name. Only considered if no pad_intern(s) provided.
+#' @param pad_intern Personal identfication number of person(s). Has to be NULL if name is provided.
+#' @param name A character vector of name(s). First name followed by family name. Only considered if no pad_intern(s) provided.
 #' @param date Date to filter mandates (dmy format).
 #' @param institution Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
 #' or "PN" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
@@ -95,11 +95,17 @@ get_mandates_single <- function(pad_intern) {
 #' @examples
 #' \dontrun{
 #'   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
-#'   get_mandates(c("Pia Philippa Strache")) #returns results with latest name (Beck)
+#'   # Returns results with latest name (Beck)
+#'   get_mandates(c("Pia Philippa Strache"))
 #'
-#'   get_names(pad_intern="83124") #Michael Pöck changed name to Michael Bernhard.
-#'   get_mandates(name="Michael Pöck") #Query for Micheal Pöck returns all results under the name Michael Bernhard, even for periods where Michael Pöck was still valid.
-#'   get_mandate(name="Michael Bernhard") #Query for Michael Bernhard returns all results, including for those with the name Michael Pöck.
+#'   # Michael Pöck changed name to Michael Bernhard.
+#'   get_names(pad_intern = "83124")
+#'   # Query for Micheal Pöck returns all results under the name
+#'   # Michael Bernhard, even for periods where Michael Pöck was still valid.
+#'   get_mandates(name = "Michael Pöck")
+#'   # Query for Michael Bernhard returns all results,
+#'   # including for those with the name Michael Pöck.
+#'   get_mandates(name = "Michael Bernhard")
 #' }
 #'
 get_mandates <- function(
@@ -130,7 +136,7 @@ get_mandates <- function(
     df_res <- purrr::map(name, \(x) {
       pb$tick()
       get_mandates(name = x)
-    }) |>
+    }) %>%
       purrr::list_rbind() %>%
       dplyr::as_tibble()
 
@@ -183,37 +189,37 @@ get_mandates <- function(
       orders = c("dmy", "ymd", "mdy")
     )
 
-    df_res <- df_res |>
+    df_res <- df_res %>%
       dplyr::mutate(
         funktion_bis = dplyr::case_when(
-          aktiv == TRUE & is.na(funktion_bis) ~ lubridate::today(),
-          .default = funktion_bis
+          .data$aktiv == TRUE & is.na(.data$funktion_bis) ~ lubridate::today(),
+          .default = .data$funktion_bis
         )
-      ) |>
+      ) %>%
       dplyr::filter(
-        date_filter >= funktion_von & date_filter <= funktion_bis
-      ) |>
+        date_filter >= .data$funktion_von & date_filter <= .data$funktion_bis
+      ) %>%
       dplyr::mutate(
         funktion_bis = dplyr::case_when(
-          aktiv == TRUE ~ lubridate::NA_Date_,
-          .default = funktion_bis
+          .data$aktiv == TRUE ~ lubridate::NA_Date_,
+          .default = .data$funktion_bis
         )
       )
   }
 
   # return(df_res)
   #sort columns
-  df_res <- df_res |>
+  df_res <- df_res %>%
     dplyr::select(
-      pad_intern,
-      name,
-      bez,
-      funktion,
-      funktion_text,
-      funktion_von,
-      funktion_bis,
-      aktiv,
-      klub,
+      "pad_intern",
+      "name",
+      "bez",
+      "funktion",
+      "funktion_text",
+      "funktion_von",
+      "funktion_bis",
+      "aktiv",
+      "klub",
       contains("wahl"),
       everything()
     )
@@ -221,18 +227,18 @@ get_mandates <- function(
   df_res <- df_res %>%
     dplyr::mutate(
       electoral_district_region_code = stringr::str_extract(
-        wahlkreis,
+        .data$wahlkreis,
         stringr::regex("^\\w+")
       ) %>%
         stringr::str_replace("Bundeswahlvorschlag", "FB"),
       electoral_district_region = stringr::str_remove(
-        wahlkreis,
+        .data$wahlkreis,
         stringr::regex("^\\w+\\s-\\s")
       )
     ) %>%
     dplyr::mutate(
       legis_period = stringr::str_extract_all(
-        bez,
+        .data$bez,
         stringr::regex("[XVI]+(?=\\.)", ignore_case = FALSE)
       )
     )
@@ -257,38 +263,38 @@ get_mandates <- function(
     )
 
   #add link to biography as means to check source
-  df_res <- df_res |>
+  df_res <- df_res %>%
     dplyr::mutate(
       url_biography = paste0(
         "https://www.parlament.gv.at/person/",
-        pad_intern
+        .data$pad_intern
       )
     )
 
   # # only institution of interest
   if (!is.null(institution)) {
     if (institution == "NR") {
-      df_res <- df_res |>
+      df_res <- df_res %>%
         dplyr::filter(
-          position_code %in% c("NR", "1PNR", "2PNR", "3PNR", "ZON", "ZSN")
+          .data$position_code %in% c("NR", "1PNR", "2PNR", "3PNR", "ZON", "ZSN")
         )
     }
     if (institution == "BR") {
-      df_res <- df_res |>
+      df_res <- df_res %>%
         dplyr::filter(
-          position_code %in% c("BR", "PB", "SPB", "PRAES", "ZOB", "ZSB")
+          .data$position_code %in% c("BR", "PB", "SPB", "PRAES", "ZOB", "ZSB")
         )
     }
     if (institution == "KN") {
-      df_res <- df_res |>
+      df_res <- df_res %>%
         dplyr::filter(
-          position_code %in% c("PKNV", "2PKN", "3PKN", "KN")
+          .data$position_code %in% c("PKNV", "2PKN", "3PKN", "KN")
         )
     }
     if (institution == "PN") {
-      df_res <- df_res |>
+      df_res <- df_res %>%
         dplyr::filter(
-          position_code %in% c("PN", "PPNV")
+          .data$position_code %in% c("PN", "PPNV")
         )
     }
 
@@ -330,27 +336,27 @@ get_pad_intern <- function(name) {
   if (!is.null(pad_intern_mps) && nrow(pad_intern_mps) > 0) {
     pad_intern_mps <- pad_intern_mps %>%
       # dplyr::rename(name = name_nvg) %>%
-      dplyr::distinct(pad_intern, name) %>%
-      dplyr::mutate(pad_intern = as.character(pad_intern)) %>%
-      dplyr::mutate(names_previous = purrr::map(pad_intern, \(x) get_names(x)))
+      dplyr::distinct(.data$pad_intern, .data$name) %>%
+      dplyr::mutate(pad_intern = as.character(.data$pad_intern)) %>%
+      dplyr::mutate(names_previous = purrr::map(.data$pad_intern, \(x) get_names(x)))
 
     res <- pad_intern_mps %>%
-      tidyr::unnest_longer(names_previous) %>%
-      tidyr::unnest_wider(names_previous, names_sep = "_")
+      tidyr::unnest_longer("names_previous") %>%
+      tidyr::unnest_wider("names_previous", names_sep = "_")
 
     pad_interns_scope <- res %>%
       dplyr::filter(stringr::str_detect(
-        names_previous_name_clean,
+        .data$names_previous_name_clean,
         stringr::regex(paste0("\\b", {{ name }}, "\\b"), ignore_case = FALSE)
       )) %>%
-      dplyr::pull(pad_intern) %>%
+      dplyr::pull("pad_intern") %>%
       unique()
 
     res <- res %>%
-      dplyr::filter(pad_intern %in% pad_interns_scope) %>%
-      dplyr::group_by(pad_intern) %>%
+      dplyr::filter(.data$pad_intern %in% pad_interns_scope) %>%
+      dplyr::group_by(.data$pad_intern) %>%
       dplyr::summarise(
-        names_variants = paste(names_previous_name_clean, collapse = ", ")
+        names_variants = paste(.data$names_previous_name_clean, collapse = ", ")
       ) %>%
       dplyr::ungroup()
 

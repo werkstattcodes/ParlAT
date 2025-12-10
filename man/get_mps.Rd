@@ -306,7 +306,7 @@ Permissible values:
 \examples{
 \dontrun{
 # Get all MPs from the current legislative period
-mps <- get_mps(institution = "Nationalrat", legis_period = "27")
+mps <- get_mps(institution = "NR", legis_period = "27")
 
 # Get female MPs from a specific party
 female_mps <- get_mps(gender = "female", party = "SPÖ")

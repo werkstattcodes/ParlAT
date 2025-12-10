@@ -7,7 +7,9 @@
 get_mandates(name = NULL, pad_intern = NULL, institution = NULL, date = NULL)
 }
 \arguments{
-\item{pad_intern}{Personal identfication number of person(s). Has to be NULL if names are provided}
+\item{name}{A character vector of name(s). First name followed by family name. Only considered if no pad_intern(s) provided.}
+
+\item{pad_intern}{Personal identfication number of person(s). Has to be NULL if name is provided.}
 
 \item{institution}{Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
 or "PN" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
@@ -15,8 +17,6 @@ but also presidents of the National Council, Secretaries ("Schriftführer"), and
 the chambers as well.}
 
 \item{date}{Date to filter mandates (dmy format).}
-
-\item{names}{A character vector of name(s). First name followed by given name. Only considered if no pad_intern(s) provided.}
 }
 \value{
 A dataframe with the following columns:
@@ -58,11 +58,17 @@ See examples.
 \examples{
 \dontrun{
   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
-  get_mandates(c("Pia Philippa Strache")) #returns results with latest name (Beck)
+  # Returns results with latest name (Beck)
+  get_mandates(c("Pia Philippa Strache"))
 
-  get_names(pad_intern="83124") #Michael Pöck changed name to Michael Bernhard.
-  get_mandates(name="Michael Pöck") #Query for Micheal Pöck returns all results under the name Michael Bernhard, even for periods where Michael Pöck was still valid.
-  get_mandate(name="Michael Bernhard") #Query for Michael Bernhard returns all results, including for those with the name Michael Pöck.
+  # Michael Pöck changed name to Michael Bernhard.
+  get_names(pad_intern = "83124")
+  # Query for Micheal Pöck returns all results under the name
+  # Michael Bernhard, even for periods where Michael Pöck was still valid.
+  get_mandates(name = "Michael Pöck")
+  # Query for Michael Bernhard returns all results,
+  # including for those with the name Michael Pöck.
+  get_mandates(name = "Michael Bernhard")
 }
 
 }

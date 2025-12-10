@@ -33,10 +33,12 @@ This function is particularly relevant for MPs who changed their names (e.g., du
 }
 \examples{
 \dontrun{
-get_names(44127) #Philippa Pia Beck, Philippa Pia Strache
-get_names(44127, latest=T) #Philippa Pia Beck, formerly Strache
-get_names(44127, date="01/01/2023") #Philippa Pia Strache
-get_names(c(1130,83124)) #multiple pad_interns possible; e.g. Michael Pock/Bernhard; Freda Blau-Meissner/Meissner-Blau
+get_names(44127) # Philippa Pia Beck, Philippa Pia Strache
+get_names(44127, latest = TRUE) # Philippa Pia Beck, formerly Strache
+get_names(44127, date = "01/01/2023") # Philippa Pia Strache
+# Multiple pad_interns possible:
+# e.g. Michael Pock/Bernhard; Freda Blau-Meissner/Meissner-Blau
+get_names(c(1130, 83124))
 }
 }
 \seealso{
