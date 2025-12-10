@@ -47,7 +47,7 @@
 #' folder if it doesn't exist, and if prefered, to provide an alternative destination name.
 #' PDF filenames follow the pattern: `YYYY-MM-DD_LegislativePeriod_SessionType_SessionNumber.pdf`.
 #' A summary of successful and failed downloads is printed at the conclusion of the download.
-#'
+#' @export
 #' @examples
 #' \dontrun{
 #'   # Get transcripts using a search string and specifying a legislative period.
