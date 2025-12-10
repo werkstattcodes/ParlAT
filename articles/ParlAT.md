@@ -420,20 +420,20 @@ glimpse(df_govBills %>% head())
 #> Columns: 16
 #> $ legis_period     <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
-#> $ date             <date> 2021-05-12, 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-20
+#> $ date             <date> 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-20, 2021-06-23
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "851", "462", "464", "469", "482", "484"
-#> $ item_number_type <chr> "851 d.B.", "462 d.B.", "464 d.B.", "469 d.B.", "482 d.B.", "484 und Zu 484 d.B."
+#> $ item_number      <chr> "462", "464", "469", "482", "484", "958"
+#> $ item_number_type <chr> "462 d.B.", "464 d.B.", "469 d.B.", "482 d.B.", "484 und Zu 484 d.B.", "958 d.B."
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/I/851", "/gegenstand/XXVII/I/462", "/gegenstand/XXVII/I/464", "/gegenstand/XXVII/I/469", "/gegenstand/XXVII/I/482", "/gegenstand/XXVII/I/484"
+#> $ item_url         <chr> "/gegenstand/XXVII/I/462", "/gegenstand/XXVII/I/464", "/gegenstand/XXVII/I/469", "/gegenstand/XXVII/I/482", "/gegenstand/XXVII/I/484", "/gegenstand/XXVII/I/958"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Heeresgebührengesetz, Heeresdisziplinargesetz, Änderung", "Audiovisuelle Mediendienste-Gesetz, KommAustria-Gesetz u.a., Änderung", "Straßenverkehrsordnung, Änderung", "E-Government-Gesetz, Passgesetz u.a., Änderung", "Anti-Doping-Bundesgesetz 2021 – ADBG 2021; Bundes-Sportförderungsgesetz, Änderung", "Bundesfinanzrahmengesetz 2021 bis 2024 – BFRG 2021-2024"
-#> $ topics           <list> <"Arbeit", "Landesverteidigung", "Wirtschaft">, "Information und Medien", <"Gesundheit und Ernährung", "Verkehr und Infrastruktur">, <"Information und Medien", "Inneres und Recht", "Verkehr und Infrastruktur">, "Sport", "Budget und Finanzen"
-#> $ keywords         <list> <"Landesverteidigung", "Löhne und Gehälter">, <"Rundfunk und Fernsehen", "Information und Informationsverarbeitung">, <"Verkehr I. Straßenverkehr", "Gesundheit">, <"Verwaltungsorganisation", "Information und Informationsverarbeitung", "Pässe und Ausweise", "Verkehr I. Straßenverkehr">, "Sport", "Bundeshaushalt I. Bundesfinanzgesetze"
-#> $ eurovoc          <list> <"Einkommen", "Verteidigung", "Verwaltung und Entlohnung des Personals">, <"Fernsehen", "Hörfunk", "Informatik", "Information und Informationsverarbeitung">, <"Gesundheit", "Straßenverkehr">, <"Ausweis", "Informatik", "Information und Informationsverarbeitung", "Straßenverkehr", "Verwaltungsorganisation">, "Sport", "Haushaltsplan"
-#> $ persons          <list> "", "", "", "", "", ""
-#> $ parl_group       <list> <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, ""
+#> $ subject          <chr> "Audiovisuelle Mediendienste-Gesetz, KommAustria-Gesetz u.a., Änderung", "Straßenverkehrsordnung, Änderung", "E-Government-Gesetz, Passgesetz u.a., Änderung", "Anti-Doping-Bundesgesetz 2021 – ADBG 2021; Bundes-Sportförderungsgesetz, Änderung", "Bundesfinanzrahmengesetz 2021 bis 2024 – BFRG 2021-2024", "Handelsstatistisches Gesetz 1995, Änderung"
+#> $ topics           <list> "Information und Medien", <"Gesundheit und Ernährung", "Verkehr und Infrastruktur">, <"Information und Medien", "Inneres und Recht", "Verkehr und Infrastruktur">, "Sport", "Budget und Finanzen", <"Innovation", "Technologie und Forschung", "Wirtschaft">
+#> $ keywords         <list> <"Rundfunk und Fernsehen", "Information und Informationsverarbeitung">, <"Verkehr I. Straßenverkehr", "Gesundheit">, <"Verwaltungsorganisation", "Information und Informationsverarbeitung", "Pässe und Ausweise", "Verkehr I. Straßenverkehr">, "Sport", "Bundeshaushalt I. Bundesfinanzgesetze", <"Handel", "Gewerbe und Industrie", "Statistik">
+#> $ eurovoc          <list> <"Fernsehen", "Hörfunk", "Informatik", "Information und Informationsverarbeitung">, <"Gesundheit", "Straßenverkehr">, <"Ausweis", "Informatik", "Information und Informationsverarbeitung", "Straßenverkehr", "Verwaltungsorganisation">, "Sport", "Haushaltsplan", <"Handel", "Industrie", "Statistik", "Unternehmen und Wettbewerb">
+#> $ persons          <list> "", "", "", "", "", "2978"
+#> $ parl_group       <list> <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, "", <"null", "null">
 
 #count number of bills by legis period
 df_govBills %>%
@@ -549,7 +549,6 @@ df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXVI\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXVI&WFP_007R_SISTEI=SI
 #> [1] "Hits:  92"
-#>  ■■■■■■■■■■■■■■■■■■■■■■■■■■■       88% |  ETA:  0s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXVII\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXVII&WFP_007R_SISTEI=SI
 #> [1] "Hits:  287"
@@ -699,7 +698,7 @@ get_names(44127, date = "01/01/2024")
 #> 1     1      44127 Pia Philippa Beck 2023-06-28     <NA> Pia Philippa Beck        Beck Pia Philippa  <NA>
 ```
 
-## Miscallaneous
+## Miscellaneous
 
 The *echo argument*: Whenever relevant and feasible, ParlAT functions
 provide the option to echo the query to the API. The echo prints the
