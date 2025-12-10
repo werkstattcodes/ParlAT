@@ -307,20 +307,20 @@ dplyr::glimpse(df_items %>% head())
 #> Columns: 16
 #> $ legis_period     <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
-#> $ date             <date> 2022-12-07, 2022-12-07, 2021-03-23, 2021-04-19, 2021-04-19, 2021-04-19
+#> $ date             <date> 2021-05-17, 2021-05-17, 2021-07-05, 2021-07-05, 2021-07-06, 2021-12-13
 #> $ item_type        <chr> "M", "M", "M", "M", "M", "M"
-#> $ item_number      <chr> "210", "212", "65", "67", "68", "72"
-#> $ item_number_type <chr> "210/M", "212/M", "65/M", "67/M", "68/M", "72/M"
+#> $ item_number      <chr> "82", "88", "110", "112", "116", "118"
+#> $ item_number_type <chr> "82/M", "88/M", "110/M", "112/M", "116/M", "118/M"
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/M/210", "/gegenstand/XXVII/M/212", "/gegenstand/XXVII/M/65", "/gegenstand/XXVII/M/67", "/gegenstand/XXVII/M/68", "/gegenstand/XXVII/M/72"
+#> $ item_url         <chr> "/gegenstand/XXVII/M/82", "/gegenstand/XXVII/M/88", "/gegenstand/XXVII/M/110", "/gegenstand/XXVII/M/112", "/gegenstand/XXVII/M/116", "/gegenstand/XXVII/M/118"
 #> $ type_doc         <chr> "M", "M", "M", "M", "M", "M"
 #> $ type_doc_long    <chr> "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage"
-#> $ subject          <chr> "Internet Governance Forum in Addis Abeba", "aktuelle Situation in der Ukraine", "Anerkennung und Unterstützung des \"Committee Representing the Pyidaungsu Hluttaw\"", "Arbeitsmarktsituation im Tourismus", "Inanspruchnahme der Freistellung wegen Sonderbetreuungszeit", "arbeitsmarktpolitische Maßnahmen speziell für Frauen und Alleinerziehende"
-#> $ topics           <list> <"Außenpolitik", "Information und Medien">, "Außenpolitik", <"Außenpolitik", "Europäische Union">, "Wirtschaft", <"Gesundheit und Ernährung", "Soziales">, <"Arbeit", "Frauen und Gleichbehandlung">
-#> $ keywords         <list> <"Internet", "Außenpolitik">, "Außenpolitik", <"Außenpolitik", "Europäische Integration">, "Fremdenverkehr", "Pflege und Betreuung", <"Frauen und Gleichbehandlung", "Arbeitsmarkt">
-#> $ eurovoc          <list> <"Internationale Beziehungen", "Internet">, "Internationale Beziehungen", <"Europäische Union", "Internationale Beziehungen">, "Tourismus", <"Betreuung von Pflegebedürftigen", "Krankenpflege">, <"Beschäftigung und Arbeitsbedingungen", "Frau", "Gleichbehandlung">
-#> $ persons          <list> <"2979", "20056">, <"2979", "67199", "83114", "87146">, <"5430", "14835">, <"1984", "5638", "5672", "18140", "35515", "84056">, <"3716", "18140">, <"5650", "5683", "8177", "18140", "83151">
-#> $ parl_group       <list> <"ÖVP", "ÖVP">, <"ÖVP", "ÖVP", "SPÖ", "GRÜNE">, <"OK", "SPÖ">, <"ÖVP", "SPÖ", "GRÜNE", "OK", "FPÖ", "NEOS">, <"ÖVP", "OK">, <"GRÜNE", "NEOS", "SPÖ", "OK", "ÖVP">
+#> $ subject          <chr> "Maßnahmen für die Spitzen- und Grundlagenforschung in Österreich", "Maßnahmen für den Vollbetrieb an den Schulen", "Wirtschaftshilfen", "Treffsicherheit und Effizienz von Covid-Wirtschaftshilfen", "Auswirkungen bei den Stundungen und der KUA für die Wirtschaft und Unternehmen", "Gewalt gegen Frauen und Mädchen"
+#> $ topics           <list> <"Innovation", "Technologie und Forschung">, <"Bildung", "Gesundheit und Ernährung">, "Wirtschaft", <"Gesundheit und Ernährung", "Wirtschaft">, <"Arbeit", "Budget und Finanzen", "Wirtschaft">, <"Familie und Generationen", "Frauen und Gleichbehandlung", "Inneres und Recht">
+#> $ keywords         <list> "Wissenschaft und Forschung", <"Bildungswesen VIII. Sonstiges", "Gesundheit">, "Wirtschaftspolitik", <"Wirtschaftspolitik", "Gesundheit">, <"Wirtschaftspolitik", "Arbeitsmarkt", "Steuern und Gebühren">, <"Sicherheitswesen", "Frauen und Gleichbehandlung", "Jugend", "Opferfürsorge und Opferschutz">
+#> $ eurovoc          <list> <"Forschung und geistiges Eigentum", "Wissenschaften">, <"Bildung", "Gesundheit", "Organisation des Unterrichtswesens">, "Wirtschaft", <"Gesundheit", "Wirtschaft">, <"Beschäftigung und Arbeitsbedingungen", "Steuerwesen", "Wirtschaft">, <"Frau", "Gleichbehandlung", "junger Mensch", "öffentliche Sicherheit", "Opferhilfe">
+#> $ persons          <list> <"2242", "2975", "5654", "5685">, <"2975", "5685", "35515">, <"14755", "31011">, <"1983", "31011", "91141">, <"5654", "31011">, <"5650", "20445", "51569">
+#> $ parl_group       <list> <"ÖVP", "ÖVP", "GRÜNE", "NEOS">, <"ÖVP", "NEOS", "FPÖ">, <"ÖVP", "ÖVP">, <"ÖVP", "ÖVP", "NEOS">, <"GRÜNE", "ÖVP">, <"GRÜNE", "ÖVP", "FPÖ">
 ```
 
 There were in total 77 208 questions submitted in writing and asked
@@ -420,20 +420,20 @@ glimpse(df_govBills %>% head())
 #> Columns: 16
 #> $ legis_period     <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
-#> $ date             <date> 2021-05-19, 2020-11-18, 2020-11-20, 2021-06-16, 2021-02-17, 2021-02-17
+#> $ date             <date> 2021-05-12, 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-20
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "860", "469", "484", "938", "663", "664"
-#> $ item_number_type <chr> "860 d.B.", "469 d.B.", "484 und Zu 484 d.B.", "938 d.B.", "663 d.B.", "664 d.B."
+#> $ item_number      <chr> "851", "462", "464", "469", "482", "484"
+#> $ item_number_type <chr> "851 d.B.", "462 d.B.", "464 d.B.", "469 d.B.", "482 d.B.", "484 und Zu 484 d.B."
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/I/860", "/gegenstand/XXVII/I/469", "/gegenstand/XXVII/I/484", "/gegenstand/XXVII/I/938", "/gegenstand/XXVII/I/663", "/gegenstand/XXVII/I/664"
+#> $ item_url         <chr> "/gegenstand/XXVII/I/851", "/gegenstand/XXVII/I/462", "/gegenstand/XXVII/I/464", "/gegenstand/XXVII/I/469", "/gegenstand/XXVII/I/482", "/gegenstand/XXVII/I/484"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Passgesetz-Novelle 2021", "E-Government-Gesetz, Passgesetz u.a., Änderung", "Bundesfinanzrahmengesetz 2021 bis 2024 – BFRG 2021-2024", "Bundesstraßen-Mautgesetz, Änderung", "Bankwesengesetz, Börsegesetz u.a., Änderung", "Hochschülerinnen- und Hochschülerschaftsgesetz, Änderung"
-#> $ topics           <list> <"Budget und Finanzen", "Inneres und Recht">, <"Information und Medien", "Inneres und Recht", "Verkehr und Infrastruktur">, "Budget und Finanzen", <"Information und Medien", "Verkehr und Infrastruktur">, "Budget und Finanzen", "Bildung"
-#> $ keywords         <list> <"Pässe und Ausweise", "Sicherheitswesen", "Steuern und Gebühren">, <"Verwaltungsorganisation", "Information und Informationsverarbeitung", "Pässe und Ausweise", "Verkehr I. Straßenverkehr">, "Bundeshaushalt I. Bundesfinanzgesetze", <"Verkehr I. Straßenverkehr", "Information und Informationsverarbeitung">, "Kreditwesen", "Bildungswesen IV. Universitäten und Hochschulen"
-#> $ eurovoc          <list> <"Ausweis", "öffentliche Sicherheit", "Steuerwesen">, <"Ausweis", "Informatik", "Information und Informationsverarbeitung", "Straßenverkehr", "Verwaltungsorganisation">, "Haushaltsplan", <"Informatik", "Information und Informationsverarbeitung", "Straßenverkehr">, "Finanzwesen", "Hochschulausbildung"
-#> $ persons          <list> "", "", "", "5653", "", ""
-#> $ parl_group       <list> <"null", "null">, <"null", "null">, "", <"null", "null">, <"null", "null">, <"null", "null">
+#> $ subject          <chr> "Heeresgebührengesetz, Heeresdisziplinargesetz, Änderung", "Audiovisuelle Mediendienste-Gesetz, KommAustria-Gesetz u.a., Änderung", "Straßenverkehrsordnung, Änderung", "E-Government-Gesetz, Passgesetz u.a., Änderung", "Anti-Doping-Bundesgesetz 2021 – ADBG 2021; Bundes-Sportförderungsgesetz, Änderung", "Bundesfinanzrahmengesetz 2021 bis 2024 – BFRG 2021-2024"
+#> $ topics           <list> <"Arbeit", "Landesverteidigung", "Wirtschaft">, "Information und Medien", <"Gesundheit und Ernährung", "Verkehr und Infrastruktur">, <"Information und Medien", "Inneres und Recht", "Verkehr und Infrastruktur">, "Sport", "Budget und Finanzen"
+#> $ keywords         <list> <"Landesverteidigung", "Löhne und Gehälter">, <"Rundfunk und Fernsehen", "Information und Informationsverarbeitung">, <"Verkehr I. Straßenverkehr", "Gesundheit">, <"Verwaltungsorganisation", "Information und Informationsverarbeitung", "Pässe und Ausweise", "Verkehr I. Straßenverkehr">, "Sport", "Bundeshaushalt I. Bundesfinanzgesetze"
+#> $ eurovoc          <list> <"Einkommen", "Verteidigung", "Verwaltung und Entlohnung des Personals">, <"Fernsehen", "Hörfunk", "Informatik", "Information und Informationsverarbeitung">, <"Gesundheit", "Straßenverkehr">, <"Ausweis", "Informatik", "Information und Informationsverarbeitung", "Straßenverkehr", "Verwaltungsorganisation">, "Sport", "Haushaltsplan"
+#> $ persons          <list> "", "", "", "", "", ""
+#> $ parl_group       <list> <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, ""
 
 #count number of bills by legis period
 df_govBills %>%
@@ -540,7 +540,6 @@ df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXIII\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXIII&WFP_007R_SISTEI=SI
 #> [1] "Hits:  80"
-#>  ■■■■■■■■■■■■■■■■                  50% |  ETA:  2s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXIV\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXIV&WFP_007R_SISTEI=SI
 #> [1] "Hits:  230"
@@ -550,6 +549,7 @@ df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXVI\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXVI&WFP_007R_SISTEI=SI
 #> [1] "Hits:  92"
+#>  ■■■■■■■■■■■■■■■■■■■■■■■■■■■       88% |  ETA:  0s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXVII\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXVII&WFP_007R_SISTEI=SI
 #> [1] "Hits:  287"
