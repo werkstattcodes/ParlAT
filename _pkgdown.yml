@@ -37,7 +37,12 @@ reference:
 
 exclude:
   - CLAUDE.md
+  
+build:
+  exclude:
+    - CLAUDE.md
+    - .github/copilot-instructions.md
 
 authors:
   Roland Schmidt:
-    href: https://werk.statt.codes  
+    href: https://werk.statt.codes

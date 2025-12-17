@@ -502,7 +502,7 @@ df_sessions_20_27 %>%
   )
 ```
 
-# Get data on commitees
+# Get data on committees
 
 Which committees of the National Council were active during the 27th legisative period:
 ```{r, cache=TRUE}
