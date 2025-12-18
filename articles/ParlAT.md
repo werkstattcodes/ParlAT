@@ -10,7 +10,7 @@ section](https://werkstattcodes.github.io/ParlAT/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (10 December 2025). This is done by
+(Nationalrat) at the time of writing (18 December 2025). This is done by
 the function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps_current.md).
 
@@ -182,11 +182,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10232
-#> 2 12741      Peter Haubner                     8773
-#> 3 2834       Mag. Dr. Martin Graf              8472
-#> 4 14835      Petra Bayr, MA MLS                8391
-#> 5 14795      August Wöginger                   8391
+#> 1 145        Doris Bures                      10240
+#> 2 12741      Peter Haubner                     8781
+#> 3 2834       Mag. Dr. Martin Graf              8480
+#> 4 14835      Petra Bayr, MA MLS                8399
+#> 5 14795      August Wöginger                   8399
 ```
 
 ## Get MPs’ details
@@ -307,20 +307,20 @@ dplyr::glimpse(df_items %>% head())
 #> Columns: 16
 #> $ legis_period     <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
-#> $ date             <date> 2021-05-17, 2021-05-17, 2021-07-05, 2021-07-05, 2021-07-06, 2021-12-13
+#> $ date             <date> 2022-12-07, 2021-03-22, 2021-03-22, 2021-04-19, 2021-03-23, 2021-03-23
 #> $ item_type        <chr> "M", "M", "M", "M", "M", "M"
-#> $ item_number      <chr> "82", "88", "110", "112", "116", "118"
-#> $ item_number_type <chr> "82/M", "88/M", "110/M", "112/M", "116/M", "118/M"
+#> $ item_number      <chr> "212", "45", "51", "67", "62", "63"
+#> $ item_number_type <chr> "212/M", "45/M", "51/M", "67/M", "62/M", "63/M"
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/M/82", "/gegenstand/XXVII/M/88", "/gegenstand/XXVII/M/110", "/gegenstand/XXVII/M/112", "/gegenstand/XXVII/M/116", "/gegenstand/XXVII/M/118"
+#> $ item_url         <chr> "/gegenstand/XXVII/M/212", "/gegenstand/XXVII/M/45", "/gegenstand/XXVII/M/51", "/gegenstand/XXVII/M/67", "/gegenstand/XXVII/M/62", "/gegenstand/XXVII/M/63"
 #> $ type_doc         <chr> "M", "M", "M", "M", "M", "M"
 #> $ type_doc_long    <chr> "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage"
-#> $ subject          <chr> "Maßnahmen für die Spitzen- und Grundlagenforschung in Österreich", "Maßnahmen für den Vollbetrieb an den Schulen", "Wirtschaftshilfen", "Treffsicherheit und Effizienz von Covid-Wirtschaftshilfen", "Auswirkungen bei den Stundungen und der KUA für die Wirtschaft und Unternehmen", "Gewalt gegen Frauen und Mädchen"
-#> $ topics           <list> <"Innovation", "Technologie und Forschung">, <"Bildung", "Gesundheit und Ernährung">, "Wirtschaft", <"Gesundheit und Ernährung", "Wirtschaft">, <"Arbeit", "Budget und Finanzen", "Wirtschaft">, <"Familie und Generationen", "Frauen und Gleichbehandlung", "Inneres und Recht">
-#> $ keywords         <list> "Wissenschaft und Forschung", <"Bildungswesen VIII. Sonstiges", "Gesundheit">, "Wirtschaftspolitik", <"Wirtschaftspolitik", "Gesundheit">, <"Wirtschaftspolitik", "Arbeitsmarkt", "Steuern und Gebühren">, <"Sicherheitswesen", "Frauen und Gleichbehandlung", "Jugend", "Opferfürsorge und Opferschutz">
-#> $ eurovoc          <list> <"Forschung und geistiges Eigentum", "Wissenschaften">, <"Bildung", "Gesundheit", "Organisation des Unterrichtswesens">, "Wirtschaft", <"Gesundheit", "Wirtschaft">, <"Beschäftigung und Arbeitsbedingungen", "Steuerwesen", "Wirtschaft">, <"Frau", "Gleichbehandlung", "junger Mensch", "öffentliche Sicherheit", "Opferhilfe">
-#> $ persons          <list> <"2242", "2975", "5654", "5685">, <"2975", "5685", "35515">, <"14755", "31011">, <"1983", "31011", "91141">, <"5654", "31011">, <"5650", "20445", "51569">
-#> $ parl_group       <list> <"ÖVP", "ÖVP", "GRÜNE", "NEOS">, <"ÖVP", "NEOS", "FPÖ">, <"ÖVP", "ÖVP">, <"ÖVP", "ÖVP", "NEOS">, <"GRÜNE", "ÖVP">, <"GRÜNE", "ÖVP", "FPÖ">
+#> $ subject          <chr> "aktuelle Situation in der Ukraine", "Bundes-Sportförderung", "Vorkehrungen für die Kunst- und Kulturszene in der Corona-Krise 2021", "Arbeitsmarktsituation im Tourismus", "Aufwertung des Themas Humanitäre Hilfe in der österreichischen Entwicklungszusammenarbeit", "Projekt Nord Stream 2"
+#> $ topics           <list> "Außenpolitik", "Sport", <"Gesundheit und Ernährung", "Kultur">, "Wirtschaft", "Außenpolitik", <"Klima", "Umwelt und Energie">
+#> $ keywords         <list> "Außenpolitik", "Sport", <"Kunst und Kultur", "Gesundheit">, "Fremdenverkehr", "Entwicklungszusammenarbeit", "Energiewirtschaft"
+#> $ eurovoc          <list> "Internationale Beziehungen", "Sport", <"Gesundheit", "Kulturpolitik", "Kunst">, "Tourismus", "Politik der Zusammenarbeit", "Energie"
+#> $ persons          <list> <"2979", "67199", "83114", "87146">, <"5438", "6502", "8242">, <"1978", "8242">, <"1984", "5638", "5672", "18140", "35515", "84056">, <"3716", "5430", "5683", "14844", "84054">, <"1937", "5430", "22694">
+#> $ parl_group       <list> <"ÖVP", "ÖVP", "SPÖ", "GRÜNE">, <"ÖVP", "GRÜNE", "GRÜNE">, <"ÖVP", "GRÜNE">, <"ÖVP", "SPÖ", "GRÜNE", "OK", "FPÖ", "NEOS">, <"ÖVP", "OK", "NEOS", "SPÖ", "GRÜNE">, <"FPÖ", "OK", "SPÖ">
 ```
 
 There were in total 77 208 questions submitted in writing and asked
@@ -420,20 +420,20 @@ glimpse(df_govBills %>% head())
 #> Columns: 16
 #> $ legis_period     <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
-#> $ date             <date> 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-20, 2021-06-23
+#> $ date             <date> 2021-05-12, 2021-05-12, 2021-03-17, 2020-11-18, 2021-01-13, 2021-03-24
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "462", "464", "469", "482", "484", "958"
-#> $ item_number_type <chr> "462 d.B.", "464 d.B.", "469 d.B.", "482 d.B.", "484 und Zu 484 d.B.", "958 d.B."
+#> $ item_number      <chr> "849", "850", "733", "470", "630", "769"
+#> $ item_number_type <chr> "849 d.B.", "850 d.B.", "733 d.B.", "470 d.B.", "630 d.B.", "769 d.B."
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/I/462", "/gegenstand/XXVII/I/464", "/gegenstand/XXVII/I/469", "/gegenstand/XXVII/I/482", "/gegenstand/XXVII/I/484", "/gegenstand/XXVII/I/958"
+#> $ item_url         <chr> "/gegenstand/XXVII/I/849", "/gegenstand/XXVII/I/850", "/gegenstand/XXVII/I/733", "/gegenstand/XXVII/I/470", "/gegenstand/XXVII/I/630", "/gegenstand/XXVII/I/769"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Audiovisuelle Mediendienste-Gesetz, KommAustria-Gesetz u.a., Änderung", "Straßenverkehrsordnung, Änderung", "E-Government-Gesetz, Passgesetz u.a., Änderung", "Anti-Doping-Bundesgesetz 2021 – ADBG 2021; Bundes-Sportförderungsgesetz, Änderung", "Bundesfinanzrahmengesetz 2021 bis 2024 – BFRG 2021-2024", "Handelsstatistisches Gesetz 1995, Änderung"
-#> $ topics           <list> "Information und Medien", <"Gesundheit und Ernährung", "Verkehr und Infrastruktur">, <"Information und Medien", "Inneres und Recht", "Verkehr und Infrastruktur">, "Sport", "Budget und Finanzen", <"Innovation", "Technologie und Forschung", "Wirtschaft">
-#> $ keywords         <list> <"Rundfunk und Fernsehen", "Information und Informationsverarbeitung">, <"Verkehr I. Straßenverkehr", "Gesundheit">, <"Verwaltungsorganisation", "Information und Informationsverarbeitung", "Pässe und Ausweise", "Verkehr I. Straßenverkehr">, "Sport", "Bundeshaushalt I. Bundesfinanzgesetze", <"Handel", "Gewerbe und Industrie", "Statistik">
-#> $ eurovoc          <list> <"Fernsehen", "Hörfunk", "Informatik", "Information und Informationsverarbeitung">, <"Gesundheit", "Straßenverkehr">, <"Ausweis", "Informatik", "Information und Informationsverarbeitung", "Straßenverkehr", "Verwaltungsorganisation">, "Sport", "Haushaltsplan", <"Handel", "Industrie", "Statistik", "Unternehmen und Wettbewerb">
-#> $ persons          <list> "", "", "", "", "", "2978"
-#> $ parl_group       <list> <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, "", <"null", "null">
+#> $ subject          <chr> "Terror-Bekämpfungs-Gesetz – TeBG", "Bundesgesetz über die Rechtspersönlichkeit von religiösen Bekenntnisgemeinschaften, Islamgesetz, Änderung", "Erneuerbaren-Ausbau-Gesetzespaket – EAG-Paket", "Eisenbahngesetz, Unfalluntersuchungsgesetz, Änderung", "Finanzausgleichsgesetz, Einkommensteuergesetz u.a., Änderung", "Gerichtsorganisationsgesetz, Bundesverwaltungsgerichtsgesetz u.a., Änderung"
+#> $ topics           <list> "Inneres und Recht", "Kultur", <"Inneres und Recht", "Klima", "Umwelt und Energie">, "Verkehr und Infrastruktur", "Budget und Finanzen", "Inneres und Recht"
+#> $ keywords         <list> <"Sicherheitswesen", "Strafrecht">, "Religion", <"Bundesverfassung", "Energiewirtschaft", "Elektrizität", "Umweltschutz">, "Verkehr II. Schienenverkehr", <"Finanzausgleich", "Steuern und Gebühren">, <"Rechtspflege", "Verfassungs- und Verwaltungsgerichtsbarkeit">
+#> $ eurovoc          <list> <"öffentliche Sicherheit", "Strafrecht">, "Religion", <"Elektrizitätsindustrie", "Energie", "Umwelt", "Verfassung">, "Schienentransport", <"Finanzausgleich", "Steuerwesen">, <"Gerichtswesen", "Verfassungsgerichtsbarkeit", "Verwaltungsgerichtsbarkeit">
+#> $ persons          <list> "", "", "", "", "", ""
+#> $ parl_group       <list> <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">
 
 #count number of bills by legis period
 df_govBills %>%
@@ -546,6 +546,7 @@ df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXV\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXV&WFP_007R_SISTEI=SI
 #> [1] "Hits:  206"
+#>  ■■■■■■■■■■■■■■■■■■■■■■■           75% |  ETA:  1s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXVI\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXVI&WFP_007R_SISTEI=SI
 #> [1] "Hits:  92"
@@ -588,7 +589,7 @@ df_sessions_20_27 %>%
 
 ![](ParlAT_files/figure-html/unnamed-chunk-18-1.png)
 
-## Get data on commitees
+## Get data on committees
 
 Which committees of the National Council were active during the 27th
 legisative period:
