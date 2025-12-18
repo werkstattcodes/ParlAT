@@ -17,3 +17,4 @@ renv/staging/
 .gemini/
 /.quarto/
 **/*.quarto_ipynb
+.github/copilot-instructions.md
