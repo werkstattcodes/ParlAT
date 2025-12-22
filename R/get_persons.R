@@ -1,5 +1,5 @@
 #' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
-#' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
+#' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
 #' @param echo Logical. If `TRUE`, prints the API request body parameters, the constructed URL, and the number of results. Default is `FALSE`.
 #'
@@ -22,7 +22,6 @@ get_persons_single <- function(
     "Konstituierende Nationalversammlung",
     "Landeshauptleute",
     "Nationalrat",
-    "Parlamentsdirektion",
     "Politische Mandate",
     "Provisorische Nationalversammlung",
     "Rechnungshof",
@@ -47,7 +46,6 @@ get_persons_single <- function(
         "Europäisches Parlament" = "MEP",
         "Politische Mandate" = "MPO",
         "Nationalrat" = "NR",
-        "Parlamentsdirektion" = "PD",
         "Provisorische Nationalversammlung" = "PN",
         "Rechnungshof" = "PRRH",
         "Volksanwaltschaft" = "VA"
@@ -161,7 +159,7 @@ get_persons_single <- function(
 #' available persons for the supplied filters.
 #'
 #' @param names A character vector of name(s) in the format "Surname Givenname". Defaults to `NULL`.
-#' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
+#' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param mandates Logical. If `TRUE`, mandates are retrieved for each person. Default is `FALSE`.
 #' @param gender A character string. Possible values are `"all"`, `"female"`, or `"male"`. Default is `"all"`.
 #' @param echo Logical. If `TRUE`, prints the API request body parameters, the constructed URL, and the number of results. Default is `FALSE`.
