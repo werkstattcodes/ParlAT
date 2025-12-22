@@ -10,7 +10,7 @@ section](https://werkstattcodes.github.io/ParlAT/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (18 December 2025). This is done by
+(Nationalrat) at the time of writing (22 December 2025). This is done by
 the function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps_current.md).
 
@@ -96,7 +96,8 @@ mps_legis22 %>%
 #Search for all MPs who were members of the Federal Council during the 25th legislative period:
 #An error is returned since legis_period is no applicable filter for institution="BR".
 df_mps_25_br <- get_mps(legis_period=25, institution="BR")
-#> Error in get_mps(legis_period = 25, institution = "BR"): Filtering the Federal Council (Bundesrat) by legislative period is not supported. Please use 'date' filter instead.
+#> Error in `get_mps()`:
+#> ! Filtering the Federal Council (Bundesrat) by legislative period is not supported. Please use 'date' filter instead.
 
 #Get start and ending date of legislative period 25 with an auxilary function.
 get_legis_periods(legis_period=25)
@@ -182,11 +183,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10240
-#> 2 12741      Peter Haubner                     8781
-#> 3 2834       Mag. Dr. Martin Graf              8480
-#> 4 14835      Petra Bayr, MA MLS                8399
-#> 5 14795      August Wöginger                   8399
+#> 1 145        Doris Bures                      10244
+#> 2 12741      Peter Haubner                     8785
+#> 3 2834       Mag. Dr. Martin Graf              8484
+#> 4 14835      Petra Bayr, MA MLS                8403
+#> 5 14795      August Wöginger                   8403
 ```
 
 ## Get MPs’ details
@@ -299,31 +300,32 @@ visualise the count by party and legislative period.
 df_items <- get_items(item = "J_JPR_M", legis_period = seq(20,27), echo=TRUE)
 #> {"GP_CODE":["XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII"],"VHG":["J_JPR_M"]} 
 #> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001GP_CODE=XX&FP_001GP_CODE=XXI&FP_001GP_CODE=XXII&FP_001GP_CODE=XXIII&FP_001GP_CODE=XXIV&FP_001GP_CODE=XXV&FP_001GP_CODE=XXVI&FP_001GP_CODE=XXVII&FP_001VHG=J_JPR_M
-#> [1] 77208
+#> [1] 77221
+#> Warning: The result contains 13 duplicate row(s). Total rows: 77221, unique rows: 77208. This may indicate data quality issues.
 
 
 dplyr::glimpse(df_items %>% head())
 #> Rows: 6
 #> Columns: 16
-#> $ legis_period     <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
+#> $ legis_period     <chr> "XX", "XX", "XX", "XX", "XX", "XX"
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
-#> $ date             <date> 2022-12-07, 2021-03-22, 2021-03-22, 2021-04-19, 2021-03-23, 2021-03-23
-#> $ item_type        <chr> "M", "M", "M", "M", "M", "M"
-#> $ item_number      <chr> "212", "45", "51", "67", "62", "63"
-#> $ item_number_type <chr> "212/M", "45/M", "51/M", "67/M", "62/M", "63/M"
+#> $ date             <date> 1996-10-03, 1996-10-30, 1996-10-30, 1996-10-14, 1996-10-03, 1996-10-03
+#> $ item_type        <chr> "J", "J", "J", "J", "J", "J"
+#> $ item_number      <chr> "1330", "1390", "1394", "1362", "1334", "1338"
+#> $ item_number_type <chr> "1330/J", "1390/J", "1394/J", "1362/J", "1334/J", "1338/J"
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/M/212", "/gegenstand/XXVII/M/45", "/gegenstand/XXVII/M/51", "/gegenstand/XXVII/M/67", "/gegenstand/XXVII/M/62", "/gegenstand/XXVII/M/63"
-#> $ type_doc         <chr> "M", "M", "M", "M", "M", "M"
-#> $ type_doc_long    <chr> "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage"
-#> $ subject          <chr> "aktuelle Situation in der Ukraine", "Bundes-Sportförderung", "Vorkehrungen für die Kunst- und Kulturszene in der Corona-Krise 2021", "Arbeitsmarktsituation im Tourismus", "Aufwertung des Themas Humanitäre Hilfe in der österreichischen Entwicklungszusammenarbeit", "Projekt Nord Stream 2"
-#> $ topics           <list> "Außenpolitik", "Sport", <"Gesundheit und Ernährung", "Kultur">, "Wirtschaft", "Außenpolitik", <"Klima", "Umwelt und Energie">
-#> $ keywords         <list> "Außenpolitik", "Sport", <"Kunst und Kultur", "Gesundheit">, "Fremdenverkehr", "Entwicklungszusammenarbeit", "Energiewirtschaft"
-#> $ eurovoc          <list> "Internationale Beziehungen", "Sport", <"Gesundheit", "Kulturpolitik", "Kunst">, "Tourismus", "Politik der Zusammenarbeit", "Energie"
-#> $ persons          <list> <"2979", "67199", "83114", "87146">, <"5438", "6502", "8242">, <"1978", "8242">, <"1984", "5638", "5672", "18140", "35515", "84056">, <"3716", "5430", "5683", "14844", "84054">, <"1937", "5430", "22694">
-#> $ parl_group       <list> <"ÖVP", "ÖVP", "SPÖ", "GRÜNE">, <"ÖVP", "GRÜNE", "GRÜNE">, <"ÖVP", "GRÜNE">, <"ÖVP", "SPÖ", "GRÜNE", "OK", "FPÖ", "NEOS">, <"ÖVP", "OK", "NEOS", "SPÖ", "GRÜNE">, <"FPÖ", "OK", "SPÖ">
+#> $ item_url         <chr> "/gegenstand/XX/J/1330", "/gegenstand/XX/J/1390", "/gegenstand/XX/J/1394", "/gegenstand/XX/J/1362", "/gegenstand/XX/J/1334", "/gegenstand/XX/J/1338"
+#> $ type_doc         <chr> "J", "J", "J", "J", "J", "J"
+#> $ type_doc_long    <chr> "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage"
+#> $ subject          <chr> "Vergiftungsinformationszentrale und Giftinformationsverordnung - beantwortet durch 1330/AB", "Sicherheitsgipfel am Flughafen Thalerhof - beantwortet durch 1377/AB", "die Zukunft der Pensionen in Österreich - beantwortet durch 1414/AB", "Verhinderung des Fahndungserfolges durch den Innenminister - beantwortet durch 1350/AB", "Verhaftung des Ressortchefs für Regionales der \"Oberösterreichischen Nachrichten\" - beantwortet durch 1280/AB", "Disziplinarverfahren gegen Beamte - beantwortet durch 1191/AB"
+#> $ topics           <list> "Gesundheit und Ernährung", "Verkehr und Infrastruktur", "Soziales", "Inneres und Recht", "Inneres und Recht", "Inneres und Recht"
+#> $ keywords         <list> "Gesundheit", "Verkehr III. Luftfahrt", "Sozialversicherung VI. Sonstiges", "Sicherheitswesen", "Sicherheitswesen", "Öffentlicher Dienst"
+#> $ eurovoc          <list> "Gesundheit", "Luftverkehr", "soziale Sicherheit", "öffentliche Sicherheit", "öffentliche Sicherheit", <"öffentliche Verwaltung", "öffentlicher Dienst">
+#> $ persons          <list> <"959", "3755">, <"946", "2789">, <"703", "3613">, <"799", "2873">, <"39", "2873">, <"24", "1781">
+#> $ parl_group       <list> "SPÖ", "SPÖ", "F", "ÖVP", "ÖVP", "GRÜNE"
 ```
 
-There were in total 77 208 questions submitted in writing and asked
+There were in total 77 221 questions submitted in writing and asked
 orally by the members of the National Council from the 20th to 27th
 legislative period. With a few additional steps, we can easily visualise
 the results.
@@ -420,18 +422,18 @@ glimpse(df_govBills %>% head())
 #> Columns: 16
 #> $ legis_period     <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
-#> $ date             <date> 2021-05-12, 2021-05-12, 2021-03-17, 2020-11-18, 2021-01-13, 2021-03-24
+#> $ date             <date> 2021-05-12, 2020-11-18, 2020-11-18, 2020-11-18, 2020-11-18, 2021-01-13
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "849", "850", "733", "470", "630", "769"
-#> $ item_number_type <chr> "849 d.B.", "850 d.B.", "733 d.B.", "470 d.B.", "630 d.B.", "769 d.B."
+#> $ item_number      <chr> "854", "463", "471", "479", "480", "630"
+#> $ item_number_type <chr> "854 d.B.", "463 d.B.", "471 d.B.", "479 d.B.", "480 d.B.", "630 d.B."
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/I/849", "/gegenstand/XXVII/I/850", "/gegenstand/XXVII/I/733", "/gegenstand/XXVII/I/470", "/gegenstand/XXVII/I/630", "/gegenstand/XXVII/I/769"
+#> $ item_url         <chr> "/gegenstand/XXVII/I/854", "/gegenstand/XXVII/I/463", "/gegenstand/XXVII/I/471", "/gegenstand/XXVII/I/479", "/gegenstand/XXVII/I/480", "/gegenstand/XXVII/I/630"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Terror-Bekämpfungs-Gesetz – TeBG", "Bundesgesetz über die Rechtspersönlichkeit von religiösen Bekenntnisgemeinschaften, Islamgesetz, Änderung", "Erneuerbaren-Ausbau-Gesetzespaket – EAG-Paket", "Eisenbahngesetz, Unfalluntersuchungsgesetz, Änderung", "Finanzausgleichsgesetz, Einkommensteuergesetz u.a., Änderung", "Gerichtsorganisationsgesetz, Bundesverwaltungsgerichtsgesetz u.a., Änderung"
-#> $ topics           <list> "Inneres und Recht", "Kultur", <"Inneres und Recht", "Klima", "Umwelt und Energie">, "Verkehr und Infrastruktur", "Budget und Finanzen", "Inneres und Recht"
-#> $ keywords         <list> <"Sicherheitswesen", "Strafrecht">, "Religion", <"Bundesverfassung", "Energiewirtschaft", "Elektrizität", "Umweltschutz">, "Verkehr II. Schienenverkehr", <"Finanzausgleich", "Steuern und Gebühren">, <"Rechtspflege", "Verfassungs- und Verwaltungsgerichtsbarkeit">
-#> $ eurovoc          <list> <"öffentliche Sicherheit", "Strafrecht">, "Religion", <"Elektrizitätsindustrie", "Energie", "Umwelt", "Verfassung">, "Schienentransport", <"Finanzausgleich", "Steuerwesen">, <"Gerichtswesen", "Verfassungsgerichtsbarkeit", "Verwaltungsgerichtsbarkeit">
+#> $ subject          <chr> "Staatsbürgerschaftsgesetz, Symbole-Gesetz, Änderung", "Kommunikationsplattformen-Gesetz; KommAustria-Gesetz, Änderung", "Elektrizitätswirtschafts- und –organisationsgesetz, Änderung", "Bildungsdokumentationsgesetz 2020; Schulpflichtgesetz u.a., Änderung", "Bundesgesetz zur Finanzierung der Digitalisierung des Schulunterrichts (SchDigiG)", "Finanzausgleichsgesetz, Einkommensteuergesetz u.a., Änderung"
+#> $ topics           <list> "Inneres und Recht", "Information und Medien", <"Inneres und Recht", "Klima", "Umwelt und Energie">, <"Bildung", "Information und Medien", "Inneres und Recht", "Innovation", "Technologie und Forschung">, <"Bildung", "Information und Medien">, "Budget und Finanzen"
+#> $ keywords         <list> <"Staatsbürgerin/Staatsbürger", "Sicherheitswesen">, <"Internet", "Telekommunikation">, <"Bundesverfassung", "Elektrizität">, <"Statistik", "Bildungswesen IV. Universitäten und Hochschulen", "Bildungswesen VII. Erwachsenenbildung", "Bildungswesen VIII. Sonstiges", "Information und Informationsverarbeitung", "Pässe und Ausweise">, <"Bildungswesen VIII. Sonstiges", "Information und Informationsverarbeitung">, <"Finanzausgleich", "Steuern und Gebühren">
+#> $ eurovoc          <list> <"öffentliche Sicherheit", "Staatsangehöriger">, <"Internet", "Telekommunikation">, <"Elektrizitätsindustrie", "Verfassung">, <"Ausweis", "Bildung", "Erwachsenenbildung", "Hochschulausbildung", "Informatik", "Information und Informationsverarbeitung", "Organisation des Unterrichtswesens", "Statistik">, <"Bildung", "Informatik", "Information und Informationsverarbeitung", "Organisation des Unterrichtswesens">, <"Finanzausgleich", "Steuerwesen">
 #> $ persons          <list> "", "", "", "", "", ""
 #> $ parl_group       <list> <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">, <"null", "null">
 
@@ -534,6 +536,7 @@ df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXI\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXI&WFP_007R_SISTEI=SI
 #> [1] "Hits:  119"
+#>  ■■■■■■■■■                         25% |  ETA:  8s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXII\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXII&WFP_007R_SISTEI=SI
 #> [1] "Hits:  166"
@@ -543,10 +546,10 @@ df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXIV\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXIV&WFP_007R_SISTEI=SI
 #> [1] "Hits:  230"
+#>  ■■■■■■■■■■■■■■■■■■■■              62% |  ETA:  3s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXV\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXV&WFP_007R_SISTEI=SI
 #> [1] "Hits:  206"
-#>  ■■■■■■■■■■■■■■■■■■■■■■■           75% |  ETA:  1s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXVI\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXVI&WFP_007R_SISTEI=SI
 #> [1] "Hits:  92"
