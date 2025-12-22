@@ -20,8 +20,7 @@ get_transcripts(
 
 \item{legis_period}{Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric (10), character ("10") or roman numerals in character format ("X") as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).}
 
-\item{session_type}{Optional character string specifying the type(s) of session (e.g., "NRSITZ", "BRSITZ",
-"USA", etc.). Defaults to NULL. See Details for complete list of session types.}
+\item{session_type}{Optional character string specifying the type(s) of session. Permissible values are "NRSITZ" (National Council - Plenary sessions) and "BRSITZ" (Federal Council - Plenary sessions). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.}
 
 \item{date_start}{Optional start date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").}
 
@@ -51,18 +50,16 @@ A tibble containing transcript data with the following columns:
 }
 \details{
 \subsection{Session Type ('Art der Sitzung')}{
+
+Permissible values for \code{session_type}:
 \itemize{
 \item NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary sessions)
 \item BRSITZ: Bundesrat - Plenarsitzungen (Federal Council - Plenary sessions)
-\item USA: Untersuchungsausschüsse (Inquiry Committees)
-\item ENQ: Enqueten und Enquete-Kommissionen (Inquiries and Inquiry Commissions)
-\item BVSITZ: Bundesversammlung (Federal Assembly)
-\item AUS: Ausschüsse (Committees)
-\item EU: EU-Ausschüsse (EU Committees)
-\item GFT: Gedenk-, Fest- und Trauersitzungen (Memorial, Celebratory, and Condolence Sessions)
-\item PARL: Jugend- und Lehrlingsparlament (Youth and Apprentice Parliament)
-\item VER: Veranstaltungen (Events)
 }
+
+Note: Querying for other session types (Untersuchungsausschüsse, Enqueten, Bundesversammlung,
+Ausschüsse, EU-Ausschüsse, Gedenk-/Fest-/Trauersitzungen, Jugend- und Lehrlingsparlament, Veranstaltungen)
+is currently only possible via the Parliament's website.
 }
 
 \subsection{Implementation Notes}{
@@ -91,15 +88,15 @@ A summary of successful and failed downloads is printed at the conclusion of the
                   echo=TRUE)
 
  # Get transcript data for a specific period of time.
- get_transcripts(session_type = "USA",
+ get_transcripts(session_type = "BRSITZ",
                  date_start = "01-01-2024",
                  date_end = "30-06-2024",
                  echo = TRUE)
 
-  # Retrieve all transcripts of committees (Ausschuesse)
+  # Retrieve all transcripts of National Council plenary sessions
   # and download PDFs to default "transcripts" folder.
   get_transcripts(
-    session_type = "AUS",
+    session_type = "NRSITZ",
     legis_period = 26,
     export = "pdf"
   )
