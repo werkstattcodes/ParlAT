@@ -18,3 +18,5 @@ renv/staging/
 /.quarto/
 **/*.quarto_ipynb
 .github/copilot-instructions.md
+.github/copilot-instructions.md
+CLAUDE.md
