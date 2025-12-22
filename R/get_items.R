@@ -72,7 +72,6 @@
 #' * "GO" (Geschäftsbehandlung, Rules of Procedure)
 #' * "GABR" (Gesetzesanträge des Bundesrates, Legislative Proposals of the Federal Council)
 #' * "GABR13" (Gesetzesanträge von einem Drittel des BR, Legislative Proposals of One-Third of the Federal Council)
-#' * "IMM" (Immunitätsangelegenheiten, Immunity Matters)
 #' * "KOMM" (Kommuniqués, Communiqués)
 #' * "PET" (Petitionen, Petitions)
 #' * "RGER" (Regierungserklärungen, Government Statements)
@@ -82,6 +81,9 @@
 #' * "RVS15" (Vereinbarungen gemäß Art. 15a B-VG, Agreements Pursuant to Article 15a of the Federal Constitutional Law)
 #' * "VOLKBG" (Volksbegehren, Popular Initiatives)
 #' * "W" (Wahlen, Elections)
+#'
+#' Note: Querying for immunity matters ('Immunitätsangelegenheiten') is
+#' currently only possible via the Parliament's website.
 #'
 #' ## type_doc (Art)
 #' The `type_doc` parameter specifies different document types depending on the `item` parameter value.
@@ -173,7 +175,8 @@
 #' from the 20th legislative period onwards.
 #'
 #' ## keyword (Schlagwort)
-#' Possible values for `keyword` include:
+#' In total, there are several hundred different keywords.
+#' Here only a selection of possible values for `keyword`:
 #'
 #' * "Abfallwirtschaft"
 #' * "Abgeordnete"
@@ -645,7 +648,6 @@ get_items <- function(
     "GO",
     "GABR",
     "GABR13",
-    "IMM",
     "KOMM",
     "PET",
     "RGER",
