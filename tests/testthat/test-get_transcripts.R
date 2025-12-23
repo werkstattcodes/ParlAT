@@ -25,86 +25,6 @@ test_that("get_transcripts returns data frame with correct number of sessions", 
 
   expect_s3_class(result_br, "data.frame")
   expect_true(nrow(result_br) == 50)
-
-  #USA
-  result_usa <- get_transcripts(
-    session_type = "USA",
-    legis_period = "XXV",
-    echo = FALSE
-  )
-
-  expect_s3_class(result_usa, "data.frame")
-  expect_true(nrow(result_usa) == 168)
-
-  #ENQ
-  result_enq <- get_transcripts(
-    session_type = "ENQ",
-    legis_period = "XXV",
-    echo = FALSE
-  )
-
-  expect_s3_class(result_enq, "data.frame")
-  expect_true(nrow(result_enq) == 27)
-
-  #BVSITZ
-  result_bvsitz <- get_transcripts(
-    session_type = "BVSITZ",
-    legis_period = "XXV",
-    echo = FALSE
-  )
-
-  expect_s3_class(result_bvsitz, "data.frame")
-  expect_true(nrow(result_bvsitz) == 1)
-
-  #AUS
-  result_aus <- get_transcripts(
-    session_type = "AUS",
-    legis_period = "XXV",
-    echo = FALSE
-  )
-
-  expect_s3_class(result_aus, "data.frame")
-  expect_true(nrow(result_aus) == 10)
-
-  #EU
-  result_eu <- get_transcripts(
-    session_type = "EU",
-    legis_period = "XXV",
-    echo = FALSE
-  )
-
-  expect_s3_class(result_eu, "data.frame")
-  expect_true(nrow(result_eu) == 99)
-
-  #GFT
-  result_gft <- get_transcripts(
-    session_type = "GFT",
-    legis_period = "XXV",
-    echo = FALSE
-  )
-
-  expect_s3_class(result_gft, "data.frame")
-  expect_true(nrow(result_gft) == 8)
-
-  #PARL
-  result_parl <- get_transcripts(
-    session_type = "PARL",
-    legis_period = "XXV",
-    echo = FALSE
-  )
-
-  expect_s3_class(result_parl, "data.frame")
-  expect_true(nrow(result_parl) == 9)
-
-  #VER
-  result_ver <- get_transcripts(
-    session_type = "VER",
-    legis_period = "XXV",
-    echo = FALSE
-  )
-
-  expect_s3_class(result_ver, "data.frame")
-  expect_true(nrow(result_ver) == 1)
 })
 
 test_that("get_transcripts returns correct column names", {
@@ -115,15 +35,7 @@ test_that("get_transcripts returns correct column names", {
     legis_period = 27,
     session_type = c(
       "NRSITZ",
-      "BRSITZ",
-      "USA",
-      "ENQ",
-      "BVSITZ",
-      "AUS",
-      "EU",
-      "GFT",
-      "PARL",
-      "VER"
+      "BRSITZ"
     ),
     echo = FALSE
   )
@@ -259,6 +171,45 @@ test_that("get_transcripts filters correctly by session type", {
   )
 
   expect_false(identical(result_nr, result_br))
+})
+
+test_that("get_transcripts defaults to both NRSITZ and BRSITZ when session_type is NULL", {
+  skip_on_cran()
+  skip_if_offline()
+
+  # Query with NULL session_type (default)
+  result_null <- get_transcripts(
+    legis_period = 27,
+    session_type = NULL,
+    echo = FALSE
+  )
+
+  # Query explicitly with both session types
+  result_both <- get_transcripts(
+    legis_period = 27,
+    session_type = c("NRSITZ", "BRSITZ"),
+    echo = FALSE
+  )
+
+  # Check for 100% overlap in session_url column
+  urls_null <- sort(unique(result_null$session_url))
+  urls_both <- sort(unique(result_both$session_url))
+
+  # Both should have the same number of unique URLs
+  expect_equal(length(urls_null), length(urls_both))
+
+  # All URLs should be identical (100% overlap)
+  expect_true(all(urls_null %in% urls_both))
+  expect_true(all(urls_both %in% urls_null))
+
+  # Verify that both session types are present in the result
+  expect_true(all(
+    c("Plenarsitzung", "Plenarsitzung - BR") %in%
+      unique(result_null$session_type)
+  ))
+
+  # Verify the result contains both NR and BR sessions
+  expect_true(length(unique(result_null$session_type)) == 2)
 })
 
 # Date filtering tests
@@ -496,6 +447,12 @@ test_that("get_transcripts handles NULL parameters gracefully", {
   )
 
   expect_s3_class(result, "data.frame")
+
+  # With session_type = NULL, should query both NRSITZ and BRSITZ
+  expect_true(all(
+    c("Plenarsitzung", "Plenarsitzung - BR") %in%
+      unique(result_null$session_type)
+  ))
 })
 
 test_that("get_transcripts returns tibble (not just data.frame)", {
@@ -530,10 +487,12 @@ test_that("get_transcripts exports file from recorded fixture", {
   )
 
   # This is an integration check that will perform real downloads.
-  # Use parameters that previously produced 8 PDFs in manual runs.
+  # Use BRSITZ for legislative period 27 (smaller dataset)
   res <- get_transcripts(
-    legis_period = 26,
-    session_type = "AUS",
+    legis_period = 27,
+    session_type = "BRSITZ",
+    date_start = "01-01-2024",
+    date_end = "30-06-2024",
     export = "pdf",
     echo = FALSE
   )
@@ -543,12 +502,6 @@ test_that("get_transcripts exports file from recorded fixture", {
     length(list.files(transcripts_dir, recursive = FALSE, all.files = FALSE)) >=
       1,
     info = "No files found in transcripts directory after export"
-  )
-
-  # Optional stronger assertion if you want exact count (may vary with live data)
-  expect_equal(
-    length(list.files(transcripts_dir, recursive = FALSE, all.files = FALSE)),
-    8
   )
 
   if (dir.exists(transcripts_dir)) unlink(transcripts_dir, recursive = TRUE)

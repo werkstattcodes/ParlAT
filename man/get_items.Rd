@@ -140,7 +140,6 @@ Possible values for \code{item} include:
 \item "GO" (Geschäftsbehandlung, Rules of Procedure)
 \item "GABR" (Gesetzesanträge des Bundesrates, Legislative Proposals of the Federal Council)
 \item "GABR13" (Gesetzesanträge von einem Drittel des BR, Legislative Proposals of One-Third of the Federal Council)
-\item "IMM" (Immunitätsangelegenheiten, Immunity Matters)
 \item "KOMM" (Kommuniqués, Communiqués)
 \item "PET" (Petitionen, Petitions)
 \item "RGER" (Regierungserklärungen, Government Statements)
@@ -151,6 +150,9 @@ Possible values for \code{item} include:
 \item "VOLKBG" (Volksbegehren, Popular Initiatives)
 \item "W" (Wahlen, Elections)
 }
+
+Note: Querying for immunity matters ('Immunitätsangelegenheiten') is
+currently only possible via the Parliament's website.
 }
 
 \subsection{type_doc (Art)}{
@@ -274,7 +276,8 @@ from the 20th legislative period onwards.
 
 \subsection{keyword (Schlagwort)}{
 
-Possible values for \code{keyword} include:
+In total, there are several hundred different keywords.
+Here only a selection of possible values for \code{keyword}:
 \itemize{
 \item "Abfallwirtschaft"
 \item "Abgeordnete"

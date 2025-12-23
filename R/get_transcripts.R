@@ -4,8 +4,7 @@
 #'
 #' @param search_string Optional character string to filter transcripts by keywords. Defaults to NULL.
 #' @param legis_period Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric (10), character ("10") or roman numerals in character format ("X") as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
-#' @param session_type Optional character string specifying the type(s) of session (e.g., "NRSITZ", "BRSITZ",
-#'   "USA", etc.). Defaults to NULL. See Details for complete list of session types.
+#' @param session_type Optional character string specifying the type(s) of session. Permissible values are "NRSITZ" (National Council - Plenary sessions) and "BRSITZ" (Federal Council - Plenary sessions). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.
 #' @param date_start Optional start date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
 #' @param date_end Optional end date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
 #' @param echo Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.
@@ -24,16 +23,13 @@
 #'   }
 #' @details
 #' ## Session Type ('Art der Sitzung')
+#' Permissible values for `session_type`:
 #' * NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary sessions)
 #' * BRSITZ: Bundesrat - Plenarsitzungen (Federal Council - Plenary sessions)
-#' * USA: Untersuchungsausschüsse (Inquiry Committees)
-#' * ENQ: Enqueten und Enquete-Kommissionen (Inquiries and Inquiry Commissions)
-#' * BVSITZ: Bundesversammlung (Federal Assembly)
-#' * AUS: Ausschüsse (Committees)
-#' * EU: EU-Ausschüsse (EU Committees)
-#' * GFT: Gedenk-, Fest- und Trauersitzungen (Memorial, Celebratory, and Condolence Sessions)
-#' * PARL: Jugend- und Lehrlingsparlament (Youth and Apprentice Parliament)
-#' * VER: Veranstaltungen (Events)
+#'
+#' Note: Querying for other session types (Untersuchungsausschüsse, Enqueten, Bundesversammlung,
+#' Ausschüsse, EU-Ausschüsse, Gedenk-/Fest-/Trauersitzungen, Jugend- und Lehrlingsparlament, Veranstaltungen)
+#' is currently only possible via the Parliament's website.
 #'
 #' ## Implementation Notes
 #' Queries returning more than 10,000 results will raise
@@ -57,15 +53,15 @@
 #'                   echo=TRUE)
 #'
 #'  # Get transcript data for a specific period of time.
-#'  get_transcripts(session_type = "USA",
+#'  get_transcripts(session_type = "BRSITZ",
 #'                  date_start = "01-01-2024",
 #'                  date_end = "30-06-2024",
 #'                  echo = TRUE)
 #'
-#'   # Retrieve all transcripts of committees (Ausschuesse)
+#'   # Retrieve all transcripts of National Council plenary sessions
 #'   # and download PDFs to default "transcripts" folder.
 #'   get_transcripts(
-#'     session_type = "AUS",
+#'     session_type = "NRSITZ",
 #'     legis_period = 26,
 #'     export = "pdf"
 #'   )
@@ -91,15 +87,7 @@ get_transcripts <- function(
     # SESSION TYPES
     choices_session_type <- c(
         "NRSITZ",
-        "BRSITZ",
-        "USA",
-        "ENQ",
-        "BVSITZ",
-        "AUS",
-        "EU",
-        "GFT",
-        "PARL",
-        "VER"
+        "BRSITZ"
     )
 
     checkmate::assert_subset(
@@ -107,6 +95,11 @@ get_transcripts <- function(
         choices_session_type,
         empty.ok = TRUE
     )
+
+    # Set default: if NULL, query both NRSITZ and BRSITZ
+    if (is.null(session_type)) {
+        session_type <- choices_session_type
+    }
 
     # EXPORT PARAMETERS
     checkmate::assert_choice(

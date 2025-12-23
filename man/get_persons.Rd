@@ -15,7 +15,7 @@ get_persons(
 \arguments{
 \item{names}{A character vector of name(s) in the format "Surname Givenname". Defaults to \code{NULL}.}
 
-\item{institution}{A character vector specifying one or more institutions to search within. Possible values are \code{"Bundespräsident"}, \code{"Bundesrat"}, \code{"Bundesregierung"}, \code{"Europäisches Parlament"}, \code{"Konstituierende Nationalversammlung"}, \code{"Landeshauptleute"}, \code{"Nationalrat"}, \code{"Parlamentsdirektion"}, \code{"Politische Mandate"}, \code{"Provisorische Nationalversammlung"}, \code{"Rechnungshof"}, and \code{"Volksanwaltschaft"}. Defaults to all institutions.}
+\item{institution}{A character vector specifying one or more institutions to search within. Possible values are \code{"Bundespräsident"}, \code{"Bundesrat"}, \code{"Bundesregierung"}, \code{"Europäisches Parlament"}, \code{"Konstituierende Nationalversammlung"}, \code{"Landeshauptleute"}, \code{"Nationalrat"}, \code{"Politische Mandate"}, \code{"Provisorische Nationalversammlung"}, \code{"Rechnungshof"}, and \code{"Volksanwaltschaft"}. Defaults to all institutions.}
 
 \item{mandates}{Logical. If \code{TRUE}, mandates are retrieved for each person. Default is \code{FALSE}.}
 
