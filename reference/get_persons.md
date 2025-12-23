@@ -32,7 +32,7 @@ get_persons(
   within. Possible values are `"Bundespräsident"`, `"Bundesrat"`,
   `"Bundesregierung"`, `"Europäisches Parlament"`,
   `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`,
-  `"Nationalrat"`, `"Parlamentsdirektion"`, `"Politische Mandate"`,
+  `"Nationalrat"`, `"Politische Mandate"`,
   `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and
   `"Volksanwaltschaft"`. Defaults to all institutions.
 

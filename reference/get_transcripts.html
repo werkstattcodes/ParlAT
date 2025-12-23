@@ -70,8 +70,7 @@
 
 
 <dt id="arg-session-type">session_type<a class="anchor" aria-label="anchor" href="#arg-session-type"></a></dt>
-<dd><p>Optional character string specifying the type(s) of session (e.g., "NRSITZ", "BRSITZ",
-"USA", etc.). Defaults to NULL. See Details for complete list of session types.</p></dd>
+<dd><p>Optional character string specifying the type(s) of session. Permissible values are "NRSITZ" (National Council - Plenary sessions) and "BRSITZ" (Federal Council - Plenary sessions). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.</p></dd>
 
 
 <dt id="arg-date-start">date_start<a class="anchor" aria-label="anchor" href="#arg-date-start"></a></dt>
@@ -128,17 +127,13 @@
 <div class="section">
 <h3 id="session-type-art-der-sitzung-">Session Type ('Art der Sitzung')<a class="anchor" aria-label="anchor" href="#session-type-art-der-sitzung-"></a></h3>
 
-<ul><li><p>NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary sessions)</p></li>
+
+<p>Permissible values for <code>session_type</code>:</p><ul><li><p>NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary sessions)</p></li>
 <li><p>BRSITZ: Bundesrat - Plenarsitzungen (Federal Council - Plenary sessions)</p></li>
-<li><p>USA: Untersuchungsausschüsse (Inquiry Committees)</p></li>
-<li><p>ENQ: Enqueten und Enquete-Kommissionen (Inquiries and Inquiry Commissions)</p></li>
-<li><p>BVSITZ: Bundesversammlung (Federal Assembly)</p></li>
-<li><p>AUS: Ausschüsse (Committees)</p></li>
-<li><p>EU: EU-Ausschüsse (EU Committees)</p></li>
-<li><p>GFT: Gedenk-, Fest- und Trauersitzungen (Memorial, Celebratory, and Condolence Sessions)</p></li>
-<li><p>PARL: Jugend- und Lehrlingsparlament (Youth and Apprentice Parliament)</p></li>
-<li><p>VER: Veranstaltungen (Events)</p></li>
-</ul></div>
+</ul><p>Note: Querying for other session types (Untersuchungsausschüsse, Enqueten, Bundesversammlung,
+Ausschüsse, EU-Ausschüsse, Gedenk-/Fest-/Trauersitzungen, Jugend- und Lehrlingsparlament, Veranstaltungen)
+is currently only possible via the Parliament's website.</p>
+</div>
 
 <div class="section">
 <h3 id="implementation-notes">Implementation Notes<a class="anchor" aria-label="anchor" href="#implementation-notes"></a></h3>
@@ -173,15 +168,15 @@ A summary of successful and failed downloads is printed at the conclusion of the
 <span class="r-in"><span>                  echo<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co"># Get transcript data for a specific period of time.</span></span></span>
-<span class="r-in"><span> <span class="fu">get_transcripts</span><span class="op">(</span>session_type <span class="op">=</span> <span class="st">"USA"</span>,</span></span>
+<span class="r-in"><span> <span class="fu">get_transcripts</span><span class="op">(</span>session_type <span class="op">=</span> <span class="st">"BRSITZ"</span>,</span></span>
 <span class="r-in"><span>                 date_start <span class="op">=</span> <span class="st">"01-01-2024"</span>,</span></span>
 <span class="r-in"><span>                 date_end <span class="op">=</span> <span class="st">"30-06-2024"</span>,</span></span>
 <span class="r-in"><span>                 echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Retrieve all transcripts of committees (Ausschuesse)</span></span></span>
+<span class="r-in"><span>  <span class="co"># Retrieve all transcripts of National Council plenary sessions</span></span></span>
 <span class="r-in"><span>  <span class="co"># and download PDFs to default "transcripts" folder.</span></span></span>
 <span class="r-in"><span>  <span class="fu">get_transcripts</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    session_type <span class="op">=</span> <span class="st">"AUS"</span>,</span></span>
+<span class="r-in"><span>    session_type <span class="op">=</span> <span class="st">"NRSITZ"</span>,</span></span>
 <span class="r-in"><span>    legis_period <span class="op">=</span> <span class="fl">26</span>,</span></span>
 <span class="r-in"><span>    export <span class="op">=</span> <span class="st">"pdf"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>

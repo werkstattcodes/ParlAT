@@ -35,9 +35,11 @@ get_transcripts(
 
 - session_type:
 
-  Optional character string specifying the type(s) of session (e.g.,
-  "NRSITZ", "BRSITZ", "USA", etc.). Defaults to NULL. See Details for
-  complete list of session types.
+  Optional character string specifying the type(s) of session.
+  Permissible values are "NRSITZ" (National Council - Plenary sessions)
+  and "BRSITZ" (Federal Council - Plenary sessions). Defaults to NULL,
+  which queries both NRSITZ and BRSITZ. See Details for more
+  information.
 
 - date_start:
 
@@ -109,29 +111,19 @@ A tibble containing transcript data with the following columns:
 
 ### Session Type ('Art der Sitzung')
 
+Permissible values for `session_type`:
+
 - NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary
   sessions)
 
 - BRSITZ: Bundesrat - Plenarsitzungen (Federal Council - Plenary
   sessions)
 
-- USA: Untersuchungsausschüsse (Inquiry Committees)
-
-- ENQ: Enqueten und Enquete-Kommissionen (Inquiries and Inquiry
-  Commissions)
-
-- BVSITZ: Bundesversammlung (Federal Assembly)
-
-- AUS: Ausschüsse (Committees)
-
-- EU: EU-Ausschüsse (EU Committees)
-
-- GFT: Gedenk-, Fest- und Trauersitzungen (Memorial, Celebratory, and
-  Condolence Sessions)
-
-- PARL: Jugend- und Lehrlingsparlament (Youth and Apprentice Parliament)
-
-- VER: Veranstaltungen (Events)
+Note: Querying for other session types (Untersuchungsausschüsse,
+Enqueten, Bundesversammlung, Ausschüsse, EU-Ausschüsse,
+Gedenk-/Fest-/Trauersitzungen, Jugend- und Lehrlingsparlament,
+Veranstaltungen) is currently only possible via the Parliament's
+website.
 
 ### Implementation Notes
 
@@ -162,15 +154,15 @@ if (FALSE) { # \dontrun{
                   echo=TRUE)
 
  # Get transcript data for a specific period of time.
- get_transcripts(session_type = "USA",
+ get_transcripts(session_type = "BRSITZ",
                  date_start = "01-01-2024",
                  date_end = "30-06-2024",
                  echo = TRUE)
 
-  # Retrieve all transcripts of committees (Ausschuesse)
+  # Retrieve all transcripts of National Council plenary sessions
   # and download PDFs to default "transcripts" folder.
   get_transcripts(
-    session_type = "AUS",
+    session_type = "NRSITZ",
     legis_period = 26,
     export = "pdf"
   )

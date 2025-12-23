@@ -96,7 +96,7 @@ consult the <a href="../reference/index.html">reference section</a>.</p>
 <h2 id="get-current-mps-in-the-national-council-nationalrat">Get current MPs in the National Council (Nationalrat)<a class="anchor" aria-label="anchor" href="#get-current-mps-in-the-national-council-nationalrat"></a>
 </h2>
 <p>Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (22 December 2025). This is done by
+(Nationalrat) at the time of writing (23 December 2025). This is done by
 the function <code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_current</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mps_current.html">get_mps_current</a></span><span class="op">(</span>institution <span class="op">=</span> <span class="st">"NR"</span>, echo<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
@@ -253,11 +253,11 @@ serving MPs (top 5 are shown below).</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 3</span></span></span>
 <span><span class="co">#&gt;   pad_intern name                 position_days_sum</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 145        Doris Bures                      <span style="text-decoration: underline;">10</span>244</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 12741      Peter Haubner                     <span style="text-decoration: underline;">8</span>785</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2834       Mag. Dr. Martin Graf              <span style="text-decoration: underline;">8</span>484</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 14835      Petra Bayr, MA MLS                <span style="text-decoration: underline;">8</span>403</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 14795      August Wöginger                   <span style="text-decoration: underline;">8</span>403</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 145        Doris Bures                      <span style="text-decoration: underline;">10</span>245</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 12741      Peter Haubner                     <span style="text-decoration: underline;">8</span>786</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2834       Mag. Dr. Martin Graf              <span style="text-decoration: underline;">8</span>485</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 14835      Petra Bayr, MA MLS                <span style="text-decoration: underline;">8</span>404</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 14795      August Wöginger                   <span style="text-decoration: underline;">8</span>404</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-mps-details">Get MPs’ details<a class="anchor" aria-label="anchor" href="#get-mps-details"></a>
@@ -581,17 +581,16 @@ meta data starting from the 20th legislative period.</p>
 <span><span class="co">#&gt; [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXI\"],\"R_SISTEI\":[\"SI\"]}"</span></span>
 <span><span class="co">#&gt; URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&amp;WFP_007NRBRBV=NR&amp;WFP_007GP=XXI&amp;WFP_007R_SISTEI=SI</span></span>
 <span><span class="co">#&gt; [1] "Hits:  119"</span></span>
-<span><span class="co">#&gt;  <span style="color: #00BB00;">■■■■■■■■■                       </span>  25% |  ETA:  8s</span></span>
 <span><span class="co">#&gt; [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXII\"],\"R_SISTEI\":[\"SI\"]}"</span></span>
 <span><span class="co">#&gt; URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&amp;WFP_007NRBRBV=NR&amp;WFP_007GP=XXII&amp;WFP_007R_SISTEI=SI</span></span>
 <span><span class="co">#&gt; [1] "Hits:  166"</span></span>
+<span><span class="co">#&gt;  <span style="color: #00BB00;">■■■■■■■■■■■■                    </span>  38% |  ETA:  2s</span></span>
 <span><span class="co">#&gt; [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXIII\"],\"R_SISTEI\":[\"SI\"]}"</span></span>
 <span><span class="co">#&gt; URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&amp;WFP_007NRBRBV=NR&amp;WFP_007GP=XXIII&amp;WFP_007R_SISTEI=SI</span></span>
 <span><span class="co">#&gt; [1] "Hits:  80"</span></span>
 <span><span class="co">#&gt; [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXIV\"],\"R_SISTEI\":[\"SI\"]}"</span></span>
 <span><span class="co">#&gt; URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&amp;WFP_007NRBRBV=NR&amp;WFP_007GP=XXIV&amp;WFP_007R_SISTEI=SI</span></span>
 <span><span class="co">#&gt; [1] "Hits:  230"</span></span>
-<span><span class="co">#&gt;  <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■            </span>  62% |  ETA:  3s</span></span>
 <span><span class="co">#&gt; [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXV\"],\"R_SISTEI\":[\"SI\"]}"</span></span>
 <span><span class="co">#&gt; URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&amp;WFP_007NRBRBV=NR&amp;WFP_007GP=XXV&amp;WFP_007R_SISTEI=SI</span></span>
 <span><span class="co">#&gt; [1] "Hits:  206"</span></span>

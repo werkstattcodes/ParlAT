@@ -257,8 +257,6 @@ Possible values for `item` include:
 - "GABR13" (Gesetzesanträge von einem Drittel des BR, Legislative
   Proposals of One-Third of the Federal Council)
 
-- "IMM" (Immunitätsangelegenheiten, Immunity Matters)
-
 - "KOMM" (Kommuniqués, Communiqués)
 
 - "PET" (Petitionen, Petitions)
@@ -277,6 +275,9 @@ Possible values for `item` include:
 - "VOLKBG" (Volksbegehren, Popular Initiatives)
 
 - "W" (Wahlen, Elections)
+
+Note: Querying for immunity matters ('Immunitätsangelegenheiten') is
+currently only possible via the Parliament's website.
 
 ### type_doc (Art)
 
@@ -467,7 +468,8 @@ legislative period onwards.
 
 ### keyword (Schlagwort)
 
-Possible values for `keyword` include:
+In total, there are several hundred different keywords. Here only a
+selection of possible values for `keyword`:
 
 - "Abfallwirtschaft"
 

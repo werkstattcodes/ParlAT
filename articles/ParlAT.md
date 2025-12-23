@@ -10,7 +10,7 @@ section](https://werkstattcodes.github.io/ParlAT/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (22 December 2025). This is done by
+(Nationalrat) at the time of writing (23 December 2025). This is done by
 the function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps_current.md).
 
@@ -183,11 +183,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10244
-#> 2 12741      Peter Haubner                     8785
-#> 3 2834       Mag. Dr. Martin Graf              8484
-#> 4 14835      Petra Bayr, MA MLS                8403
-#> 5 14795      August Wöginger                   8403
+#> 1 145        Doris Bures                      10245
+#> 2 12741      Peter Haubner                     8786
+#> 3 2834       Mag. Dr. Martin Graf              8485
+#> 4 14835      Petra Bayr, MA MLS                8404
+#> 5 14795      August Wöginger                   8404
 ```
 
 ## Get MPs’ details
@@ -536,17 +536,16 @@ df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXI\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXI&WFP_007R_SISTEI=SI
 #> [1] "Hits:  119"
-#>  ■■■■■■■■■                         25% |  ETA:  8s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXII\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXII&WFP_007R_SISTEI=SI
 #> [1] "Hits:  166"
+#>  ■■■■■■■■■■■■                      38% |  ETA:  2s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXIII\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXIII&WFP_007R_SISTEI=SI
 #> [1] "Hits:  80"
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXIV\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXIV&WFP_007R_SISTEI=SI
 #> [1] "Hits:  230"
-#>  ■■■■■■■■■■■■■■■■■■■■              62% |  ETA:  3s
 #> [1] "Request parameters:  {\"MODUS\":[\"PLENAR\"],\"NRBRBV\":[\"NR\"],\"GP\":[\"XXV\"],\"R_SISTEI\":[\"SI\"]}"
 #> URL Results: https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html?WFP_007MODUS=PLENAR&WFP_007NRBRBV=NR&WFP_007GP=XXV&WFP_007R_SISTEI=SI
 #> [1] "Hits:  206"
