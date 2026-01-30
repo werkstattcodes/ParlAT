@@ -451,7 +451,7 @@ test_that("get_transcripts handles NULL parameters gracefully", {
   # With session_type = NULL, should query both NRSITZ and BRSITZ
   expect_true(all(
     c("Plenarsitzung", "Plenarsitzung - BR") %in%
-      unique(result_null$session_type)
+      unique(result$session_type)
   ))
 })
 
