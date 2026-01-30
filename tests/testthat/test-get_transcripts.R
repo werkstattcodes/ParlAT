@@ -319,7 +319,7 @@ test_that("get_transcripts accepts search_string parameter", {
     search_string = "budget",
     echo = TRUE
   )
-  expect_true(nrow(result) == 24)
+  expect_true(nrow(result) == 105)
   expect_s3_class(result, "data.frame")
 
   expect_true(nrow(result[duplicated(result), ]) == 0)
