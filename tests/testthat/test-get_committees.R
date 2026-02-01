@@ -250,7 +250,9 @@ test_that("get_committees returns identical results for different legis_period f
   # The actual data should be identical (ignoring row order)
   # Sort by committee name to ensure consistent ordering
   result_numeric_sorted <- result_numeric[order(result_numeric$committee), ]
-  result_character_sorted <- result_character[order(result_character$committee), ]
+  result_character_sorted <- result_character[
+    order(result_character$committee),
+  ]
   result_roman_sorted <- result_roman[order(result_roman$committee), ]
 
   # Reset row names for comparison
@@ -295,7 +297,8 @@ test_that("get_committees with details_type='members' has no unexpected list-col
       get_committees(
         legis_period = x,
         institution = "NR",
-        details_type = "members"
+        details_type = "members",
+        echo = TRUE
       )
     })
 
