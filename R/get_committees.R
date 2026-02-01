@@ -1,5 +1,7 @@
 #' Retrieve Committee Data from the Austrian Parliament API
 #'
+#' `r lifecycle::badge("experimental")`
+#'
 #' Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
 #' The function partly mirrors the search functionality of the Austrian Parliament's website for committees
 #' <a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">here</a> and extends it by
@@ -245,7 +247,7 @@ get_committees <- function(
           .progress = TRUE
         )
       ) %>%
-      tidyr::unnest_wider("details")
+      tidyr::unnest("details")
 
     # Check if the details_type column exists before unnesting
     if (details_type %in% colnames(df_res)) {
@@ -267,7 +269,13 @@ get_committees <- function(
   if (is.null(details_type)) {
     df_res <- df_res %>%
       dplyr::mutate(legis_period = legis_period, .before = 1) %>%
-      dplyr::select("legis_period", "committee", "citation", "id_number", "url_committee")
+      dplyr::select(
+        "legis_period",
+        "committee",
+        "citation",
+        "id_number",
+        "url_committee"
+      )
   }
 
   # ECHO
@@ -435,29 +443,25 @@ get_committee_details <- function(url_committee, details_type) {
     # Check if documents column has any data
     has_documents <- !is.null(df_details$documents[[1]]) &&
       length(df_details$documents[[1]]) > 0
-
+    # browser()
     if (has_documents) {
       df_details <- df_details %>%
         tidyr::unnest("documents") %>%
         tidyr::unnest("documents") %>%
-        tidyr::pivot_wider(
-          id_cols = any_of(c(
-            "legis_period",
-            # "citation",
-            # "committee_id",
-            "date_start",
-            "date_end",
-            "title"
-          )),
-          names_from = "type",
-          values_from = "link"
+        dplyr::rename(any_of(c(url = "link", url_type = "type"))) %>%
+        dplyr::mutate(
+          url_pdf = dplyr::if_else(
+            .data$url_type == "PDF",
+            .data$url,
+            NA_character_
+          ),
+          url_html = dplyr::if_else(
+            .data$url_type == "HTML",
+            .data$url,
+            NA_character_
+          )
         ) %>%
-        dplyr::rename(
-          any_of(c(
-            url_pdf = "PDF",
-            url_html = "HTML"
-          ))
-        )
+        dplyr::select(-"url", -"url_type")
     } else {
       # If no documents, create placeholder columns
       df_details <- df_details %>%
@@ -498,7 +502,7 @@ get_committee_details <- function(url_committee, details_type) {
       # dplyr::filter(!stringr::str_detect(url_pdf, stringr::regex("FOTO"))) %>% #remove url to 'bebildertes mitgliederverzeichnis to avoid duplicates"
       dplyr::mutate(
         members = purrr::map(.data$url_html, \(x) {
-          if (is.na(x)) {
+          if (all(is.na(x))) {
             tibble::tibble(
               name = NA_character_,
               member_type = NA_character_,
@@ -740,8 +744,15 @@ fn_extract_hauptausschuss <- function(url) {
   }
 
   # Combine all table results
-  dplyr::bind_rows(all_results) %>%
-    dplyr::select(-"table_index") %>%
+  df <- dplyr::bind_rows(all_results) %>%
+    dplyr::select(-"table_index")
+
+  # Ensure all expected columns exist
+  if (!"party" %in% colnames(df)) {
+    df$party <- NA_character_
+  }
+
+  df %>%
     dplyr::select("name", "member_type", "party", "member_url")
 }
 
@@ -809,7 +820,9 @@ fn_extract_committees_other <- function(url) {
 
   df_members <- {
     idx_m <- which(stringr::str_detect(df_members_raw$X2, "^Mitglieder"))[1]
-    idx_v <- which(stringr::str_detect(df_members_raw$X2, "^Vorsitzender|^Ob"))[1]
+    idx_v <- which(stringr::str_detect(df_members_raw$X2, "^Vorsitzender|^Ob"))[
+      1
+    ]
     if (is.na(idx_m) || is.na(idx_v) || idx_v <= idx_m + 1) {
       tibble::tibble()
     } else {
@@ -834,18 +847,22 @@ fn_extract_committees_other <- function(url) {
     dplyr::mutate(member_idx = dplyr::row_number()) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(
-      member_url = purrr::map2_chr(.data$url_split, .data$member_idx, function(urls, idx) {
-        if (length(urls) == 0) {
+      member_url = purrr::map2_chr(
+        .data$url_split,
+        .data$member_idx,
+        function(urls, idx) {
+          if (length(urls) == 0) {
+            return(NA_character_)
+          }
+          if (length(urls) == 1 && is.na(urls[[1]])) {
+            return(NA_character_)
+          }
+          if (idx <= length(urls)) {
+            return(urls[[idx]])
+          }
           return(NA_character_)
         }
-        if (length(urls) == 1 && is.na(urls[[1]])) {
-          return(NA_character_)
-        }
-        if (idx <= length(urls)) {
-          return(urls[[idx]])
-        }
-        return(NA_character_)
-      })
+      )
     ) %>%
     dplyr::mutate(
       X1 = stringr::str_extract(.data$X1, stringr::regex("^[^:]*\\s"))
@@ -875,18 +892,22 @@ fn_extract_committees_other <- function(url) {
     dplyr::mutate(member_idx = dplyr::row_number()) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(
-      member_url = purrr::map2_chr(.data$url_split, .data$member_idx, function(urls, idx) {
-        if (length(urls) == 0) {
+      member_url = purrr::map2_chr(
+        .data$url_split,
+        .data$member_idx,
+        function(urls, idx) {
+          if (length(urls) == 0) {
+            return(NA_character_)
+          }
+          if (length(urls) == 1 && is.na(urls[[1]])) {
+            return(NA_character_)
+          }
+          if (idx <= length(urls)) {
+            return(urls[[idx]])
+          }
           return(NA_character_)
         }
-        if (length(urls) == 1 && is.na(urls[[1]])) {
-          return(NA_character_)
-        }
-        if (idx <= length(urls)) {
-          return(urls[[idx]])
-        }
-        return(NA_character_)
-      })
+      )
     ) %>%
     dplyr::mutate(
       X1 = stringr::str_extract(.data$X1, stringr::regex("^[^:]*\\s"))
@@ -931,18 +952,22 @@ fn_extract_committees_other <- function(url) {
     dplyr::mutate(member_idx = dplyr::row_number()) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(
-      member_url = purrr::map2_chr(.data$url_split, .data$member_idx, function(urls, idx) {
-        if (length(urls) == 0) {
+      member_url = purrr::map2_chr(
+        .data$url_split,
+        .data$member_idx,
+        function(urls, idx) {
+          if (length(urls) == 0) {
+            return(NA_character_)
+          }
+          if (length(urls) == 1 && is.na(urls[[1]])) {
+            return(NA_character_)
+          }
+          if (idx <= length(urls)) {
+            return(urls[[idx]])
+          }
           return(NA_character_)
         }
-        if (length(urls) == 1 && is.na(urls[[1]])) {
-          return(NA_character_)
-        }
-        if (idx <= length(urls)) {
-          return(urls[[idx]])
-        }
-        return(NA_character_)
-      })
+      )
     ) %>%
     dplyr::mutate(X2 = stringr::str_remove(.data$X2, ":$")) %>%
     dplyr::rename("name" = "X3", "member_type" = "X2") %>%
@@ -1124,9 +1149,14 @@ fn_extract_committees_type3 <- function(url) {
     tidyr::unnest("name") %>%
     dplyr::mutate(name = stringr::str_squish(.data$name)) %>%
     dplyr::mutate(
-      state = stringr::str_extract(.data$name, stringr::regex("(?<=\\().*(?=\\))"))
+      state = stringr::str_extract(
+        .data$name,
+        stringr::regex("(?<=\\().*(?=\\))")
+      )
     ) %>%
-    dplyr::mutate(name = stringr::str_remove(.data$name, stringr::regex("\\s\\(.*$")))
+    dplyr::mutate(
+      name = stringr::str_remove(.data$name, stringr::regex("\\s\\(.*$"))
+    )
 
   #add urls to members table
   members_full_br <- members %>%
@@ -1159,9 +1189,14 @@ fn_extract_committees_type3 <- function(url) {
     tidyr::unnest("name") %>%
     dplyr::mutate(name = stringr::str_squish(.data$name)) %>%
     dplyr::mutate(
-      state = stringr::str_extract(.data$name, stringr::regex("(?<=\\().*(?=\\))"))
+      state = stringr::str_extract(
+        .data$name,
+        stringr::regex("(?<=\\().*(?=\\))")
+      )
     ) %>%
-    dplyr::mutate(name = stringr::str_remove(.data$name, stringr::regex("\\s\\(.*$")))
+    dplyr::mutate(
+      name = stringr::str_remove(.data$name, stringr::regex("\\s\\(.*$"))
+    )
 
   #add  url to tble substitutes
   substitutes_full_br <- substitutes %>%
@@ -1181,7 +1216,10 @@ fn_extract_committees_type3 <- function(url) {
     dplyr::slice(-1) %>%
     dplyr::select(position = "X2", name = "X3") %>%
     dplyr::mutate(
-      state = stringr::str_extract(.data$name, stringr::regex("(?<=\\().*(?=\\))"))
+      state = stringr::str_extract(
+        .data$name,
+        stringr::regex("(?<=\\().*(?=\\))")
+      )
     ) %>%
     dplyr::mutate(
       name = stringr::str_remove(.data$name, stringr::regex("\\s\\(.*$")) %>%
