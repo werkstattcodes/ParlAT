@@ -34,6 +34,11 @@ options(width = 10000)
 ```
 
 ```{r, setup, include=FALSE}
+suggested_pkgs <- c("ggplot2", "forcats", "scales", "tidytext", "ggtext")
+if (!all(vapply(suggested_pkgs, requireNamespace, logical(1), quietly = TRUE))) {
+  knitr::opts_chunk$set(eval = FALSE)
+}
+
 if (!requireNamespace("ParlAT", quietly = TRUE)) {
   devtools::load_all()
 } else {
