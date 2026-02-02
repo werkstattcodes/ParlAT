@@ -1129,14 +1129,16 @@ get_items <- function(
     httr2::req_body_raw(body_params, "application/json") %>%
     # httr2::req_body_json(body_params) %>%
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)")
-
+  #browser()
   resp <- httr2::req_perform(req)
   resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
-
   vec_headings <- resp_json %>%
     purrr::pluck("header", "label") %>%
     stringr::str_to_snake() %>%
     make.unique(sep = "_")
+
+  # rnr maps each header to its 1-based column position in the data rows
+  col_positions <- purrr::pluck(resp_json, "header", "rnr")
 
   rows <- purrr::pluck(resp_json, "rows")
 
@@ -1146,17 +1148,11 @@ get_items <- function(
     df_res <- rows %>%
       as.data.frame()
 
-    #patch: API returns colums and header labels of different lenghts. Those
-    #labels which exceed the number of cols appear to be irrelevant; not clear why
-    #they were included
-
-    if (ncol(df_res) != length(vec_headings)) {
-      # print("Warning: Columns and labels of different length!")
-
-      vec_headings <- vec_headings[1:ncol(df_res)]
-    }
-
-    colnames(df_res) <- vec_headings
+    # Use rnr positions to select and reorder the correct columns
+    valid_pos <- col_positions[col_positions <= ncol(df_res)]
+    valid_headings <- vec_headings[col_positions <= ncol(df_res)]
+    df_res <- df_res[, valid_pos, drop = FALSE]
+    colnames(df_res) <- valid_headings
   }
 
   # RETURN ECHO
@@ -1443,8 +1439,6 @@ get_item_details <- function(item_url, type = "stages") {
           )
         })
       )
-
-    # browser()
 
     # Expand df_res to match df_stages and combine
     result <- df_res %>%

@@ -68,6 +68,9 @@ A tibble (data frame) with different structures depending on \code{details_type}
 Returns NULL if no results are found for the provided search criteria.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\details{
 Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
 The function partly mirrors the search functionality of the Austrian Parliament's website for committees
 \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">}}here\if{html}{\out{</a>}} and extends it by

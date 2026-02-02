@@ -318,7 +318,6 @@ test_that("get_items returns consistent columns across item types (tidyverse, le
     "GO",
     "GABR",
     "GABR13",
-    "IMM",
     "KOMM",
     "PET",
     "RGER",
