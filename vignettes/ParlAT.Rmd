@@ -521,14 +521,11 @@ committeeInquiry %>%
   dplyr::count(legis_period, .drop=F)
 ```
 
-Additional details on a committee can be retrieved by specifying the attribute `details_type`. As of now, `members` is the only available option.
+Additional details on a committee can be retrieved by specifying the attribute `details_type`. As of now, `members` is the only available option. Member information is automatically unnested into the result.
 ```{r, cache=TRUE}
 committeeIbiza <- get_committees(legis_period=27, search_string="Ibiza", institution="NR", details_type="members")
 
-#unnest members
-members <- committeeIbiza %>%
-  tidyr::unnest(members)
-members
+committeeIbiza
 ```
 
 
