@@ -1,12 +1,13 @@
 test_that("get_plenary_sessions returns valid data structure", {
   skip_on_cran()
-  skip_if_offline()
 
-  x <- get_plenary_sessions(
-    institution = "NR",
-    legis_period = 28,
-    session_and_activities = "sessions"
-  )
+  x <- run_api_call({
+    get_plenary_sessions(
+      institution = "NR",
+      legis_period = 28,
+      session_and_activities = "sessions"
+    )
+  }, fixture_subdir = "get_plenary_sessions")
 
   # Test basic structure
   expect_true(is.data.frame(x))
@@ -33,13 +34,14 @@ test_that("get_plenary_sessions returns valid data structure", {
 
 test_that("get_plenary_sessions handles agenda_url columns correctly", {
   skip_on_cran()
-  skip_if_offline()
 
-  x <- get_plenary_sessions(
-    institution = "NR",
-    session_and_activities = "sessions",
-    legis_period = 28
-  )
+  x <- run_api_call({
+    get_plenary_sessions(
+      institution = "NR",
+      session_and_activities = "sessions",
+      legis_period = 28
+    )
+  }, fixture_subdir = "get_plenary_sessions")
 
   # Test agenda_url columns exist and are character type (not list)
   if ("agenda_url_html" %in% colnames(x)) {
@@ -67,14 +69,15 @@ test_that("get_plenary_sessions handles agenda_url columns correctly", {
 
 test_that("get_plenary_sessions adds URL prefix to all url columns", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test sessions mode
-  x_sessions <- get_plenary_sessions(
-    institution = "NR",
-    legis_period = 28,
-    session_and_activities = "sessions"
-  )
+  x_sessions <- run_api_call({
+    get_plenary_sessions(
+      institution = "NR",
+      legis_period = 28,
+      session_and_activities = "sessions"
+    )
+  }, fixture_subdir = "get_plenary_sessions")
 
   if (!is.null(x_sessions) && nrow(x_sessions) > 0) {
     # Check session_url has prefix
@@ -103,11 +106,13 @@ test_that("get_plenary_sessions adds URL prefix to all url columns", {
   }
 
   # Test submitted mode
-  x_submitted <- get_plenary_sessions(
-    institution = "NR",
-    legis_period = 27,
-    session_and_activities = "submitted"
-  )
+  x_submitted <- run_api_call({
+    get_plenary_sessions(
+      institution = "NR",
+      legis_period = 27,
+      session_and_activities = "submitted"
+    )
+  }, fixture_subdir = "get_plenary_sessions")
 
   if (!is.null(x_submitted) && nrow(x_submitted) > 0) {
     # Check url_session and url_session_item have prefix
@@ -132,18 +137,20 @@ test_that("get_plenary_sessions adds URL prefix to all url columns", {
 # Test all combinations of institution and session_and_activities
 test_that("get_plenary_sessions works with all BR and NR institution combinations", {
   skip_on_cran()
-  skip_if_offline()
 
   institutions <- c("BR", "NR")
   session_modes <- c("sessions", "submitted", "held")
 
   for (inst in institutions) {
     for (mode in session_modes) {
-      x <- get_plenary_sessions(
-        institution = inst,
-        legis_period = 27,
-        session_and_activities = mode
-      )
+      x <- run_api_call({
+        get_plenary_sessions(
+          institution = inst,
+          legis_period = 27,
+          session_and_activities = mode
+        )
+      }, fixture_subdir = "get_plenary_sessions")
+
       expect_true(
         is.data.frame(x),
         info = paste("Failed for", inst, mode)
@@ -163,17 +170,19 @@ test_that("get_plenary_sessions works with all BR and NR institution combination
 
 test_that("get_plenary_sessions works with submitted parameter values", {
   skip_on_cran()
-  skip_if_offline()
 
   submitted_values <- c("All", "AA", "J")
 
   for (sub_val in submitted_values) {
-    x <- get_plenary_sessions(
-      institution = "NR",
-      legis_period = 28,
-      session_and_activities = "submitted",
-      submitted = sub_val
-    )
+    x <- run_api_call({
+      get_plenary_sessions(
+        institution = "NR",
+        legis_period = 28,
+        session_and_activities = "submitted",
+        submitted = sub_val
+      )
+    }, fixture_subdir = "get_plenary_sessions")
+
     expect_true(
       is.data.frame(x) || is.null(x),
       info = paste("Failed for submitted =", sub_val)
@@ -188,17 +197,19 @@ test_that("get_plenary_sessions works with submitted parameter values", {
 
 test_that("get_plenary_sessions works with held parameter values", {
   skip_on_cran()
-  skip_if_offline()
 
   held_values <- c("All", "AS", "FS")
 
   for (held_val in held_values) {
-    x <- get_plenary_sessions(
-      institution = "NR",
-      legis_period = 28,
-      session_and_activities = "held",
-      held = held_val
-    )
+    x <- run_api_call({
+      get_plenary_sessions(
+        institution = "NR",
+        legis_period = 28,
+        session_and_activities = "held",
+        held = held_val
+      )
+    }, fixture_subdir = "get_plenary_sessions")
+
     expect_true(
       is.data.frame(x) || is.null(x),
       info = paste("Failed for held =", held_val)
@@ -213,12 +224,13 @@ test_that("get_plenary_sessions works with held parameter values", {
 
 test_that("get_plenary_sessions works with BV institution", {
   skip_on_cran()
-  skip_if_offline()
 
-  x <- get_plenary_sessions(
-    institution = "BV",
-    legis_period = NULL
-  )
+  x <- run_api_call({
+    get_plenary_sessions(
+      institution = "BV",
+      legis_period = NULL
+    )
+  }, fixture_subdir = "get_plenary_sessions")
 
   # BV should return data or NULL, not error
   expect_true(is.data.frame(x) || is.null(x))
@@ -226,12 +238,13 @@ test_that("get_plenary_sessions works with BV institution", {
 
 test_that("get_plenary_sessions BV does not include legis_period column", {
   skip_on_cran()
-  skip_if_offline()
 
-  x <- get_plenary_sessions(
-    institution = "BV",
-    legis_period = NULL
-  )
+  x <- run_api_call({
+    get_plenary_sessions(
+      institution = "BV",
+      legis_period = NULL
+    )
+  }, fixture_subdir = "get_plenary_sessions")
 
   if (!is.null(x) && nrow(x) > 0) {
     # BV should NOT have legis_period column
@@ -323,13 +336,14 @@ test_that("get_plenary_sessions validates parameter combinations", {
 
 test_that("get_plenary_sessions handles multiple legislative periods", {
   skip_on_cran()
-  skip_if_offline()
 
-  x <- get_plenary_sessions(
-    institution = "NR",
-    legis_period = c(27, 28),
-    session_and_activities = "sessions"
-  )
+  x <- run_api_call({
+    get_plenary_sessions(
+      institution = "NR",
+      legis_period = c(27, 28),
+      session_and_activities = "sessions"
+    )
+  }, fixture_subdir = "get_plenary_sessions")
 
   expect_true(is.data.frame(x) || is.null(x))
 
@@ -341,14 +355,15 @@ test_that("get_plenary_sessions handles multiple legislative periods", {
 
 test_that("get_plenary_sessions handles NULL legislative period", {
   skip_on_cran()
-  skip_if_offline()
 
   # This should get all periods from 20 onwards - limit to recent ones for testing
-  x <- get_plenary_sessions(
-    institution = "NR",
-    legis_period = NULL,
-    session_and_activities = "sessions"
-  )
+  x <- run_api_call({
+    get_plenary_sessions(
+      institution = "NR",
+      legis_period = NULL,
+      session_and_activities = "sessions"
+    )
+  }, fixture_subdir = "get_plenary_sessions")
 
   expect_true(is.data.frame(x) || is.null(x))
 

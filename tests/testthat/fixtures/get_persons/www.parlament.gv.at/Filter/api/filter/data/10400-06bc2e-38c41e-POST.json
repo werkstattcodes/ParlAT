@@ -1,0 +1,168 @@
+{
+    "pages": 1,
+    "lastSync": "2026-02-04 06:50:51.0",
+    "count": 4,
+    "header": [
+        {
+            "feldId": 1485,
+            "hidden": true,
+            "rnr": 1,
+            "listeId": 10400,
+            "label": "persart",
+            "feld_name": "PERSART",
+            "includeHeader": true,
+            "ist_werteliste": "1"
+        },
+        {
+            "feldId": 1484,
+            "hidden": false,
+            "rnr": 2,
+            "listeId": 10400,
+            "mediaType": "description",
+            "label": "Funktion",
+            "feld_name": "FUNKTION_AGG",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1483,
+            "search_ignore": "1",
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 10400,
+            "label": "pad_intern",
+            "feld_name": "PAD_INTERN",
+            "includeHeader": true
+        },
+        {
+            "link_rnr": "4",
+            "feldId": 1125,
+            "hidden": false,
+            "rnr": 4,
+            "sort_rnr": 10,
+            "listeId": 10400,
+            "mediaType": "title",
+            "display_rnr": 1,
+            "label": "Name",
+            "feld_name": "NAME",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1487,
+            "search_ignore": "1",
+            "hidden": true,
+            "rnr": 5,
+            "listeId": 10400,
+            "mediaType": "link",
+            "label": "link",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1488,
+            "hidden": false,
+            "rnr": 6,
+            "listeId": 10400,
+            "label": "geschl",
+            "feld_name": "GESCHL",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1486,
+            "search_ignore": "1",
+            "hidden": false,
+            "rnr": 7,
+            "listeId": 10400,
+            "mediaType": "image",
+            "label": "portrait",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1499,
+            "search_ignore": "1",
+            "hidden": true,
+            "rnr": 8,
+            "listeId": 10400,
+            "label": "wentry_id",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1561,
+            "search_ignore": "1",
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 10400,
+            "mediaType": "type",
+            "label": "objekt_typ",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2416,
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 10400,
+            "label": "Name_simpel",
+            "includeHeader": true
+        },
+        {
+            "feldId": 585,
+            "hidden": false,
+            "rnr": 11,
+            "listeId": 10400,
+            "label": "OE",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "[\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"NR\",\"NR\",\"NR\",\"NR\"]",
+            "Abgeordneter zum Nationalrat, Bundeskanzler, Bundesminister, Staatssekretär",
+            65321,
+            "Kurz Sebastian",
+            "/person/65321",
+            "M",
+            "/dokument/bild/92331/9233173_384.jpg",
+            656623,
+            "person",
+            "Kurz Sebastian",
+            null
+        ],
+        [
+            "[\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\"]",
+            "Mitglied des Bundesrates, Ordnerin, Präsidentin, Schriftführerin, Vizepräsidentin",
+            21150,
+            "Kurz Susanne, Mag.",
+            "/person/21150",
+            "W",
+            "/dokument/bild/59040/5904049_384.jpg",
+            654751,
+            "person",
+            "Kurz Susanne, Mag.",
+            null
+        ],
+        [
+            "[\"NR\",\"NR\",\"NR\",\"NR\"]",
+            "Abgeordneter zum Nationalrat",
+            2823,
+            "Kurzbauer Johann",
+            "/person/2823",
+            "M",
+            "/dokument/bild/20999/2099959_384.jpg",
+            653463,
+            "person",
+            "Kurzbauer Johann",
+            null
+        ],
+        [
+            "[\"NR\",\"NR\",\"NR\",\"NR\"]",
+            "Abgeordneter zum Nationalrat",
+            5075,
+            "Kurzmann Gerhard, Dr.",
+            "/person/5075",
+            "M",
+            "/dokument/bild/21018/2101814_384.jpg",
+            653909,
+            "person",
+            "Kurzmann Gerhard, Dr.",
+            null
+        ]
+    ]
+}

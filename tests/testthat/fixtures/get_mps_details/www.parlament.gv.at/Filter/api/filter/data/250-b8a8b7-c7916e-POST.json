@@ -1,0 +1,190 @@
+{
+    "pages": 1,
+    "lastSync": "2026-02-03 16:10:07.0",
+    "count": 6,
+    "header": [
+        {
+            "css_class": "datum-col",
+            "feldId": 92,
+            "hidden": false,
+            "rnr": 1,
+            "listeId": 250,
+            "label": "GP",
+            "sortable": "1",
+            "feld_name": "GP",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 93,
+            "hidden": true,
+            "rnr": 2,
+            "listeId": 250,
+            "label": "Sort",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-20",
+            "feldId": 94,
+            "hidden": false,
+            "rnr": 3,
+            "listeId": 250,
+            "label": "Funktion",
+            "feld_name": "FUNKTION",
+            "class": "col-20",
+            "includeHeader": true
+        },
+        {
+            "css_class": "fraction-col",
+            "link_rnr": "6",
+            "feldId": 95,
+            "hidden": false,
+            "rnr": 4,
+            "listeId": 250,
+            "label": "Ausschuss",
+            "class": "fraction-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 96,
+            "hidden": true,
+            "rnr": 5,
+            "listeId": 250,
+            "label": "nrbr",
+            "includeHeader": true
+        },
+        {
+            "feldId": 97,
+            "hidden": true,
+            "rnr": 6,
+            "listeId": 250,
+            "label": "URL",
+            "includeHeader": true
+        },
+        {
+            "feldId": 98,
+            "hidden": true,
+            "rnr": 7,
+            "listeId": 250,
+            "label": "PAD_INTERN",
+            "feld_name": "PAD_INTERN",
+            "includeHeader": true
+        },
+        {
+            "feldId": 969,
+            "hidden": true,
+            "rnr": 8,
+            "listeId": 250,
+            "mediaType": "fromDate",
+            "label": "fromDate",
+            "includeHeader": true
+        },
+        {
+            "feldId": 564,
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 250,
+            "label": "Ausschuss",
+            "feld_name": "AUSSCHUSS",
+            "includeHeader": true
+        },
+        {
+            "feldId": 565,
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 250,
+            "label": "Gremium",
+            "feld_name": "GREMIUM",
+            "includeHeader": true
+        },
+        {
+            "feldId": 584,
+            "hidden": true,
+            "rnr": 11,
+            "listeId": 250,
+            "label": "gp_text_full",
+            "feld_name": "GP_TEXT_FULL",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "XXVI",
+            "2Z798288900012220171221VOLKSANWALTSCHAFTSAUSSCHUSS79828778",
+            "Schriftführerin",
+            "Volksanwaltschaftsausschuss (21.12.2017 - 25.09.2018)",
+            "NR",
+            "/PAKT/VHG/XXVI/A-VO/A-VO_00001_00856/index.shtml",
+            "2344",
+            "Thu Dec 21 01:00:00 CET 2017",
+            "Volksanwaltschaftsausschuss",
+            "Nationalrat",
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVI",
+            "2Z798288900012220180926VOLKSANWALTSCHAFTSAUSSCHUSS79819073",
+            "Schriftführerin",
+            "Volksanwaltschaftsausschuss (26.09.2018 - 25.09.2019)",
+            "NR",
+            "/PAKT/VHG/XXVI/A-VO/A-VO_00001_00856/index.shtml",
+            "2344",
+            "Wed Sep 26 02:00:00 CEST 2018",
+            "Volksanwaltschaftsausschuss",
+            "Nationalrat",
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVI",
+            "2Z798288900012220190926VOLKSANWALTSCHAFTSAUSSCHUSS79809073",
+            "Schriftführerin",
+            "Volksanwaltschaftsausschuss (26.09.2019 - 22.10.2019)",
+            "NR",
+            "/PAKT/VHG/XXVI/A-VO/A-VO_00001_00856/index.shtml",
+            "2344",
+            "Thu Sep 26 02:00:00 CEST 2019",
+            "Volksanwaltschaftsausschuss",
+            "Nationalrat",
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVI",
+            "2Z798288900013120171221VOLKSANWALTSCHAFTSAUSSCHUSS79828778",
+            "Mitglied",
+            "Volksanwaltschaftsausschuss (21.12.2017 - 25.09.2018)",
+            "NR",
+            "/PAKT/VHG/XXVI/A-VO/A-VO_00001_00856/index.shtml",
+            "2344",
+            "Thu Dec 21 01:00:00 CET 2017",
+            "Volksanwaltschaftsausschuss",
+            "Nationalrat",
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVI",
+            "2Z798288900013120180926VOLKSANWALTSCHAFTSAUSSCHUSS79819073",
+            "Mitglied",
+            "Volksanwaltschaftsausschuss (26.09.2018 - 25.09.2019)",
+            "NR",
+            "/PAKT/VHG/XXVI/A-VO/A-VO_00001_00856/index.shtml",
+            "2344",
+            "Wed Sep 26 02:00:00 CEST 2018",
+            "Volksanwaltschaftsausschuss",
+            "Nationalrat",
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVI",
+            "2Z798288900013120190926VOLKSANWALTSCHAFTSAUSSCHUSS79809073",
+            "Mitglied",
+            "Volksanwaltschaftsausschuss (26.09.2019 - 22.10.2019)",
+            "NR",
+            "/PAKT/VHG/XXVI/A-VO/A-VO_00001_00856/index.shtml",
+            "2344",
+            "Thu Sep 26 02:00:00 CEST 2019",
+            "Volksanwaltschaftsausschuss",
+            "Nationalrat",
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+        ]
+    ]
+}

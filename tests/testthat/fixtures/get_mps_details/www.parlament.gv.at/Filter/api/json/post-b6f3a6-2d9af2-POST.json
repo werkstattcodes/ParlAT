@@ -1,0 +1,276 @@
+[
+    {
+        "rnr": 1000,
+        "values": [
+            {
+                "label": "seit 10.11.1920: Alle Gesetzgebungsperioden des NR",
+                "value": "ALLE"
+            },
+            {
+                "label": "ab 24.10.2024: XXVIII. Gesetzgebungsperiode",
+                "value": "XXVIII"
+            },
+            {
+                "label": "23.10.2019 - 23.10.2024: XXVII. GP",
+                "value": "XXVII"
+            },
+            {
+                "label": "09.11.2017 - 22.10.2019: XXVI. GP",
+                "value": "XXVI"
+            },
+            {
+                "label": "29.10.2013 - 08.11.2017: XXV. GP",
+                "value": "XXV"
+            },
+            {
+                "label": "28.10.2008 - 28.10.2013: XXIV. GP",
+                "value": "XXIV"
+            },
+            {
+                "label": "30.10.2006 - 27.10.2008: XXIII. GP",
+                "value": "XXIII"
+            },
+            {
+                "label": "20.12.2002 - 29.10.2006: XXII. GP",
+                "value": "XXII"
+            },
+            {
+                "label": "29.10.1999 - 19.12.2002: XXI. GP",
+                "value": "XXI"
+            },
+            {
+                "label": "15.01.1996 - 28.10.1999: XX. GP",
+                "value": "XX"
+            },
+            {
+                "label": "07.11.1994 - 14.01.1996: XIX. GP",
+                "value": "XIX"
+            },
+            {
+                "label": "05.11.1990 - 06.11.1994: XVIII. GP",
+                "value": "XVIII"
+            },
+            {
+                "label": "17.12.1986 - 04.11.1990: XVII. GP",
+                "value": "XVII"
+            },
+            {
+                "label": "19.05.1983 - 16.12.1986: XVI. GP",
+                "value": "XVI"
+            },
+            {
+                "label": "05.06.1979 - 18.05.1983: XV. GP",
+                "value": "XV"
+            },
+            {
+                "label": "04.11.1975 - 04.06.1979: XIV. GP",
+                "value": "XIV"
+            },
+            {
+                "label": "04.11.1971 - 04.11.1975: XIII. GP",
+                "value": "XIII"
+            },
+            {
+                "label": "31.03.1970 - 04.11.1971: XII. GP",
+                "value": "XII"
+            },
+            {
+                "label": "30.03.1966 - 31.03.1970: XI. GP",
+                "value": "XI"
+            },
+            {
+                "label": "14.12.1962 - 30.03.1966: X. GP",
+                "value": "X"
+            },
+            {
+                "label": "09.06.1959 - 14.12.1962: IX. GP",
+                "value": "IX"
+            },
+            {
+                "label": "08.06.1956 - 09.06.1959: VIII. GP",
+                "value": "VIII"
+            },
+            {
+                "label": "18.03.1953 - 08.06.1956: VII. GP",
+                "value": "VII"
+            },
+            {
+                "label": "08.11.1949 - 18.03.1953: VI. GP",
+                "value": "VI"
+            },
+            {
+                "label": "19.12.1945 - 08.11.1949: V. GP",
+                "value": "V"
+            },
+            {
+                "label": "02.12.1930 - 02.05.1934: IV. GP",
+                "value": "IV"
+            },
+            {
+                "label": "18.05.1927 - 01.10.1930: III. GP",
+                "value": "III"
+            },
+            {
+                "label": "20.11.1923 - 18.05.1927: II. GP",
+                "value": "II"
+            },
+            {
+                "label": "10.11.1920 - 20.11.1923: I. GP",
+                "value": "I"
+            }
+        ],
+        "name": "GP",
+        "inputType": "RADIO",
+        "label": "Gesetzgebungsperiode"
+    },
+    {
+        "rnr": 1120,
+        "values": [
+            {
+                "label": "Klub",
+                "value": "FR"
+            },
+            {
+                "label": "Wahlpartei",
+                "value": "WP"
+            }
+        ],
+        "name": "R_WF",
+        "inputType": "RADIO",
+        "label": "Wahlpartei oder Klub"
+    },
+    {
+        "rnr": 1130,
+        "values": [
+            {
+                "label": "Alle Klubs",
+                "value": "ALLE"
+            },
+            {
+                "label": "Abgeordnetenverband des Landbundes für Österreich",
+                "value": "LBd"
+            },
+            {
+                "label": "Christlichsoziale Vereinigung deutscher Abg. im österreichischen Parlamente",
+                "value": "CSP"
+            },
+            {
+                "label": "Der Grüne Klub",
+                "value": "GRÜNE"
+            },
+            {
+                "label": "Die Sozialdemokratische Parlamentsfraktion",
+                "value": "SPÖ"
+            },
+            {
+                "label": "Freiheitlicher Parlamentsklub (F-BZÖ)",
+                "value": "F-BZÖ"
+            },
+            {
+                "label": "Großdeutsche Volkspartei",
+                "value": "GdP"
+            },
+            {
+                "label": "Klub der Freiheitlichen Partei Österreichs (F)",
+                "value": "F"
+            },
+            {
+                "label": "Klub der Freiheitlichen Partei Österreichs (FPÖ)",
+                "value": "FPÖ"
+            },
+            {
+                "label": "Klub der Kommunisten und Linkssozialisten",
+                "value": "KuL"
+            },
+            {
+                "label": "Klub der Österreichischen Volksopposition",
+                "value": "VO"
+            },
+            {
+                "label": "Klub der Wahlpartei der Unabhängigen",
+                "value": "WdU"
+            },
+            {
+                "label": "Klub des Linksblocks (Kommunisten und Linkssozialisten)",
+                "value": "LB"
+            },
+            {
+                "label": "Klub von NEOS und LIF",
+                "value": "NEOS-LIF"
+            },
+            {
+                "label": "Liste Pilz",
+                "value": "PILZ"
+            },
+            {
+                "label": "NEOS Parlamentsklub",
+                "value": "NEOS"
+            },
+            {
+                "label": "ohne Klubzugehörigkeit",
+                "value": "OK"
+            },
+            {
+                "label": "Parlamentarischer Klub des Heimatblocks",
+                "value": "HB"
+            },
+            {
+                "label": "Parlamentsklub der Kommunistischen Partei Österreichs",
+                "value": "KPÖ"
+            },
+            {
+                "label": "Parlamentsklub der Österreichischen Volkspartei",
+                "value": "ÖVP"
+            },
+            {
+                "label": "Parlamentsklub des BZÖ",
+                "value": "BZÖ"
+            },
+            {
+                "label": "Parlamentsklub JETZT",
+                "value": "JETZT"
+            },
+            {
+                "label": "Parlamentsklub Liberales Forum",
+                "value": "L"
+            },
+            {
+                "label": "Parlamentsklub Team Stronach",
+                "value": "STRONACH"
+            },
+            {
+                "label": "Verband der Abg. des Nationalen Wirtschaftsblocks",
+                "value": "NWB"
+            },
+            {
+                "label": "Verband der Sozialdemokratischen Abg. zum Nationalrat",
+                "value": "SdP"
+            }
+        ],
+        "name": "FR",
+        "inputType": "RADIO",
+        "label": "Klub / Fraktion"
+    },
+    {
+        "values": [
+            {
+                "label": "Frauen",
+                "value": "W"
+            }
+        ],
+        "name": "W",
+        "inputType": "CHK",
+        "label": "Frauen"
+    },
+    {
+        "values": [
+            {
+                "label": "Männer",
+                "value": "M"
+            }
+        ],
+        "name": "M",
+        "inputType": "CHK",
+        "label": "Männer"
+    }
+]

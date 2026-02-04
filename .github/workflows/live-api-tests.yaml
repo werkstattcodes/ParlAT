@@ -1,0 +1,134 @@
+# Weekly live API tests to detect Austrian Parliament API changes
+#
+# This workflow runs tests against the real API to catch breaking changes.
+# It runs on a weekly schedule and can also be triggered manually.
+#
+# On failure, it automatically creates a GitHub issue to alert maintainers.
+on:
+  schedule:
+    # Run every Monday at 6:00 UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      refresh_fixtures:
+        description: 'Refresh fixtures after successful tests'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+name: Live API Tests
+
+permissions: read-all
+
+jobs:
+  live-api-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      PARLAT_LIVE_API: 'true'
+      R_KEEP_PKG_SOURCE: yes
+
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::testthat, any::devtools
+          needs: check
+
+      - name: Run live API tests
+        id: tests
+        run: |
+          testthat::test_local(reporter = testthat::SummaryReporter$new())
+        shell: Rscript {0}
+
+      - name: Refresh fixtures (optional)
+        if: ${{ github.event.inputs.refresh_fixtures == 'true' && success() }}
+        run: |
+          source("tools/record_fixtures.R")
+        shell: Rscript {0}
+
+      - name: Commit updated fixtures
+        if: ${{ github.event.inputs.refresh_fixtures == 'true' && success() }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh API fixtures"
+          file_pattern: "tests/testthat/fixtures/**/*"
+
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '🚨 Live API tests failed';
+            const body = `## Weekly Live API Tests Failed
+
+            The scheduled live API tests have failed. This may indicate changes to the Austrian Parliament API.
+
+            **Workflow run:** [View details](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+
+            ### Next Steps
+            1. Check the workflow logs for specific test failures
+            2. Verify if the Austrian Parliament API has changed
+            3. Update the package code if necessary
+            4. Refresh fixtures using the manual workflow dispatch with "Refresh fixtures" enabled
+
+            ### Common Issues
+            - API endpoint changes
+            - Response format modifications
+            - Data schema updates
+            - Temporary API outages (re-run the workflow to verify)
+
+            ---
+            *This issue was automatically created by the live-api-tests workflow.*`;
+
+            // Check if a similar open issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'api-change'
+            });
+
+            const existingIssue = issues.data.find(issue =>
+              issue.title.includes('Live API tests failed')
+            );
+
+            if (!existingIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['api-change', 'automated']
+              });
+              console.log('Created new issue for API test failure');
+            } else {
+              // Add a comment to the existing issue
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existingIssue.number,
+                body: `### Another test failure detected
+
+                **Workflow run:** [View details](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+
+                The live API tests failed again. Please investigate.`
+              });
+              console.log('Added comment to existing issue #' + existingIssue.number);
+            }

@@ -1,11 +1,12 @@
 test_that("get_committees returns valid data structure", {
   skip_on_cran()
-  skip_if_offline()
 
-  x <- get_committees(
-    institution = "NR",
-    legis_period = 20
-  )
+  x <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = 20
+    )
+  }, fixture_subdir = "get_committees")
 
   # Test basic structure
   expect_true(is.data.frame(x))
@@ -119,15 +120,16 @@ test_that("get_committees warns for legislative periods before 20", {
 
 test_that("get_committees works with different institutions", {
   skip_on_cran()
-  skip_if_offline()
 
   institutions <- c("NR", "BR")
 
   for (inst in institutions) {
-    x <- get_committees(
-      institution = inst,
-      legis_period = 27
-    )
+    x <- run_api_call({
+      get_committees(
+        institution = inst,
+        legis_period = 27
+      )
+    }, fixture_subdir = "get_committees")
 
     expect_true(
       is.data.frame(x) || is.null(x),
@@ -138,56 +140,63 @@ test_that("get_committees works with different institutions", {
 
 test_that("get_committees works with different parameter combinations", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test permanent = TRUE
-  x1 <- get_committees(
-    institution = "NR",
-    legis_period = 27,
-    permanent = TRUE
-  )
+  x1 <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = 27,
+      permanent = TRUE
+    )
+  }, fixture_subdir = "get_committees")
   expect_true(is.data.frame(x1) || is.null(x1))
 
   # Test permanent = FALSE
-  x2 <- get_committees(
-    institution = "NR",
-    legis_period = 27,
-    permanent = FALSE
-  )
+  x2 <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = 27,
+      permanent = FALSE
+    )
+  }, fixture_subdir = "get_committees")
   expect_true(is.data.frame(x2) || is.null(x2))
 
   # Test include_subcommittees = TRUE (only when permanent != TRUE)
-  x3 <- get_committees(
-    institution = "NR",
-    legis_period = 27,
-    include_subcommittees = TRUE
-  )
+  x3 <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = 27,
+      include_subcommittees = TRUE
+    )
+  }, fixture_subdir = "get_committees")
   expect_true(is.data.frame(x3) || is.null(x3))
 })
 
 test_that("get_committees with search_string works", {
   skip_on_cran()
-  skip_if_offline()
 
-  x <- get_committees(
-    institution = "NR",
-    legis_period = 27,
-    search_string = "Umwelt"
-  )
+  x <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = 27,
+      search_string = "Umwelt"
+    )
+  }, fixture_subdir = "get_committees")
 
   expect_true(is.data.frame(x) || is.null(x))
 })
 
 test_that("get_committees handles empty results gracefully", {
   skip_on_cran()
-  skip_if_offline()
 
   # Try a search that's likely to return no results
-  x <- get_committees(
-    institution = "NR",
-    legis_period = 27,
-    search_string = "ThisShouldNotExistAnywhere12345"
-  )
+  x <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = 27,
+      search_string = "ThisShouldNotExistAnywhere12345"
+    )
+  }, fixture_subdir = "get_committees")
 
   # Should return NULL for no results
   expect_true(is.null(x))
@@ -195,44 +204,52 @@ test_that("get_committees handles empty results gracefully", {
 
 test_that("get_committees works with different legis_period types", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test numeric
-  x1 <- get_committees(
-    institution = "NR",
-    legis_period = 27
-  )
+  x1 <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = 27
+    )
+  }, fixture_subdir = "get_committees")
   expect_true(is.data.frame(x1))
 
   # Test character
-  x2 <- get_committees(
-    institution = "NR",
-    legis_period = "27"
-  )
+  x2 <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = "27"
+    )
+  }, fixture_subdir = "get_committees")
   expect_true(is.data.frame(x2))
 })
 
 test_that("get_committees returns identical results for different legis_period formats", {
   skip_on_cran()
-  skip_if_offline()
 
   # Get results with numeric input
-  result_numeric <- get_committees(
-    institution = "NR",
-    legis_period = 27
-  )
+  result_numeric <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = 27
+    )
+  }, fixture_subdir = "get_committees")
 
   # Get results with character numeric input
-  result_character <- get_committees(
-    institution = "NR",
-    legis_period = "27"
-  )
+  result_character <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = "27"
+    )
+  }, fixture_subdir = "get_committees")
 
   # Get results with Roman numeral input
-  result_roman <- get_committees(
-    institution = "NR",
-    legis_period = "XXVII"
-  )
+  result_roman <- run_api_call({
+    get_committees(
+      institution = "NR",
+      legis_period = "XXVII"
+    )
+  }, fixture_subdir = "get_committees")
 
   # All three should produce data frames
   expect_true(is.data.frame(result_numeric))
@@ -267,15 +284,16 @@ test_that("get_committees returns identical results for different legis_period f
 
 test_that("get_committees handles committees with empty documents", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test the specific case from legis_period 22 that had empty documents
-  x <- get_committees(
-    legis_period = 22,
-    institution = "NR",
-    details_type = "members",
-    citation = "1/SA-BU"
-  )
+  x <- run_api_call({
+    get_committees(
+      legis_period = 22,
+      institution = "NR",
+      details_type = "members",
+      citation = "1/SA-BU"
+    )
+  }, fixture_subdir = "get_committees")
 
   expect_true(is.data.frame(x))
 
@@ -289,30 +307,31 @@ test_that("get_committees handles committees with empty documents", {
 
 test_that("get_committees with details_type='members' has no unexpected list-columns", {
   skip_on_cran()
-  skip_if_offline()
+  # This is a comprehensive integration test - run only in live mode
+  skip_if_mocked("Complex integration test across multiple periods")
 
   # Fetch committee membership data across multiple legislative periods
-  all_members <- seq(20, 28, 1) %>%
-    purrr::map(., \(x) {
+  all_members <- seq(20, 28, 1) |>
+    purrr::map(\(x) {
       get_committees(
         legis_period = x,
         institution = "NR",
         details_type = "members",
-        echo = TRUE
+        echo = FALSE
       )
     })
 
   # Check each result
-  all_members %>%
-    purrr::iwalk(., \(result, idx) {
+  all_members |>
+    purrr::iwalk(\(result, idx) {
       if (!is.null(result) && nrow(result) > 0) {
         # Get column types using map
-        col_types <- result %>%
+        col_types <- result |>
           purrr::map(class)
 
         # Find list-columns (columns where class contains "list" or "data.frame")
-        list_cols <- col_types %>%
-          purrr::keep(\(x) "list" %in% x | "data.frame" %in% x) %>%
+        list_cols <- col_types |>
+          purrr::keep(\(x) "list" %in% x | "data.frame" %in% x) |>
           names()
 
         # Only "members" should be a list-column

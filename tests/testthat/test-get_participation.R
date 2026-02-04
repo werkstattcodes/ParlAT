@@ -1,12 +1,13 @@
 test_that("get_participation returns a data frame with expected columns", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_participation(
-    topic = "Bildung",
-    item = "RGES",
-    active = "J"
-  )
+  result <- run_api_call({
+    get_participation(
+      topic = "Bildung",
+      item = "RGES",
+      active = "J"
+    )
+  }, fixture_subdir = "get_participation")
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
@@ -82,23 +83,25 @@ test_that("get_participation requires item = SN when statement_type is specified
 
 test_that("get_participation returns correct data for multiple legislative periods and item type", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_participation(
-    legis_period = c(26, 27),
-    item = "ME"
-  )
+  result <- run_api_call({
+    get_participation(
+      legis_period = c(26, 27),
+      item = "ME"
+    )
+  }, fixture_subdir = "get_participation")
 
   expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 516)
+  expect_row_count(nrow(result), 516)
 })
 
 test_that("get_participation returns data for RGES item type", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_participation(item = "RGES", legis_period = 27)
+  result <- run_api_call({
+    get_participation(item = "RGES", legis_period = 27)
+  }, fixture_subdir = "get_participation")
 
   expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 1403)
+  expect_row_count(nrow(result), 1403)
 })

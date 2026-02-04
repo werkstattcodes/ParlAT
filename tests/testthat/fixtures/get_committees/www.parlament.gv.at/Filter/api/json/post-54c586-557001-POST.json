@@ -1,0 +1,93 @@
+{
+    "pages": 1,
+    "count": 1,
+    "header": [
+        {
+            "filterable": false,
+            "orig_link_rnr": 2,
+            "link_rnr": 8,
+            "hidden": false,
+            "rnr": 1,
+            "label": "Ausschuss",
+            "sortable": true,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 2,
+            "label": "sort",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 3,
+            "label": "aus_von",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "orig_link_rnr": 6,
+            "link_rnr": 9,
+            "hidden": false,
+            "rnr": 4,
+            "label": "Sitzungsüberblick",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": false,
+            "rnr": 5,
+            "label": "aktuellste Tagesordnung",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 6,
+            "label": "RSS-Description",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 7,
+            "label": "rss pubdate",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        }
+    ],
+    "rows": [
+        [
+            "Umweltausschuss",
+            "032",
+            "10.01.20",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.05.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/A-UM/1/00898/TO_15868331.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/A-UM/1/00898/TO_15868331.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.05.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXVII/A-UM/1/00898/TO_15868331.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXVII/A-UM/1/00898/TO_15868331.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "08.05.2024",
+            "/ausschuss/XXVII/A-UM/1/00898",
+            "/ausschuss/XXVII/A-UM/1/00898#tab-Sitzungsueberblick"
+        ]
+    ]
+}

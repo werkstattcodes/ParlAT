@@ -1,0 +1,445 @@
+{
+    "pages": 1,
+    "count": 33,
+    "header": [
+        {
+            "filterable": false,
+            "orig_link_rnr": 2,
+            "link_rnr": 8,
+            "hidden": false,
+            "rnr": 1,
+            "label": "Ausschuss",
+            "sortable": true,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 2,
+            "label": "sort",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 3,
+            "label": "aus_von",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "orig_link_rnr": 6,
+            "link_rnr": 9,
+            "hidden": false,
+            "rnr": 4,
+            "label": "Sitzungsüberblick",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": false,
+            "rnr": 5,
+            "label": "aktuellste Tagesordnung",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 6,
+            "label": "RSS-Description",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 7,
+            "label": "rss pubdate",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        }
+    ],
+    "rows": [
+        [
+            "Ausschuß für Arbeit und Soziales",
+            "001",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 30.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-AS/1/00005/TO_00613638.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 30.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-AS/1/00005/TO_00613638.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-AS/1/00005",
+            "/ausschuss/XX/A-AS/1/00005#tab-Sitzungsueberblick"
+        ],
+        [
+            "Außenpolitischer Ausschuß",
+            "002",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 11.05.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-AU/1/00011/TO_00600231.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 11.05.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-AU/1/00011/TO_00600231.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-AU/1/00011",
+            "/ausschuss/XX/A-AU/1/00011#tab-Sitzungsueberblick"
+        ],
+        [
+            "Bautenausschuß",
+            "003",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-BA/1/00018/TO_00613822.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-BA/1/00018/TO_00613822.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-BA/1/00018",
+            "/ausschuss/XX/A-BA/1/00018#tab-Sitzungsueberblick"
+        ],
+        [
+            "Budgetausschuß",
+            "004",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-BU/1/00027/TO_00607426.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-BU/1/00027/TO_00607426.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-BU/1/00027",
+            "/ausschuss/XX/A-BU/1/00027#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuß des Budgetausschusses",
+            "004a",
+            "30.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.01.1997<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/SA-BU/1/00032/TO_00217495.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.01.1997<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/SA-BU/1/00032/TO_00217495.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/SA-BU/1/00032",
+            "/ausschuss/XX/SA-BU/1/00032#tab-Sitzungsueberblick"
+        ],
+        [
+            "Familienausschuß",
+            "005",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-FA/1/00044/TO_00607513.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-FA/1/00044/TO_00607513.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-FA/1/00044",
+            "/ausschuss/XX/A-FA/1/00044#tab-Sitzungsueberblick"
+        ],
+        [
+            "Finanzausschuß",
+            "006",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 14.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-FI/1/00050/TO_00618524.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 14.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-FI/1/00050/TO_00618524.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-FI/1/00050",
+            "/ausschuss/XX/A-FI/1/00050#tab-Sitzungsueberblick"
+        ],
+        [
+            "Geschäftsordnungsausschuß",
+            "007",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 01.10.1998<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-GO/1/00072/TO_00509717.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 01.10.1998<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-GO/1/00072/TO_00509717.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-GO/1/00072",
+            "/ausschuss/XX/A-GO/1/00072#tab-Sitzungsueberblick"
+        ],
+        [
+            "Gesundheitsausschuß",
+            "008",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 10.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-GE/1/00060/TO_00607596.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 10.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-GE/1/00060/TO_00607596.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-GE/1/00060",
+            "/ausschuss/XX/A-GE/1/00060#tab-Sitzungsueberblick"
+        ],
+        [
+            "Gleichbehandlungsausschuß",
+            "009",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-GL/1/00067/TO_00608277.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-GL/1/00067/TO_00608277.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-GL/1/00067",
+            "/ausschuss/XX/A-GL/1/00067#tab-Sitzungsueberblick"
+        ],
+        [
+            "Hauptausschuß",
+            "010",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 21.10.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-HA/1/00079/TO_00627780.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 21.10.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-HA/1/00079/TO_00627780.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "21.10.1999",
+            "/ausschuss/XX/A-HA/1/00079",
+            "/ausschuss/XX/A-HA/1/00079#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuß des Hauptausschusses",
+            "011",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.01.1996<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/SA-HA/1/00084/TO_00077480.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.01.1996<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/SA-HA/1/00084/TO_00077480.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "15.01.1996",
+            "/ausschuss/XX/SA-HA/1/00084",
+            "/ausschuss/XX/SA-HA/1/00084#tab-Sitzungsueberblick"
+        ],
+        [
+            "Immunitätsausschuß",
+            "012",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 19.01.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-IM/1/00101/TO_00595036.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 19.01.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-IM/1/00101/TO_00595036.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-IM/1/00101",
+            "/ausschuss/XX/A-IM/1/00101#tab-Sitzungsueberblick"
+        ],
+        [
+            "Industrieausschuß",
+            "013",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 07.04.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-IN/1/00105/TO_00590343.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 07.04.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-IN/1/00105/TO_00590343.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-IN/1/00105",
+            "/ausschuss/XX/A-IN/1/00105#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuß für innere Angelegenheiten",
+            "014",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 30.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-IA/1/00091/TO_00613692.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 30.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-IA/1/00091/TO_00613692.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-IA/1/00091",
+            "/ausschuss/XX/A-IA/1/00091#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuß des Ausschusses für innere Angelegenheiten",
+            "014a",
+            "15.01.96",
+            null,
+            null,
+            "aktuellste Tagesordnung:\nkeine\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/SA-IA/1/00096",
+            null
+        ],
+        [
+            "Justizausschuß",
+            "015",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-JU/1/00111/TO_00613828.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-JU/1/00111/TO_00613828.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-JU/1/00111",
+            "/ausschuss/XX/A-JU/1/00111#tab-Sitzungsueberblick"
+        ],
+        [
+            "Kulturausschuß",
+            "016",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-KU/1/00116/TO_00614040.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-KU/1/00116/TO_00614040.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-KU/1/00116",
+            "/ausschuss/XX/A-KU/1/00116#tab-Sitzungsueberblick"
+        ],
+        [
+            "Landesverteidigungsausschuß",
+            "017",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 30.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-LV/1/00130/TO_00613718.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 30.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-LV/1/00130/TO_00613718.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-LV/1/00130",
+            "/ausschuss/XX/A-LV/1/00130#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuß des Landesverteidigungsausschusses",
+            "017a",
+            "15.01.96",
+            null,
+            null,
+            "aktuellste Tagesordnung:\nkeine\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/SA-LV/1/00136",
+            null
+        ],
+        [
+            "Ausschuß für Land- und Forstwirtschaft",
+            "018",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-LF/1/00122/TO_00613858.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-LF/1/00122/TO_00613858.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-LF/1/00122",
+            "/ausschuss/XX/A-LF/1/00122#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuß für Petitionen und Bürgerinitiativen",
+            "019",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-PB/1/00144/TO_00605077.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-PB/1/00144/TO_00605077.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-PB/1/00144",
+            "/ausschuss/XX/A-PB/1/00144#tab-Sitzungsueberblick"
+        ],
+        [
+            "Rechnungshofausschuß",
+            "020",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 07.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-RH/1/00158/TO_00616173.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 07.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-RH/1/00158/TO_00616173.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-RH/1/00158",
+            "/ausschuss/XX/A-RH/1/00158#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuß des Rechnungshofausschusses",
+            "020a",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/SA-RH/1/00163/TO_00615394.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/SA-RH/1/00163/TO_00615394.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/SA-RH/1/00163",
+            "/ausschuss/XX/SA-RH/1/00163#tab-Sitzungsueberblick"
+        ],
+        [
+            "Umweltausschuß",
+            "021",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-UM/1/00179/TO_00613865.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-UM/1/00179/TO_00613865.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-UM/1/00179",
+            "/ausschuss/XX/A-UM/1/00179#tab-Sitzungsueberblick"
+        ],
+        [
+            "Unterrichtsausschuß",
+            "022",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 30.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-UN/1/00185/TO_00611018.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 30.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-UN/1/00185/TO_00611018.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-UN/1/00185",
+            "/ausschuss/XX/A-UN/1/00185#tab-Sitzungsueberblick"
+        ],
+        [
+            "Unvereinbarkeitsausschuß",
+            "023",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 17.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-UV/1/00192/TO_00610321.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 17.06.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-UV/1/00192/TO_00610321.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-UV/1/00192",
+            "/ausschuss/XX/A-UV/1/00192#tab-Sitzungsueberblick"
+        ],
+        [
+            "Verfassungsausschuß",
+            "024",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 01.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-VF/1/00206/TO_00613879.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 01.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-VF/1/00206/TO_00613879.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-VF/1/00206",
+            "/ausschuss/XX/A-VF/1/00206#tab-Sitzungsueberblick"
+        ],
+        [
+            "Verkehrsausschuß",
+            "025",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-VE/1/00201/TO_00613943.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-VE/1/00201/TO_00613943.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-VE/1/00201",
+            "/ausschuss/XX/A-VE/1/00201#tab-Sitzungsueberblick"
+        ],
+        [
+            "Wirtschaftsausschuß",
+            "026",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 07.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-WH/1/00213/TO_00614012.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 07.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-WH/1/00213/TO_00614012.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-WH/1/00213",
+            "/ausschuss/XX/A-WH/1/00213#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuß für Wissenschaft und Forschung",
+            "027",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-WI/1/00218/TO_00614051.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.07.1999<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-WI/1/00218/TO_00614051.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "28.10.1999",
+            "/ausschuss/XX/A-WI/1/00218",
+            "/ausschuss/XX/A-WI/1/00218#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger gemeinsamer Ausschuß im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948",
+            "028",
+            "15.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.01.1996<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/SA-P9/1/00150/TO_00077458.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.01.1996<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/SA-P9/1/00150/TO_00077458.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "15.01.1996",
+            "/ausschuss/XX/SA-P9/1/00150",
+            "/ausschuss/XX/SA-P9/1/00150#tab-Sitzungsueberblick"
+        ],
+        [
+            "Besonderer Ausschuß zur Vorberatung des Gentechnik-Volksbegehrens gewählt am 10.07.1997",
+            "888",
+            "10.07.97",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 31.03.1998<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XX/A-BAGV/1/00021/TO_00420879.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 31.03.1998<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XX/A-BAGV/1/00021/TO_00420879.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "16.04.1998",
+            "/ausschuss/XX/A-BAGV/1/00021",
+            "/ausschuss/XX/A-BAGV/1/00021#tab-Sitzungsueberblick"
+        ]
+    ]
+}

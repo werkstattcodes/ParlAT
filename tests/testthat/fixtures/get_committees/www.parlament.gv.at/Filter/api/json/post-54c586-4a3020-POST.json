@@ -1,0 +1,478 @@
+{
+    "pages": 1,
+    "count": 36,
+    "header": [
+        {
+            "filterable": false,
+            "orig_link_rnr": 2,
+            "link_rnr": 8,
+            "hidden": false,
+            "rnr": 1,
+            "label": "Ausschuss",
+            "sortable": true,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 2,
+            "label": "sort",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 3,
+            "label": "aus_von",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "orig_link_rnr": 6,
+            "link_rnr": 9,
+            "hidden": false,
+            "rnr": 4,
+            "label": "Sitzungsüberblick",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": false,
+            "rnr": 5,
+            "label": "aktuellste Tagesordnung",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 6,
+            "label": "RSS-Description",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 7,
+            "label": "rss pubdate",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        }
+    ],
+    "rows": [
+        [
+            "Ausschuss für Arbeit und Soziales",
+            "001",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 05.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-AS/1/00007/TO_01092032.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 05.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-AS/1/00007/TO_01092032.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "05.07.2006",
+            "/ausschuss/XXII/A-AS/1/00007",
+            "/ausschuss/XXII/A-AS/1/00007#tab-Sitzungsueberblick"
+        ],
+        [
+            "Außenpolitischer Ausschuss",
+            "002",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 05.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-AU/1/00013/TO_01095026.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 05.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-AU/1/00013/TO_01095026.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "05.07.2006",
+            "/ausschuss/XXII/A-AU/1/00013",
+            "/ausschuss/XXII/A-AU/1/00013#tab-Sitzungsueberblick"
+        ],
+        [
+            "Bautenausschuss",
+            "003",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.11.2005<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-BA/1/00020/TO_01018260.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 08.11.2005<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-BA/1/00020/TO_01018260.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "08.11.2005",
+            "/ausschuss/XXII/A-BA/1/00020",
+            "/ausschuss/XXII/A-BA/1/00020#tab-Sitzungsueberblick"
+        ],
+        [
+            "Budgetausschuss",
+            "004",
+            "20.12.02",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 05.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-BU/1/00029/TO_01095001.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 05.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-BU/1/00029/TO_01095001.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "05.07.2006",
+            "/ausschuss/XXII/A-BU/1/00029",
+            "/ausschuss/XXII/A-BU/1/00029#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuss des Budgetausschusses",
+            "005",
+            "20.12.02",
+            "Sitzungsüberblick",
+            null,
+            "aktuellste Tagesordnung:\nkeine\n<br />\n",
+            "26.02.2003",
+            "/ausschuss/XXII/SA-BU/1/00034",
+            "/ausschuss/XXII/SA-BU/1/00034#tab-Sitzungsueberblick"
+        ],
+        [
+            "Familienausschuss",
+            "006",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 17.05.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-FA/1/00046/TO_01073791.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 17.05.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-FA/1/00046/TO_01073791.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "17.05.2006",
+            "/ausschuss/XXII/A-FA/1/00046",
+            "/ausschuss/XXII/A-FA/1/00046#tab-Sitzungsueberblick"
+        ],
+        [
+            "Finanzausschuss",
+            "007",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 05.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-FI/1/00052/TO_01096267.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 05.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-FI/1/00052/TO_01096267.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "05.07.2006",
+            "/ausschuss/XXII/A-FI/1/00052",
+            "/ausschuss/XXII/A-FI/1/00052#tab-Sitzungsueberblick"
+        ],
+        [
+            "Geschäftsordnungsausschuss",
+            "008",
+            "22.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 21.04.2005<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-GO/1/00074/TO_00971257.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 21.04.2005<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-GO/1/00074/TO_00971257.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "21.04.2005",
+            "/ausschuss/XXII/A-GO/1/00074",
+            "/ausschuss/XXII/A-GO/1/00074#tab-Sitzungsueberblick"
+        ],
+        [
+            "Gesundheitsausschuss",
+            "009",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-GE/1/00062/TO_01100256.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-GE/1/00062/TO_01100256.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "13.07.2006",
+            "/ausschuss/XXII/A-GE/1/00062",
+            "/ausschuss/XXII/A-GE/1/00062#tab-Sitzungsueberblick"
+        ],
+        [
+            "Gleichbehandlungsausschuss",
+            "010",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 14.06.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-GL/1/00069/TO_01073128.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 14.06.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-GL/1/00069/TO_01073128.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "05.07.2006",
+            "/ausschuss/XXII/A-GL/1/00069",
+            "/ausschuss/XXII/A-GL/1/00069#tab-Sitzungsueberblick"
+        ],
+        [
+            "Hauptausschuss",
+            "011",
+            "20.12.02",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.09.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-HA/1/00081/TO_01108181.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.09.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-HA/1/00081/TO_01108181.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "06.09.2006",
+            "/ausschuss/XXII/A-HA/1/00081",
+            "/ausschuss/XXII/A-HA/1/00081#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuss des Hauptausschusses",
+            "012",
+            "20.12.02",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 07.07.2004<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/SA-HA/1/00086/TO_00901859.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 07.07.2004<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/SA-HA/1/00086/TO_00901859.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "07.07.2004",
+            "/ausschuss/XXII/SA-HA/1/00086",
+            "/ausschuss/XXII/SA-HA/1/00086#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
+            "013",
+            "27.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/SA-EU/1/00039/TO_01094589.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/SA-EU/1/00039/TO_01094589.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "04.07.2006",
+            "/ausschuss/XXII/SA-EU/1/00039",
+            "/ausschuss/XXII/SA-EU/1/00039#tab-Sitzungsueberblick"
+        ],
+        [
+            "Immunitätsausschuss",
+            "014",
+            "20.12.02",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.09.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-IM/1/00103/TO_01108535.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.09.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-IM/1/00103/TO_01108535.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "12.09.2006",
+            "/ausschuss/XXII/A-IM/1/00103",
+            "/ausschuss/XXII/A-IM/1/00103#tab-Sitzungsueberblick"
+        ],
+        [
+            "Industrieausschuss",
+            "015",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 13.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-IN/1/00107/TO_01101025.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 13.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-IN/1/00107/TO_01101025.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "13.07.2006",
+            "/ausschuss/XXII/A-IN/1/00107",
+            "/ausschuss/XXII/A-IN/1/00107#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für innere Angelegenheiten",
+            "016",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 23.03.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-IA/1/00093/TO_01050356.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 23.03.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-IA/1/00093/TO_01050356.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "23.03.2006",
+            "/ausschuss/XXII/A-IA/1/00093",
+            "/ausschuss/XXII/A-IA/1/00093#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuss des Ausschusses für innere Angelegenheiten",
+            "017",
+            "27.01.03",
+            null,
+            null,
+            "aktuellste Tagesordnung:\nkeine\n<br />\n",
+            "17.05.2006",
+            "/ausschuss/XXII/SA-IA/1/00098",
+            null
+        ],
+        [
+            "Justizausschuss",
+            "018",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-JU/1/00113/TO_01100276.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-JU/1/00113/TO_01100276.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "13.07.2006",
+            "/ausschuss/XXII/A-JU/1/00113",
+            "/ausschuss/XXII/A-JU/1/00113#tab-Sitzungsueberblick"
+        ],
+        [
+            "Kulturausschuss",
+            "019",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-KU/1/00118/TO_01098916.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-KU/1/00118/TO_01098916.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "12.07.2006",
+            "/ausschuss/XXII/A-KU/1/00118",
+            "/ausschuss/XXII/A-KU/1/00118#tab-Sitzungsueberblick"
+        ],
+        [
+            "Landesverteidigungsausschuss",
+            "020",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.06.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-LV/1/00132/TO_01087736.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.06.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-LV/1/00132/TO_01087736.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "09.06.2006",
+            "/ausschuss/XXII/A-LV/1/00132",
+            "/ausschuss/XXII/A-LV/1/00132#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuss des Landesverteidigungsausschusses",
+            "021",
+            "27.01.03",
+            null,
+            null,
+            "aktuellste Tagesordnung:\nkeine\n<br />\n",
+            "09.06.2006",
+            "/ausschuss/XXII/SA-LV/1/00138",
+            null
+        ],
+        [
+            "Ausschuss für Land- und Forstwirtschaft",
+            "022",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-LF/1/00124/TO_01100279.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-LF/1/00124/TO_01100279.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "13.07.2006",
+            "/ausschuss/XXII/A-LF/1/00124",
+            "/ausschuss/XXII/A-LF/1/00124#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Menschenrechte",
+            "023",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 11.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-ME/1/00141/TO_01088561.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 11.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-ME/1/00141/TO_01088561.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "11.07.2006",
+            "/ausschuss/XXII/A-ME/1/00141",
+            "/ausschuss/XXII/A-ME/1/00141#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Petitionen und Bürgerinitiativen",
+            "024",
+            "22.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-PB/1/00146/TO_01092247.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-PB/1/00146/TO_01092247.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "06.07.2006",
+            "/ausschuss/XXII/A-PB/1/00146",
+            "/ausschuss/XXII/A-PB/1/00146#tab-Sitzungsueberblick"
+        ],
+        [
+            "Rechnungshofausschuss",
+            "025",
+            "22.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-RH/1/00160/TO_01095122.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-RH/1/00160/TO_01095122.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "04.07.2006",
+            "/ausschuss/XXII/A-RH/1/00160",
+            "/ausschuss/XXII/A-RH/1/00160#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger Unterausschuss des Rechnungshofausschusses",
+            "026",
+            "27.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 19.09.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/SA-RH/1/00165/TO_01108541.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 19.09.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/SA-RH/1/00165/TO_01108541.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "19.09.2006",
+            "/ausschuss/XXII/SA-RH/1/00165",
+            "/ausschuss/XXII/SA-RH/1/00165#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Sportangelegenheiten",
+            "027",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.06.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-SP/1/00172/TO_01080066.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.06.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-SP/1/00172/TO_01080066.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "12.06.2006",
+            "/ausschuss/XXII/A-SP/1/00172",
+            "/ausschuss/XXII/A-SP/1/00172#tab-Sitzungsueberblick"
+        ],
+        [
+            "Umweltausschuss",
+            "028",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-UM/1/00181/TO_01094149.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-UM/1/00181/TO_01094149.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "06.07.2006",
+            "/ausschuss/XXII/A-UM/1/00181",
+            "/ausschuss/XXII/A-UM/1/00181#tab-Sitzungsueberblick"
+        ],
+        [
+            "Unterrichtsausschuss",
+            "029",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.05.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-UN/1/00187/TO_01074981.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.05.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-UN/1/00187/TO_01074981.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "09.05.2006",
+            "/ausschuss/XXII/A-UN/1/00187",
+            "/ausschuss/XXII/A-UN/1/00187#tab-Sitzungsueberblick"
+        ],
+        [
+            "Unvereinbarkeitsausschuss",
+            "030",
+            "20.12.02",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 13.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-UV/1/00194/TO_01090588.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 13.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-UV/1/00194/TO_01090588.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "13.07.2006",
+            "/ausschuss/XXII/A-UV/1/00194",
+            "/ausschuss/XXII/A-UV/1/00194#tab-Sitzungsueberblick"
+        ],
+        [
+            "Verfassungsausschuss",
+            "031",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 13.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-VF/1/00208/TO_01100321.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 13.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-VF/1/00208/TO_01100321.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "13.07.2006",
+            "/ausschuss/XXII/A-VF/1/00208",
+            "/ausschuss/XXII/A-VF/1/00208#tab-Sitzungsueberblick"
+        ],
+        [
+            "Verkehrsausschuss",
+            "032",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-VE/1/00203/TO_01100282.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 12.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-VE/1/00203/TO_01100282.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "13.07.2006",
+            "/ausschuss/XXII/A-VE/1/00203",
+            "/ausschuss/XXII/A-VE/1/00203#tab-Sitzungsueberblick"
+        ],
+        [
+            "Wirtschaftsausschuss",
+            "033",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-WH/1/00215/TO_01094994.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-WH/1/00215/TO_01094994.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "06.07.2006",
+            "/ausschuss/XXII/A-WH/1/00215",
+            "/ausschuss/XXII/A-WH/1/00215#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Wissenschaft und Forschung",
+            "034",
+            "23.01.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.05.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-WI/1/00220/TO_01073138.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 09.05.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-WI/1/00220/TO_01073138.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "09.05.2006",
+            "/ausschuss/XXII/A-WI/1/00220",
+            "/ausschuss/XXII/A-WI/1/00220#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger gemeinsamer Ausschuss im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948",
+            "035",
+            "20.12.02",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 26.02.2003<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/SA-P9/1/00152/TO_00786799.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 26.02.2003<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/SA-P9/1/00152/TO_00786799.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "26.02.2003",
+            "/ausschuss/XXII/SA-P9/1/00152",
+            "/ausschuss/XXII/SA-P9/1/00152#tab-Sitzungsueberblick"
+        ],
+        [
+            "Besonderer Ausschuss zur Vorberatung des Berichtes des Österreich-Konvents, vorgelegt vom Bundeskanzler (III-136 der Beilagen) gewählt am 31.03.2005",
+            "888",
+            "05.04.05",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/XXII/A-BAOEK/1/00022/TO_01088467.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.07.2006<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/XXII/A-BAOEK/1/00022/TO_01088467.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "04.07.2006",
+            "/ausschuss/XXII/A-BAOEK/1/00022",
+            "/ausschuss/XXII/A-BAOEK/1/00022#tab-Sitzungsueberblick"
+        ]
+    ]
+}

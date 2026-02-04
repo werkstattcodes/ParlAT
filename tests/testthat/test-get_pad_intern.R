@@ -12,9 +12,10 @@ test_that("get_pad_intern validates input parameter", {
 
 test_that("get_pad_intern returns correct structure with valid name", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_pad_intern("Kurz")
+  result <- run_api_call({
+    get_pad_intern("Kurz")
+  }, fixture_subdir = "get_pad_intern")
 
   expect_s3_class(result, "data.frame")
   expect_true(all(c("pad_intern", "names_variants") %in% colnames(result)))
@@ -24,9 +25,10 @@ test_that("get_pad_intern returns correct structure with valid name", {
 
 test_that("get_pad_intern handles names with special characters", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_pad_intern("Müller")
+  result <- run_api_call({
+    get_pad_intern("Müller")
+  }, fixture_subdir = "get_pad_intern")
 
   expect_s3_class(result, "data.frame")
   expect_true(all(c("pad_intern", "names_variants") %in% colnames(result)))
@@ -34,29 +36,38 @@ test_that("get_pad_intern handles names with special characters", {
 
 test_that("get_pad_intern returns unique pad_intern values", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_pad_intern("Schmidt")
+  result <- run_api_call({
+    get_pad_intern("Schmidt")
+  }, fixture_subdir = "get_pad_intern")
 
   expect_equal(length(result$pad_intern), length(unique(result$pad_intern)))
 })
 
 test_that("get_pad_intern handles non-existent names gracefully", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_pad_intern("XyZaNonExistentName123")
+  result <- run_api_call({
+    get_pad_intern("XyZaNonExistentName123")
+  }, fixture_subdir = "get_pad_intern")
 
   expect_true(is.null(result) || nrow(result) == 0)
 })
 
 test_that("get_pad_intern performs case-sensitive name matching", {
   skip_on_cran()
-  skip_if_offline()
 
-  result_lower <- get_pad_intern("kurz")
-  result_upper <- get_pad_intern("KURZ")
-  result_proper <- get_pad_intern("Kurz")
+  result_lower <- run_api_call({
+    get_pad_intern("kurz")
+  }, fixture_subdir = "get_pad_intern")
+
+  result_upper <- run_api_call({
+    get_pad_intern("KURZ")
+  }, fixture_subdir = "get_pad_intern")
+
+  result_proper <- run_api_call({
+    get_pad_intern("Kurz")
+  }, fixture_subdir = "get_pad_intern")
 
   expect_false(identical(result_lower, result_proper))
   expect_false(identical(result_upper, result_proper))
@@ -64,9 +75,10 @@ test_that("get_pad_intern performs case-sensitive name matching", {
 
 test_that("get_pad_intern returns names_variants as comma-separated string", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_pad_intern("Michael Pock")
+  result <- run_api_call({
+    get_pad_intern("Michael Pock")
+  }, fixture_subdir = "get_pad_intern")
 
   expect_true(all(
     grepl(",\\s*", result$names_variants) | !grepl(",", result$names_variants)
@@ -75,10 +87,14 @@ test_that("get_pad_intern returns names_variants as comma-separated string", {
 
 test_that("get_pad_intern returns same pad_intern for persons who changed their name", {
   skip_on_cran()
-  skip_if_offline()
 
-  result_bernhard <- get_pad_intern("Michael Bernhard")
-  result_pock <- get_pad_intern("Michael Pock")
+  result_bernhard <- run_api_call({
+    get_pad_intern("Michael Bernhard")
+  }, fixture_subdir = "get_pad_intern")
+
+  result_pock <- run_api_call({
+    get_pad_intern("Michael Pock")
+  }, fixture_subdir = "get_pad_intern")
 
   expect_equal(
     result_bernhard$pad_intern,
@@ -95,10 +111,14 @@ test_that("get_pad_intern returns same pad_intern for persons who changed their 
 
 test_that("get_pad_intern returns expected pad_intern values for specific persons", {
   skip_on_cran()
-  skip_if_offline()
 
-  result_goetze <- get_pad_intern("Elisabeth Götze")
-  result_krisper <- get_pad_intern("Stephanie Krisper")
+  result_goetze <- run_api_call({
+    get_pad_intern("Elisabeth Götze")
+  }, fixture_subdir = "get_pad_intern")
+
+  result_krisper <- run_api_call({
+    get_pad_intern("Stephanie Krisper")
+  }, fixture_subdir = "get_pad_intern")
 
   expect_equal(
     result_goetze$pad_intern,

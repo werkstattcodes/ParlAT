@@ -1,0 +1,264 @@
+{
+    "pages": 1,
+    "lastSync": "2026-02-04 09:30:44.0",
+    "count": 1,
+    "header": [
+        {
+            "css_class": "col-15",
+            "link_rnr": "16",
+            "feldId": 605,
+            "hidden": false,
+            "rnr": 1,
+            "listeId": 409,
+            "mediaType": "title",
+            "label": "Name",
+            "feld_name": "PERSON_NAME",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-10",
+            "feldId": 603,
+            "hidden": false,
+            "rnr": 2,
+            "listeId": 409,
+            "label": "Gremium",
+            "feld_name": "GREMIUM",
+            "class": "col-10",
+            "includeHeader": true,
+            "ist_werteliste": "1"
+        },
+        {
+            "export_jn": "0",
+            "feldId": 604,
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 409,
+            "label": "WENTRY_ID",
+            "ist_web_item_id": "1",
+            "includeHeader": true
+        },
+        {
+            "export_jn": "0",
+            "feldId": 623,
+            "hidden": true,
+            "rnr": 4,
+            "listeId": 409,
+            "label": "GESCHL_CODE",
+            "feld_name": "GESCHL_CODE",
+            "includeHeader": true
+        },
+        {
+            "feldId": 624,
+            "hidden": true,
+            "rnr": 5,
+            "listeId": 409,
+            "label": "GESCHLECHT",
+            "feld_name": "GESCHLECHT",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-15",
+            "feldId": 863,
+            "hidden": false,
+            "rnr": 6,
+            "listeId": 409,
+            "label": "Gesetzgebungsperiode",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "feldId": 864,
+            "hidden": true,
+            "rnr": 7,
+            "listeId": 409,
+            "label": "parteien",
+            "includeHeader": true
+        },
+        {
+            "feldId": 643,
+            "hidden": true,
+            "rnr": 8,
+            "listeId": 409,
+            "label": "Attribute",
+            "feld_name": "ATTR_JSON",
+            "includeHeader": true
+        },
+        {
+            "export_jn": "0",
+            "feldId": 903,
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 409,
+            "label": "ist_praes",
+            "feld_name": "PRAES",
+            "includeHeader": true
+        },
+        {
+            "export_jn": "0",
+            "feldId": 1223,
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 409,
+            "label": "vorname",
+            "includeHeader": true
+        },
+        {
+            "export_jn": "0",
+            "feldId": 1224,
+            "hidden": true,
+            "rnr": 11,
+            "listeId": 409,
+            "label": "nachname",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1225,
+            "hidden": true,
+            "rnr": 12,
+            "listeId": 409,
+            "label": "akgr",
+            "includeHeader": true
+        },
+        {
+            "export_jn": "0",
+            "feldId": 1226,
+            "hidden": true,
+            "rnr": 13,
+            "listeId": 409,
+            "label": "akgr_h",
+            "includeHeader": true
+        },
+        {
+            "feldId": 7120,
+            "hidden": false,
+            "rnr": 14,
+            "listeId": 409,
+            "label": "Klub/Fraktion",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-15",
+            "feldId": 7121,
+            "hidden": false,
+            "rnr": 15,
+            "listeId": 409,
+            "label": "Wahlkreis",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "feldId": 7180,
+            "hidden": true,
+            "rnr": 16,
+            "listeId": 409,
+            "label": "Bio",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "Götze Elisabeth, Dr.",
+            "NR",
+            654061,
+            "W",
+            "Weiblich",
+            "XXVII,XXVIII",
+            "[\"GRÜNE\"]",
+            {
+                "zit": "Dr. Elisabeth Götze",
+                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
+                "item_type": "Biogr",
+                "frak": [
+                    "GRÜNE"
+                ],
+                "geschlecht": "W",
+                "gp_code": [
+                    "XXVII",
+                    "XXVIII"
+                ],
+                "nr_gp_code": "XXVII,XXVIII",
+                "uri": "/person/5654",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Niederösterreich",
+                        "wahlpartei_code": "Grüne",
+                        "fraktionscode": "G",
+                        "gp_von": "2019-10-23T00:00:00",
+                        "wahlpartei_full_txt": "Die Grünen (Grüne)",
+                        "gp_code": "XXVII",
+                        "mandat_von": "23.10.2019",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Die Grünen",
+                        "gp_text_full_short": "23.10.2019 - 23.10.2024: XXVII. GP",
+                        "wahlkreis_code": "F3",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Die Grünen",
+                        "mandat_bis": "23.10.2024",
+                        "wahlkreis": "Niederösterreich",
+                        "fraktion": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Niederösterreich",
+                        "wahlpartei_code": "Grüne",
+                        "fraktionscode": "G",
+                        "gp_von": "2024-10-24T00:00:00",
+                        "wahlpartei_full_txt": "Die Grünen (Grüne)",
+                        "gp_code": "XXVIII",
+                        "mandat_von": "24.10.2024",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Die Grünen",
+                        "gp_text_full_short": "ab 24.10.2024: XXVIII. Gesetzgebungsperiode",
+                        "wahlkreis_code": "F3",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Die Grünen",
+                        "wahlkreis": "Niederösterreich",
+                        "fraktion": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament"
+                    }
+                ],
+                "name_nvg": "Götze Elisabeth, Dr.",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "23.10.2019",
+                            "wahlpartei_text": "Die Grünen",
+                            "mandatVon": "23.10.2019",
+                            "wahlkreis": "3 - Niederösterreich",
+                            "zeitraum": "23.10.2019-",
+                            "bez": "Abgeordnete zum Nationalrat (XXVII.-XXVIII. GP), GRÜNE",
+                            "mandat": "Abgeordnete zum Nationalrat",
+                            "klub": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                            "mandatBis": "",
+                            "funktion_bis": "",
+                            "wahlpartei": "GRÜNE",
+                            "aktiv": true,
+                            "funktion_text": "Abgeordnete zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Niederösterreich",
+                "pad_intern": 5654,
+                "medien": [
+                    20068188,
+                    20069675
+                ],
+                "openGraph": {
+                    "description": "Abgeordnete zum Nationalrat (XXVII.-XXVIII. GP), GRÜNE",
+                    "image": "/dokument/bild/200696/20069675_500.jpg"
+                },
+                "aktiv": true
+            },
+            null,
+            "Elisabeth",
+            "Götze",
+            "Dr.",
+            null,
+            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
+            "Niederösterreich",
+            "/person/5654"
+        ]
+    ]
+}

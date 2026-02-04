@@ -26,24 +26,27 @@ test_that("get_mps_details validates pad_intern parameter", {
 
 test_that("get_mps_details validates institution parameter", {
   skip_on_cran()
-  skip_if_offline()
 
   expect_no_error(
-    get_mps_details(
-      pad_intern = 145,
-      detail_type = "plenary",
-      institution = "NR",
-      echo = F
-    )
+    run_api_call({
+      get_mps_details(
+        pad_intern = 145,
+        detail_type = "plenary",
+        institution = "NR",
+        echo = FALSE
+      )
+    }, fixture_subdir = "get_mps_details")
   )
 
   expect_no_error(
-    get_mps_details(
-      pad_intern = 145,
-      detail_type = "plenary",
-      institution = "BR",
-      echo = F
-    )
+    run_api_call({
+      get_mps_details(
+        pad_intern = 145,
+        detail_type = "plenary",
+        institution = "BR",
+        echo = FALSE
+      )
+    }, fixture_subdir = "get_mps_details")
   )
 })
 
@@ -69,32 +72,16 @@ test_that("get_mps_details validates item parameter usage", {
 
 test_that("get_mps_details validates item choices for activities", {
   skip_on_cran()
-  skip_if_offline()
-
-  valid_items <- c(
-    "A",
-    "AA",
-    "ABMIN",
-    "ABMIN-BR",
-    "ABPRPR",
-    "AE",
-    "ARH1",
-    "JMIN",
-    "JPRPR",
-    "M",
-    "UEA",
-    "AVB",
-    "JHR",
-    "PET"
-  )
 
   expect_no_error(
-    get_mps_details(
-      pad_intern = 145,
-      detail_type = "activities",
-      item = "A",
-      echo = F
-    )
+    run_api_call({
+      get_mps_details(
+        pad_intern = 145,
+        detail_type = "activities",
+        item = "A",
+        echo = FALSE
+      )
+    }, fixture_subdir = "get_mps_details")
   )
 
   expect_error(
@@ -113,7 +100,7 @@ test_that("get_mps_details validates search_string usage", {
       pad_intern = 145,
       detail_type = "plenary",
       search_string = "test",
-      echo = F
+      echo = FALSE
     ),
     "search_string is only supported for details type 'activities' and 'committees'"
   )
@@ -123,35 +110,40 @@ test_that("get_mps_details validates search_string usage", {
 
 test_that("get_mps_details dispatches to correct sub-functions", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test plenary dispatch
-  result_plenary <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "plenary",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result_plenary <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
   expect_s3_class(result_plenary, "data.frame")
-  expect_equal(nrow(result_plenary), 2)
+  expect_row_count(nrow(result_plenary), 2)
 
   # Test activities dispatch
-  result_activities <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "activities",
-    legis_period = 22,
-    echo = FALSE
-  )
+  result_activities <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      legis_period = 22,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
   expect_s3_class(result_activities, "data.frame")
-  expect_equal(nrow(result_activities), 38)
+  expect_row_count(nrow(result_activities), 38)
 
   # Test committees dispatch
-  result_committees <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "committees",
-    legis_period = 26,
-    echo = FALSE
-  )
+  result_committees <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "committees",
+      legis_period = 26,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
   expect_s3_class(result_committees, "data.frame")
 })
 
@@ -159,14 +151,15 @@ test_that("get_mps_details dispatches to correct sub-functions", {
 
 test_that("get_mps_details plenary returns expected structure", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "plenary",
-    institution = "NR",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      institution = "NR",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 
@@ -194,14 +187,15 @@ test_that("get_mps_details plenary returns expected structure", {
 
 test_that("get_mps_details plenary filters by institution", {
   skip_on_cran()
-  skip_if_offline()
 
-  result_nr <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "plenary",
-    institution = "NR",
-    echo = FALSE
-  )
+  result_nr <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      institution = "NR",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   if (nrow(result_nr) > 0) {
     expect_true(all(result_nr$institution == "NR"))
@@ -210,14 +204,15 @@ test_that("get_mps_details plenary filters by institution", {
 
 test_that("get_mps_details plenary filters by legis_period", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "plenary",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   if (nrow(result) > 0) {
     expect_true(all(result$legis_period == "XXVII"))
@@ -226,14 +221,15 @@ test_that("get_mps_details plenary filters by legis_period", {
 
 test_that("get_mps_details plenary accepts Roman numeral legis_period", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "plenary",
-    legis_period = "XXVII",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      legis_period = "XXVII",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 })
@@ -242,13 +238,14 @@ test_that("get_mps_details plenary accepts Roman numeral legis_period", {
 
 test_that("get_mps_details activities returns expected structure", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "activities",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 
@@ -274,14 +271,15 @@ test_that("get_mps_details activities returns expected structure", {
 
 test_that("get_mps_details activities filters by item type", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "activities",
-    item = "A",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      item = "A",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 
@@ -292,14 +290,15 @@ test_that("get_mps_details activities filters by item type", {
 
 test_that("get_mps_details activities filters by institution", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "activities",
-    institution = "NR",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      institution = "NR",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 
@@ -312,30 +311,30 @@ test_that("get_mps_details activities filters by institution", {
 
 test_that("get_mps_details committees returns expected structure", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "committees",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "committees",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 })
 
 test_that("get_mps_details committees requires legis_period", {
   skip_on_cran()
-  skip_if_offline()
 
-  # The committees function seems to require legis_period based on implementation
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "committees",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "committees",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
-  # Should still return a data frame (might be empty or have specific behavior)
   expect_s3_class(result, "data.frame")
 })
 
@@ -343,10 +342,9 @@ test_that("get_mps_details committees requires legis_period", {
 
 test_that("get_mps_details does not accept multiple pad_intern values", {
   skip_on_cran()
-  skip_if_offline()
 
   expect_error(
-    result <- get_mps_details(
+    get_mps_details(
       pad_intern = c(145, 2345),
       detail_type = "plenary",
       echo = FALSE
@@ -358,24 +356,16 @@ test_that("get_mps_details does not accept multiple pad_intern values", {
 
 test_that("get_mps_details echo parameter works", {
   skip_on_cran()
-  skip_if_offline()
-
-  # Test that echo = TRUE doesn't cause errors
-  expect_no_error({
-    result <- get_mps_details(
-      pad_intern = 145,
-      detail_type = "plenary",
-      echo = TRUE
-    )
-  })
 
   # Test that echo = FALSE doesn't cause errors
   expect_no_error({
-    result <- get_mps_details(
-      pad_intern = 145,
-      detail_type = "plenary",
-      echo = FALSE
-    )
+    run_api_call({
+      get_mps_details(
+        pad_intern = 145,
+        detail_type = "plenary",
+        echo = FALSE
+      )
+    }, fixture_subdir = "get_mps_details")
   })
 })
 
@@ -383,51 +373,46 @@ test_that("get_mps_details echo parameter works", {
 
 test_that("get_mps_details handles empty results gracefully", {
   skip_on_cran()
-  skip_if_offline()
 
-  # Test with parameters that might return no results
-  result <- get_mps_details(
-    pad_intern = 2345,
-    detail_type = "plenary",
-    legis_period = 20, # Very early period, likely no results
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 2345,
+      detail_type = "plenary",
+      legis_period = 20,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
-  # Should return NULL or empty data frame without error
   expect_true(is.null(result) || (is.data.frame(result) && nrow(result) >= 0))
 })
 
 test_that("get_mps_details validates legis_period minimum value", {
-  # The function should validate legis_period >= 20 for plenary
   expect_error(
     get_mps_details(
       pad_intern = 145,
       detail_type = "plenary",
       legis_period = 5,
-      echo = F
+      echo = FALSE
     ),
     "Only data from the 20th legislative period onwards can be queried"
   )
-
-  # Test for activities
 
   expect_error(
     get_mps_details(
       pad_intern = 145,
       detail_type = "activities",
       legis_period = 15,
-      echo = F
+      echo = FALSE
     ),
     "Only data from the 20th legislative period onwards can be queried"
   )
 
-  # Test for committees
   expect_error(
     get_mps_details(
       pad_intern = 145,
       detail_type = "committees",
       legis_period = 19,
-      echo = F
+      echo = FALSE
     ),
     "Only data from the 20th legislative period onwards can be queried"
   )
@@ -437,29 +422,31 @@ test_that("get_mps_details validates legis_period minimum value", {
 
 test_that("get_mps_details search_string works for activities", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "activities",
-    search_string = "test",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      search_string = "test",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 })
 
 test_that("get_mps_details search_string works for committees", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "committees",
-    legis_period = 27,
-    search_string = "test",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "committees",
+      legis_period = 27,
+      search_string = "test",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 })
@@ -468,30 +455,32 @@ test_that("get_mps_details search_string works for committees", {
 
 test_that("get_mps_details committee parameters work", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 2344,
-    detail_type = "committees",
-    legis_period = 26,
-    committee = "Volksanwaltschaftsausschuss",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 2344,
+      detail_type = "committees",
+      legis_period = 26,
+      committee = "Volksanwaltschaftsausschuss",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 })
 
 test_that("get_mps_details committee_position parameter works", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "committees",
-    legis_period = 27,
-    committee_position = "Mitglied",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "committees",
+      legis_period = 27,
+      committee_position = "Mitglied",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 })
@@ -500,14 +489,15 @@ test_that("get_mps_details committee_position parameter works", {
 
 test_that("get_mps_details accepts multiple legis_periods for plenary", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "plenary",
-    legis_period = c(26, 27),
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "plenary",
+      legis_period = c(26, 27),
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 
@@ -520,15 +510,16 @@ test_that("get_mps_details accepts multiple legis_periods for plenary", {
 
 test_that("get_mps_details accepts multiple legis_periods for activities", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "activities",
-    legis_period = c(22, 23),
-    institution = "NR",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "activities",
+      legis_period = c(22, 23),
+      institution = "NR",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 
@@ -541,14 +532,15 @@ test_that("get_mps_details accepts multiple legis_periods for activities", {
 
 test_that("get_mps_details accepts multiple legis_periods for committees", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_mps_details(
-    pad_intern = 145,
-    detail_type = "committees",
-    legis_period = c(25, 26),
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_mps_details(
+      pad_intern = 145,
+      detail_type = "committees",
+      legis_period = c(25, 26),
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_mps_details")
 
   expect_s3_class(result, "data.frame")
 

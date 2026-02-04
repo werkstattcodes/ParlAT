@@ -1,15 +1,16 @@
 test_that("get_items returns correct structure with valid parameters", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test basic functionality with minimal parameters
-  result <- get_items(
-    institution = "NR",
-    item = "ANTR",
-    date_start = "01-01-2024",
-    date_end = "31-01-2026",
-    echo = TRUE
-  )
+  result <- run_api_call({
+    get_items(
+      institution = "NR",
+      item = "ANTR",
+      date_start = "01-01-2024",
+      date_end = "31-01-2026",
+      echo = TRUE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
@@ -32,32 +33,37 @@ test_that("get_items handles invalid date formats", {
 
 test_that("get_items accepts multiple date formats", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test that all three date formats return the same result
-  result1 <- get_items(
-    date_start = "01-01-2024",
-    date_end = "01-03-2024",
-    echo = FALSE
-  )
+  result1 <- run_api_call({
+    get_items(
+      date_start = "01-01-2024",
+      date_end = "01-03-2024",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
   expect_s3_class(result1, "data.frame")
-  expect_equal(nrow(result1), 2526)
+  expect_row_count(nrow(result1), 2526)
 
-  result2 <- get_items(
-    date_start = "01.01.2024",
-    date_end = "01.03.2024",
-    echo = FALSE
-  )
+  result2 <- run_api_call({
+    get_items(
+      date_start = "01.01.2024",
+      date_end = "01.03.2024",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
   expect_s3_class(result2, "data.frame")
-  expect_equal(nrow(result2), 2526)
+  expect_row_count(nrow(result2), 2526)
 
-  result3 <- get_items(
-    date_start = "01/01/2024",
-    date_end = "01/03/2024",
-    echo = FALSE
-  )
+  result3 <- run_api_call({
+    get_items(
+      date_start = "01/01/2024",
+      date_end = "01/03/2024",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
   expect_s3_class(result3, "data.frame")
-  expect_equal(nrow(result3), 2526)
+  expect_row_count(nrow(result3), 2526)
 })
 
 test_that("get_items validates institution parameter", {
@@ -90,29 +96,31 @@ test_that("get_items validates parl_group parameter", {
 
 test_that("get_items handles empty results gracefully", {
   skip_on_cran()
-  skip_if_offline()
 
   # Use parameters likely to return no results
-  result <- get_items(
-    topic = "Wirtschaft",
-    date_start = "01-01-1900",
-    date_end = "02-01-1900",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      topic = "Wirtschaft",
+      date_start = "01-01-1900",
+      date_end = "02-01-1900",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_null(result)
 })
 
 test_that("get_items works with multiple parameters", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    institution = "NR",
-    topic = "Bildung",
-    legis_period = "27",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      institution = "NR",
+      topic = "Bildung",
+      legis_period = "27",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
   if (!is.null(result)) {
@@ -122,30 +130,32 @@ test_that("get_items works with multiple parameters", {
 
 test_that("get_items works with multiple topics", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    institution = "NR",
-    topic = c("Sport", "Landesverteidigung"),
-    legis_period = "27"
-  )
+  result <- run_api_call({
+    get_items(
+      institution = "NR",
+      topic = c("Sport", "Landesverteidigung"),
+      legis_period = "27"
+    )
+  }, fixture_subdir = "get_items")
 
-  expect_true(nrow(result) == 2013)
+  expect_row_count(nrow(result), 2013)
 })
 
 test_that("get_items works with multiple legis_periods and different input forms", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test with mixed input forms: numeric, character numeric, and historical abbreviations
-  result <- get_items(
-    legis_period = c("KN", "PN", 10, "15"),
-    institution = "NR",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      legis_period = c("KN", "PN", 10, "15"),
+      institution = "NR",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 11212)
+  expect_row_count(nrow(result), 11212)
 
   # Check that all expected legislative periods are present in the results
   expected_periods <- c("KN", "PN", "X", "XV")
@@ -214,13 +224,14 @@ test_that("get_items validates eurovoc parameter", {
 
 test_that("get_items works with NULL institution (both chambers)", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    item = "RV",
-    legis_period = "27",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "RV",
+      legis_period = "27",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -233,48 +244,52 @@ test_that("get_items works with NULL institution (both chambers)", {
 
 test_that("get_items works with valid keyword", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    keyword = "Gesundheit",
-    legis_period = "27",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      keyword = "Gesundheit",
+      legis_period = "27",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items works with valid eurovoc", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    eurovoc = "health",
-    legis_period = "27",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      eurovoc = "health",
+      legis_period = "27",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items parl_group_names_standard works", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test that the standardization function is called
-  result <- get_items(
-    parl_group = "SPÖ",
-    parl_group_names_standard = TRUE,
-    legis_period = "27",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      parl_group = "SPÖ",
+      parl_group_names_standard = TRUE,
+      legis_period = "27",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items echo parameter works", {
   skip_on_cran()
-  skip_if_offline()
+  # This test checks console output behavior - run only in live mode
+  skip_if_mocked("Echo output testing requires live API")
 
   # Test with echo = TRUE (should print output)
   expect_output(
@@ -298,7 +313,8 @@ test_that("get_items echo parameter works", {
 
 test_that("get_items returns consistent columns across item types (tidyverse, legis_period = 27)", {
   skip_on_cran()
-  skip_if_offline()
+  # This is a comprehensive integration test - run only in live mode
+  skip_if_mocked("Complex integration test across all item types")
 
   items <- c(
     "ASEU",
@@ -368,14 +384,15 @@ test_that("get_items returns consistent columns across item types (tidyverse, le
 
 test_that("get_items returns a dataframe with a 'stage' column", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    institution = "NR",
-    item = "ANTR",
-    legis_period = "27",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      institution = "NR",
+      item = "ANTR",
+      legis_period = "27",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_s3_class(result, "data.frame")
   expect_true("stage" %in% names(result))
@@ -387,13 +404,14 @@ test_that("get_items returns a dataframe with a 'stage' column", {
 
 test_that("get_items returns no duplicates for Bildung across multiple legislative periods", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    topic = "Bildung",
-    legis_period = c(26, 27, 28),
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      topic = "Bildung",
+      legis_period = c(26, 27, 28),
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   # Verify result is returned
   expect_s3_class(result, "data.frame")
@@ -460,40 +478,43 @@ test_that("get_items validates NR type_eu_submission codes require institution='
 
 test_that("get_items accepts valid type_eu_submission values", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test single valid value
-  result <- get_items(
-    item = "EU",
-    type_eu_submission = "BEU",
-    institution = "NR",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "EU",
+      type_eu_submission = "BEU",
+      institution = "NR",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items accepts multiple type_eu_submission values", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test multiple valid values
-  result <- get_items(
-    item = "EU",
-    type_eu_submission = c("BEU", "RGEU", "S"),
-    institution = "NR",
-    legis_period = 27,
-    echo = F
-  )
+  result <- run_api_call({
+    get_items(
+      item = "EU",
+      type_eu_submission = c("BEU", "RGEU", "S"),
+      institution = "NR",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
-  expect_true(nrow(result) == 8)
+  expect_row_count(nrow(result), 8)
 })
 
 test_that("get_items type_eu_submission works with all valid codes", {
   skip_on_cran()
-  skip_if_offline()
+  # This is a comprehensive integration test - run only in live mode
+  skip_if_mocked("Complex integration test across all EU submission types")
 
   valid_codes <- c(
     "BEU",
@@ -528,16 +549,17 @@ test_that("get_items type_eu_submission works with all valid codes", {
 
 test_that("get_items type_eu_submission combines with other parameters", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test combining type_eu_submission with multiple parameters
-  result <- get_items(
-    item = "EU",
-    type_eu_submission = "S",
-    legis_period = 27,
-    institution = "NR",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "EU",
+      type_eu_submission = "S",
+      legis_period = 27,
+      institution = "NR",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -558,23 +580,25 @@ test_that("get_items validates BR type_eu_submission codes require institution='
 
 test_that("get_items accepts valid BR type_eu_submission values", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test single valid BR value
-  result <- get_items(
-    item = "EU",
-    type_eu_submission = "BEU-BR",
-    institution = "BR",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "EU",
+      type_eu_submission = "BEU-BR",
+      institution = "BR",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items BR type_eu_submission works with all valid BR codes", {
   skip_on_cran()
-  skip_if_offline()
+  # This is a comprehensive integration test - run only in live mode
+  skip_if_mocked("Complex integration test across all BR EU submission types")
 
   valid_br_codes <- c(
     "AFEU-BR",
@@ -609,16 +633,17 @@ test_that("get_items BR type_eu_submission works with all valid BR codes", {
 
 test_that("get_items accepts multiple BR type_eu_submission values", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test multiple valid BR values
-  result <- get_items(
-    item = "EU",
-    type_eu_submission = c("BEU-BR", "MT-BR"),
-    institution = "BR",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "EU",
+      type_eu_submission = c("BEU-BR", "MT-BR"),
+      institution = "BR",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -627,39 +652,42 @@ test_that("get_items accepts multiple BR type_eu_submission values", {
 
 test_that("get_items accepts valid type_doc values for J_JPR_M in NR", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test single valid value - JPR (Written Questions to Federal Government)
-  result <- get_items(
-    item = "J_JPR_M",
-    type_doc = "JPR",
-    institution = "NR",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "J_JPR_M",
+      type_doc = "JPR",
+      institution = "NR",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items accepts valid type_doc values for J_JPR_M in BR", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test single valid value - JMIN-BR
-  result <- get_items(
-    item = "J_JPR_M",
-    type_doc = "JMIN-BR",
-    institution = "BR",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "J_JPR_M",
+      type_doc = "JMIN-BR",
+      institution = "BR",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items type_doc works with all valid NR codes for J_JPR_M", {
   skip_on_cran()
-  skip_if_offline()
+  # This is a comprehensive integration test - run only in live mode
+  skip_if_mocked("Complex integration test across all NR J_JPR_M codes")
 
   valid_codes <- c("J", "JPR", "M")
 
@@ -682,7 +710,8 @@ test_that("get_items type_doc works with all valid NR codes for J_JPR_M", {
 
 test_that("get_items type_doc works with all valid BR codes for J_JPR_M", {
   skip_on_cran()
-  skip_if_offline()
+  # This is a comprehensive integration test - run only in live mode
+  skip_if_mocked("Complex integration test across all BR J_JPR_M codes")
 
   valid_br_codes <- c("M-BR", "JMIN-BR", "JPRPR-BR")
 
@@ -705,16 +734,17 @@ test_that("get_items type_doc works with all valid BR codes for J_JPR_M", {
 
 test_that("get_items accepts multiple type_doc values for J_JPR_M", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test multiple valid values
-  result <- get_items(
-    item = "J_JPR_M",
-    type_doc = c("J", "JPR"),
-    institution = "NR",
-    legis_period = 27,
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "J_JPR_M",
+      type_doc = c("J", "JPR"),
+      institution = "NR",
+      legis_period = 27,
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -743,18 +773,19 @@ test_that("get_items rejects BR type_doc codes for J_JPR_M when institution is N
 
 test_that("get_items type_doc for J_JPR_M combines with other parameters", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test combining type_doc with multiple parameters
-  result <- get_items(
-    item = "J_JPR_M",
-    type_doc = "JPR",
-    legis_period = 27,
-    institution = "NR",
-    date_start = "01-01-2020",
-    date_end = "31-12-2020",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "J_JPR_M",
+      type_doc = "JPR",
+      legis_period = 27,
+      institution = "NR",
+      date_start = "01-01-2020",
+      date_end = "31-12-2020",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -763,11 +794,12 @@ test_that("get_items type_doc for J_JPR_M combines with other parameters", {
 
 test_that("get_item_details returns correct structure with absolute URL", {
   skip_on_cran()
-  skip_if_offline()
 
   # Use a known item URL
   item_url <- "https://www.parlament.gv.at/gegenstand/XXVII/GAST/2"
-  result <- get_item_details(item_url)
+  result <- run_api_call({
+    get_item_details(item_url)
+  }, fixture_subdir = "get_item_details")
 
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
@@ -776,10 +808,11 @@ test_that("get_item_details returns correct structure with absolute URL", {
 
 test_that("get_item_details works with relative URL", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test relative path normalization
-  result <- get_item_details("/gegenstand/XXVIII/BI/24")
+  result <- run_api_call({
+    get_item_details("/gegenstand/XXVIII/BI/24")
+  }, fixture_subdir = "get_item_details")
 
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
@@ -788,16 +821,21 @@ test_that("get_item_details works with relative URL", {
 
 test_that("get_item_details handles URL normalization correctly", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test that absolute and relative URLs return the same data
   absolute_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
   relative_url <- "/gegenstand/XXVIII/BI/24"
   relative_no_slash <- "gegenstand/XXVIII/BI/24"
 
-  result_absolute <- get_item_details(absolute_url)
-  result_relative <- get_item_details(relative_url)
-  result_no_slash <- get_item_details(relative_no_slash)
+  result_absolute <- run_api_call({
+    get_item_details(absolute_url)
+  }, fixture_subdir = "get_item_details")
+  result_relative <- run_api_call({
+    get_item_details(relative_url)
+  }, fixture_subdir = "get_item_details")
+  result_no_slash <- run_api_call({
+    get_item_details(relative_no_slash)
+  }, fixture_subdir = "get_item_details")
 
   # All should return same number of rows
   expect_equal(nrow(result_absolute), nrow(result_relative))
@@ -805,15 +843,16 @@ test_that("get_item_details handles URL normalization correctly", {
 })
 test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-27)", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    item = "EU",
-    type_eu_submission = "SBPL-BR",
-    institution = "BR",
-    legis_period = seq(24, 27, 1),
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "EU",
+      type_eu_submission = "SBPL-BR",
+      institution = "BR",
+      legis_period = seq(24, 27, 1),
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   # Expect NULL for empty results (following package convention)
   expect_null(result)
@@ -821,21 +860,22 @@ test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-2
 
 test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27)", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    item = "EU",
-    type_eu_submission = "MT-BR",
-    institution = "BR",
-    legis_period = seq(24, 27, 1),
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "EU",
+      type_eu_submission = "MT-BR",
+      institution = "BR",
+      legis_period = seq(24, 27, 1),
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   # Check structure
   expect_s3_class(result, "data.frame")
 
   # Check row count
-  expect_equal(nrow(result), 71)
+  expect_row_count(nrow(result), 71)
 
   # Check for duplicates
   n_total <- nrow(result)
@@ -852,21 +892,22 @@ test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27
 
 test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)", {
   skip_on_cran()
-  skip_if_offline()
 
-  result <- get_items(
-    item = "EU",
-    legis_period = seq(24, 27, 1),
-    type_eu_submission = "S-BR",
-    institution = "BR",
-    echo = FALSE
-  )
+  result <- run_api_call({
+    get_items(
+      item = "EU",
+      legis_period = seq(24, 27, 1),
+      type_eu_submission = "S-BR",
+      institution = "BR",
+      echo = FALSE
+    )
+  }, fixture_subdir = "get_items")
 
   # Check structure
   expect_s3_class(result, "data.frame")
 
   # Check row count
-  expect_equal(nrow(result), 17)
+  expect_row_count(nrow(result), 17)
 
   # Check for duplicates
   n_total <- nrow(result)

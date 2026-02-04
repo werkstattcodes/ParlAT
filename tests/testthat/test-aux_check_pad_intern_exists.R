@@ -4,10 +4,12 @@
 
 test_that("aux_check_pad_intern_exists returns logical for valid inputs", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test with a known valid pad_intern (Doris Bures)
-  result <- aux_check_pad_intern_exists("145")
+  result <- run_api_call({
+    aux_check_pad_intern_exists("145")
+  }, fixture_subdir = "aux_check_pad_intern_exists")
+
   expect_type(result, "logical")
   expect_length(result, 1)
   expect_true(result)
@@ -15,10 +17,12 @@ test_that("aux_check_pad_intern_exists returns logical for valid inputs", {
 
 test_that("aux_check_pad_intern_exists allows for inputs > length==1", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test with a known valid pad_intern (Doris Bures)
-  result <- aux_check_pad_intern_exists(c("145", "2345"))
+  result <- run_api_call({
+    aux_check_pad_intern_exists(c("145", "2345"))
+  }, fixture_subdir = "aux_check_pad_intern_exists")
+
   expect_type(result, "logical")
   expect_length(result, 2)
   expect_true(all(result))
@@ -29,10 +33,12 @@ test_that("aux_check_pad_intern_exists allows for inputs > length==1", {
 
 test_that("aux_check_pad_intern_exists handles boundary values", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test with zero
-  expect_false(aux_check_pad_intern_exists("0"))
+  result_zero <- run_api_call({
+    aux_check_pad_intern_exists("0")
+  }, fixture_subdir = "aux_check_pad_intern_exists")
+  expect_false(result_zero)
 
   # Test with negative values - should error due to non-numeric characters
   expect_error(
@@ -129,11 +135,12 @@ test_that("aux_check_pad_intern_exists handles special characters", {
 
 test_that("aux_check_pad_intern_exists is vectorized", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test with vector of valid numeric inputs
   inputs <- c("145", "999999")
-  results <- aux_check_pad_intern_exists(inputs)
+  results <- run_api_call({
+    aux_check_pad_intern_exists(inputs)
+  }, fixture_subdir = "aux_check_pad_intern_exists")
 
   expect_type(results, "logical")
   expect_length(results, 2)
@@ -149,11 +156,12 @@ test_that("aux_check_pad_intern_exists is vectorized", {
 
 test_that("aux_check_pad_intern_exists handles multiple inputs with validation errors", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test with vector of numeric inputs that don't exist
   inputs <- c("999999", "1000000")
-  results <- aux_check_pad_intern_exists(inputs)
+  results <- run_api_call({
+    aux_check_pad_intern_exists(inputs)
+  }, fixture_subdir = "aux_check_pad_intern_exists")
 
   expect_type(results, "logical")
   expect_length(results, 2)
@@ -201,11 +209,21 @@ test_that("aux_check_pad_intern_exists handles empty and whitespace strings", {
 
   # Test with padded valid values - should work (trimmed to "145")
   skip_on_cran()
-  skip_if_offline()
 
-  expect_true(aux_check_pad_intern_exists(" 145"))
-  expect_true(aux_check_pad_intern_exists("145 "))
-  expect_true(aux_check_pad_intern_exists(" 145 "))
+  result1 <- run_api_call({
+    aux_check_pad_intern_exists(" 145")
+  }, fixture_subdir = "aux_check_pad_intern_exists")
+  expect_true(result1)
+
+  result2 <- run_api_call({
+    aux_check_pad_intern_exists("145 ")
+  }, fixture_subdir = "aux_check_pad_intern_exists")
+  expect_true(result2)
+
+  result3 <- run_api_call({
+    aux_check_pad_intern_exists(" 145 ")
+  }, fixture_subdir = "aux_check_pad_intern_exists")
+  expect_true(result3)
 })
 
 
@@ -233,12 +251,15 @@ test_that("aux_check_pad_intern_exists validates input before network calls", {
 
 test_that("aux_check_pad_intern_exists converts input types appropriately", {
   skip_on_cran()
-  skip_if_offline()
 
   # The function should handle numeric input by converting to character
-  # Note: This tests the function's behavior, not necessarily its intended use
-  result_numeric <- aux_check_pad_intern_exists(145)
-  result_character <- aux_check_pad_intern_exists("145")
+  result_numeric <- run_api_call({
+    aux_check_pad_intern_exists(145)
+  }, fixture_subdir = "aux_check_pad_intern_exists")
+
+  result_character <- run_api_call({
+    aux_check_pad_intern_exists("145")
+  }, fixture_subdir = "aux_check_pad_intern_exists")
 
   expect_type(result_numeric, "logical")
   expect_type(result_character, "logical")
@@ -249,14 +270,15 @@ test_that("aux_check_pad_intern_exists converts input types appropriately", {
 
 test_that("aux_check_pad_intern_exists performance with multiple requests", {
   skip_on_cran()
-  skip_if_offline()
 
   # Test that function doesn't hang with multiple valid requests
   # Using known valid pad_intern values, limiting to prevent excessive API calls
   inputs <- c("145", "88641") # Keep small for testing
 
   start_time <- Sys.time()
-  results <- aux_check_pad_intern_exists(inputs)
+  results <- run_api_call({
+    aux_check_pad_intern_exists(inputs)
+  }, fixture_subdir = "aux_check_pad_intern_exists")
   end_time <- Sys.time()
 
   expect_type(results, "logical")

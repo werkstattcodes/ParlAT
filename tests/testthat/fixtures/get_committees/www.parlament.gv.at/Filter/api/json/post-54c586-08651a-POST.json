@@ -1,0 +1,83 @@
+{
+    "pages": 0,
+    "count": 0,
+    "header": [
+        {
+            "filterable": false,
+            "orig_link_rnr": 2,
+            "link_rnr": 8,
+            "hidden": false,
+            "rnr": 1,
+            "label": "Ausschuss",
+            "sortable": true,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 2,
+            "label": "sort",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 3,
+            "label": "aus_von",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "orig_link_rnr": 6,
+            "link_rnr": 9,
+            "hidden": false,
+            "rnr": 4,
+            "label": "Sitzungsüberblick",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": false,
+            "rnr": 5,
+            "label": "aktuellste Tagesordnung",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 6,
+            "label": "RSS-Description",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 7,
+            "label": "rss pubdate",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        }
+    ],
+    "rows": [
+
+    ]
+}

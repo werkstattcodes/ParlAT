@@ -1,0 +1,123 @@
+{
+    "pages": 1,
+    "lastSync": "2026-02-04 02:10:07.0",
+    "count": 2,
+    "header": [
+        {
+            "feldId": 110,
+            "hidden": true,
+            "rnr": 1,
+            "listeId": 251,
+            "label": "GREMIUM",
+            "feld_name": "GREMIUM",
+            "includeHeader": true
+        },
+        {
+            "feldId": 111,
+            "hidden": true,
+            "rnr": 2,
+            "listeId": 251,
+            "label": "GP",
+            "feld_name": "GP_CODE",
+            "includeHeader": true
+        },
+        {
+            "feldId": 425,
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 251,
+            "label": "gp_von",
+            "includeHeader": true
+        },
+        {
+            "feldId": 112,
+            "hidden": false,
+            "sort_rnr": 10,
+            "rnr": 4,
+            "listeId": 251,
+            "label": "Sitzung",
+            "sortable": "1",
+            "feld_name": "SITZUNG",
+            "includeHeader": true
+        },
+        {
+            "feldId": 113,
+            "hidden": false,
+            "rnr": 5,
+            "listeId": 251,
+            "label": "Rede",
+            "feld_name": "Rede",
+            "includeHeader": true
+        },
+        {
+            "css_class": "buttons-col",
+            "feldId": 114,
+            "hidden": false,
+            "rnr": 6,
+            "listeId": 251,
+            "class": "buttons-col",
+            "includeHeader": true
+        },
+        {
+            "css_class": "buttons-col",
+            "feldId": 115,
+            "hidden": false,
+            "rnr": 7,
+            "listeId": 251,
+            "class": "buttons-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 116,
+            "hidden": true,
+            "rnr": 8,
+            "listeId": 251,
+            "label": "PAD_INTERN",
+            "feld_name": "PAD_INTERN",
+            "includeHeader": true
+        },
+        {
+            "feldId": 968,
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 251,
+            "mediaType": "fromDate",
+            "label": "fromDate",
+            "includeHeader": true
+        },
+        {
+            "feldId": 3401,
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 251,
+            "label": "Sortier",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "N",
+            "XXVII",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "<a href=\"/sitzung/XXVII/NRSITZ/262?selectedStage=111\" target=\"_blank\">262. Sitzung (15.05.2024) des Nationalrats der XXVII GP.<\/a>",
+            "Erklärung des Präsidenten der Parlamentarischen Versammlung des Europarates Theodoros Rousopoulos gemäß § 19a der Geschäftsordnung des Nationalrates",
+            "<a href=\"/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323232\" target=\"_blank\"><i class=\"fa-file-code fal\"><\/i><span class=\"sr-only\">Protokoll<\/span><\/a>",
+            "<a href=\"/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715777332\" target=\"_blank\"><i class=\"fa fa-play-circle\"><\/i><span class=\"sr-only\">Abspielen<\/span><\/a>",
+            "145",
+            "2024-05-15T12:00:00",
+            "202405150262"
+        ],
+        [
+            "N",
+            "XXVII",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "<a href=\"/sitzung/XXVII/NRSITZ/125?selectedStage=111\" target=\"_blank\">125. Sitzung (13.10.2021) des Nationalrats der XXVII GP.<\/a>",
+            "Tag des metastasierten Brustkrebses",
+            "<a href=\"/dokument/XXVII/NRSITZ/125/fnameorig_1426372.html#TEXTOBJ_253557\" target=\"_blank\"><i class=\"fa-file-code fal\"><\/i><span class=\"sr-only\">Protokoll<\/span><\/a>",
+            null,
+            "145",
+            "2021-10-13T12:00:00",
+            "202110130125"
+        ]
+    ]
+}

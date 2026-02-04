@@ -1,0 +1,357 @@
+{
+    "pages": 1,
+    "count": 25,
+    "header": [
+        {
+            "filterable": false,
+            "orig_link_rnr": 2,
+            "link_rnr": 8,
+            "hidden": false,
+            "rnr": 1,
+            "label": "Ausschuss",
+            "sortable": true,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 2,
+            "label": "sort",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 3,
+            "label": "aus_von",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "orig_link_rnr": 6,
+            "link_rnr": 9,
+            "hidden": false,
+            "rnr": 4,
+            "label": "Sitzungsüberblick",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": false,
+            "rnr": 5,
+            "label": "aktuellste Tagesordnung",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 6,
+            "label": "RSS-Description",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "rnr": 7,
+            "label": "rss pubdate",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        },
+        {
+            "filterable": false,
+            "hidden": true,
+            "label": "link",
+            "sortable": false,
+            "additionalinfo": false
+        }
+    ],
+    "rows": [
+        [
+            "Ausschuss für Arbeit, Soziales und Konsumentenschutz des Bundesrates",
+            "001",
+            "04.03.09",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-AK-BR/1/00311/TO_16748190.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-AK-BR/1/00311/TO_16748190.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-AK-BR/1/00311/TO_16748190.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-AK-BR/1/00311/TO_16748190.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "16.12.2025",
+            "/ausschuss/BR/A-AK-BR/1/00311",
+            "/ausschuss/BR/A-AK-BR/1/00311#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für auswärtige Angelegenheiten des Bundesrates",
+            "002",
+            "28.04.98",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.05.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-AA-BR/1/00001/TO_16531731.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-AA-BR/1/00001/TO_16531731.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 06.05.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-AA-BR/1/00001/TO_16531731.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-AA-BR/1/00001/TO_16531731.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "26.06.2025",
+            "/ausschuss/BR/A-AA-BR/1/00001",
+            "/ausschuss/BR/A-AA-BR/1/00001#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für BürgerInnenrechte und Petitionen des Bundesrates",
+            "003",
+            "22.07.08",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 11.03.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-BP-BR/1/00272/TO_16495021.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-BP-BR/1/00272/TO_16495021.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 11.03.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-BP-BR/1/00272/TO_16495021.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-BP-BR/1/00272/TO_16495021.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "26.06.2025",
+            "/ausschuss/BR/A-BP-BR/1/00272",
+            "/ausschuss/BR/A-BP-BR/1/00272#tab-Sitzungsueberblick"
+        ],
+        [
+            "EU-Ausschuss des Bundesrates",
+            "004",
+            "01.06.95",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.02.2026<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-EU-BR/1/00037/TO_16757768.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-EU-BR/1/00037/TO_16757768.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 04.02.2026<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-EU-BR/1/00037/TO_16757768.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-EU-BR/1/00037/TO_16757768.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "15.07.2026",
+            "/ausschuss/BR/A-EU-BR/1/00037",
+            "/ausschuss/BR/A-EU-BR/1/00037#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Familie und Jugend des Bundesrates",
+            "005",
+            "13.04.07",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 21.10.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-FJ-BR/1/00269/TO_16692575.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-FJ-BR/1/00269/TO_16692575.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 21.10.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-FJ-BR/1/00269/TO_16692575.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-FJ-BR/1/00269/TO_16692575.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "21.10.2025",
+            "/ausschuss/BR/A-FJ-BR/1/00269",
+            "/ausschuss/BR/A-FJ-BR/1/00269#tab-Sitzungsueberblick"
+        ],
+        [
+            "Finanzausschuss des Bundesrates",
+            "006",
+            "14.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 03.02.2026<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-FI-BR/1/00053/TO_16775235.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-FI-BR/1/00053/TO_16775235.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 03.02.2026<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-FI-BR/1/00053/TO_16775235.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-FI-BR/1/00053/TO_16775235.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "03.02.2026",
+            "/ausschuss/BR/A-FI-BR/1/00053",
+            "/ausschuss/BR/A-FI-BR/1/00053#tab-Sitzungsueberblick"
+        ],
+        [
+            "Geschäftsordnungsausschuss des Bundesrates",
+            "007",
+            "17.01.46",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.07.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-GO-BR/1/00075/TO_16617116.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-GO-BR/1/00075/TO_16617116.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.07.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-GO-BR/1/00075/TO_16617116.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-GO-BR/1/00075/TO_16617116.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "15.07.2025",
+            "/ausschuss/BR/A-GO-BR/1/00075",
+            "/ausschuss/BR/A-GO-BR/1/00075#tab-Sitzungsueberblick"
+        ],
+        [
+            "Gesundheitsausschuss des Bundesrates",
+            "008",
+            "17.06.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-GH-BR/1/00064/TO_16748218.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-GH-BR/1/00064/TO_16748218.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-GH-BR/1/00064/TO_16748218.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-GH-BR/1/00064/TO_16748218.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "16.12.2025",
+            "/ausschuss/BR/A-GH-BR/1/00064",
+            "/ausschuss/BR/A-GH-BR/1/00064#tab-Sitzungsueberblick"
+        ],
+        [
+            "Gleichbehandlungsausschuss des Bundesrates",
+            "009",
+            "22.07.08",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 25.06.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-GB-BR/1/00271/TO_16160604.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-GB-BR/1/00271/TO_16160604.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 25.06.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-GB-BR/1/00271/TO_16160604.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-GB-BR/1/00271/TO_16160604.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "26.06.2025",
+            "/ausschuss/BR/A-GB-BR/1/00271",
+            "/ausschuss/BR/A-GB-BR/1/00271#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für innere Angelegenheiten des Bundesrates",
+            "010",
+            "28.04.98",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-IN-BR/1/00108/TO_16748100.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-IN-BR/1/00108/TO_16748100.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-IN-BR/1/00108/TO_16748100.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-IN-BR/1/00108/TO_16748100.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "16.12.2025",
+            "/ausschuss/BR/A-IN-BR/1/00108",
+            "/ausschuss/BR/A-IN-BR/1/00108#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Innovation, Technologie und Zukunft des Bundesrates",
+            "010a",
+            "03.12.15",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 25.06.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-IT-BR/1/00384/TO_16160593.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-IT-BR/1/00384/TO_16160593.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 25.06.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-IT-BR/1/00384/TO_16160593.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-IT-BR/1/00384/TO_16160593.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "26.06.2025",
+            "/ausschuss/BR/A-IT-BR/1/00384",
+            "/ausschuss/BR/A-IT-BR/1/00384#tab-Sitzungsueberblick"
+        ],
+        [
+            "Justizausschuss des Bundesrates",
+            "011",
+            "28.04.98",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 03.02.2026<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-JU-BR/1/00114/TO_16775212.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-JU-BR/1/00114/TO_16775212.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 03.02.2026<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-JU-BR/1/00114/TO_16775212.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-JU-BR/1/00114/TO_16775212.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "03.02.2026",
+            "/ausschuss/BR/A-JU-BR/1/00114",
+            "/ausschuss/BR/A-JU-BR/1/00114#tab-Sitzungsueberblick"
+        ],
+        [
+            "Kinderrechteausschuss des Bundesrates",
+            "012",
+            "03.12.15",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-KR-BR/1/00385/TO_16748186.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-KR-BR/1/00385/TO_16748186.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-KR-BR/1/00385/TO_16748186.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-KR-BR/1/00385/TO_16748186.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "16.12.2025",
+            "/ausschuss/BR/A-KR-BR/1/00385",
+            "/ausschuss/BR/A-KR-BR/1/00385#tab-Sitzungsueberblick"
+        ],
+        [
+            "Landesverteidigungsausschuss des Bundesrates",
+            "012a",
+            "28.04.98",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 25.06.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-LV-BR/1/00133/TO_16160585.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-LV-BR/1/00133/TO_16160585.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 25.06.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-LV-BR/1/00133/TO_16160585.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-LV-BR/1/00133/TO_16160585.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "26.06.2025",
+            "/ausschuss/BR/A-LV-BR/1/00133",
+            "/ausschuss/BR/A-LV-BR/1/00133#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Land-, Forst- und Wasserwirtschaft des Bundesrates",
+            "013",
+            "17.05.04",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-LW-BR/1/00139/TO_16748152.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-LW-BR/1/00139/TO_16748152.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-LW-BR/1/00139/TO_16748152.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-LW-BR/1/00139/TO_16748152.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "16.12.2025",
+            "/ausschuss/BR/A-LW-BR/1/00139",
+            "/ausschuss/BR/A-LW-BR/1/00139#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Sportangelegenheiten des Bundesrates",
+            "014",
+            "17.06.03",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.12.2020<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-SP-BR/1/00173/TO_05397737.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-SP-BR/1/00173/TO_05397737.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.12.2020<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-SP-BR/1/00173/TO_05397737.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-SP-BR/1/00173/TO_05397737.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "26.06.2025",
+            "/ausschuss/BR/A-SP-BR/1/00173",
+            "/ausschuss/BR/A-SP-BR/1/00173#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Tourismus, Kunst und Kultur des Bundesrates",
+            "014a",
+            "11.10.18",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.07.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-TK-BR/1/00864/TO_16617063.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-TK-BR/1/00864/TO_16617063.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 15.07.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-TK-BR/1/00864/TO_16617063.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-TK-BR/1/00864/TO_16617063.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "15.07.2025",
+            "/ausschuss/BR/A-TK-BR/1/00864",
+            "/ausschuss/BR/A-TK-BR/1/00864#tab-Sitzungsueberblick"
+        ],
+        [
+            "Umweltausschuss des Bundesrates",
+            "015",
+            "17.05.04",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 25.06.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-UW-BR/1/00196/TO_16160617.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-UW-BR/1/00196/TO_16160617.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 25.06.2024<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-UW-BR/1/00196/TO_16160617.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-UW-BR/1/00196/TO_16160617.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "26.06.2025",
+            "/ausschuss/BR/A-UW-BR/1/00196",
+            "/ausschuss/BR/A-UW-BR/1/00196#tab-Sitzungsueberblick"
+        ],
+        [
+            "Unterrichtsausschuss des Bundesrates",
+            "016",
+            "11.10.18",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 03.02.2026<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-UN-BR/1/00865/TO_16775218.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-UN-BR/1/00865/TO_16775218.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 03.02.2026<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-UN-BR/1/00865/TO_16775218.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-UN-BR/1/00865/TO_16775218.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "03.02.2026",
+            "/ausschuss/BR/A-UN-BR/1/00865",
+            "/ausschuss/BR/A-UN-BR/1/00865#tab-Sitzungsueberblick"
+        ],
+        [
+            "Unvereinbarkeitsausschuss des Bundesrates",
+            "017",
+            "14.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 02.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-UV-BR/1/00195/TO_16727018.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-UV-BR/1/00195/TO_16727018.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 02.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-UV-BR/1/00195/TO_16727018.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-UV-BR/1/00195/TO_16727018.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "02.12.2025",
+            "/ausschuss/BR/A-UV-BR/1/00195",
+            "/ausschuss/BR/A-UV-BR/1/00195#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Verfassung und Föderalismus des Bundesrates",
+            "018",
+            "29.11.94",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-VF-BR/1/00209/TO_16748117.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-VF-BR/1/00209/TO_16748117.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-VF-BR/1/00209/TO_16748117.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-VF-BR/1/00209/TO_16748117.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "16.12.2025",
+            "/ausschuss/BR/A-VF-BR/1/00209",
+            "/ausschuss/BR/A-VF-BR/1/00209#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Verkehr des Bundesrates",
+            "019",
+            "03.12.15",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 02.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-VE-BR/1/00386/TO_16726974.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-VE-BR/1/00386/TO_16726974.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 02.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-VE-BR/1/00386/TO_16726974.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-VE-BR/1/00386/TO_16726974.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "02.12.2025",
+            "/ausschuss/BR/A-VE-BR/1/00386",
+            "/ausschuss/BR/A-VE-BR/1/00386#tab-Sitzungsueberblick"
+        ],
+        [
+            "Wirtschaftsausschuss des Bundesrates",
+            "020",
+            "04.03.09",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-WR-BR/1/00312/TO_16748063.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-WR-BR/1/00312/TO_16748063.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 16.12.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-WR-BR/1/00312/TO_16748063.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-WR-BR/1/00312/TO_16748063.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "16.12.2025",
+            "/ausschuss/BR/A-WR-BR/1/00312",
+            "/ausschuss/BR/A-WR-BR/1/00312#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ausschuss für Wissenschaft und Forschung des Bundesrates",
+            "021",
+            "13.04.07",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 21.10.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-WF-BR/1/00270/TO_16692662.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/A-WF-BR/1/00270/TO_16692662.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 21.10.2025<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-WF-BR/1/00270/TO_16692662.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/A-WF-BR/1/00270/TO_16692662.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "21.10.2025",
+            "/ausschuss/BR/A-WF-BR/1/00270",
+            "/ausschuss/BR/A-WF-BR/1/00270#tab-Sitzungsueberblick"
+        ],
+        [
+            "Ständiger gemeinsamer Ausschuss im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948 vom Bundesrat entsendet",
+            "022",
+            "14.01.96",
+            "Sitzungsüberblick",
+            "<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 17.05.2004<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/SA-P9-B/1/00153/TO_00890602.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>",
+            "aktuellste Tagesordnung:\n<div class=\"link-list\" inline><ul><li><span>Tagesordnung vom 17.05.2004<\/span>&amp;nbsp;<span class=\"doclink\"><a href=\"https://www.parlament.gv.at/dokument/BR/SA-P9-B/1/00153/TO_00890602.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fal small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&amp;nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div>\n<br />\n",
+            "17.05.2004",
+            "/ausschuss/BR/SA-P9-B/1/00153",
+            "/ausschuss/BR/SA-P9-B/1/00153#tab-Sitzungsueberblick"
+        ]
+    ]
+}
