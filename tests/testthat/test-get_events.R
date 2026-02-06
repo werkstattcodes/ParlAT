@@ -52,8 +52,6 @@ test_that("get_events returns correct data structure", {
 })
 
 test_that("get_events handles empty results gracefully", {
-  skip_on_cran()
-
   # Search for a date range in the far future where no events should exist
   res <- run_api_call({
     get_events(
@@ -75,8 +73,6 @@ test_that("get_events handles empty results gracefully", {
 })
 
 test_that("get_events works with complex parameter combinations", {
-  skip_on_cran()
-
   res <- run_api_call({
     get_events(
       institution = "NR",

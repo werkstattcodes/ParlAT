@@ -11,8 +11,6 @@ test_that("get_pad_intern validates input parameter", {
 })
 
 test_that("get_pad_intern returns correct structure with valid name", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_pad_intern("Kurz")
   }, fixture_subdir = "get_pad_intern")
@@ -24,8 +22,6 @@ test_that("get_pad_intern returns correct structure with valid name", {
 })
 
 test_that("get_pad_intern handles names with special characters", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_pad_intern("Müller")
   }, fixture_subdir = "get_pad_intern")
@@ -35,8 +31,6 @@ test_that("get_pad_intern handles names with special characters", {
 })
 
 test_that("get_pad_intern returns unique pad_intern values", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_pad_intern("Schmidt")
   }, fixture_subdir = "get_pad_intern")
@@ -45,8 +39,6 @@ test_that("get_pad_intern returns unique pad_intern values", {
 })
 
 test_that("get_pad_intern handles non-existent names gracefully", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_pad_intern("XyZaNonExistentName123")
   }, fixture_subdir = "get_pad_intern")
@@ -55,8 +47,6 @@ test_that("get_pad_intern handles non-existent names gracefully", {
 })
 
 test_that("get_pad_intern performs case-sensitive name matching", {
-  skip_on_cran()
-
   result_lower <- run_api_call({
     get_pad_intern("kurz")
   }, fixture_subdir = "get_pad_intern")
@@ -74,8 +64,6 @@ test_that("get_pad_intern performs case-sensitive name matching", {
 })
 
 test_that("get_pad_intern returns names_variants as comma-separated string", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_pad_intern("Michael Pock")
   }, fixture_subdir = "get_pad_intern")
@@ -86,8 +74,6 @@ test_that("get_pad_intern returns names_variants as comma-separated string", {
 })
 
 test_that("get_pad_intern returns same pad_intern for persons who changed their name", {
-  skip_on_cran()
-
   result_bernhard <- run_api_call({
     get_pad_intern("Michael Bernhard")
   }, fixture_subdir = "get_pad_intern")
@@ -110,8 +96,6 @@ test_that("get_pad_intern returns same pad_intern for persons who changed their 
 })
 
 test_that("get_pad_intern returns expected pad_intern values for specific persons", {
-  skip_on_cran()
-
   result_goetze <- run_api_call({
     get_pad_intern("Elisabeth Götze")
   }, fixture_subdir = "get_pad_intern")

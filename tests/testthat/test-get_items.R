@@ -1,6 +1,4 @@
 test_that("get_items returns correct structure with valid parameters", {
-  skip_on_cran()
-
   # Test basic functionality with minimal parameters
   result <- run_api_call({
     get_items(
@@ -31,9 +29,20 @@ test_that("get_items handles invalid date formats", {
   )
 })
 
-test_that("get_items accepts multiple date formats", {
-  skip_on_cran()
+test_that("get_items validates date_start must be <= date_end", {
+  # date_start after date_end should error
+  expect_error(
+    get_items(date_start = "31-12-2024", date_end = "01-01-2024"),
+    "date_start must be before or equal to date_end"
+  )
 
+  # Equal dates should work
+  expect_no_error(
+    get_items(date_start = "01-01-2024", date_end = "01-01-2024")
+  )
+})
+
+test_that("get_items accepts multiple date formats", {
   # Test that all three date formats return the same result
   result1 <- run_api_call({
     get_items(
@@ -95,8 +104,6 @@ test_that("get_items validates parl_group parameter", {
 })
 
 test_that("get_items handles empty results gracefully", {
-  skip_on_cran()
-
   # Use parameters likely to return no results
   result <- run_api_call({
     get_items(
@@ -111,8 +118,6 @@ test_that("get_items handles empty results gracefully", {
 })
 
 test_that("get_items works with multiple parameters", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       institution = "NR",
@@ -129,8 +134,6 @@ test_that("get_items works with multiple parameters", {
 })
 
 test_that("get_items works with multiple topics", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       institution = "NR",
@@ -143,8 +146,6 @@ test_that("get_items works with multiple topics", {
 })
 
 test_that("get_items works with multiple legis_periods and different input forms", {
-  skip_on_cran()
-
   # Test with mixed input forms: numeric, character numeric, and historical abbreviations
   result <- run_api_call({
     get_items(
@@ -223,8 +224,6 @@ test_that("get_items validates eurovoc parameter", {
 })
 
 test_that("get_items works with NULL institution (both chambers)", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       item = "RV",
@@ -243,8 +242,6 @@ test_that("get_items works with NULL institution (both chambers)", {
 # See git history for previous implementation
 
 test_that("get_items works with valid keyword", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       keyword = "Gesundheit",
@@ -257,8 +254,6 @@ test_that("get_items works with valid keyword", {
 })
 
 test_that("get_items works with valid eurovoc", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       eurovoc = "health",
@@ -271,8 +266,6 @@ test_that("get_items works with valid eurovoc", {
 })
 
 test_that("get_items parl_group_names_standard works", {
-  skip_on_cran()
-
   # Test that the standardization function is called
   result <- run_api_call({
     get_items(
@@ -383,8 +376,6 @@ test_that("get_items returns consistent columns across item types (tidyverse, le
 })
 
 test_that("get_items returns a dataframe with a 'stage' column", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       institution = "NR",
@@ -403,8 +394,6 @@ test_that("get_items returns a dataframe with a 'stage' column", {
 # See get_items.R:1272-1293 for duplicate detection implementation
 
 test_that("get_items returns no duplicates for Bildung across multiple legislative periods", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       topic = "Bildung",
@@ -477,8 +466,6 @@ test_that("get_items validates NR type_eu_submission codes require institution='
 })
 
 test_that("get_items accepts valid type_eu_submission values", {
-  skip_on_cran()
-
   # Test single valid value
   result <- run_api_call({
     get_items(
@@ -494,8 +481,6 @@ test_that("get_items accepts valid type_eu_submission values", {
 })
 
 test_that("get_items accepts multiple type_eu_submission values", {
-  skip_on_cran()
-
   # Test multiple valid values
   result <- run_api_call({
     get_items(
@@ -548,8 +533,6 @@ test_that("get_items type_eu_submission works with all valid codes", {
 })
 
 test_that("get_items type_eu_submission combines with other parameters", {
-  skip_on_cran()
-
   # Test combining type_eu_submission with multiple parameters
   result <- run_api_call({
     get_items(
@@ -578,9 +561,21 @@ test_that("get_items validates BR type_eu_submission codes require institution='
   )
 })
 
-test_that("get_items accepts valid BR type_eu_submission values", {
-  skip_on_cran()
+test_that("get_items validates mixed NR+BR type_eu_submission codes", {
+  # Mixing NR and BR codes with institution='NR' should error on BR codes
+  expect_error(
+    get_items(item = "EU", type_eu_submission = c("BEU", "BEU-BR"), institution = "NR"),
+    "Federal Council type_eu_submission codes can only be used when institution = 'BR'"
+  )
 
+  # Mixing NR and BR codes with institution='BR' should error on NR codes
+  expect_error(
+    get_items(item = "EU", type_eu_submission = c("BEU", "BEU-BR"), institution = "BR"),
+    "National Council type_eu_submission codes can only be used when institution = 'NR'"
+  )
+})
+
+test_that("get_items accepts valid BR type_eu_submission values", {
   # Test single valid BR value
   result <- run_api_call({
     get_items(
@@ -632,8 +627,6 @@ test_that("get_items BR type_eu_submission works with all valid BR codes", {
 })
 
 test_that("get_items accepts multiple BR type_eu_submission values", {
-  skip_on_cran()
-
   # Test multiple valid BR values
   result <- run_api_call({
     get_items(
@@ -651,8 +644,6 @@ test_that("get_items accepts multiple BR type_eu_submission values", {
 # Tests for type_doc with J_JPR_M (Written Questions) ------------------------
 
 test_that("get_items accepts valid type_doc values for J_JPR_M in NR", {
-  skip_on_cran()
-
   # Test single valid value - JPR (Written Questions to Federal Government)
   result <- run_api_call({
     get_items(
@@ -668,8 +659,6 @@ test_that("get_items accepts valid type_doc values for J_JPR_M in NR", {
 })
 
 test_that("get_items accepts valid type_doc values for J_JPR_M in BR", {
-  skip_on_cran()
-
   # Test single valid value - JMIN-BR
   result <- run_api_call({
     get_items(
@@ -733,8 +722,6 @@ test_that("get_items type_doc works with all valid BR codes for J_JPR_M", {
 })
 
 test_that("get_items accepts multiple type_doc values for J_JPR_M", {
-  skip_on_cran()
-
   # Test multiple valid values
   result <- run_api_call({
     get_items(
@@ -772,8 +759,6 @@ test_that("get_items rejects BR type_doc codes for J_JPR_M when institution is N
 })
 
 test_that("get_items type_doc for J_JPR_M combines with other parameters", {
-  skip_on_cran()
-
   # Test combining type_doc with multiple parameters
   result <- run_api_call({
     get_items(
@@ -793,8 +778,6 @@ test_that("get_items type_doc for J_JPR_M combines with other parameters", {
 # Tests for get_item_details() -----------------------------------------------
 
 test_that("get_item_details returns correct structure with absolute URL", {
-  skip_on_cran()
-
   # Use a known item URL
   item_url <- "https://www.parlament.gv.at/gegenstand/XXVII/GAST/2"
   result <- run_api_call({
@@ -807,8 +790,6 @@ test_that("get_item_details returns correct structure with absolute URL", {
 })
 
 test_that("get_item_details works with relative URL", {
-  skip_on_cran()
-
   # Test relative path normalization
   result <- run_api_call({
     get_item_details("/gegenstand/XXVIII/BI/24")
@@ -820,8 +801,6 @@ test_that("get_item_details works with relative URL", {
 
 
 test_that("get_item_details handles URL normalization correctly", {
-  skip_on_cran()
-
   # Test that absolute and relative URLs return the same data
   absolute_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
   relative_url <- "/gegenstand/XXVIII/BI/24"
@@ -842,8 +821,6 @@ test_that("get_item_details handles URL normalization correctly", {
   expect_equal(nrow(result_absolute), nrow(result_no_slash))
 })
 test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-27)", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       item = "EU",
@@ -859,8 +836,6 @@ test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-2
 })
 
 test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27)", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       item = "EU",
@@ -891,8 +866,6 @@ test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27
 })
 
 test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_items(
       item = "EU",

@@ -3,8 +3,6 @@
 # Test basic functionality -----------------------------------------------
 
 test_that("aux_check_pad_intern_exists returns logical for valid inputs", {
-  skip_on_cran()
-
   # Test with a known valid pad_intern (Doris Bures)
   result <- run_api_call({
     aux_check_pad_intern_exists("145")
@@ -16,8 +14,6 @@ test_that("aux_check_pad_intern_exists returns logical for valid inputs", {
 })
 
 test_that("aux_check_pad_intern_exists allows for inputs > length==1", {
-  skip_on_cran()
-
   # Test with a known valid pad_intern (Doris Bures)
   result <- run_api_call({
     aux_check_pad_intern_exists(c("145", "2345"))
@@ -32,8 +28,6 @@ test_that("aux_check_pad_intern_exists allows for inputs > length==1", {
 # Test edge cases for pad_intern parameter --------------------------------
 
 test_that("aux_check_pad_intern_exists handles boundary values", {
-  skip_on_cran()
-
   # Test with zero
   result_zero <- run_api_call({
     aux_check_pad_intern_exists("0")
@@ -134,8 +128,6 @@ test_that("aux_check_pad_intern_exists handles special characters", {
 # Test vectorized functionality ------------------------------------------
 
 test_that("aux_check_pad_intern_exists is vectorized", {
-  skip_on_cran()
-
   # Test with vector of valid numeric inputs
   inputs <- c("145", "999999")
   results <- run_api_call({
@@ -155,8 +147,6 @@ test_that("aux_check_pad_intern_exists is vectorized", {
 })
 
 test_that("aux_check_pad_intern_exists handles multiple inputs with validation errors", {
-  skip_on_cran()
-
   # Test with vector of numeric inputs that don't exist
   inputs <- c("999999", "1000000")
   results <- run_api_call({
@@ -208,7 +198,6 @@ test_that("aux_check_pad_intern_exists handles empty and whitespace strings", {
   expect_error(aux_check_pad_intern_exists("\n"))
 
   # Test with padded valid values - should work (trimmed to "145")
-  skip_on_cran()
 
   result1 <- run_api_call({
     aux_check_pad_intern_exists(" 145")
@@ -250,8 +239,6 @@ test_that("aux_check_pad_intern_exists validates input before network calls", {
 # Test input type validation ---------------------------------------------
 
 test_that("aux_check_pad_intern_exists converts input types appropriately", {
-  skip_on_cran()
-
   # The function should handle numeric input by converting to character
   result_numeric <- run_api_call({
     aux_check_pad_intern_exists(145)
@@ -269,8 +256,6 @@ test_that("aux_check_pad_intern_exists converts input types appropriately", {
 # Performance considerations ------------------------------------------
 
 test_that("aux_check_pad_intern_exists performance with multiple requests", {
-  skip_on_cran()
-
   # Test that function doesn't hang with multiple valid requests
   # Using known valid pad_intern values, limiting to prevent excessive API calls
   inputs <- c("145", "88641") # Keep small for testing

@@ -25,8 +25,6 @@ test_that("get_mps_details validates pad_intern parameter", {
 })
 
 test_that("get_mps_details validates institution parameter", {
-  skip_on_cran()
-
   expect_no_error(
     run_api_call({
       get_mps_details(
@@ -71,8 +69,6 @@ test_that("get_mps_details validates item parameter usage", {
 })
 
 test_that("get_mps_details validates item choices for activities", {
-  skip_on_cran()
-
   expect_no_error(
     run_api_call({
       get_mps_details(
@@ -109,8 +105,6 @@ test_that("get_mps_details validates search_string usage", {
 # Test function dispatch
 
 test_that("get_mps_details dispatches to correct sub-functions", {
-  skip_on_cran()
-
   # Test plenary dispatch
   result_plenary <- run_api_call({
     get_mps_details(
@@ -150,8 +144,6 @@ test_that("get_mps_details dispatches to correct sub-functions", {
 # Test plenary details functionality
 
 test_that("get_mps_details plenary returns expected structure", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -186,8 +178,6 @@ test_that("get_mps_details plenary returns expected structure", {
 })
 
 test_that("get_mps_details plenary filters by institution", {
-  skip_on_cran()
-
   result_nr <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -203,8 +193,6 @@ test_that("get_mps_details plenary filters by institution", {
 })
 
 test_that("get_mps_details plenary filters by legis_period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -220,8 +208,6 @@ test_that("get_mps_details plenary filters by legis_period", {
 })
 
 test_that("get_mps_details plenary accepts Roman numeral legis_period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -237,8 +223,6 @@ test_that("get_mps_details plenary accepts Roman numeral legis_period", {
 # Test activities details functionality
 
 test_that("get_mps_details activities returns expected structure", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -270,8 +254,6 @@ test_that("get_mps_details activities returns expected structure", {
 })
 
 test_that("get_mps_details activities filters by item type", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -289,8 +271,6 @@ test_that("get_mps_details activities filters by item type", {
 })
 
 test_that("get_mps_details activities filters by institution", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -310,8 +290,6 @@ test_that("get_mps_details activities filters by institution", {
 # Test committees details functionality
 
 test_that("get_mps_details committees returns expected structure", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -325,8 +303,6 @@ test_that("get_mps_details committees returns expected structure", {
 })
 
 test_that("get_mps_details committees requires legis_period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -341,8 +317,6 @@ test_that("get_mps_details committees requires legis_period", {
 # Test multiple pad_intern values
 
 test_that("get_mps_details does not accept multiple pad_intern values", {
-  skip_on_cran()
-
   expect_error(
     get_mps_details(
       pad_intern = c(145, 2345),
@@ -355,8 +329,6 @@ test_that("get_mps_details does not accept multiple pad_intern values", {
 # Test echo parameter
 
 test_that("get_mps_details echo parameter works", {
-  skip_on_cran()
-
   # Test that echo = FALSE doesn't cause errors
   expect_no_error({
     run_api_call({
@@ -372,8 +344,6 @@ test_that("get_mps_details echo parameter works", {
 # Test edge cases
 
 test_that("get_mps_details handles empty results gracefully", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 2345,
@@ -421,8 +391,6 @@ test_that("get_mps_details validates legis_period minimum value", {
 # Test search_string functionality
 
 test_that("get_mps_details search_string works for activities", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -436,8 +404,6 @@ test_that("get_mps_details search_string works for activities", {
 })
 
 test_that("get_mps_details search_string works for committees", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -454,8 +420,6 @@ test_that("get_mps_details search_string works for committees", {
 # Test committee-specific parameters
 
 test_that("get_mps_details committee parameters work", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 2344,
@@ -470,8 +434,6 @@ test_that("get_mps_details committee parameters work", {
 })
 
 test_that("get_mps_details committee_position parameter works", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -488,8 +450,6 @@ test_that("get_mps_details committee_position parameter works", {
 # Test multiple legis_periods functionality
 
 test_that("get_mps_details accepts multiple legis_periods for plenary", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -509,8 +469,6 @@ test_that("get_mps_details accepts multiple legis_periods for plenary", {
 })
 
 test_that("get_mps_details accepts multiple legis_periods for activities", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,
@@ -531,8 +489,6 @@ test_that("get_mps_details accepts multiple legis_periods for activities", {
 })
 
 test_that("get_mps_details accepts multiple legis_periods for committees", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps_details(
       pad_intern = 145,

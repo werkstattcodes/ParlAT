@@ -1,6 +1,4 @@
 test_that("get_legis_periods returns all periods when no parameters provided", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods()
   }, fixture_subdir = "get_legis_periods")
@@ -30,8 +28,6 @@ test_that("get_legis_periods validates input parameters", {
 })
 
 test_that("get_legis_periods filters by numeric legislative period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods(legis_period = 27)
   }, fixture_subdir = "get_legis_periods")
@@ -42,8 +38,6 @@ test_that("get_legis_periods filters by numeric legislative period", {
 })
 
 test_that("get_legis_periods filters by multiple legislative periods", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods(legis_period = c(26, 27))
   }, fixture_subdir = "get_legis_periods")
@@ -54,8 +48,6 @@ test_that("get_legis_periods filters by multiple legislative periods", {
 })
 
 test_that("get_legis_periods handles Roman numeral input", {
-  skip_on_cran()
-
   result_roman <- run_api_call({
     get_legis_periods(legis_period = "XXVII")
   }, fixture_subdir = "get_legis_periods")
@@ -70,8 +62,6 @@ test_that("get_legis_periods handles Roman numeral input", {
 })
 
 test_that("get_legis_periods filters by date", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods(date = "01.01.2020")
   }, fixture_subdir = "get_legis_periods")
@@ -85,8 +75,6 @@ test_that("get_legis_periods filters by date", {
 })
 
 test_that("get_legis_periods filters by multiple dates", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods(date = c("01.01.2020", "01.01.2015"))
   }, fixture_subdir = "get_legis_periods")
@@ -97,8 +85,6 @@ test_that("get_legis_periods filters by multiple dates", {
 })
 
 test_that("get_legis_periods includes historical periods", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods()
   }, fixture_subdir = "get_legis_periods")
@@ -113,8 +99,6 @@ test_that("get_legis_periods includes historical periods", {
 })
 
 test_that("get_legis_periods date columns are properly formatted", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods()
   }, fixture_subdir = "get_legis_periods")
@@ -126,8 +110,6 @@ test_that("get_legis_periods date columns are properly formatted", {
 })
 
 test_that("get_legis_periods current period identification works", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods()
   }, fixture_subdir = "get_legis_periods")
@@ -138,8 +120,6 @@ test_that("get_legis_periods current period identification works", {
 })
 
 test_that("get_legis_periods returns correct structure for specific historical date", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods(date = "15.05.1955")
   }, fixture_subdir = "get_legis_periods")
@@ -151,8 +131,6 @@ test_that("get_legis_periods returns correct structure for specific historical d
 })
 
 test_that("get_legis_periods handles edge case of non-existent period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods(legis_period = 999)
   }, fixture_subdir = "get_legis_periods")
@@ -162,8 +140,6 @@ test_that("get_legis_periods handles edge case of non-existent period", {
 })
 
 test_that("get_legis_periods name formatting is consistent", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods()
   }, fixture_subdir = "get_legis_periods")
@@ -186,8 +162,6 @@ test_that("get_legis_periods name formatting is consistent", {
 })
 
 test_that("get_legis_periods data is sorted by start date", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods()
   }, fixture_subdir = "get_legis_periods")
@@ -196,8 +170,6 @@ test_that("get_legis_periods data is sorted by start date", {
 })
 
 test_that("get_legis_periods handles string input for numeric periods", {
-  skip_on_cran()
-
   result_string <- run_api_call({
     get_legis_periods(legis_period = "27")
   }, fixture_subdir = "get_legis_periods")
@@ -210,8 +182,6 @@ test_that("get_legis_periods handles string input for numeric periods", {
 })
 
 test_that("get_legis_periods handles mixed input types", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_legis_periods(legis_period = c("26", "I", "PN"))
   }, fixture_subdir = "get_legis_periods")

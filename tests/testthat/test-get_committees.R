@@ -1,6 +1,4 @@
 test_that("get_committees returns valid data structure", {
-  skip_on_cran()
-
   x <- run_api_call({
     get_committees(
       institution = "NR",
@@ -119,8 +117,6 @@ test_that("get_committees warns for legislative periods before 20", {
 })
 
 test_that("get_committees works with different institutions", {
-  skip_on_cran()
-
   institutions <- c("NR", "BR")
 
   for (inst in institutions) {
@@ -139,8 +135,6 @@ test_that("get_committees works with different institutions", {
 })
 
 test_that("get_committees works with different parameter combinations", {
-  skip_on_cran()
-
   # Test permanent = TRUE
   x1 <- run_api_call({
     get_committees(
@@ -173,8 +167,6 @@ test_that("get_committees works with different parameter combinations", {
 })
 
 test_that("get_committees with search_string works", {
-  skip_on_cran()
-
   x <- run_api_call({
     get_committees(
       institution = "NR",
@@ -187,8 +179,6 @@ test_that("get_committees with search_string works", {
 })
 
 test_that("get_committees handles empty results gracefully", {
-  skip_on_cran()
-
   # Try a search that's likely to return no results
   x <- run_api_call({
     get_committees(
@@ -203,8 +193,6 @@ test_that("get_committees handles empty results gracefully", {
 })
 
 test_that("get_committees works with different legis_period types", {
-  skip_on_cran()
-
   # Test numeric
   x1 <- run_api_call({
     get_committees(
@@ -225,8 +213,6 @@ test_that("get_committees works with different legis_period types", {
 })
 
 test_that("get_committees returns identical results for different legis_period formats", {
-  skip_on_cran()
-
   # Get results with numeric input
   result_numeric <- run_api_call({
     get_committees(

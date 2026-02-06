@@ -1,6 +1,4 @@
 test_that("get_participation returns a data frame with expected columns", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_participation(
       topic = "Bildung",
@@ -82,8 +80,6 @@ test_that("get_participation requires item = SN when statement_type is specified
 })
 
 test_that("get_participation returns correct data for multiple legislative periods and item type", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_participation(
       legis_period = c(26, 27),
@@ -96,7 +92,6 @@ test_that("get_participation returns correct data for multiple legislative perio
 })
 
 test_that("get_participation returns data for RGES item type", {
-  skip_on_cran()
 
   result <- run_api_call({
     get_participation(item = "RGES", legis_period = 27)

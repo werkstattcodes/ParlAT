@@ -1,7 +1,6 @@
 # Tests that exercise the live Personen search endpoint of parlament.gv.at.
 # Supports both mocked and live API modes via run_api_call().
 
-skip_on_cran()
 skip_if_not_installed("stringr")
 
 test_that("get_persons returns expected columns for a known person", {

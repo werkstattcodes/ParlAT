@@ -3,8 +3,6 @@
 # Basic functionality tests
 
 test_that("get_transcripts returns data frame with correct number of sessions", {
-  skip_on_cran()
-
   # Nationalrat
   result_nr <- run_api_call({
     get_transcripts(
@@ -31,8 +29,6 @@ test_that("get_transcripts returns data frame with correct number of sessions", 
 })
 
 test_that("get_transcripts returns correct column names", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -59,8 +55,6 @@ test_that("get_transcripts returns correct column names", {
 })
 
 test_that("get_transcripts date column is properly formatted", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -75,8 +69,6 @@ test_that("get_transcripts date column is properly formatted", {
 # Legislative period filtering tests
 
 test_that("get_transcripts accepts numeric legislative period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -90,8 +82,6 @@ test_that("get_transcripts accepts numeric legislative period", {
 })
 
 test_that("get_transcripts accepts Roman numeral legislative period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = "XXVII",
@@ -105,8 +95,6 @@ test_that("get_transcripts accepts Roman numeral legislative period", {
 })
 
 test_that("get_transcripts accepts historical period abbreviations", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(legis_period = "PN", echo = FALSE)
   }, fixture_subdir = "get_transcripts")
@@ -115,8 +103,6 @@ test_that("get_transcripts accepts historical period abbreviations", {
 })
 
 test_that("get_transcripts filters correctly by legislative period", {
-  skip_on_cran()
-
   result_27 <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -140,8 +126,6 @@ test_that("get_transcripts filters correctly by legislative period", {
 })
 
 test_that("get_transcripts allows for multiple legislative periods", {
-  skip_on_cran()
-
   result_15_20 <- run_api_call({
     get_transcripts(
       legis_period = c(15, 20),
@@ -169,8 +153,6 @@ test_that("get_transcripts rejects invalid session type", {
 })
 
 test_that("get_transcripts filters correctly by session type", {
-  skip_on_cran()
-
   result_nr <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -191,8 +173,6 @@ test_that("get_transcripts filters correctly by session type", {
 })
 
 test_that("get_transcripts defaults to both NRSITZ and BRSITZ when session_type is NULL", {
-  skip_on_cran()
-
   # Query with NULL session_type (default)
   result_null <- run_api_call({
     get_transcripts(
@@ -235,8 +215,6 @@ test_that("get_transcripts defaults to both NRSITZ and BRSITZ when session_type 
 # Date filtering tests
 
 test_that("get_transcripts accepts date_start parameter", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -254,8 +232,6 @@ test_that("get_transcripts accepts date_start parameter", {
 })
 
 test_that("get_transcripts accepts only date_end parameter", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -273,8 +249,6 @@ test_that("get_transcripts accepts only date_end parameter", {
 })
 
 test_that("get_transcripts accepts both date_start and date_end", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -307,8 +281,6 @@ test_that("get_transcripts validates date format", {
 # Search string tests
 
 test_that("get_transcripts accepts search_string parameter", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -325,8 +297,6 @@ test_that("get_transcripts accepts search_string parameter", {
 })
 
 test_that("get_transcripts with search_string returns fewer results", {
-  skip_on_cran()
-
   result_all <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -351,8 +321,6 @@ test_that("get_transcripts with search_string returns fewer results", {
 # URL extraction tests
 
 test_that("get_transcripts extracts HTML and PDF URLs correctly", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -384,8 +352,6 @@ test_that("get_transcripts extracts HTML and PDF URLs correctly", {
 # Echo parameter tests
 
 test_that("get_transcripts respects echo parameter", {
-  skip_on_cran()
-
   # With echo = FALSE, should not print
   expect_silent(
     run_api_call({
@@ -401,8 +367,6 @@ test_that("get_transcripts respects echo parameter", {
 # Output sorting tests
 
 test_that("get_transcripts returns data sorted by date", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,
@@ -420,8 +384,6 @@ test_that("get_transcripts returns data sorted by date", {
 # Combined filtering tests
 
 test_that("get_transcripts handles multiple filters simultaneously", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       session_type = "NRSITZ",
@@ -438,8 +400,6 @@ test_that("get_transcripts handles multiple filters simultaneously", {
 # Edge cases
 
 test_that("get_transcripts handles NULL parameters gracefully", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       search_string = NULL,
@@ -461,8 +421,6 @@ test_that("get_transcripts handles NULL parameters gracefully", {
 })
 
 test_that("get_transcripts returns tibble (not just data.frame)", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_transcripts(
       legis_period = 27,

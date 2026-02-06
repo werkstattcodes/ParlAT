@@ -1,6 +1,4 @@
 test_that("get_mps returns correct number of female MPs for 27th legislative period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = 27, institution = "NR", gender = "female")
   }, fixture_subdir = "get_mps")
@@ -11,8 +9,6 @@ test_that("get_mps returns correct number of female MPs for 27th legislative per
 
 # Test gender = "male"
 test_that("get_mps accepts male gender filter", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = 27, institution = "NR", gender = "male")
   }, fixture_subdir = "get_mps")
@@ -25,8 +21,6 @@ test_that("get_mps accepts male gender filter", {
 
 # Test gender = "all" (default)
 test_that("get_mps accepts 'all' gender filter", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = 27, institution = "NR", gender = "all")
   }, fixture_subdir = "get_mps")
@@ -47,8 +41,6 @@ test_that("get_mps validates gender input", {
 
 # Test gender filtering works correctly
 test_that("get_mps gender filtering returns different results", {
-  skip_on_cran()
-
   result_male <- run_api_call({
     get_mps(legis_period = 27, institution = "NR", gender = "male")
   }, fixture_subdir = "get_mps")
@@ -75,8 +67,6 @@ test_that("get_mps gender filtering returns different results", {
 
 # Test gender recoding works (W -> female, M -> male)
 test_that("get_mps correctly recodes gender values", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = 27, institution = "NR")
   }, fixture_subdir = "get_mps")
@@ -88,8 +78,6 @@ test_that("get_mps correctly recodes gender values", {
 
 # Test gender filtering with date parameter
 test_that("get_mps accepts gender filter with date parameter", {
-  skip_on_cran()
-
   result_female <- run_api_call({
     get_mps(
       date = "01.01.2020",
@@ -127,8 +115,6 @@ test_that("get_mps accepts gender filter with date parameter", {
 # Tests for legis_period argument
 
 test_that("get_mps accepts numeric legis_period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = 27, institution = "NR")
   }, fixture_subdir = "get_mps")
@@ -138,8 +124,6 @@ test_that("get_mps accepts numeric legis_period", {
 })
 
 test_that("get_mps accepts Roman numeral legis_period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = "XXVII", institution = "NR")
   }, fixture_subdir = "get_mps")
@@ -149,8 +133,6 @@ test_that("get_mps accepts Roman numeral legis_period", {
 })
 
 test_that("get_mps accepts historical period abbreviations", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = "PN", institution = "PN")
   }, fixture_subdir = "get_mps")
@@ -160,8 +142,6 @@ test_that("get_mps accepts historical period abbreviations", {
 })
 
 test_that("get_mps accepts multiple legis_periods", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = c(26, 27), institution = "NR")
   }, fixture_subdir = "get_mps")
@@ -171,8 +151,6 @@ test_that("get_mps accepts multiple legis_periods", {
 })
 
 test_that("get_mps filters correctly by legis_period", {
-  skip_on_cran()
-
   # Test that results are actually filtered by period
   result_27 <- run_api_call({
     get_mps(legis_period = 27, institution = "NR")
@@ -200,8 +178,6 @@ test_that("get_mps validates legis_period input", {
 })
 
 test_that("get_mps handles mixed legis_period types", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(legis_period = c("26", "XXVII"), institution = "NR")
   }, fixture_subdir = "get_mps")
@@ -211,8 +187,6 @@ test_that("get_mps handles mixed legis_period types", {
 })
 
 test_that("get_mps returns empty result for non-existent legis_period", {
-  skip_on_cran()
-
   # This should not error but return empty results
   result <- run_api_call({
     get_mps(legis_period = character(0), institution = "NR")
@@ -243,8 +217,6 @@ test_that("get_mps validates PN legis_period requires PN institution", {
 })
 
 test_that("get_mps allows PN institution with PN legis_period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(institution = "PN", legis_period = "PN")
   }, fixture_subdir = "get_mps")
@@ -255,8 +227,6 @@ test_that("get_mps allows PN institution with PN legis_period", {
 
 # check specific number
 test_that("Check specific number: get_mps returns correct number of KPÖ candidates in 5 legis period", {
-  skip_on_cran()
-
   result <- run_api_call({
     get_mps(institution = "NR", legis_period = "5", party = "KPÖ")
   }, fixture_subdir = "get_mps")

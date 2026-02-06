@@ -1,6 +1,4 @@
 test_that("get_plenary_sessions returns valid data structure", {
-  skip_on_cran()
-
   x <- run_api_call({
     get_plenary_sessions(
       institution = "NR",
@@ -33,8 +31,6 @@ test_that("get_plenary_sessions returns valid data structure", {
 })
 
 test_that("get_plenary_sessions handles agenda_url columns correctly", {
-  skip_on_cran()
-
   x <- run_api_call({
     get_plenary_sessions(
       institution = "NR",
@@ -68,8 +64,6 @@ test_that("get_plenary_sessions handles agenda_url columns correctly", {
 })
 
 test_that("get_plenary_sessions adds URL prefix to all url columns", {
-  skip_on_cran()
-
   # Test sessions mode
   x_sessions <- run_api_call({
     get_plenary_sessions(
@@ -136,8 +130,6 @@ test_that("get_plenary_sessions adds URL prefix to all url columns", {
 
 # Test all combinations of institution and session_and_activities
 test_that("get_plenary_sessions works with all BR and NR institution combinations", {
-  skip_on_cran()
-
   institutions <- c("BR", "NR")
   session_modes <- c("sessions", "submitted", "held")
 
@@ -169,8 +161,6 @@ test_that("get_plenary_sessions works with all BR and NR institution combination
 })
 
 test_that("get_plenary_sessions works with submitted parameter values", {
-  skip_on_cran()
-
   submitted_values <- c("All", "AA", "J")
 
   for (sub_val in submitted_values) {
@@ -196,8 +186,6 @@ test_that("get_plenary_sessions works with submitted parameter values", {
 })
 
 test_that("get_plenary_sessions works with held parameter values", {
-  skip_on_cran()
-
   held_values <- c("All", "AS", "FS")
 
   for (held_val in held_values) {
@@ -223,8 +211,6 @@ test_that("get_plenary_sessions works with held parameter values", {
 })
 
 test_that("get_plenary_sessions works with BV institution", {
-  skip_on_cran()
-
   x <- run_api_call({
     get_plenary_sessions(
       institution = "BV",
@@ -237,8 +223,6 @@ test_that("get_plenary_sessions works with BV institution", {
 })
 
 test_that("get_plenary_sessions BV does not include legis_period column", {
-  skip_on_cran()
-
   x <- run_api_call({
     get_plenary_sessions(
       institution = "BV",
@@ -335,8 +319,6 @@ test_that("get_plenary_sessions validates parameter combinations", {
 })
 
 test_that("get_plenary_sessions handles multiple legislative periods", {
-  skip_on_cran()
-
   x <- run_api_call({
     get_plenary_sessions(
       institution = "NR",
@@ -354,8 +336,6 @@ test_that("get_plenary_sessions handles multiple legislative periods", {
 
 
 test_that("get_plenary_sessions handles NULL legislative period", {
-  skip_on_cran()
-
   # This should get all periods from 20 onwards - limit to recent ones for testing
   x <- run_api_call({
     get_plenary_sessions(
