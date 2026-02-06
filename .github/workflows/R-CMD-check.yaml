@@ -5,9 +5,9 @@
 # Uses mocked API tests (default) for fast, reliable CI.
 on:
   push:
-    branches: [main, master, dev]
+    branches: [main]
   pull_request:
-    branches: [main, master, dev]
+    branches: [main]
 
 name: R-CMD-check
 
