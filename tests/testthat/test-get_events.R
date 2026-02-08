@@ -41,11 +41,12 @@ test_that("legis_period mutual exclusivity with dates works", {
 })
 
 test_that("get_events returns correct data structure", {
-  skip_on_cran()
-
-  res <- run_api_call({
-    get_events(legis_period = 28, institution = "NR")
-  }, fixture_subdir = "get_events")
+  res <- run_api_call(
+    {
+      get_events(legis_period = 27, institution = "NR")
+    },
+    fixture_subdir = "get_events"
+  )
 
   # Check if result is a tibble/data.frame
   expect_s3_class(res, "data.frame")
@@ -53,13 +54,16 @@ test_that("get_events returns correct data structure", {
 
 test_that("get_events handles empty results gracefully", {
   # Search for a date range in the far future where no events should exist
-  res <- run_api_call({
-    get_events(
-      date_start = "01-01-2099",
-      date_end = "31-01-2099",
-      institution = "NR"
-    )
-  }, fixture_subdir = "get_events")
+  res <- run_api_call(
+    {
+      get_events(
+        date_start = "01-01-2099",
+        date_end = "31-01-2099",
+        institution = "NR"
+      )
+    },
+    fixture_subdir = "get_events"
+  )
 
   # Expecting NULL or 0-row tibble depending on implementation
   if (is.null(res)) {
@@ -73,15 +77,18 @@ test_that("get_events handles empty results gracefully", {
 })
 
 test_that("get_events works with complex parameter combinations", {
-  res <- run_api_call({
-    get_events(
-      institution = "NR",
-      date_start = "01-01-2024",
-      date_end = "31-03-2024",
-      event_type = "Plenarsitzung",
-      location = "Nationalratssaal"
-    )
-  }, fixture_subdir = "get_events")
+  res <- run_api_call(
+    {
+      get_events(
+        institution = "NR",
+        date_start = "01-01-2024",
+        date_end = "31-03-2024",
+        event_type = "Plenarsitzung",
+        location = "Nationalratssaal"
+      )
+    },
+    fixture_subdir = "get_events"
+  )
 
   expect_s3_class(res, "data.frame")
 
