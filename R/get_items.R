@@ -599,7 +599,7 @@ get_items <- function(
       )
     }
     date_start <- format(
-      as.POSIXct(date_start_parsed),
+      as.POSIXct(date_start_parsed, tz = "CET"),
       format = "%Y-%m-%dT%H:%M:%S.000Z",
       tz = "CET"
     )
@@ -615,7 +615,7 @@ get_items <- function(
       )
     }
     date_end <- format(
-      as.POSIXct(date_end_parsed),
+      as.POSIXct(date_end_parsed, tz = "CET"),
       format = "%Y-%m-%dT%H:%M:%S.000Z",
       tz = "CET"
     )

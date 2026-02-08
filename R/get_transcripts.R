@@ -125,7 +125,7 @@ get_transcripts <- function(
             .var.name = "date_start must be a valid date (day-month-year order)"
         )
         date_start <- format(
-            as.POSIXct(parsed_date_start),
+            as.POSIXct(parsed_date_start, tz = "CET"),
             format = "%Y-%m-%dT%H:%M:%S.000Z",
             tz = "CET"
         )
@@ -141,7 +141,7 @@ get_transcripts <- function(
             .var.name = "date_end must be a valid date (day-month-year order)"
         )
         date_end <- format(
-            as.POSIXct(parsed_date_end),
+            as.POSIXct(parsed_date_end, tz = "CET"),
             format = "%Y-%m-%dT%H:%M:%S.000Z",
             tz = "CET"
         )
