@@ -20,3 +20,4 @@ renv/staging/
 .github/copilot-instructions.md
 .github/copilot-instructions.md
 CLAUDE.md
+test_results.csv
