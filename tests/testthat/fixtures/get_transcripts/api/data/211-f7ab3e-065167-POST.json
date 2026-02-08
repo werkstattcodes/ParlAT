@@ -1,14 +1,14 @@
 {
     "pages": 50,
-    "lastSync": "2026-02-08 16:53:53.0",
+    "lastSync": "2026-02-08 22:41:07.0",
     "count": 50,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -68,8 +68,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "listeId": 211,
             "label": "Zitation",
             "sortable": "1",
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "03.12.2015",
-            "/gegenstand/BR/BRSITZ/848",
+            "20.12.2016",
+            "/gegenstand/BR/BRSITZ/862",
             "XXV",
             "BRSITZ",
-            848,
-            "848. Sitzung (848/BRSITZ/2015)",
-            "848/BRSITZ/2015",
+            862,
+            "862. Sitzung (862/BRSITZ/2016)",
+            "862/BRSITZ/2016",
             "Plenarsitzung - BR",
             "Plenar-Sitzung",
-            "2015-12-03T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/848/fname_561337.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/848/fnameorig_561337.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2016-12-20T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/862/fname_627794.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/862/fnameorig_627794.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "BRSITZ",
-            2520702,
+            2520635,
             "BRSITZ",
             null,
-            "2580595"
+            "2578703"
         ]
     ]
 }

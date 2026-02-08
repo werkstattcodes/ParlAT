@@ -32,8 +32,8 @@
         {
             "feldId": 112,
             "hidden": false,
-            "rnr": 4,
             "sort_rnr": 10,
+            "rnr": 4,
             "listeId": 251,
             "label": "Sitzung",
             "sortable": "1",
