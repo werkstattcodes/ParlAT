@@ -513,7 +513,7 @@ get_mps <- function(
   )
 
   if (!is.null(party)) {
-    search_OR <- glue::glue("({party})") %>% stringr::str_c(., collapse = "|")
+    search_OR <- glue::glue("({party})") %>% stringr::str_c(collapse = "|")
     party <- stringr::str_subset(vec_parties, stringr::regex(search_OR))
   }
 
@@ -698,10 +698,10 @@ get_mps <- function(
   li_res <- res %>%
     httr2::resp_body_json() %>%
     purrr::pluck("rows") %>%
-    purrr::map(., \(x) x[[8]])
+    purrr::map(\(x) x[[8]])
 
   df_res <- li_res %>%
-    purrr::map(., fn_make_tibble) %>%
+    purrr::map(fn_make_tibble) %>%
     purrr::list_rbind()
 
   # PRINT ECHO
@@ -710,7 +710,7 @@ get_mps <- function(
     print(body_params)
     # print url to results / transparency reasons / add search string parameter
     body_params_li <- jsonlite::fromJSON(body_params) %>%
-      c(., "search" = search_string)
+      c("search" = search_string)
 
     query_string <- purrr::imap(
       body_params_li,
@@ -975,7 +975,7 @@ get_mps <- function(
       purrr::list_rbind()
 
     df_res <- df_res %>%
-      dplyr::left_join(., df_names, by = "pad_intern") %>%
+      dplyr::left_join(df_names, by = "pad_intern") %>%
       dplyr::relocate("name", .after = "pad_intern")
     ##############################
 

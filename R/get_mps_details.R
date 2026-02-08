@@ -706,7 +706,6 @@ get_mps_details_activities <- function(
         dplyr::mutate(
             details_html = stringr::str_squish(.data$details_html) %>%
                 stringr::str_remove_all(
-                    .,
                     stringr::regex("<br />", literal = TRUE)
                 )
         ) %>%
@@ -896,7 +895,6 @@ get_mps_details_committees <- function(
         legis_period_input <- df_legis_period_input %>%
             dplyr::pull("legis_period_name") %>%
             stringr::str_replace(
-                .,
                 stringr::regex("\\bGP$"),
                 "Gesetzgebungsperiode des NR"
             )
