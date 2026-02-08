@@ -1,17 +1,23 @@
 test_that("get_mps returns correct number of female MPs for 27th legislative period", {
-  result <- run_api_call({
-    get_mps(legis_period = 27, institution = "NR", gender = "female")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = 27, institution = "NR", gender = "female")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
-  expect_row_count(nrow(result), 88)
+  expect_equal(nrow(result), 88)
 })
 
 # Test gender = "male"
 test_that("get_mps accepts male gender filter", {
-  result <- run_api_call({
-    get_mps(legis_period = 27, institution = "NR", gender = "male")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = 27, institution = "NR", gender = "male")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
@@ -21,9 +27,12 @@ test_that("get_mps accepts male gender filter", {
 
 # Test gender = "all" (default)
 test_that("get_mps accepts 'all' gender filter", {
-  result <- run_api_call({
-    get_mps(legis_period = 27, institution = "NR", gender = "all")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = 27, institution = "NR", gender = "all")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
@@ -41,21 +50,30 @@ test_that("get_mps validates gender input", {
 
 # Test gender filtering works correctly
 test_that("get_mps gender filtering returns different results", {
-  result_male <- run_api_call({
-    get_mps(legis_period = 27, institution = "NR", gender = "male")
-  }, fixture_subdir = "get_mps")
+  result_male <- run_api_call(
+    {
+      get_mps(legis_period = 27, institution = "NR", gender = "male")
+    },
+    fixture_subdir = "get_mps"
+  )
 
-  result_female <- run_api_call({
-    get_mps(
-      legis_period = 27,
-      institution = "NR",
-      gender = "female"
-    )
-  }, fixture_subdir = "get_mps")
+  result_female <- run_api_call(
+    {
+      get_mps(
+        legis_period = 27,
+        institution = "NR",
+        gender = "female"
+      )
+    },
+    fixture_subdir = "get_mps"
+  )
 
-  result_all <- run_api_call({
-    get_mps(legis_period = 27, institution = "NR", gender = "all")
-  }, fixture_subdir = "get_mps")
+  result_all <- run_api_call(
+    {
+      get_mps(legis_period = 27, institution = "NR", gender = "all")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   # Male and female results should be different
   expect_false(identical(result_male, result_female))
@@ -67,9 +85,12 @@ test_that("get_mps gender filtering returns different results", {
 
 # Test gender recoding works (W -> female, M -> male)
 test_that("get_mps correctly recodes gender values", {
-  result <- run_api_call({
-    get_mps(legis_period = 27, institution = "NR")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = 27, institution = "NR")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   # Check that no raw W or M values remain in output
   expect_false(any(result$gender %in% c("W", "M")))
@@ -78,25 +99,34 @@ test_that("get_mps correctly recodes gender values", {
 
 # Test gender filtering with date parameter
 test_that("get_mps accepts gender filter with date parameter", {
-  result_female <- run_api_call({
-    get_mps(
-      date = "01.01.2020",
-      institution = "NR",
-      gender = "female"
-    )
-  }, fixture_subdir = "get_mps")
+  result_female <- run_api_call(
+    {
+      get_mps(
+        date = "01.01.2020",
+        institution = "NR",
+        gender = "female"
+      )
+    },
+    fixture_subdir = "get_mps"
+  )
 
-  result_male <- run_api_call({
-    get_mps(
-      date = "01.01.2020",
-      institution = "NR",
-      gender = "male"
-    )
-  }, fixture_subdir = "get_mps")
+  result_male <- run_api_call(
+    {
+      get_mps(
+        date = "01.01.2020",
+        institution = "NR",
+        gender = "male"
+      )
+    },
+    fixture_subdir = "get_mps"
+  )
 
-  result_all <- run_api_call({
-    get_mps(date = "01.01.2020", institution = "NR", gender = "all")
-  }, fixture_subdir = "get_mps")
+  result_all <- run_api_call(
+    {
+      get_mps(date = "01.01.2020", institution = "NR", gender = "all")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result_female, "data.frame")
   expect_s3_class(result_male, "data.frame")
@@ -106,7 +136,7 @@ test_that("get_mps accepts gender filter with date parameter", {
   expect_true(all(result_female$gender == "female"))
   expect_true(all(result_male$gender == "male"))
   expect_true(all(unique(result_all$gender) %in% c("male", "female")))
-  expect_row_count(nrow(result_all), 183)
+  expect_equal(nrow(result_all), 183)
 
   # Results should be different
   expect_false(identical(result_female, result_male))
@@ -115,36 +145,48 @@ test_that("get_mps accepts gender filter with date parameter", {
 # Tests for legis_period argument
 
 test_that("get_mps accepts numeric legis_period", {
-  result <- run_api_call({
-    get_mps(legis_period = 27, institution = "NR")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = 27, institution = "NR")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
 })
 
 test_that("get_mps accepts Roman numeral legis_period", {
-  result <- run_api_call({
-    get_mps(legis_period = "XXVII", institution = "NR")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = "XXVII", institution = "NR")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
 })
 
 test_that("get_mps accepts historical period abbreviations", {
-  result <- run_api_call({
-    get_mps(legis_period = "PN", institution = "PN")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = "PN", institution = "PN")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
 })
 
 test_that("get_mps accepts multiple legis_periods", {
-  result <- run_api_call({
-    get_mps(legis_period = c(26, 27), institution = "NR")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = c(26, 27), institution = "NR")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
@@ -152,13 +194,19 @@ test_that("get_mps accepts multiple legis_periods", {
 
 test_that("get_mps filters correctly by legis_period", {
   # Test that results are actually filtered by period
-  result_27 <- run_api_call({
-    get_mps(legis_period = 27, institution = "NR")
-  }, fixture_subdir = "get_mps")
+  result_27 <- run_api_call(
+    {
+      get_mps(legis_period = 27, institution = "NR")
+    },
+    fixture_subdir = "get_mps"
+  )
 
-  result_26 <- run_api_call({
-    get_mps(legis_period = 26, institution = "NR")
-  }, fixture_subdir = "get_mps")
+  result_26 <- run_api_call(
+    {
+      get_mps(legis_period = 26, institution = "NR")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_false(identical(result_27, result_26))
 })
@@ -178,9 +226,12 @@ test_that("get_mps validates legis_period input", {
 })
 
 test_that("get_mps handles mixed legis_period types", {
-  result <- run_api_call({
-    get_mps(legis_period = c("26", "XXVII"), institution = "NR")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = c("26", "XXVII"), institution = "NR")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
@@ -188,9 +239,12 @@ test_that("get_mps handles mixed legis_period types", {
 
 test_that("get_mps returns empty result for non-existent legis_period", {
   # This should not error but return empty results
-  result <- run_api_call({
-    get_mps(legis_period = character(0), institution = "NR")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(legis_period = character(0), institution = "NR")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
 })
@@ -217,9 +271,12 @@ test_that("get_mps validates PN legis_period requires PN institution", {
 })
 
 test_that("get_mps allows PN institution with PN legis_period", {
-  result <- run_api_call({
-    get_mps(institution = "PN", legis_period = "PN")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(institution = "PN", legis_period = "PN")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
@@ -227,12 +284,15 @@ test_that("get_mps allows PN institution with PN legis_period", {
 
 # check specific number
 test_that("Check specific number: get_mps returns correct number of KPÖ candidates in 5 legis period", {
-  result <- run_api_call({
-    get_mps(institution = "NR", legis_period = "5", party = "KPÖ")
-  }, fixture_subdir = "get_mps")
+  result <- run_api_call(
+    {
+      get_mps(institution = "NR", legis_period = "5", party = "KPÖ")
+    },
+    fixture_subdir = "get_mps"
+  )
 
   expect_s3_class(result, "data.frame")
-  expect_row_count(nrow(result), 4)
+  expect_equal(nrow(result), 4)
 })
 
 # check consequence of name change on row numbers
@@ -243,100 +303,100 @@ test_that("Check whether name changes lead to duplicate entries within the relev
   skip_if_offline()
 
   df_name_changes_mps_legis_period <- tibble::tribble(
-    ~pad_intern,
-    ~legis_period,
-    41L,
-    21,
-    76L,
-    21,
-    118L,
-    22,
-    192L,
-    15,
-    547L,
-    17,
-    586L,
-    16,
-    715L,
-    18,
-    717L,
-    17,
-    1130L,
-    17,
-    1174L,
-    22,
-    1174L,
-    18,
-    1345L,
-    16,
-    1613L,
-    22,
-    1688L,
-    19,
-    1846L,
-    12,
-    2018L,
-    23,
-    2834L,
-    21,
-    2869L,
-    18,
-    2872L,
-    22,
-    2872L,
-    20,
-    3130L,
-    19,
-    3133L,
-    27,
-    3488L,
-    27,
-    3727L,
-    28,
-    3727L,
-    27,
-    5096L,
-    21,
-    5647L,
-    27,
-    7569L,
-    27,
-    8184L,
-    21,
-    8238L,
-    21,
-    8240L,
-    22,
-    8245L,
-    22,
-    14693L,
-    26,
-    14757L,
-    24,
-    20236L,
-    27,
-    21150L,
-    24,
-    30352L,
-    24,
-    35468L,
-    25,
-    35496L,
-    23,
-    44127L,
-    27,
-    51559L,
-    25,
-    59247L,
-    24,
-    78585L,
-    25,
-    83111L,
-    25,
-    83124L,
-    25,
-    87146L,
-    26
+    ~pad_intern   ,
+    ~legis_period ,
+       41L        ,
+       21         ,
+       76L        ,
+       21         ,
+      118L        ,
+       22         ,
+      192L        ,
+       15         ,
+      547L        ,
+       17         ,
+      586L        ,
+       16         ,
+      715L        ,
+       18         ,
+      717L        ,
+       17         ,
+     1130L        ,
+       17         ,
+     1174L        ,
+       22         ,
+     1174L        ,
+       18         ,
+     1345L        ,
+       16         ,
+     1613L        ,
+       22         ,
+     1688L        ,
+       19         ,
+     1846L        ,
+       12         ,
+     2018L        ,
+       23         ,
+     2834L        ,
+       21         ,
+     2869L        ,
+       18         ,
+     2872L        ,
+       22         ,
+     2872L        ,
+       20         ,
+     3130L        ,
+       19         ,
+     3133L        ,
+       27         ,
+     3488L        ,
+       27         ,
+     3727L        ,
+       28         ,
+     3727L        ,
+       27         ,
+     5096L        ,
+       21         ,
+     5647L        ,
+       27         ,
+     7569L        ,
+       27         ,
+     8184L        ,
+       21         ,
+     8238L        ,
+       21         ,
+     8240L        ,
+       22         ,
+     8245L        ,
+       22         ,
+    14693L        ,
+       26         ,
+    14757L        ,
+       24         ,
+    20236L        ,
+       27         ,
+    21150L        ,
+       24         ,
+    30352L        ,
+       24         ,
+    35468L        ,
+       25         ,
+    35496L        ,
+       23         ,
+    44127L        ,
+       27         ,
+    51559L        ,
+       25         ,
+    59247L        ,
+       24         ,
+    78585L        ,
+       25         ,
+    83111L        ,
+       25         ,
+    83124L        ,
+       25         ,
+    87146L        ,
+       26
   )
 
   vec_periods <- df_name_changes_mps_legis_period |>

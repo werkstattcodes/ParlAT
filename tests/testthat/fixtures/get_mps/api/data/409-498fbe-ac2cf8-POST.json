@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-08 14:51:07.0",
+    "lastSync": "2026-02-08 15:50:43.0",
     "count": 208,
     "header": [
         {
@@ -33599,6 +33599,168 @@
         [
             "Wagner Franz",
             "PN",
+            652039,
+            "M",
+            "Männlich",
+            "PN",
+            "[\"AHF300\",\"CSP\"]",
+            {
+                "zit": "Franz Wagner",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+                "item_type": "Biogr",
+                "frak": [
+                    "AHF300",
+                    "CSP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "PN"
+                ],
+                "nr_gp_code": "PN",
+                "uri": "/person/1385",
+                "mandate_detail": [
+                    {
+                        "wahlpartei_code": "CSP",
+                        "fraktionscode": "C",
+                        "gp_von": "1918-10-21T00:00:00",
+                        "wahlpartei_full_txt": "Christlichsoziale Partei (CSP)",
+                        "gp_code": "PN",
+                        "mandat_von": "21.10.1918",
+                        "gremium_name": "Provisorische Nationalversammlung",
+                        "wahlpartei_txt": "Christlichsoziale Partei",
+                        "gp_text_full_short": "21.10.1918 - 16.02.1919: Provisorische Nationalversammlung",
+                        "mand_code": "PN",
+                        "wahlpartei_sort": "Christlichsoziale Partei",
+                        "mandat_bis": "16.02.1919",
+                        "fraktion": "Christlichsoziale Vereinigung deutscher Abgeordneter"
+                    }
+                ],
+                "name_nvg": "Wagner Franz",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "PN",
+                            "gremium": "PN",
+                            "funktion_von": "21.10.1918",
+                            "wahlpartei_text": "Christlichsoziale Partei",
+                            "mandatVon": "21.10.1918",
+                            "zeitraum": "21.10.1918-16.02.1919",
+                            "bez": "Mitglied der Prov. Nationalversammlung, Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
+                            "mandat": "Mitglied der Prov. Nationalversammlung",
+                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
+                            "mandatBis": "16.02.1919",
+                            "funktion_bis": "16.02.1919",
+                            "wahlpartei": "CSP",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied der Prov. Nationalversammlung"
+                        },
+                        {
+                            "funktion": "AH",
+                            "gremium": "AH",
+                            "funktion_von": "30.05.1917",
+                            "wahlpartei_text": "Christlichsozial",
+                            "mandatVon": "30.05.1917",
+                            "wahlkreis": "Kronland: ",
+                            "zeitraum": "30.05.1917-12.11.1918",
+                            "bez": "Mitglied des Abgeordnetenhauses (XXII. Session), Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
+                            "mandat": "Mitglied des Abgeordnetenhauses",
+                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
+                            "mandatBis": "12.11.1918",
+                            "funktion_bis": "12.11.1918",
+                            "wahlpartei": "AHF300",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied des Abgeordnetenhauses"
+                        },
+                        {
+                            "funktion": "AH",
+                            "gremium": "AH",
+                            "funktion_von": "17.07.1911",
+                            "wahlpartei_text": "Christlichsozial",
+                            "mandatVon": "17.07.1911",
+                            "wahlkreis": "Kronland: ",
+                            "zeitraum": "17.07.1911-25.07.1914",
+                            "bez": "Mitglied des Abgeordnetenhauses (XXI. Session), Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
+                            "mandat": "Mitglied des Abgeordnetenhauses",
+                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
+                            "mandatBis": "25.07.1914",
+                            "funktion_bis": "25.07.1914",
+                            "wahlpartei": "AHF300",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied des Abgeordnetenhauses"
+                        },
+                        {
+                            "funktion": "AH",
+                            "gremium": "AH",
+                            "funktion_von": "20.10.1909",
+                            "wahlpartei_text": "Christlichsozial",
+                            "mandatVon": "20.10.1909",
+                            "wahlkreis": "Kronland: ",
+                            "zeitraum": "20.10.1909-20.03.1911",
+                            "bez": "Mitglied des Abgeordnetenhauses (XX. Session), Christlichsoziale Vereinigung (Christlichsozial)",
+                            "mandat": "Mitglied des Abgeordnetenhauses",
+                            "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
+                            "mandatBis": "20.03.1911",
+                            "funktion_bis": "20.03.1911",
+                            "wahlpartei": "AHF300",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied des Abgeordnetenhauses"
+                        },
+                        {
+                            "funktion": "AH",
+                            "gremium": "AH",
+                            "funktion_von": "10.03.1909",
+                            "wahlpartei_text": "Christlichsozial",
+                            "mandatVon": "10.03.1909",
+                            "wahlkreis": "Kronland: ",
+                            "zeitraum": "10.03.1909-11.07.1909",
+                            "bez": "Mitglied des Abgeordnetenhauses (XIX. Session), Christlichsoziale Vereinigung (Christlichsozial)",
+                            "mandat": "Mitglied des Abgeordnetenhauses",
+                            "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
+                            "mandatBis": "11.07.1909",
+                            "funktion_bis": "11.07.1909",
+                            "wahlpartei": "AHF300",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied des Abgeordnetenhauses"
+                        },
+                        {
+                            "funktion": "AH",
+                            "gremium": "AH",
+                            "funktion_von": "17.06.1907",
+                            "wahlpartei_text": "Christlichsozial",
+                            "mandatVon": "17.06.1907",
+                            "wahlkreis": "Kronland: ",
+                            "zeitraum": "17.06.1907-05.02.1909",
+                            "bez": "Mitglied des Abgeordnetenhauses (XVIII. Session), Christlichsoziale Vereinigung (Christlichsozial)",
+                            "mandat": "Mitglied des Abgeordnetenhauses",
+                            "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
+                            "mandatBis": "05.02.1909",
+                            "funktion_bis": "05.02.1909",
+                            "wahlpartei": "AHF300",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied des Abgeordnetenhauses"
+                        }
+                    ]
+                },
+                "pad_intern": 1385,
+                "openGraph": {
+                    "description": "Mitglied der Prov. Nationalversammlung, Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
+                    "image": "/static/img/Foto_Platzhalter_Quadrat.svg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Franz",
+            "Wagner",
+            null,
+            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
+            "/person/1385"
+        ],
+        [
+            "Wagner Franz",
+            "PN",
             652045,
             "M",
             "Männlich",
@@ -33758,168 +33920,6 @@
             "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
             null,
             "/person/1388"
-        ],
-        [
-            "Wagner Franz",
-            "PN",
-            652039,
-            "M",
-            "Männlich",
-            "PN",
-            "[\"AHF300\",\"CSP\"]",
-            {
-                "zit": "Franz Wagner",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-                "item_type": "Biogr",
-                "frak": [
-                    "AHF300",
-                    "CSP"
-                ],
-                "geschlecht": "M",
-                "gp_code": [
-                    "PN"
-                ],
-                "nr_gp_code": "PN",
-                "uri": "/person/1385",
-                "mandate_detail": [
-                    {
-                        "wahlpartei_code": "CSP",
-                        "fraktionscode": "C",
-                        "gp_von": "1918-10-21T00:00:00",
-                        "wahlpartei_full_txt": "Christlichsoziale Partei (CSP)",
-                        "gp_code": "PN",
-                        "mandat_von": "21.10.1918",
-                        "gremium_name": "Provisorische Nationalversammlung",
-                        "wahlpartei_txt": "Christlichsoziale Partei",
-                        "gp_text_full_short": "21.10.1918 - 16.02.1919: Provisorische Nationalversammlung",
-                        "mand_code": "PN",
-                        "wahlpartei_sort": "Christlichsoziale Partei",
-                        "mandat_bis": "16.02.1919",
-                        "fraktion": "Christlichsoziale Vereinigung deutscher Abgeordneter"
-                    }
-                ],
-                "name_nvg": "Wagner Franz",
-                "mandate_kompakt": {
-                    "bez": "Politische Mandate/Funktionen",
-                    "mandate": [
-                        {
-                            "funktion": "PN",
-                            "gremium": "PN",
-                            "funktion_von": "21.10.1918",
-                            "wahlpartei_text": "Christlichsoziale Partei",
-                            "mandatVon": "21.10.1918",
-                            "zeitraum": "21.10.1918-16.02.1919",
-                            "bez": "Mitglied der Prov. Nationalversammlung, Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
-                            "mandat": "Mitglied der Prov. Nationalversammlung",
-                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
-                            "mandatBis": "16.02.1919",
-                            "funktion_bis": "16.02.1919",
-                            "wahlpartei": "CSP",
-                            "aktiv": false,
-                            "funktion_text": "Mitglied der Prov. Nationalversammlung"
-                        },
-                        {
-                            "funktion": "AH",
-                            "gremium": "AH",
-                            "funktion_von": "30.05.1917",
-                            "wahlpartei_text": "Christlichsozial",
-                            "mandatVon": "30.05.1917",
-                            "wahlkreis": "Kronland: ",
-                            "zeitraum": "30.05.1917-12.11.1918",
-                            "bez": "Mitglied des Abgeordnetenhauses (XXII. Session), Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
-                            "mandat": "Mitglied des Abgeordnetenhauses",
-                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
-                            "mandatBis": "12.11.1918",
-                            "funktion_bis": "12.11.1918",
-                            "wahlpartei": "AHF300",
-                            "aktiv": false,
-                            "funktion_text": "Mitglied des Abgeordnetenhauses"
-                        },
-                        {
-                            "funktion": "AH",
-                            "gremium": "AH",
-                            "funktion_von": "17.07.1911",
-                            "wahlpartei_text": "Christlichsozial",
-                            "mandatVon": "17.07.1911",
-                            "wahlkreis": "Kronland: ",
-                            "zeitraum": "17.07.1911-25.07.1914",
-                            "bez": "Mitglied des Abgeordnetenhauses (XXI. Session), Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
-                            "mandat": "Mitglied des Abgeordnetenhauses",
-                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
-                            "mandatBis": "25.07.1914",
-                            "funktion_bis": "25.07.1914",
-                            "wahlpartei": "AHF300",
-                            "aktiv": false,
-                            "funktion_text": "Mitglied des Abgeordnetenhauses"
-                        },
-                        {
-                            "funktion": "AH",
-                            "gremium": "AH",
-                            "funktion_von": "20.10.1909",
-                            "wahlpartei_text": "Christlichsozial",
-                            "mandatVon": "20.10.1909",
-                            "wahlkreis": "Kronland: ",
-                            "zeitraum": "20.10.1909-20.03.1911",
-                            "bez": "Mitglied des Abgeordnetenhauses (XX. Session), Christlichsoziale Vereinigung (Christlichsozial)",
-                            "mandat": "Mitglied des Abgeordnetenhauses",
-                            "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
-                            "mandatBis": "20.03.1911",
-                            "funktion_bis": "20.03.1911",
-                            "wahlpartei": "AHF300",
-                            "aktiv": false,
-                            "funktion_text": "Mitglied des Abgeordnetenhauses"
-                        },
-                        {
-                            "funktion": "AH",
-                            "gremium": "AH",
-                            "funktion_von": "10.03.1909",
-                            "wahlpartei_text": "Christlichsozial",
-                            "mandatVon": "10.03.1909",
-                            "wahlkreis": "Kronland: ",
-                            "zeitraum": "10.03.1909-11.07.1909",
-                            "bez": "Mitglied des Abgeordnetenhauses (XIX. Session), Christlichsoziale Vereinigung (Christlichsozial)",
-                            "mandat": "Mitglied des Abgeordnetenhauses",
-                            "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
-                            "mandatBis": "11.07.1909",
-                            "funktion_bis": "11.07.1909",
-                            "wahlpartei": "AHF300",
-                            "aktiv": false,
-                            "funktion_text": "Mitglied des Abgeordnetenhauses"
-                        },
-                        {
-                            "funktion": "AH",
-                            "gremium": "AH",
-                            "funktion_von": "17.06.1907",
-                            "wahlpartei_text": "Christlichsozial",
-                            "mandatVon": "17.06.1907",
-                            "wahlkreis": "Kronland: ",
-                            "zeitraum": "17.06.1907-05.02.1909",
-                            "bez": "Mitglied des Abgeordnetenhauses (XVIII. Session), Christlichsoziale Vereinigung (Christlichsozial)",
-                            "mandat": "Mitglied des Abgeordnetenhauses",
-                            "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
-                            "mandatBis": "05.02.1909",
-                            "funktion_bis": "05.02.1909",
-                            "wahlpartei": "AHF300",
-                            "aktiv": false,
-                            "funktion_text": "Mitglied des Abgeordnetenhauses"
-                        }
-                    ]
-                },
-                "pad_intern": 1385,
-                "openGraph": {
-                    "description": "Mitglied der Prov. Nationalversammlung, Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
-                    "image": "/static/img/Foto_Platzhalter_Quadrat.svg"
-                },
-                "aktiv": false
-            },
-            null,
-            "Franz",
-            "Wagner",
-            null,
-            null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            null,
-            "/person/1385"
         ],
         [
             "Waldl Josef",

@@ -1,14 +1,17 @@
 test_that("get_items returns correct structure with valid parameters", {
   # Test basic functionality with minimal parameters
-  result <- run_api_call({
-    get_items(
-      institution = "NR",
-      item = "ANTR",
-      date_start = "01-01-2024",
-      date_end = "31-01-2026",
-      echo = TRUE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        institution = "NR",
+        item = "ANTR",
+        date_start = "01-01-2024",
+        date_end = "31-01-2026",
+        echo = TRUE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
@@ -44,35 +47,44 @@ test_that("get_items validates date_start must be <= date_end", {
 
 test_that("get_items accepts multiple date formats", {
   # Test that all three date formats return the same result
-  result1 <- run_api_call({
-    get_items(
-      date_start = "01-01-2024",
-      date_end = "01-03-2024",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result1 <- run_api_call(
+    {
+      get_items(
+        date_start = "01-01-2024",
+        date_end = "01-03-2024",
+        echo = TRUE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
   expect_s3_class(result1, "data.frame")
-  expect_row_count(nrow(result1), 2526)
+  expect_equal(nrow(result1), 2518)
 
-  result2 <- run_api_call({
-    get_items(
-      date_start = "01.01.2024",
-      date_end = "01.03.2024",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result2 <- run_api_call(
+    {
+      get_items(
+        date_start = "01.01.2024",
+        date_end = "01.03.2024",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
   expect_s3_class(result2, "data.frame")
-  expect_row_count(nrow(result2), 2526)
+  expect_equal(nrow(result2), 2518)
 
-  result3 <- run_api_call({
-    get_items(
-      date_start = "01/01/2024",
-      date_end = "01/03/2024",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result3 <- run_api_call(
+    {
+      get_items(
+        date_start = "01/01/2024",
+        date_end = "01/03/2024",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
   expect_s3_class(result3, "data.frame")
-  expect_row_count(nrow(result3), 2526)
+  expect_equal(nrow(result3), 2518)
 })
 
 test_that("get_items validates institution parameter", {
@@ -105,27 +117,33 @@ test_that("get_items validates parl_group parameter", {
 
 test_that("get_items handles empty results gracefully", {
   # Use parameters likely to return no results
-  result <- run_api_call({
-    get_items(
-      topic = "Wirtschaft",
-      date_start = "01-01-1900",
-      date_end = "02-01-1900",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        topic = "Wirtschaft",
+        date_start = "01-01-1900",
+        date_end = "02-01-1900",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_null(result)
 })
 
 test_that("get_items works with multiple parameters", {
-  result <- run_api_call({
-    get_items(
-      institution = "NR",
-      topic = "Bildung",
-      legis_period = "27",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        institution = "NR",
+        topic = "Bildung",
+        legis_period = "27",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
   if (!is.null(result)) {
@@ -134,29 +152,35 @@ test_that("get_items works with multiple parameters", {
 })
 
 test_that("get_items works with multiple topics", {
-  result <- run_api_call({
-    get_items(
-      institution = "NR",
-      topic = c("Sport", "Landesverteidigung"),
-      legis_period = "27"
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        institution = "NR",
+        topic = c("Sport", "Landesverteidigung"),
+        legis_period = "27"
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
-  expect_row_count(nrow(result), 2013)
+  expect_equal(nrow(result), 2008)
 })
 
 test_that("get_items works with multiple legis_periods and different input forms", {
   # Test with mixed input forms: numeric, character numeric, and historical abbreviations
-  result <- run_api_call({
-    get_items(
-      legis_period = c("KN", "PN", 10, "15"),
-      institution = "NR",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        legis_period = c("KN", "PN", 10, "15"),
+        institution = "NR",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_s3_class(result, "data.frame")
-  expect_row_count(nrow(result), 11212)
+  expect_equal(nrow(result), 11212)
 
   # Check that all expected legislative periods are present in the results
   expected_periods <- c("KN", "PN", "X", "XV")
@@ -224,13 +248,16 @@ test_that("get_items validates eurovoc parameter", {
 })
 
 test_that("get_items works with NULL institution (both chambers)", {
-  result <- run_api_call({
-    get_items(
-      item = "RV",
-      legis_period = "27",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "RV",
+        legis_period = "27",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -242,39 +269,48 @@ test_that("get_items works with NULL institution (both chambers)", {
 # See git history for previous implementation
 
 test_that("get_items works with valid keyword", {
-  result <- run_api_call({
-    get_items(
-      keyword = "Gesundheit",
-      legis_period = "27",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        keyword = "Gesundheit",
+        legis_period = "27",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items works with valid eurovoc", {
-  result <- run_api_call({
-    get_items(
-      eurovoc = "health",
-      legis_period = "27",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        eurovoc = "health",
+        legis_period = "27",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items parl_group_names_standard works", {
   # Test that the standardization function is called
-  result <- run_api_call({
-    get_items(
-      parl_group = "SPÖ",
-      parl_group_names_standard = TRUE,
-      legis_period = "27",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        parl_group = "SPÖ",
+        parl_group_names_standard = TRUE,
+        legis_period = "27",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -376,14 +412,17 @@ test_that("get_items returns consistent columns across item types (tidyverse, le
 })
 
 test_that("get_items returns a dataframe with a 'stage' column", {
-  result <- run_api_call({
-    get_items(
-      institution = "NR",
-      item = "ANTR",
-      legis_period = "27",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        institution = "NR",
+        item = "ANTR",
+        legis_period = "27",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true("stage" %in% names(result))
@@ -394,13 +433,16 @@ test_that("get_items returns a dataframe with a 'stage' column", {
 # See get_items.R:1272-1293 for duplicate detection implementation
 
 test_that("get_items returns no duplicates for Bildung across multiple legislative periods", {
-  result <- run_api_call({
-    get_items(
-      topic = "Bildung",
-      legis_period = c(26, 27, 28),
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        topic = "Bildung",
+        legis_period = c(26, 27, 28),
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   # Verify result is returned
   expect_s3_class(result, "data.frame")
@@ -467,33 +509,39 @@ test_that("get_items validates NR type_eu_submission codes require institution='
 
 test_that("get_items accepts valid type_eu_submission values", {
   # Test single valid value
-  result <- run_api_call({
-    get_items(
-      item = "EU",
-      type_eu_submission = "BEU",
-      institution = "NR",
-      legis_period = 27,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "EU",
+        type_eu_submission = "BEU",
+        institution = "NR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items accepts multiple type_eu_submission values", {
   # Test multiple valid values
-  result <- run_api_call({
-    get_items(
-      item = "EU",
-      type_eu_submission = c("BEU", "RGEU", "S"),
-      institution = "NR",
-      legis_period = 27,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "EU",
+        type_eu_submission = c("BEU", "RGEU", "S"),
+        institution = "NR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
-  expect_row_count(nrow(result), 8)
+  expect_equal(nrow(result), 8)
 })
 
 test_that("get_items type_eu_submission works with all valid codes", {
@@ -534,15 +582,18 @@ test_that("get_items type_eu_submission works with all valid codes", {
 
 test_that("get_items type_eu_submission combines with other parameters", {
   # Test combining type_eu_submission with multiple parameters
-  result <- run_api_call({
-    get_items(
-      item = "EU",
-      type_eu_submission = "S",
-      legis_period = 27,
-      institution = "NR",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "EU",
+        type_eu_submission = "S",
+        legis_period = 27,
+        institution = "NR",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -564,28 +615,39 @@ test_that("get_items validates BR type_eu_submission codes require institution='
 test_that("get_items validates mixed NR+BR type_eu_submission codes", {
   # Mixing NR and BR codes with institution='NR' should error on BR codes
   expect_error(
-    get_items(item = "EU", type_eu_submission = c("BEU", "BEU-BR"), institution = "NR"),
+    get_items(
+      item = "EU",
+      type_eu_submission = c("BEU", "BEU-BR"),
+      institution = "NR"
+    ),
     "Federal Council type_eu_submission codes can only be used when institution = 'BR'"
   )
 
   # Mixing NR and BR codes with institution='BR' should error on NR codes
   expect_error(
-    get_items(item = "EU", type_eu_submission = c("BEU", "BEU-BR"), institution = "BR"),
+    get_items(
+      item = "EU",
+      type_eu_submission = c("BEU", "BEU-BR"),
+      institution = "BR"
+    ),
     "National Council type_eu_submission codes can only be used when institution = 'NR'"
   )
 })
 
 test_that("get_items accepts valid BR type_eu_submission values", {
   # Test single valid BR value
-  result <- run_api_call({
-    get_items(
-      item = "EU",
-      type_eu_submission = "BEU-BR",
-      institution = "BR",
-      legis_period = 27,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "EU",
+        type_eu_submission = "BEU-BR",
+        institution = "BR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -628,15 +690,18 @@ test_that("get_items BR type_eu_submission works with all valid BR codes", {
 
 test_that("get_items accepts multiple BR type_eu_submission values", {
   # Test multiple valid BR values
-  result <- run_api_call({
-    get_items(
-      item = "EU",
-      type_eu_submission = c("BEU-BR", "MT-BR"),
-      institution = "BR",
-      legis_period = 27,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "EU",
+        type_eu_submission = c("BEU-BR", "MT-BR"),
+        institution = "BR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -645,30 +710,36 @@ test_that("get_items accepts multiple BR type_eu_submission values", {
 
 test_that("get_items accepts valid type_doc values for J_JPR_M in NR", {
   # Test single valid value - JPR (Written Questions to Federal Government)
-  result <- run_api_call({
-    get_items(
-      item = "J_JPR_M",
-      type_doc = "JPR",
-      institution = "NR",
-      legis_period = 27,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "J_JPR_M",
+        type_doc = "JPR",
+        institution = "NR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
 
 test_that("get_items accepts valid type_doc values for J_JPR_M in BR", {
   # Test single valid value - JMIN-BR
-  result <- run_api_call({
-    get_items(
-      item = "J_JPR_M",
-      type_doc = "JMIN-BR",
-      institution = "BR",
-      legis_period = 27,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "J_JPR_M",
+        type_doc = "JMIN-BR",
+        institution = "BR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -723,15 +794,18 @@ test_that("get_items type_doc works with all valid BR codes for J_JPR_M", {
 
 test_that("get_items accepts multiple type_doc values for J_JPR_M", {
   # Test multiple valid values
-  result <- run_api_call({
-    get_items(
-      item = "J_JPR_M",
-      type_doc = c("J", "JPR"),
-      institution = "NR",
-      legis_period = 27,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "J_JPR_M",
+        type_doc = c("J", "JPR"),
+        institution = "NR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -760,17 +834,20 @@ test_that("get_items rejects BR type_doc codes for J_JPR_M when institution is N
 
 test_that("get_items type_doc for J_JPR_M combines with other parameters", {
   # Test combining type_doc with multiple parameters
-  result <- run_api_call({
-    get_items(
-      item = "J_JPR_M",
-      type_doc = "JPR",
-      legis_period = 27,
-      institution = "NR",
-      date_start = "01-01-2020",
-      date_end = "31-12-2020",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "J_JPR_M",
+        type_doc = "JPR",
+        legis_period = 27,
+        institution = "NR",
+        date_start = "01-01-2020",
+        date_end = "31-12-2020",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   expect_true(is.data.frame(result) || is.null(result))
 })
@@ -780,9 +857,12 @@ test_that("get_items type_doc for J_JPR_M combines with other parameters", {
 test_that("get_item_details returns correct structure with absolute URL", {
   # Use a known item URL
   item_url <- "https://www.parlament.gv.at/gegenstand/XXVII/GAST/2"
-  result <- run_api_call({
-    get_item_details(item_url)
-  }, fixture_subdir = "get_item_details")
+  result <- run_api_call(
+    {
+      get_item_details(item_url)
+    },
+    fixture_subdir = "get_item_details"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
@@ -791,9 +871,12 @@ test_that("get_item_details returns correct structure with absolute URL", {
 
 test_that("get_item_details works with relative URL", {
   # Test relative path normalization
-  result <- run_api_call({
-    get_item_details("/gegenstand/XXVIII/BI/24")
-  }, fixture_subdir = "get_item_details")
+  result <- run_api_call(
+    {
+      get_item_details("/gegenstand/XXVIII/BI/24")
+    },
+    fixture_subdir = "get_item_details"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(ncol(result) > 0)
@@ -806,51 +889,66 @@ test_that("get_item_details handles URL normalization correctly", {
   relative_url <- "/gegenstand/XXVIII/BI/24"
   relative_no_slash <- "gegenstand/XXVIII/BI/24"
 
-  result_absolute <- run_api_call({
-    get_item_details(absolute_url)
-  }, fixture_subdir = "get_item_details")
-  result_relative <- run_api_call({
-    get_item_details(relative_url)
-  }, fixture_subdir = "get_item_details")
-  result_no_slash <- run_api_call({
-    get_item_details(relative_no_slash)
-  }, fixture_subdir = "get_item_details")
+  result_absolute <- run_api_call(
+    {
+      get_item_details(absolute_url)
+    },
+    fixture_subdir = "get_item_details"
+  )
+  result_relative <- run_api_call(
+    {
+      get_item_details(relative_url)
+    },
+    fixture_subdir = "get_item_details"
+  )
+  result_no_slash <- run_api_call(
+    {
+      get_item_details(relative_no_slash)
+    },
+    fixture_subdir = "get_item_details"
+  )
 
   # All should return same number of rows
   expect_equal(nrow(result_absolute), nrow(result_relative))
   expect_equal(nrow(result_absolute), nrow(result_no_slash))
 })
 test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-27)", {
-  result <- run_api_call({
-    get_items(
-      item = "EU",
-      type_eu_submission = "SBPL-BR",
-      institution = "BR",
-      legis_period = seq(24, 27, 1),
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "EU",
+        type_eu_submission = "SBPL-BR",
+        institution = "BR",
+        legis_period = seq(24, 27, 1),
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   # Expect NULL for empty results (following package convention)
   expect_null(result)
 })
 
 test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27)", {
-  result <- run_api_call({
-    get_items(
-      item = "EU",
-      type_eu_submission = "MT-BR",
-      institution = "BR",
-      legis_period = seq(24, 27, 1),
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "EU",
+        type_eu_submission = "MT-BR",
+        institution = "BR",
+        legis_period = seq(24, 27, 1),
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   # Check structure
   expect_s3_class(result, "data.frame")
 
   # Check row count
-  expect_row_count(nrow(result), 71)
+  expect_equal(nrow(result), 71)
 
   # Check for duplicates
   n_total <- nrow(result)
@@ -866,21 +964,24 @@ test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27
 })
 
 test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)", {
-  result <- run_api_call({
-    get_items(
-      item = "EU",
-      legis_period = seq(24, 27, 1),
-      type_eu_submission = "S-BR",
-      institution = "BR",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_items")
+  result <- run_api_call(
+    {
+      get_items(
+        item = "EU",
+        legis_period = seq(24, 27, 1),
+        type_eu_submission = "S-BR",
+        institution = "BR",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
 
   # Check structure
   expect_s3_class(result, "data.frame")
 
   # Check row count
-  expect_row_count(nrow(result), 17)
+  expect_equal(nrow(result), 17)
 
   # Check for duplicates
   n_total <- nrow(result)

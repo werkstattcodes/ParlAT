@@ -4,41 +4,50 @@
 
 test_that("get_transcripts returns data frame with correct number of sessions", {
   # Nationalrat
-  result_nr <- run_api_call({
-    get_transcripts(
-      session_type = "NRSITZ",
-      legis_period = 15,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_nr <- run_api_call(
+    {
+      get_transcripts(
+        session_type = "NRSITZ",
+        legis_period = 15,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result_nr, "data.frame")
-  expect_row_count(nrow(result_nr), 149)
+  expect_equal(nrow(result_nr), 149)
 
   # Bundesrat
-  result_br <- run_api_call({
-    get_transcripts(
-      session_type = c("BRSITZ"),
-      legis_period = "XXV",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_br <- run_api_call(
+    {
+      get_transcripts(
+        session_type = c("BRSITZ"),
+        legis_period = "XXV",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result_br, "data.frame")
-  expect_row_count(nrow(result_br), 50)
+  expect_equal(nrow(result_br), 50)
 })
 
 test_that("get_transcripts returns correct column names", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = c(
-        "NRSITZ",
-        "BRSITZ"
-      ),
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = c(
+          "NRSITZ",
+          "BRSITZ"
+        ),
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expected_cols <- c(
     "date",
@@ -55,13 +64,16 @@ test_that("get_transcripts returns correct column names", {
 })
 
 test_that("get_transcripts date column is properly formatted", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result$date, "Date")
 })
@@ -69,55 +81,70 @@ test_that("get_transcripts date column is properly formatted", {
 # Legislative period filtering tests
 
 test_that("get_transcripts accepts numeric legislative period", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
 })
 
 test_that("get_transcripts accepts Roman numeral legislative period", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = "XXVII",
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = "XXVII",
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
 })
 
 test_that("get_transcripts accepts historical period abbreviations", {
-  result <- run_api_call({
-    get_transcripts(legis_period = "PN", echo = FALSE)
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(legis_period = "PN", echo = FALSE)
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result, "data.frame")
 })
 
 test_that("get_transcripts filters correctly by legislative period", {
-  result_27 <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_27 <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
-  result_26 <- run_api_call({
-    get_transcripts(
-      legis_period = 26,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_26 <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 26,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_true(length(unique(result_26$legis_period)) == 1)
   expect_true(unique(result_26$legis_period) == "XXVI")
@@ -126,17 +153,20 @@ test_that("get_transcripts filters correctly by legislative period", {
 })
 
 test_that("get_transcripts allows for multiple legislative periods", {
-  result_15_20 <- run_api_call({
-    get_transcripts(
-      legis_period = c(15, 20),
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_15_20 <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = c(15, 20),
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_true(length(unique(result_15_20$legis_period)) == 2)
   expect_true(all(unique(result_15_20$legis_period) %in% c("XX", "XV")))
-  expect_row_count(nrow(result_15_20), 332)
+  expect_equal(nrow(result_15_20), 332)
 
   result_15_20_dupes <- result_15_20[
     duplicated(result_15_20[, c("date", "session_number", "legis_period")]),
@@ -153,43 +183,55 @@ test_that("get_transcripts rejects invalid session type", {
 })
 
 test_that("get_transcripts filters correctly by session type", {
-  result_nr <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_nr <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
-  result_br <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "BRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_br <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "BRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_false(identical(result_nr, result_br))
 })
 
 test_that("get_transcripts defaults to both NRSITZ and BRSITZ when session_type is NULL", {
   # Query with NULL session_type (default)
-  result_null <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = NULL,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_null <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = NULL,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   # Query explicitly with both session types
-  result_both <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = c("NRSITZ", "BRSITZ"),
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_both <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = c("NRSITZ", "BRSITZ"),
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   # Check for 100% overlap in session_url column
   urls_null <- sort(unique(result_null$session_url))
@@ -215,14 +257,17 @@ test_that("get_transcripts defaults to both NRSITZ and BRSITZ when session_type 
 # Date filtering tests
 
 test_that("get_transcripts accepts date_start parameter", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      date_start = "01-01-2024",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        date_start = "01-01-2024",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result, "data.frame")
   # Check that all dates are after start date
@@ -232,32 +277,38 @@ test_that("get_transcripts accepts date_start parameter", {
 })
 
 test_that("get_transcripts accepts only date_end parameter", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      date_end = "01-01-2021",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        date_end = "01-01-2021",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result, "data.frame")
   # Check that all dates are before end date
 
-  expect_row_count(nrow(result), 75)
+  expect_equal(nrow(result), 75)
   expect_true(all(result$date <= as.Date("2021-01-01")))
 })
 
 test_that("get_transcripts accepts both date_start and date_end", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      date_start = "01-01-2024",
-      date_end = "30-06-2024",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        date_start = "01-01-2024",
+        date_end = "30-06-2024",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result, "data.frame")
   # Check that dates are within range
@@ -281,38 +332,47 @@ test_that("get_transcripts validates date format", {
 # Search string tests
 
 test_that("get_transcripts accepts search_string parameter", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      search_string = "budget",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        search_string = "budget",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
-  expect_row_count(nrow(result), 105)
+  expect_equal(nrow(result), 105)
   expect_s3_class(result, "data.frame")
 
   expect_true(nrow(result[duplicated(result), ]) == 0)
 })
 
 test_that("get_transcripts with search_string returns fewer results", {
-  result_all <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_all <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
-  result_filtered <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      search_string = "gesundheit",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result_filtered <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        search_string = "gesundheit",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   # Filtered results should be less than or equal to all results
   expect_true(nrow(result_filtered) <= nrow(result_all))
@@ -321,13 +381,16 @@ test_that("get_transcripts with search_string returns fewer results", {
 # URL extraction tests
 
 test_that("get_transcripts extracts HTML and PDF URLs correctly", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   # Check that URL columns exist
   expect_true("session_transcript_html" %in% names(result))
@@ -354,26 +417,32 @@ test_that("get_transcripts extracts HTML and PDF URLs correctly", {
 test_that("get_transcripts respects echo parameter", {
   # With echo = FALSE, should not print
   expect_silent(
-    run_api_call({
-      get_transcripts(
-        legis_period = 27,
-        session_type = "NRSITZ",
-        echo = FALSE
-      )
-    }, fixture_subdir = "get_transcripts")
+    run_api_call(
+      {
+        get_transcripts(
+          legis_period = 27,
+          session_type = "NRSITZ",
+          echo = FALSE
+        )
+      },
+      fixture_subdir = "get_transcripts"
+    )
   )
 })
 
 # Output sorting tests
 
 test_that("get_transcripts returns data sorted by date", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   if (nrow(result) > 1) {
     # Check that dates are in ascending order
@@ -384,15 +453,18 @@ test_that("get_transcripts returns data sorted by date", {
 # Combined filtering tests
 
 test_that("get_transcripts handles multiple filters simultaneously", {
-  result <- run_api_call({
-    get_transcripts(
-      session_type = "NRSITZ",
-      date_start = "01/01/2024",
-      date_end = "31/12/2024",
-      search_string = "budget",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        session_type = "NRSITZ",
+        date_start = "01/01/2024",
+        date_end = "31/12/2024",
+        search_string = "budget",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result, "data.frame")
 })
@@ -400,16 +472,19 @@ test_that("get_transcripts handles multiple filters simultaneously", {
 # Edge cases
 
 test_that("get_transcripts handles NULL parameters gracefully", {
-  result <- run_api_call({
-    get_transcripts(
-      search_string = NULL,
-      legis_period = NULL,
-      session_type = NULL,
-      date_start = NULL,
-      date_end = NULL,
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        search_string = NULL,
+        legis_period = NULL,
+        session_type = NULL,
+        date_start = NULL,
+        date_end = NULL,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   expect_s3_class(result, "data.frame")
 
@@ -421,13 +496,16 @@ test_that("get_transcripts handles NULL parameters gracefully", {
 })
 
 test_that("get_transcripts returns tibble (not just data.frame)", {
-  result <- run_api_call({
-    get_transcripts(
-      legis_period = 27,
-      session_type = "NRSITZ",
-      echo = FALSE
-    )
-  }, fixture_subdir = "get_transcripts")
+  result <- run_api_call(
+    {
+      get_transcripts(
+        legis_period = 27,
+        session_type = "NRSITZ",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_transcripts"
+  )
 
   # Should be a tibble (which is also a data.frame)
   expect_s3_class(result, "data.frame")

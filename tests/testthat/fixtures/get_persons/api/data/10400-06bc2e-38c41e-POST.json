@@ -39,8 +39,8 @@
             "hidden": false,
             "rnr": 4,
             "sort_rnr": 10,
-            "display_rnr": 1,
             "mediaType": "title",
+            "display_rnr": 1,
             "listeId": 10400,
             "label": "Name",
             "feld_name": "NAME",
@@ -126,6 +126,19 @@
             null
         ],
         [
+            "[\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"NR\",\"NR\",\"NR\",\"NR\"]",
+            "Abgeordneter zum Nationalrat, Bundeskanzler, Bundesminister, Staatssekretär",
+            65321,
+            "Kurz Sebastian",
+            "/person/65321",
+            "M",
+            "/dokument/bild/92331/9233173_384.jpg",
+            656623,
+            "person",
+            "Kurz Sebastian",
+            null
+        ],
+        [
             "[\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\"]",
             "Mitglied des Bundesrates, Ordnerin, Präsidentin, Schriftführerin, Vizepräsidentin",
             21150,
@@ -149,19 +162,6 @@
             653909,
             "person",
             "Kurzmann Gerhard, Dr.",
-            null
-        ],
-        [
-            "[\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"NR\",\"NR\",\"NR\",\"NR\"]",
-            "Abgeordneter zum Nationalrat, Bundeskanzler, Bundesminister, Staatssekretär",
-            65321,
-            "Kurz Sebastian",
-            "/person/65321",
-            "M",
-            "/dokument/bild/92331/9233173_384.jpg",
-            656623,
-            "person",
-            "Kurz Sebastian",
             null
         ]
     ]

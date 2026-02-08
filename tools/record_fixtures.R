@@ -43,10 +43,13 @@ record_fixtures <- function(func_name, ...) {
   # Note: start_capturing() takes simplify, NOT a directory path
   httptest2::.mockPaths(fixture_dir)
   httptest2::start_capturing()
-  on.exit({
-    httptest2::stop_capturing()
-    httptest2::.mockPaths(NULL)
-  }, add = TRUE)
+  on.exit(
+    {
+      httptest2::stop_capturing()
+      httptest2::.mockPaths(NULL)
+    },
+    add = TRUE
+  )
 
   exprs <- rlang::enquos(...)
   for (i in seq_along(exprs)) {
@@ -99,7 +102,7 @@ record_fixtures(
   get_events(legis_period = 28),
   get_events(legis_period = "28"),
   get_events(legis_period = NULL),
-  get_events(legis_period = 28, institution = "NR"),
+  get_events(legis_period = 27, institution = "NR"),
   get_events(
     date_start = "01-01-2099",
     date_end = "31-01-2099",
@@ -429,7 +432,11 @@ record_fixtures(
     echo = FALSE
   ),
   get_transcripts(legis_period = 27, session_type = "NRSITZ", echo = FALSE),
-  get_transcripts(legis_period = "XXVII", session_type = "NRSITZ", echo = FALSE),
+  get_transcripts(
+    legis_period = "XXVII",
+    session_type = "NRSITZ",
+    echo = FALSE
+  ),
   get_transcripts(legis_period = "PN", echo = FALSE),
   get_transcripts(legis_period = 26, session_type = "NRSITZ", echo = FALSE),
   get_transcripts(
@@ -675,4 +682,6 @@ for (dir in fixture_dirs) {
 }
 
 message("\nReview changes with: git diff tests/testthat/fixtures/")
-message("Commit with: git add tests/testthat/fixtures/ && git commit -m 'chore: update API fixtures'")
+message(
+  "Commit with: git add tests/testthat/fixtures/ && git commit -m 'chore: update API fixtures'"
+)

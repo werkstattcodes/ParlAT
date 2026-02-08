@@ -73,24 +73,24 @@ run_api_call <- function(expr, fixture_subdir = NULL) {
   }
 }
 
-#' Flexible row count assertion for tests with exact counts
-#'
-#' In mocked mode, asserts exact equality (fixtures have known counts).
-#' In live mode, asserts within a tolerance range (API data may change).
-#'
-#' @param actual Actual row count from the result
-#' @param expected Expected row count (from fixture recording time)
-#' @param tolerance Percentage tolerance for live API (default 0.1 = 10%)
-expect_row_count <- function(actual, expected, tolerance = 0.1) {
-  if (.parlat_live_api()) {
-    # Live mode: allow for data changes within tolerance
-    testthat::expect_gte(actual, floor(expected * (1 - tolerance)))
-    testthat::expect_lte(actual, ceiling(expected * (1 + tolerance)))
-  } else {
-    # Mocked mode: exact count from fixture
-    testthat::expect_equal(actual, expected)
-  }
-}
+# #' Flexible row count assertion for tests with exact counts
+# #'
+# #' In mocked mode, asserts exact equality (fixtures have known counts).
+# #' In live mode, asserts within a tolerance range (API data may change).
+# #'
+# #' @param actual Actual row count from the result
+# #' @param expected Expected row count (from fixture recording time)
+# #' @param tolerance Percentage tolerance for live API (default 0.1 = 10%)
+# expect_row_count <- function(actual, expected, tolerance = 0.1) {
+#   if (.parlat_live_api()) {
+#     # Live mode: allow for data changes within tolerance
+#     testthat::expect_gte(actual, floor(expected * (1 - tolerance)))
+#     testthat::expect_lte(actual, ceiling(expected * (1 + tolerance)))
+#   } else {
+#     # Mocked mode: exact count from fixture
+#     testthat::expect_equal(actual, expected)
+#   }
+# }
 
 #' Skip test if running in mocked mode
 #'
@@ -100,8 +100,7 @@ expect_row_count <- function(actual, expected, tolerance = 0.1) {
 #' - Tests checking real-time data
 #'
 #' @param message Optional message explaining why test requires live API
-skip_if_mocked <- function(message = "Test requires live API")
-{
+skip_if_mocked <- function(message = "Test requires live API") {
   if (!.parlat_live_api()) {
     testthat::skip(message)
   }
