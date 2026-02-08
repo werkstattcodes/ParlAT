@@ -1,0 +1,582 @@
+{
+    "pages": 1,
+    "lastSync": "2026-02-08 14:51:07.0",
+    "count": 3,
+    "header": [
+        {
+            "css_class": "col-15",
+            "feldId": 605,
+            "link_rnr": "16",
+            "hidden": false,
+            "rnr": 1,
+            "mediaType": "title",
+            "listeId": 409,
+            "label": "Name",
+            "feld_name": "PERSON_NAME",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-10",
+            "feldId": 603,
+            "hidden": false,
+            "rnr": 2,
+            "listeId": 409,
+            "label": "Gremium",
+            "feld_name": "GREMIUM",
+            "class": "col-10",
+            "ist_werteliste": "1",
+            "includeHeader": true
+        },
+        {
+            "feldId": 604,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 409,
+            "label": "WENTRY_ID",
+            "ist_web_item_id": "1",
+            "includeHeader": true
+        },
+        {
+            "feldId": 623,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 4,
+            "listeId": 409,
+            "label": "GESCHL_CODE",
+            "feld_name": "GESCHL_CODE",
+            "includeHeader": true
+        },
+        {
+            "feldId": 624,
+            "hidden": true,
+            "rnr": 5,
+            "listeId": 409,
+            "label": "GESCHLECHT",
+            "feld_name": "GESCHLECHT",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-15",
+            "feldId": 863,
+            "hidden": false,
+            "rnr": 6,
+            "listeId": 409,
+            "label": "Gesetzgebungsperiode",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "feldId": 864,
+            "hidden": true,
+            "rnr": 7,
+            "listeId": 409,
+            "label": "parteien",
+            "includeHeader": true
+        },
+        {
+            "feldId": 643,
+            "hidden": true,
+            "rnr": 8,
+            "listeId": 409,
+            "label": "Attribute",
+            "feld_name": "ATTR_JSON",
+            "includeHeader": true
+        },
+        {
+            "feldId": 903,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 409,
+            "label": "ist_praes",
+            "feld_name": "PRAES",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1223,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 409,
+            "label": "vorname",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1224,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 11,
+            "listeId": 409,
+            "label": "nachname",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1225,
+            "hidden": true,
+            "rnr": 12,
+            "listeId": 409,
+            "label": "akgr",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1226,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 13,
+            "listeId": 409,
+            "label": "akgr_h",
+            "includeHeader": true
+        },
+        {
+            "feldId": 7120,
+            "hidden": false,
+            "rnr": 14,
+            "listeId": 409,
+            "label": "Klub/Fraktion",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-15",
+            "feldId": 7121,
+            "hidden": false,
+            "rnr": 15,
+            "listeId": 409,
+            "label": "Wahlkreis",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "feldId": 7180,
+            "hidden": true,
+            "rnr": 16,
+            "listeId": 409,
+            "label": "Bio",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "Aldali Lisa",
+            "NR",
+            27240954,
+            "W",
+            "Weiblich",
+            "XXVIII",
+            "[\"NEOS\"]",
+            {
+                "zit": "Lisa Aldali",
+                "fraktionen": "NEOS Parlamentsklub (N)",
+                "item_type": "Biogr",
+                "frak": [
+                    "NEOS"
+                ],
+                "geschlecht": "W",
+                "gp_code": [
+                    "XXVIII"
+                ],
+                "nr_gp_code": "XXVIII",
+                "uri": "/person/38385",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Bundeswahlvorschlag",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2024-10-24T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVIII",
+                        "mandat_von": "07.11.2025",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "ab 24.10.2024: XXVIII. Gesetzgebungsperiode",
+                        "wahlkreis_code": "FB",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "fraktion": "NEOS Parlamentsklub"
+                    }
+                ],
+                "name_nvg": "Aldali Lisa",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "07.11.2025",
+                            "eingetreten_txt": "Das durch Mandatsverzicht von Frau Abgeordneten Dr. Stephanie Krisper mit Ablauf des 31. Oktober 2025 frei gewordene Mandat im Landeswahlkreis 9 – Wien erhielt Herr Abgeordneter Michael Bernhard. Das dadurch freigewordene Mandat auf der Bundesparteiliste erhielt Frau Lisa Aldali.",
+                            "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                            "mandatVon": "07.11.2025",
+                            "wahlkreis": "Bundeswahlvorschlag",
+                            "zeitraum": "07.11.2025-",
+                            "bez": "Abgeordnete zum Nationalrat (XXVIII. GP), NEOS",
+                            "mandat": "Abgeordnete zum Nationalrat",
+                            "klub": "NEOS Parlamentsklub",
+                            "mandatBis": "",
+                            "funktion_bis": "",
+                            "wahlpartei": "NEOS",
+                            "aktiv": true,
+                            "funktion_text": "Abgeordnete zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Bundeswahlvorschlag",
+                "pad_intern": 38385,
+                "medien": [
+                    20174600
+                ],
+                "openGraph": {
+                    "description": "Abgeordnete zum Nationalrat (XXVIII. GP), NEOS",
+                    "image": "/dokument/bild/201746/20174600_500.jpg"
+                },
+                "aktiv": true
+            },
+            null,
+            "Lisa",
+            "Aldali",
+            null,
+            null,
+            "NEOS Parlamentsklub (N)",
+            "Bundeswahlvorschlag",
+            "/person/38385"
+        ],
+        [
+            "Bernhard Michael",
+            "NR",
+            656749,
+            "M",
+            "Männlich",
+            "XXV,XXVI,XXVII,XXVIII",
+            "[\"NEOS\",\"NEOS-LIF\"]",
+            {
+                "zit": "Michael Bernhard",
+                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
+                "item_type": "Biogr",
+                "frak": [
+                    "NEOS",
+                    "NEOS-LIF"
+                ],
+                "fruehere_namen_nvg": "(bis 10.8.2016: Michael Pock)",
+                "geschlecht": "M",
+                "gp_code": [
+                    "XXV",
+                    "XXVI",
+                    "XXVII",
+                    "XXVIII"
+                ],
+                "nr_gp_code": "XXV,XXVI,XXVII,XXVIII",
+                "uri": "/person/83124",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2017-11-09T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVI",
+                        "mandat_von": "01.07.2019",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "09.11.2017 - 22.10.2019: XXVI. GP",
+                        "wahlkreis_code": "F9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "22.10.2019",
+                        "wahlkreis": "Wien",
+                        "fraktion": "Klub von NEOS; NEOS Parlamentsklub"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2024-10-24T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVIII",
+                        "mandat_von": "07.11.2025",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "ab 24.10.2024: XXVIII. Gesetzgebungsperiode",
+                        "wahlkreis_code": "F9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "wahlkreis": "Wien",
+                        "fraktion": "NEOS Parlamentsklub"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2013-10-29T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXV",
+                        "mandat_von": "29.10.2013",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "29.10.2013 - 08.11.2017: XXV. GP",
+                        "wahlkreis_code": "F9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "29.01.2014",
+                        "wahlkreis": "Wien",
+                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2013-10-29T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXV",
+                        "mandat_von": "30.01.2014",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "29.10.2013 - 08.11.2017: XXV. GP",
+                        "wahlkreis_code": "F9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "08.11.2017",
+                        "wahlkreis": "Wien",
+                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Bundeswahlvorschlag",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2017-11-09T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVI",
+                        "mandat_von": "09.11.2017",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "09.11.2017 - 22.10.2019: XXVI. GP",
+                        "wahlkreis_code": "FB",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "30.06.2019",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "fraktion": "Klub von NEOS; NEOS Parlamentsklub"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Bundeswahlvorschlag",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2019-10-23T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVII",
+                        "mandat_von": "23.10.2019",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "23.10.2019 - 23.10.2024: XXVII. GP",
+                        "wahlkreis_code": "FB",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "23.10.2024",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "fraktion": "NEOS Parlamentsklub"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Bundeswahlvorschlag",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2024-10-24T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVIII",
+                        "mandat_von": "24.10.2024",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "ab 24.10.2024: XXVIII. Gesetzgebungsperiode",
+                        "wahlkreis_code": "FB",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "06.11.2025",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "fraktion": "NEOS Parlamentsklub"
+                    }
+                ],
+                "name_nvg": "Bernhard Michael",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "30.01.2014",
+                            "eingetreten_txt": "Das durch Mandatsverzicht von Frau Abgeordneten Dr. Stephanie Krisper mit Ablauf des 31. Oktober 2025 frei gewordene Mandat im Landeswahlkreis 9 – Wien erhielt Herr Abgeordneter Michael Bernhard. Das dadurch freigewordene Mandat auf der Bundesparteiliste erhielt Frau Lisa Aldali.",
+                            "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                            "mandatVon": "30.01.2014",
+                            "wahlkreis": "9 - Wien",
+                            "zeitraum": "30.01.2014-",
+                            "bez": "Abgeordneter zum Nationalrat (XXV.-XXVIII. GP), NEOS",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "NEOS Parlamentsklub",
+                            "mandatBis": "",
+                            "funktion_bis": "",
+                            "wahlpartei": "NEOS",
+                            "aktiv": true,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "29.10.2013",
+                            "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                            "mandatVon": "29.10.2013",
+                            "wahlkreis": "9 - Wien",
+                            "zeitraum": "29.10.2013-29.01.2014",
+                            "bez": "Abgeordneter zum Nationalrat (XXV. GP), NEOS-LIF",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Klub von NEOS und LIF",
+                            "mandatBis": "29.01.2014",
+                            "funktion_bis": "29.01.2014",
+                            "wahlpartei": "NEOS-LIF",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Wien, Bundeswahlvorschlag",
+                "pad_intern": 83124,
+                "medien": [
+                    20068165,
+                    20142626
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (XXV.-XXVIII. GP), NEOS",
+                    "image": "/dokument/bild/201426/20142626_500.jpg"
+                },
+                "aktiv": true
+            },
+            null,
+            "Michael",
+            "Bernhard",
+            null,
+            null,
+            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
+            "Wien, Bundeswahlvorschlag",
+            "/person/83124"
+        ],
+        [
+            "Krisper Stephanie, Dr.",
+            "NR",
+            653387,
+            "W",
+            "Weiblich",
+            "XXVI,XXVII,XXVIII",
+            "[\"NEOS\"]",
+            {
+                "zit": "Dr. Stephanie Krisper",
+                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N)",
+                "item_type": "Biogr",
+                "frak": [
+                    "NEOS"
+                ],
+                "geschlecht": "W",
+                "gp_code": [
+                    "XXVI",
+                    "XXVII",
+                    "XXVIII"
+                ],
+                "nr_gp_code": "XXVI,XXVII,XXVIII",
+                "uri": "/person/2344",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2017-11-09T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVI",
+                        "mandat_von": "09.11.2017",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "09.11.2017 - 22.10.2019: XXVI. GP",
+                        "wahlkreis_code": "F9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "22.10.2019",
+                        "wahlkreis": "Wien",
+                        "fraktion": "Klub von NEOS; NEOS Parlamentsklub"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2019-10-23T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVII",
+                        "mandat_von": "23.10.2019",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "23.10.2019 - 23.10.2024: XXVII. GP",
+                        "wahlkreis_code": "F9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "23.10.2024",
+                        "wahlkreis": "Wien",
+                        "fraktion": "NEOS Parlamentsklub"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "NEOS",
+                        "fraktionscode": "N",
+                        "gp_von": "2024-10-24T00:00:00",
+                        "wahlpartei_full_txt": "NEOS - Das neue Österreich und Liberales Forum (NEOS)",
+                        "gp_code": "XXVIII",
+                        "mandat_von": "24.10.2024",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gp_text_full_short": "ab 24.10.2024: XXVIII. Gesetzgebungsperiode",
+                        "wahlkreis_code": "F9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
+                        "mandat_bis": "31.10.2025",
+                        "wahlkreis": "Wien",
+                        "fraktion": "NEOS Parlamentsklub"
+                    }
+                ],
+                "name_nvg": "Krisper Stephanie, Dr.",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "09.11.2017",
+                            "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                            "mandatVon": "09.11.2017",
+                            "wahlkreis": "9 - Wien",
+                            "zeitraum": "09.11.2017-31.10.2025",
+                            "bez": "Abgeordnete zum Nationalrat (XXVI.-XXVIII. GP), NEOS",
+                            "mandat": "Abgeordnete zum Nationalrat",
+                            "klub": "NEOS Parlamentsklub",
+                            "mandatBis": "31.10.2025",
+                            "funktion_bis": "31.10.2025",
+                            "wahlpartei": "NEOS",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordnete zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Wien",
+                "pad_intern": 2344,
+                "medien": [
+                    20142646
+                ],
+                "openGraph": {
+                    "description": "Abgeordnete zum Nationalrat (XXVI.-XXVIII. GP), NEOS",
+                    "image": "/dokument/bild/201426/20142646_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Stephanie",
+            "Krisper",
+            "Dr.",
+            null,
+            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N)",
+            "Wien",
+            "/person/2344"
+        ]
+    ]
+}

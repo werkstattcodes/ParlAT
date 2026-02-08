@@ -1,0 +1,2251 @@
+{
+    "pages": 1,
+    "lastSync": "2026-02-08 14:51:07.0",
+    "count": 14,
+    "header": [
+        {
+            "css_class": "col-15",
+            "feldId": 605,
+            "link_rnr": "16",
+            "hidden": false,
+            "rnr": 1,
+            "mediaType": "title",
+            "listeId": 409,
+            "label": "Name",
+            "feld_name": "PERSON_NAME",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-10",
+            "feldId": 603,
+            "hidden": false,
+            "rnr": 2,
+            "listeId": 409,
+            "label": "Gremium",
+            "feld_name": "GREMIUM",
+            "class": "col-10",
+            "ist_werteliste": "1",
+            "includeHeader": true
+        },
+        {
+            "feldId": 604,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 409,
+            "label": "WENTRY_ID",
+            "ist_web_item_id": "1",
+            "includeHeader": true
+        },
+        {
+            "feldId": 623,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 4,
+            "listeId": 409,
+            "label": "GESCHL_CODE",
+            "feld_name": "GESCHL_CODE",
+            "includeHeader": true
+        },
+        {
+            "feldId": 624,
+            "hidden": true,
+            "rnr": 5,
+            "listeId": 409,
+            "label": "GESCHLECHT",
+            "feld_name": "GESCHLECHT",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-15",
+            "feldId": 863,
+            "hidden": false,
+            "rnr": 6,
+            "listeId": 409,
+            "label": "Gesetzgebungsperiode",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "feldId": 864,
+            "hidden": true,
+            "rnr": 7,
+            "listeId": 409,
+            "label": "parteien",
+            "includeHeader": true
+        },
+        {
+            "feldId": 643,
+            "hidden": true,
+            "rnr": 8,
+            "listeId": 409,
+            "label": "Attribute",
+            "feld_name": "ATTR_JSON",
+            "includeHeader": true
+        },
+        {
+            "feldId": 903,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 409,
+            "label": "ist_praes",
+            "feld_name": "PRAES",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1223,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 409,
+            "label": "vorname",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1224,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 11,
+            "listeId": 409,
+            "label": "nachname",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1225,
+            "hidden": true,
+            "rnr": 12,
+            "listeId": 409,
+            "label": "akgr",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1226,
+            "export_jn": "0",
+            "hidden": true,
+            "rnr": 13,
+            "listeId": 409,
+            "label": "akgr_h",
+            "includeHeader": true
+        },
+        {
+            "feldId": 7120,
+            "hidden": false,
+            "rnr": 14,
+            "listeId": 409,
+            "label": "Klub/Fraktion",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-15",
+            "feldId": 7121,
+            "hidden": false,
+            "rnr": 15,
+            "listeId": 409,
+            "label": "Wahlkreis",
+            "class": "col-15",
+            "includeHeader": true
+        },
+        {
+            "feldId": 7180,
+            "hidden": true,
+            "rnr": 16,
+            "listeId": 409,
+            "label": "Bio",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "Blöchl Johann",
+            "NR",
+            649595,
+            "M",
+            "Männlich",
+            "IV",
+            "[\"CSP\"]",
+            {
+                "zit": "Johann Blöchl",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+                "item_type": "Biogr",
+                "frak": [
+                    "CSP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "IV"
+                ],
+                "nr_gp_code": "IV",
+                "uri": "/person/133",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Oberösterreich",
+                        "wahlpartei_code": "CSP",
+                        "fraktionscode": "C",
+                        "gp_von": "1930-12-02T00:00:00",
+                        "wahlpartei_full_txt": "Christlichsoziale Partei (CSP)",
+                        "gp_code": "IV",
+                        "mandat_von": "26.06.1931",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Christlichsoziale Partei",
+                        "gp_text_full_short": "02.12.1930 - 02.05.1934: IV. GP",
+                        "wahlkreis_code": "C16",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Christlichsoziale Partei",
+                        "mandat_bis": "02.05.1934",
+                        "wahlkreis": "Mühlviertel",
+                        "fraktion": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente"
+                    }
+                ],
+                "name_nvg": "Blöchl Johann",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "26.06.1931",
+                            "wahlpartei_text": "Christlichsoziale Partei",
+                            "mandatVon": "26.06.1931",
+                            "wahlkreis": "16 - Mühlviertel",
+                            "zeitraum": "26.06.1931-02.05.1934",
+                            "bez": "Abgeordneter zum Nationalrat (IV. GP), CSP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+                            "mandatBis": "02.05.1934",
+                            "funktion_bis": "02.05.1934",
+                            "wahlpartei": "CSP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Mühlviertel",
+                "pad_intern": 133,
+                "medien": [
+                    2099589
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (IV. GP), CSP",
+                    "image": "/dokument/bild/20995/2099589_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Johann",
+            "Blöchl",
+            null,
+            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+            "Mühlviertel",
+            "/person/133"
+        ],
+        [
+            "Böhm Johann",
+            "NR",
+            649627,
+            "M",
+            "Männlich",
+            "IV,V,VI,VII,VIII",
+            "[\"SPÖ\",\"SdP\"]",
+            {
+                "zit": "Johann Böhm",
+                "fraktionen": "Klub der Sozialistischen Partei Österreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
+                "item_type": "Biogr",
+                "frak": [
+                    "SPÖ",
+                    "SdP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "IV",
+                    "V",
+                    "VI",
+                    "VII",
+                    "VIII"
+                ],
+                "nr_gp_code": "IV,V,VI,VII,VIII",
+                "uri": "/person/149",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Burgenland",
+                        "wahlpartei_code": "SdP",
+                        "fraktionscode": "S",
+                        "gp_von": "1930-12-02T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs (SdP)",
+                        "gp_code": "IV",
+                        "mandat_von": "02.12.1930",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gp_text_full_short": "02.12.1930 - 02.05.1934: IV. GP",
+                        "wahlkreis_code": "C25",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "mandat_bis": "17.02.1934",
+                        "wahlkreis": "Burgenland",
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Burgenland",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1956-06-08T00:00:00",
+                        "wahlpartei_full_txt": "Sozialistische Partei Österreichs (SPÖ)",
+                        "gp_code": "VIII",
+                        "mandat_von": "08.06.1956",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialistische Partei Österreichs",
+                        "gp_text_full_short": "08.06.1956 - 09.06.1959: VIII. GP",
+                        "wahlkreis_code": "C25",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialistische Partei Oesterreichs",
+                        "mandat_bis": "13.05.1959",
+                        "wahlkreis": "Burgenland",
+                        "fraktion": "Klub der Sozialistischen Partei Österreichs"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Burgenland",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1949-11-08T00:00:00",
+                        "wahlpartei_full_txt": "Sozialistische Partei Österreichs (SPÖ)",
+                        "gp_code": "VI",
+                        "mandat_von": "08.11.1949",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialistische Partei Österreichs",
+                        "gp_text_full_short": "08.11.1949 - 18.03.1953: VI. GP",
+                        "wahlkreis_code": "C25",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialistische Partei Oesterreichs",
+                        "mandat_bis": "18.03.1953",
+                        "wahlkreis": "Burgenland",
+                        "fraktion": "Klub der Sozialistischen Partei Österreichs"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Burgenland",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1953-03-18T00:00:00",
+                        "wahlpartei_full_txt": "Sozialistische Partei Österreichs (SPÖ)",
+                        "gp_code": "VII",
+                        "mandat_von": "18.03.1953",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialistische Partei Österreichs",
+                        "gp_text_full_short": "18.03.1953 - 08.06.1956: VII. GP",
+                        "wahlkreis_code": "C25",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialistische Partei Oesterreichs",
+                        "mandat_bis": "08.06.1956",
+                        "wahlkreis": "Burgenland",
+                        "fraktion": "Klub der Sozialistischen Partei Österreichs"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Burgenland",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1945-12-19T00:00:00",
+                        "wahlpartei_full_txt": "Sozialistische Partei Österreichs (SPÖ)",
+                        "gp_code": "V",
+                        "mandat_von": "19.12.1945",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialistische Partei Österreichs",
+                        "gp_text_full_short": "19.12.1945 - 08.11.1949: V. GP",
+                        "wahlkreis_code": "C25",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialistische Partei Oesterreichs",
+                        "mandat_bis": "08.11.1949",
+                        "wahlkreis": "Burgenland",
+                        "fraktion": "Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs"
+                    }
+                ],
+                "name_nvg": "Böhm Johann",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "19.12.1945",
+                            "wahlpartei_text": "Sozialistische Partei Österreichs",
+                            "mandatVon": "19.12.1945",
+                            "wahlkreis": "25 - Burgenland",
+                            "zeitraum": "19.12.1945-13.05.1959",
+                            "bez": "Abgeordneter zum Nationalrat (V.-VIII. GP), SPÖ",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Parlamentsklub der Sozialistischen Partei Österreichs",
+                            "mandatBis": "13.05.1959",
+                            "funktion_bis": "13.05.1959",
+                            "wahlpartei": "SPÖ",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "02.12.1930",
+                            "wahlpartei_text": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                            "mandatVon": "02.12.1930",
+                            "wahlkreis": "25 - Burgenland",
+                            "zeitraum": "02.12.1930-17.02.1934",
+                            "bez": "Abgeordneter zum Nationalrat (IV. GP), SdP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat",
+                            "mandatBis": "17.02.1934",
+                            "funktion_bis": "17.02.1934",
+                            "wahlpartei": "SdP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "2PNR",
+                            "gremium": "2PNR",
+                            "funktion_von": "19.12.1945",
+                            "zeitraum": "19.12.1945-13.05.1959",
+                            "bez": "Zweiter Präsident des Nationalrates",
+                            "mandat": "Zweiter Präsident des Nationalrates",
+                            "mandatVon": "19.12.1945",
+                            "mandatBis": "13.05.1959",
+                            "funktion_bis": "13.05.1959",
+                            "aktiv": false,
+                            "funktion_text": "Zweiter Präsident des Nationalrates"
+                        },
+                        {
+                            "funktion": "STS",
+                            "gremium": "STS",
+                            "funktion_von": "27.04.1945",
+                            "zeitraum": "27.04.1945-20.12.1945",
+                            "bez": "Staatssekretär im Staatsamt für soziale Verwaltung",
+                            "mandat": "Staatssekretär im Staatsamt für soziale Verwaltung",
+                            "mandatVon": "27.04.1945",
+                            "mandatBis": "20.12.1945",
+                            "funktion_bis": "20.12.1945",
+                            "aktiv": false,
+                            "funktion_text": "Staatssekretär im Staatsamt für soziale Verwaltung"
+                        }
+                    ]
+                },
+                "wahlkreise": "Burgenland",
+                "pad_intern": 149,
+                "medien": [
+                    2101353
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (V.-VIII. GP), SPÖ",
+                    "image": "/dokument/bild/21013/2101353_500.jpg"
+                },
+                "aktiv": false,
+                "nrbr_praes": [
+                    "2PNR"
+                ]
+            },
+            "J",
+            "Johann",
+            "Böhm",
+            null,
+            null,
+            "Klub der Sozialistischen Partei Österreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
+            "Burgenland",
+            "/person/149"
+        ],
+        [
+            "Ehrenfried Anton",
+            "NR",
+            649833,
+            "M",
+            "Männlich",
+            "VI,VII,VIII",
+            "[\"ÖVP\"]",
+            {
+                "zit": "Anton Ehrenfried",
+                "fraktionen": "Klub der Österreichischen Volkspartei (V)",
+                "item_type": "Biogr",
+                "frak": [
+                    "ÖVP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "VI",
+                    "VII",
+                    "VIII"
+                ],
+                "nr_gp_code": "VI,VII,VIII",
+                "uri": "/person/255",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Niederösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1956-06-08T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "VIII",
+                        "mandat_von": "08.06.1956",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "08.06.1956 - 09.06.1959: VIII. GP",
+                        "wahlkreis_code": "C11",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "09.06.1959",
+                        "wahlkreis": "Viertel unterm Manhartsberg",
+                        "fraktion": "Klub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Niederösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1949-11-08T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "VI",
+                        "mandat_von": "08.11.1949",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "08.11.1949 - 18.03.1953: VI. GP",
+                        "wahlkreis_code": "C11",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "18.03.1953",
+                        "wahlkreis": "Viertel unterm Manhartsberg",
+                        "fraktion": "Klub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Niederösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1953-03-18T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "VII",
+                        "mandat_von": "18.03.1953",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "18.03.1953 - 08.06.1956: VII. GP",
+                        "wahlkreis_code": "C11",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "08.06.1956",
+                        "wahlkreis": "Viertel unterm Manhartsberg",
+                        "fraktion": "Klub der Österreichischen Volkspartei"
+                    }
+                ],
+                "name_nvg": "Ehrenfried Anton",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "08.11.1949",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "08.11.1949",
+                            "wahlkreis": "11 - Viertel unterm Manhartsberg",
+                            "zeitraum": "08.11.1949-09.06.1959",
+                            "bez": "Abgeordneter zum Nationalrat (VI.-VIII. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Klub der Österreichischen Volkspartei",
+                            "mandatBis": "09.06.1959",
+                            "funktion_bis": "09.06.1959",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Viertel unterm Manhartsberg",
+                "pad_intern": 255,
+                "medien": [
+                    2099655
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (VI.-VIII. GP), ÖVP",
+                    "image": "/dokument/bild/20996/2099655_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Anton",
+            "Ehrenfried",
+            null,
+            null,
+            "Klub der Österreichischen Volkspartei (V)",
+            "Viertel unterm Manhartsberg",
+            "/person/255"
+        ],
+        [
+            "Gruber Hermann",
+            "NR",
+            650361,
+            "M",
+            "Männlich",
+            "IX,X",
+            "[\"ÖVP\"]",
+            {
+                "zit": "Hermann Gruber",
+                "fraktionen": "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V)",
+                "item_type": "Biogr",
+                "frak": [
+                    "ÖVP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "IX",
+                    "X"
+                ],
+                "nr_gp_code": "IX,X",
+                "uri": "/person/521",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Kärnten",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1962-12-14T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "X",
+                        "mandat_von": "14.12.1962",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "14.12.1962 - 30.03.1966: X. GP",
+                        "wahlkreis_code": "C24",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "30.03.1966",
+                        "wahlkreis": "Kärnten",
+                        "fraktion": "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1959-06-09T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "IX",
+                        "mandat_von": "09.06.1959",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "09.06.1959 - 14.12.1962: IX. GP",
+                        "wahlkreis_code": "CW4",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "14.12.1962",
+                        "wahlkreis": "Wahlkreisverband IV (B, K u St.)",
+                        "fraktion": "Klub der Österreichischen Volkspartei"
+                    }
+                ],
+                "name_nvg": "Gruber Hermann",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "09.06.1959",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "09.06.1959",
+                            "wahlkreis": "24 - Kärnten",
+                            "zeitraum": "09.06.1959-30.03.1966",
+                            "bez": "Abgeordneter zum Nationalrat (IX.-X. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Klub der Österreichischen Volkspartei",
+                            "mandatBis": "30.03.1966",
+                            "funktion_bis": "30.03.1966",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Kärnten, Wahlkreisverband IV (B, K u St.)",
+                "pad_intern": 521,
+                "medien": [
+                    2101432
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (IX.-X. GP), ÖVP",
+                    "image": "/dokument/bild/21014/2101432_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Hermann",
+            "Gruber",
+            null,
+            null,
+            "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V)",
+            "Kärnten, Wahlkreisverband IV (B, K u St.)",
+            "/person/521"
+        ],
+        [
+            "Hampel Ernst, Dr.",
+            "NR",
+            650313,
+            "M",
+            "Männlich",
+            "I,II,III,IV",
+            "[\"GdP\",\"NWB\"]",
+            {
+                "zit": "Dr. Ernst Hampel",
+                "fraktionen": "Verband der Abgeordneten des Nationalen Wirtschaftsblocks (W), Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
+                "item_type": "Biogr",
+                "frak": [
+                    "GdP",
+                    "NWB"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "I",
+                    "II",
+                    "III",
+                    "IV"
+                ],
+                "nr_gp_code": "I,II,III,IV",
+                "uri": "/person/497",
+                "mandate_detail": [
+                    {
+                        "wahlpartei_code": "GdP",
+                        "fraktionscode": "D",
+                        "gp_von": "1920-11-10T00:00:00",
+                        "wahlpartei_full_txt": "Großdeutsche Volkspartei (GdP)",
+                        "gp_code": "I",
+                        "mandat_von": "10.11.1920",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Großdeutsche Volkspartei",
+                        "gp_text_full_short": "10.11.1920 - 20.11.1923: I. GP",
+                        "wahlkreis_code": "BRM",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Großdeutsche Volkspartei",
+                        "mandat_bis": "20.11.1923",
+                        "wahlkreis": "Reststimmenmandat",
+                        "fraktion": "Verband der Abgeordneten der Großdeutschen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Steiermark",
+                        "wahlpartei_code": "GdP",
+                        "fraktionscode": "D",
+                        "gp_von": "1927-05-18T00:00:00",
+                        "wahlpartei_full_txt": "Großdeutsche Volkspartei (GdP)",
+                        "gp_code": "III",
+                        "mandat_von": "18.05.1927",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Großdeutsche Volkspartei",
+                        "gp_text_full_short": "18.05.1927 - 01.10.1930: III. GP",
+                        "wahlkreis_code": "C20",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Großdeutsche Volkspartei",
+                        "mandat_bis": "01.10.1930",
+                        "wahlkreis": "Graz und Umgebung",
+                        "fraktion": "Verband der Abgeordneten der Großdeutschen Volkspartei"
+                    },
+                    {
+                        "wahlpartei_code": "GdP",
+                        "fraktionscode": "D",
+                        "gp_von": "1923-11-20T00:00:00",
+                        "wahlpartei_full_txt": "Großdeutsche Volkspartei (GdP)",
+                        "gp_code": "II",
+                        "mandat_von": "07.01.1924",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Großdeutsche Volkspartei",
+                        "gp_text_full_short": "20.11.1923 - 18.05.1927: II. GP",
+                        "wahlkreis_code": "CW46",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Großdeutsche Volkspartei",
+                        "mandat_bis": "18.05.1927",
+                        "wahlkreis": "Wahlkreisverband IV - Steiermark",
+                        "fraktion": "Verband der Abgeordneten der Großdeutschen Volkspartei"
+                    },
+                    {
+                        "wahlpartei_code": "NWB",
+                        "fraktionscode": "W",
+                        "gp_von": "1930-12-02T00:00:00",
+                        "wahlpartei_full_txt": "Nationaler Wirtschaftsblock (NWB)",
+                        "gp_code": "IV",
+                        "mandat_von": "02.12.1930",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Nationaler Wirtschaftsblock",
+                        "gp_text_full_short": "02.12.1930 - 02.05.1934: IV. GP",
+                        "wahlkreis_code": "CW4",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Nationaler Wirtschaftsblock",
+                        "mandat_bis": "02.05.1934",
+                        "wahlkreis": "Wahlkreisverband IV (B, K u St.)",
+                        "fraktion": "Verband der Abgeordneten des Nationalen Wirtschaftsblocks"
+                    }
+                ],
+                "name_nvg": "Hampel Ernst, Dr.",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "02.12.1930",
+                            "wahlpartei_text": "Nationaler Wirtschaftsblock",
+                            "mandatVon": "02.12.1930",
+                            "wahlkreis": "Wahlkreisverband IV (B, K u St.)",
+                            "zeitraum": "02.12.1930-02.05.1934",
+                            "bez": "Abgeordneter zum Nationalrat (IV. GP), NWB",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Verband der Abgeordneten des Nationalen Wirtschaftsblocks",
+                            "mandatBis": "02.05.1934",
+                            "funktion_bis": "02.05.1934",
+                            "wahlpartei": "NWB",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "07.01.1924",
+                            "wahlpartei_text": "Großdeutsche Volkspartei",
+                            "mandatVon": "07.01.1924",
+                            "wahlkreis": "20 - Graz und Umgebung",
+                            "zeitraum": "07.01.1924-01.10.1930",
+                            "bez": "Abgeordneter zum Nationalrat (II.-III. GP), GdP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Verband der Abgeordneten der Großdeutschen Volkspartei",
+                            "mandatBis": "01.10.1930",
+                            "funktion_bis": "01.10.1930",
+                            "wahlpartei": "GdP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "10.11.1920",
+                            "wahlpartei_text": "Großdeutsche Volkspartei",
+                            "mandatVon": "10.11.1920",
+                            "wahlkreis": "RM - Reststimmenmandat",
+                            "zeitraum": "10.11.1920-20.11.1923",
+                            "bez": "Abgeordneter zum Nationalrat (I. GP), GdP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Verband der Abgeordneten der Großdeutschen Volkspartei",
+                            "mandatBis": "20.11.1923",
+                            "funktion_bis": "20.11.1923",
+                            "wahlpartei": "GdP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Reststimmenmandat, Wahlkreisverband IV - Steiermark, Graz und Umgebung, Wahlkreisverband IV (B, K u St.)",
+                "pad_intern": 497,
+                "medien": [
+                    2100578
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (IV. GP), NWB",
+                    "image": "/dokument/bild/21005/2100578_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Ernst",
+            "Hampel",
+            "Dr. phil.",
+            null,
+            "Verband der Abgeordneten des Nationalen Wirtschaftsblocks (W), Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
+            "Reststimmenmandat, Wahlkreisverband IV - Steiermark, Graz und Umgebung, Wahlkreisverband IV (B, K u St.)",
+            "/person/497"
+        ],
+        [
+            "Kapral Emma",
+            "NR",
+            650816,
+            "W",
+            "Weiblich",
+            "IV",
+            "[\"CSP\"]",
+            {
+                "zit": "Emma Kapral",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+                "item_type": "Biogr",
+                "frak": [
+                    "CSP"
+                ],
+                "geschlecht": "W",
+                "gp_code": [
+                    "IV"
+                ],
+                "nr_gp_code": "IV",
+                "uri": "/person/770",
+                "mandate_detail": [
+                    {
+                        "wahlpartei_code": "CSP",
+                        "fraktionscode": "C",
+                        "gp_von": "1930-12-02T00:00:00",
+                        "wahlpartei_full_txt": "Christlichsoziale Partei (CSP)",
+                        "gp_code": "IV",
+                        "mandat_von": "02.12.1930",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Christlichsoziale Partei",
+                        "gp_text_full_short": "02.12.1930 - 02.05.1934: IV. GP",
+                        "wahlkreis_code": "CW1",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Christlichsoziale Partei",
+                        "mandat_bis": "02.05.1934",
+                        "wahlkreis": "Wahlkreisverband I (Wien)",
+                        "fraktion": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente"
+                    }
+                ],
+                "name_nvg": "Kapral Emma",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "02.12.1930",
+                            "wahlpartei_text": "Christlichsoziale Partei",
+                            "mandatVon": "02.12.1930",
+                            "wahlkreis": "Wahlkreisverband I (Wien)",
+                            "zeitraum": "02.12.1930-02.05.1934",
+                            "bez": "Abgeordnete zum Nationalrat (IV. GP), CSP",
+                            "mandat": "Abgeordnete zum Nationalrat",
+                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+                            "mandatBis": "02.05.1934",
+                            "funktion_bis": "02.05.1934",
+                            "wahlpartei": "CSP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordnete zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Wahlkreisverband I (Wien)",
+                "pad_intern": 770,
+                "medien": [
+                    2101481
+                ],
+                "openGraph": {
+                    "description": "Abgeordnete zum Nationalrat (IV. GP), CSP",
+                    "image": "/dokument/bild/21014/2101481_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Emma",
+            "Kapral",
+            null,
+            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+            "Wahlkreisverband I (Wien)",
+            "/person/770"
+        ],
+        [
+            "Karlsson Irmtraut, Dr.",
+            "BR, NR",
+            650830,
+            "W",
+            "Weiblich",
+            "XVII,XVIII,XIX,XX",
+            "[\"SPÖ\"]",
+            {
+                "zit": "Dr. Irmtraut Karlsson",
+                "fraktionen": "Bundesratsfraktion der SPÖ (S), Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
+                "item_type": "Biogr",
+                "frak": [
+                    "SPÖ"
+                ],
+                "geschlecht": "W",
+                "gp_code": [
+                    "BR",
+                    "XVIII",
+                    "XIX",
+                    "XX"
+                ],
+                "nr_gp_code": "XVII,XVIII,XIX,XX",
+                "uri": "/person/777",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1945-12-19T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Partei Österreichs (SPÖ)",
+                        "gp_code": "BR",
+                        "mandat_von": "29.01.1987",
+                        "gremium_name": "Bundesrat",
+                        "wahlpartei_txt": "Sozialdemokratische Partei Österreichs",
+                        "gp_text_full_short": "ab 19.12.1945: Bundesrat",
+                        "wahlkreis_code": "Z9",
+                        "mand_code": "BR",
+                        "wahlpartei_sort": "Sozialdemokratische Partei Oesterreichs",
+                        "mandat_bis": "18.10.1993",
+                        "wahlkreis": "Wien",
+                        "fraktion": "Bundesratsfraktion der SPÖ"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1990-11-05T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Partei Österreichs (SPÖ)",
+                        "gp_code": "XVIII",
+                        "mandat_von": "19.10.1993",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialdemokratische Partei Österreichs",
+                        "gp_text_full_short": "05.11.1990 - 06.11.1994: XVIII. GP",
+                        "wahlkreis_code": "D9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialdemokratische Partei Oesterreichs",
+                        "mandat_bis": "06.11.1994",
+                        "wahlkreis": "Wien",
+                        "fraktion": "Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1994-11-07T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Partei Österreichs (SPÖ)",
+                        "gp_code": "XIX",
+                        "mandat_von": "15.12.1994",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialdemokratische Partei Österreichs",
+                        "gp_text_full_short": "07.11.1994 - 14.01.1996: XIX. GP",
+                        "wahlkreis_code": "E9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialdemokratische Partei Oesterreichs",
+                        "mandat_bis": "14.01.1996",
+                        "wahlkreis": "Wien",
+                        "fraktion": "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1996-01-15T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Partei Österreichs (SPÖ)",
+                        "gp_code": "XX",
+                        "mandat_von": "14.03.1996",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialdemokratische Partei Österreichs",
+                        "gp_text_full_short": "15.01.1996 - 28.10.1999: XX. GP",
+                        "wahlkreis_code": "E9B",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialdemokratische Partei Oesterreichs",
+                        "mandat_bis": "28.10.1999",
+                        "wahlkreis": "Wien Innen-West",
+                        "fraktion": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament"
+                    }
+                ],
+                "name_nvg": "Karlsson Irmtraut, Dr.",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "14.03.1996",
+                            "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                            "mandatVon": "14.03.1996",
+                            "wahlkreis": "9B - Wien Innen-West",
+                            "zeitraum": "14.03.1996-28.10.1999",
+                            "bez": "Abgeordnete zum Nationalrat (XX. GP), SPÖ",
+                            "mandat": "Abgeordnete zum Nationalrat",
+                            "klub": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                            "mandatBis": "28.10.1999",
+                            "funktion_bis": "28.10.1999",
+                            "wahlpartei": "SPÖ",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordnete zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "15.12.1994",
+                            "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                            "mandatVon": "15.12.1994",
+                            "wahlkreis": "9 - Wien",
+                            "zeitraum": "15.12.1994-14.01.1996",
+                            "bez": "Abgeordnete zum Nationalrat (XIX. GP), SPÖ",
+                            "mandat": "Abgeordnete zum Nationalrat",
+                            "klub": "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte",
+                            "mandatBis": "14.01.1996",
+                            "funktion_bis": "14.01.1996",
+                            "wahlpartei": "SPÖ",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordnete zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "19.10.1993",
+                            "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                            "mandatVon": "19.10.1993",
+                            "wahlkreis": "9 - Wien",
+                            "zeitraum": "19.10.1993-06.11.1994",
+                            "bez": "Abgeordnete zum Nationalrat (XVIII. GP), SPÖ",
+                            "mandat": "Abgeordnete zum Nationalrat",
+                            "klub": "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte",
+                            "mandatBis": "06.11.1994",
+                            "funktion_bis": "06.11.1994",
+                            "wahlpartei": "SPÖ",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordnete zum Nationalrat"
+                        },
+                        {
+                            "funktion": "BR",
+                            "gremium": "BR",
+                            "funktion_von": "29.01.1987",
+                            "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                            "mandatVon": "29.01.1987",
+                            "wahlkreis": "In den Bundesrat entsendet vom Wiener Landtag",
+                            "zeitraum": "29.01.1987-18.10.1993",
+                            "bez": "Mitglied des Bundesrates, SPÖ",
+                            "mandat": "Mitglied des Bundesrates",
+                            "klub": "Bundesratsfraktion der SPÖ",
+                            "mandatBis": "18.10.1993",
+                            "funktion_bis": "18.10.1993",
+                            "wahlpartei": "SPÖ",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied des Bundesrates"
+                        }
+                    ]
+                },
+                "wahlkreise": "Wien Innen-West, Wien",
+                "pad_intern": 777,
+                "medien": [
+                    2099881
+                ],
+                "openGraph": {
+                    "description": "Abgeordnete zum Nationalrat (XX. GP), SPÖ",
+                    "image": "/dokument/bild/20998/2099881_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Irmtraut",
+            "Karlsson",
+            "Dr. phil.",
+            null,
+            "Bundesratsfraktion der SPÖ (S), Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
+            "Wien Innen-West, Wien",
+            "/person/777"
+        ],
+        [
+            "Krainer Josef",
+            "BR",
+            651178,
+            "M",
+            "Männlich",
+            "X,XI",
+            "[\"ÖVP\"]",
+            {
+                "zit": "Josef Krainer",
+                "fraktionen": "Bundesratsfraktion der ÖVP (V)",
+                "item_type": "Biogr",
+                "frak": [
+                    "ÖVP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "BR"
+                ],
+                "nr_gp_code": "X,XI",
+                "uri": "/person/953",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Steiermark",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1945-12-19T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "BR",
+                        "mandat_von": "07.04.1965",
+                        "gremium_name": "Bundesrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "ab 19.12.1945: Bundesrat",
+                        "wahlkreis_code": "Z6",
+                        "mand_code": "BR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "19.04.1968",
+                        "wahlkreis": "Steiermark",
+                        "fraktion": "Bundesratsfraktion der ÖVP"
+                    }
+                ],
+                "name_nvg": "Krainer Josef",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "BR",
+                            "gremium": "BR",
+                            "funktion_von": "07.04.1965",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "07.04.1965",
+                            "wahlkreis": "In den Bundesrat entsendet vom Steiermärkischen Landtag",
+                            "zeitraum": "07.04.1965-19.04.1968",
+                            "bez": "Mitglied des Bundesrates, ÖVP",
+                            "mandat": "Mitglied des Bundesrates",
+                            "klub": "Bundesratsfraktion der ÖVP",
+                            "mandatBis": "19.04.1968",
+                            "funktion_bis": "19.04.1968",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied des Bundesrates"
+                        },
+                        {
+                            "funktion": "VB",
+                            "gremium": "VB",
+                            "funktion_von": "01.01.1967",
+                            "zeitraum": "01.01.1967-30.06.1967",
+                            "bez": "Vorsitzender des Bundesrates",
+                            "mandat": "Vorsitzender des Bundesrates",
+                            "mandatVon": "01.01.1967",
+                            "mandatBis": "30.06.1967",
+                            "funktion_bis": "30.06.1967",
+                            "aktiv": false,
+                            "funktion_text": "Vorsitzender des Bundesrates"
+                        }
+                    ]
+                },
+                "wahlkreise": "Steiermark",
+                "pad_intern": 953,
+                "openGraph": {
+                    "description": "Mitglied des Bundesrates, ÖVP",
+                    "image": "/static/img/Foto_Platzhalter_Quadrat.svg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Josef",
+            "Krainer",
+            null,
+            null,
+            "Bundesratsfraktion der ÖVP (V)",
+            "Steiermark",
+            "/person/953"
+        ],
+        [
+            "Kranzlmayr Otto, Dr.",
+            "NR",
+            651196,
+            "M",
+            "Männlich",
+            "VII,VIII,IX,X,XI,XII,XIII",
+            "[\"ÖVP\"]",
+            {
+                "zit": "Dr. Otto Kranzlmayr",
+                "fraktionen": "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
+                "item_type": "Biogr",
+                "frak": [
+                    "ÖVP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "VII",
+                    "VIII",
+                    "IX",
+                    "X",
+                    "XI",
+                    "XII",
+                    "XIII"
+                ],
+                "nr_gp_code": "VII,VIII,IX,X,XI,XII,XIII",
+                "uri": "/person/962",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Oberösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1956-06-08T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "VIII",
+                        "mandat_von": "08.06.1956",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "08.06.1956 - 09.06.1959: VIII. GP",
+                        "wahlkreis_code": "C13",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "09.06.1959",
+                        "wahlkreis": "Innviertel",
+                        "fraktion": "Klub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Oberösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1959-06-09T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "IX",
+                        "mandat_von": "09.06.1959",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "09.06.1959 - 14.12.1962: IX. GP",
+                        "wahlkreis_code": "C13",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "14.12.1962",
+                        "wahlkreis": "Innviertel",
+                        "fraktion": "Klub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Oberösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1962-12-14T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "X",
+                        "mandat_von": "14.12.1962",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "14.12.1962 - 30.03.1966: X. GP",
+                        "wahlkreis_code": "C13",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "30.03.1966",
+                        "wahlkreis": "Innviertel",
+                        "fraktion": "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Oberösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1953-03-18T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "VII",
+                        "mandat_von": "18.03.1953",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "18.03.1953 - 08.06.1956: VII. GP",
+                        "wahlkreis_code": "C13",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "08.06.1956",
+                        "wahlkreis": "Innviertel",
+                        "fraktion": "Klub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Oberösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1966-03-30T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XI",
+                        "mandat_von": "30.03.1966",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "30.03.1966 - 31.03.1970: XI. GP",
+                        "wahlkreis_code": "C13",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "31.03.1970",
+                        "wahlkreis": "Innviertel",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Oberösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1970-03-31T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XII",
+                        "mandat_von": "31.03.1970",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "31.03.1970 - 04.11.1971: XII. GP",
+                        "wahlkreis_code": "C13",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "04.11.1971",
+                        "wahlkreis": "Innviertel",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Oberösterreich",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1971-11-04T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XIII",
+                        "mandat_von": "04.11.1971",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "04.11.1971 - 04.11.1975: XIII. GP",
+                        "wahlkreis_code": "D4",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "04.05.1972",
+                        "wahlkreis": "Oberösterreich",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    }
+                ],
+                "name_nvg": "Kranzlmayr Otto, Dr.",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "18.03.1953",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "18.03.1953",
+                            "wahlkreis": "4 - Oberösterreich",
+                            "zeitraum": "18.03.1953-04.05.1972",
+                            "bez": "Abgeordneter zum Nationalrat (VII.-XIII. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                            "mandatBis": "04.05.1972",
+                            "funktion_bis": "04.05.1972",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "STS",
+                            "gremium": "STS",
+                            "funktion_von": "11.04.1961",
+                            "zeitraum": "11.04.1961-05.11.1963",
+                            "bez": "Staatssekretär im Bundesministerium für Inneres",
+                            "mandat": "Staatssekretär im Bundesministerium für Inneres",
+                            "mandatVon": "11.04.1961",
+                            "mandatBis": "05.11.1963",
+                            "funktion_bis": "05.11.1963",
+                            "aktiv": false,
+                            "funktion_text": "Staatssekretär im Bundesministerium für Inneres"
+                        }
+                    ]
+                },
+                "wahlkreise": "Innviertel, Oberösterreich",
+                "pad_intern": 962,
+                "medien": [
+                    2100775
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (VII.-XIII. GP), ÖVP",
+                    "image": "/dokument/bild/21007/2100775_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Otto",
+            "Kranzlmayr",
+            "Dr. iur.",
+            null,
+            "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
+            "Innviertel, Oberösterreich",
+            "/person/962"
+        ],
+        [
+            "Kurz Sebastian",
+            "NR",
+            656623,
+            "M",
+            "Männlich",
+            "XXV,XXVI,XXVII",
+            "[\"ÖVP\"]",
+            {
+                "zit": "Sebastian Kurz",
+                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
+                "item_type": "Biogr",
+                "frak": [
+                    "ÖVP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "XXV",
+                    "XXVI",
+                    "XXVII"
+                ],
+                "nr_gp_code": "XXV,XXVI,XXVII",
+                "uri": "/person/65321",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "2013-10-29T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XXV",
+                        "mandat_von": "29.10.2013",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "29.10.2013 - 08.11.2017: XXV. GP",
+                        "wahlkreis_code": "F9E",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "16.12.2013",
+                        "wahlkreis": "Wien Süd-West",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Bundeswahlvorschlag",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "2017-11-09T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XXVI",
+                        "mandat_von": "09.11.2017",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "09.11.2017 - 22.10.2019: XXVI. GP",
+                        "wahlkreis_code": "FB",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "22.01.2018",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Bundeswahlvorschlag",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "2019-10-23T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XXVII",
+                        "mandat_von": "14.10.2021",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "23.10.2019 - 23.10.2024: XXVII. GP",
+                        "wahlkreis_code": "FB",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "08.12.2021",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Bundeswahlvorschlag",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "2019-10-23T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XXVII",
+                        "mandat_von": "23.10.2019",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "23.10.2019 - 23.10.2024: XXVII. GP",
+                        "wahlkreis_code": "FB",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "07.01.2020",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    }
+                ],
+                "name_nvg": "Kurz Sebastian",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "14.10.2021",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "14.10.2021",
+                            "wahlkreis": "Bundeswahlvorschlag",
+                            "zeitraum": "14.10.2021-08.12.2021",
+                            "bez": "Abgeordneter zum Nationalrat (XXVII. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                            "mandatBis": "08.12.2021",
+                            "funktion_bis": "08.12.2021",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "23.10.2019",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "23.10.2019",
+                            "wahlkreis": "Bundeswahlvorschlag",
+                            "zeitraum": "23.10.2019-07.01.2020",
+                            "bez": "Abgeordneter zum Nationalrat (XXVII. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                            "mandatBis": "07.01.2020",
+                            "funktion_bis": "07.01.2020",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "09.11.2017",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "09.11.2017",
+                            "wahlkreis": "Bundeswahlvorschlag",
+                            "zeitraum": "09.11.2017-22.01.2018",
+                            "bez": "Abgeordneter zum Nationalrat (XXVI. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                            "mandatBis": "22.01.2018",
+                            "funktion_bis": "22.01.2018",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "29.10.2013",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "29.10.2013",
+                            "wahlkreis": "9E - Wien Süd-West",
+                            "zeitraum": "29.10.2013-16.12.2013",
+                            "bez": "Abgeordneter zum Nationalrat (XXV. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                            "mandatBis": "16.12.2013",
+                            "funktion_bis": "16.12.2013",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "BK",
+                            "gremium": "BK",
+                            "funktion_von": "07.01.2020",
+                            "zeitraum": "07.01.2020-11.10.2021",
+                            "bez": "Bundeskanzler",
+                            "mandat": "Bundeskanzler",
+                            "mandatVon": "07.01.2020",
+                            "mandatBis": "11.10.2021",
+                            "funktion_bis": "11.10.2021",
+                            "aktiv": false,
+                            "funktion_text": "Bundeskanzler"
+                        },
+                        {
+                            "funktion": "BK",
+                            "gremium": "BK",
+                            "funktion_von": "18.12.2017",
+                            "zeitraum": "18.12.2017-28.05.2019",
+                            "bez": "Bundeskanzler",
+                            "mandat": "Bundeskanzler",
+                            "mandatVon": "18.12.2017",
+                            "mandatBis": "28.05.2019",
+                            "funktion_bis": "28.05.2019",
+                            "aktiv": false,
+                            "funktion_text": "Bundeskanzler"
+                        },
+                        {
+                            "funktion": "BM",
+                            "gremium": "BM",
+                            "funktion_von": "01.03.2014",
+                            "zeitraum": "01.03.2014-18.12.2017",
+                            "bez": "Bundesminister für Europa, Integration und Äußeres",
+                            "mandat": "Bundesminister für Europa, Integration und Äußeres",
+                            "mandatVon": "01.03.2014",
+                            "mandatBis": "18.12.2017",
+                            "funktion_bis": "18.12.2017",
+                            "aktiv": false,
+                            "funktion_text": "Bundesminister für Europa, Integration und Äußeres"
+                        },
+                        {
+                            "funktion": "BM",
+                            "gremium": "BM",
+                            "funktion_von": "16.12.2013",
+                            "zeitraum": "16.12.2013-28.02.2014",
+                            "bez": "Bundesminister für europäische und internationale Angelegenheiten",
+                            "mandat": "Bundesminister für europäische und internationale Angelegenheiten",
+                            "mandatVon": "16.12.2013",
+                            "mandatBis": "28.02.2014",
+                            "funktion_bis": "28.02.2014",
+                            "aktiv": false,
+                            "funktion_text": "Bundesminister für europäische und internationale Angelegenheiten"
+                        },
+                        {
+                            "funktion": "STS",
+                            "gremium": "STS",
+                            "funktion_von": "21.04.2011",
+                            "zeitraum": "21.04.2011-16.12.2013",
+                            "bez": "Staatssekretär im Bundesministerium für Inneres",
+                            "mandat": "Staatssekretär im Bundesministerium für Inneres",
+                            "mandatVon": "21.04.2011",
+                            "mandatBis": "16.12.2013",
+                            "funktion_bis": "16.12.2013",
+                            "aktiv": false,
+                            "funktion_text": "Staatssekretär im Bundesministerium für Inneres"
+                        }
+                    ]
+                },
+                "wahlkreise": "Bundeswahlvorschlag, Wien Süd-West",
+                "pad_intern": 65321,
+                "medien": [
+                    9233173
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (XXVII. GP), ÖVP",
+                    "image": "/dokument/bild/92331/9233173_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Sebastian",
+            "Kurz",
+            null,
+            null,
+            "Parlamentsklub der Österreichischen Volkspartei (V)",
+            "Bundeswahlvorschlag, Wien Süd-West",
+            "/person/65321"
+        ],
+        [
+            "Kurz Susanne, Mag.",
+            "BR",
+            654751,
+            "W",
+            "Weiblich",
+            "XXII,XXIII,XXIV,XXV,XXVI",
+            "[\"SPÖ\"]",
+            {
+                "zit": "Mag. Susanne Kurz",
+                "fraktionen": "Bundesratsfraktion der SPÖ (S)",
+                "item_type": "Biogr",
+                "frak": [
+                    "SPÖ"
+                ],
+                "fruehere_namen_nvg": "(bis 18.8.2012: Mag. Susanne Neuwirth)",
+                "geschlecht": "W",
+                "gp_code": [
+                    "BR"
+                ],
+                "nr_gp_code": "XXII,XXIII,XXIV,XXV,XXVI",
+                "uri": "/person/21150",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1945-12-19T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Partei Österreichs (SPÖ)",
+                        "gp_code": "BR",
+                        "mandat_von": "19.06.2013",
+                        "gremium_name": "Bundesrat",
+                        "wahlpartei_txt": "Sozialdemokratische Partei Österreichs",
+                        "gp_text_full_short": "ab 19.12.1945: Bundesrat",
+                        "wahlkreis_code": "Z5",
+                        "mand_code": "BR",
+                        "wahlpartei_sort": "Sozialdemokratische Partei Oesterreichs",
+                        "mandat_bis": "05.03.2018",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Bundesratsfraktion der SPÖ"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "SPÖ",
+                        "fraktionscode": "S",
+                        "gp_von": "1945-12-19T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Partei Österreichs (SPÖ)",
+                        "gp_code": "BR",
+                        "mandat_von": "28.04.2004",
+                        "gremium_name": "Bundesrat",
+                        "wahlpartei_txt": "Sozialdemokratische Partei Österreichs",
+                        "gp_text_full_short": "ab 19.12.1945: Bundesrat",
+                        "wahlkreis_code": "Z5",
+                        "mand_code": "BR",
+                        "wahlpartei_sort": "Sozialdemokratische Partei Oesterreichs",
+                        "mandat_bis": "18.06.2013",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Bundesratsfraktion der SPÖ"
+                    }
+                ],
+                "name_nvg": "Kurz Susanne, Mag.",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "BR",
+                            "gremium": "BR",
+                            "funktion_von": "28.04.2004",
+                            "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                            "mandatVon": "28.04.2004",
+                            "wahlkreis": "In den Bundesrat entsendet vom Salzburger Landtag",
+                            "zeitraum": "28.04.2004-05.03.2018",
+                            "bez": "Mitglied des Bundesrates, SPÖ",
+                            "mandat": "Mitglied des Bundesrates",
+                            "klub": "Bundesratsfraktion der SPÖ",
+                            "mandatBis": "05.03.2018",
+                            "funktion_bis": "05.03.2018",
+                            "wahlpartei": "SPÖ",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied des Bundesrates"
+                        },
+                        {
+                            "funktion": "ZOB",
+                            "gremium": "ZOB",
+                            "funktion_von": "01.07.2015",
+                            "zeitraum": "01.07.2015-05.03.2018",
+                            "bez": "Ordnerin des Bundesrates",
+                            "mandat": "Ordnerin des Bundesrates",
+                            "mandatVon": "01.07.2015",
+                            "mandatBis": "05.03.2018",
+                            "funktion_bis": "05.03.2018",
+                            "aktiv": false,
+                            "funktion_text": "Ordnerin des Bundesrates"
+                        },
+                        {
+                            "funktion": "SPB",
+                            "gremium": "SPB",
+                            "funktion_von": "01.01.2012",
+                            "zeitraum": "01.01.2012-30.06.2014",
+                            "bez": "Vizepräsidentin des Bundesrates",
+                            "mandat": "Vizepräsidentin des Bundesrates",
+                            "mandatVon": "01.01.2012",
+                            "mandatBis": "30.06.2014",
+                            "funktion_bis": "30.06.2014",
+                            "aktiv": false,
+                            "funktion_text": "Vizepräsidentin des Bundesrates"
+                        },
+                        {
+                            "funktion": "PB",
+                            "gremium": "PB",
+                            "funktion_von": "01.07.2011",
+                            "zeitraum": "01.07.2011-31.12.2011",
+                            "bez": "Präsidentin des Bundesrates",
+                            "mandat": "Präsidentin des Bundesrates",
+                            "mandatVon": "01.07.2011",
+                            "mandatBis": "31.12.2011",
+                            "funktion_bis": "31.12.2011",
+                            "aktiv": false,
+                            "funktion_text": "Präsidentin des Bundesrates"
+                        },
+                        {
+                            "funktion": "SPB",
+                            "gremium": "SPB",
+                            "funktion_von": "01.01.2008",
+                            "zeitraum": "01.01.2008-30.06.2011",
+                            "bez": "Vizepräsidentin des Bundesrates",
+                            "mandat": "Vizepräsidentin des Bundesrates",
+                            "mandatVon": "01.01.2008",
+                            "mandatBis": "30.06.2011",
+                            "funktion_bis": "30.06.2011",
+                            "aktiv": false,
+                            "funktion_text": "Vizepräsidentin des Bundesrates"
+                        },
+                        {
+                            "funktion": "ZSB",
+                            "gremium": "ZSB",
+                            "funktion_von": "07.10.2004",
+                            "zeitraum": "07.10.2004-31.12.2007",
+                            "bez": "Schriftführerin des Bundesrates",
+                            "mandat": "Schriftführerin des Bundesrates",
+                            "mandatVon": "07.10.2004",
+                            "mandatBis": "31.12.2007",
+                            "funktion_bis": "31.12.2007",
+                            "aktiv": false,
+                            "funktion_text": "Schriftführerin des Bundesrates"
+                        }
+                    ]
+                },
+                "wahlkreise": "Salzburg",
+                "pad_intern": 21150,
+                "medien": [
+                    5904049
+                ],
+                "openGraph": {
+                    "description": "Mitglied des Bundesrates, SPÖ",
+                    "image": "/dokument/bild/59040/5904049_500.jpg"
+                },
+                "aktiv": false,
+                "nrbr_praes": [
+                    "PB",
+                    "SPB"
+                ]
+            },
+            "J",
+            "Susanne",
+            "Kurz",
+            "Mag. phil.",
+            null,
+            "Bundesratsfraktion der SPÖ (S)",
+            "Salzburg",
+            "/person/21150"
+        ],
+        [
+            "Manhalter Rudolf",
+            "NR",
+            651362,
+            "M",
+            "Männlich",
+            "III,IV",
+            "[\"CSP\"]",
+            {
+                "zit": "Rudolf Manhalter",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+                "item_type": "Biogr",
+                "frak": [
+                    "CSP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "III",
+                    "IV"
+                ],
+                "nr_gp_code": "III,IV",
+                "uri": "/person/1046",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Niederösterreich",
+                        "wahlpartei_code": "CSP",
+                        "fraktionscode": "C",
+                        "gp_von": "1930-12-02T00:00:00",
+                        "wahlpartei_full_txt": "Christlichsoziale Partei (CSP)",
+                        "gp_code": "IV",
+                        "mandat_von": "02.12.1930",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Christlichsoziale Partei",
+                        "gp_text_full_short": "02.12.1930 - 02.05.1934: IV. GP",
+                        "wahlkreis_code": "C9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Christlichsoziale Partei",
+                        "mandat_bis": "27.04.1934",
+                        "wahlkreis": "Viertel unterm Wienerwald",
+                        "fraktion": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Niederösterreich",
+                        "wahlpartei_code": "CSP",
+                        "fraktionscode": "C",
+                        "gp_von": "1927-05-18T00:00:00",
+                        "wahlpartei_full_txt": "Christlichsoziale Partei (CSP)",
+                        "gp_code": "III",
+                        "mandat_von": "18.05.1927",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Christlichsoziale Partei",
+                        "gp_text_full_short": "18.05.1927 - 01.10.1930: III. GP",
+                        "wahlkreis_code": "C9",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Christlichsoziale Partei",
+                        "mandat_bis": "01.10.1930",
+                        "wahlkreis": "Viertel unterm Wienerwald",
+                        "fraktion": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente"
+                    }
+                ],
+                "name_nvg": "Manhalter Rudolf",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "02.12.1930",
+                            "wahlpartei_text": "Christlichsoziale Partei",
+                            "mandatVon": "02.12.1930",
+                            "wahlkreis": "9 - Viertel unterm Wienerwald",
+                            "zeitraum": "02.12.1930-27.04.1934",
+                            "bez": "Abgeordneter zum Nationalrat (IV. GP), CSP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+                            "mandatBis": "27.04.1934",
+                            "funktion_bis": "27.04.1934",
+                            "wahlpartei": "CSP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "18.05.1927",
+                            "wahlpartei_text": "Christlichsoziale Partei",
+                            "mandatVon": "18.05.1927",
+                            "wahlkreis": "9 - Viertel unterm Wienerwald",
+                            "zeitraum": "18.05.1927-01.10.1930",
+                            "bez": "Abgeordneter zum Nationalrat (III. GP), CSP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+                            "mandatBis": "01.10.1930",
+                            "funktion_bis": "01.10.1930",
+                            "wahlpartei": "CSP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Viertel unterm Wienerwald",
+                "pad_intern": 1046,
+                "medien": [
+                    2100688
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (IV. GP), CSP",
+                    "image": "/dokument/bild/21006/2100688_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Rudolf",
+            "Manhalter",
+            null,
+            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+            "Viertel unterm Wienerwald",
+            "/person/1046"
+        ],
+        [
+            "Pick Karl",
+            "KN, NR",
+            651674,
+            "M",
+            "Männlich",
+            "KN,I,II,III,IV",
+            "[\"SdP\"]",
+            {
+                "zit": "Karl Pick",
+                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
+                "item_type": "Biogr",
+                "frak": [
+                    "SdP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "KN",
+                    "I",
+                    "II",
+                    "III",
+                    "IV"
+                ],
+                "nr_gp_code": "KN,I,II,III,IV",
+                "uri": "/person/1203",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SdP",
+                        "fraktionscode": "S",
+                        "gp_von": "1919-03-04T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs (SdP)",
+                        "gp_code": "KN",
+                        "mandat_von": "04.03.1919",
+                        "gremium_name": "Konstituierende Nationalversammlung",
+                        "wahlpartei_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gp_text_full_short": "04.03.1919 - 09.11.1920: Konstituierende Nationalversammlung",
+                        "wahlkreis_code": "A4",
+                        "mand_code": "KN",
+                        "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "mandat_bis": "09.11.1920",
+                        "wahlkreis": "Wien Nordost",
+                        "fraktion": "Sozialdemokratische Vereinigung"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SdP",
+                        "fraktionscode": "S",
+                        "gp_von": "1920-11-10T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs (SdP)",
+                        "gp_code": "I",
+                        "mandat_von": "10.11.1920",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gp_text_full_short": "10.11.1920 - 20.11.1923: I. GP",
+                        "wahlkreis_code": "B04",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "mandat_bis": "20.11.1923",
+                        "wahlkreis": "Wien Nordost",
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SdP",
+                        "fraktionscode": "S",
+                        "gp_von": "1930-12-02T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs (SdP)",
+                        "gp_code": "IV",
+                        "mandat_von": "02.12.1930",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gp_text_full_short": "02.12.1930 - 02.05.1934: IV. GP",
+                        "wahlkreis_code": "C4",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "mandat_bis": "17.02.1934",
+                        "wahlkreis": "Wien Nordost",
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SdP",
+                        "fraktionscode": "S",
+                        "gp_von": "1927-05-18T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs (SdP)",
+                        "gp_code": "III",
+                        "mandat_von": "18.05.1927",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gp_text_full_short": "18.05.1927 - 01.10.1930: III. GP",
+                        "wahlkreis_code": "C4",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "mandat_bis": "01.10.1930",
+                        "wahlkreis": "Wien Nordost",
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Wien",
+                        "wahlpartei_code": "SdP",
+                        "fraktionscode": "S",
+                        "gp_von": "1923-11-20T00:00:00",
+                        "wahlpartei_full_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs (SdP)",
+                        "gp_code": "II",
+                        "mandat_von": "20.11.1923",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gp_text_full_short": "20.11.1923 - 18.05.1927: II. GP",
+                        "wahlkreis_code": "C4",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "mandat_bis": "18.05.1927",
+                        "wahlkreis": "Wien Nordost",
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                    }
+                ],
+                "name_nvg": "Pick Karl",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "02.12.1930",
+                            "wahlpartei_text": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                            "mandatVon": "02.12.1930",
+                            "wahlkreis": "4 - Wien Nordost",
+                            "zeitraum": "02.12.1930-17.02.1934",
+                            "bez": "Abgeordneter zum Nationalrat (IV. GP), SdP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat",
+                            "mandatBis": "17.02.1934",
+                            "funktion_bis": "17.02.1934",
+                            "wahlpartei": "SdP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "10.11.1920",
+                            "wahlpartei_text": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                            "mandatVon": "10.11.1920",
+                            "wahlkreis": "4 - Wien Nordost",
+                            "zeitraum": "10.11.1920-01.10.1930",
+                            "bez": "Abgeordneter zum Nationalrat (I.-III. GP), SdP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs",
+                            "mandatBis": "01.10.1930",
+                            "funktion_bis": "01.10.1930",
+                            "wahlpartei": "SdP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        },
+                        {
+                            "funktion": "KN",
+                            "gremium": "KN",
+                            "funktion_von": "04.03.1919",
+                            "wahlpartei_text": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                            "mandatVon": "04.03.1919",
+                            "zeitraum": "04.03.1919-09.11.1920",
+                            "bez": "Mitglied der Konst. Nationalversammlung, SdP",
+                            "mandat": "Mitglied der Konst. Nationalversammlung",
+                            "klub": "Sozialdemokratische Vereinigung",
+                            "mandatBis": "09.11.1920",
+                            "funktion_bis": "09.11.1920",
+                            "wahlpartei": "SdP",
+                            "aktiv": false,
+                            "funktion_text": "Mitglied der Konst. Nationalversammlung"
+                        }
+                    ]
+                },
+                "wahlkreise": "Wien Nordost",
+                "pad_intern": 1203,
+                "medien": [
+                    2100190
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (IV. GP), SdP",
+                    "image": "/dokument/bild/21001/2100190_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Karl",
+            "Pick",
+            null,
+            null,
+            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
+            "Wien Nordost",
+            "/person/1203"
+        ],
+        [
+            "Strohmaier Vinzenz",
+            "NR",
+            653135,
+            "M",
+            "Männlich",
+            "IV",
+            "[\"CSP\"]",
+            {
+                "zit": "Vinzenz Strohmaier",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+                "item_type": "Biogr",
+                "frak": [
+                    "CSP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "IV"
+                ],
+                "nr_gp_code": "IV",
+                "uri": "/person/1920",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Steiermark",
+                        "wahlpartei_code": "CSP",
+                        "fraktionscode": "C",
+                        "gp_von": "1930-12-02T00:00:00",
+                        "wahlpartei_full_txt": "Christlichsoziale Partei (CSP)",
+                        "gp_code": "IV",
+                        "mandat_von": "02.12.1930",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Christlichsoziale Partei",
+                        "gp_text_full_short": "02.12.1930 - 02.05.1934: IV. GP",
+                        "wahlkreis_code": "C21",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Christlichsoziale Partei",
+                        "mandat_bis": "02.05.1934",
+                        "wahlkreis": "Mittel- und Untersteier",
+                        "fraktion": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente"
+                    }
+                ],
+                "name_nvg": "Strohmaier Vinzenz",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "02.12.1930",
+                            "wahlpartei_text": "Christlichsoziale Partei",
+                            "mandatVon": "02.12.1930",
+                            "wahlkreis": "21 - Mittel- und Untersteier",
+                            "zeitraum": "02.12.1930-02.05.1934",
+                            "bez": "Abgeordneter zum Nationalrat (IV. GP), CSP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+                            "mandatBis": "02.05.1934",
+                            "funktion_bis": "02.05.1934",
+                            "wahlpartei": "CSP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Mittel- und Untersteier",
+                "pad_intern": 1920,
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (IV. GP), CSP",
+                    "image": "/static/img/Foto_Platzhalter_Quadrat.svg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Vinzenz",
+            "Strohmaier",
+            null,
+            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+            "Mittel- und Untersteier",
+            "/person/1920"
+        ]
+    ]
+}

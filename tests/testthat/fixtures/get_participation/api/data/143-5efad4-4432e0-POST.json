@@ -1,0 +1,301 @@
+{
+    "pages": 1,
+    "lastSync": "2026-02-08 15:19:41.0",
+    "count": 1,
+    "header": [
+        {
+            "feldId": 804,
+            "hidden": true,
+            "rnr": 1,
+            "listeId": 143,
+            "label": "GP_CODE",
+            "feld_name": "GP_CODE",
+            "includeHeader": true
+        },
+        {
+            "feldId": 805,
+            "hidden": true,
+            "rnr": 2,
+            "listeId": 143,
+            "label": "ITYP",
+            "feld_name": "ITYP",
+            "includeHeader": true
+        },
+        {
+            "feldId": 806,
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 143,
+            "label": "INR",
+            "feld_name": "INR",
+            "includeHeader": true
+        },
+        {
+            "feldId": 807,
+            "hidden": true,
+            "rnr": 4,
+            "listeId": 143,
+            "label": "ZUKZ",
+            "feld_name": "ZUKZ",
+            "includeHeader": true
+        },
+        {
+            "css_class": "datum-col",
+            "feldId": 810,
+            "hidden": false,
+            "sort_rnr": 8,
+            "rnr": 5,
+            "listeId": 143,
+            "label": "Datum",
+            "sortable": "1",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "css_class": "datum-col",
+            "feldId": 1504,
+            "hidden": false,
+            "rnr": 6,
+            "mediaType": "description",
+            "listeId": 143,
+            "label": "Gegenstand",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "vts_sort_field": "title_sort",
+            "feldId": 811,
+            "link_rnr": "15",
+            "hidden": false,
+            "rnr": 7,
+            "mediaType": "title",
+            "listeId": 143,
+            "label": "Betreff",
+            "sortable": "1",
+            "includeHeader": true
+        },
+        {
+            "vts_sort_field": "date_fresh",
+            "feldId": 803,
+            "hidden": true,
+            "rnr": 8,
+            "mediaType": "fromDate",
+            "listeId": 143,
+            "label": "datumsort",
+            "includeHeader": true
+        },
+        {
+            "css_class": "datum-col",
+            "feldId": 1505,
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 143,
+            "label": "Nr.",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 809,
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 143,
+            "label": "Wentry_ID",
+            "ist_web_item_id": "1",
+            "includeHeader": true
+        },
+        {
+            "css_class": "status-col",
+            "feldId": 802,
+            "hidden": true,
+            "rnr": 11,
+            "mediaType": "status",
+            "listeId": 143,
+            "label": "Status",
+            "class": "status-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 808,
+            "hidden": true,
+            "rnr": 12,
+            "listeId": 143,
+            "label": "DOKTYP",
+            "feld_name": "DOKTYP",
+            "includeHeader": true
+        },
+        {
+            "feldId": 801,
+            "hidden": true,
+            "rnr": 13,
+            "listeId": 143,
+            "label": "BETEILIGUNG",
+            "includeHeader": true
+        },
+        {
+            "feldId": 813,
+            "hidden": true,
+            "rnr": 14,
+            "listeId": 143,
+            "label": "a",
+            "includeHeader": true
+        },
+        {
+            "feldId": 814,
+            "hidden": true,
+            "rnr": 15,
+            "listeId": 143,
+            "label": "b",
+            "includeHeader": true
+        },
+        {
+            "css_class": "datum-col",
+            "feldId": 815,
+            "hidden": false,
+            "rnr": 16,
+            "listeId": 143,
+            "label": "Beteiligen",
+            "sortable": "1",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 816,
+            "hidden": true,
+            "rnr": 17,
+            "listeId": 143,
+            "label": "Themen",
+            "feld_name": "THEMEN",
+            "ist_werteliste": "1",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1761,
+            "hidden": true,
+            "rnr": 18,
+            "listeId": 143,
+            "label": "beguttyp",
+            "feld_name": "BEGUTTYP",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1031,
+            "hidden": true,
+            "rnr": 19,
+            "listeId": 143,
+            "label": "Beteiligen",
+            "feld_name": "INTERAKTIONSTYP",
+            "ist_werteliste": "1",
+            "includeHeader": true
+        },
+        {
+            "css_class": "datum-col",
+            "feldId": 1032,
+            "hidden": false,
+            "rnr": 20,
+            "listeId": 143,
+            "label": "Stellungnahmen",
+            "sortable": "1",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "css_class": "datum-col",
+            "feldId": 1033,
+            "hidden": false,
+            "rnr": 21,
+            "listeId": 143,
+            "label": "Unterstützungen",
+            "sortable": "1",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "css_class": "stellungnahmen-col",
+            "feldId": 817,
+            "hidden": false,
+            "rnr": 22,
+            "tooltip": "Beteiligungen der letzten 30 Tage",
+            "listeId": 143,
+            "label": "Trend",
+            "sortable": "1",
+            "class": "stellungnahmen-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1506,
+            "hidden": true,
+            "rnr": 23,
+            "listeId": 143,
+            "label": "Stellungnahme von",
+            "feld_name": "TYP",
+            "includeHeader": true
+        },
+        {
+            "feldId": 1634,
+            "hidden": true,
+            "rnr": 24,
+            "listeId": 143,
+            "label": "Aktiv?",
+            "feld_name": "AKTIV",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2581,
+            "hidden": true,
+            "rnr": 25,
+            "listeId": 143,
+            "label": "snflag",
+            "feld_name": "SNFLAG",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2582,
+            "hidden": true,
+            "rnr": 26,
+            "listeId": 143,
+            "label": "zustflag",
+            "feld_name": "ZUSTFLAG",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2583,
+            "hidden": true,
+            "rnr": 27,
+            "listeId": 143,
+            "label": "Ressort",
+            "feld_name": "MIN",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "XXVIII",
+            "A",
+            "00145",
+            null,
+            "26.03.2025",
+            "Gesetzesinitiative",
+            "Hochschülerinnen- und Hochschülerschaftsgesetz, Änderung (145/A)",
+            "20250326",
+            "145/A",
+            21872482,
+            "xxx",
+            "A",
+            "xxx",
+            "xxx",
+            "/gegenstand/XXVIII/A/145",
+            "<a href=\"/gegenstand/XXVIII/A/145?selectedStage=101&persForm=1\"><i class=\"fa-comment-edit fal\"><\/i><span>Stellung nehmen<\/span><\/a><br/>",
+            "[\"Bildung\"]",
+            "RGES",
+            "[\"S\"]",
+            0,
+            0,
+            0,
+            "P",
+            "J",
+            "J",
+            "N",
+            null
+        ]
+    ]
+}

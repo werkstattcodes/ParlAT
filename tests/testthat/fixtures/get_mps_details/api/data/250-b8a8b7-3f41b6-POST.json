@@ -1,0 +1,268 @@
+{
+    "pages": 1,
+    "lastSync": "2026-02-08 10:20:12.0",
+    "count": 12,
+    "header": [
+        {
+            "css_class": "datum-col",
+            "feldId": 92,
+            "hidden": false,
+            "rnr": 1,
+            "listeId": 250,
+            "label": "GP",
+            "sortable": "1",
+            "feld_name": "GP",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 93,
+            "hidden": true,
+            "rnr": 2,
+            "listeId": 250,
+            "label": "Sort",
+            "includeHeader": true
+        },
+        {
+            "css_class": "col-20",
+            "feldId": 94,
+            "hidden": false,
+            "rnr": 3,
+            "listeId": 250,
+            "label": "Funktion",
+            "feld_name": "FUNKTION",
+            "class": "col-20",
+            "includeHeader": true
+        },
+        {
+            "css_class": "fraction-col",
+            "feldId": 95,
+            "link_rnr": "6",
+            "hidden": false,
+            "rnr": 4,
+            "listeId": 250,
+            "label": "Ausschuss",
+            "class": "fraction-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 96,
+            "hidden": true,
+            "rnr": 5,
+            "listeId": 250,
+            "label": "nrbr",
+            "includeHeader": true
+        },
+        {
+            "feldId": 97,
+            "hidden": true,
+            "rnr": 6,
+            "listeId": 250,
+            "label": "URL",
+            "includeHeader": true
+        },
+        {
+            "feldId": 98,
+            "hidden": true,
+            "rnr": 7,
+            "listeId": 250,
+            "label": "PAD_INTERN",
+            "feld_name": "PAD_INTERN",
+            "includeHeader": true
+        },
+        {
+            "feldId": 969,
+            "hidden": true,
+            "rnr": 8,
+            "mediaType": "fromDate",
+            "listeId": 250,
+            "label": "fromDate",
+            "includeHeader": true
+        },
+        {
+            "feldId": 564,
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 250,
+            "label": "Ausschuss",
+            "feld_name": "AUSSCHUSS",
+            "includeHeader": true
+        },
+        {
+            "feldId": 565,
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 250,
+            "label": "Gremium",
+            "feld_name": "GREMIUM",
+            "includeHeader": true
+        },
+        {
+            "feldId": 584,
+            "hidden": true,
+            "rnr": 11,
+            "listeId": 250,
+            "label": "gp_text_full",
+            "feld_name": "GP_TEXT_FULL",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "XXVII",
+            "2Z798089760011220191023HAUPTAUSSCHUSS79808976",
+            "Obmannstellvertreterin",
+            "Hauptausschuss (23.10.2019 - 23.10.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/A-HA/A-HA_00001_00868/index.shtml",
+            "145",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "Hauptausschuss",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760011220191023STÄNDIGER UNTERAUSSCHUSS DES HAUPTAUSSCHUSSES79808976",
+            "Obmannstellvertreterin",
+            "Ständiger Unterausschuss des Hauptausschusses (23.10.2019 - 23.10.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/SA-HA/SA-HA_00001_00869/index.shtml",
+            "145",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "Ständiger Unterausschuss des Hauptausschusses",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760011220191023STÄNDIGER UNTERAUSSCHUSS IN ANGELEGENHEITEN DER EUROPÄISCHEN UNION79808976",
+            "Obmannstellvertreterin",
+            "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union (23.10.2019 - 23.10.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/SA-EU/SA-EU_00001_00870/index.shtml",
+            "145",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760011520200122Untersuchungsausschuss: IBIZA-UNTERSUCHUNGSAUSSCHUSS79799877",
+            "Vorsitzender-Vertreter",
+            "Untersuchungsausschuss: Ibiza-Untersuchungsausschuss (22.01.2020 - 22.09.2021)",
+            "NR",
+            "/PAKT/VHG/XXVII/A-USA/A-USA_00002_00906/index.shtml",
+            "145",
+            "Wed Jan 22 01:00:00 CET 2020",
+            "Untersuchungsausschuss: Ibiza-Untersuchungsausschuss",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760011520211209Untersuchungsausschuss: ÖVP-KORRUPTIONS-UNTERSUCHUNGSAUSSCHUSS79788790",
+            "Vorsitzender-Vertreter",
+            "Untersuchungsausschuss: ÖVP-Korruptions-Untersuchungsausschuss (09.12.2021 - 27.04.2023)",
+            "NR",
+            "/PAKT/VHG/XXVII/A-USA/A-USA_00003_00906/index.shtml",
+            "145",
+            "Thu Dec 09 01:00:00 CET 2021",
+            "Untersuchungsausschuss: ÖVP-Korruptions-Untersuchungsausschuss",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760011520231215Untersuchungsausschuss: \"ROT-BLAUER MACHTMISSBRAUCH-UNTERSUCHUNGSAUSSCHUSS\"79768784",
+            "Vorsitzender-Vertreter",
+            "Untersuchungsausschuss: \"ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss\" (15.12.2023 - 03.07.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/A-USA/A-USA_00005_00906/index.shtml",
+            "145",
+            "Fri Dec 15 01:00:00 CET 2023",
+            "Untersuchungsausschuss: \"ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss\"",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760011520231215Untersuchungsausschuss: COFAG-UNTERSUCHUNGSAUSSCHUSS79768784",
+            "Vorsitzender-Vertreter",
+            "Untersuchungsausschuss: COFAG-Untersuchungsausschuss (15.12.2023 - 03.07.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/A-USA/A-USA_00004_00906/index.shtml",
+            "145",
+            "Fri Dec 15 01:00:00 CET 2023",
+            "Untersuchungsausschuss: COFAG-Untersuchungsausschuss",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760013120191023GESCHÄFTSORDNUNGSAUSSCHUSS79808976",
+            "Mitglied",
+            "Geschäftsordnungsausschuss (23.10.2019 - 23.10.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/A-GO/A-GO_00001_00873/index.shtml",
+            "145",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "Geschäftsordnungsausschuss",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760013120191023HAUPTAUSSCHUSS79808976",
+            "Mitglied",
+            "Hauptausschuss (23.10.2019 - 23.10.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/A-HA/A-HA_00001_00868/index.shtml",
+            "145",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "Hauptausschuss",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760013120191023STÄNDIGER UNTERAUSSCHUSS DES HAUPTAUSSCHUSSES79808976",
+            "Mitglied",
+            "Ständiger Unterausschuss des Hauptausschusses (23.10.2019 - 23.10.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/SA-HA/SA-HA_00001_00869/index.shtml",
+            "145",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "Ständiger Unterausschuss des Hauptausschusses",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760013120191023STÄNDIGER UNTERAUSSCHUSS IN ANGELEGENHEITEN DER EUROPÄISCHEN UNION79808976",
+            "Mitglied",
+            "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union (23.10.2019 - 23.10.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/SA-EU/SA-EU_00001_00870/index.shtml",
+            "145",
+            "Wed Oct 23 02:00:00 CEST 2019",
+            "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ],
+        [
+            "XXVII",
+            "2Z798089760013120200110AUßENPOLITISCHER AUSSCHUSS79799889",
+            "Mitglied",
+            "Außenpolitischer Ausschuss (10.01.2020 - 23.10.2024)",
+            "NR",
+            "/PAKT/VHG/XXVII/A-AU/A-AU_00001_00884/index.shtml",
+            "145",
+            "Fri Jan 10 01:00:00 CET 2020",
+            "Außenpolitischer Ausschuss",
+            "Nationalrat",
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+        ]
+    ]
+}

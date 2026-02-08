@@ -1,0 +1,184 @@
+{
+    "pages": 276,
+    "lastSync": "2026-02-08 15:19:41.0",
+    "count": 276,
+    "header": [
+        {
+            "css_class": "datum-col",
+            "feldId": 2701,
+            "hidden": false,
+            "rnr": 1,
+            "sort_rnr": 10,
+            "listeId": 211,
+            "label": "Datum",
+            "sortable": "1",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2710,
+            "hidden": true,
+            "rnr": 2,
+            "mediaType": "link",
+            "listeId": 211,
+            "label": "uri",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2702,
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 211,
+            "label": "gp_code",
+            "feld_name": "GP_CODE",
+            "includeHeader": true
+        },
+        {
+            "tooltip_rnr": 8,
+            "css_class": "datum-col",
+            "feldId": 2703,
+            "hidden": false,
+            "rnr": 4,
+            "listeId": 211,
+            "label": "Art",
+            "sortable": "1",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2704,
+            "hidden": true,
+            "rnr": 5,
+            "listeId": 211,
+            "label": "inr",
+            "includeHeader": true
+        },
+        {
+            "css_class": "betreff-col",
+            "feldId": 2705,
+            "link_rnr": "2",
+            "hidden": false,
+            "rnr": 6,
+            "mediaType": "title",
+            "listeId": 211,
+            "label": "Sitzung",
+            "class": "betreff-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2713,
+            "hidden": true,
+            "rnr": 7,
+            "sort_rnr": 5,
+            "listeId": 211,
+            "label": "Zitation",
+            "sortable": "1",
+            "includeHeader": true
+        },
+        {
+            "css_class": "datum-col",
+            "feldId": 2706,
+            "hidden": true,
+            "rnr": 8,
+            "mediaType": "description",
+            "listeId": 211,
+            "label": "Art",
+            "sortable": "1",
+            "class": "datum-col",
+            "includeHeader": true
+        },
+        {
+            "tooltip_rnr": 8,
+            "feldId": 2707,
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 211,
+            "label": "Typ",
+            "includeHeader": true
+        },
+        {
+            "vts_sort_field": "date_fresh",
+            "feldId": 2708,
+            "hidden": true,
+            "ist_range": "1",
+            "rnr": 10,
+            "mediaType": "datetime",
+            "listeId": 211,
+            "label": "datum2",
+            "feld_name": "DATUM",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2709,
+            "hidden": false,
+            "rnr": 11,
+            "listeId": 211,
+            "label": "Gesamtprotokoll",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2711,
+            "hidden": true,
+            "rnr": 12,
+            "listeId": 211,
+            "label": "NBVS",
+            "feld_name": "NBVS",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2712,
+            "hidden": true,
+            "rnr": 13,
+            "listeId": 211,
+            "label": "WENTRY",
+            "ist_web_item_id": "1",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2714,
+            "hidden": true,
+            "rnr": 14,
+            "listeId": 211,
+            "label": "DOKTYP",
+            "feld_name": "DOKTYP",
+            "includeHeader": true
+        },
+        {
+            "feldId": 2741,
+            "hidden": false,
+            "rnr": 15,
+            "listeId": 211,
+            "label": "Strukturierte Darstellung",
+            "includeHeader": true
+        },
+        {
+            "feldId": 202,
+            "hidden": true,
+            "rnr": 16,
+            "ist_wdok_id": "1",
+            "listeId": 211,
+            "label": "WDOK",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+        [
+            "13.11.2019",
+            "/gegenstand/XXVII/NRSITZ/3",
+            "XXVII",
+            "NRSITZ",
+            3,
+            "3. Sitzung (3/NRSITZ)",
+            "3/NRSITZ",
+            "Plenarsitzung",
+            "Plenar-Sitzung",
+            "2019-11-13T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/3/fname_797716.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/3/fnameorig_797716.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            137761,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/3?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "2328311"
+        ]
+    ]
+}

@@ -1,0 +1,100 @@
+{
+    "pages": 0,
+    "lastSync": "2026-02-08 02:10:06.0",
+    "count": 0,
+    "header": [
+        {
+            "feldId": 110,
+            "hidden": true,
+            "rnr": 1,
+            "listeId": 251,
+            "label": "GREMIUM",
+            "feld_name": "GREMIUM",
+            "includeHeader": true
+        },
+        {
+            "feldId": 111,
+            "hidden": true,
+            "rnr": 2,
+            "listeId": 251,
+            "label": "GP",
+            "feld_name": "GP_CODE",
+            "includeHeader": true
+        },
+        {
+            "feldId": 425,
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 251,
+            "label": "gp_von",
+            "includeHeader": true
+        },
+        {
+            "feldId": 112,
+            "hidden": false,
+            "sort_rnr": 10,
+            "rnr": 4,
+            "listeId": 251,
+            "label": "Sitzung",
+            "sortable": "1",
+            "feld_name": "SITZUNG",
+            "includeHeader": true
+        },
+        {
+            "feldId": 113,
+            "hidden": false,
+            "rnr": 5,
+            "listeId": 251,
+            "label": "Rede",
+            "feld_name": "Rede",
+            "includeHeader": true
+        },
+        {
+            "css_class": "buttons-col",
+            "feldId": 114,
+            "hidden": false,
+            "rnr": 6,
+            "listeId": 251,
+            "class": "buttons-col",
+            "includeHeader": true
+        },
+        {
+            "css_class": "buttons-col",
+            "feldId": 115,
+            "hidden": false,
+            "rnr": 7,
+            "listeId": 251,
+            "class": "buttons-col",
+            "includeHeader": true
+        },
+        {
+            "feldId": 116,
+            "hidden": true,
+            "rnr": 8,
+            "listeId": 251,
+            "label": "PAD_INTERN",
+            "feld_name": "PAD_INTERN",
+            "includeHeader": true
+        },
+        {
+            "feldId": 968,
+            "hidden": true,
+            "rnr": 9,
+            "mediaType": "fromDate",
+            "listeId": 251,
+            "label": "fromDate",
+            "includeHeader": true
+        },
+        {
+            "feldId": 3401,
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 251,
+            "label": "Sortier",
+            "includeHeader": true
+        }
+    ],
+    "rows": [
+
+    ]
+}
