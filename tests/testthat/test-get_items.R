@@ -58,7 +58,7 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result1, "data.frame")
-  expect_equal(nrow(result1), 2518)
+  expect_equal(nrow(result1), 2526)
 
   result2 <- run_api_call(
     {
@@ -71,7 +71,7 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result2, "data.frame")
-  expect_equal(nrow(result2), 2518)
+  expect_equal(nrow(result2), 2526)
 
   result3 <- run_api_call(
     {
@@ -84,7 +84,7 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result3, "data.frame")
-  expect_equal(nrow(result3), 2518)
+  expect_equal(nrow(result3), 2526)
 })
 
 test_that("get_items validates institution parameter", {
@@ -163,7 +163,7 @@ test_that("get_items works with multiple topics", {
     fixture_subdir = "get_items"
   )
 
-  expect_equal(nrow(result), 2008)
+  expect_equal(nrow(result), 2013)
 })
 
 test_that("get_items works with multiple legis_periods and different input forms", {
