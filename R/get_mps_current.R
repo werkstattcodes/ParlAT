@@ -340,6 +340,13 @@ get_mps_current <- function(
     ##############################
     # GET NAMES OF MPS (NR and BR) IN FIRST NAME - SECOND NAME FORMAT
     # slows down extraction, but otherwise inconsistencies in name formatting
+
+    if (is.null(df_res)) {
+        return(NULL)
+    }
+
+    max_retries <- 3L
+
     pb <- progress::progress_bar$new(
         format = "Fetching MPs' names [:bar] :percent :current/:total ETA: :eta",
         total = length(df_res$pad_intern),
@@ -348,11 +355,44 @@ get_mps_current <- function(
 
     df_res <- df_res %>%
         dplyr::mutate(
-            name = purrr::map_chr(.data$pad_intern, function(x) {
+            name = purrr::map_chr(.data$pad_intern, \(pad_id) {
+                result <- NA_character_
+
+                for (attempt in seq_len(max_retries)) {
+                    result <- tryCatch(
+                        {
+                            name_df <- get_names(pad_intern = pad_id)
+
+                            if (
+                                is.null(name_df) ||
+                                identical(name_df, NA) ||
+                                !is.data.frame(name_df) ||
+                                nrow(name_df) == 0
+                            ) {
+                                NA_character_
+                            } else {
+                                name_df %>%
+                                    dplyr::filter(.data$index == 1) %>%
+                                    dplyr::pull("name")
+                            }
+                        },
+                        error = \(e) NA_character_
+                    )
+
+                    if (!is.na(result)) break
+                    Sys.sleep(1 * attempt)
+                }
+
+                if (is.na(result)) {
+                    warning(
+                        "Failed to fetch name for pad_intern: ", pad_id,
+                        " after ", max_retries, " attempts.",
+                        call. = FALSE
+                    )
+                }
+
                 pb$tick()
-                get_names(pad_intern = x) %>%
-                    dplyr::filter(.data$index == 1) %>% # latest name
-                    dplyr::pull("name")
+                result
             }),
             .after = 1
         )
