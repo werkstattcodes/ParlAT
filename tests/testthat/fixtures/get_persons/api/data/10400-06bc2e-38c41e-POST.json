@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-08 04:11:30.0",
+    "lastSync": "2026-02-09 03:31:18.0",
     "count": 4,
     "header": [
         {
@@ -113,19 +113,6 @@
     ],
     "rows": [
         [
-            "[\"NR\",\"NR\",\"NR\",\"NR\"]",
-            "Abgeordneter zum Nationalrat",
-            2823,
-            "Kurzbauer Johann",
-            "/person/2823",
-            "M",
-            "/dokument/bild/20999/2099959_384.jpg",
-            653463,
-            "person",
-            "Kurzbauer Johann",
-            null
-        ],
-        [
             "[\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\"]",
             "Mitglied des Bundesrates, Ordnerin, Präsidentin, Schriftführerin, Vizepräsidentin",
             21150,
@@ -162,6 +149,19 @@
             656623,
             "person",
             "Kurz Sebastian",
+            null
+        ],
+        [
+            "[\"NR\",\"NR\",\"NR\",\"NR\"]",
+            "Abgeordneter zum Nationalrat",
+            2823,
+            "Kurzbauer Johann",
+            "/person/2823",
+            "M",
+            "/dokument/bild/20999/2099959_384.jpg",
+            653463,
+            "person",
+            "Kurzbauer Johann",
             null
         ]
     ]

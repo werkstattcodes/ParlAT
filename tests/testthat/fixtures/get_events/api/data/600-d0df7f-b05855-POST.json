@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-08 22:30:05.0",
+    "lastSync": "2026-02-09 15:30:04.0",
     "count": 2,
     "header": [
         {
@@ -28,8 +28,8 @@
             "css_class": "col-5",
             "feldId": 363,
             "hidden": false,
-            "rnr": 3,
             "sort_rnr": 2,
+            "rnr": 3,
             "listeId": 600,
             "label": "Datum",
             "sortable": "1",

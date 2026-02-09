@@ -1,14 +1,14 @@
 {
     "pages": 149,
-    "lastSync": "2026-02-08 22:41:07.0",
+    "lastSync": "2026-02-09 15:37:20.0",
     "count": 149,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -68,8 +68,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "listeId": 211,
             "label": "Zitation",
             "sortable": "1",
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "20.02.1980",
-            "/gegenstand/XV/NRSITZ/24",
+            "05.03.1980",
+            "/gegenstand/XV/NRSITZ/26",
             "XV",
             "NRSITZ",
-            24,
-            "24. Sitzung (24/NRSITZ)",
-            "24/NRSITZ",
+            26,
+            "26. Sitzung (26/NRSITZ)",
+            "26/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "1980-02-20T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/24/imfname_146632.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "1980-03-05T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/26/imfname_146634.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            3675152,
+            3675164,
             "NRSITZ",
             null,
-            "7430904"
+            "7430906"
         ]
     ]
 }

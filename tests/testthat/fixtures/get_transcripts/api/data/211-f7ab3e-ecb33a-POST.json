@@ -1,14 +1,14 @@
 {
     "pages": 28,
-    "lastSync": "2026-02-08 22:41:07.0",
+    "lastSync": "2026-02-09 15:37:20.0",
     "count": 28,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "rnr": 1,
             "sort_rnr": 10,
+            "rnr": 1,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -68,8 +68,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "rnr": 7,
             "sort_rnr": 5,
+            "rnr": 7,
             "listeId": 211,
             "label": "Zitation",
             "sortable": "1",
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "12.06.2024",
-            "/gegenstand/XXVII/NRSITZ/266",
+            "15.05.2024",
+            "/gegenstand/XXVII/NRSITZ/263",
             "XXVII",
             "NRSITZ",
-            266,
-            "266. Sitzung (266/NRSITZ)",
-            "266/NRSITZ",
+            263,
+            "263. Sitzung (263/NRSITZ)",
+            "263/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "2024-06-12T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/266/fname_1672274.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/266/fnameorig_1672274.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2024-05-15T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/263/fname_1672270.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/263/fnameorig_1672270.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            17250361,
+            16369113,
             "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/266?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "23689650"
+            "<a href=\"/gegenstand/XXVII/NRSITZ/263?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "23689596"
         ]
     ]
 }

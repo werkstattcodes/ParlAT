@@ -1,6 +1,6 @@
 {
     "pages": 5053,
-    "lastSync": "2026-02-08 22:41:07.0",
+    "lastSync": "2026-02-09 15:37:20.0",
     "count": 5053,
     "header": [
         {
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "22.12.2021",
-            "/gegenstand/BR/BRSITZ/936",
-            "XXVII",
+            "28.03.2008",
+            "/gegenstand/BR/BRSITZ/754",
+            "XXIII",
             "BRSITZ",
-            936,
-            "936. Sitzung (936/BRSITZ/2021)",
-            "936/BRSITZ/2021",
+            754,
+            "754. Sitzung (754/BRSITZ/2008)",
+            "754/BRSITZ/2008",
             "Plenarsitzung - BR",
             "Plenar-Sitzung",
-            "2021-12-22T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/936/fname_1438437.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/936/fnameorig_1438437.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2008-03-28T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/754/fname_116944.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/754/fnameorig_116944.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "BRSITZ",
-            2435417,
+            2520670,
             "BRSITZ",
-            "<a href=\"/gegenstand/BR/BRSITZ/936?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "2261468"
+            null,
+            "2579617"
         ]
     ]
 }
