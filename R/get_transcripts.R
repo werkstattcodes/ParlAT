@@ -124,11 +124,7 @@ get_transcripts <- function(
             !is.na(parsed_date_start),
             .var.name = "date_start must be a valid date (day-month-year order)"
         )
-        date_start <- format(
-            as.POSIXct(parsed_date_start, tz = "CET"),
-            format = "%Y-%m-%dT%H:%M:%S.000Z",
-            tz = "CET"
-        )
+        date_start <- paste0(format(parsed_date_start, "%Y-%m-%d"), "T00:00:00.000Z")
     }
 
     # Date end
@@ -140,11 +136,7 @@ get_transcripts <- function(
             !is.na(parsed_date_end),
             .var.name = "date_end must be a valid date (day-month-year order)"
         )
-        date_end <- format(
-            as.POSIXct(parsed_date_end, tz = "CET"),
-            format = "%Y-%m-%dT%H:%M:%S.000Z",
-            tz = "CET"
-        )
+        date_end <- paste0(format(parsed_date_end, "%Y-%m-%d"), "T00:00:00.000Z")
     }
 
     # if is.null(date_start) and !is.null(date_end) date_start has to be fed as character "null" into API call;

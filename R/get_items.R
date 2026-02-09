@@ -598,11 +598,7 @@ get_items <- function(
         "date_start must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
       )
     }
-    date_start <- format(
-      as.POSIXct(date_start_parsed, tz = "CET"),
-      format = "%Y-%m-%dT%H:%M:%S.000Z",
-      tz = "CET"
-    )
+    date_start <- paste0(format(date_start_parsed, "%Y-%m-%d"), "T00:00:00.000Z")
   }
 
   #date end
@@ -614,11 +610,7 @@ get_items <- function(
         "date_end must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
       )
     }
-    date_end <- format(
-      as.POSIXct(date_end_parsed, tz = "CET"),
-      format = "%Y-%m-%dT%H:%M:%S.000Z",
-      tz = "CET"
-    )
+    date_end <- paste0(format(date_end_parsed, "%Y-%m-%d"), "T00:00:00.000Z")
   }
 
   # Validate date range
