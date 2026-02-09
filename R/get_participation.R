@@ -120,13 +120,13 @@ get_participation <- function(
   #TOPIC
   choices_topic = c(
     "Arbeit",
-    "Außenpolitik",
+    "Au\u00dfenpolitik",
     "Bildung",
     "Budget und Finanzen",
-    "Europäische Union",
+    "Europ\u00e4ische Union",
     "Familie und Generationen",
     "Frauen und Gleichbehandlung",
-    "Gesundheit und Ernährung",
+    "Gesundheit und Ern\u00e4hrung",
     "Information und Medien",
     "Inneres und Recht",
     "Innovation, Technologie und Forschung",

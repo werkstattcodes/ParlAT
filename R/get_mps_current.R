@@ -578,12 +578,12 @@ get_mps_NR_current <- function(
     #POSITION
     choices_position <- c(
         "all", #Alle Abgeordnete (All Members of Parliament)
-        "1PNR", #PräsidentIn des Nationalrates (President of the National Council)
-        "2PNR", #2. PräsidentIn des Nationalrates (Second President of the National Council)
-        "3PNR", #3. PräsidentIn des Nationalrates (Third President of the National Council)
-        "PRAES", #Präsidialkonferenz (Presidential Conference)
+        "1PNR", #Pr\u00e4sidentIn des Nationalrates (President of the National Council)
+        "2PNR", #2. Pr\u00e4sidentIn des Nationalrates (Second President of the National Council)
+        "3PNR", #3. Pr\u00e4sidentIn des Nationalrates (Third President of the National Council)
+        "PRAES", #Pr\u00e4sidialkonferenz (Presidential Conference)
         "ZON", #Ordner des Nationalrates (Regulators of the National Council)
-        "ZSN" #SchriftführerIn des Nationalrates (Secretary of the National Council)
+        "ZSN" #Schriftf\u00fchrerIn des Nationalrates (Secretary of the National Council)
     )
     checkmate::assert_subset(
         position,
@@ -599,24 +599,24 @@ get_mps_NR_current <- function(
     choices_party <- c(
         "all",
         "BP",
-        "BZÖ",
+        "BZ\u00d6",
         "BAP",
         "CSP",
-        "Grüne",
-        "FPÖ",
+        "Gr\u00fcne",
+        "FP\u00d6",
         "GdP",
         "HB",
         "KuL",
-        "KPÖ",
+        "KP\u00d6",
         "LBd",
         "L",
         "LB",
         "PILZ",
         "NWB",
         "NEOS",
-        "ÖVP",
+        "\u00d6VP",
         "SdP",
-        "SPÖ",
+        "SP\u00d6",
         "STRONACH",
         "VO",
         "WdU"
@@ -646,12 +646,12 @@ get_mps_NR_current <- function(
         "all",
         "LBd",
         "CSP",
-        "GRÜNE",
-        "SPÖ",
-        "F-BZÖ",
+        "GR\u00dcNE",
+        "SP\u00d6",
+        "F-BZ\u00d6",
         "GdP",
         "F",
-        "FPÖ",
+        "FP\u00d6",
         "KuL",
         "VO",
         "WdU",
@@ -661,9 +661,9 @@ get_mps_NR_current <- function(
         "NEOS",
         "OK",
         "HB",
-        "KPÖ",
-        "ÖVP",
-        "BZÖ",
+        "KP\u00d6",
+        "\u00d6VP",
+        "BZ\u00d6",
         "JETZT",
         "L",
         "STRONACH",
@@ -690,12 +690,12 @@ get_mps_NR_current <- function(
 
     #CHECK STATE BUNDESWAHLVORSCHLAG?
     choices_state <- c(
-        "all", #Alle Bundesländer + Bundeswahlvorschlag (All Federal States + Federal Electoral Proposal)
-        "all_states", #Alle Bundesländer (All Federal States)
+        "all", #Alle Bundesl\u00e4nder + Bundeswahlvorschlag (All Federal States + Federal Electoral Proposal)
+        "all_states", #Alle Bundesl\u00e4nder (All Federal States)
         "B", #Burgenland
-        "K", #Kärnten
-        "N", #Niederösterreich
-        "O", #Oberösterreich
+        "K", #K\u00e4rnten
+        "N", #Nieder\u00f6sterreich
+        "O", #Ober\u00f6sterreich
         "S", #Salzburg
         "St", #Steiermark
         "T", #Tirol
@@ -741,28 +741,28 @@ get_mps_NR_current <- function(
         "FB", #Bundeswahlvorschlag (Federal Electoral Proposal)
         "F1", #Burgenland
         "F1A", #Burgenland Nord
-        "F1B", #Burgenland Süd
+        "F1B", #Burgenland S\u00fcd
         "F5B", #Flachgau/Tennengau
         "F6A", #Graz und Umgebung
         "F4C", #Hausruckviertel
         "F7A", #Innsbruck
         "F7B", #Innsbruck-Land
         "F4B", #Innviertel
-        "F2", #Kärnten
-        "F2D", #Kärnten Ost
-        "F2C", #Kärnten West
+        "F2", #K\u00e4rnten
+        "F2D", #K\u00e4rnten Ost
+        "F2C", #K\u00e4rnten West
         "F2A", #Klagenfurt
         "F4A", #Linz und Umgebung
         "F5C", #Lungau/Pinzgau/Pongau
         "F3C", #Mostviertel
-        "F4E", #Mühlviertel
-        "F3", #Niederösterreich
-        "F3D", #Niederösterreich Mitte
-        "F3G", #Niederösterreich Ost
-        "F3E", #Niederösterreich Süd
+        "F4E", #M\u00fchlviertel
+        "F3", #Nieder\u00f6sterreich
+        "F3D", #Nieder\u00f6sterreich Mitte
+        "F3G", #Nieder\u00f6sterreich Ost
+        "F3E", #Nieder\u00f6sterreich S\u00fcd
         "F0", #noch offen (still open/pending)
         "F7D", #Oberland/Upper Country
-        "F4", #Oberösterreich
+        "F4", #Ober\u00f6sterreich
         "F6D", #Obersteiermark
         "F6B", #Oststeiermark
         "F7E", #Osttirol
@@ -776,18 +776,18 @@ get_mps_NR_current <- function(
         "F2B", #Villach
         "F8", #Vorarlberg
         "F8A", #Vorarlberg Nord
-        "F8B", #Vorarlberg Süd
+        "F8B", #Vorarlberg S\u00fcd
         "F3B", #Waldviertel
         "F3A", #Weinviertel
         "F6C", #Weststeiermark
         "F9", #Wien
         "F9C", #Wien Innen-Ost
-        "F9A", #Wien Innen-Süd
+        "F9A", #Wien Innen-S\u00fcd
         "F9B", #Wien Innen-West
         "F9G", #Wien Nord
         "F9F", #Wien Nord-West
-        "F9D", #Wien Süd
-        "F9E" #Wien Süd-West
+        "F9D", #Wien S\u00fcd
+        "F9E" #Wien S\u00fcd-West
     )
     checkmate::assert_subset(
         electoral_district,
@@ -1030,11 +1030,11 @@ get_mps_BR_current <- function(
     #POSITION
     choices_position <- c(
         "all", #Alle Mitglieder des Bundesrates (All Members of the Federal Council)
-        "PB", #Präsident des Bundesrates (President of the Federal Council)
-        "SPB", #Vizepräsident des Bundesrates (Vice-President of the Federal Council)
-        "PRAES", #Präsidialkonferenz (Presidential Conference)
+        "PB", #Pr\u00e4sident des Bundesrates (President of the Federal Council)
+        "SPB", #Vizepr\u00e4sident des Bundesrates (Vice-President of the Federal Council)
+        "PRAES", #Pr\u00e4sidialkonferenz (Presidential Conference)
         "ZOB", #Ordner des Bundesrates (Usher/Sergeant-at-Arms of the Federal Council)
-        "ZSB" #Schriftführer des Bundesrates (Secretary/Scrutineer of the Federal Council)
+        "ZSB" #Schriftf\u00fchrer des Bundesrates (Secretary/Scrutineer of the Federal Council)
     )
     checkmate::assert_subset(
         position,
@@ -1049,11 +1049,11 @@ get_mps_BR_current <- function(
     #PARTY
     choices_party <- c(
         "all", #(Alle Wahlparteien, All Electoral Parties)
-        "GRÜNE", #(Die Grünen, The Greens)
-        "FPÖ", #(Freiheitliche Partei Österreichs, Freedom Party of Austria)
-        "NEOS", #(NEOS - Das neue Österreich und Liberales Forum, NEOS - The New Austria and Liberal Forum)
-        "ÖVP", #(Österreichische Volkspartei, Austrian People's Party)
-        "SPÖ" #(Sozialdemokratische Partei Österreichs, Social Democratic Party of Austria))
+        "GR\u00dcNE", #(Die Gr\u00fcnen, The Greens)
+        "FP\u00d6", #(Freiheitliche Partei \u00d6sterreichs, Freedom Party of Austria)
+        "NEOS", #(NEOS - Das neue \u00d6sterreich und Liberales Forum, NEOS - The New Austria and Liberal Forum)
+        "\u00d6VP", #(\u00d6sterreichische Volkspartei, Austrian People's Party)
+        "SP\u00d6" #(Sozialdemokratische Partei \u00d6sterreichs, Social Democratic Party of Austria))
     )
 
     checkmate::assert_scalar(
@@ -1070,11 +1070,11 @@ get_mps_BR_current <- function(
     #PARLGROUP
     choices_parl_group <- c(
         "all", #Alle Fraktionen (All Parliamentary Groups)
-        "ÖVP", #Bundesratsfraktion der ÖVP (ÖVP Parliamentary Group in the Federal Council)
-        "SPÖ", #Bundesratsfraktion der SPÖ (SPÖ Parliamentary Group in the Federal Council)
-        "FPÖ", #Freiheitliche Bundesratsfraktion (Freedom Party Parliamentary Group in the Federal Council)
-        "GRÜNE", #Grüne Fraktion im Bundesrat (Green Parliamentary Group in the Federal Council)
-        "OF" #ohne Fraktionszugehörigkeit (Without Parliamentary Group Affiliation)
+        "\u00d6VP", #Bundesratsfraktion der \u00d6VP (\u00d6VP Parliamentary Group in the Federal Council)
+        "SP\u00d6", #Bundesratsfraktion der SP\u00d6 (SP\u00d6 Parliamentary Group in the Federal Council)
+        "FP\u00d6", #Freiheitliche Bundesratsfraktion (Freedom Party Parliamentary Group in the Federal Council)
+        "GR\u00dcNE", #Gr\u00fcne Fraktion im Bundesrat (Green Parliamentary Group in the Federal Council)
+        "OF" #ohne Fraktionszugeh\u00f6rigkeit (Without Parliamentary Group Affiliation)
     )
 
     checkmate::assert_scalar(
@@ -1090,11 +1090,11 @@ get_mps_BR_current <- function(
 
     #STATE
     choices_state <- c(
-        "all", #(Alle Bundesländer, All Federal States)
+        "all", #(Alle Bundesl\u00e4nder, All Federal States)
         "B", # (Burgenland, Burgenland)
-        "K", #(Kärnten, Carinthia)
-        "N", # (Niederösterreich, Lower Austria)
-        "O", # (Oberösterreich, Upper Austria)
+        "K", #(K\u00e4rnten, Carinthia)
+        "N", # (Nieder\u00f6sterreich, Lower Austria)
+        "O", # (Ober\u00f6sterreich, Upper Austria)
         "S", # (Salzburg, Salzburg)
         "St", # (Steiermark, Styria)
         "T", # (Tirol, Tyrol)

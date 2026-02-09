@@ -73,19 +73,19 @@ aux_parl_group_names_standard <- function(parl_group) {
     return(parl_group)
   }
 
-  group_FPÖ <- c("F", "FPÖ", "F-BZÖ")
-  group_BZÖ <- c("BZÖ", "F-BZÖ")
+  group_fpoe <- c("F", "FP\u00d6", "F-BZ\u00d6")
+  group_bzoe <- c("BZ\u00d6", "F-BZ\u00d6")
   group_NEOS <- c("NEOS", "NEOS-LIF")
   group_JETZT <- c("JETZT", "PILZ")
   group_LIF <- c("LIF", "NEOS-LIF")
 
   #combine & make unique
   for (i in seq_along(parl_group)) {
-    if (parl_group[i] %in% group_FPÖ) {
-      parl_group <- c(parl_group, group_FPÖ)
+    if (parl_group[i] %in% group_fpoe) {
+      parl_group <- c(parl_group, group_fpoe)
     }
-    if (parl_group[i] %in% group_BZÖ) {
-      parl_group <- c(parl_group, group_BZÖ)
+    if (parl_group[i] %in% group_bzoe) {
+      parl_group <- c(parl_group, group_bzoe)
     }
     if (parl_group[i] %in% group_NEOS) {
       parl_group <- c(parl_group, group_NEOS)

@@ -15,10 +15,10 @@ get_persons_single <- function(
   # INSTITUTION
 
   choices_institution <- c(
-    "Bundespräsident",
+    "Bundespr\u00e4sident",
     "Bundesrat",
     "Bundesregierung",
-    "Europäisches Parlament",
+    "Europ\u00e4isches Parlament",
     "Konstituierende Nationalversammlung",
     "Landeshauptleute",
     "Nationalrat",
@@ -38,12 +38,12 @@ get_persons_single <- function(
     \(x) {
       switch(
         x,
-        "Bundespräsident" = "BP",
+        "Bundespr\u00e4sident" = "BP",
         "Bundesrat" = "BR",
         "Konstituierende Nationalversammlung" = "KN",
         "Bundesregierung" = "BuREG",
         "Landeshauptleute" = "LH",
-        "Europäisches Parlament" = "MEP",
+        "Europ\u00e4isches Parlament" = "MEP",
         "Politische Mandate" = "MPO",
         "Nationalrat" = "NR",
         "Provisorische Nationalversammlung" = "PN",

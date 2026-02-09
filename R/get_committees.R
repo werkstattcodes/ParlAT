@@ -88,7 +88,7 @@ get_committees <- function(
   legis_period,
   permanent = NULL,
   citation = NULL,
-  include_subcommittees = NULL, #auch Unterausschüsse - UA
+  include_subcommittees = NULL, #auch Unterausschuesse - UA
   details_type = NULL,
   echo = NULL
 ) {
@@ -1375,7 +1375,7 @@ fn_extract_committees_type3_old <- function(url, html_doc = NULL) {
           members_text != "" &&
           !stringr::str_detect(
             members_text,
-            "^Mitglieder:|^Vorsitzend|^Obmann|^Schriftführer"
+            "^Mitglieder:|^Vorsitzend|^Obmann|^Schriftf\u00fchrer"
           )
       ) {
         # Split by newlines to get individual names
@@ -1408,7 +1408,7 @@ fn_extract_committees_type3_old <- function(url, html_doc = NULL) {
           col3[row_idx] != "" &&
           !stringr::str_detect(
             col3[row_idx],
-            "^Ersatzmitglieder:|^Vorsitzend|^Obmann|^Schriftführer"
+            "^Ersatzmitglieder:|^Vorsitzend|^Obmann|^Schriftf\u00fchrer"
           )
       ) {
         names_in_cell <- stringr::str_split(col3[row_idx], "\\n+")[[1]] %>%
