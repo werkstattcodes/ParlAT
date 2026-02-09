@@ -506,11 +506,12 @@ get_transcripts <- function(
             ))
 
             # Initialize progress bar
-            pb <- progress::progress_bar$new(
-                format = "  [:bar] :current/:total (:percent) eta: :eta",
+            pb_id <- cli::cli_progress_bar(
+                "Downloading transcripts",
                 total = n_pdfs,
-                clear = FALSE,
-                width = 60
+                format = "{cli::pb_spin} Downloading transcripts {cli::pb_current}/{cli::pb_total} | ETA: {cli::pb_eta}",
+                format_done = "Downloaded {cli::pb_total} transcripts.",
+                clear = FALSE
             )
 
             # Download PDFs
@@ -538,7 +539,7 @@ get_transcripts <- function(
                     dest_file <- file.path(dest_path, filename)
 
                     success <- download_pdf(url, dest_file)
-                    pb$tick()
+                    cli::cli_progress_update(id = pb_id)
                     return(success)
                 }
             )

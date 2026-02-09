@@ -127,14 +127,16 @@ get_mandates <- function(
   )
 
   if (is.null(pad_intern) && !is.null(name) && length(name) > 1) {
-    pb <- progress::progress_bar$new(
-      format = "[:bar] :percent :current/:total ETA: :eta",
+    pb_id <- cli::cli_progress_bar(
+      "Fetching mandates",
       total = length(name),
+      format = "{cli::pb_spin} Fetching mandates {cli::pb_current}/{cli::pb_total} | ETA: {cli::pb_eta}",
+      format_done = "Fetched mandates for {cli::pb_total} names.",
       clear = FALSE
     )
 
     df_res <- purrr::map(name, \(x) {
-      pb$tick()
+      cli::cli_progress_update(id = pb_id)
       get_mandates(name = x)
     }) %>%
       purrr::list_rbind() %>%
@@ -161,16 +163,18 @@ get_mandates <- function(
     print("Duplicate pad_interns removed")
   }
 
-  pb <- progress::progress_bar$new(
-    format = "[:bar] :percent :current/:total ETA: :eta",
+  pb_id <- cli::cli_progress_bar(
+    "Fetching mandates",
     total = length(pad_intern_unique),
+    format = "{cli::pb_spin} Fetching mandates {cli::pb_current}/{cli::pb_total} | ETA: {cli::pb_eta}",
+    format_done = "Fetched mandates for {cli::pb_total} persons.",
     clear = FALSE
   )
 
   li_res <- purrr::map(
     pad_intern_unique,
     \(x) {
-      pb$tick()
+      cli::cli_progress_update(id = pb_id)
       get_mandates_single(pad_intern = x)
     }
   )

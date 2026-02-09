@@ -347,9 +347,11 @@ get_mps_current <- function(
 
     max_retries <- 3L
 
-    pb <- progress::progress_bar$new(
-        format = "Fetching MPs' names [:bar] :percent :current/:total ETA: :eta",
+    pb_id <- cli::cli_progress_bar(
+        "Fetching MPs' names",
         total = length(df_res$pad_intern),
+        format = "{cli::pb_spin} Fetching MPs' names {cli::pb_current}/{cli::pb_total} | ETA: {cli::pb_eta}",
+        format_done = "Fetched {cli::pb_total} MPs' names.",
         clear = FALSE
     )
 
@@ -391,7 +393,7 @@ get_mps_current <- function(
                     )
                 }
 
-                pb$tick()
+                cli::cli_progress_update(id = pb_id)
                 result
             }),
             .after = 1
