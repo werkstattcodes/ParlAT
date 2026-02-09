@@ -277,13 +277,30 @@ get_mps <- function(
     stop("Please provide either date or legis_period, not both.")
   }
 
+  # Validate date format early
+  if (!is.null(date)) {
+    parsed_date <- lubridate::dmy(date, quiet = TRUE)
+    if (is.na(parsed_date)) {
+      stop(
+        "Invalid date: '",
+        date,
+        "'. Expected format: DD.MM.YYYY (e.g. '01.01.2020')."
+      )
+    }
+  }
+
   if (!is.null(legis_period) && !is.null(institution) && institution == "BR") {
     stop(
       "Filtering the Federal Council (Bundesrat) by legislative period is not supported. Please use 'date' filter instead."
     )
   }
 
-  if (!is.null(date) && is.null(legis_period) && institution == "NR") {
+  if (
+    !is.null(date) &&
+      is.null(legis_period) &&
+      !is.null(institution) &&
+      institution == "NR"
+  ) {
     legis_period_num <- get_legis_periods(date = date) %>%
       dplyr::pull("legis_period")
   }
@@ -751,7 +768,8 @@ get_mps <- function(
     ) %>%
     dplyr::mutate(
       mandate_detail_mandat_bis_cutoff = dplyr::case_when(
-        is.na(.data$mandate_detail_mandat_bis) | .data$mandate_detail_mandat_bis == "" ~
+        is.na(.data$mandate_detail_mandat_bis) |
+          .data$mandate_detail_mandat_bis == "" ~
           lubridate::today(),
         .default = .data$mandate_detail_mandat_bis
       )
@@ -780,7 +798,9 @@ get_mps <- function(
           .data$mandate_detail_gp_code
         )
       ) %>%
-      dplyr::filter(.data$mandate_detail_gp_code_chr %in% {{ legis_period_char }})
+      dplyr::filter(
+        .data$mandate_detail_gp_code_chr %in% {{ legis_period_char }}
+      )
   }
 
   # DATE FILTERING##################################
@@ -880,7 +900,9 @@ get_mps <- function(
 
   # NESTING (return one row per MP and legislative period; mandate details are nested)
   df_res <- df_res %>%
-    tidyr::nest(mp_details = -c("legis_period", "pad_intern", "link", "name", "gender"))
+    tidyr::nest(
+      mp_details = -c("legis_period", "pad_intern", "link", "name", "gender")
+    )
 
   return(df_res)
   #TODO remove residual code below
@@ -938,7 +960,9 @@ get_mps <- function(
         dplyr::filter(.data$gremium_name == "Bundesrat")
     } else if (!is.null(institution) && institution == "KN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
-        dplyr::filter(.data$gremium_name == "Konstituierende Nationalversammlung")
+        dplyr::filter(
+          .data$gremium_name == "Konstituierende Nationalversammlung"
+        )
     } else if (!is.null(institution) && institution == "PN") {
       df_res_filter_time_inst <- df_res_filter_time %>%
         dplyr::filter(.data$gremium_name == "Provisorische Nationalversammlung")
@@ -954,14 +978,16 @@ get_mps <- function(
 
     ##############################
     # GET NAMES OF MPS (needed to get name of MP at specific date)
-    pb <- progress::progress_bar$new(
-      format = "Fetching MPs' names at specific date [:bar] :percent :current/:total ETA: :eta",
+    pb_id <- cli::cli_progress_bar(
+      "Fetching MPs' names at specific date",
       total = length(df_res$pad_intern),
+      format = "{cli::pb_spin} Fetching MPs' names at specific date {cli::pb_current}/{cli::pb_total} | ETA: {cli::pb_eta}",
+      format_done = "Fetched {cli::pb_total} MPs' names.",
       clear = FALSE
     )
 
     df_names <- map2(df_res$pad_intern, format(date, "%d/%m/%Y"), \(x, y) {
-      pb$tick()
+      cli::cli_progress_update(id = pb_id)
       name_result <- get_names(x, date = y)
       if (is.data.frame(name_result) && nrow(name_result) > 0) {
         # Collapse multiple names into single string separated by " / "
