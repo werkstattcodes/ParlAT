@@ -22,3 +22,4 @@
 ^run_tests_committees\.R$
 ^run_tests_debug\.R$
 ^test_results\.csv$
+^tools$

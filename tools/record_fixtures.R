@@ -645,11 +645,9 @@ record_fixtures(
 )
 
 # --- get_mandates ---
-# Note: test-get_mandates.R is entirely commented out, so no fixtures needed
-# record_fixtures(
-#   "get_mandates",
-#   get_mandates(pad_intern = 83111)
-# )
+# No httptest2 fixtures needed: get_mandates_single() calls jsonlite::read_json()
+# directly (not httr2), so httptest2 cannot intercept. Tests use
+# local_mocked_bindings() instead. See test-get_mandates.R.
 
 # --- aux_check_pad_intern_exists ---
 record_fixtures(
