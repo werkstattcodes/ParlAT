@@ -11,6 +11,7 @@ LazyData: true
 RoxygenNote: 7.3.3
 Imports:
     checkmate,
+    cli,
     dplyr,
     glue,
     httr2,
@@ -18,7 +19,6 @@ Imports:
     lifecycle,
     lubridate,
     magrittr,
-    progress,
     purrr,
     rlang,
     rvest,
