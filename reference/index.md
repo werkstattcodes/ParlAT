@@ -3,7 +3,8 @@
 ## main functions
 
 - [`get_committees()`](https://werkstattcodes.github.io/ParlAT/reference/get_committees.md)
-  : Retrieve Committee Data from the Austrian Parliament API
+  **\[experimental\]** : Retrieve Committee Data from the Austrian
+  Parliament API
 - [`get_events()`](https://werkstattcodes.github.io/ParlAT/reference/get_events.md)
   : Get Event Data from Austrian Parliament API
 - [`get_items()`](https://werkstattcodes.github.io/ParlAT/reference/get_items.md)

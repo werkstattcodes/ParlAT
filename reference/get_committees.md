@@ -1,13 +1,6 @@
 # Retrieve Committee Data from the Austrian Parliament API
 
-Get data on the committees ('Ausschüsse') of the Austrian Parliament.
-Data includes session dates, agendas, meeting overviews, and member
-lists. The function partly mirrors the search functionality of the
-Austrian Parliament's website for committees
-[here](https://www.parlament.gv.at/recherchieren/ausschuesse/index.html)
-and extends it by e.g. incorporating the extraction of data from
-membership lists. Data available starting from the 20th legislative
-period.
+**\[experimental\]**
 
 ## Usage
 
@@ -122,6 +115,17 @@ A tibble (data frame) with different structures depending on
   - `member_url`: URL to member's profile page (character)
 
 Returns NULL if no results are found for the provided search criteria.
+
+## Details
+
+Get data on the committees ('Ausschüsse') of the Austrian Parliament.
+Data includes session dates, agendas, meeting overviews, and member
+lists. The function partly mirrors the search functionality of the
+Austrian Parliament's website for committees
+[here](https://www.parlament.gv.at/recherchieren/ausschuesse/index.html)
+and extends it by e.g. incorporating the extraction of data from
+membership lists. Data available starting from the 20th legislative
+period.
 
 ## Examples
 
