@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:30:04.0",
+    "lastSync": "2026-02-24 22:20:02.0",
     "count": 2,
     "header": [
         {
@@ -28,8 +28,8 @@
             "css_class": "col-5",
             "feldId": 363,
             "hidden": false,
-            "sort_rnr": 2,
             "rnr": 3,
+            "sort_rnr": 2,
             "listeId": 600,
             "label": "Datum",
             "sortable": "1",
@@ -257,6 +257,7 @@
             "feldId": 2441,
             "hidden": false,
             "rnr": 25,
+            "mediaType": "linkbutton",
             "listeId": 600,
             "label": "Anmeldung",
             "feld_name": "ANMELDEBUTTON",

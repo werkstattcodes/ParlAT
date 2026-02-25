@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:10:58.0",
+    "lastSync": "2026-02-24 21:52:24.0",
     "count": 1620,
     "header": [
         {
@@ -7068,6 +7068,86 @@
         [
             "Bauer Franz",
             "NR",
+            649467,
+            "M",
+            "Männlich",
+            "VI",
+            "[\"ÖVP\"]",
+            {
+                "zit": "Franz Bauer",
+                "fraktionen": "Klub der Österreichischen Volkspartei (V)",
+                "item_type": "Biogr",
+                "frak": [
+                    "ÖVP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "VI"
+                ],
+                "nr_gp_code": "VI",
+                "uri": "/person/67",
+                "mandate_detail": [
+                    {
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1949-11-08T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "VI",
+                        "mandat_von": "08.11.1949",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "08.11.1949 - 18.03.1953: VI. GP",
+                        "wahlkreis_code": "CW1",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "10.10.1950",
+                        "wahlkreis": "Wahlkreisverband I (Wien)",
+                        "fraktion": "Klub der Österreichischen Volkspartei"
+                    }
+                ],
+                "name_nvg": "Bauer Franz",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "08.11.1949",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "08.11.1949",
+                            "wahlkreis": "Wahlkreisverband I (Wien)",
+                            "zeitraum": "08.11.1949-10.10.1950",
+                            "bez": "Abgeordneter zum Nationalrat (VI. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Klub der Österreichischen Volkspartei",
+                            "mandatBis": "10.10.1950",
+                            "funktion_bis": "10.10.1950",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Wahlkreisverband I (Wien)",
+                "pad_intern": 67,
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (VI. GP), ÖVP",
+                    "image": "/static/img/Foto_Platzhalter_Quadrat.svg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Franz",
+            "Bauer",
+            null,
+            null,
+            "Klub der Österreichischen Volkspartei (V)",
+            "Wahlkreisverband I (Wien)",
+            "/person/67"
+        ],
+        [
+            "Bauer Franz",
+            "NR",
             649463,
             "M",
             "Männlich",
@@ -7180,86 +7260,6 @@
             "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
             "Linz und Umgebung, Wahlkreisverband III - Oberösterreich",
             "/person/65"
-        ],
-        [
-            "Bauer Franz",
-            "NR",
-            649467,
-            "M",
-            "Männlich",
-            "VI",
-            "[\"ÖVP\"]",
-            {
-                "zit": "Franz Bauer",
-                "fraktionen": "Klub der Österreichischen Volkspartei (V)",
-                "item_type": "Biogr",
-                "frak": [
-                    "ÖVP"
-                ],
-                "geschlecht": "M",
-                "gp_code": [
-                    "VI"
-                ],
-                "nr_gp_code": "VI",
-                "uri": "/person/67",
-                "mandate_detail": [
-                    {
-                        "wahlpartei_code": "ÖVP",
-                        "fraktionscode": "V",
-                        "gp_von": "1949-11-08T00:00:00",
-                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
-                        "gp_code": "VI",
-                        "mandat_von": "08.11.1949",
-                        "gremium_name": "Nationalrat",
-                        "wahlpartei_txt": "Österreichische Volkspartei",
-                        "gp_text_full_short": "08.11.1949 - 18.03.1953: VI. GP",
-                        "wahlkreis_code": "CW1",
-                        "mand_code": "NR",
-                        "wahlpartei_sort": "Oesterreichische Volkspartei",
-                        "mandat_bis": "10.10.1950",
-                        "wahlkreis": "Wahlkreisverband I (Wien)",
-                        "fraktion": "Klub der Österreichischen Volkspartei"
-                    }
-                ],
-                "name_nvg": "Bauer Franz",
-                "mandate_kompakt": {
-                    "bez": "Politische Mandate/Funktionen",
-                    "mandate": [
-                        {
-                            "funktion": "NR",
-                            "gremium": "NR",
-                            "funktion_von": "08.11.1949",
-                            "wahlpartei_text": "Österreichische Volkspartei",
-                            "mandatVon": "08.11.1949",
-                            "wahlkreis": "Wahlkreisverband I (Wien)",
-                            "zeitraum": "08.11.1949-10.10.1950",
-                            "bez": "Abgeordneter zum Nationalrat (VI. GP), ÖVP",
-                            "mandat": "Abgeordneter zum Nationalrat",
-                            "klub": "Klub der Österreichischen Volkspartei",
-                            "mandatBis": "10.10.1950",
-                            "funktion_bis": "10.10.1950",
-                            "wahlpartei": "ÖVP",
-                            "aktiv": false,
-                            "funktion_text": "Abgeordneter zum Nationalrat"
-                        }
-                    ]
-                },
-                "wahlkreise": "Wahlkreisverband I (Wien)",
-                "pad_intern": 67,
-                "openGraph": {
-                    "description": "Abgeordneter zum Nationalrat (VI. GP), ÖVP",
-                    "image": "/static/img/Foto_Platzhalter_Quadrat.svg"
-                },
-                "aktiv": false
-            },
-            null,
-            "Franz",
-            "Bauer",
-            null,
-            null,
-            "Klub der Österreichischen Volkspartei (V)",
-            "Wahlkreisverband I (Wien)",
-            "/person/67"
         ],
         [
             "Bauer Franz, Dr.",
@@ -70723,13 +70723,13 @@
                             "gremium": "BM",
                             "funktion_von": "20.12.1945",
                             "zeitraum": "20.12.1945-16.07.1959",
-                            "bez": "Bundesminister für ",
-                            "mandat": "Bundesminister für ",
+                            "bez": "Bundesminister für Inneres",
+                            "mandat": "Bundesminister für Inneres",
                             "mandatVon": "20.12.1945",
                             "mandatBis": "16.07.1959",
                             "funktion_bis": "16.07.1959",
                             "aktiv": false,
-                            "funktion_text": "Bundesminister für "
+                            "funktion_text": "Bundesminister für Inneres"
                         },
                         {
                             "funktion": "USTS",
@@ -196683,185 +196683,6 @@
         [
             "Steiner Josef",
             "NR",
-            652979,
-            "M",
-            "Männlich",
-            "X,XI,XII,XIII,XIV,XV",
-            "[\"ÖVP\"]",
-            {
-                "zit": "Josef Steiner",
-                "fraktionen": "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-                "item_type": "Biogr",
-                "frak": [
-                    "ÖVP"
-                ],
-                "geschlecht": "M",
-                "gp_code": [
-                    "X",
-                    "XI",
-                    "XII",
-                    "XIII",
-                    "XIV",
-                    "XV"
-                ],
-                "nr_gp_code": "X,XI,XII,XIII,XIV,XV",
-                "uri": "/person/1842",
-                "mandate_detail": [
-                    {
-                        "wahlkreis_bundesland": "Salzburg",
-                        "wahlpartei_code": "ÖVP",
-                        "fraktionscode": "V",
-                        "gp_von": "1962-12-14T00:00:00",
-                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
-                        "gp_code": "X",
-                        "mandat_von": "03.04.1963",
-                        "gremium_name": "Nationalrat",
-                        "wahlpartei_txt": "Österreichische Volkspartei",
-                        "gp_text_full_short": "14.12.1962 - 30.03.1966: X. GP",
-                        "wahlkreis_code": "C17",
-                        "mand_code": "NR",
-                        "wahlpartei_sort": "Oesterreichische Volkspartei",
-                        "mandat_bis": "30.03.1966",
-                        "wahlkreis": "Salzburg",
-                        "fraktion": "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei"
-                    },
-                    {
-                        "wahlkreis_bundesland": "Salzburg",
-                        "wahlpartei_code": "ÖVP",
-                        "fraktionscode": "V",
-                        "gp_von": "1966-03-30T00:00:00",
-                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
-                        "gp_code": "XI",
-                        "mandat_von": "30.03.1966",
-                        "gremium_name": "Nationalrat",
-                        "wahlpartei_txt": "Österreichische Volkspartei",
-                        "gp_text_full_short": "30.03.1966 - 31.03.1970: XI. GP",
-                        "wahlkreis_code": "C17",
-                        "mand_code": "NR",
-                        "wahlpartei_sort": "Oesterreichische Volkspartei",
-                        "mandat_bis": "31.03.1970",
-                        "wahlkreis": "Salzburg",
-                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
-                    },
-                    {
-                        "wahlkreis_bundesland": "Salzburg",
-                        "wahlpartei_code": "ÖVP",
-                        "fraktionscode": "V",
-                        "gp_von": "1970-03-31T00:00:00",
-                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
-                        "gp_code": "XII",
-                        "mandat_von": "31.03.1970",
-                        "gremium_name": "Nationalrat",
-                        "wahlpartei_txt": "Österreichische Volkspartei",
-                        "gp_text_full_short": "31.03.1970 - 04.11.1971: XII. GP",
-                        "wahlkreis_code": "C17",
-                        "mand_code": "NR",
-                        "wahlpartei_sort": "Oesterreichische Volkspartei",
-                        "mandat_bis": "04.11.1971",
-                        "wahlkreis": "Salzburg",
-                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
-                    },
-                    {
-                        "wahlkreis_bundesland": "Salzburg",
-                        "wahlpartei_code": "ÖVP",
-                        "fraktionscode": "V",
-                        "gp_von": "1971-11-04T00:00:00",
-                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
-                        "gp_code": "XIII",
-                        "mandat_von": "04.11.1971",
-                        "gremium_name": "Nationalrat",
-                        "wahlpartei_txt": "Österreichische Volkspartei",
-                        "gp_text_full_short": "04.11.1971 - 04.11.1975: XIII. GP",
-                        "wahlkreis_code": "D5",
-                        "mand_code": "NR",
-                        "wahlpartei_sort": "Oesterreichische Volkspartei",
-                        "mandat_bis": "04.11.1975",
-                        "wahlkreis": "Salzburg",
-                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
-                    },
-                    {
-                        "wahlkreis_bundesland": "Salzburg",
-                        "wahlpartei_code": "ÖVP",
-                        "fraktionscode": "V",
-                        "gp_von": "1975-11-04T00:00:00",
-                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
-                        "gp_code": "XIV",
-                        "mandat_von": "04.11.1975",
-                        "gremium_name": "Nationalrat",
-                        "wahlpartei_txt": "Österreichische Volkspartei",
-                        "gp_text_full_short": "04.11.1975 - 04.06.1979: XIV. GP",
-                        "wahlkreis_code": "D5",
-                        "mand_code": "NR",
-                        "wahlpartei_sort": "Oesterreichische Volkspartei",
-                        "mandat_bis": "04.06.1979",
-                        "wahlkreis": "Salzburg",
-                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
-                    },
-                    {
-                        "wahlkreis_bundesland": "Salzburg",
-                        "wahlpartei_code": "ÖVP",
-                        "fraktionscode": "V",
-                        "gp_von": "1979-06-05T00:00:00",
-                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
-                        "gp_code": "XV",
-                        "mandat_von": "05.06.1979",
-                        "gremium_name": "Nationalrat",
-                        "wahlpartei_txt": "Österreichische Volkspartei",
-                        "gp_text_full_short": "05.06.1979 - 18.05.1983: XV. GP",
-                        "wahlkreis_code": "D5",
-                        "mand_code": "NR",
-                        "wahlpartei_sort": "Oesterreichische Volkspartei",
-                        "mandat_bis": "15.04.1982",
-                        "wahlkreis": "Salzburg",
-                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
-                    }
-                ],
-                "name_nvg": "Steiner Josef",
-                "mandate_kompakt": {
-                    "bez": "Politische Mandate/Funktionen",
-                    "mandate": [
-                        {
-                            "funktion": "NR",
-                            "gremium": "NR",
-                            "funktion_von": "03.04.1963",
-                            "wahlpartei_text": "Österreichische Volkspartei",
-                            "mandatVon": "03.04.1963",
-                            "wahlkreis": "5 - Salzburg",
-                            "zeitraum": "03.04.1963-15.04.1982",
-                            "bez": "Abgeordneter zum Nationalrat (X.-XV. GP), ÖVP",
-                            "mandat": "Abgeordneter zum Nationalrat",
-                            "klub": "Parlamentsklub der Österreichischen Volkspartei",
-                            "mandatBis": "15.04.1982",
-                            "funktion_bis": "15.04.1982",
-                            "wahlpartei": "ÖVP",
-                            "aktiv": false,
-                            "funktion_text": "Abgeordneter zum Nationalrat"
-                        }
-                    ]
-                },
-                "wahlkreise": "Salzburg",
-                "pad_intern": 1842,
-                "medien": [
-                    2101058
-                ],
-                "openGraph": {
-                    "description": "Abgeordneter zum Nationalrat (X.-XV. GP), ÖVP",
-                    "image": "/dokument/bild/21010/2101058_500.jpg"
-                },
-                "aktiv": false
-            },
-            null,
-            "Josef",
-            "Steiner",
-            null,
-            null,
-            "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Salzburg",
-            "/person/1842"
-        ],
-        [
-            "Steiner Josef",
-            "NR",
             653067,
             "M",
             "Männlich",
@@ -197037,6 +196858,185 @@
             "Klub der Sozialistischen Partei Österreichs (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S), Klub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Abgeordneten und Bundesräte (S)",
             "Kärnten",
             "/person/1886"
+        ],
+        [
+            "Steiner Josef",
+            "NR",
+            652979,
+            "M",
+            "Männlich",
+            "X,XI,XII,XIII,XIV,XV",
+            "[\"ÖVP\"]",
+            {
+                "zit": "Josef Steiner",
+                "fraktionen": "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
+                "item_type": "Biogr",
+                "frak": [
+                    "ÖVP"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "X",
+                    "XI",
+                    "XII",
+                    "XIII",
+                    "XIV",
+                    "XV"
+                ],
+                "nr_gp_code": "X,XI,XII,XIII,XIV,XV",
+                "uri": "/person/1842",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1962-12-14T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "X",
+                        "mandat_von": "03.04.1963",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "14.12.1962 - 30.03.1966: X. GP",
+                        "wahlkreis_code": "C17",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "30.03.1966",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1966-03-30T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XI",
+                        "mandat_von": "30.03.1966",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "30.03.1966 - 31.03.1970: XI. GP",
+                        "wahlkreis_code": "C17",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "31.03.1970",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1970-03-31T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XII",
+                        "mandat_von": "31.03.1970",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "31.03.1970 - 04.11.1971: XII. GP",
+                        "wahlkreis_code": "C17",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "04.11.1971",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1971-11-04T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XIII",
+                        "mandat_von": "04.11.1971",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "04.11.1971 - 04.11.1975: XIII. GP",
+                        "wahlkreis_code": "D5",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "04.11.1975",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1975-11-04T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XIV",
+                        "mandat_von": "04.11.1975",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "04.11.1975 - 04.06.1979: XIV. GP",
+                        "wahlkreis_code": "D5",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "04.06.1979",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    },
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "ÖVP",
+                        "fraktionscode": "V",
+                        "gp_von": "1979-06-05T00:00:00",
+                        "wahlpartei_full_txt": "Österreichische Volkspartei (ÖVP)",
+                        "gp_code": "XV",
+                        "mandat_von": "05.06.1979",
+                        "gremium_name": "Nationalrat",
+                        "wahlpartei_txt": "Österreichische Volkspartei",
+                        "gp_text_full_short": "05.06.1979 - 18.05.1983: XV. GP",
+                        "wahlkreis_code": "D5",
+                        "mand_code": "NR",
+                        "wahlpartei_sort": "Oesterreichische Volkspartei",
+                        "mandat_bis": "15.04.1982",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
+                    }
+                ],
+                "name_nvg": "Steiner Josef",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "NR",
+                            "gremium": "NR",
+                            "funktion_von": "03.04.1963",
+                            "wahlpartei_text": "Österreichische Volkspartei",
+                            "mandatVon": "03.04.1963",
+                            "wahlkreis": "5 - Salzburg",
+                            "zeitraum": "03.04.1963-15.04.1982",
+                            "bez": "Abgeordneter zum Nationalrat (X.-XV. GP), ÖVP",
+                            "mandat": "Abgeordneter zum Nationalrat",
+                            "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                            "mandatBis": "15.04.1982",
+                            "funktion_bis": "15.04.1982",
+                            "wahlpartei": "ÖVP",
+                            "aktiv": false,
+                            "funktion_text": "Abgeordneter zum Nationalrat"
+                        }
+                    ]
+                },
+                "wahlkreise": "Salzburg",
+                "pad_intern": 1842,
+                "medien": [
+                    2101058
+                ],
+                "openGraph": {
+                    "description": "Abgeordneter zum Nationalrat (X.-XV. GP), ÖVP",
+                    "image": "/dokument/bild/21010/2101058_500.jpg"
+                },
+                "aktiv": false
+            },
+            null,
+            "Josef",
+            "Steiner",
+            null,
+            null,
+            "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
+            "Salzburg",
+            "/person/1842"
         ],
         [
             "Steiner Ludwig, Dipl.-Vw. Dr.",

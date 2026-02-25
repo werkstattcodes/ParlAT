@@ -64,18 +64,18 @@ facilitates searches by legislative period.
 
 Allowed event types are:
 \itemize{
-\item "Plenarsitzung" (Plenary Session)
+\item "Plenarsitzung" (Plenary Meeting)
 \item "Ausschusssitzung oder Ausschuss" (Committee Meeting or Committee)
-\item "Besuch einer Plenarsitzung" (Visit to a Plenary Session)
+\item "Besuch einer Plenarsitzung" (Visit to a Plenary Meeting)
 \item "Demokratiebildung" (Democracy Education)
-\item "Fest-/Gedenksitzung" (Ceremonial/Commemorative Session)
+\item "Fest-/Gedenksitzung" (Ceremonial/Commemorative Meeting)
 \item "Führung" (Guided Tour)
 \item "Internationales" (International)
 \item "Klubveranstaltung" (Club Event)
 \item "Konferenz" (Conference)
 \item "Parlamentarische Enquete" (Parliamentary Inquiry)
 \item "Pressekonferenz" (Press Conference)
-\item "Sitzung der Bundesversammlung" (Federal Assembly Session)
+\item "Sitzung der Bundesversammlung" (Federal Assembly Meeting)
 \item "Sonstiger Termin" (Other Event)
 \item "Veranstaltung" (Event)
 }
@@ -161,7 +161,7 @@ provided.
     date_end = "31-01-2024"
   )
 
-  # Get plenary sessions in the National Council chamber
+  # Get plenary meetings in the National Council chamber
   events <- get_events(
     institution = "NR",
     event_type = "Plenarsitzung",

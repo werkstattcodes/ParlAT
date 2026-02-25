@@ -1,6 +1,6 @@
 {
     "pages": 50,
-    "lastSync": "2026-02-09 15:37:20.0",
+    "lastSync": "2026-02-24 22:39:07.0",
     "count": 50,
     "header": [
         {
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "10.03.2016",
-            "/gegenstand/BR/BRSITZ/851",
+            "20.12.2016",
+            "/gegenstand/BR/BRSITZ/862",
             "XXV",
             "BRSITZ",
-            851,
-            "851. Sitzung (851/BRSITZ/2016)",
-            "851/BRSITZ/2016",
+            862,
+            "862. Sitzung (862/BRSITZ/2016)",
+            "862/BRSITZ/2016",
             "Plenarsitzung - BR",
             "Plenar-Sitzung",
-            "2016-03-10T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/851/fname_549857.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/851/fnameorig_549857.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2016-12-20T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/862/fname_627794.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/862/fnameorig_627794.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "BRSITZ",
-            2520727,
+            2520635,
             "BRSITZ",
             null,
-            "2581273"
+            "2578703"
         ]
     ]
 }

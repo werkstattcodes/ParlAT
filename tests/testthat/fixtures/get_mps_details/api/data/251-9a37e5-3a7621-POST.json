@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 01:30:22.0",
+    "lastSync": "2026-02-24 02:10:06.0",
     "count": 5,
     "header": [
         {
@@ -32,8 +32,8 @@
         {
             "feldId": 112,
             "hidden": false,
-            "rnr": 4,
             "sort_rnr": 10,
+            "rnr": 4,
             "listeId": 251,
             "label": "Sitzung",
             "sortable": "1",
@@ -136,8 +136,8 @@
             "XXVI",
             "Thu Nov 09 01:00:00 CET 2017",
             "<a href=\"/sitzung/XXVI/NRSITZ/1?selectedStage=111\" target=\"_blank\">1. Sitzung (09.11.2017) des Nationalrats der XXVI GP.<\/a>",
-            "Novemberpogrome von 1938",
-            "<a href=\"/dokument/XXVI/NRSITZ/1/fnameorig_678451.html#Seite_0009.html\" target=\"_blank\"><i class=\"fa-file-code fal\"><\/i><span class=\"sr-only\">Protokoll<\/span><\/a>",
+            "Abschiedsansprache der Präsidentin",
+            "<a href=\"/dokument/XXVI/NRSITZ/1/fnameorig_678451.html#Seite_0044.html\" target=\"_blank\"><i class=\"fa-file-code fal\"><\/i><span class=\"sr-only\">Protokoll<\/span><\/a>",
             null,
             "145",
             "2017-11-09T12:00:00",
@@ -148,8 +148,8 @@
             "XXVI",
             "Thu Nov 09 01:00:00 CET 2017",
             "<a href=\"/sitzung/XXVI/NRSITZ/1?selectedStage=111\" target=\"_blank\">1. Sitzung (09.11.2017) des Nationalrats der XXVI GP.<\/a>",
-            "Abschiedsansprache der Präsidentin",
-            "<a href=\"/dokument/XXVI/NRSITZ/1/fnameorig_678451.html#Seite_0044.html\" target=\"_blank\"><i class=\"fa-file-code fal\"><\/i><span class=\"sr-only\">Protokoll<\/span><\/a>",
+            "Novemberpogrome von 1938",
+            "<a href=\"/dokument/XXVI/NRSITZ/1/fnameorig_678451.html#Seite_0009.html\" target=\"_blank\"><i class=\"fa-file-code fal\"><\/i><span class=\"sr-only\">Protokoll<\/span><\/a>",
             null,
             "145",
             "2017-11-09T12:00:00",

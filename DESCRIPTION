@@ -4,7 +4,7 @@ Title: A wrapper for the API of the Austrian Parliament
 Version: 0.0.2
 Authors@R: person("Roland", "Schmidt", email = "rs2903@gmail.com", role = c("aut", "cre"))
 Description: The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. 
-    This includes, but is not limited to, data on past and current MPs, plenary sessions, or protocols.
+    This includes, but is not limited to, data on past and current MPs, plenary meetings, or protocols.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -1,6 +1,6 @@
 {
     "pages": 332,
-    "lastSync": "2026-02-09 15:37:20.0",
+    "lastSync": "2026-02-24 22:39:07.0",
     "count": 332,
     "header": [
         {
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "20.02.1980",
-            "/gegenstand/XV/NRSITZ/24",
+            "16.04.1980",
+            "/gegenstand/XV/NRSITZ/30",
             "XV",
             "NRSITZ",
-            24,
-            "24. Sitzung (24/NRSITZ)",
-            "24/NRSITZ",
+            30,
+            "30. Sitzung (30/NRSITZ)",
+            "30/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "1980-02-20T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/24/imfname_146632.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "1980-04-16T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/30/imfname_109901.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            3675152,
+            3675188,
             "NRSITZ",
             null,
-            "7430904"
+            "7430910"
         ]
     ]
 }

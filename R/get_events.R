@@ -20,18 +20,18 @@
 #' @details
 #' ## event_type
 #' Allowed event types are:
-#'   - "Plenarsitzung" (Plenary Session)
+#'   - "Plenarsitzung" (Plenary Meeting)
 #'   - "Ausschusssitzung oder Ausschuss" (Committee Meeting or Committee)
-#'   - "Besuch einer Plenarsitzung" (Visit to a Plenary Session)
+#'   - "Besuch einer Plenarsitzung" (Visit to a Plenary Meeting)
 #'   - "Demokratiebildung" (Democracy Education)
-#'   - "Fest-/Gedenksitzung" (Ceremonial/Commemorative Session)
+#'   - "Fest-/Gedenksitzung" (Ceremonial/Commemorative Meeting)
 #'   - "Führung" (Guided Tour)
 #'   - "Internationales" (International)
 #'   - "Klubveranstaltung" (Club Event)
 #'   - "Konferenz" (Conference)
 #'   - "Parlamentarische Enquete" (Parliamentary Inquiry)
 #'   - "Pressekonferenz" (Press Conference)
-#'   - "Sitzung der Bundesversammlung" (Federal Assembly Session)
+#'   - "Sitzung der Bundesversammlung" (Federal Assembly Meeting)
 #'   - "Sonstiger Termin" (Other Event)
 #'   - "Veranstaltung" (Event)
 #'
@@ -127,7 +127,7 @@
 #'     date_end = "31-01-2024"
 #'   )
 #'
-#'   # Get plenary sessions in the National Council chamber
+#'   # Get plenary meetings in the National Council chamber
 #'   events <- get_events(
 #'     institution = "NR",
 #'     event_type = "Plenarsitzung",

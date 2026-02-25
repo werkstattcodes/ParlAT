@@ -2,7 +2,7 @@
 #'
 #' `r lifecycle::badge("experimental")`
 #'
-#' Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
+#' Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes meeting dates, agendas, meeting overviews, and member lists.
 #' The function partly mirrors the search functionality of the Austrian Parliament's website for committees
 #' <a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">here</a> and extends it by
 #' e.g. incorporating the extraction of data from membership lists. Data available starting from the 20th legislative period.

@@ -4,7 +4,7 @@ Purpose: give an AI coding agent the minimum, high-value knowledge to work produ
 
 Quick context
 - Package root: contains `DESCRIPTION`, `R/`, `man/`, `tests/`, `vignettes/`. Core code lives in `R/`.
-- Key entry points: `R/get_events.R`, `R/get_items.R`, `R/get_mps.R`, `R/get_plenary_sessions.R`.
+- Key entry points: `R/get_events.R`, `R/get_items.R`, `R/get_mps.R`, `R/get_plenary_meetings.R`.
 - Canonical parsing helper: `R/aux_json_to_tibble.R` (flatten JSON -> tibble).
 
 Core patterns you must follow
@@ -14,7 +14,7 @@ Core patterns you must follow
 - Return values: public `get_*()` functions return tibbles (use tidyverse style and the `|>` pipe). Avoid printing side-effects.
 
 Developer workflows (fast commands)
-- Start development session: `devtools::load_all()`
+- Start development meeting: `devtools::load_all()`
 - Run tests: `devtools::test()` or a single file: `testthat::test_file("tests/testthat/test-get_events.R")`.
 - Inspect package internals / docs: `devtools::document()`; build vignettes: `devtools::build_vignettes()`; site: `pkgdown::build_site()`.
 - Reproducible environment: check `renv::status()` (project uses `renv`).

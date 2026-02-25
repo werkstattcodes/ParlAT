@@ -460,7 +460,7 @@
 #' * [get_persons()] for searching person identifiers used in the `person` parameter
 #' * [get_legis_periods()] for retrieving available legislative periods
 #' * [get_committees()] for committee information
-#' * [get_plenary_sessions()] for plenary session data
+#' * [get_plenary_meetings()] for plenary meeting data
 #'
 #' @export
 #'
@@ -1414,7 +1414,7 @@ get_item_details <- function(item_url, type = "stages") {
     df_stages <- data_list$content$stages %>%
       tidyr::unnest_longer("fsth") %>%
       tidyr::unnest_wider("fsth", names_sep = "_") %>%
-      dplyr::rename(session_number = "fsth_sitzung_id") %>%
+      dplyr::rename(meeting_number = "fsth_sitzung_id") %>%
       dplyr::select(-c("fsth_fund_von", "fsth_fund_bis"))
 
     df_stages <- df_stages %>%

@@ -333,90 +333,49 @@ record_fixtures(
   )
 )
 
-# --- get_plenary_sessions ---
+# --- get_plenary_meetings ---
 record_fixtures(
-  "get_plenary_sessions",
-  get_plenary_sessions(
+  "get_plenary_meetings",
+  get_plenary_meetings(
     institution = "NR",
     legis_period = 28,
-    session_and_activities = "sessions"
+    meeting_and_activities = "meetings"
   ),
-  get_plenary_sessions(
+  get_plenary_meetings(
     institution = "NR",
     legis_period = 27,
-    session_and_activities = "submitted"
+    meeting_and_activities = "meetings"
   ),
-  get_plenary_sessions(
+  get_plenary_meetings(
     institution = "NR",
     legis_period = 27,
-    session_and_activities = "sessions"
+    meeting_and_activities = "activities"
   ),
-  get_plenary_sessions(
+  get_plenary_meetings(
     institution = "NR",
-    legis_period = 27,
-    session_and_activities = "held"
+    legis_period = 28,
+    meeting_and_activities = "activities"
   ),
-  get_plenary_sessions(
+  get_plenary_meetings(
     institution = "BR",
     legis_period = 27,
-    session_and_activities = "sessions"
+    meeting_and_activities = "meetings"
   ),
-  get_plenary_sessions(
+  get_plenary_meetings(
     institution = "BR",
     legis_period = 27,
-    session_and_activities = "submitted"
+    meeting_and_activities = "activities"
   ),
-  get_plenary_sessions(
-    institution = "BR",
-    legis_period = 27,
-    session_and_activities = "held"
-  ),
-  get_plenary_sessions(
-    institution = "NR",
-    legis_period = 28,
-    session_and_activities = "submitted",
-    submitted = "All"
-  ),
-  get_plenary_sessions(
-    institution = "NR",
-    legis_period = 28,
-    session_and_activities = "submitted",
-    submitted = "AA"
-  ),
-  get_plenary_sessions(
-    institution = "NR",
-    legis_period = 28,
-    session_and_activities = "submitted",
-    submitted = "J"
-  ),
-  get_plenary_sessions(
-    institution = "NR",
-    legis_period = 28,
-    session_and_activities = "held",
-    held = "All"
-  ),
-  get_plenary_sessions(
-    institution = "NR",
-    legis_period = 28,
-    session_and_activities = "held",
-    held = "AS"
-  ),
-  get_plenary_sessions(
-    institution = "NR",
-    legis_period = 28,
-    session_and_activities = "held",
-    held = "FS"
-  ),
-  get_plenary_sessions(institution = "BV", legis_period = NULL),
-  get_plenary_sessions(
+  get_plenary_meetings(institution = "BV", legis_period = NULL),
+  get_plenary_meetings(
     institution = "NR",
     legis_period = c(27, 28),
-    session_and_activities = "sessions"
+    meeting_and_activities = "meetings"
   ),
-  get_plenary_sessions(
+  get_plenary_meetings(
     institution = "NR",
     legis_period = NULL,
-    session_and_activities = "sessions"
+    meeting_and_activities = "meetings"
   )
 )
 
@@ -424,65 +383,65 @@ record_fixtures(
 # Note: Export tests download actual files - those use skip_if_mocked()
 record_fixtures(
   "get_transcripts",
-  get_transcripts(session_type = "NRSITZ", legis_period = 15, echo = FALSE),
-  get_transcripts(session_type = "BRSITZ", legis_period = "XXV", echo = FALSE),
+  get_transcripts(meeting_type = "NRSITZ", legis_period = 15, echo = FALSE),
+  get_transcripts(meeting_type = "BRSITZ", legis_period = "XXV", echo = FALSE),
   get_transcripts(
     legis_period = 27,
-    session_type = c("NRSITZ", "BRSITZ"),
+    meeting_type = c("NRSITZ", "BRSITZ"),
     echo = FALSE
   ),
-  get_transcripts(legis_period = 27, session_type = "NRSITZ", echo = FALSE),
+  get_transcripts(legis_period = 27, meeting_type = "NRSITZ", echo = FALSE),
   get_transcripts(
     legis_period = "XXVII",
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     echo = FALSE
   ),
   get_transcripts(legis_period = "PN", echo = FALSE),
-  get_transcripts(legis_period = 26, session_type = "NRSITZ", echo = FALSE),
+  get_transcripts(legis_period = 26, meeting_type = "NRSITZ", echo = FALSE),
   get_transcripts(
     legis_period = c(15, 20),
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     echo = FALSE
   ),
-  get_transcripts(legis_period = 27, session_type = "BRSITZ", echo = FALSE),
+  get_transcripts(legis_period = 27, meeting_type = "BRSITZ", echo = FALSE),
   get_transcripts(
     legis_period = 27,
-    session_type = NULL,
+    meeting_type = NULL,
     echo = FALSE
   ),
   get_transcripts(
     legis_period = 27,
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     date_start = "01-01-2024",
     echo = FALSE
   ),
   get_transcripts(
     legis_period = 27,
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     date_end = "01-01-2021",
     echo = FALSE
   ),
   get_transcripts(
     legis_period = 27,
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     date_start = "01-01-2024",
     date_end = "30-06-2024",
     echo = FALSE
   ),
   get_transcripts(
     legis_period = 27,
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     search_string = "budget",
     echo = FALSE
   ),
   get_transcripts(
     legis_period = 27,
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     search_string = "gesundheit",
     echo = FALSE
   ),
   get_transcripts(
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     date_start = "01/01/2024",
     date_end = "31/12/2024",
     search_string = "budget",
@@ -491,7 +450,7 @@ record_fixtures(
   get_transcripts(
     search_string = NULL,
     legis_period = NULL,
-    session_type = NULL,
+    meeting_type = NULL,
     date_start = NULL,
     date_end = NULL,
     echo = FALSE

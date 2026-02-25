@@ -2,12 +2,12 @@
 
 # Basic functionality tests
 
-test_that("get_transcripts returns data frame with correct number of sessions", {
+test_that("get_transcripts returns data frame with correct number of meetings", {
   # Nationalrat
   result_nr <- run_api_call(
     {
       get_transcripts(
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         legis_period = 15,
         echo = FALSE
       )
@@ -22,7 +22,7 @@ test_that("get_transcripts returns data frame with correct number of sessions", 
   result_br <- run_api_call(
     {
       get_transcripts(
-        session_type = c("BRSITZ"),
+        meeting_type = c("BRSITZ"),
         legis_period = "XXV",
         echo = FALSE
       )
@@ -39,7 +39,7 @@ test_that("get_transcripts returns correct column names", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = c(
+        meeting_type = c(
           "NRSITZ",
           "BRSITZ"
         ),
@@ -51,13 +51,13 @@ test_that("get_transcripts returns correct column names", {
 
   expected_cols <- c(
     "date",
-    "session_url",
+    "meeting_url",
     "legis_period",
-    "session_type",
-    "session_number",
-    "session",
-    "session_transcript_html",
-    "session_transcript_pdf"
+    "meeting_type",
+    "meeting_number",
+    "meeting",
+    "meeting_transcript_html",
+    "meeting_transcript_pdf"
   )
 
   expect_true(all(expected_cols %in% names(result)))
@@ -68,7 +68,7 @@ test_that("get_transcripts date column is properly formatted", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -85,7 +85,7 @@ test_that("get_transcripts accepts numeric legislative period", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -101,7 +101,7 @@ test_that("get_transcripts accepts Roman numeral legislative period", {
     {
       get_transcripts(
         legis_period = "XXVII",
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -128,7 +128,7 @@ test_that("get_transcripts filters correctly by legislative period", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -139,7 +139,7 @@ test_that("get_transcripts filters correctly by legislative period", {
     {
       get_transcripts(
         legis_period = 26,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -157,7 +157,7 @@ test_that("get_transcripts allows for multiple legislative periods", {
     {
       get_transcripts(
         legis_period = c(15, 20),
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -169,25 +169,25 @@ test_that("get_transcripts allows for multiple legislative periods", {
   expect_equal(nrow(result_15_20), 332)
 
   result_15_20_dupes <- result_15_20[
-    duplicated(result_15_20[, c("date", "session_number", "legis_period")]),
+    duplicated(result_15_20[, c("date", "meeting_number", "legis_period")]),
   ]
   expect_true(nrow(result_15_20_dupes) == 0)
 })
 
 
-test_that("get_transcripts rejects invalid session type", {
+test_that("get_transcripts rejects invalid meeting type", {
   expect_error(
-    get_transcripts(session_type = "INVALID", echo = FALSE),
+    get_transcripts(meeting_type = "INVALID", echo = FALSE),
     "Must be a subset of"
   )
 })
 
-test_that("get_transcripts filters correctly by session type", {
+test_that("get_transcripts filters correctly by meeting type", {
   result_nr <- run_api_call(
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -198,7 +198,7 @@ test_that("get_transcripts filters correctly by session type", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "BRSITZ",
+        meeting_type = "BRSITZ",
         echo = FALSE
       )
     },
@@ -208,34 +208,34 @@ test_that("get_transcripts filters correctly by session type", {
   expect_false(identical(result_nr, result_br))
 })
 
-test_that("get_transcripts defaults to both NRSITZ and BRSITZ when session_type is NULL", {
-  # Query with NULL session_type (default)
+test_that("get_transcripts defaults to both NRSITZ and BRSITZ when meeting_type is NULL", {
+  # Query with NULL meeting_type (default)
   result_null <- run_api_call(
     {
       get_transcripts(
         legis_period = 27,
-        session_type = NULL,
+        meeting_type = NULL,
         echo = FALSE
       )
     },
     fixture_subdir = "get_transcripts"
   )
 
-  # Query explicitly with both session types
+  # Query explicitly with both meeting types
   result_both <- run_api_call(
     {
       get_transcripts(
         legis_period = 27,
-        session_type = c("NRSITZ", "BRSITZ"),
+        meeting_type = c("NRSITZ", "BRSITZ"),
         echo = FALSE
       )
     },
     fixture_subdir = "get_transcripts"
   )
 
-  # Check for 100% overlap in session_url column
-  urls_null <- sort(unique(result_null$session_url))
-  urls_both <- sort(unique(result_both$session_url))
+  # Check for 100% overlap in meeting_url column
+  urls_null <- sort(unique(result_null$meeting_url))
+  urls_both <- sort(unique(result_both$meeting_url))
 
   # Both should have the same number of unique URLs
   expect_equal(length(urls_null), length(urls_both))
@@ -244,14 +244,14 @@ test_that("get_transcripts defaults to both NRSITZ and BRSITZ when session_type 
   expect_true(all(urls_null %in% urls_both))
   expect_true(all(urls_both %in% urls_null))
 
-  # Verify that both session types are present in the result
+  # Verify that both meeting types are present in the result
   expect_true(all(
     c("NRSITZ", "BRSITZ") %in%
-      unique(result_null$session_type)
+      unique(result_null$meeting_type)
   ))
 
-  # Verify the result contains both NR and BR sessions
-  expect_true(length(unique(result_null$session_type)) == 2)
+  # Verify the result contains both NR and BR meetings
+  expect_true(length(unique(result_null$meeting_type)) == 2)
 })
 
 # Date filtering tests
@@ -261,7 +261,7 @@ test_that("get_transcripts accepts date_start parameter", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         date_start = "01-01-2024",
         echo = FALSE
       )
@@ -281,7 +281,7 @@ test_that("get_transcripts accepts only date_end parameter", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         date_end = "01-01-2021",
         echo = FALSE
       )
@@ -301,7 +301,7 @@ test_that("get_transcripts accepts both date_start and date_end", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         date_start = "01-01-2024",
         date_end = "30-06-2024",
         echo = FALSE
@@ -336,7 +336,7 @@ test_that("get_transcripts accepts search_string parameter", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         search_string = "budget",
         echo = FALSE
       )
@@ -355,7 +355,7 @@ test_that("get_transcripts with search_string returns fewer results", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -366,7 +366,7 @@ test_that("get_transcripts with search_string returns fewer results", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         search_string = "gesundheit",
         echo = FALSE
       )
@@ -385,7 +385,7 @@ test_that("get_transcripts extracts HTML and PDF URLs correctly", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -393,20 +393,20 @@ test_that("get_transcripts extracts HTML and PDF URLs correctly", {
   )
 
   # Check that URL columns exist
-  expect_true("session_transcript_html" %in% names(result))
-  expect_true("session_transcript_pdf" %in% names(result))
+  expect_true("meeting_transcript_html" %in% names(result))
+  expect_true("meeting_transcript_pdf" %in% names(result))
 
   # Check that URLs are properly formatted (if not NA)
-  if (any(!is.na(result$session_transcript_html))) {
-    valid_urls <- result$session_transcript_html[
-      !is.na(result$session_transcript_html)
+  if (any(!is.na(result$meeting_transcript_html))) {
+    valid_urls <- result$meeting_transcript_html[
+      !is.na(result$meeting_transcript_html)
     ]
     expect_true(all(grepl("^https?://", valid_urls)))
   }
 
-  if (any(!is.na(result$session_transcript_pdf))) {
-    valid_urls <- result$session_transcript_pdf[
-      !is.na(result$session_transcript_pdf)
+  if (any(!is.na(result$meeting_transcript_pdf))) {
+    valid_urls <- result$meeting_transcript_pdf[
+      !is.na(result$meeting_transcript_pdf)
     ]
     expect_true(all(grepl("^https?://", valid_urls)))
   }
@@ -421,7 +421,7 @@ test_that("get_transcripts respects echo parameter", {
       {
         get_transcripts(
           legis_period = 27,
-          session_type = "NRSITZ",
+          meeting_type = "NRSITZ",
           echo = FALSE
         )
       },
@@ -437,7 +437,7 @@ test_that("get_transcripts returns data sorted by date", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -456,7 +456,7 @@ test_that("get_transcripts handles multiple filters simultaneously", {
   result <- run_api_call(
     {
       get_transcripts(
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         date_start = "01/01/2024",
         date_end = "31/12/2024",
         search_string = "budget",
@@ -477,7 +477,7 @@ test_that("get_transcripts handles NULL parameters gracefully", {
       get_transcripts(
         search_string = NULL,
         legis_period = NULL,
-        session_type = NULL,
+        meeting_type = NULL,
         date_start = NULL,
         date_end = NULL,
         echo = FALSE
@@ -488,10 +488,10 @@ test_that("get_transcripts handles NULL parameters gracefully", {
 
   expect_s3_class(result, "data.frame")
 
-  # With session_type = NULL, should query both NRSITZ and BRSITZ
+  # With meeting_type = NULL, should query both NRSITZ and BRSITZ
   expect_true(all(
     c("NRSITZ", "BRSITZ") %in%
-      unique(result$session_type)
+      unique(result$meeting_type)
   ))
 })
 
@@ -500,7 +500,7 @@ test_that("get_transcripts returns tibble (not just data.frame)", {
     {
       get_transcripts(
         legis_period = 27,
-        session_type = "NRSITZ",
+        meeting_type = "NRSITZ",
         echo = FALSE
       )
     },
@@ -533,7 +533,7 @@ test_that("get_transcripts exports file from recorded fixture", {
   # Use BRSITZ for legislative period 27 (smaller dataset)
   res <- get_transcripts(
     legis_period = 27,
-    session_type = "BRSITZ",
+    meeting_type = "BRSITZ",
     date_start = "01-01-2024",
     date_end = "30-06-2024",
     export = "pdf",

@@ -614,6 +614,6 @@ get_items(
 \item \code{\link[=get_persons]{get_persons()}} for searching person identifiers used in the \code{person} parameter
 \item \code{\link[=get_legis_periods]{get_legis_periods()}} for retrieving available legislative periods
 \item \code{\link[=get_committees]{get_committees()}} for committee information
-\item \code{\link[=get_plenary_sessions]{get_plenary_sessions()}} for plenary session data
+\item \code{\link[=get_plenary_meetings]{get_plenary_meetings()}} for plenary meeting data
 }
 }

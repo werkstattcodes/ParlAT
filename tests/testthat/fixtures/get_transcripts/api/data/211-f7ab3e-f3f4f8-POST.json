@@ -1,14 +1,14 @@
 {
     "pages": 350,
-    "lastSync": "2026-02-09 15:37:20.0",
+    "lastSync": "2026-02-24 22:39:07.0",
     "count": 350,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "rnr": 1,
             "sort_rnr": 10,
+            "rnr": 1,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -68,8 +68,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "rnr": 7,
             "sort_rnr": 5,
+            "rnr": 7,
             "listeId": 211,
             "label": "Zitation",
             "sortable": "1",
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "23.11.2021",
-            "/gegenstand/BR/BRSITZ/933",
+            "21.10.2021",
+            "/gegenstand/BR/BRSITZ/931",
             "XXVII",
             "BRSITZ",
-            933,
-            "933. Sitzung (933/BRSITZ/2021)",
-            "933/BRSITZ/2021",
+            931,
+            "931. Sitzung (931/BRSITZ/2021)",
+            "931/BRSITZ/2021",
             "Plenarsitzung - BR",
             "Plenar-Sitzung",
-            "2021-11-23T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/933/fname_1429768.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/933/fnameorig_1429768.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2021-10-21T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/931/fname_1410379.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/931/fnameorig_1410379.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "BRSITZ",
-            2435858,
+            2435945,
             "BRSITZ",
-            "<a href=\"/gegenstand/BR/BRSITZ/933?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "2267614"
+            "<a href=\"/gegenstand/BR/BRSITZ/931?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "2269677"
         ]
     ]
 }

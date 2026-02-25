@@ -21,3 +21,5 @@ renv/staging/
 .github/copilot-instructions.md
 CLAUDE.md
 test_results.csv
+.playwright-mcp/
+vignettes/*_cache/
