@@ -25,7 +25,7 @@ reference:
       - get_mps_details
       - get_participation
       - get_persons
-      - get_plenary_sessions
+      - get_plenary_meetings
       - get_transcripts
 
   - title: "auxiliary functions"

@@ -376,6 +376,18 @@ record_fixtures(
     institution = "NR",
     legis_period = NULL,
     meeting_and_activities = "meetings"
+  ),
+  get_plenary_meetings(
+    institution = "NR",
+    legis_period = 28,
+    meeting_and_activities = "meetings",
+    session_type = "N"
+  ),
+  get_plenary_meetings(
+    institution = "NR",
+    legis_period = 28,
+    meeting_and_activities = "meetings",
+    meeting_type = "S"
   )
 )
 

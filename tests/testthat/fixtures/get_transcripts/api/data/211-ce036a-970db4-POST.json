@@ -1,14 +1,14 @@
 {
     "pages": 107,
-    "lastSync": "2026-02-24 22:39:07.0",
+    "lastSync": "2026-02-26 11:04:40.0",
     "count": 107,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "rnr": 1,
             "sort_rnr": 10,
+            "rnr": 1,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -67,8 +67,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "rnr": 7,
             "sort_rnr": 5,
+            "rnr": 7,
             "listeId": 211,
             "label": "Zitation",
             "includeHeader": true
@@ -96,8 +96,8 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "rnr": 10,
             "mediaType": "datetime",
             "listeId": 211,

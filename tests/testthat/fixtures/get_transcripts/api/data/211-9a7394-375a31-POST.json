@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-24 22:39:07.0",
+    "lastSync": "2026-02-26 11:04:40.0",
     "count": 14,
     "header": [
         {
@@ -96,8 +96,8 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "rnr": 10,
             "mediaType": "datetime",
             "listeId": 211,

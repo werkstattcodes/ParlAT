@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-24 22:20:02.0",
+    "lastSync": "2026-02-26 10:50:04.0",
     "count": 2,
     "header": [
         {
@@ -28,8 +28,8 @@
             "css_class": "col-5",
             "feldId": 363,
             "hidden": false,
-            "rnr": 3,
             "sort_rnr": 2,
+            "rnr": 3,
             "listeId": 600,
             "label": "Datum",
             "sortable": "1",
@@ -164,8 +164,8 @@
         },
         {
             "feldId": 581,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "rnr": 16,
             "mediaType": "datetime",
             "listeId": 600,

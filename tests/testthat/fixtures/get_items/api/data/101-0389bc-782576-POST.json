@@ -1,11 +1,11 @@
 {
     "pages": 0,
-    "lastSync": "2026-02-24 22:36:02.0",
+    "lastSync": "2026-02-26 11:01:21.0",
     "count": 0,
     "header": [
         {
-            "feldId": 244,
             "export_jn": "1",
+            "feldId": 244,
             "hidden": true,
             "rnr": 1,
             "listeId": 101,
@@ -42,8 +42,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 250,
             "export_jn": "1",
+            "feldId": 250,
             "hidden": false,
             "sort_rnr": 17,
             "mediaType": "datetime",
@@ -58,9 +58,9 @@
             "includeHeader": true
         },
         {
-            "feldId": 249,
             "link_rnr": "15",
             "export_jn": "1",
+            "feldId": 249,
             "hidden": false,
             "mediaType": "title",
             "display_rnr": 2,
@@ -73,8 +73,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 248,
             "export_jn": "1",
+            "feldId": 248,
             "hidden": false,
             "sort_rnr": 28,
             "mediaType": "description",
@@ -145,8 +145,8 @@
             "listeId": 101,
             "label": "Personen_ID",
             "feld_name": "PAD_INTERN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "feldId": 342,
@@ -155,8 +155,8 @@
             "listeId": 101,
             "label": "Klub/Fraktion",
             "feld_name": "FRAK_CODE",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "feldId": 343,
@@ -165,8 +165,8 @@
             "listeId": 101,
             "label": "Thema",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "feldId": 344,
@@ -175,8 +175,8 @@
             "listeId": 101,
             "label": "Schlagwort",
             "feld_name": "SW",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "feldId": 345,
@@ -185,8 +185,8 @@
             "listeId": 101,
             "label": "EuroVoc",
             "feld_name": "EUROVOC",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "feldId": 2011,

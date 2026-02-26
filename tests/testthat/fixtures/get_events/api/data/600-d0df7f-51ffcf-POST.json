@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-24 22:20:02.0",
+    "lastSync": "2026-02-26 10:50:04.0",
     "count": 10,
     "header": [
         {
@@ -39,8 +39,8 @@
         },
         {
             "css_class": "col-20",
-            "feldId": 364,
             "link_rnr": "5",
+            "feldId": 364,
             "hidden": false,
             "rnr": 4,
             "mediaType": "title",
@@ -91,8 +91,8 @@
             "rnr": 8,
             "listeId": 600,
             "label": "Link2",
-            "additionalinfo": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "additionalinfo": "1"
         },
         {
             "css_class": "col-15",
@@ -114,8 +114,8 @@
             "listeId": 600,
             "label": "Themen",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "feldId": 401,
@@ -213,15 +213,15 @@
             "includeHeader": true
         },
         {
-            "feldId": 1161,
             "export_jn": "0",
+            "feldId": 1161,
             "hidden": true,
             "rnr": 21,
             "listeId": 600,
             "label": "WENTRY_ID",
             "feld_name": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 1497,
@@ -239,8 +239,8 @@
             "listeId": 600,
             "label": "Sicht",
             "feld_name": "SICHT",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "css_class": "stellungnahmen-col",
@@ -302,8 +302,8 @@
             "listeId": 600,
             "label": "Sprache",
             "feld_name": "FUEHRUNGSSPRACHE",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         }
     ],
     "rows": [

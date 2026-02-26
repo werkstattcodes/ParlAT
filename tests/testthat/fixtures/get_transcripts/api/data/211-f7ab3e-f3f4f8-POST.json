@@ -1,14 +1,14 @@
 {
     "pages": 350,
-    "lastSync": "2026-02-24 22:39:07.0",
+    "lastSync": "2026-02-26 11:04:40.0",
     "count": 350,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -19,8 +19,8 @@
             "feldId": 2710,
             "hidden": true,
             "rnr": 2,
-            "mediaType": "link",
             "listeId": 211,
+            "mediaType": "link",
             "label": "uri",
             "includeHeader": true
         },
@@ -59,8 +59,8 @@
             "link_rnr": "2",
             "hidden": false,
             "rnr": 6,
-            "mediaType": "title",
             "listeId": 211,
+            "mediaType": "title",
             "label": "Sitzung",
             "class": "betreff-col",
             "includeHeader": true
@@ -68,8 +68,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "listeId": 211,
             "label": "Zitation",
             "sortable": "1",
@@ -80,8 +80,8 @@
             "feldId": 2706,
             "hidden": true,
             "rnr": 8,
-            "mediaType": "description",
             "listeId": 211,
+            "mediaType": "description",
             "label": "Art",
             "sortable": "1",
             "class": "datum-col",
@@ -102,8 +102,8 @@
             "hidden": true,
             "ist_range": "1",
             "rnr": 10,
-            "mediaType": "datetime",
             "listeId": 211,
+            "mediaType": "datetime",
             "label": "datum2",
             "feld_name": "DATUM",
             "includeHeader": true
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "21.10.2021",
-            "/gegenstand/BR/BRSITZ/931",
+            "20.10.2022",
+            "/gegenstand/BR/BRSITZ/946",
             "XXVII",
             "BRSITZ",
-            931,
-            "931. Sitzung (931/BRSITZ/2021)",
-            "931/BRSITZ/2021",
+            946,
+            "946. Sitzung (946/BRSITZ/2022)",
+            "946/BRSITZ/2022",
             "Plenarsitzung - BR",
             "Plenar-Sitzung",
-            "2021-10-21T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/931/fname_1410379.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/931/fnameorig_1410379.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2022-10-20T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/946/fname_1557178.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/946/fnameorig_1557178.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "BRSITZ",
-            2435945,
+            687113,
             "BRSITZ",
-            "<a href=\"/gegenstand/BR/BRSITZ/931?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "2269677"
+            "<a href=\"/gegenstand/BR/BRSITZ/946?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "17016809"
         ]
     ]
 }

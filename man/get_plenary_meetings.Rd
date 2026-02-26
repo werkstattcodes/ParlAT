@@ -8,8 +8,8 @@ get_plenary_meetings(
   institution = NULL,
   legis_period = NULL,
   meeting_and_activities = NULL,
-  tagungsart = NULL,
-  sitzungsart = NULL,
+  session_type = NULL,
+  meeting_type = NULL,
   echo = FALSE
 )
 }
@@ -20,9 +20,9 @@ get_plenary_meetings(
 
 \item{meeting_and_activities}{A character string. One of 'meetings' or 'activities'. 'meetings' returns plenary meeting entries; 'activities' returns parliamentary items submitted or acted upon in meetings. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.}
 
-\item{tagungsart}{A character string or vector. Filter by meeting period type. Permissible values: \code{"N"} (Ordentliche Tagung / Ordinary meeting period). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".}
+\item{session_type}{A character string or vector. Filter by meeting period type. Permissible values: \code{"N"} (Ordentliche Tagung / Ordinary meeting period). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".}
 
-\item{sitzungsart}{A character string or vector. Filter by sitting type. Permissible values: \code{"S"} (Sitzung / Regular sitting), \code{"SON"} (Sondersitzung / Special sitting), \code{"ZW"} (Zuweisungssitzung / Assignment sitting). Can be NULL to retrieve all sitting types. Only applicable when \code{meeting_and_activities = "meetings"}.}
+\item{meeting_type}{A character string or vector. Filter by sitting type. Permissible values: \code{"S"} (Sitzung / Regular sitting), \code{"SON"} (Sondersitzung / Special sitting), \code{"ZW"} (Zuweisungssitzung / Assignment sitting). Can be NULL to retrieve all sitting types. Only applicable when \code{meeting_and_activities = "meetings"}.}
 
 \item{echo}{Logical. If \code{TRUE}, prints the API request body parameters and the number of results. Default is \code{FALSE}.}
 }
@@ -38,7 +38,7 @@ If \emph{\code{meeting_and_activities = "meetings"}}:
 \item \code{meeting_url}: URL to the meeting page
 \item \code{meeting_type}: sitting type abbreviation (e.g., "S", "SON", "ZW")
 \item \code{meeting_title}: full title of the meeting
-\item \code{tagungsart}: meeting period type (e.g., "N" for Ordentliche Tagung)
+\item \code{session_type}: meeting period type (e.g., "N" for Ordentliche Tagung)
 \item \code{agenda_url_html}: URL to the agenda in HTML format (NA if not yet published)
 \item \code{agenda_url_pdf}: URL to the agenda in PDF format (NA if not yet published)
 }
@@ -52,7 +52,7 @@ If \emph{\code{meeting_and_activities = "activities"}}:
 \item \code{url_item}: URL to the parliamentary item
 \item \code{meeting_number}: number of the meeting in which the item appeared
 \item \code{url_meeting}: URL to the meeting
-\item \code{tagungsart}: meeting period type of the meeting
+\item \code{session_type}: meeting period type of the meeting
 \item \code{activity_type}: type of activity (e.g., "Sonstiges")
 \item \code{doc_type}: document type description
 \item \code{citation}: item citation string
@@ -62,7 +62,7 @@ For \emph{BV (Bundesversammlung) institution}:
 \itemize{
 \item Returns basic meeting information without activity filtering
 \item Does NOT include \code{legis_period} column (not applicable for Federal Assembly)
-\item Columns returned: \code{institution}, \code{date}, \code{meeting_number}, \code{meeting_url}, \code{meeting_type}, \code{meeting_title}, \code{tagungsart}, \code{agenda_url_html}, \code{agenda_url_pdf}
+\item Columns returned: \code{institution}, \code{date}, \code{meeting_number}, \code{meeting_url}, \code{meeting_type}, \code{meeting_title}, \code{session_type}, \code{agenda_url_html}, \code{agenda_url_pdf}
 }
 }
 \description{

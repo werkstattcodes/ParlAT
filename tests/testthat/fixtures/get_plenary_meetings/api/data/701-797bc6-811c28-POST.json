@@ -1,12 +1,12 @@
 {
     "pages": 18,
-    "lastSync": "2026-02-24 18:42:39.0",
-    "count": 896,
+    "lastSync": "2026-02-25 18:52:43.0",
+    "count": 899,
     "header": [
         {
             "filterable": "1",
-            "feldId": 441,
             "export_jn": "1",
+            "feldId": 441,
             "hidden": true,
             "rnr": 1,
             "listeId": 701,
@@ -32,8 +32,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 444,
             "export_jn": "1",
+            "feldId": 444,
             "hidden": true,
             "rnr": 4,
             "listeId": 701,
@@ -59,8 +59,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 461,
             "export_jn": "1",
+            "feldId": 461,
             "hidden": true,
             "rnr": 7,
             "listeId": 701,
@@ -86,8 +86,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 464,
             "export_jn": "1",
+            "feldId": 464,
             "hidden": true,
             "rnr": 10,
             "listeId": 701,
@@ -112,8 +112,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 467,
             "export_jn": "1",
+            "feldId": 467,
             "hidden": true,
             "ist_range": "1",
             "rnr": 13,
@@ -124,8 +124,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 468,
             "export_jn": "1",
+            "feldId": 468,
             "hidden": true,
             "rnr": 14,
             "listeId": 701,
@@ -134,8 +134,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 472,
             "export_jn": "1",
+            "feldId": 472,
             "hidden": true,
             "rnr": 15,
             "listeId": 701,
@@ -206,9 +206,9 @@
             "includeHeader": true
         },
         {
-            "feldId": 489,
             "display_sql": "${SIAKT}=AKT",
             "link_rnr": "24",
+            "feldId": 489,
             "hidden": false,
             "rnr": 23,
             "display_rnr": 3,
@@ -227,9 +227,9 @@
         },
         {
             "tooltip_rnr": 26,
-            "feldId": 469,
             "display_sql": "${SIAKT}=SI",
             "export_jn": "1",
+            "feldId": 469,
             "hidden": true,
             "sort_rnr": 27,
             "display_rnr": 6,
@@ -261,8 +261,8 @@
         {
             "css_class": "datum-col",
             "filterable": "1",
-            "feldId": 475,
             "link_rnr": "29",
+            "feldId": 475,
             "hidden": false,
             "rnr": 28,
             "display_rnr": 5,
@@ -281,8 +281,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 495,
             "display_sql": "${SIAKT}=SI",
+            "feldId": 495,
             "hidden": true,
             "rnr": 30,
             "listeId": 701,
@@ -292,8 +292,8 @@
         },
         {
             "tooltip_rnr": 32,
-            "feldId": 496,
             "display_sql": "${SIAKT}=AKT",
+            "feldId": 496,
             "hidden": false,
             "display_rnr": 2,
             "label": "Art",
@@ -315,8 +315,8 @@
         },
         {
             "css_class": "datum-col",
-            "feldId": 498,
             "display_sql": "${SIAKT}=AKT",
+            "feldId": 498,
             "hidden": false,
             "rnr": 33,
             "display_rnr": 4,
@@ -342,8 +342,8 @@
             "rnr": 35,
             "listeId": 701,
             "feld_name": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 1003,
@@ -353,11 +353,49 @@
             "listeId": 701,
             "label": "Themen",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         }
     ],
     "rows": [
+        [
+            "NR",
+            "Nationalrat",
+            1,
+            "XXVIII",
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode",
+            "20241024",
+            "24102024",
+            "24.10.2024 - 15.07.2025: XXVIII",
+            "20241024",
+            "N",
+            "Ordentliche Tagung",
+            1,
+            "2024-12-11T00:00:00",
+            "2024-12-11T00:00:00",
+            "AKT",
+            "Aktivitäten",
+            2,
+            "AV",
+            "Anträge/Verlangen",
+            1,
+            "11.12.2024",
+            "202412110005AAAAA00004",
+            "Bundesbezügegesetz",
+            "/gegenstand/XXVIII/AA/4",
+            "S",
+            "Sitzung",
+            1,
+            "5/NRSITZ (XXVIII. GP)",
+            "/gegenstand/XXVIII/NRSITZ/5",
+            null,
+            "AA",
+            "Abänderungsantrag im Plenum",
+            "AA-4",
+            "J",
+            20901317,
+            "[\"Arbeit\",\"Parlament und Demokratie\",\"Wirtschaft\"]"
+        ],
         [
             "NR",
             "Nationalrat",
@@ -2218,44 +2256,6 @@
             "64/GO",
             "J",
             21513141,
-            "[\"Parlament und Demokratie\"]"
-        ],
-        [
-            "NR",
-            "Nationalrat",
-            1,
-            "XXVIII",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode",
-            "20241024",
-            "24102024",
-            "24.10.2024 - 15.07.2025: XXVIII",
-            "20241024",
-            "N",
-            "Ordentliche Tagung",
-            1,
-            "2025-02-26T00:00:00",
-            "2025-02-26T00:00:00",
-            "AKT",
-            "Aktivitäten",
-            2,
-            "SON",
-            "Sonstiges",
-            3,
-            "26.02.2025",
-            "202502260009AAAGO00065",
-            "Präsident Rosenkranz - Abg. Fürst",
-            "/gegenstand/XXVIII/GO/65",
-            "S",
-            "Sitzung",
-            1,
-            "9/NRSITZ (XXVIII. GP)",
-            "/gegenstand/XXVIII/NRSITZ/9",
-            null,
-            "GO09",
-            "Ordnungsruf",
-            "65/GO",
-            "J",
-            21513142,
             "[\"Parlament und Demokratie\"]"
         ]
     ]

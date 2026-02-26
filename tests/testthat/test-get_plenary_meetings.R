@@ -32,13 +32,13 @@ test_that("get_plenary_meetings meetings mode returns expected columns", {
 
   expected_cols <- c(
     "institution", "legis_period", "date", "meeting_number",
-    "meeting_url", "meeting_type", "meeting_title", "tagungsart",
+    "meeting_url", "meeting_type", "meeting_title", "session_type",
     "agenda_url_html", "agenda_url_pdf"
   )
   expect_true(all(expected_cols %in% colnames(x)))
 
   expect_true(is.character(x$meeting_type))
-  expect_true(is.character(x$tagungsart))
+  expect_true(is.character(x$session_type))
 
   # Agenda URL columns are character (not list)
   expect_true(is.character(x$agenda_url_html))
@@ -69,14 +69,14 @@ test_that("get_plenary_meetings activities mode returns expected columns", {
 
   expected_cols <- c(
     "institution", "legis_period", "date", "title",
-    "url_item", "meeting_number", "url_meeting", "tagungsart",
+    "url_item", "meeting_number", "url_meeting", "session_type",
     "activity_type", "doc_type", "citation"
   )
   expect_true(all(expected_cols %in% colnames(x)))
 
   expect_true(is.character(x$title))
   expect_true(is.character(x$activity_type))
-  expect_true(is.character(x$tagungsart))
+  expect_true(is.character(x$session_type))
 
   non_na_item <- x$url_item[!is.na(x$url_item)]
   if (length(non_na_item) > 0) {
@@ -132,31 +132,32 @@ test_that("get_plenary_meetings works with BR and NR institutions", {
   }
 })
 
-test_that("get_plenary_meetings filters by tagungsart", {
+test_that("get_plenary_meetings filters by session_type", {
   x <- run_api_call({
     get_plenary_meetings(
       institution = "NR",
       legis_period = 28,
       meeting_and_activities = "meetings",
-      tagungsart = "N"
+      session_type = "N"
     )
   }, fixture_subdir = "get_plenary_meetings")
 
   expect_true(is.data.frame(x) || is.null(x))
 
   if (!is.null(x) && nrow(x) > 0) {
-    expect_true("tagungsart" %in% colnames(x))
+    expect_true("session_type" %in% colnames(x))
+    expect_true(all(x$session_type == "N"))
     expect_s3_class(x$date, "Date")
   }
 })
 
-test_that("get_plenary_meetings filters by sitzungsart", {
+test_that("get_plenary_meetings filters by meeting_type", {
   x <- run_api_call({
     get_plenary_meetings(
       institution = "NR",
       legis_period = 28,
       meeting_and_activities = "meetings",
-      sitzungsart = "S"
+      meeting_type = "S"
     )
   }, fixture_subdir = "get_plenary_meetings")
 

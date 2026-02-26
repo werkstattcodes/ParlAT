@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-24 02:10:06.0",
+    "lastSync": "2026-02-26 02:10:06.0",
     "count": 2,
     "header": [
         {
@@ -80,8 +80,8 @@
             "feldId": 968,
             "hidden": true,
             "rnr": 9,
-            "mediaType": "fromDate",
             "listeId": 251,
+            "mediaType": "fromDate",
             "label": "fromDate",
             "includeHeader": true
         },

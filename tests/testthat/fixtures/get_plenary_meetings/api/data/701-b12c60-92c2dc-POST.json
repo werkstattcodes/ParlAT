@@ -1,12 +1,12 @@
 {
     "pages": 25,
-    "lastSync": "2026-02-24 18:42:39.0",
+    "lastSync": "2026-02-25 18:52:43.0",
     "count": 1206,
     "header": [
         {
             "filterable": "1",
-            "feldId": 441,
             "export_jn": "1",
+            "feldId": 441,
             "hidden": true,
             "rnr": 1,
             "listeId": 701,
@@ -32,8 +32,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 444,
             "export_jn": "1",
+            "feldId": 444,
             "hidden": true,
             "rnr": 4,
             "listeId": 701,
@@ -59,8 +59,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 461,
             "export_jn": "1",
+            "feldId": 461,
             "hidden": true,
             "rnr": 7,
             "listeId": 701,
@@ -86,8 +86,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 464,
             "export_jn": "1",
+            "feldId": 464,
             "hidden": true,
             "rnr": 10,
             "listeId": 701,
@@ -112,8 +112,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 467,
             "export_jn": "1",
+            "feldId": 467,
             "hidden": true,
             "ist_range": "1",
             "rnr": 13,
@@ -124,8 +124,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 468,
             "export_jn": "1",
+            "feldId": 468,
             "hidden": true,
             "rnr": 14,
             "listeId": 701,
@@ -134,8 +134,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 472,
             "export_jn": "1",
+            "feldId": 472,
             "hidden": true,
             "rnr": 15,
             "listeId": 701,
@@ -206,9 +206,9 @@
             "includeHeader": true
         },
         {
-            "feldId": 489,
             "display_sql": "${SIAKT}=AKT",
             "link_rnr": "24",
+            "feldId": 489,
             "hidden": false,
             "rnr": 23,
             "display_rnr": 3,
@@ -227,9 +227,9 @@
         },
         {
             "tooltip_rnr": 26,
-            "feldId": 469,
             "display_sql": "${SIAKT}=SI",
             "export_jn": "1",
+            "feldId": 469,
             "hidden": true,
             "sort_rnr": 27,
             "display_rnr": 6,
@@ -261,8 +261,8 @@
         {
             "css_class": "datum-col",
             "filterable": "1",
-            "feldId": 475,
             "link_rnr": "29",
+            "feldId": 475,
             "hidden": false,
             "rnr": 28,
             "display_rnr": 5,
@@ -281,8 +281,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 495,
             "display_sql": "${SIAKT}=SI",
+            "feldId": 495,
             "hidden": true,
             "rnr": 30,
             "listeId": 701,
@@ -292,8 +292,8 @@
         },
         {
             "tooltip_rnr": 32,
-            "feldId": 496,
             "display_sql": "${SIAKT}=AKT",
+            "feldId": 496,
             "hidden": false,
             "display_rnr": 2,
             "label": "Art",
@@ -315,8 +315,8 @@
         },
         {
             "css_class": "datum-col",
-            "feldId": 498,
             "display_sql": "${SIAKT}=AKT",
+            "feldId": 498,
             "hidden": false,
             "rnr": 33,
             "display_rnr": 4,
@@ -342,8 +342,8 @@
             "rnr": 35,
             "listeId": 701,
             "feld_name": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 1003,
@@ -353,8 +353,8 @@
             "listeId": 701,
             "label": "Themen",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         }
     ],
     "rows": [

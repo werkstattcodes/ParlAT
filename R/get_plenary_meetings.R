@@ -7,8 +7,8 @@
 #' @param institution A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).
 #' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. **Must be NULL when institution is "BV"** (Bundesversammlung does not use legislative periods).
 #' @param meeting_and_activities A character string. One of 'meetings' or 'activities'. 'meetings' returns plenary meeting entries; 'activities' returns parliamentary items submitted or acted upon in meetings. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.
-#' @param tagungsart A character string or vector. Filter by meeting period type. Permissible values: `"N"` (Ordentliche Tagung / Ordinary meeting period). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".
-#' @param sitzungsart A character string or vector. Filter by sitting type. Permissible values: `"S"` (Sitzung / Regular sitting), `"SON"` (Sondersitzung / Special sitting), `"ZW"` (Zuweisungssitzung / Assignment sitting). Can be NULL to retrieve all sitting types. Only applicable when `meeting_and_activities = "meetings"`.
+#' @param session_type A character string or vector. Filter by meeting period type. Permissible values: `"N"` (Ordentliche Tagung / Ordinary meeting period). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".
+#' @param meeting_type A character string or vector. Filter by sitting type. Permissible values: `"S"` (Sitzung / Regular sitting), `"SON"` (Sondersitzung / Special sitting), `"ZW"` (Zuweisungssitzung / Assignment sitting). Can be NULL to retrieve all sitting types. Only applicable when `meeting_and_activities = "meetings"`.
 #' @param echo Logical. If `TRUE`, prints the API request body parameters and the number of results. Default is `FALSE`.
 #' @return A data frame containing plenary meeting details, or NULL if no results found. The structure depends on the `meeting_and_activities` parameter:
 #'
@@ -20,7 +20,7 @@
 #' - `meeting_url`: URL to the meeting page
 #' - `meeting_type`: sitting type abbreviation (e.g., "S", "SON", "ZW")
 #' - `meeting_title`: full title of the meeting
-#' - `tagungsart`: meeting period type (e.g., "N" for Ordentliche Tagung)
+#' - `session_type`: meeting period type (e.g., "N" for Ordentliche Tagung)
 #' - `agenda_url_html`: URL to the agenda in HTML format (NA if not yet published)
 #' - `agenda_url_pdf`: URL to the agenda in PDF format (NA if not yet published)
 #'
@@ -32,7 +32,7 @@
 #' - `url_item`: URL to the parliamentary item
 #' - `meeting_number`: number of the meeting in which the item appeared
 #' - `url_meeting`: URL to the meeting
-#' - `tagungsart`: meeting period type of the meeting
+#' - `session_type`: meeting period type of the meeting
 #' - `activity_type`: type of activity (e.g., "Sonstiges")
 #' - `doc_type`: document type description
 #' - `citation`: item citation string
@@ -40,7 +40,7 @@
 #' For *BV (Bundesversammlung) institution*:
 #' - Returns basic meeting information without activity filtering
 #' - Does NOT include `legis_period` column (not applicable for Federal Assembly)
-#' - Columns returned: `institution`, `date`, `meeting_number`, `meeting_url`, `meeting_type`, `meeting_title`, `tagungsart`, `agenda_url_html`, `agenda_url_pdf`
+#' - Columns returned: `institution`, `date`, `meeting_number`, `meeting_url`, `meeting_type`, `meeting_title`, `session_type`, `agenda_url_html`, `agenda_url_pdf`
 #'
 #' @examples
 #' \dontrun{
@@ -89,8 +89,8 @@ get_plenary_meetings <- function(
     institution = NULL,
     legis_period = NULL,
     meeting_and_activities = NULL,
-    tagungsart = NULL,
-    sitzungsart = NULL,
+    session_type = NULL,
+    meeting_type = NULL,
     echo = FALSE
 ) {
     # INSTITUTION
@@ -167,18 +167,18 @@ get_plenary_meetings <- function(
         meeting_and_activities_input <- NULL
     }
 
-    # TAGUNGSART
-    if (!is.null(tagungsart)) {
-        checkmate::assert_character(tagungsart, min.len = 1)
-        tagungsart_input <- tagungsart
+    # SESSION TYPE (tagungsart)
+    if (!is.null(session_type)) {
+        checkmate::assert_character(session_type, min.len = 1)
+        tagungsart_input <- session_type
     } else {
         tagungsart_input <- NULL
     }
 
-    # SITZUNGSART (only meaningful for meetings mode)
-    if (!is.null(sitzungsart)) {
-        checkmate::assert_character(sitzungsart, min.len = 1)
-        sitzungsart_input <- sitzungsart
+    # MEETING TYPE / sitzungsart (only meaningful for meetings mode)
+    if (!is.null(meeting_type)) {
+        checkmate::assert_character(meeting_type, min.len = 1)
+        sitzungsart_input <- meeting_type
     } else {
         sitzungsart_input <- NULL
     }
@@ -411,7 +411,7 @@ get_plenary_meetings <- function(
                 ),
                 meeting_type = .data$sitzungsart,
                 meeting_title = .data$title,
-                tagungsart = .data$tagungsart,
+                session_type = .data$tagungsart,
                 agenda_url_html = dplyr::if_else(
                     !is.na(.data$agenda_url_html),
                     paste0(
@@ -435,7 +435,7 @@ get_plenary_meetings <- function(
             "meeting_url",
             "meeting_type",
             "meeting_title",
-            "tagungsart",
+            "session_type",
             "agenda_url_html",
             "agenda_url_pdf"
         )
@@ -472,7 +472,7 @@ get_plenary_meetings <- function(
                 paste0("https://www.parlament.gv.at", .data$sitzung_url),
                 NA_character_
             ),
-            tagungsart = .data$tagungsart,
+            session_type = .data$tagungsart,
             activity_type = .data$akt_text,
             doc_type = .data$doktyp_text,
             citation = .data$zitation
@@ -486,7 +486,7 @@ get_plenary_meetings <- function(
         "url_item",
         "meeting_number",
         "url_meeting",
-        "tagungsart",
+        "session_type",
         "activity_type",
         "doc_type",
         "citation"
