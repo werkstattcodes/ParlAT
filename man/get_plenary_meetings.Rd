@@ -20,9 +20,9 @@ get_plenary_meetings(
 
 \item{meeting_and_activities}{A character string. One of 'meetings' or 'activities'. 'meetings' returns plenary meeting entries; 'activities' returns parliamentary items submitted or acted upon in meetings. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.}
 
-\item{session_type}{A character string or vector. Filter by meeting period type. Permissible values: \code{"N"} (Ordentliche Tagung / Ordinary meeting period). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".}
+\item{session_type}{A character string or vector. Filter by meeting period type. Permissible values: \code{"N"} (Ordentliche Tagung / Ordinary session), \code{"A"} (Ausserordentliche Tagung / Extraordinary session). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".}
 
-\item{meeting_type}{A character string or vector. Filter by sitting type. Permissible values: \code{"S"} (Sitzung / Regular sitting), \code{"SON"} (Sondersitzung / Special sitting), \code{"ZW"} (Zuweisungssitzung / Assignment sitting). Can be NULL to retrieve all sitting types. Only applicable when \code{meeting_and_activities = "meetings"}.}
+\item{meeting_type}{A character string or vector. Filter by sitting type. Permissible values: \code{"S"} (Sitzung / Regular sitting), \code{"SO"} (Sondersitzung / Special sitting), \code{"ZU"} (Zuweisungssitzung / Assignment sitting), \code{"N"} (Nachtrag / Addendum). Can be NULL to retrieve all sitting types. Only applicable when \code{meeting_and_activities = "meetings"}.}
 
 \item{echo}{Logical. If \code{TRUE}, prints the API request body parameters and the number of results. Default is \code{FALSE}.}
 }
@@ -36,7 +36,7 @@ If \emph{\code{meeting_and_activities = "meetings"}}:
 \item \code{date}: date of the meeting
 \item \code{meeting_number}: number of the meeting
 \item \code{meeting_url}: URL to the meeting page
-\item \code{meeting_type}: sitting type abbreviation (e.g., "S", "SON", "ZW")
+\item \code{meeting_type}: sitting type abbreviation (\code{"S"}, \code{"SO"}, \code{"ZU"}, or \code{"N"})
 \item \code{meeting_title}: full title of the meeting
 \item \code{session_type}: meeting period type (e.g., "N" for Ordentliche Tagung)
 \item \code{agenda_url_html}: URL to the agenda in HTML format (NA if not yet published)

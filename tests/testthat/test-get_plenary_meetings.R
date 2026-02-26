@@ -242,6 +242,26 @@ test_that("get_plenary_meetings validates parameters correctly", {
     get_plenary_meetings(institution = "NR", legis_period = "invalid"),
     "Invalid legislative period\\(s\\) provided"
   )
+
+  expect_error(
+    get_plenary_meetings(
+      institution = "NR",
+      legis_period = 28,
+      meeting_and_activities = "meetings",
+      session_type = "INVALID"
+    ),
+    "Must be a subset of"
+  )
+
+  expect_error(
+    get_plenary_meetings(
+      institution = "NR",
+      legis_period = 28,
+      meeting_and_activities = "meetings",
+      meeting_type = "INVALID"
+    ),
+    "Must be a subset of"
+  )
 })
 
 test_that("get_plenary_meetings handles multiple legislative periods", {

@@ -7,8 +7,8 @@
 #' @param institution A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).
 #' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. **Must be NULL when institution is "BV"** (Bundesversammlung does not use legislative periods).
 #' @param meeting_and_activities A character string. One of 'meetings' or 'activities'. 'meetings' returns plenary meeting entries; 'activities' returns parliamentary items submitted or acted upon in meetings. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.
-#' @param session_type A character string or vector. Filter by meeting period type. Permissible values: `"N"` (Ordentliche Tagung / Ordinary meeting period). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".
-#' @param meeting_type A character string or vector. Filter by sitting type. Permissible values: `"S"` (Sitzung / Regular sitting), `"SON"` (Sondersitzung / Special sitting), `"ZW"` (Zuweisungssitzung / Assignment sitting). Can be NULL to retrieve all sitting types. Only applicable when `meeting_and_activities = "meetings"`.
+#' @param session_type A character string or vector. Filter by meeting period type. Permissible values: `"N"` (Ordentliche Tagung / Ordinary session), `"A"` (Ausserordentliche Tagung / Extraordinary session). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".
+#' @param meeting_type A character string or vector. Filter by sitting type. Permissible values: `"S"` (Sitzung / Regular sitting), `"SO"` (Sondersitzung / Special sitting), `"ZU"` (Zuweisungssitzung / Assignment sitting), `"N"` (Nachtrag / Addendum). Can be NULL to retrieve all sitting types. Only applicable when `meeting_and_activities = "meetings"`.
 #' @param echo Logical. If `TRUE`, prints the API request body parameters and the number of results. Default is `FALSE`.
 #' @return A data frame containing plenary meeting details, or NULL if no results found. The structure depends on the `meeting_and_activities` parameter:
 #'
@@ -18,7 +18,7 @@
 #' - `date`: date of the meeting
 #' - `meeting_number`: number of the meeting
 #' - `meeting_url`: URL to the meeting page
-#' - `meeting_type`: sitting type abbreviation (e.g., "S", "SON", "ZW")
+#' - `meeting_type`: sitting type abbreviation (`"S"`, `"SO"`, `"ZU"`, or `"N"`)
 #' - `meeting_title`: full title of the meeting
 #' - `session_type`: meeting period type (e.g., "N" for Ordentliche Tagung)
 #' - `agenda_url_html`: URL to the agenda in HTML format (NA if not yet published)
@@ -169,7 +169,7 @@ get_plenary_meetings <- function(
 
     # SESSION TYPE (tagungsart)
     if (!is.null(session_type)) {
-        checkmate::assert_character(session_type, min.len = 1)
+        checkmate::assert_subset(session_type, choices = c("N", "A"))
         tagungsart_input <- session_type
     } else {
         tagungsart_input <- NULL
@@ -177,7 +177,7 @@ get_plenary_meetings <- function(
 
     # MEETING TYPE / sitzungsart (only meaningful for meetings mode)
     if (!is.null(meeting_type)) {
-        checkmate::assert_character(meeting_type, min.len = 1)
+        checkmate::assert_subset(meeting_type, choices = c("S", "SO", "ZU", "N"))
         sitzungsart_input <- meeting_type
     } else {
         sitzungsart_input <- NULL
