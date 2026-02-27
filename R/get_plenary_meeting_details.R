@@ -26,17 +26,19 @@
 #' @param details_on Character or NULL. Specifies which part of the meeting
 #'   data to return. If `NULL` (default), returns a 1-row tibble with meeting
 #'   metadata. Use `"speakers"` to return a multi-row tibble with one row per
-#'   speech, including timing information.
+#'   speech, including timing information. Use `"decisions"` to return a
+#'   multi-row tibble with one row per agenda item (TOP). Use `"timeline"` to
+#'   return a multi-row tibble with one row per Sitzungsverlauf event.
 #' @param echo Logical. If `TRUE`, prints the URL being fetched and the number
 #'   of rows returned. Default is `FALSE`.
 #'
 #' @return A tibble. The structure depends on `details_on`:
 #'
 #' If `details_on = NULL` (default):
-#' - `url` (character): The URL used to fetch the data.
-#' - `title` (character): Full title of the meeting.
-#' - `zitation` (character): Citation reference (e.g. `"50/NRSITZ"`).
-#' - `gp_code` (character): Legislative period code (e.g. `"XXVIII"`).
+#' - `meeting_url` (character): The URL used to fetch the data.
+#' - `meeting_title` (character): Full title of the meeting.
+#' - `meeting_citation` (character): Citation reference (e.g. `"50/NRSITZ"`).
+#' - `legis_period` (character): Legislative period code (e.g. `"XXVIII"`).
 #' - `meeting_type` (character): Meeting type label (e.g. `"Plenarsitzung"`).
 #' - `meeting_type_short` (character): Short type code (e.g. `"NRSITZ"`).
 #' - `meeting_nr` (integer): Meeting number within the legislative period.
@@ -46,6 +48,11 @@
 #' - `end_time` (POSIXct): End time of the meeting.
 #'
 #' If `details_on = "speakers"`:
+#' - `meeting_url` (character): The URL used to fetch the data.
+#' - `meeting_title` (character): Full title of the meeting.
+#' - `meeting_citation` (character): Citation reference (e.g. `"50/NRSITZ"`).
+#' - `legis_period` (character): Legislative period code (e.g. `"XXVIII"`).
+#' - `meeting_type` (character): Meeting type label (e.g. `"Plenarsitzung"`).
 #' - `debate_id` (integer): Internal debate identifier.
 #' - `debate_type` (character): Debate type code (`"AS"`, `"ND"`, `"DA"`, `"SU"`).
 #' - `debate_typetext` (character): Human-readable debate type label.
@@ -57,11 +64,40 @@
 #' - `speech_nr` (integer): Sequential speech number within the debate.
 #' - `speech_state` (character): Speech completion state.
 #' - `speaker_name` (character): Speaker name with party abbreviation.
-#' - `person_id` (integer): Internal person identifier.
+#' - `pad_intern` (integer): Internal person identifier.
 #' - `wm_type` (character): Speech type abbreviation (`"wm"`, `"un"`, `"sr"`, etc.).
 #' - `start_time` (character): Speech start time (HH:MM).
 #' - `duration` (character): Actual speech duration (MM:SS).
 #' - `speech_limit` (integer): Individual speech time limit in minutes.
+#'
+#' If `details_on = "decisions"`:
+#' - `meeting_url` (character): The URL used to fetch the data.
+#' - `meeting_title` (character): Full title of the meeting.
+#' - `meeting_citation` (character): Citation reference (e.g. `"59/NRSITZ"`).
+#' - `legis_period` (character): Legislative period code (e.g. `"XXVIII"`).
+#' - `meeting_type` (character): Meeting type label (e.g. `"Plenarsitzung"`).
+#' - `resolution_top` (character): Agenda item label (e.g. `"TOP 1"`).
+#' - `resolution_title` (character): Agenda item title.
+#' - `resolution_url` (character): Relative URL to the main document.
+#' - `resolution_citation` (character): Citation of the main document (e.g. `"319 d.B."`).
+#'
+#' If `details_on = "timeline"`:
+#' - `meeting_url` (character): The URL used to fetch the data.
+#' - `meeting_title` (character): Full title of the meeting.
+#' - `meeting_citation` (character): Citation reference (e.g. `"59/NRSITZ"`).
+#' - `legis_period` (character): Legislative period code (e.g. `"XXVIII"`).
+#' - `meeting_type` (character): Meeting type label (e.g. `"Plenarsitzung"`).
+#' - `stage_date` (character): Date of the event (`"DD.MM.YYYY"`), or `NA` for
+#'   agenda-item rows. The Schriftführer row (no text) is excluded.
+#' - `agenda_item` (character): Agenda item label (e.g. `"TOP 1"`) for TOP rows,
+#'   or `NA` for dated rows.
+#' - `stage_text` (character): Plain-text description of the event (HTML stripped).
+#' - `statements` (list): For "Wortmeldungen in der Debatte" rows, a nested tibble
+#'   with one row per speaker: `speaker_name` (character), `speaker_url` (character),
+#'   `wm_type` (character, e.g. `"Pro"`, `"Contra"`), `protocol_ref` (character,
+#'   e.g. `"RN/4"`), `protocol_url` (character). `NULL` for all other rows.
+#' - `stage_fsth_url` (character): URL to the stenographic protocol reference, or `NA`.
+#' - `stage_fsth_title` (character): Title of the stenographic protocol reference, or `NA`.
 #'
 #' @seealso
 #' * [get_plenary_meetings()] for retrieving meeting URLs.
@@ -123,7 +159,7 @@ get_plenary_meeting_details <- function(
         }
     }
 
-    checkmate::assert_choice(details_on, choices = "speakers", null.ok = TRUE)
+    checkmate::assert_choice(details_on, choices = c("speakers", "decisions", "timeline"), null.ok = TRUE)
     checkmate::assert_flag(echo)
 
     # BUILD URL FROM PARTS or NORMALISE PROVIDED URL
@@ -180,10 +216,10 @@ get_plenary_meeting_details <- function(
         # MEETING METADATA — 1-row tibble
         # Scalar columns come from row 1; session info is a nested df (row 2).
         df_res <- tibble::tibble(
-            url                = url,
-            title              = content$title[1],
-            zitation           = content$zitation[1],
-            gp_code            = content$gp_code[1],
+            meeting_url      = url,
+            meeting_title    = content$title[1],
+            meeting_citation = content$zitation[1],
+            legis_period     = content$gp_code[1],
             meeting_type       = content$type[1],
             meeting_type_short = content$ityp[1],
             meeting_nr         = content$inr[1],
@@ -194,7 +230,7 @@ get_plenary_meeting_details <- function(
             start_time = lubridate::ymd_hms(content$info$starttime[2]),
             end_time   = lubridate::ymd_hms(content$info$endtime[2])
         )
-    } else {
+    } else if (details_on == "speakers") {
         # SPEAKERS — one row per speech across all debates.
         # past_debates is a list-column; element [[2]] is the data frame.
         past_debates <- content$past_debates[[2]]
@@ -225,7 +261,7 @@ get_plenary_meeting_details <- function(
                             speech_nr    = as.integer(row[1]),
                             speech_state = row[2],
                             speaker_name = row[3],
-                            person_id    = as.integer(row[4]),
+                            pad_intern   = as.integer(row[4]),
                             wm_type      = row[6],
                             start_time   = row[7],
                             duration     = row[8],
@@ -237,7 +273,98 @@ get_plenary_meeting_details <- function(
             }
         ) |>
             purrr::compact() |>
-            purrr::list_rbind()
+            purrr::list_rbind() |>
+            dplyr::mutate(
+                meeting_url      = url,
+                meeting_title    = content$title[1],
+                meeting_citation = content$zitation[1],
+                legis_period     = content$gp_code[1],
+                meeting_type     = content$type[1],
+                .before          = 1
+            )
+    } else if (details_on == "decisions") {
+        # DECISIONS — one row per agenda item (TOP).
+        # resolutions is a list-column in row 1 of the merged content data frame.
+        resolutions <- content$resolutions[[1]]
+
+        df_res <- tibble::tibble(
+            resolution_top      = resolutions$top,
+            resolution_title    = resolutions$text,
+            resolution_url      = resolutions$url,
+            resolution_citation = resolutions$zitation
+        ) |>
+            dplyr::mutate(
+                meeting_url      = url,
+                meeting_title    = content$title[1],
+                meeting_citation = content$zitation[1],
+                legis_period     = content$gp_code[1],
+                meeting_type     = content$type[1],
+                .before          = 1
+            )
+    } else if (details_on == "timeline") {
+        # TIMELINE — one row per Sitzungsverlauf event.
+        # stages is a list-column in row 1 of the merged content data frame.
+        # Items without a text field (e.g. the Schriftführer names row) are
+        # dropped via filter; fsth is a list-column that is NA for most rows.
+        stages <- content$stages[[1]]
+
+        df_res <- tibble::tibble(
+            stage_date       = stages$date,
+            stage_text       = stringr::str_remove_all(stages$text, "<[^>]+>"),
+            statements       = purrr::map(seq_len(nrow(stages)), function(i) {
+                # stages$reden is a nested data frame (jsonlite simplification):
+                # 3 cols (rendertype, data, mapped) × 40 rows.
+                # Rows without reden have NA in rendertype.
+                reden_col <- stages[["reden"]]
+                if (!is.data.frame(reden_col) ||
+                    is.na(reden_col[["rendertype"]][[i]])) return(NULL)
+                rows <- reden_col[["data"]][["rows"]][[i]]
+                if (is.null(rows) || length(rows) == 0) return(NULL)
+                if (is.matrix(rows)) {
+                    purrr::map(seq_len(nrow(rows)), function(j) {
+                        s3 <- rows[j, 3]
+                        tibble::tibble(
+                            speaker_name = stringr::str_remove_all(rows[j, 1], "<[^>]+>"),
+                            speaker_url  = stringr::str_extract(rows[j, 1], "href=\"([^\"]+)\"", group = 1),
+                            wm_type      = rows[j, 2],
+                            protocol_ref = stringr::str_remove_all(s3, "<[^>]+>"),
+                            protocol_url = stringr::str_extract(s3, "href=\"([^\"]+)\"", group = 1)
+                        )
+                    }) |> purrr::list_rbind()
+                } else {
+                    purrr::map(rows, function(row) {
+                        s3 <- if (!is.null(row[[3]])) as.character(row[[3]]) else NA_character_
+                        tibble::tibble(
+                            speaker_name = stringr::str_remove_all(as.character(row[[1]]), "<[^>]+>"),
+                            speaker_url  = stringr::str_extract(as.character(row[[1]]), "href=\"([^\"]+)\"", group = 1),
+                            wm_type      = as.character(row[[2]]),
+                            protocol_ref = stringr::str_remove_all(s3, "<[^>]+>"),
+                            protocol_url = stringr::str_extract(s3, "href=\"([^\"]+)\"", group = 1)
+                        )
+                    }) |> purrr::list_rbind()
+                }
+            }),
+            stage_fsth_url   = purrr::map_chr(stages$fsth, function(f) {
+                if (is.data.frame(f) && nrow(f) > 0) f$url[1] else NA_character_
+            }),
+            stage_fsth_title = purrr::map_chr(stages$fsth, function(f) {
+                if (is.data.frame(f) && nrow(f) > 0) f$title[1] else NA_character_
+            })
+        ) |>
+            dplyr::filter(!is.na(stage_text)) |>
+            dplyr::mutate(
+                agenda_item = dplyr::if_else(stringr::str_starts(stage_date, "TOP"), stage_date, NA_character_),
+                stage_date  = dplyr::if_else(stringr::str_starts(stage_date, "TOP"), NA_character_, stage_date),
+                .after = stage_date
+            ) |>
+            dplyr::mutate(
+                meeting_url      = url,
+                meeting_title    = content$title[1],
+                meeting_citation = content$zitation[1],
+                legis_period     = content$gp_code[1],
+                meeting_type     = content$type[1],
+                .before          = 1
+            )
     }
 
     if (isTRUE(echo)) {
