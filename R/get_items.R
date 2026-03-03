@@ -1453,6 +1453,43 @@ get_item_details <- function(item_url, type = "stages") {
   if (type == "stages" && !is.null(data_list$content$stages)) {
     df_stages <- data_list$content$stages
 
+    if ("reden" %in% names(df_stages)) {
+      # Parse speeches at the stage level before any fsth unnesting, so list
+      # entries are duplicated correctly when one stage expands to many rows.
+      # jsonlite's fromJSON() recursively simplifies the nested reden structure
+      # in unpredictable ways (nested data frames, collapsed matrices, etc.).
+      # Use parse_json() on the saved raw text to get an unsimplified list
+      # where each stage is a separate element with its own reden field.
+      raw_stages <- jsonlite::parse_json(json_text)$data$content$stages
+      speeches_list <- purrr::map(raw_stages, \(stage) {
+        rows <- stage$reden$data$rows
+        if (is.null(rows) || length(rows) == 0) return(NULL)
+        rows_mat <- do.call(rbind, lapply(rows, \(r) unlist(r, use.names = FALSE)))
+        .parse_reden(rows_mat)
+      })
+
+      n_stage_rows <- nrow(df_stages)
+      if (length(speeches_list) != n_stage_rows) {
+        cli::cli_warn(
+          c(
+            "Speech-stage alignment mismatch in {.fn get_item_details}.",
+            "i" = "Parsed speeches for {length(speeches_list)} stage(s), but found {n_stage_rows} stage row(s) before {.code fsth} expansion.",
+            "i" = "Continuing with NULL-padding/truncation to preserve output shape."
+          )
+        )
+        speeches_aligned <- rep(list(NULL), n_stage_rows)
+        n_copy <- min(length(speeches_list), n_stage_rows)
+        if (n_copy > 0) {
+          speeches_aligned[seq_len(n_copy)] <- speeches_list[seq_len(n_copy)]
+        }
+        speeches_list <- speeches_aligned
+      }
+
+      df_stages <- df_stages %>%
+        dplyr::mutate(speeches = speeches_list) %>%
+        dplyr::select(-dplyr::any_of("reden"))
+    }
+
     if ("fsth" %in% names(df_stages)) {
       df_stages <- df_stages %>%
         tidyr::unnest_longer("fsth") %>%
@@ -1476,23 +1513,6 @@ get_item_details <- function(item_url, type = "stages") {
             )
           })
         )
-    }
-
-    if ("reden" %in% names(df_stages)) {
-      # jsonlite's fromJSON() recursively simplifies the nested reden structure
-      # in unpredictable ways (nested data frames, collapsed matrices, etc.).
-      # Use parse_json() on the saved raw text to get an unsimplified list
-      # where each stage is a separate element with its own reden field.
-      raw_stages <- jsonlite::parse_json(json_text)$data$content$stages
-      speeches_list <- purrr::map(raw_stages, \(stage) {
-        rows <- stage$reden$data$rows
-        if (is.null(rows) || length(rows) == 0) return(NULL)
-        rows_mat <- do.call(rbind, lapply(rows, \(r) unlist(r, use.names = FALSE)))
-        .parse_reden(rows_mat)
-      })
-      df_stages <- df_stages %>%
-        dplyr::select(-"reden") %>%
-        dplyr::mutate(speeches = speeches_list)
     }
 
     # Expand df_res to match df_stages and combine
