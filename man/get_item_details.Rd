@@ -26,6 +26,11 @@ Returns \code{NULL} if no stages are found.
 \item \code{item_description} (character): A brief description of the item.
 \item \code{state_approval} (character): The current approval state of the item.
 \item \code{phase} (character): The phase of the legislative stage.
+\item \code{speeches} (list): List-column of nested tibbles with speech data for
+stages that contain debate contributions ("Wortmeldungen in der Debatte").
+Each tibble has columns \code{speaker}, \code{speaker_url}, \code{position},
+\code{protocol_page}, \code{protocol_url}, and \code{video_url}. \code{NULL} for stages
+without speeches.
 \item \code{id} (character): Unique identifier for the stage.
 \item \code{stage_date} (Date): The date of the stage.
 \item \code{stage_name} (character): The name/description of the stage.

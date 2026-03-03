@@ -1291,6 +1291,42 @@ get_items <- function(
   return(df_res)
 }
 
+# Parse reden (speech) data from a character matrix of rows.
+# jsonlite simplifies reden$data$rows (an array-of-arrays) into a single
+# character matrix, collapsing all stages. Callers are responsible for
+# passing the right matrix and placing the result in the right list slot.
+# Returns a tibble with one row per speaker, or NULL if rows is not a matrix.
+.parse_reden <- function(rows) {
+  if (!is.matrix(rows) || nrow(rows) == 0) return(NULL)
+
+  base_url <- "https://www.parlament.gv.at"
+
+  speaker_html  <- rows[, 1]
+  position      <- rows[, 2]
+  protocol_html <- rows[, 3]
+  video_html    <- rows[, 4]
+
+  extract_text <- function(html) {
+    tryCatch(rvest::read_html(html) |> rvest::html_text2(), error = function(e) html)
+  }
+  extract_href <- function(html) {
+    href <- tryCatch(
+      rvest::read_html(html) |> rvest::html_element("a") |> rvest::html_attr("href"),
+      error = function(e) NA_character_
+    )
+    if (!is.na(href)) stringr::str_c(base_url, href) else NA_character_
+  }
+
+  tibble::tibble(
+    speaker      = purrr::map_chr(speaker_html,  extract_text),
+    speaker_url  = purrr::map_chr(speaker_html,  extract_href),
+    position     = position,
+    protocol_page = purrr::map_chr(protocol_html, extract_text),
+    protocol_url  = purrr::map_chr(protocol_html, extract_href),
+    video_url     = purrr::map_chr(video_html,    extract_href)
+  )
+}
+
 #' Get detailed stage information for a parliamentary item
 #'
 #' `r lifecycle::badge("experimental")`
@@ -1317,6 +1353,11 @@ get_items <- function(
 #' - `item_description` (character): A brief description of the item.
 #' - `state_approval` (character): The current approval state of the item.
 #' - `phase` (character): The phase of the legislative stage.
+#' - `speeches` (list): List-column of nested tibbles with speech data for
+#'   stages that contain debate contributions ("Wortmeldungen in der Debatte").
+#'   Each tibble has columns `speaker`, `speaker_url`, `position`,
+#'   `protocol_page`, `protocol_url`, and `video_url`. `NULL` for stages
+#'   without speeches.
 #' - `id` (character): Unique identifier for the stage.
 #' - `stage_date` (Date): The date of the stage.
 #' - `stage_name` (character): The name/description of the stage.
@@ -1357,15 +1398,14 @@ get_item_details <- function(item_url, type = "stages") {
   page <- rvest::read_html(item_url)
 
   # Extract and parse embedded data from JavaScript
-  data_list <- page %>%
+  json_text <- page %>%
     rvest::html_elements("script") %>%
     rvest::html_text2() %>%
     (\(x) x[stringr::str_detect(x, "props:")])() %>%
     stringr::str_extract("(?s)props:.*") %>%
     stringr::str_remove("props:\\s*") %>%
-    stringr::str_remove("\\}\\);\\s*$") %>%
-    jsonlite::fromJSON() %>%
-    (\(x) x$data)()
+    stringr::str_remove("\\}\\);\\s*$")
+  data_list <- jsonlite::fromJSON(json_text) |> (\(x) x$data)()
 
   #GET METADATA ON ITEM
   df_res <- tibble(
@@ -1411,26 +1451,49 @@ get_item_details <- function(item_url, type = "stages") {
 
   #GET STAGES DETAILS - IF STRUCTURE IS STAGES
   if (type == "stages" && !is.null(data_list$content$stages)) {
-    df_stages <- data_list$content$stages %>%
-      tidyr::unnest_longer("fsth") %>%
-      tidyr::unnest_wider("fsth", names_sep = "_") %>%
-      dplyr::rename(session_number = "fsth_sitzung_id") %>%
-      dplyr::select(-c("fsth_fund_von", "fsth_fund_bis"))
+    df_stages <- data_list$content$stages
 
-    df_stages <- df_stages %>%
-      dplyr::mutate(
-        text = purrr::map_chr(.data$text, \(x) {
-          tryCatch(
-            {
-              x %>% rvest::read_html() %>% rvest::html_text2()
-            },
-            error = function(e) {
-              # If it fails, it's probably plain text already
-              x
-            }
-          )
-        })
-      )
+    if ("fsth" %in% names(df_stages)) {
+      df_stages <- df_stages %>%
+        tidyr::unnest_longer("fsth") %>%
+        tidyr::unnest_wider("fsth", names_sep = "_") %>%
+        dplyr::rename(session_number = "fsth_sitzung_id") %>%
+        dplyr::select(-dplyr::any_of(c("fsth_fund_von", "fsth_fund_bis")))
+    }
+
+    if ("text" %in% names(df_stages)) {
+      df_stages <- df_stages %>%
+        dplyr::mutate(
+          text = purrr::map_chr(.data$text, \(x) {
+            tryCatch(
+              {
+                x %>% rvest::read_html() %>% rvest::html_text2()
+              },
+              error = function(e) {
+                # If it fails, it's probably plain text already
+                x
+              }
+            )
+          })
+        )
+    }
+
+    if ("reden" %in% names(df_stages)) {
+      # jsonlite's fromJSON() recursively simplifies the nested reden structure
+      # in unpredictable ways (nested data frames, collapsed matrices, etc.).
+      # Use parse_json() on the saved raw text to get an unsimplified list
+      # where each stage is a separate element with its own reden field.
+      raw_stages <- jsonlite::parse_json(json_text)$data$content$stages
+      speeches_list <- purrr::map(raw_stages, \(stage) {
+        rows <- stage$reden$data$rows
+        if (is.null(rows) || length(rows) == 0) return(NULL)
+        rows_mat <- do.call(rbind, lapply(rows, \(r) unlist(r, use.names = FALSE)))
+        .parse_reden(rows_mat)
+      })
+      df_stages <- df_stages %>%
+        dplyr::select(-"reden") %>%
+        dplyr::mutate(speeches = speeches_list)
+    }
 
     # Expand df_res to match df_stages and combine
     result <- df_res %>%
