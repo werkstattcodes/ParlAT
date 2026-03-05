@@ -23,4 +23,5 @@
 ^run_tests_debug\.R$
 ^test_results\.csv$
 ^tools$
+^journal\.md$
 vignettes/ParlAT_cache/

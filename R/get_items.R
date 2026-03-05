@@ -1316,13 +1316,21 @@ get_items <- function(
     )
     if (!is.na(href)) stringr::str_c(base_url, href) else NA_character_
   }
+  extract_hrefs <- function(html) {
+    hrefs <- tryCatch(
+      rvest::read_html(html) |> rvest::html_elements("a") |> rvest::html_attr("href"),
+      error = function(e) character(0)
+    )
+    hrefs <- hrefs[!is.na(hrefs)]
+    if (length(hrefs) == 0) NA_character_ else stringr::str_c(base_url, hrefs)
+  }
 
   tibble::tibble(
-    speaker      = purrr::map_chr(speaker_html,  extract_text),
-    speaker_url  = purrr::map_chr(speaker_html,  extract_href),
-    position     = position,
+    speaker       = purrr::map_chr(speaker_html,  extract_text),
+    speaker_url   = purrr::map_chr(speaker_html,  extract_href),
+    position      = position,
     protocol_page = purrr::map_chr(protocol_html, extract_text),
-    protocol_url  = purrr::map_chr(protocol_html, extract_href),
+    protocol_url  = purrr::map(protocol_html,     extract_hrefs),
     video_url     = purrr::map_chr(video_html,    extract_href)
   )
 }
@@ -1389,43 +1397,73 @@ get_items <- function(
 get_item_details <- function(item_url, type = "stages") {
   prefix <- "https://www.parlament.gv.at/"
 
+  # Normalise the URL: accept absolute URLs, relative paths with or without a
+  # leading slash.  Strip any leading slashes, then prepend the base URL.
   if (!stringr::str_starts(item_url, prefix)) {
     item_url <- item_url %>%
       stringr::str_replace("^/+", "") %>%
       (\(x) stringr::str_c(prefix, x))()
   }
 
+  # Fetch the item detail page.  The page is a server-rendered React/Vue app:
+  # all structured data lives inside an inline <script> block, not in the HTML
+  # DOM itself.  rvest::read_html() uses libcurl directly and is NOT intercepted
+  # by httptest2, so tests that call this function always hit the live network.
   page <- rvest::read_html(item_url)
 
-  # Extract and parse embedded data from JavaScript
+  # ── JSON extraction ────────────────────────────────────────────────────────
+  # The page embeds its data as a JavaScript object literal:
+  #   ReactDOM.render(..., document.getElementById("app"), { props: { ... } });
+  # We pick the <script> block that contains "props:", then carve out
+  # everything from "props:" onward and strip the trailing "})" that closes the
+  # ReactDOM.render() call, leaving a valid JSON string.
   json_text <- page %>%
     rvest::html_elements("script") %>%
     rvest::html_text2() %>%
     (\(x) x[stringr::str_detect(x, "props:")])() %>%
-    stringr::str_extract("(?s)props:.*") %>%
+    stringr::str_extract("(?s)props:.*") %>%   # (?s) = dot matches newlines
     stringr::str_remove("props:\\s*") %>%
     stringr::str_remove("\\}\\);\\s*$")
+
+  # fromJSON() with its default simplifyVector = TRUE recursively collapses
+  # JSON arrays into R vectors/data frames wherever possible.  This is helpful
+  # for flat fields (scalars, simple arrays) but can produce inconsistent types
+  # for deeply nested structures like reden (speeches) — see the note in the
+  # flat-stages code path below.
   data_list <- jsonlite::fromJSON(json_text) |> (\(x) x$data)()
 
-  #GET METADATA ON ITEM
+  # ── Item-level metadata ────────────────────────────────────────────────────
+  # These fields are always present regardless of the item type or structure.
+  # `zitation` is the official citation number (e.g. "28/A"); `approvalstate`
+  # reflects the current legislative status (e.g. "beschlossen").
   df_res <- tibble(
-    item_url = item_url,
-    type = data_list$content$type,
-    title = data_list$content$title,
-    item_number = data_list$content$zitation,
+    item_url         = item_url,
+    type             = data_list$content$type,
+    title            = data_list$content$title,
+    item_number      = data_list$content$zitation,
     item_description = data_list$content$description,
     state_statements = data_list$content$statementsstage,
-    state_approval = data_list$content$approvalstate
+    state_approval   = data_list$content$approvalstate
   )
 
-  #GET STAGES DETAILS - IF STRUCTURE IS PHASE/STAGES
+  # ── Code path A: phase/stages structure ───────────────────────────────────
+  # Some item types (e.g. Selbständige Anträge, LP XXVIII) nest stages inside a
+  # "phase" wrapper: content$phase$stages.  The phase object carries a `name`
+  # field (the phase label, e.g. "Ausschussbehandlung") that applies to all
+  # stages within it.
   if (type == "stages" && !is.null(data_list$content$phase$stages)) {
+    # Unnest the stages list-column into one row per stage, then spread the
+    # stage fields into individual columns.  The `names_sep` argument prevents
+    # name collisions between stage fields and the outer phase fields.
     df_stages <- data_list$content$phase %>%
       dplyr::rename(stage = "stages") %>%
       tidyr::unnest_longer("stage") %>%
       tidyr::unnest_wider("stage", names_sep = "_") %>%
       dplyr::rename(phase = "name", stage_name = "stage_text")
 
+    # stage_text often contains raw HTML (e.g. links to documents embedded in
+    # the stage description).  Strip tags to get readable plain text; fall back
+    # to the raw string if parsing fails (it may already be plain text).
     df_stages <- df_stages %>%
       dplyr::mutate(
         stage_name = purrr::map_chr(.data$stage_name, \(x) {
@@ -1441,7 +1479,46 @@ get_item_details <- function(item_url, type = "stages") {
         })
       )
 
-    # Expand df_res to match df_stages and combine
+    # ── Speech parsing (phase/stages path) ──────────────────────────────────
+    # `stage_reden` is present when the stage contains floor debate
+    # contributions ("Wortmeldungen in der Debatte").  Each element of
+    # stage_reden$data$rows[[i]] is a 4-column matrix row: speaker HTML,
+    # position, protocol HTML, video HTML.
+    #
+    # IMPORTANT: speeches must be parsed *before* fsth unnesting.  The `fsth`
+    # field (Fundstellen = session references) can expand one stage into
+    # multiple rows (one per session).  If we parsed speeches after expansion,
+    # each speech tibble would be duplicated across the extra rows, breaking the
+    # one-to-one correspondence between rows and speeches.
+    #
+    # In the phase/stages path, tidyr::unnest_wider() preserves the nested
+    # matrix structure inside stage_reden, so we can index directly with [[i]].
+    # No re-parse via parse_json() is needed here (contrast with path B below).
+    if ("stage_reden" %in% names(df_stages)) {
+      speeches_list <- purrr::map(
+        seq_len(nrow(df_stages)),
+        \(i) .parse_reden(df_stages$stage_reden$data$rows[[i]])
+      )
+      df_stages <- df_stages |>
+        dplyr::mutate(speeches = speeches_list) |>
+        dplyr::select(-dplyr::any_of("stage_reden"))
+    }
+
+    # ── Session references (fsth) ────────────────────────────────────────────
+    # `stage_fsth` (Fundstellen) links a stage to one or more plenary/committee
+    # session records.  Each element holds sitzung_id (session number) and
+    # optional page ranges (fund_von, fund_bis).  We unnest to one row per
+    # session reference and drop the page-range fields.
+    if ("stage_fsth" %in% names(df_stages)) {
+      df_stages <- df_stages |>
+        tidyr::unnest_longer("stage_fsth") |>
+        tidyr::unnest_wider("stage_fsth", names_sep = "_") |>
+        dplyr::rename(session_number = "stage_fsth_sitzung_id") |>
+        dplyr::select(-dplyr::any_of(c("stage_fsth_fund_von", "stage_fsth_fund_bis")))
+    }
+
+    # Replicate the single-row item metadata to match the (possibly expanded)
+    # stage table, then column-bind to produce one row per stage/session.
     result <- df_res %>%
       dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
       dplyr::bind_cols(df_stages)
@@ -1449,25 +1526,41 @@ get_item_details <- function(item_url, type = "stages") {
     return(result)
   }
 
-  #GET STAGES DETAILS - IF STRUCTURE IS STAGES
+  # ── Code path B: flat stages structure ────────────────────────────────────
+  # Other item types (e.g. Bürgerinitiativen, Berichte) expose stages directly
+  # under content$stages without a phase wrapper.
   if (type == "stages" && !is.null(data_list$content$stages)) {
     df_stages <- data_list$content$stages
 
+    # ── Speech parsing (flat stages path) ───────────────────────────────────
+    # `reden` is present when any stage has floor debate contributions.
+    #
+    # Why re-parse with parse_json() instead of using data_list?
+    # jsonlite::fromJSON() applies aggressive simplification: when it encounters
+    # the nested reden structure (a list of tables-within-tables), it sometimes
+    # collapses rows into a matrix, sometimes into a data frame, and sometimes
+    # leaves them as a list — depending on how homogeneous the data looks.  The
+    # result is unpredictable across different items and impossible to index
+    # uniformly.  jsonlite::parse_json() parses the same text WITHOUT
+    # simplification, always returning a plain nested list, so each stage is a
+    # separate list element and stage$reden$data$rows is always a list of rows.
+    #
+    # IMPORTANT: parse before fsth unnesting — same reason as path A above.
     if ("reden" %in% names(df_stages)) {
-      # Parse speeches at the stage level before any fsth unnesting, so list
-      # entries are duplicated correctly when one stage expands to many rows.
-      # jsonlite's fromJSON() recursively simplifies the nested reden structure
-      # in unpredictable ways (nested data frames, collapsed matrices, etc.).
-      # Use parse_json() on the saved raw text to get an unsimplified list
-      # where each stage is a separate element with its own reden field.
       raw_stages <- jsonlite::parse_json(json_text)$data$content$stages
       speeches_list <- purrr::map(raw_stages, \(stage) {
         rows <- stage$reden$data$rows
         if (is.null(rows) || length(rows) == 0) return(NULL)
+        # Each row is a list of 4 cells; rbind + unlist produces the character
+        # matrix that .parse_reden() expects.
         rows_mat <- do.call(rbind, lapply(rows, \(r) unlist(r, use.names = FALSE)))
         .parse_reden(rows_mat)
       })
 
+      # Sanity check: the number of parsed stages should equal the number of
+      # rows in df_stages.  A mismatch would mean some stages were merged or
+      # split during JSON simplification.  We warn and NULL-pad/truncate rather
+      # than silently producing misaligned output.
       n_stage_rows <- nrow(df_stages)
       if (length(speeches_list) != n_stage_rows) {
         cli::cli_warn(
@@ -1490,6 +1583,8 @@ get_item_details <- function(item_url, type = "stages") {
         dplyr::select(-dplyr::any_of("reden"))
     }
 
+    # ── Session references (fsth) ────────────────────────────────────────────
+    # Same logic as path A; field is named `fsth` rather than `stage_fsth`.
     if ("fsth" %in% names(df_stages)) {
       df_stages <- df_stages %>%
         tidyr::unnest_longer("fsth") %>%
@@ -1498,6 +1593,8 @@ get_item_details <- function(item_url, type = "stages") {
         dplyr::select(-dplyr::any_of(c("fsth_fund_von", "fsth_fund_bis")))
     }
 
+    # `text` contains the human-readable stage description, usually as raw HTML.
+    # Strip tags to plain text; fall back to the raw string on parse failure.
     if ("text" %in% names(df_stages)) {
       df_stages <- df_stages %>%
         dplyr::mutate(
@@ -1515,7 +1612,7 @@ get_item_details <- function(item_url, type = "stages") {
         )
     }
 
-    # Expand df_res to match df_stages and combine
+    # Replicate item metadata and column-bind — same as path A.
     result <- df_res %>%
       dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
       dplyr::bind_cols(df_stages)
@@ -1523,5 +1620,7 @@ get_item_details <- function(item_url, type = "stages") {
     return(result)
   }
 
+  # No recognised stage structure found (e.g. item has no stages yet, or the
+  # API returned a structure we don't handle).
   return(NULL)
 }
