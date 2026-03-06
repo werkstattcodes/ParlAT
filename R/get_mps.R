@@ -13,7 +13,8 @@
 #' @param gender Gender filter. One of "all", "female", or "male"
 #' @param legis_period Legislative period. Can be "all", a numeric value,
 #'        "PN" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)
-#' @param  date  Date for which active MPs are queried.
+#' @param  date  Date for which active MPs are queried. Must be a single date
+#'        (length 1) in format DD.MM.YYYY.
 #' @param party Political party filter. See details for permissible values.
 #' @param parl_group Parliamentary group filter
 #' @param electoral_district Electoral district filter. See details for permissible values.
@@ -30,6 +31,7 @@
 #'
 #' Columns returned:
 #' - `pad_intern`: Person's unique identification number
+#' - `date`: Requested date (only included when `date` input is provided)
 #' - `name`: Name of the MP
 #' - `gender`: Gender
 #' - `parl_group`: Parliamentary group; note that the groups stated comprises *all* past and present groups of which the MP has been member of
@@ -279,6 +281,10 @@ get_mps <- function(
 
   # Validate date format early
   if (!is.null(date)) {
+    if (length(date) != 1) {
+      stop("Only date inputs of length 1 are allowed.")
+    }
+
     parsed_date <- lubridate::dmy(date, quiet = TRUE)
     if (is.na(parsed_date)) {
       stop(
@@ -903,6 +909,12 @@ get_mps <- function(
     tidyr::nest(
       mp_details = -c("legis_period", "pad_intern", "link", "name", "gender")
     )
+
+  if (!is.null(date)) {
+    df_res <- df_res %>%
+      dplyr::mutate(date = parsed_date) %>%
+      dplyr::relocate("date")
+  }
 
   return(df_res)
   #TODO remove residual code below

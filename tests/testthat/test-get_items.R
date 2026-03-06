@@ -94,6 +94,14 @@ test_that("get_items validates institution parameter", {
   )
 })
 
+test_that("get_items rejects legis_period before 5th period", {
+  expect_error(get_items(legis_period = 4), "5th legislative period")
+  expect_error(get_items(legis_period = "3"), "5th legislative period")
+  expect_error(get_items(legis_period = c(2, 27)), "5th legislative period")
+  expect_error(get_items(legis_period = "PN"), "5th legislative period")
+  expect_error(get_items(legis_period = "KN"), "5th legislative period")
+})
+
 test_that("get_items validates topic parameter", {
   expect_error(
     get_items(topic = "Invalid Topic"),
@@ -852,66 +860,6 @@ test_that("get_items type_doc for J_JPR_M combines with other parameters", {
   expect_true(is.data.frame(result) || is.null(result))
 })
 
-# Tests for get_item_details() -----------------------------------------------
-
-test_that("get_item_details returns correct structure with absolute URL", {
-  # Use a known item URL
-  item_url <- "https://www.parlament.gv.at/gegenstand/XXVII/GAST/2"
-  result <- run_api_call(
-    {
-      get_item_details(item_url)
-    },
-    fixture_subdir = "get_item_details"
-  )
-
-  expect_s3_class(result, "data.frame")
-  expect_true(ncol(result) > 0)
-  expect_true(nrow(result) > 0)
-})
-
-test_that("get_item_details works with relative URL", {
-  # Test relative path normalization
-  result <- run_api_call(
-    {
-      get_item_details("/gegenstand/XXVIII/BI/24")
-    },
-    fixture_subdir = "get_item_details"
-  )
-
-  expect_s3_class(result, "data.frame")
-  expect_true(ncol(result) > 0)
-})
-
-
-test_that("get_item_details handles URL normalization correctly", {
-  # Test that absolute and relative URLs return the same data
-  absolute_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-  relative_url <- "/gegenstand/XXVIII/BI/24"
-  relative_no_slash <- "gegenstand/XXVIII/BI/24"
-
-  result_absolute <- run_api_call(
-    {
-      get_item_details(absolute_url)
-    },
-    fixture_subdir = "get_item_details"
-  )
-  result_relative <- run_api_call(
-    {
-      get_item_details(relative_url)
-    },
-    fixture_subdir = "get_item_details"
-  )
-  result_no_slash <- run_api_call(
-    {
-      get_item_details(relative_no_slash)
-    },
-    fixture_subdir = "get_item_details"
-  )
-
-  # All should return same number of rows
-  expect_equal(nrow(result_absolute), nrow(result_relative))
-  expect_equal(nrow(result_absolute), nrow(result_no_slash))
-})
 test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-27)", {
   result <- run_api_call(
     {

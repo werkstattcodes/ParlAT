@@ -48,9 +48,11 @@
 #'
 #' ## legis_period (Gesetzgebungsperiode)
 #' `legis_period` specifies the legislative period(s). Can be one or more of the following value(s):
-#' * number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV",
-#' * "PN" (Provisorische Nationalversammlung, Provisional National Assembly, 1918-1919),
-#' * and/or "KN" (Konstituierende Nationalversammlung, Constituent National Assembly, 1919-1920).
+#' * number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
+#'
+#' Only periods from the 5th legislative period (V. GP, 1945) onwards are
+#' supported. Earlier periods (including special codes like "PN" and "KN")
+#' do not return data and will be rejected.
 #'
 #' ## item (Gegenstand)
 #' Possible values for `item` include:
@@ -456,6 +458,10 @@
 #'   list_rbind()
 #' ```
 #'
+#' ## Data Availability
+#' The API only returns data from the 5th legislative period (V. GP, 1945)
+#' onwards, i.e. for the Second Republic.
+#'
 #' @seealso
 #' * [get_persons()] for searching person identifiers used in the `person` parameter
 #' * [get_legis_periods()] for retrieving available legislative periods
@@ -585,6 +591,22 @@ get_items <- function(
     \(x) fn_check_legis_period_elements(x)
   )
 
+  # Data is only available from the 5th legislative period (Second Republic).
+  # Special codes like "PN", "KN" also predate the 5th period and return no
+
+  # data, so only numeric periods >= 5 (and "ALLE") are permitted.
+  if (length(legis_period) > 0) {
+    lp_numeric <- suppressWarnings(as.integer(as.roman(legis_period)))
+    lp_invalid <- is.na(lp_numeric) & legis_period != "ALLE" |
+      !is.na(lp_numeric) & lp_numeric < 5L
+    if (any(lp_invalid)) {
+      cli::cli_abort(
+        "Data is only available from the 5th legislative period onwards.",
+        arg = "legis_period"
+      )
+    }
+  }
+
   #DATE START; DATE END
   # Date validation using lubridate for flexible input formats
   date_start_parsed <- NULL
@@ -598,7 +620,10 @@ get_items <- function(
         "date_start must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
       )
     }
-    date_start <- paste0(format(date_start_parsed, "%Y-%m-%d"), "T00:00:00.000Z")
+    date_start <- paste0(
+      format(date_start_parsed, "%Y-%m-%d"),
+      "T00:00:00.000Z"
+    )
   }
 
   #date end
@@ -1289,239 +1314,4 @@ get_items <- function(
 
   # RETURN RESULT
   return(df_res)
-}
-
-# Parse reden (speech) data from a character matrix of rows.
-# jsonlite simplifies reden$data$rows (an array-of-arrays) into a single
-# character matrix, collapsing all stages. Callers are responsible for
-# passing the right matrix and placing the result in the right list slot.
-# Returns a tibble with one row per speaker, or NULL if rows is not a matrix.
-.parse_reden <- function(rows) {
-  if (!is.matrix(rows) || nrow(rows) == 0) return(NULL)
-
-  base_url <- "https://www.parlament.gv.at"
-
-  speaker_html  <- rows[, 1]
-  position      <- rows[, 2]
-  protocol_html <- rows[, 3]
-  video_html    <- rows[, 4]
-
-  extract_text <- function(html) {
-    tryCatch(rvest::read_html(html) |> rvest::html_text2(), error = function(e) html)
-  }
-  extract_href <- function(html) {
-    href <- tryCatch(
-      rvest::read_html(html) |> rvest::html_element("a") |> rvest::html_attr("href"),
-      error = function(e) NA_character_
-    )
-    if (!is.na(href)) stringr::str_c(base_url, href) else NA_character_
-  }
-
-  tibble::tibble(
-    speaker      = purrr::map_chr(speaker_html,  extract_text),
-    speaker_url  = purrr::map_chr(speaker_html,  extract_href),
-    position     = position,
-    protocol_page = purrr::map_chr(protocol_html, extract_text),
-    protocol_url  = purrr::map_chr(protocol_html, extract_href),
-    video_url     = purrr::map_chr(video_html,    extract_href)
-  )
-}
-
-#' Get detailed stage information for a parliamentary item
-#'
-#' `r lifecycle::badge("experimental")`
-#'
-#' Retrieves detailed stage information for a specific parliamentary item by
-#' scraping its detail page on the Austrian Parliament website. The function
-#' extracts structured data about the item's progression through different
-#' legislative stages.
-#'
-#' @param item_url Character. A single URL or path to an item on the Austrian
-#'   Parliament website. Can be an absolute URL starting with
-#'   "https://www.parlament.gv.at/" or a relative path (with or without
-#'   leading slashes). The function will normalize relative paths automatically.
-#' @param type Character. Type of data to extract. Currently only "stages" is
-#'   supported (default).
-#'
-#' @return A tibble containing detailed information about the parliamentary item and its stages.
-#'   Returns `NULL` if no stages are found.
-#'
-#' - `item_url` (character): The URL of the parliamentary item.
-#' - `type` (character): The type of the item (e.g., BI for Bürgerinitiativen).
-#' - `title` (character): The title of the item.
-#' - `item_number` (character): The citation number of the item.
-#' - `item_description` (character): A brief description of the item.
-#' - `state_approval` (character): The current approval state of the item.
-#' - `phase` (character): The phase of the legislative stage.
-#' - `speeches` (list): List-column of nested tibbles with speech data for
-#'   stages that contain debate contributions ("Wortmeldungen in der Debatte").
-#'   Each tibble has columns `speaker`, `speaker_url`, `position`,
-#'   `protocol_page`, `protocol_url`, and `video_url`. `NULL` for stages
-#'   without speeches.
-#' - `id` (character): Unique identifier for the stage.
-#' - `stage_date` (Date): The date of the stage.
-#' - `stage_name` (character): The name/description of the stage.
-#' - `stage_priority` (numeric): Priority of the stage.
-#' - `documents` (list): List-column of associated documents for the stage.
-#'
-#' @details
-#' The function performs the following steps:
-#' 1. Normalizes the URL (prepends "https://www.parlament.gv.at/" if needed)
-#' 2. Scrapes the item's detail page
-#' 3. Extracts structured data from embedded JavaScript
-#' 4. Parses HTML content within stage text fields
-#' 5. Returns a tibble with stage information
-#'
-#' @seealso
-#' * [get_items()] for searching parliamentary items and retrieving URLs
-#'
-#' @examples
-#' \dontrun{
-#' # Get details for a specific item
-#' item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-#' stages <- get_item_details(item_url)
-#'
-#' # Also works with relative paths
-#' stages <- get_item_details("/gegenstand/XXVIII/BI/24")
-#' }
-#'
-#' @export
-get_item_details <- function(item_url, type = "stages") {
-  prefix <- "https://www.parlament.gv.at/"
-
-  if (!stringr::str_starts(item_url, prefix)) {
-    item_url <- item_url %>%
-      stringr::str_replace("^/+", "") %>%
-      (\(x) stringr::str_c(prefix, x))()
-  }
-
-  page <- rvest::read_html(item_url)
-
-  # Extract and parse embedded data from JavaScript
-  json_text <- page %>%
-    rvest::html_elements("script") %>%
-    rvest::html_text2() %>%
-    (\(x) x[stringr::str_detect(x, "props:")])() %>%
-    stringr::str_extract("(?s)props:.*") %>%
-    stringr::str_remove("props:\\s*") %>%
-    stringr::str_remove("\\}\\);\\s*$")
-  data_list <- jsonlite::fromJSON(json_text) |> (\(x) x$data)()
-
-  #GET METADATA ON ITEM
-  df_res <- tibble(
-    item_url = item_url,
-    type = data_list$content$type,
-    title = data_list$content$title,
-    item_number = data_list$content$zitation,
-    item_description = data_list$content$description,
-    state_statements = data_list$content$statementsstage,
-    state_approval = data_list$content$approvalstate
-  )
-
-  #GET STAGES DETAILS - IF STRUCTURE IS PHASE/STAGES
-  if (type == "stages" && !is.null(data_list$content$phase$stages)) {
-    df_stages <- data_list$content$phase %>%
-      dplyr::rename(stage = "stages") %>%
-      tidyr::unnest_longer("stage") %>%
-      tidyr::unnest_wider("stage", names_sep = "_") %>%
-      dplyr::rename(phase = "name", stage_name = "stage_text")
-
-    df_stages <- df_stages %>%
-      dplyr::mutate(
-        stage_name = purrr::map_chr(.data$stage_name, \(x) {
-          tryCatch(
-            {
-              x %>% rvest::read_html() %>% rvest::html_text2()
-            },
-            error = function(e) {
-              # If it fails, it's probably plain text already
-              x
-            }
-          )
-        })
-      )
-
-    # Expand df_res to match df_stages and combine
-    result <- df_res %>%
-      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
-      dplyr::bind_cols(df_stages)
-
-    return(result)
-  }
-
-  #GET STAGES DETAILS - IF STRUCTURE IS STAGES
-  if (type == "stages" && !is.null(data_list$content$stages)) {
-    df_stages <- data_list$content$stages
-
-    if ("reden" %in% names(df_stages)) {
-      # Parse speeches at the stage level before any fsth unnesting, so list
-      # entries are duplicated correctly when one stage expands to many rows.
-      # jsonlite's fromJSON() recursively simplifies the nested reden structure
-      # in unpredictable ways (nested data frames, collapsed matrices, etc.).
-      # Use parse_json() on the saved raw text to get an unsimplified list
-      # where each stage is a separate element with its own reden field.
-      raw_stages <- jsonlite::parse_json(json_text)$data$content$stages
-      speeches_list <- purrr::map(raw_stages, \(stage) {
-        rows <- stage$reden$data$rows
-        if (is.null(rows) || length(rows) == 0) return(NULL)
-        rows_mat <- do.call(rbind, lapply(rows, \(r) unlist(r, use.names = FALSE)))
-        .parse_reden(rows_mat)
-      })
-
-      n_stage_rows <- nrow(df_stages)
-      if (length(speeches_list) != n_stage_rows) {
-        cli::cli_warn(
-          c(
-            "Speech-stage alignment mismatch in {.fn get_item_details}.",
-            "i" = "Parsed speeches for {length(speeches_list)} stage(s), but found {n_stage_rows} stage row(s) before {.code fsth} expansion.",
-            "i" = "Continuing with NULL-padding/truncation to preserve output shape."
-          )
-        )
-        speeches_aligned <- rep(list(NULL), n_stage_rows)
-        n_copy <- min(length(speeches_list), n_stage_rows)
-        if (n_copy > 0) {
-          speeches_aligned[seq_len(n_copy)] <- speeches_list[seq_len(n_copy)]
-        }
-        speeches_list <- speeches_aligned
-      }
-
-      df_stages <- df_stages %>%
-        dplyr::mutate(speeches = speeches_list) %>%
-        dplyr::select(-dplyr::any_of("reden"))
-    }
-
-    if ("fsth" %in% names(df_stages)) {
-      df_stages <- df_stages %>%
-        tidyr::unnest_longer("fsth") %>%
-        tidyr::unnest_wider("fsth", names_sep = "_") %>%
-        dplyr::rename(session_number = "fsth_sitzung_id") %>%
-        dplyr::select(-dplyr::any_of(c("fsth_fund_von", "fsth_fund_bis")))
-    }
-
-    if ("text" %in% names(df_stages)) {
-      df_stages <- df_stages %>%
-        dplyr::mutate(
-          text = purrr::map_chr(.data$text, \(x) {
-            tryCatch(
-              {
-                x %>% rvest::read_html() %>% rvest::html_text2()
-              },
-              error = function(e) {
-                # If it fails, it's probably plain text already
-                x
-              }
-            )
-          })
-        )
-    }
-
-    # Expand df_res to match df_stages and combine
-    result <- df_res %>%
-      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
-      dplyr::bind_cols(df_stages)
-
-    return(result)
-  }
-
-  return(NULL)
 }

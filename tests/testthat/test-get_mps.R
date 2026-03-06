@@ -131,6 +131,9 @@ test_that("get_mps accepts gender filter with date parameter", {
   expect_s3_class(result_female, "data.frame")
   expect_s3_class(result_male, "data.frame")
   expect_s3_class(result_all, "data.frame")
+  expect_identical(names(result_all)[1], "date")
+  expect_s3_class(result_all$date, "Date")
+  expect_true(all(result_all$date == as.Date("2020-01-01")))
 
   # Check that gender filtering works with date
   expect_true(all(result_female$gender == "female"))
@@ -140,6 +143,13 @@ test_that("get_mps accepts gender filter with date parameter", {
 
   # Results should be different
   expect_false(identical(result_female, result_male))
+})
+
+test_that("get_mps validates date length", {
+  expect_error(
+    get_mps(date = c("01.01.2020", "02.01.2020"), institution = "NR"),
+    "Only date inputs of length 1 are allowed\\."
+  )
 })
 
 # Tests for legis_period argument
