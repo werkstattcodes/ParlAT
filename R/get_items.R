@@ -1366,10 +1366,8 @@ get_items <- function(
 #'   Each tibble has columns `speaker`, `speaker_url`, `position`,
 #'   `protocol_page`, `protocol_url`, and `video_url`. `NULL` for stages
 #'   without speeches.
-#' - `id` (character): Unique identifier for the stage.
 #' - `stage_date` (Date): The date of the stage.
 #' - `stage_name` (character): The name/description of the stage.
-#' - `stage_priority` (numeric): Priority of the stage.
 #' - `documents` (list): List-column of associated documents for the stage.
 #'
 #' @details
@@ -1513,9 +1511,12 @@ get_item_details <- function(item_url, type = "stages") {
       df_stages <- df_stages |>
         tidyr::unnest_longer("stage_fsth") |>
         tidyr::unnest_wider("stage_fsth", names_sep = "_") |>
-        dplyr::rename(session_number = "stage_fsth_sitzung_id") |>
-        dplyr::select(-dplyr::any_of(c("stage_fsth_fund_von", "stage_fsth_fund_bis")))
+        dplyr::rename(meeting_number = "stage_fsth_sitzung_id") |>
+        dplyr::mutate(meeting_number = purrr::map_int(.data$meeting_number, \(x) x %||% NA_integer_)) |>
+        dplyr::select(-dplyr::starts_with("stage_fsth_"))
     }
+
+    df_stages <- df_stages |> dplyr::select(-dplyr::any_of(c("stage_priority", "id")))
 
     # Replicate the single-row item metadata to match the (possibly expanded)
     # stage table, then column-bind to produce one row per stage/session.
@@ -1589,8 +1590,9 @@ get_item_details <- function(item_url, type = "stages") {
       df_stages <- df_stages %>%
         tidyr::unnest_longer("fsth") %>%
         tidyr::unnest_wider("fsth", names_sep = "_") %>%
-        dplyr::rename(session_number = "fsth_sitzung_id") %>%
-        dplyr::select(-dplyr::any_of(c("fsth_fund_von", "fsth_fund_bis")))
+        dplyr::rename(meeting_number = "fsth_sitzung_id") %>%
+        dplyr::mutate(meeting_number = purrr::map_int(.data$meeting_number, \(x) x %||% NA_integer_)) %>%
+        dplyr::select(-dplyr::starts_with("fsth_"))
     }
 
     # `text` contains the human-readable stage description, usually as raw HTML.
@@ -1611,6 +1613,8 @@ get_item_details <- function(item_url, type = "stages") {
           })
         )
     }
+
+    df_stages <- df_stages |> dplyr::select(-dplyr::any_of(c("priority", "id")))
 
     # Replicate item metadata and column-bind — same as path A.
     result <- df_res %>%
