@@ -1165,11 +1165,17 @@ get_items <- function(
     df_res <- rows %>%
       as.data.frame()
 
-    # Use rnr positions to select and reorder the correct columns
-    valid_pos <- col_positions[col_positions <= ncol(df_res)]
-    valid_headings <- vec_headings[col_positions <= ncol(df_res)]
-    df_res <- df_res[, valid_pos, drop = FALSE]
-    colnames(df_res) <- valid_headings
+    # The API can return either:
+    # 1. sparse export rows keyed by `rnr`, or
+    # 2. compact export rows already aligned to the visible headers.
+    # Fall back to sequential header alignment when the response is compact,
+    # otherwise columns like "Klub/Fraktion" are dropped.
+    if (ncol(df_res) >= max(col_positions)) {
+      df_res <- df_res[, col_positions, drop = FALSE]
+      colnames(df_res) <- vec_headings
+    } else {
+      colnames(df_res) <- vec_headings[seq_len(ncol(df_res))]
+    }
   }
 
   # RETURN ECHO
