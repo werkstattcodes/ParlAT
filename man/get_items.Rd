@@ -113,10 +113,12 @@ Possible values for \code{topic} are:
 
 \code{legis_period} specifies the legislative period(s). Can be one or more of the following value(s):
 \itemize{
-\item number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV",
-\item "PN" (Provisorische Nationalversammlung, Provisional National Assembly, 1918-1919),
-\item and/or "KN" (Konstituierende Nationalversammlung, Constituent National Assembly, 1919-1920).
+\item number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
 }
+
+Only periods from the 5th legislative period (V. GP, 1945) onwards are
+supported. Earlier periods (including special codes like "PN" and "KN")
+do not return data and will be rejected.
 }
 
 \subsection{item (Gegenstand)}{
@@ -546,6 +548,12 @@ all_results <- periods \%>\%
   map(\\(period) get_items(legis_period = period, echo = FALSE)) \%>\%
   list_rbind()
 }\if{html}{\out{</div>}}
+}
+
+\subsection{Data Availability}{
+
+The API only returns data from the 5th legislative period (V. GP, 1945)
+onwards, i.e. for the Second Republic.
 }
 }
 \examples{

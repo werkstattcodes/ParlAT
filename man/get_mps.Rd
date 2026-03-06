@@ -35,7 +35,8 @@ get_mps(
 \item{legis_period}{Legislative period. Can be "all", a numeric value,
 "PN" (Provisorische Nationalversammlung), or "KN" (Konstituierende Nationalversammlung)}
 
-\item{date}{Date for which active MPs are queried.}
+\item{date}{Date for which active MPs are queried. Must be a single date
+(length 1) in format DD.MM.YYYY.}
 
 \item{party}{Political party filter. See details for permissible values.}
 
@@ -59,6 +60,7 @@ also on his or her membership in other parliamentary groups in the past.
 Columns returned:
 \itemize{
 \item \code{pad_intern}: Person's unique identification number
+\item \code{date}: Requested date (only included when \code{date} input is provided)
 \item \code{name}: Name of the MP
 \item \code{gender}: Gender
 \item \code{parl_group}: Parliamentary group; note that the groups stated comprises \emph{all} past and present groups of which the MP has been member of

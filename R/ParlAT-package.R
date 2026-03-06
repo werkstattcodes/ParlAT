@@ -10,7 +10,7 @@
 #' @importFrom lifecycle deprecated
 #' @importFrom magrittr %>%
 #' @importFrom purrr map2
-#' @importFrom rlang .data
+#' @importFrom rlang .data %||%
 #' @importFrom stats setNames
 #' @importFrom utils as.roman URLencode
 ## usethis namespace: end
