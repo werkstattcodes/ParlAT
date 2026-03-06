@@ -466,7 +466,7 @@
 #' * [get_persons()] for searching person identifiers used in the `person` parameter
 #' * [get_legis_periods()] for retrieving available legislative periods
 #' * [get_committees()] for committee information
-#' * [get_plenary_sessions()] for plenary session data
+#' * [get_plenary_meetings()] for plenary meeting data
 #'
 #' @export
 #'

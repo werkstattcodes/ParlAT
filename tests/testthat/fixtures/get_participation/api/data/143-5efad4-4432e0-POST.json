@@ -1,7 +1,7 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:36:55.0",
-    "count": 1,
+    "lastSync": "2026-02-26 11:01:21.0",
+    "count": 2,
     "header": [
         {
             "feldId": 804,
@@ -43,8 +43,8 @@
             "css_class": "datum-col",
             "feldId": 810,
             "hidden": false,
-            "rnr": 5,
             "sort_rnr": 8,
+            "rnr": 5,
             "listeId": 143,
             "label": "Datum",
             "sortable": "1",
@@ -296,6 +296,35 @@
             "J",
             "N",
             null
+        ],
+        [
+            "XXVIII",
+            "I",
+            "00405",
+            null,
+            "24.02.2026",
+            "Gesetzesinitiative",
+            "Beamten-Dienstrechtsgesetz, Gehaltsgesetz u.a., Änderung (405 d.B.)",
+            "20260224",
+            "405 d.B.",
+            29818653,
+            "xxx",
+            "RV",
+            "xxx",
+            "xxx",
+            "/gegenstand/XXVIII/I/405",
+            "<a href=\"/gegenstand/XXVIII/I/405?selectedStage=101&persForm=1\"><i class=\"fa-comment-edit fal\"><\/i><span>Stellung nehmen<\/span><\/a><br/>",
+            "[\"Bildung\",\"Inneres und Recht\"]",
+            "RGES",
+            "[\"S\"]",
+            0,
+            0,
+            0,
+            "I",
+            "J",
+            "J",
+            "N",
+            "BKA"
         ]
     ]
 }

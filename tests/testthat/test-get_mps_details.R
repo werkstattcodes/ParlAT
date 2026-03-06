@@ -184,8 +184,8 @@ test_that("get_mps_details plenary returns expected structure", {
     "legis_period",
     "institution",
     "speech_title",
-    "session_url",
-    "session_name",
+    "meeting_url",
+    "meeting_name",
     "speech_transcript_url",
     "speech_media_url"
   )

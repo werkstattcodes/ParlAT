@@ -1,14 +1,14 @@
 {
-    "pages": 15,
-    "lastSync": "2026-02-09 15:37:20.0",
+    "pages": 14,
+    "lastSync": "2026-02-26 11:04:40.0",
     "count": 14,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -34,8 +34,8 @@
             "includeHeader": true
         },
         {
-            "tooltip_rnr": 8,
             "css_class": "datum-col",
+            "tooltip_rnr": 8,
             "feldId": 2703,
             "hidden": false,
             "rnr": 4,
@@ -54,8 +54,8 @@
         },
         {
             "css_class": "betreff-col",
-            "feldId": 2705,
             "link_rnr": "2",
+            "feldId": 2705,
             "hidden": false,
             "rnr": 6,
             "mediaType": "title",
@@ -67,8 +67,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "listeId": 211,
             "label": "Zitation",
             "includeHeader": true
@@ -129,8 +129,8 @@
             "rnr": 13,
             "listeId": 211,
             "label": "WENTRY",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 2714,

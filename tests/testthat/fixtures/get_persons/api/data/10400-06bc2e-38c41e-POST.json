@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 03:31:18.0",
+    "lastSync": "2026-02-25 16:22:45.0",
     "count": 4,
     "header": [
         {
@@ -10,8 +10,8 @@
             "listeId": 10400,
             "label": "persart",
             "feld_name": "PERSART",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "feldId": 1484,
@@ -34,11 +34,11 @@
             "includeHeader": true
         },
         {
-            "feldId": 1125,
             "link_rnr": "4",
+            "feldId": 1125,
             "hidden": false,
-            "sort_rnr": 10,
             "rnr": 4,
+            "sort_rnr": 10,
             "mediaType": "title",
             "display_rnr": 1,
             "listeId": 10400,
@@ -113,6 +113,19 @@
     ],
     "rows": [
         [
+            "[\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"NR\",\"NR\",\"NR\",\"NR\"]",
+            "Abgeordneter zum Nationalrat, Bundeskanzler, Bundesminister, Staatssekretär",
+            65321,
+            "Kurz Sebastian",
+            "/person/65321",
+            "M",
+            "/dokument/bild/92331/9233173_384.jpg",
+            656623,
+            "person",
+            "Kurz Sebastian",
+            null
+        ],
+        [
             "[\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\"]",
             "Mitglied des Bundesrates, Ordnerin, Präsidentin, Schriftführerin, Vizepräsidentin",
             21150,
@@ -128,32 +141,6 @@
         [
             "[\"NR\",\"NR\",\"NR\",\"NR\"]",
             "Abgeordneter zum Nationalrat",
-            5075,
-            "Kurzmann Gerhard, Dr.",
-            "/person/5075",
-            "M",
-            "/dokument/bild/21018/2101814_384.jpg",
-            653909,
-            "person",
-            "Kurzmann Gerhard, Dr.",
-            null
-        ],
-        [
-            "[\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"BuREG\",\"NR\",\"NR\",\"NR\",\"NR\"]",
-            "Abgeordneter zum Nationalrat, Bundeskanzler, Bundesminister, Staatssekretär",
-            65321,
-            "Kurz Sebastian",
-            "/person/65321",
-            "M",
-            "/dokument/bild/92331/9233173_384.jpg",
-            656623,
-            "person",
-            "Kurz Sebastian",
-            null
-        ],
-        [
-            "[\"NR\",\"NR\",\"NR\",\"NR\"]",
-            "Abgeordneter zum Nationalrat",
             2823,
             "Kurzbauer Johann",
             "/person/2823",
@@ -162,6 +149,19 @@
             653463,
             "person",
             "Kurzbauer Johann",
+            null
+        ],
+        [
+            "[\"NR\",\"NR\",\"NR\",\"NR\"]",
+            "Abgeordneter zum Nationalrat",
+            5075,
+            "Kurzmann Gerhard, Dr.",
+            "/person/5075",
+            "M",
+            "/dokument/bild/21018/2101814_384.jpg",
+            653909,
+            "person",
+            "Kurzmann Gerhard, Dr.",
             null
         ]
     ]

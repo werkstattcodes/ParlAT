@@ -466,21 +466,21 @@ df_petition <- get_items(item = "VOLKBG", legis_period = seq(20, 27), institutio
 df_petition %>% count(legis_period)
 ```
 
-# Get data on Plenary Sessions
+# Get data on Plenary Meetings
 
-What to know how often the National Council had plenary sessions? The function `get_plenary_sessions` returns this and releated meta data
+What to know how often the National Council had plenary meetings? The function `get_plenary_meetings` returns this and releated meta data
 starting from the 20th legislative period.
 
 ```{r, cache=TRUE}
 
-df_sessions_20_27 <- get_plenary_sessions(institution = "NR", legis_period = seq(20,27), session_and_activities = "sessions", echo=TRUE)
+df_meetings_20_27 <- get_plenary_meetings(institution = "NR", legis_period = seq(20,27), meeting_and_activities = "meetings", echo=TRUE)
 
-df_sessions_20_27 %>%
+df_meetings_20_27 %>%
   count(legis_period) %>%
   mutate(legis_period=as.integer(legis_period)) %>%
   ggplot() + 
   labs(
-    title="Number of plenary sessions of the National Council",
+    title="Number of plenary meetings of the National Council",
     subtitle="20th to 27th legislative period.",
     caption = "Data: https://www.parlament.gv.at/recherchieren/open-data; retrieved via {ParlAT} package."
   )+

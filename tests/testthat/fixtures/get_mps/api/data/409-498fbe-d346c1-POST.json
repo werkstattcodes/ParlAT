@@ -1,12 +1,12 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:10:58.0",
+    "lastSync": "2026-02-26 09:50:45.0",
     "count": 88,
     "header": [
         {
             "css_class": "col-15",
-            "feldId": 605,
             "link_rnr": "16",
+            "feldId": 605,
             "hidden": false,
             "rnr": 1,
             "mediaType": "title",
@@ -26,22 +26,22 @@
             "label": "Gremium",
             "feld_name": "GREMIUM",
             "class": "col-10",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
-            "feldId": 604,
             "export_jn": "0",
+            "feldId": 604,
             "hidden": true,
             "rnr": 3,
             "listeId": 409,
             "label": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_web_item_id": "1"
         },
         {
-            "feldId": 623,
             "export_jn": "0",
+            "feldId": 623,
             "hidden": true,
             "rnr": 4,
             "listeId": 409,
@@ -86,8 +86,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 903,
             "export_jn": "0",
+            "feldId": 903,
             "hidden": true,
             "rnr": 9,
             "listeId": 409,
@@ -96,8 +96,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 1223,
             "export_jn": "0",
+            "feldId": 1223,
             "hidden": true,
             "rnr": 10,
             "listeId": 409,
@@ -105,8 +105,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 1224,
             "export_jn": "0",
+            "feldId": 1224,
             "hidden": true,
             "rnr": 11,
             "listeId": 409,
@@ -122,8 +122,8 @@
             "includeHeader": true
         },
         {
-            "feldId": 1226,
             "export_jn": "0",
+            "feldId": 1226,
             "hidden": true,
             "rnr": 13,
             "listeId": 409,

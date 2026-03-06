@@ -1,14 +1,14 @@
 {
     "pages": 0,
-    "lastSync": "2026-02-09 15:37:20.0",
+    "lastSync": "2026-02-26 11:04:40.0",
     "count": 0,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -19,8 +19,8 @@
             "feldId": 2710,
             "hidden": true,
             "rnr": 2,
-            "mediaType": "link",
             "listeId": 211,
+            "mediaType": "link",
             "label": "uri",
             "includeHeader": true
         },
@@ -59,8 +59,8 @@
             "link_rnr": "2",
             "hidden": false,
             "rnr": 6,
-            "mediaType": "title",
             "listeId": 211,
+            "mediaType": "title",
             "label": "Sitzung",
             "class": "betreff-col",
             "includeHeader": true
@@ -68,8 +68,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "listeId": 211,
             "label": "Zitation",
             "sortable": "1",
@@ -80,8 +80,8 @@
             "feldId": 2706,
             "hidden": true,
             "rnr": 8,
-            "mediaType": "description",
             "listeId": 211,
+            "mediaType": "description",
             "label": "Art",
             "sortable": "1",
             "class": "datum-col",
@@ -102,8 +102,8 @@
             "hidden": true,
             "ist_range": "1",
             "rnr": 10,
-            "mediaType": "datetime",
             "listeId": 211,
+            "mediaType": "datetime",
             "label": "datum2",
             "feld_name": "DATUM",
             "includeHeader": true

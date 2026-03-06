@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:10:58.0",
+    "lastSync": "2026-02-26 09:50:45.0",
     "count": 3,
     "header": [
         {
@@ -9,8 +9,8 @@
             "link_rnr": "16",
             "hidden": false,
             "rnr": 1,
-            "mediaType": "title",
             "listeId": 409,
+            "mediaType": "title",
             "label": "Name",
             "feld_name": "PERSON_NAME",
             "class": "col-15",

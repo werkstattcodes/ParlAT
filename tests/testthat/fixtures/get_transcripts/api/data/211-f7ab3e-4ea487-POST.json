@@ -1,6 +1,6 @@
 {
     "pages": 149,
-    "lastSync": "2026-02-09 15:37:20.0",
+    "lastSync": "2026-02-26 11:04:40.0",
     "count": 149,
     "header": [
         {
@@ -19,8 +19,8 @@
             "feldId": 2710,
             "hidden": true,
             "rnr": 2,
-            "mediaType": "link",
             "listeId": 211,
+            "mediaType": "link",
             "label": "uri",
             "includeHeader": true
         },
@@ -59,8 +59,8 @@
             "link_rnr": "2",
             "hidden": false,
             "rnr": 6,
-            "mediaType": "title",
             "listeId": 211,
+            "mediaType": "title",
             "label": "Sitzung",
             "class": "betreff-col",
             "includeHeader": true
@@ -80,8 +80,8 @@
             "feldId": 2706,
             "hidden": true,
             "rnr": 8,
-            "mediaType": "description",
             "listeId": 211,
+            "mediaType": "description",
             "label": "Art",
             "sortable": "1",
             "class": "datum-col",
@@ -102,8 +102,8 @@
             "hidden": true,
             "ist_range": "1",
             "rnr": 10,
-            "mediaType": "datetime",
             "listeId": 211,
+            "mediaType": "datetime",
             "label": "datum2",
             "feld_name": "DATUM",
             "includeHeader": true
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "05.03.1980",
-            "/gegenstand/XV/NRSITZ/26",
+            "17.04.1980",
+            "/gegenstand/XV/NRSITZ/31",
             "XV",
             "NRSITZ",
-            26,
-            "26. Sitzung (26/NRSITZ)",
-            "26/NRSITZ",
+            31,
+            "31. Sitzung (31/NRSITZ)",
+            "31/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "1980-03-05T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/26/imfname_146634.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "1980-04-17T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/31/imfname_146786.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            3675164,
+            3675194,
             "NRSITZ",
             null,
-            "7430906"
+            "7430911"
         ]
     ]
 }

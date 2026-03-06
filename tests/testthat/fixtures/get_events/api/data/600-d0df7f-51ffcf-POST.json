@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:30:04.0",
+    "lastSync": "2026-02-26 10:50:04.0",
     "count": 10,
     "header": [
         {
@@ -39,8 +39,8 @@
         },
         {
             "css_class": "col-20",
-            "feldId": 364,
             "link_rnr": "5",
+            "feldId": 364,
             "hidden": false,
             "rnr": 4,
             "mediaType": "title",
@@ -91,8 +91,8 @@
             "rnr": 8,
             "listeId": 600,
             "label": "Link2",
-            "additionalinfo": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "additionalinfo": "1"
         },
         {
             "css_class": "col-15",
@@ -114,8 +114,8 @@
             "listeId": 600,
             "label": "Themen",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "feldId": 401,
@@ -213,15 +213,15 @@
             "includeHeader": true
         },
         {
-            "feldId": 1161,
             "export_jn": "0",
+            "feldId": 1161,
             "hidden": true,
             "rnr": 21,
             "listeId": 600,
             "label": "WENTRY_ID",
             "feld_name": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 1497,
@@ -239,8 +239,8 @@
             "listeId": 600,
             "label": "Sicht",
             "feld_name": "SICHT",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         },
         {
             "css_class": "stellungnahmen-col",
@@ -257,6 +257,7 @@
             "feldId": 2441,
             "hidden": false,
             "rnr": 25,
+            "mediaType": "linkbutton",
             "listeId": 600,
             "label": "Anmeldung",
             "feld_name": "ANMELDEBUTTON",
@@ -301,8 +302,8 @@
             "listeId": 600,
             "label": "Sprache",
             "feld_name": "FUEHRUNGSSPRACHE",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "includeHeader": true,
+            "ist_werteliste": "1"
         }
     ],
     "rows": [
@@ -401,37 +402,6 @@
         ],
         [
             "28.02.2024",
-            "202402282345253.&nbsp;Sitzung des Nationalrates",
-            "..:..",
-            "253.&nbsp;Sitzung des Nationalrates",
-            "/gegenstand/XXVII/NRSITZ/253",
-            "Plenarsitzung",
-            "Plenarsitzung",
-            "<a href=\"/dokument/XXVII/NRSITZ/253/TO_15939388.html\">Tagesordnung<\/a>",
-            "Nationalratssaal",
-            null,
-            "Nationalrat",
-            "202402",
-            "28.02.2024",
-            "Februar 2024",
-            "J",
-            "2024-02-28T00:00:00",
-            null,
-            "J",
-            "Mittwoch, 28.02.2024",
-            null,
-            13721427,
-            null,
-            "[\"S\"]",
-            null,
-            null,
-            "<a href=\"/aktuelles/mediathek/XXVII/NRSITZ/253\" title=\"Zur Mediathek\" tabindex=\"-1\" target=\"_blank\" style=\"text-decoration: none;\"><div class=\"live-container svelte-mxjsp1\"><i aria-hidden=\"false\" aria-label=\"Zur Mediathek\" class=\"fa-circle-play fa-light default noMargin\" title=\"Zur Mediathek\"><\/i><span class=\"sr-only svelte-mxjsp1\">Zur Mediathek<\/span><\/div><\/a>",
-            "N",
-            "J",
-            null
-        ],
-        [
-            "28.02.2024",
             "202402282345254.&nbsp;Sitzung des Nationalrates",
             "..:..",
             "254.&nbsp;Sitzung des Nationalrates",
@@ -457,6 +427,37 @@
             null,
             null,
             "<a href=\"/aktuelles/mediathek/XXVII/NRSITZ/254\" title=\"Zur Mediathek\" tabindex=\"-1\" target=\"_blank\" style=\"text-decoration: none;\"><div class=\"live-container svelte-mxjsp1\"><i aria-hidden=\"false\" aria-label=\"Zur Mediathek\" class=\"fa-circle-play fa-light default noMargin\" title=\"Zur Mediathek\"><\/i><span class=\"sr-only svelte-mxjsp1\">Zur Mediathek<\/span><\/div><\/a>",
+            "N",
+            "J",
+            null
+        ],
+        [
+            "28.02.2024",
+            "202402282345253.&nbsp;Sitzung des Nationalrates",
+            "..:..",
+            "253.&nbsp;Sitzung des Nationalrates",
+            "/gegenstand/XXVII/NRSITZ/253",
+            "Plenarsitzung",
+            "Plenarsitzung",
+            "<a href=\"/dokument/XXVII/NRSITZ/253/TO_15939388.html\">Tagesordnung<\/a>",
+            "Nationalratssaal",
+            null,
+            "Nationalrat",
+            "202402",
+            "28.02.2024",
+            "Februar 2024",
+            "J",
+            "2024-02-28T00:00:00",
+            null,
+            "J",
+            "Mittwoch, 28.02.2024",
+            null,
+            13721427,
+            null,
+            "[\"S\"]",
+            null,
+            null,
+            "<a href=\"/aktuelles/mediathek/XXVII/NRSITZ/253\" title=\"Zur Mediathek\" tabindex=\"-1\" target=\"_blank\" style=\"text-decoration: none;\"><div class=\"live-container svelte-mxjsp1\"><i aria-hidden=\"false\" aria-label=\"Zur Mediathek\" class=\"fa-circle-play fa-light default noMargin\" title=\"Zur Mediathek\"><\/i><span class=\"sr-only svelte-mxjsp1\">Zur Mediathek<\/span><\/div><\/a>",
             "N",
             "J",
             null

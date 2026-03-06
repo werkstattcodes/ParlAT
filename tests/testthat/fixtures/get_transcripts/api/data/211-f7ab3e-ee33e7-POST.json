@@ -1,14 +1,14 @@
 {
     "pages": 332,
-    "lastSync": "2026-02-09 15:37:20.0",
+    "lastSync": "2026-02-26 11:04:40.0",
     "count": 332,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
@@ -19,8 +19,8 @@
             "feldId": 2710,
             "hidden": true,
             "rnr": 2,
-            "mediaType": "link",
             "listeId": 211,
+            "mediaType": "link",
             "label": "uri",
             "includeHeader": true
         },
@@ -59,8 +59,8 @@
             "link_rnr": "2",
             "hidden": false,
             "rnr": 6,
-            "mediaType": "title",
             "listeId": 211,
+            "mediaType": "title",
             "label": "Sitzung",
             "class": "betreff-col",
             "includeHeader": true
@@ -68,8 +68,8 @@
         {
             "feldId": 2713,
             "hidden": true,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "listeId": 211,
             "label": "Zitation",
             "sortable": "1",
@@ -80,8 +80,8 @@
             "feldId": 2706,
             "hidden": true,
             "rnr": 8,
-            "mediaType": "description",
             "listeId": 211,
+            "mediaType": "description",
             "label": "Art",
             "sortable": "1",
             "class": "datum-col",
@@ -102,8 +102,8 @@
             "hidden": true,
             "ist_range": "1",
             "rnr": 10,
-            "mediaType": "datetime",
             "listeId": 211,
+            "mediaType": "datetime",
             "label": "datum2",
             "feld_name": "DATUM",
             "includeHeader": true
@@ -163,22 +163,22 @@
     ],
     "rows": [
         [
-            "20.02.1980",
-            "/gegenstand/XV/NRSITZ/24",
+            "17.04.1980",
+            "/gegenstand/XV/NRSITZ/31",
             "XV",
             "NRSITZ",
-            24,
-            "24. Sitzung (24/NRSITZ)",
-            "24/NRSITZ",
+            31,
+            "31. Sitzung (31/NRSITZ)",
+            "31/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "1980-02-20T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/24/imfname_146632.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "1980-04-17T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/31/imfname_146786.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            3675152,
+            3675194,
             "NRSITZ",
             null,
-            "7430904"
+            "7430911"
         ]
     ]
 }

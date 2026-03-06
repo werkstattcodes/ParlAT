@@ -1,6 +1,6 @@
 {
     "pages": 0,
-    "lastSync": "2026-02-09 15:34:23.0",
+    "lastSync": "2026-02-26 11:01:21.0",
     "count": 0,
     "header": [
         {
@@ -92,8 +92,8 @@
             "feldId": 254,
             "hidden": false,
             "rnr": 11,
-            "mediaType": "status",
             "listeId": 101,
+            "mediaType": "status",
             "label": "Status",
             "sortable": "1",
             "feld_name": "STATUS",
@@ -131,8 +131,8 @@
             "feldId": 258,
             "hidden": true,
             "rnr": 15,
-            "mediaType": "link",
             "listeId": 101,
+            "mediaType": "link",
             "label": "Geschichtsseite_Url",
             "feld_name": "HIS_URL",
             "includeHeader": true
@@ -141,8 +141,8 @@
             "feldId": 341,
             "hidden": true,
             "rnr": 21,
-            "display_rnr": 6,
             "listeId": 101,
+            "display_rnr": 6,
             "label": "Personen_ID",
             "feld_name": "PAD_INTERN",
             "ist_werteliste": "1",
