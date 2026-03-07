@@ -33,11 +33,11 @@
 #' - `pad_intern`: Person's unique identification number
 #' - `date`: Requested date (only included when `date` input is provided)
 #' - `name`: Name of the MP
-#' - `gender`: Gender
+#' - `gender`: Gender (male, female)
 #' - `parl_group`: Parliamentary group; note that the groups stated comprises *all* past and present groups of which the MP has been member of
 #' - `parl_group_abbrev`: Abbreviation of the parliamentary group
 #' - `legis_period`: Legislative period(s)
-#' - `mandate_detail`: Details on mandates in Parliament
+#' - `mandate_detail`: Details on mandates in Parliament at the queried period of time (not all mandates). To obtain all mandates, use `get_mandates()`.
 #' - `electoral_district`: Electoral district
 #'
 #' @details
