@@ -6,8 +6,8 @@
 # On failure, it automatically creates a GitHub issue to alert maintainers.
 on:
   schedule:
-    # Run every Monday at 6:00 UTC
-    - cron: '0 6 * * 1'
+    # Run every Friday at 6:00 UTC
+    - cron: '0 6 * * 5'
   workflow_dispatch:
     inputs:
       refresh_fixtures:
