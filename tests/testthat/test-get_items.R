@@ -174,26 +174,15 @@ test_that("get_items works with multiple topics", {
   expect_equal(nrow(result), 2013)
 })
 
-test_that("get_items works with multiple legis_periods and different input forms", {
-  # Test with mixed input forms: numeric, character numeric, and historical abbreviations
-  result <- run_api_call(
-    {
-      get_items(
-        legis_period = c("KN", "PN", 10, "15"),
-        institution = "NR",
-        echo = FALSE
-      )
-    },
-    fixture_subdir = "get_items"
+test_that("get_items rejects mixed legis_period inputs containing unsupported early periods", {
+  expect_error(
+    get_items(
+      legis_period = c("KN", "PN", 10, "15"),
+      institution = "NR",
+      echo = FALSE
+    ),
+    "5th legislative period onwards"
   )
-
-  expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 11212)
-
-  # Check that all expected legislative periods are present in the results
-  expected_periods <- c("KN", "PN", "X", "XV")
-  actual_periods <- unique(result$legis_period)
-  expect_true(all(expected_periods %in% actual_periods))
 })
 
 test_that("get_items validates type_doc for ANTR items in NR", {
@@ -942,4 +931,73 @@ test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)
     n_distinct,
     info = "Result should contain no duplicate rows"
   )
+})
+
+test_that("get_items aligns sparse export rows using rnr positions", {
+  rows <- data.frame(
+    V1 = c("citation-1", "citation-2"),
+    V2 = c("unused", "unused"),
+    V3 = c("club-1", "club-2"),
+    stringsAsFactors = FALSE
+  )
+  headings <- c("citation", "club")
+  positions <- c(1, 3)
+
+  result <- .align_get_items_export_rows(rows, headings, positions)
+
+  expect_s3_class(result, "data.frame")
+  expect_identical(names(result), headings)
+  expect_equal(result$citation, c("citation-1", "citation-2"))
+  expect_equal(result$club, c("club-1", "club-2"))
+})
+
+test_that("get_items aligns compact export rows sequentially without dropping columns", {
+  rows <- data.frame(
+    V1 = c("citation-1", "citation-2"),
+    V2 = c("club-1", "club-2"),
+    stringsAsFactors = FALSE
+  )
+  headings <- c("citation", "club")
+  positions <- c(1, 3)
+
+  result <- .align_get_items_export_rows(rows, headings, positions)
+
+  expect_s3_class(result, "data.frame")
+  expect_identical(names(result), headings)
+  expect_equal(result$citation, c("citation-1", "citation-2"))
+  expect_equal(result$club, c("club-1", "club-2"))
+})
+
+test_that("get_items keeps key columns for compact-prone fixture scenarios", {
+  result <- run_api_call(
+    {
+      get_items(
+        item = "J_JPR_M",
+        type_doc = c("J", "JPR"),
+        institution = "NR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_true(all(c("item_url", "subject", "parl_group", "date", "stage") %in% names(result)))
+})
+
+test_that("get_items accepts supported post-5th legislative periods", {
+  result <- run_api_call(
+    {
+      get_items(
+        institution = "NR",
+        legis_period = 5,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_true(nrow(result) > 0)
 })

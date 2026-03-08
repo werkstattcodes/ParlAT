@@ -1,184 +1,200 @@
 {
     "pages": 21,
-    "lastSync": "2026-02-26 11:04:40.0",
+    "lastSync": "2026-03-07 04:53:34.0",
     "count": 21,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
+            "hideValue": false,
             "rnr": 1,
             "sort_rnr": 10,
+            "valueToNull": false,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 2710,
             "hidden": true,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "mediaType": "link",
             "listeId": 211,
-            "label": "uri",
-            "includeHeader": true
+            "label": "uri"
         },
         {
             "feldId": 2702,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 211,
             "label": "gp_code",
-            "feld_name": "GP_CODE",
-            "includeHeader": true
+            "feld_name": "GP_CODE"
         },
         {
             "css_class": "datum-col",
             "tooltip_rnr": 8,
             "feldId": 2703,
             "hidden": false,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 211,
             "label": "Art",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 2704,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "inr",
-            "includeHeader": true
+            "label": "inr"
         },
         {
             "css_class": "betreff-col",
             "link_rnr": "2",
             "feldId": 2705,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "mediaType": "title",
             "listeId": 211,
             "label": "Sitzung",
-            "class": "betreff-col",
-            "includeHeader": true
+            "class": "betreff-col"
         },
         {
             "feldId": 2713,
             "hidden": true,
+            "hideValue": false,
             "rnr": 7,
             "sort_rnr": 5,
+            "valueToNull": false,
             "listeId": 211,
             "label": "Zitation",
-            "sortable": "1",
-            "includeHeader": true
+            "sortable": "1"
         },
         {
             "css_class": "datum-col",
             "feldId": 2706,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "mediaType": "description",
             "listeId": 211,
             "label": "Art",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "tooltip_rnr": 8,
             "feldId": 2707,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Typ",
-            "includeHeader": true
+            "label": "Typ"
         },
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
             "hidden": true,
             "ist_range": "1",
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "mediaType": "datetime",
             "listeId": 211,
             "label": "datum2",
-            "feld_name": "DATUM",
-            "includeHeader": true
+            "feld_name": "DATUM"
         },
         {
             "feldId": 2709,
             "hidden": false,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Gesamtprotokoll",
-            "includeHeader": true
+            "label": "Gesamtprotokoll"
         },
         {
             "feldId": 2711,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 211,
             "label": "NBVS",
-            "feld_name": "NBVS",
-            "includeHeader": true
+            "feld_name": "NBVS"
         },
         {
             "feldId": 2712,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 211,
             "label": "WENTRY",
-            "includeHeader": true,
             "ist_web_item_id": "1"
         },
         {
             "feldId": 2714,
             "hidden": true,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 211,
             "label": "DOKTYP",
-            "feld_name": "DOKTYP",
-            "includeHeader": true
+            "feld_name": "DOKTYP"
         },
         {
             "feldId": 2741,
             "hidden": false,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Strukturierte Darstellung",
-            "includeHeader": true
+            "label": "Strukturierte Darstellung"
         },
         {
             "feldId": 202,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "ist_wdok_id": "1",
             "listeId": 211,
-            "label": "WDOK",
-            "includeHeader": true
+            "label": "WDOK"
         }
     ],
     "rows": [
         [
-            "13.06.2024",
-            "/gegenstand/XXVII/NRSITZ/269",
+            "21.03.2024",
+            "/gegenstand/XXVII/NRSITZ/257",
             "XXVII",
             "NRSITZ",
-            269,
-            "269. Sitzung (269/NRSITZ)",
-            "269/NRSITZ",
+            257,
+            "257. Sitzung (257/NRSITZ)",
+            "257/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "2024-06-13T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/269/fname_1672296.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/269/fnameorig_1672296.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2024-03-21T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/257/fname_1660514.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/257/fnameorig_1660514.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            17251361,
+            14212464,
             "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/269?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "23691397"
+            "<a href=\"/gegenstand/XXVII/NRSITZ/257?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "23376963"
         ]
     ]
 }

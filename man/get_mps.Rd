@@ -62,11 +62,11 @@ Columns returned:
 \item \code{pad_intern}: Person's unique identification number
 \item \code{date}: Requested date (only included when \code{date} input is provided)
 \item \code{name}: Name of the MP
-\item \code{gender}: Gender
+\item \code{gender}: Gender (male, female)
 \item \code{parl_group}: Parliamentary group; note that the groups stated comprises \emph{all} past and present groups of which the MP has been member of
 \item \code{parl_group_abbrev}: Abbreviation of the parliamentary group
 \item \code{legis_period}: Legislative period(s)
-\item \code{mandate_detail}: Details on mandates in Parliament
+\item \code{mandate_detail}: Details on mandates in Parliament at the queried period of time (not all mandates). To obtain all mandates, use \code{get_mandates()}.
 \item \code{electoral_district}: Electoral district
 }
 }

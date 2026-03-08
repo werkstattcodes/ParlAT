@@ -474,12 +474,12 @@ get_committee_details <- function(url_committee, details_type) {
 
     #remove links to member list with fotos; would duplicate retrieval of members & features different page structure
     df_details <- df_details %>%
-      dplyr::filter(!is.na(.data$url_html)) %>%
       dplyr::filter(
-        !stringr::str_detect(
-          .data$url_html,
-          stringr::regex("FOTO", ignore_case = TRUE)
-        )
+        is.na(.data$url_html) |
+          !stringr::str_detect(
+            .data$url_html,
+            stringr::regex("FOTO", ignore_case = TRUE)
+          )
       )
 
     # Only apply title filter if title column exists

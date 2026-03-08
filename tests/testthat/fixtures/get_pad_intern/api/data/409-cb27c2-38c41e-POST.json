@@ -1,159 +1,175 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-26 09:50:45.0",
+    "lastSync": "2026-03-07 20:53:05.0",
     "count": 1,
     "header": [
         {
-            "css_class": "col-15",
             "feldId": 605,
             "link_rnr": "16",
             "hidden": false,
-            "rnr": 1,
+            "valueToNull": false,
             "mediaType": "title",
-            "listeId": 409,
             "label": "Name",
+            "css_class": "col-15",
+            "hideValue": false,
+            "rnr": 1,
+            "listeId": 409,
             "feld_name": "PERSON_NAME",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "css_class": "col-10",
             "feldId": 603,
             "hidden": false,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gremium",
             "feld_name": "GREMIUM",
             "class": "col-10",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 604,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 409,
             "label": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 623,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHL_CODE",
-            "feld_name": "GESCHL_CODE",
-            "includeHeader": true
+            "feld_name": "GESCHL_CODE"
         },
         {
             "feldId": 624,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHLECHT",
-            "feld_name": "GESCHLECHT",
-            "includeHeader": true
+            "feld_name": "GESCHLECHT"
         },
         {
             "css_class": "col-15",
             "feldId": 863,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gesetzgebungsperiode",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 864,
             "hidden": true,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "parteien",
-            "includeHeader": true
+            "label": "parteien"
         },
         {
             "feldId": 643,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Attribute",
-            "feld_name": "ATTR_JSON",
-            "includeHeader": true
+            "feld_name": "ATTR_JSON"
         },
         {
             "feldId": 903,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 409,
             "label": "ist_praes",
-            "feld_name": "PRAES",
-            "includeHeader": true
+            "feld_name": "PRAES"
         },
         {
             "feldId": 1223,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "vorname",
-            "includeHeader": true
+            "label": "vorname"
         },
         {
             "feldId": 1224,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "nachname",
-            "includeHeader": true
+            "label": "nachname"
         },
         {
             "feldId": 1225,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr",
-            "includeHeader": true
+            "label": "akgr"
         },
         {
             "feldId": 1226,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr_h",
-            "includeHeader": true
+            "label": "akgr_h"
         },
         {
             "feldId": 7120,
             "hidden": false,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Klub/Fraktion",
-            "includeHeader": true
+            "label": "Klub/Fraktion"
         },
         {
             "css_class": "col-15",
             "feldId": 7121,
             "hidden": false,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Wahlkreis",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 7180,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Bio",
-            "includeHeader": true
+            "label": "Bio"
         }
     ],
     "rows": [

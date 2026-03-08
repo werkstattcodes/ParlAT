@@ -1,162 +1,178 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-26 11:04:40.0",
+    "lastSync": "2026-03-07 04:53:34.0",
     "count": 107,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
-            "rnr": 1,
+            "hideValue": false,
             "sort_rnr": 10,
+            "rnr": 1,
+            "valueToNull": false,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 2710,
             "hidden": true,
+            "hideValue": false,
             "rnr": 2,
-            "listeId": 211,
+            "valueToNull": false,
             "mediaType": "link",
-            "label": "uri",
-            "includeHeader": true
+            "listeId": 211,
+            "label": "uri"
         },
         {
             "feldId": 2702,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 211,
             "label": "gp_code",
-            "feld_name": "GP_CODE",
-            "includeHeader": true
+            "feld_name": "GP_CODE"
         },
         {
             "tooltip_rnr": 8,
             "css_class": "datum-col",
             "feldId": 2703,
             "hidden": false,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 211,
             "label": "Art",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 2704,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "inr",
-            "includeHeader": true
+            "label": "inr"
         },
         {
             "css_class": "betreff-col",
             "feldId": 2705,
             "link_rnr": "2",
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
-            "listeId": 211,
+            "valueToNull": false,
             "mediaType": "title",
+            "listeId": 211,
             "label": "Sitzung",
-            "class": "betreff-col",
-            "includeHeader": true
+            "class": "betreff-col"
         },
         {
             "feldId": 2713,
             "hidden": true,
-            "rnr": 7,
+            "hideValue": false,
             "sort_rnr": 5,
+            "rnr": 7,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Zitation",
-            "includeHeader": true
+            "label": "Zitation"
         },
         {
             "css_class": "datum-col",
             "feldId": 2706,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
-            "listeId": 211,
+            "valueToNull": false,
             "mediaType": "description",
+            "listeId": 211,
             "label": "Art",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "tooltip_rnr": 8,
             "feldId": 2707,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Typ",
-            "includeHeader": true
+            "label": "Typ"
         },
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
+            "hideValue": false,
             "rnr": 10,
-            "listeId": 211,
+            "valueToNull": false,
             "mediaType": "datetime",
+            "listeId": 211,
             "label": "datum2",
             "sortable": "1",
-            "feld_name": "DATUM",
-            "includeHeader": true
+            "feld_name": "DATUM"
         },
         {
             "feldId": 2709,
             "hidden": false,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Gesamtprotokoll",
-            "includeHeader": true
+            "label": "Gesamtprotokoll"
         },
         {
             "feldId": 2711,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 211,
             "label": "NBVS",
-            "feld_name": "NBVS",
-            "includeHeader": true
+            "feld_name": "NBVS"
         },
         {
             "feldId": 2712,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 211,
             "label": "WENTRY",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 2714,
             "hidden": true,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 211,
             "label": "DOKTYP",
-            "feld_name": "DOKTYP",
-            "includeHeader": true
+            "feld_name": "DOKTYP"
         },
         {
             "feldId": 2741,
             "hidden": false,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Strukturierte Darstellung",
-            "includeHeader": true
+            "label": "Strukturierte Darstellung"
         },
         {
             "feldId": 202,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "ist_wdok_id": "1",
             "listeId": 211,
-            "label": "WDOK",
-            "includeHeader": true
+            "label": "WDOK"
         }
     ],
     "rows": [
@@ -377,24 +393,6 @@
             "13939779"
         ],
         [
-            "28.02.2024",
-            "/gegenstand/XXVII/NRSITZ/252",
-            "XXVII",
-            "NRSITZ",
-            252,
-            "252. Sitzung (252/NRSITZ)",
-            "252/NRSITZ",
-            "Plenarsitzung",
-            "Plenar-Sitzung",
-            "2024-02-28T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/252/fname_1660461.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/252/fnameorig_1660461.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "NRSITZ",
-            13723253,
-            "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/252?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "23373775"
-        ],
-        [
             "14.12.2022",
             "/gegenstand/XXVII/NRSITZ/189",
             "XXVII",
@@ -411,6 +409,24 @@
             "NRSITZ",
             "<a href=\"/gegenstand/XXVII/NRSITZ/189?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
             "21231455"
+        ],
+        [
+            "28.02.2024",
+            "/gegenstand/XXVII/NRSITZ/252",
+            "XXVII",
+            "NRSITZ",
+            252,
+            "252. Sitzung (252/NRSITZ)",
+            "252/NRSITZ",
+            "Plenarsitzung",
+            "Plenar-Sitzung",
+            "2024-02-28T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/252/fname_1660461.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/252/fnameorig_1660461.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            13723253,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/252?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "23373775"
         ],
         [
             "24.02.2021",
@@ -521,24 +537,6 @@
             "2330721"
         ],
         [
-            "17.04.2024",
-            "/gegenstand/XXVII/NRSITZ/259",
-            "XXVII",
-            "NRSITZ",
-            259,
-            "259. Sitzung (259/NRSITZ)",
-            "259/NRSITZ",
-            "Plenarsitzung",
-            "Plenar-Sitzung",
-            "2024-04-17T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/259/fname_1666355.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/259/fnameorig_1666355.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "NRSITZ",
-            14784748,
-            "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/259?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "23533141"
-        ],
-        [
             "17.06.2021",
             "/gegenstand/XXVII/NRSITZ/113",
             "XXVII",
@@ -575,22 +573,22 @@
             "2356368"
         ],
         [
-            "23.02.2022",
-            "/gegenstand/XXVII/NRSITZ/141",
+            "17.04.2024",
+            "/gegenstand/XXVII/NRSITZ/259",
             "XXVII",
             "NRSITZ",
-            141,
-            "141. Sitzung (141/NRSITZ)",
-            "141/NRSITZ",
+            259,
+            "259. Sitzung (259/NRSITZ)",
+            "259/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "2022-02-23T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/141/fname_1575988.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/141/fnameorig_1575988.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2024-04-17T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/259/fname_1666355.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/259/fnameorig_1666355.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            138313,
+            14784748,
             "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/141?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "21178088"
+            "<a href=\"/gegenstand/XXVII/NRSITZ/259?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "23533141"
         ],
         [
             "01.06.2023",
@@ -611,6 +609,24 @@
             "22871712"
         ],
         [
+            "23.02.2022",
+            "/gegenstand/XXVII/NRSITZ/141",
+            "XXVII",
+            "NRSITZ",
+            141,
+            "141. Sitzung (141/NRSITZ)",
+            "141/NRSITZ",
+            "Plenarsitzung",
+            "Plenar-Sitzung",
+            "2022-02-23T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/141/fname_1575988.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/141/fnameorig_1575988.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            138313,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/141?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "21178088"
+        ],
+        [
             "14.06.2023",
             "/gegenstand/XXVII/NRSITZ/219",
             "XXVII",
@@ -629,24 +645,6 @@
             "22781901"
         ],
         [
-            "06.07.2023",
-            "/gegenstand/XXVII/NRSITZ/224",
-            "XXVII",
-            "NRSITZ",
-            224,
-            "224. Sitzung (224/NRSITZ)",
-            "224/NRSITZ",
-            "Plenarsitzung",
-            "Plenar-Sitzung",
-            "2023-07-06T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/224/fname_1613115.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/224/fnameorig_1613115.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "NRSITZ",
-            8654377,
-            "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/224?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "22294842"
-        ],
-        [
             "15.03.2020",
             "/gegenstand/XXVII/NRSITZ/16",
             "XXVII",
@@ -663,6 +661,24 @@
             "NRSITZ",
             "<a href=\"/gegenstand/XXVII/NRSITZ/16?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
             "2329664"
+        ],
+        [
+            "06.07.2023",
+            "/gegenstand/XXVII/NRSITZ/224",
+            "XXVII",
+            "NRSITZ",
+            224,
+            "224. Sitzung (224/NRSITZ)",
+            "224/NRSITZ",
+            "Plenarsitzung",
+            "Plenar-Sitzung",
+            "2023-07-06T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/224/fname_1613115.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/224/fnameorig_1613115.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            8654377,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/224?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "22294842"
         ],
         [
             "29.03.2023",
@@ -917,24 +933,6 @@
             "2353755"
         ],
         [
-            "12.05.2023",
-            "/gegenstand/XXVII/NRSITZ/211",
-            "XXVII",
-            "NRSITZ",
-            211,
-            "211. Sitzung (211/NRSITZ)",
-            "211/NRSITZ",
-            "Plenarsitzung",
-            "Plenar-Sitzung",
-            "2023-05-12T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/211/fname_1598890.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/211/fnameorig_1598890.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "NRSITZ",
-            8197677,
-            "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/211?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "21921350"
-        ],
-        [
             "27.02.2020",
             "/gegenstand/XXVII/NRSITZ/12",
             "XXVII",
@@ -951,6 +949,24 @@
             "NRSITZ",
             "<a href=\"/gegenstand/XXVII/NRSITZ/12?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
             "2342123"
+        ],
+        [
+            "12.05.2023",
+            "/gegenstand/XXVII/NRSITZ/211",
+            "XXVII",
+            "NRSITZ",
+            211,
+            "211. Sitzung (211/NRSITZ)",
+            "211/NRSITZ",
+            "Plenarsitzung",
+            "Plenar-Sitzung",
+            "2023-05-12T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/211/fname_1598890.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/211/fnameorig_1598890.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            8197677,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/211?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "21921350"
         ],
         [
             "12.10.2022",
@@ -1187,6 +1203,24 @@
             "23687439"
         ],
         [
+            "20.11.2020",
+            "/gegenstand/XXVII/NRSITZ/64",
+            "XXVII",
+            "NRSITZ",
+            64,
+            "64. Sitzung (64/NRSITZ)",
+            "64/NRSITZ",
+            "Plenarsitzung",
+            "Plenar-Sitzung",
+            "2020-11-20T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/64/fname_885549.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/64/fnameorig_885549.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            138005,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/64?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "2354049"
+        ],
+        [
             "22.09.2021",
             "/gegenstand/XXVII/NRSITZ/121",
             "XXVII",
@@ -1221,24 +1255,6 @@
             "NRSITZ",
             "<a href=\"/gegenstand/XXVII/NRSITZ/266?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
             "23689650"
-        ],
-        [
-            "20.11.2020",
-            "/gegenstand/XXVII/NRSITZ/64",
-            "XXVII",
-            "NRSITZ",
-            64,
-            "64. Sitzung (64/NRSITZ)",
-            "64/NRSITZ",
-            "Plenarsitzung",
-            "Plenar-Sitzung",
-            "2020-11-20T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/64/fname_885549.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/64/fnameorig_885549.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "NRSITZ",
-            138005,
-            "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/64?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "2354049"
         ],
         [
             "27.04.2022",
@@ -1799,24 +1815,6 @@
             "23033939"
         ],
         [
-            "05.07.2023",
-            "/gegenstand/XXVII/NRSITZ/222",
-            "XXVII",
-            "NRSITZ",
-            222,
-            "222. Sitzung (222/NRSITZ)",
-            "222/NRSITZ",
-            "Plenarsitzung",
-            "Plenar-Sitzung",
-            "2023-07-05T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/222/fname_1617810.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/222/fnameorig_1617810.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "NRSITZ",
-            8654328,
-            "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/222?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "22380545"
-        ],
-        [
             "13.12.2022",
             "/gegenstand/XXVII/NRSITZ/187",
             "XXVII",
@@ -1833,6 +1831,24 @@
             "NRSITZ",
             "<a href=\"/gegenstand/XXVII/NRSITZ/187?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
             "21923905"
+        ],
+        [
+            "05.07.2023",
+            "/gegenstand/XXVII/NRSITZ/222",
+            "XXVII",
+            "NRSITZ",
+            222,
+            "222. Sitzung (222/NRSITZ)",
+            "222/NRSITZ",
+            "Plenarsitzung",
+            "Plenar-Sitzung",
+            "2023-07-05T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/222/fname_1617810.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/222/fnameorig_1617810.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            8654328,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/222?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "22380545"
         ],
         [
             "07.07.2020",
@@ -1889,24 +1905,6 @@
             "2345494"
         ],
         [
-            "24.11.2023",
-            "/gegenstand/XXVII/NRSITZ/241",
-            "XXVII",
-            "NRSITZ",
-            241,
-            "241. Sitzung (241/NRSITZ)",
-            "241/NRSITZ",
-            "Plenarsitzung",
-            "Plenar-Sitzung",
-            "2023-11-24T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/241/fname_1629737.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/241/fnameorig_1629737.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "NRSITZ",
-            10102279,
-            "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/241?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "22713157"
-        ],
-        [
             "15.10.2020",
             "/gegenstand/XXVII/NRSITZ/58",
             "XXVII",
@@ -1923,6 +1921,24 @@
             "NRSITZ",
             "<a href=\"/gegenstand/XXVII/NRSITZ/58?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
             "2350706"
+        ],
+        [
+            "24.11.2023",
+            "/gegenstand/XXVII/NRSITZ/241",
+            "XXVII",
+            "NRSITZ",
+            241,
+            "241. Sitzung (241/NRSITZ)",
+            "241/NRSITZ",
+            "Plenarsitzung",
+            "Plenar-Sitzung",
+            "2023-11-24T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/241/fname_1629737.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/241/fnameorig_1629737.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            10102279,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/241?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "22713157"
         ],
         [
             "19.05.2021",

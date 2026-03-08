@@ -1,6 +1,6 @@
 {
     "pages": 2,
-    "lastSync": "2026-02-25 18:52:43.0",
+    "lastSync": "2026-03-07 20:20:44.0",
     "count": 74,
     "header": [
         {
@@ -8,222 +8,246 @@
             "feldId": 441,
             "export_jn": "1",
             "hidden": true,
+            "hideValue": false,
             "rnr": 1,
+            "valueToNull": false,
             "listeId": 701,
             "label": "Gremium",
-            "feld_name": "GREMIUM",
-            "includeHeader": true
+            "feld_name": "GREMIUM"
         },
         {
             "feldId": 442,
             "hidden": true,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "GREMIUM_TEXT",
-            "includeHeader": true
+            "feld_name": "GREMIUM_TEXT"
         },
         {
             "feldId": 443,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "GREMIUM_SORT",
-            "includeHeader": true
+            "feld_name": "GREMIUM_SORT"
         },
         {
             "filterable": "1",
             "feldId": 444,
             "export_jn": "1",
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 701,
             "label": "GP",
-            "feld_name": "GP_CODE",
-            "includeHeader": true
+            "feld_name": "GP_CODE"
         },
         {
             "feldId": 445,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "GP_TEXT",
-            "includeHeader": true
+            "feld_name": "GP_TEXT"
         },
         {
             "feldId": 446,
             "hidden": true,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "GP_SORT",
-            "includeHeader": true
+            "feld_name": "GP_SORT"
         },
         {
             "filterable": "1",
             "feldId": 461,
             "export_jn": "1",
             "hidden": true,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "listeId": 701,
             "label": "Tagung",
-            "feld_name": "TAGUNG",
-            "includeHeader": true
+            "feld_name": "TAGUNG"
         },
         {
             "feldId": 462,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "TAGUNG_TEXT",
-            "includeHeader": true
+            "feld_name": "TAGUNG_TEXT"
         },
         {
             "feldId": 463,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "TAGUNG_SORT",
-            "includeHeader": true
+            "feld_name": "TAGUNG_SORT"
         },
         {
             "filterable": "1",
             "feldId": 464,
             "export_jn": "1",
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 701,
             "label": "Tagungsart",
-            "feld_name": "TAGUNGSART",
-            "includeHeader": true
+            "feld_name": "TAGUNGSART"
         },
         {
             "feldId": 465,
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "TAGUNGSART_TEXT",
-            "includeHeader": true
+            "feld_name": "TAGUNGSART_TEXT"
         },
         {
             "feldId": 466,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "TAGUNGSART_SORT",
-            "includeHeader": true
+            "feld_name": "TAGUNGSART_SORT"
         },
         {
             "feldId": 467,
             "export_jn": "1",
-            "ist_range": "1",
             "hidden": true,
+            "ist_range": "1",
+            "hideValue": false,
             "rnr": 13,
-            "mediaType": "fromDate",
+            "valueToNull": false,
             "listeId": 701,
+            "mediaType": "fromDate",
             "label": "von",
-            "feld_name": "VON",
-            "includeHeader": true
+            "feld_name": "VON"
         },
         {
             "feldId": 468,
             "export_jn": "1",
             "hidden": true,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 701,
             "label": "bis",
-            "feld_name": "BIS",
-            "includeHeader": true
+            "feld_name": "BIS"
         },
         {
             "feldId": 472,
             "export_jn": "1",
             "hidden": true,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "SIAKT",
-            "includeHeader": true
+            "feld_name": "SIAKT"
         },
         {
             "feldId": 473,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "SIAKT_TEXT",
-            "includeHeader": true
+            "feld_name": "SIAKT_TEXT"
         },
         {
             "feldId": 474,
             "hidden": true,
+            "hideValue": false,
             "rnr": 17,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "SIAKT_SORT",
-            "includeHeader": true
+            "feld_name": "SIAKT_SORT"
         },
         {
             "feldId": 491,
             "hidden": true,
+            "hideValue": false,
             "rnr": 18,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "AKT",
-            "includeHeader": true
+            "feld_name": "AKT"
         },
         {
             "feldId": 492,
             "hidden": true,
+            "hideValue": false,
             "rnr": 19,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "AKT_TEXT",
-            "includeHeader": true
+            "feld_name": "AKT_TEXT"
         },
         {
             "feldId": 493,
             "hidden": true,
+            "hideValue": false,
             "rnr": 20,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "AKT_SORT",
-            "includeHeader": true
+            "feld_name": "AKT_SORT"
         },
         {
             "filterable": "1",
             "feldId": 486,
             "hidden": false,
             "sort_rnr": 22,
+            "valueToNull": false,
             "display_rnr": 1,
             "label": "Datum",
             "sortable": "1",
             "css_class": "datum-col",
+            "hideValue": false,
             "rnr": 21,
             "listeId": 701,
             "feld_name": "DATUM",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 488,
             "hidden": true,
+            "hideValue": false,
             "rnr": 22,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "DATUM_SORT",
-            "includeHeader": true
+            "feld_name": "DATUM_SORT"
         },
         {
             "feldId": 489,
             "display_sql": "${SIAKT}=AKT",
             "link_rnr": "24",
             "hidden": true,
+            "hideValue": false,
             "rnr": 23,
-            "display_rnr": 3,
+            "valueToNull": false,
             "listeId": 701,
+            "display_rnr": 3,
             "label": "Betreff",
-            "feld_name": "TITLE",
-            "includeHeader": true
+            "feld_name": "TITLE"
         },
         {
             "feldId": 490,
             "hidden": true,
+            "hideValue": false,
             "rnr": 24,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "URL",
-            "includeHeader": true
+            "feld_name": "URL"
         },
         {
             "tooltip_rnr": 26,
@@ -232,129 +256,141 @@
             "export_jn": "1",
             "hidden": false,
             "sort_rnr": 27,
+            "valueToNull": false,
             "display_rnr": 6,
             "label": "Sitzungsart",
             "sortable": "1",
             "css_class": "datum-col",
+            "hideValue": false,
             "rnr": 25,
             "listeId": 701,
             "feld_name": "SITZUNGSART",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 470,
             "hidden": true,
+            "hideValue": false,
             "rnr": 26,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "SITZUNGSART_TEXT",
-            "includeHeader": true
+            "feld_name": "SITZUNGSART_TEXT"
         },
         {
             "feldId": 471,
             "hidden": true,
+            "hideValue": false,
             "rnr": 27,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "SITZUNGSART_SORT",
-            "includeHeader": true
+            "feld_name": "SITZUNGSART_SORT"
         },
         {
-            "css_class": "datum-col",
             "filterable": "1",
             "feldId": 475,
             "link_rnr": "29",
             "hidden": false,
-            "rnr": 28,
+            "valueToNull": false,
             "display_rnr": 5,
-            "listeId": 701,
             "label": "Sitzung",
+            "css_class": "datum-col",
+            "hideValue": false,
+            "rnr": 28,
+            "listeId": 701,
             "feld_name": "SITZUNG",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 494,
             "hidden": true,
+            "hideValue": false,
             "rnr": 29,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "SITZUNG_URL",
-            "includeHeader": true
+            "feld_name": "SITZUNG_URL"
         },
         {
             "feldId": 495,
             "display_sql": "${SIAKT}=SI",
             "hidden": false,
+            "hideValue": false,
             "rnr": 30,
+            "valueToNull": false,
             "listeId": 701,
             "label": "Tagesordnung",
-            "feld_name": "AGENDA",
-            "includeHeader": true
+            "feld_name": "AGENDA"
         },
         {
             "tooltip_rnr": 32,
             "feldId": 496,
             "display_sql": "${SIAKT}=AKT",
             "hidden": true,
+            "valueToNull": false,
             "display_rnr": 2,
             "label": "Art",
             "sortable": "1",
             "css_class": "datum-col",
+            "hideValue": false,
             "rnr": 31,
             "listeId": 701,
             "feld_name": "DOKTYP",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 497,
             "hidden": true,
+            "hideValue": false,
             "rnr": 32,
+            "valueToNull": false,
             "listeId": 701,
-            "feld_name": "DOKTYP_TEXT",
-            "includeHeader": true
+            "feld_name": "DOKTYP_TEXT"
         },
         {
-            "css_class": "datum-col",
             "feldId": 498,
             "display_sql": "${SIAKT}=AKT",
             "hidden": true,
-            "rnr": 33,
+            "valueToNull": false,
             "display_rnr": 4,
-            "listeId": 701,
             "label": "Nummer",
             "sortable": "1",
+            "css_class": "datum-col",
+            "hideValue": false,
+            "rnr": 33,
+            "listeId": 701,
             "feld_name": "ZITATION",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 505,
             "hidden": true,
+            "hideValue": false,
             "rnr": 34,
+            "valueToNull": false,
             "listeId": 701,
             "label": "In300Tagen",
-            "feld_name": "INDH",
-            "includeHeader": true
+            "feld_name": "INDH"
         },
         {
             "feldId": 507,
             "hidden": true,
+            "hideValue": false,
             "rnr": 35,
+            "valueToNull": false,
             "listeId": 701,
             "feld_name": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 1003,
             "hidden": true,
+            "hideValue": false,
             "rnr": 36,
-            "mediaType": "themen",
+            "valueToNull": false,
             "listeId": 701,
+            "mediaType": "themen",
             "label": "Themen",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         }
     ],
     "rows": [

@@ -169,16 +169,17 @@ get_plenary_meeting_details <- function(
         checkmate::assert_choice(institution, choices = c("NR", "BR"))
         institution_code <- switch(institution, NR = "NRSITZ", BR = "BRSITZ")
 
-        legis_period_roman <- aux_convert_legis_periods(
-            as.character(legis_period), output = "roman"
-        )
-
         checkmate::assert_scalar(meeting_number)
         meeting_number_str <- as.character(meeting_number)
+        path_prefix <- if (identical(institution, "BR")) {
+            "BR"
+        } else {
+            aux_convert_legis_periods(as.character(legis_period), output = "roman")
+        }
 
         url <- stringr::str_c(
             prefix, "gegenstand/",
-            legis_period_roman, "/", institution_code, "/", meeting_number_str
+            path_prefix, "/", institution_code, "/", meeting_number_str
         )
     } else {
         checkmate::assert_string(url)
@@ -196,18 +197,12 @@ get_plenary_meeting_details <- function(
     }
 
     # FETCH PAGE AND EXTRACT EMBEDDED JAVASCRIPT DATA
-    page <- rvest::read_html(url)
+    page <- .parlat_fetch_html(url)
 
     # jsonlite simplifies the heterogeneous content array into a single
     # data frame with all keys merged across the 3 content items.
     # Row 1 = meeting metadata, row 2 = session info + debates, row 3 = progress.
-    content <- page |>
-        rvest::html_elements("script") |>
-        rvest::html_text2() |>
-        (\(x) x[stringr::str_detect(x, "props:")])() |>
-        stringr::str_extract("(?s)props:.*") |>
-        stringr::str_remove("props:\\s*") |>
-        stringr::str_remove("\\}\\);\\s*$") |>
+    content <- .parlat_extract_props_json(page) |>
         jsonlite::fromJSON() |>
         (\(x) x$data$content)()
 
@@ -351,11 +346,19 @@ get_plenary_meeting_details <- function(
                 if (is.data.frame(f) && nrow(f) > 0) f$title[1] else NA_character_
             })
         ) |>
-            dplyr::filter(!is.na(stage_text)) |>
+            dplyr::filter(!is.na(.data$stage_text)) |>
             dplyr::mutate(
-                agenda_item = dplyr::if_else(stringr::str_starts(stage_date, "TOP"), stage_date, NA_character_),
-                stage_date  = dplyr::if_else(stringr::str_starts(stage_date, "TOP"), NA_character_, stage_date),
-                .after = stage_date
+                agenda_item = dplyr::if_else(
+                    stringr::str_starts(.data$stage_date, "TOP"),
+                    .data$stage_date,
+                    NA_character_
+                ),
+                stage_date  = dplyr::if_else(
+                    stringr::str_starts(.data$stage_date, "TOP"),
+                    NA_character_,
+                    .data$stage_date
+                ),
+                .after = "stage_date"
             ) |>
             dplyr::mutate(
                 meeting_url      = url,

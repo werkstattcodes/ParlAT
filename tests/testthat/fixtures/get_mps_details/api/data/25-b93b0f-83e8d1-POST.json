@@ -1,178 +1,197 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-26 02:42:31.0",
+    "lastSync": "2026-03-07 13:20:53.0",
     "count": 17,
     "header": [
         {
             "css_class": "stellungnahmen-col ",
             "feldId": 181,
             "hidden": false,
+            "hideValue": false,
             "sort_rnr": 19,
             "rnr": 1,
+            "valueToNull": false,
             "listeId": 25,
             "label": "GP",
             "sortable": "1",
-            "class": "stellungnahmen-col ",
-            "includeHeader": true
+            "class": "stellungnahmen-col "
         },
         {
             "tooltip_rnr": 10,
             "css_class": "stellungnahmen-col ",
             "feldId": 183,
             "hidden": false,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 25,
             "label": "Art",
             "feld_name": "ityp",
-            "class": "stellungnahmen-col ",
-            "includeHeader": true
+            "class": "stellungnahmen-col "
         },
         {
             "feldId": 193,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "?",
-            "includeHeader": true
+            "label": "?"
         },
         {
             "feldId": 194,
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "?",
-            "includeHeader": true
+            "label": "?"
         },
         {
             "css_class": "datum-col",
             "feldId": 185,
             "hidden": false,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 25,
             "label": "Nr",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 184,
             "link_rnr": "8",
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "Betreff",
-            "includeHeader": true
+            "label": "Betreff"
         },
         {
             "css_class": "datum-col",
             "feldId": 182,
             "hidden": false,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "listeId": 25,
             "label": "Aktualisierung",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 188,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "Link",
-            "includeHeader": true
+            "label": "Link"
         },
         {
             "feldId": 189,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "sortdate",
-            "includeHeader": true
+            "label": "sortdate"
         },
         {
             "feldId": 190,
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "Ityp Komm",
-            "includeHeader": true
+            "label": "Ityp Komm"
         },
         {
             "feldId": 191,
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "?",
-            "includeHeader": true
+            "label": "?"
         },
         {
             "feldId": 186,
             "hidden": false,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "mediaType": "status",
             "listeId": 25,
-            "label": "Status",
-            "includeHeader": true
+            "label": "Status"
         },
         {
             "feldId": 192,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "?",
-            "includeHeader": true
+            "label": "?"
         },
         {
             "feldId": 187,
             "hidden": true,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 25,
             "label": "PAD_INTERN",
-            "feld_name": "PAD_INTERN",
-            "includeHeader": true
+            "feld_name": "PAD_INTERN"
         },
         {
             "feldId": 970,
             "hidden": true,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "mediaType": "fromDate",
             "listeId": 25,
-            "label": "fromDate",
-            "includeHeader": true
+            "label": "fromDate"
         },
         {
             "feldId": 1085,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "listeId": 25,
             "label": "gremium",
-            "feld_name": "gremium",
-            "includeHeader": true
+            "feld_name": "gremium"
         },
         {
             "feldId": 1086,
             "hidden": true,
+            "hideValue": false,
             "rnr": 17,
+            "valueToNull": false,
             "listeId": 25,
             "label": "gp_text_full",
-            "feld_name": "gp_text_full",
-            "includeHeader": true
+            "feld_name": "gp_text_full"
         },
         {
             "feldId": 1880,
             "hidden": true,
+            "hideValue": false,
             "rnr": 18,
+            "valueToNull": false,
             "listeId": 25,
             "label": "vhg4",
-            "feld_name": "vhg4",
-            "includeHeader": true
+            "feld_name": "vhg4"
         },
         {
             "feldId": 2265,
             "hidden": true,
+            "hideValue": false,
             "rnr": 19,
+            "valueToNull": false,
             "listeId": 25,
-            "label": "sort",
-            "includeHeader": true
+            "label": "sort"
         }
     ],
     "rows": [
@@ -389,6 +408,27 @@
         [
             "XXI",
             "A",
+            "00070",
+            null,
+            "70/A",
+            "Konsumentenschutzgesetz, Änderung ",
+            "06.06.2000",
+            "/gegenstand/XXI/A/70",
+            "20000606",
+            "Selbständiger Antrag",
+            "05",
+            "5",
+            "Aktualisiert:\n26.01.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nKonsumentenschutzgesetz, Änderung \n<br />\nNr.:\n70/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (124 d.B.)\n<br /> Phase:\n05\n<br />\n",
+            "145",
+            "Tue Jun 06 02:00:00 CEST 2000",
+            "N",
+            "XXI",
+            "A",
+            "1999102920000606"
+        ],
+        [
+            "XXI",
+            "A",
             "00066",
             null,
             "66/A",
@@ -421,27 +461,6 @@
             "05",
             "5",
             "Aktualisiert:\n24.02.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nKonsumentenschutzgesetz, Änderung \n<br />\nNr.:\n91/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (124 d.B.)\n<br /> Phase:\n05\n<br />\n",
-            "145",
-            "Tue Jun 06 02:00:00 CEST 2000",
-            "N",
-            "XXI",
-            "A",
-            "1999102920000606"
-        ],
-        [
-            "XXI",
-            "A",
-            "00070",
-            null,
-            "70/A",
-            "Konsumentenschutzgesetz, Änderung ",
-            "06.06.2000",
-            "/gegenstand/XXI/A/70",
-            "20000606",
-            "Selbständiger Antrag",
-            "05",
-            "5",
-            "Aktualisiert:\n26.01.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nKonsumentenschutzgesetz, Änderung \n<br />\nNr.:\n70/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (124 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Jun 06 02:00:00 CEST 2000",
             "N",

@@ -1,3 +1,27 @@
+#' @noRd
+.align_get_items_export_rows <- function(rows, vec_headings, col_positions) {
+  if (length(rows) == 0) {
+    return(NULL)
+  }
+
+  df_res <- rows |>
+    as.data.frame()
+
+  if (ncol(df_res) <= length(vec_headings)) {
+    # Compact: rows are already aligned to visible headers sequentially.
+    # Some trailing headers may lack data (ncol < length(vec_headings)).
+    colnames(df_res) <- vec_headings[seq_len(ncol(df_res))]
+  } else {
+    # Sparse: rows are keyed by rnr positions, possibly truncated at a
+    # position lower than max(rnr). Select only positions within bounds.
+    valid <- col_positions <= ncol(df_res)
+    df_res <- df_res[, col_positions[valid], drop = FALSE]
+    colnames(df_res) <- vec_headings[valid]
+  }
+
+  df_res
+}
+
 #' Get items under negotiation ('Verhandlungsgegenstände')
 #' @encoding UTF-8
 #' @description
@@ -1159,24 +1183,9 @@ get_items <- function(
 
   rows <- purrr::pluck(resp_json, "rows")
 
-  if (length(rows) == 0) {
-    df_res <- NULL
-  } else {
-    df_res <- rows %>%
-      as.data.frame()
-
-    # The API can return either:
-    # 1. sparse export rows keyed by `rnr`, or
-    # 2. compact export rows already aligned to the visible headers.
-    # Fall back to sequential header alignment when the response is compact,
-    # otherwise columns like "Klub/Fraktion" are dropped.
-    if (ncol(df_res) >= max(col_positions)) {
-      df_res <- df_res[, col_positions, drop = FALSE]
-      colnames(df_res) <- vec_headings
-    } else {
-      colnames(df_res) <- vec_headings[seq_len(ncol(df_res))]
-    }
-  }
+  # The API can return either sparse export rows keyed by `rnr` or compact rows
+  # already aligned to the visible headers.
+  df_res <- .align_get_items_export_rows(rows, vec_headings, col_positions)
 
   # RETURN ECHO
   if (echo == TRUE) {

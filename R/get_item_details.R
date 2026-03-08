@@ -2,7 +2,9 @@
 # Returns NA_character_ for NULL/NA input; falls back to the raw string on
 # parse error (the input may already be plain text).
 .strip_html <- function(x) {
-  if (is.null(x) || is.na(x)) return(NA_character_)
+  if (is.null(x) || is.na(x)) {
+    return(NA_character_)
+  }
   tryCatch(
     rvest::read_html(x) |> rvest::html_text2(),
     error = function(e) x
@@ -12,55 +14,73 @@
 # Parse item-level documents from the API JSON.
 # Returns a tibble with columns doc_title, link, type, or NULL if empty.
 .parse_item_documents <- function(docs_list) {
-  if (is.null(docs_list) || length(docs_list) == 0) return(NULL)
+  if (is.null(docs_list) || length(docs_list) == 0) {
+    return(NULL)
+  }
   if (is.data.frame(docs_list)) {
     # jsonlite may simplify to a data.frame with a nested documents column
     purrr::map2(docs_list$title, docs_list$documents, \(title, inner) {
-      if (is.null(inner) || length(inner) == 0) return(tibble::tibble())
+      if (is.null(inner) || length(inner) == 0) {
+        return(tibble::tibble())
+      }
       if (is.data.frame(inner)) {
         inner$doc_title <- title %||% NA_character_
         return(inner[c("doc_title", "link", "type")])
       }
       tibble::tibble(
         doc_title = title %||% NA_character_,
-        link      = purrr::map_chr(inner, \(d) d$link %||% NA_character_),
-        type      = purrr::map_chr(inner, \(d) d$type %||% NA_character_)
+        link = purrr::map_chr(inner, \(d) d$link %||% NA_character_),
+        type = purrr::map_chr(inner, \(d) d$type %||% NA_character_)
       )
-    }) |> purrr::list_rbind()
+    }) |>
+      purrr::list_rbind()
   } else {
     purrr::map(docs_list, \(doc) {
       inner <- doc$documents
-      if (is.null(inner) || length(inner) == 0) return(tibble::tibble())
+      if (is.null(inner) || length(inner) == 0) {
+        return(tibble::tibble())
+      }
       tibble::tibble(
         doc_title = doc$title %||% NA_character_,
-        link      = purrr::map_chr(inner, \(d) d$link %||% NA_character_),
-        type      = purrr::map_chr(inner, \(d) d$type %||% NA_character_)
+        link = purrr::map_chr(inner, \(d) d$link %||% NA_character_),
+        type = purrr::map_chr(inner, \(d) d$type %||% NA_character_)
       )
-    }) |> purrr::list_rbind()
+    }) |>
+      purrr::list_rbind()
   }
 }
 
 # Parse introducer information from the API JSON `names` field.
 # Returns a tibble with columns role, name, frak_code, url, or NULL if empty.
 .parse_introducers <- function(names_list) {
-  if (is.null(names_list) || length(names_list) == 0) return(NULL)
+  if (is.null(names_list) || length(names_list) == 0) {
+    return(NULL)
+  }
   base_url <- "https://www.parlament.gv.at"
   if (is.data.frame(names_list)) {
     tibble::tibble(
-      role      = names_list$funktext %||% NA_character_,
-      name      = names_list$name %||% NA_character_,
+      role = names_list$funktext %||% NA_character_,
+      name = names_list$name %||% NA_character_,
       frak_code = names_list$frak_code %||% NA_character_,
-      url       = ifelse(is.na(names_list$url), NA_character_,
-                         stringr::str_c(base_url, names_list$url))
+      url = ifelse(
+        is.na(names_list$url),
+        NA_character_,
+        stringr::str_c(base_url, names_list$url)
+      )
     )
   } else {
     tibble::tibble(
-      role      = purrr::map_chr(names_list, \(n) n$funktext %||% NA_character_),
-      name      = purrr::map_chr(names_list, \(n) n$name %||% NA_character_),
-      frak_code = purrr::map_chr(names_list, \(n) n$frak_code %||% NA_character_),
-      url       = purrr::map_chr(names_list, \(n) {
-        if (is.null(n$url)) NA_character_
-        else stringr::str_c(base_url, n$url)
+      role = purrr::map_chr(names_list, \(n) n$funktext %||% NA_character_),
+      name = purrr::map_chr(names_list, \(n) n$name %||% NA_character_),
+      frak_code = purrr::map_chr(names_list, \(n) {
+        n$frak_code %||% NA_character_
+      }),
+      url = purrr::map_chr(names_list, \(n) {
+        if (is.null(n$url)) {
+          NA_character_
+        } else {
+          stringr::str_c(base_url, n$url)
+        }
       })
     )
   }
@@ -69,16 +89,18 @@
 # Parse related-item references from the API JSON.
 # Returns a tibble with columns text, subject, zitation, url, art, or NULL.
 .parse_references <- function(ref_list) {
-  if (is.null(ref_list) || length(ref_list) == 0) return(NULL)
+  if (is.null(ref_list) || length(ref_list) == 0) {
+    return(NULL)
+  }
   if (is.data.frame(ref_list)) {
     ref_list[c("text", "subject", "zitation", "url", "art")]
   } else {
     tibble::tibble(
-      text     = purrr::map_chr(ref_list, \(r) r$text %||% NA_character_),
-      subject  = purrr::map_chr(ref_list, \(r) r$subject %||% NA_character_),
+      text = purrr::map_chr(ref_list, \(r) r$text %||% NA_character_),
+      subject = purrr::map_chr(ref_list, \(r) r$subject %||% NA_character_),
       zitation = purrr::map_chr(ref_list, \(r) r$zitation %||% NA_character_),
-      url      = purrr::map_chr(ref_list, \(r) r$url %||% NA_character_),
-      art      = purrr::map_chr(ref_list, \(r) r$art %||% NA_character_)
+      url = purrr::map_chr(ref_list, \(r) r$url %||% NA_character_),
+      art = purrr::map_chr(ref_list, \(r) r$art %||% NA_character_)
     )
   }
 }
@@ -87,8 +109,12 @@
 # Returns a character vector of labels, or character(0) if empty.
 .extract_bubble_labels <- function(bubbles_obj) {
   bubbles <- bubbles_obj$data$bubbles
-  if (is.null(bubbles) || length(bubbles) == 0) return(character(0))
-  if (is.data.frame(bubbles)) return(bubbles$label)
+  if (is.null(bubbles) || length(bubbles) == 0) {
+    return(character(0))
+  }
+  if (is.data.frame(bubbles)) {
+    return(bubbles$label)
+  }
   purrr::map_chr(bubbles, \(b) b$label %||% NA_character_)
 }
 
@@ -230,11 +256,9 @@ get_item_details <- function(item_url, type = "stages") {
       (\(x) stringr::str_c(prefix, x))()
   }
 
-  # Fetch the item detail page.  The page is a server-rendered React/Vue app:
-  # all structured data lives inside an inline <script> block, not in the HTML
-  # DOM itself.  rvest::read_html() uses libcurl directly and is NOT intercepted
-  # by httptest2, so tests that call this function always hit the live network.
-  page <- rvest::read_html(item_url)
+  # Fetch the item detail page through httr2 so fixture recording can capture
+  # the HTML response before we parse it with rvest.
+  page <- .parlat_fetch_html(item_url)
 
   # ── JSON extraction ────────────────────────────────────────────────────────
   # The page embeds its data as a JavaScript object literal:
@@ -242,13 +266,7 @@ get_item_details <- function(item_url, type = "stages") {
   # We pick the <script> block that contains "props:", then carve out
   # everything from "props:" onward and strip the trailing "})" that closes the
   # ReactDOM.render() call, leaving a valid JSON string.
-  json_text <- page %>%
-    rvest::html_elements("script") %>%
-    rvest::html_text2() %>%
-    (\(x) x[stringr::str_detect(x, "props:")])() %>%
-    stringr::str_extract("(?s)props:.*") %>% # (?s) = dot matches newlines
-    stringr::str_remove("props:\\s*") %>%
-    stringr::str_remove("\\}\\);\\s*$")
+  json_text <- .parlat_extract_props_json(page)
 
   # fromJSON() with its default simplifyVector = TRUE recursively collapses
   # JSON arrays into R vectors/data frames wherever possible.  This is helpful
@@ -264,27 +282,29 @@ get_item_details <- function(item_url, type = "stages") {
   content <- data_list$content
 
   df_res <- tibble::tibble(
-    item_url           = item_url,
-    type               = content$type,
-    title              = content$title,
-    item_number        = content$zitation,
-    item_description   = content$description,
-    state_statements   = content$statementsstage,
-    state_approval     = content$approvalstate,
-    date_introduced    = if (!is.null(content$einlangen)) {
+    item_url = item_url,
+    type = content$type,
+    title = content$title,
+    item_number = content$zitation,
+    item_description = content$description,
+    state_statements = content$statementsstage,
+    state_approval = content$approvalstate,
+    date_introduced = if (!is.null(content$einlangen)) {
       as.Date(content$einlangen)
     } else {
       as.Date(NA)
     },
-    gp_code            = content$gp_code %||% NA_character_,
-    status_number      = content$status$number %||% NA_integer_,
-    status_description = .strip_html(content$status$description %||% NA_character_),
-    item_documents     = list(.parse_item_documents(content$documents)),
-    introducers        = list(.parse_introducers(content$names)),
-    references         = list(.parse_references(content$reference)),
-    topics             = list(.extract_bubble_labels(content$topics)),
-    headwords          = list(.extract_bubble_labels(content$headwords)),
-    eurovoc            = list(.extract_bubble_labels(content$eurovoc))
+    gp_code = content$gp_code %||% NA_character_,
+    status_number = content$status$number %||% NA_integer_,
+    status_description = .strip_html(
+      content$status$description %||% NA_character_
+    ),
+    item_documents = list(.parse_item_documents(content$documents)),
+    introducers = list(.parse_introducers(content$names)),
+    references = list(.parse_references(content$reference)),
+    topics = list(.extract_bubble_labels(content$topics)),
+    headwords = list(.extract_bubble_labels(content$headwords)),
+    eurovoc = list(.extract_bubble_labels(content$eurovoc))
   )
 
   # ── Code path A: phase/stages structure ───────────────────────────────────
@@ -334,7 +354,13 @@ get_item_details <- function(item_url, type = "stages") {
     }
 
     df_stages <- df_stages |>
-      dplyr::select(-dplyr::any_of(c("stage_fsth", "stage_priority", "id")))
+      dplyr::select(dplyr::any_of(c(
+        "phase",
+        "stage_name",
+        "stage_date",
+        "stage_names",
+        "speeches"
+      )))
 
     # Replicate the single-row item metadata to match the (possibly expanded)
     # stage table, then column-bind to produce one row per stage/session.
@@ -415,14 +441,14 @@ get_item_details <- function(item_url, type = "stages") {
     }
 
     df_stages <- df_stages |>
-      dplyr::select(-dplyr::any_of(c("fsth", "priority", "id")))
+      dplyr::select(dplyr::any_of(c("text", "date", "names", "speeches")))
 
     # Harmonise column names with path A so that bind_rows() across both paths
     # produces a single consistent schema.
     df_stages <- df_stages |>
       dplyr::rename(dplyr::any_of(c(
-        stage_name  = "text",
-        stage_date  = "date",
+        stage_name = "text",
+        stage_date = "date",
         stage_names = "names"
       ))) |>
       dplyr::mutate(phase = NA_character_, .before = 1L)
@@ -439,7 +465,7 @@ get_item_details <- function(item_url, type = "stages") {
   # Distinguish "no stages yet" (expected for fresh items) from truly unknown
   # structures that may need a new code path.
   has_stages_field <- !is.null(content$stages)
-  has_phase_field  <- !is.null(content$phase)
+  has_phase_field <- !is.null(content$phase)
 
   if (has_stages_field || has_phase_field) {
     cli::cli_warn(c(

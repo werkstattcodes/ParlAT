@@ -21,12 +21,23 @@ devtools::load_all()
 
 # Base path for fixtures
 fixture_base <- "tests/testthat/fixtures"
+record_targets <- Sys.getenv("PARLAT_RECORD_TARGETS", "")
+record_targets <- if (nzchar(record_targets)) {
+  trimws(strsplit(record_targets, ",", fixed = TRUE)[[1]])
+} else {
+  character(0)
+}
 
 #' Record fixtures for a function by running expressions
 #'
 #' @param func_name Name of the function (used as subdirectory)
 #' @param ... Expressions to execute and record
 record_fixtures <- function(func_name, ...) {
+  if (length(record_targets) > 0 && !func_name %in% record_targets) {
+    message("Skipping fixtures for: ", func_name)
+    return(invisible(NULL))
+  }
+
   fixture_dir <- file.path(fixture_base, func_name)
 
   # Clear existing fixtures for clean recording
@@ -281,6 +292,11 @@ record_fixtures(
     date_start = "01-01-2020",
     date_end = "31-12-2020",
     echo = FALSE
+  ),
+  get_items(
+    institution = "NR",
+    legis_period = 5,
+    echo = FALSE
   )
 )
 
@@ -289,7 +305,57 @@ record_fixtures(
   "get_item_details",
   get_item_details("https://www.parlament.gv.at/gegenstand/XXVII/GAST/2"),
   get_item_details("/gegenstand/XXVIII/BI/24"),
-  get_item_details("gegenstand/XXVIII/BI/24")
+  get_item_details("gegenstand/XXVIII/BI/24"),
+  get_item_details("/gegenstand/XXVIII/A/5"),
+  get_item_details("/gegenstand/XXVII/UEA/283")
+)
+
+# --- get_plenary_meeting_details ---
+record_fixtures(
+  "get_plenary_meeting_details",
+  get_plenary_meeting_details(
+    institution = "NR",
+    legis_period = 28,
+    meeting_number = 50
+  ),
+  get_plenary_meeting_details(
+    institution = "NR",
+    legis_period = 28,
+    meeting_number = 50,
+    details_on = "speakers"
+  ),
+  get_plenary_meeting_details(
+    institution = "NR",
+    legis_period = 28,
+    meeting_number = 50,
+    details_on = "decisions"
+  ),
+  get_plenary_meeting_details(
+    institution = "NR",
+    legis_period = 28,
+    meeting_number = 50,
+    details_on = "timeline"
+  ),
+  get_plenary_meeting_details(
+    institution = "BR",
+    legis_period = 27,
+    meeting_number = 898
+  ),
+  get_plenary_meeting_details(
+    institution = "BR",
+    legis_period = 27,
+    meeting_number = 898,
+    details_on = "timeline"
+  ),
+  get_plenary_meeting_details(
+    url = "https://www.parlament.gv.at/gegenstand/XXVIII/NRSITZ/50?selectedStage=100"
+  ),
+  get_plenary_meeting_details(
+    url = "https://www.parlament.gv.at/gegenstand/XXVIII/NRSITZ/50?selectedStage=110"
+  ),
+  get_plenary_meeting_details(
+    url = "/gegenstand/XXVIII/NRSITZ/50"
+  )
 )
 
 # --- get_participation ---
