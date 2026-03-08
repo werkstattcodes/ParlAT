@@ -1142,6 +1142,8 @@ get_items <- function(
     purrr::compact() %>% #keep only non-empty elements
     jsonlite::toJSON()
 
+  if (echo) cli::cli_alert_info("Fetching items from API...")
+
   req <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/101"
   ) %>%
@@ -1187,30 +1189,9 @@ get_items <- function(
   # already aligned to the visible headers.
   df_res <- .align_get_items_export_rows(rows, vec_headings, col_positions)
 
-  # RETURN ECHO
-  if (echo == TRUE) {
-    print(body_params)
-    # print url to results / transparency reasons / add search string parameter
-    body_params_li <- jsonlite::fromJSON(body_params)
-
-    query_string <- purrr::imap(
-      body_params_li,
-      \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
-      paste0(collapse = "&")
-
-    print(glue::glue(
-      "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
-    ))
-
-    print(if (is.null(df_res)) 0 else nrow(df_res))
-  }
-
   # STOP IF NO HITS
   if (is.null(df_res) || nrow(df_res) == 0) {
-    message("No results found for the provided search criteria.")
+    cli::cli_alert_warning("No results found for the provided search criteria.")
     return(NULL)
   }
 
@@ -1233,19 +1214,18 @@ get_items <- function(
     "schlagwort",
     "euro_voc"
   )
-  fn_parse_content <- function(x) {
-    x %>%
-      stringr::str_remove_all("\\[|\\]|\"") %>%
-      stringr::str_split(",") %>%
-      unlist() %>%
-      stringr::str_trim()
+  fn_parse_content_vec <- function(x) {
+    x |>
+      stringr::str_remove_all("\\[|\\]|\"") |>
+      stringr::str_split(",") |>
+      purrr::map(stringr::str_trim)
   }
 
-  df_res <- df_res %>%
+  df_res <- df_res |>
     dplyr::mutate(
       dplyr::across(
         dplyr::any_of(cols_pars),
-        \(x) purrr::map(x, \(y) fn_parse_content(y))
+        fn_parse_content_vec
       )
     )
 
@@ -1328,5 +1308,27 @@ get_items <- function(
   }
 
   # RETURN RESULT
+  if (echo) cli::cli_alert_success("Fetched {nrow(df_res)} item{?s}")
+
+  # ECHO: print search parameters and result URL
+  if (echo == TRUE) {
+    print(body_params)
+    body_params_li <- jsonlite::fromJSON(body_params)
+
+    query_string <- purrr::imap(
+      body_params_li,
+      \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
+    ) %>%
+      unlist() %>%
+      unname() %>%
+      paste0(collapse = "&")
+
+    print(glue::glue(
+      "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
+    ))
+
+    print(nrow(df_res))
+  }
+
   return(df_res)
 }
