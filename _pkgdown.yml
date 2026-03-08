@@ -25,6 +25,7 @@ reference:
       - get_mps_details
       - get_participation
       - get_persons
+      - get_plenary_meeting_details
       - get_plenary_meetings
       - get_transcripts
 
@@ -35,12 +36,10 @@ reference:
      - get_legis_periods
  
 
-exclude:
-  - CLAUDE.md
-  
 build:
   exclude:
     - CLAUDE.md
+    - journal.md
     - .github/copilot-instructions.md
 
 authors:
