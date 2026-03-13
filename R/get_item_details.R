@@ -366,7 +366,10 @@ get_item_details <- function(item_url, type = "stages") {
     # stage table, then column-bind to produce one row per stage/session.
     result <- df_res %>%
       dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
-      dplyr::bind_cols(df_stages)
+      dplyr::bind_cols(df_stages) |>
+      dplyr::relocate(dplyr::any_of(c(
+        "title", "item_number", "stage_date", "stage_name", "phase"
+      )))
 
     return(result)
   }
@@ -456,7 +459,10 @@ get_item_details <- function(item_url, type = "stages") {
     # Replicate item metadata and column-bind — same as path A.
     result <- df_res %>%
       dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
-      dplyr::bind_cols(df_stages)
+      dplyr::bind_cols(df_stages) |>
+      dplyr::relocate(dplyr::any_of(c(
+        "title", "item_number", "stage_date", "stage_name", "phase"
+      )))
 
     return(result)
   }

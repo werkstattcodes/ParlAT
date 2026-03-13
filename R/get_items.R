@@ -1281,7 +1281,8 @@ get_items <- function(
   df_res <- df_res %>%
     dplyr::select(dplyr::any_of(col_select)) %>%
     dplyr::relocate(dplyr::any_of(col_select)) %>% #ensures ordering of columns
-    dplyr::mutate(date = lubridate::dmy(.data$date))
+    dplyr::mutate(date = lubridate::dmy(.data$date)) |>
+    dplyr::arrange(dplyr::desc(.data$date))
 
   # CHECK FOR DUPLICATES
   # Check for completely duplicate rows across all columns
