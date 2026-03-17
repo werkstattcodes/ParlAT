@@ -45,7 +45,7 @@
 #' A summary of successful and failed downloads is printed at the conclusion of the download.
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Get transcripts using a search string and specifying a legislative period.
 #'   get_transcripts(search_string = "gesundheit",
 #'                   legis_period = 28,
@@ -291,7 +291,7 @@ get_transcripts <- function(
         if (ncol(df_res) != length(vec_headings)) {
             print("Warning: Columns and labels of different length!")
 
-            vec_headings <- vec_headings[1:ncol(df_res)]
+            vec_headings <- vec_headings[seq_len(ncol(df_res))]
         }
 
         colnames(df_res) <- vec_headings

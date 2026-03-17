@@ -1,6 +1,6 @@
 {
     "pages": 25,
-    "lastSync": "2026-03-07 20:20:44.0",
+    "lastSync": "2026-03-17 22:00:45.0",
     "count": 1206,
     "header": [
         {
@@ -126,8 +126,8 @@
         {
             "feldId": 467,
             "export_jn": "1",
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "hideValue": false,
             "rnr": 13,
             "valueToNull": false,

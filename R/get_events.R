@@ -116,7 +116,7 @@
 #' - `link2`: Secondary link (if available)
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Basic example: Get all National Council events
 #'   events <- get_events(institution = "NR")
 #'
@@ -371,11 +371,11 @@ get_events <- function(
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_verbose(
-            body_req = F,
-            header_req = F,
-            header_resp = F,
-            body_resp = F,
-            info = F
+            body_req = FALSE,
+            header_req = FALSE,
+            header_resp = FALSE,
+            body_resp = FALSE,
+            info = FALSE
         )
 
     resp <- httr2::req_perform(req)

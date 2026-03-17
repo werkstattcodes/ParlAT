@@ -1,6 +1,6 @@
 {
     "pages": 276,
-    "lastSync": "2026-03-07 04:53:34.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 276,
     "header": [
         {
@@ -179,22 +179,22 @@
     ],
     "rows": [
         [
-            "13.10.2022",
-            "/gegenstand/XXVII/NRSITZ/180",
+            "23.10.2019",
+            "/gegenstand/XXVII/NRSITZ/1",
             "XXVII",
             "NRSITZ",
-            180,
-            "180. Sitzung (180/NRSITZ)",
-            "180/NRSITZ",
+            1,
+            "1. Sitzung (1/NRSITZ)",
+            "1/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "2022-10-13T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/180/fname_1577022.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/180/fnameorig_1577022.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2019-10-23T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/1/fname_796482.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/1/fnameorig_796482.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            138469,
+            137753,
             "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/180?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "21232990"
+            "<a href=\"/gegenstand/XXVII/NRSITZ/1?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "2545467"
         ]
     ]
 }

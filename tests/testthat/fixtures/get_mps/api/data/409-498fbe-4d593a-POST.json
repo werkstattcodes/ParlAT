@@ -1,11 +1,11 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 20:53:05.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 4,
     "header": [
         {
-            "link_rnr": "16",
             "feldId": 605,
+            "link_rnr": "16",
             "hidden": false,
             "valueToNull": false,
             "mediaType": "title",
@@ -32,8 +32,8 @@
             "ist_werteliste": "1"
         },
         {
-            "export_jn": "0",
             "feldId": 604,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 3,
@@ -43,8 +43,8 @@
             "ist_web_item_id": "1"
         },
         {
-            "export_jn": "0",
             "feldId": 623,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 4,
@@ -94,8 +94,8 @@
             "feld_name": "ATTR_JSON"
         },
         {
-            "export_jn": "0",
             "feldId": 903,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 9,
@@ -105,8 +105,8 @@
             "feld_name": "PRAES"
         },
         {
-            "export_jn": "0",
             "feldId": 1223,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 10,
@@ -115,8 +115,8 @@
             "label": "vorname"
         },
         {
-            "export_jn": "0",
             "feldId": 1224,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 11,
@@ -134,8 +134,8 @@
             "label": "akgr"
         },
         {
-            "export_jn": "0",
             "feldId": 1226,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 13,
@@ -184,7 +184,6 @@
             "[\"KPÖ\",\"LB\",\"VO\"]",
             {
                 "zit": "Viktor Elser",
-                "fraktionen": "Klub der Österreichischen Volksopposition (O), Parlamentsklub der Kommunistischen Partei Österreichs (K), Klub des Linksblocks (Kommunisten und Linkssozialisten) (L)",
                 "item_type": "Biogr",
                 "frak": [
                     "KPÖ",
@@ -309,7 +308,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband IV (B, K u St.)",
                 "pad_intern": 309,
                 "medien": [
                     2099671
@@ -325,8 +323,8 @@
             "Elser",
             null,
             null,
-            "Klub der Österreichischen Volksopposition (O), Parlamentsklub der Kommunistischen Partei Österreichs (K), Klub des Linksblocks (Kommunisten und Linkssozialisten) (L)",
-            "Wahlkreisverband IV (B, K u St.)",
+            null,
+            null,
             "/person/309"
         ],
         [
@@ -339,7 +337,6 @@
             "[\"KPÖ\",\"KuL\",\"LB\",\"VO\"]",
             {
                 "zit": "Ernst Fischer",
-                "fraktionen": "Klub der Österreichischen Volksopposition (O), Parlamentsklub der Kommunistischen Partei Österreichs (K), Klub der Kommunisten und Linkssozialisten (K), Klub des Linksblocks (Kommunisten und Linkssozialisten) (L)",
                 "item_type": "Biogr",
                 "frak": [
                     "KPÖ",
@@ -513,7 +510,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband I (Wien)",
                 "pad_intern": 333,
                 "medien": [
                     4745021
@@ -529,8 +525,8 @@
             "Fischer",
             null,
             null,
-            "Klub der Österreichischen Volksopposition (O), Parlamentsklub der Kommunistischen Partei Österreichs (K), Klub der Kommunisten und Linkssozialisten (K), Klub des Linksblocks (Kommunisten und Linkssozialisten) (L)",
-            "Wahlkreisverband I (Wien)",
+            null,
+            null,
             "/person/333"
         ],
         [
@@ -543,7 +539,6 @@
             "[\"KPÖ\",\"KuL\",\"LB\",\"VO\"]",
             {
                 "zit": "Franz Honner",
-                "fraktionen": "Klub der Österreichischen Volksopposition (O), Parlamentsklub der Kommunistischen Partei Österreichs (K), Klub der Kommunisten und Linkssozialisten (K), Klub des Linksblocks (Kommunisten und Linkssozialisten) (L)",
                 "item_type": "Biogr",
                 "frak": [
                     "KPÖ",
@@ -720,7 +715,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Wienerwald, Wahlkreisverband II (Niederösterreich)",
                 "pad_intern": 645,
                 "medien": [
                     2100639
@@ -736,8 +730,8 @@
             "Honner",
             null,
             null,
-            "Klub der Österreichischen Volksopposition (O), Parlamentsklub der Kommunistischen Partei Österreichs (K), Klub der Kommunisten und Linkssozialisten (K), Klub des Linksblocks (Kommunisten und Linkssozialisten) (L)",
-            "Viertel unterm Wienerwald, Wahlkreisverband II (Niederösterreich)",
+            null,
+            null,
             "/person/645"
         ],
         [
@@ -750,7 +744,6 @@
             "[\"KPÖ\",\"KuL\",\"LB\",\"VO\"]",
             {
                 "zit": "Johann Koplenig",
-                "fraktionen": "Klub der Österreichischen Volksopposition (O), Parlamentsklub der Kommunistischen Partei Österreichs (K), Klub der Kommunisten und Linkssozialisten (K), Klub des Linksblocks (Kommunisten und Linkssozialisten) (L)",
                 "item_type": "Biogr",
                 "frak": [
                     "KPÖ",
@@ -926,7 +919,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nordost, Wahlkreisverband I (Wien)",
                 "pad_intern": 914,
                 "medien": [
                     2099916
@@ -942,8 +934,8 @@
             "Koplenig",
             null,
             null,
-            "Klub der Österreichischen Volksopposition (O), Parlamentsklub der Kommunistischen Partei Österreichs (K), Klub der Kommunisten und Linkssozialisten (K), Klub des Linksblocks (Kommunisten und Linkssozialisten) (L)",
-            "Wien Nordost, Wahlkreisverband I (Wien)",
+            null,
+            null,
             "/person/914"
         ]
     ]

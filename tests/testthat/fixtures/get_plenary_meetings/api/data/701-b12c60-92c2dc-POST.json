@@ -1,12 +1,12 @@
 {
     "pages": 25,
-    "lastSync": "2026-03-07 20:20:44.0",
+    "lastSync": "2026-03-17 22:00:45.0",
     "count": 1206,
     "header": [
         {
             "filterable": "1",
-            "feldId": 441,
             "export_jn": "1",
+            "feldId": 441,
             "hidden": true,
             "hideValue": false,
             "rnr": 1,
@@ -35,8 +35,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 444,
             "export_jn": "1",
+            "feldId": 444,
             "hidden": true,
             "hideValue": false,
             "rnr": 4,
@@ -65,8 +65,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 461,
             "export_jn": "1",
+            "feldId": 461,
             "hidden": true,
             "hideValue": false,
             "rnr": 7,
@@ -95,8 +95,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 464,
             "export_jn": "1",
+            "feldId": 464,
             "hidden": true,
             "hideValue": false,
             "rnr": 10,
@@ -124,21 +124,21 @@
             "feld_name": "TAGUNGSART_SORT"
         },
         {
-            "feldId": 467,
             "export_jn": "1",
+            "feldId": 467,
             "hidden": true,
             "ist_range": "1",
             "hideValue": false,
             "rnr": 13,
             "valueToNull": false,
-            "listeId": 701,
             "mediaType": "fromDate",
+            "listeId": 701,
             "label": "von",
             "feld_name": "VON"
         },
         {
-            "feldId": 468,
             "export_jn": "1",
+            "feldId": 468,
             "hidden": true,
             "hideValue": false,
             "rnr": 14,
@@ -148,8 +148,8 @@
             "feld_name": "BIS"
         },
         {
-            "feldId": 472,
             "export_jn": "1",
+            "feldId": 472,
             "hidden": true,
             "hideValue": false,
             "rnr": 15,
@@ -228,9 +228,9 @@
             "feld_name": "DATUM_SORT"
         },
         {
-            "feldId": 489,
             "display_sql": "${SIAKT}=AKT",
             "link_rnr": "24",
+            "feldId": 489,
             "hidden": false,
             "hideValue": false,
             "rnr": 23,
@@ -251,9 +251,9 @@
         },
         {
             "tooltip_rnr": 26,
-            "feldId": 469,
             "display_sql": "${SIAKT}=SI",
             "export_jn": "1",
+            "feldId": 469,
             "hidden": true,
             "sort_rnr": 27,
             "valueToNull": false,
@@ -287,8 +287,8 @@
         },
         {
             "filterable": "1",
-            "feldId": 475,
             "link_rnr": "29",
+            "feldId": 475,
             "hidden": false,
             "valueToNull": false,
             "display_rnr": 5,
@@ -310,8 +310,8 @@
             "feld_name": "SITZUNG_URL"
         },
         {
-            "feldId": 495,
             "display_sql": "${SIAKT}=SI",
+            "feldId": 495,
             "hidden": true,
             "hideValue": false,
             "rnr": 30,
@@ -322,8 +322,8 @@
         },
         {
             "tooltip_rnr": 32,
-            "feldId": 496,
             "display_sql": "${SIAKT}=AKT",
+            "feldId": 496,
             "hidden": false,
             "valueToNull": false,
             "display_rnr": 2,
@@ -346,8 +346,8 @@
             "feld_name": "DOKTYP_TEXT"
         },
         {
-            "feldId": 498,
             "display_sql": "${SIAKT}=AKT",
+            "feldId": 498,
             "hidden": false,
             "valueToNull": false,
             "display_rnr": 4,
@@ -386,8 +386,8 @@
             "hideValue": false,
             "rnr": 36,
             "valueToNull": false,
-            "listeId": 701,
             "mediaType": "themen",
+            "listeId": 701,
             "label": "Themen",
             "feld_name": "THEMEN",
             "ist_werteliste": "1"

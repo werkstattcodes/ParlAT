@@ -45,7 +45,7 @@
 #' Returns NULL if no results are found for the provided search criteria.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Basic search for committees in National Council
 #' get_committees(
 #'   institution = "NR",
@@ -130,7 +130,7 @@ get_committees <- function(
   if (as.numeric(as.roman(legis_period)) < 20) {
     warning(
       "Data only available from legislative period 20 onwards.",
-      call. = F
+      call. = FALSE
     )
     return(NULL)
   }
@@ -180,14 +180,14 @@ get_committees <- function(
   }
 
   vec_headings <- res %>%
-    httr2::resp_body_json(simplifyVector = T) %>%
+    httr2::resp_body_json(simplifyVector = TRUE) %>%
     purrr::pluck("header", "label") %>%
     stringr::str_to_snake() %>%
     make.unique(sep = "_")
 
   # extract the actual substantive data
   df_res <- res %>%
-    httr2::resp_body_json(simplifyVector = T) %>%
+    httr2::resp_body_json(simplifyVector = TRUE) %>%
     purrr::pluck("rows")
 
   # Handle empty results
@@ -670,7 +670,7 @@ get_committee_members <- function(url) {
 #' entries in anchor tags within the same table.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Parse a live committee page (example URL)
 #' fn_extract_hauptausschuss("https://example.org/parliament/committees/hauptausschuss")
 #' }
@@ -690,37 +690,42 @@ fn_extract_hauptausschuss <- function(url) {
   for (i in seq_along(tables)) {
     table_node <- tables[[i]]
 
-    # Initialize vectors for this table
-    all_persons <- c()
-    all_urls <- c()
-    all_parties <- c()
-    current_party <- NA_character_
+    # Use a local environment as accumulator for recursive traversal
+    acc <- new.env(parent = emptyenv())
+    acc$persons <- character()
+    acc$urls <- character()
+    acc$parties <- character()
+    acc$current_party <- NA_character_
 
     # Recursive function to traverse all nodes (including nested)
-    traverse_nodes <- function(node) {
+    traverse_nodes <- function(node, acc) {
       node_name <- rvest::html_name(node)
 
       if (node_name == "b") {
         # This is a party name - update current party
-        current_party <<- rvest::html_text2(node)
+        acc$current_party <- rvest::html_text2(node)
       } else if (node_name == "a") {
         # This is a person link
-        all_persons <<- c(all_persons, rvest::html_text2(node))
-        all_urls <<- c(all_urls, rvest::html_attr(node, "href"))
-        all_parties <<- c(all_parties, current_party)
+        acc$persons <- c(acc$persons, rvest::html_text2(node))
+        acc$urls <- c(acc$urls, rvest::html_attr(node, "href"))
+        acc$parties <- c(acc$parties, acc$current_party)
       }
 
       # Recursively process child nodes
       children <- rvest::html_children(node)
       if (length(children) > 0) {
         for (child in children) {
-          traverse_nodes(child)
+          traverse_nodes(child, acc)
         }
       }
     }
 
     # Start traversal from the table node
-    traverse_nodes(table_node)
+    traverse_nodes(table_node, acc)
+
+    all_persons <- acc$persons
+    all_urls <- acc$urls
+    all_parties <- acc$parties
 
     # Store results for this table
     if (length(all_persons) > 0) {
@@ -1328,9 +1333,9 @@ fn_extract_committees_type3_old <- function(url, html_doc = NULL) {
   for (i in seq_along(tables)) {
     df <- tables[[i]]
     # Check if any cell contains "Mitglieder:"
-    has_mitglieder <- any(sapply(df, function(col) {
+    has_mitglieder <- any(vapply(df, function(col) {
       any(stringr::str_detect(col, "Mitglieder:"), na.rm = TRUE)
-    }))
+    }, logical(1)))
 
     if (has_mitglieder && ncol(df) >= 2) {
       member_tables[[length(member_tables) + 1]] <- df

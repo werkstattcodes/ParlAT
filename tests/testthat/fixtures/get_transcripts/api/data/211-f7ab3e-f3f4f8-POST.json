@@ -1,6 +1,6 @@
 {
     "pages": 350,
-    "lastSync": "2026-03-07 04:53:34.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 350,
     "header": [
         {
@@ -22,8 +22,8 @@
             "hideValue": false,
             "rnr": 2,
             "valueToNull": false,
-            "mediaType": "link",
             "listeId": 211,
+            "mediaType": "link",
             "label": "uri"
         },
         {
@@ -37,8 +37,8 @@
             "feld_name": "GP_CODE"
         },
         {
-            "css_class": "datum-col",
             "tooltip_rnr": 8,
+            "css_class": "datum-col",
             "feldId": 2703,
             "hidden": false,
             "hideValue": false,
@@ -60,14 +60,14 @@
         },
         {
             "css_class": "betreff-col",
-            "link_rnr": "2",
             "feldId": 2705,
+            "link_rnr": "2",
             "hidden": false,
             "hideValue": false,
             "rnr": 6,
             "valueToNull": false,
-            "mediaType": "title",
             "listeId": 211,
+            "mediaType": "title",
             "label": "Sitzung",
             "class": "betreff-col"
         },
@@ -89,8 +89,8 @@
             "hideValue": false,
             "rnr": 8,
             "valueToNull": false,
-            "mediaType": "description",
             "listeId": 211,
+            "mediaType": "description",
             "label": "Art",
             "sortable": "1",
             "class": "datum-col"
@@ -108,13 +108,13 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "hideValue": false,
             "rnr": 10,
             "valueToNull": false,
-            "mediaType": "datetime",
             "listeId": 211,
+            "mediaType": "datetime",
             "label": "datum2",
             "feld_name": "DATUM"
         },
@@ -179,22 +179,22 @@
     ],
     "rows": [
         [
-            "05.11.2020",
-            "/gegenstand/BR/BRSITZ/914",
+            "23.10.2019",
+            "/gegenstand/XXVII/NRSITZ/1",
             "XXVII",
-            "BRSITZ",
-            914,
-            "914. Sitzung (914/BRSITZ/2020)",
-            "914/BRSITZ/2020",
-            "Plenarsitzung - BR",
+            "NRSITZ",
+            1,
+            "1. Sitzung (1/NRSITZ)",
+            "1/NRSITZ",
+            "Plenarsitzung",
             "Plenar-Sitzung",
-            "2020-11-05T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/914/fname_882520.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/914/fnameorig_882520.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "BRSITZ",
-            2435447,
-            "BRSITZ",
-            "<a href=\"/gegenstand/BR/BRSITZ/914?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "2263378"
+            "2019-10-23T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/1/fname_796482.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/1/fnameorig_796482.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            137753,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/1?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "2545467"
         ]
     ]
 }

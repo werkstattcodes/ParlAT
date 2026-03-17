@@ -1,6 +1,6 @@
 {
     "pages": 107,
-    "lastSync": "2026-03-07 04:53:34.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 107,
     "header": [
         {
@@ -22,8 +22,8 @@
             "hideValue": false,
             "rnr": 2,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "link",
+            "listeId": 211,
             "label": "uri"
         },
         {
@@ -65,8 +65,8 @@
             "hideValue": false,
             "rnr": 6,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "title",
+            "listeId": 211,
             "label": "Sitzung",
             "class": "betreff-col"
         },
@@ -87,8 +87,8 @@
             "hideValue": false,
             "rnr": 8,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "description",
+            "listeId": 211,
             "label": "Art",
             "class": "datum-col"
         },
@@ -105,13 +105,13 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "hideValue": false,
             "rnr": 10,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "datetime",
+            "listeId": 211,
             "label": "datum2",
             "sortable": "1",
             "feld_name": "DATUM"

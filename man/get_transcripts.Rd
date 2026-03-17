@@ -80,7 +80,7 @@ A summary of successful and failed downloads is printed at the conclusion of the
 }
 }
 \examples{
-\dontrun{
+\donttest{
   # Get transcripts using a search string and specifying a legislative period.
   get_transcripts(search_string = "gesundheit",
                   legis_period = 28,

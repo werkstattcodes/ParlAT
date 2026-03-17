@@ -191,7 +191,7 @@ Fetches current members of parliament based on provided search criteria. Dependi
 chamber of interest, different search parameters are applicable.
 }
 \examples{
-\dontrun{
+\donttest{
   # Get all current National Council members
   nr_members <- get_mps_current(institution = "NR")
 

@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 20:50:03.0",
+    "lastSync": "2026-03-17 22:20:05.0",
     "count": 2,
     "header": [
         {
@@ -10,8 +10,8 @@
             "hideValue": false,
             "rnr": 1,
             "valueToNull": false,
-            "mediaType": "description",
             "listeId": 600,
+            "mediaType": "description",
             "label": "Datum",
             "feld_name": "DATUM",
             "class": "stellungnahmen-col"
@@ -42,14 +42,14 @@
         },
         {
             "css_class": "col-20",
-            "link_rnr": "5",
             "feldId": 364,
+            "link_rnr": "5",
             "hidden": false,
             "hideValue": false,
             "rnr": 4,
             "valueToNull": false,
-            "mediaType": "title",
             "listeId": 600,
+            "mediaType": "title",
             "label": "Bezeichnung",
             "feld_name": "TEXT",
             "class": "col-20"
@@ -60,8 +60,8 @@
             "hideValue": false,
             "rnr": 5,
             "valueToNull": false,
-            "mediaType": "link",
             "listeId": 600,
+            "mediaType": "link",
             "label": "Link"
         },
         {
@@ -71,8 +71,8 @@
             "hideValue": false,
             "rnr": 6,
             "valueToNull": false,
-            "mediaType": "typ",
             "listeId": 600,
+            "mediaType": "typ",
             "label": "Terminart",
             "sortable": "1",
             "feld_name": "TERMINART",
@@ -85,8 +85,8 @@
             "hideValue": false,
             "rnr": 7,
             "valueToNull": false,
-            "mediaType": "typ",
             "listeId": 600,
+            "mediaType": "typ",
             "label": "Terminart",
             "sortable": "1",
             "feld_name": "TERMINARTANZEIGE",
@@ -109,8 +109,8 @@
             "hideValue": false,
             "rnr": 9,
             "valueToNull": false,
-            "mediaType": "ort",
             "listeId": 600,
+            "mediaType": "ort",
             "label": "Ort",
             "sortable": "1",
             "feld_name": "ORT",
@@ -179,13 +179,13 @@
         },
         {
             "feldId": 581,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "hideValue": false,
             "rnr": 16,
             "valueToNull": false,
-            "mediaType": "datetime",
             "listeId": 600,
+            "mediaType": "datetime",
             "label": "Datum",
             "feld_name": "DATERANGE"
         },
@@ -195,8 +195,8 @@
             "hideValue": false,
             "rnr": 17,
             "valueToNull": false,
-            "mediaType": "datetimebis",
             "listeId": 600,
+            "mediaType": "datetimebis",
             "label": "Datum Bis"
         },
         {
@@ -215,8 +215,8 @@
             "hideValue": false,
             "rnr": 19,
             "valueToNull": false,
-            "mediaType": "grouplabel",
             "listeId": 600,
+            "mediaType": "grouplabel",
             "label": "Label"
         },
         {
@@ -226,15 +226,15 @@
             "hideValue": false,
             "rnr": 20,
             "valueToNull": false,
-            "mediaType": "typ",
             "listeId": 600,
+            "mediaType": "typ",
             "label": "Führungsformat",
             "feld_name": "FORMAT",
             "class": "col-15"
         },
         {
-            "export_jn": "0",
             "feldId": 1161,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 21,
@@ -283,8 +283,8 @@
             "hideValue": false,
             "rnr": 25,
             "valueToNull": false,
-            "mediaType": "linkbutton",
             "listeId": 600,
+            "mediaType": "linkbutton",
             "label": "Anmeldung",
             "feld_name": "ANMELDEBUTTON"
         },
@@ -307,8 +307,8 @@
             "hideValue": false,
             "rnr": 27,
             "valueToNull": false,
-            "mediaType": "ics",
             "listeId": 600,
+            "mediaType": "ics",
             "label": "ICS Download",
             "feld_name": "ICS",
             "class": "expand-col"

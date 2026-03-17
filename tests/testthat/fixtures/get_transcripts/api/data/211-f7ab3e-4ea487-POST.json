@@ -1,6 +1,6 @@
 {
     "pages": 149,
-    "lastSync": "2026-03-07 04:53:34.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 149,
     "header": [
         {
@@ -22,8 +22,8 @@
             "hideValue": false,
             "rnr": 2,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "link",
+            "listeId": 211,
             "label": "uri"
         },
         {
@@ -37,8 +37,8 @@
             "feld_name": "GP_CODE"
         },
         {
-            "tooltip_rnr": 8,
             "css_class": "datum-col",
+            "tooltip_rnr": 8,
             "feldId": 2703,
             "hidden": false,
             "hideValue": false,
@@ -60,14 +60,14 @@
         },
         {
             "css_class": "betreff-col",
-            "feldId": 2705,
             "link_rnr": "2",
+            "feldId": 2705,
             "hidden": false,
             "hideValue": false,
             "rnr": 6,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "title",
+            "listeId": 211,
             "label": "Sitzung",
             "class": "betreff-col"
         },
@@ -89,8 +89,8 @@
             "hideValue": false,
             "rnr": 8,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "description",
+            "listeId": 211,
             "label": "Art",
             "sortable": "1",
             "class": "datum-col"
@@ -113,8 +113,8 @@
             "hideValue": false,
             "rnr": 10,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "datetime",
+            "listeId": 211,
             "label": "datum2",
             "feld_name": "DATUM"
         },
@@ -179,22 +179,22 @@
     ],
     "rows": [
         [
-            "24.01.1980",
-            "/gegenstand/XV/NRSITZ/23",
+            "02.12.1981",
+            "/gegenstand/XV/NRSITZ/93",
             "XV",
             "NRSITZ",
-            23,
-            "23. Sitzung (23/NRSITZ)",
-            "23/NRSITZ",
+            93,
+            "93. Sitzung (93/NRSITZ)",
+            "93/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "1980-01-24T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/23/imfname_146631.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "1981-12-02T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/93/imfname_109914.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            3675146,
+            3675574,
             "NRSITZ",
             null,
-            "7430903"
+            "7431007"
         ]
     ]
 }

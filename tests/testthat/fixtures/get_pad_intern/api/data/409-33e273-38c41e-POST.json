@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 20:53:05.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 14,
     "header": [
         {
@@ -183,7 +183,6 @@
             "[\"CSP\"]",
             {
                 "zit": "Johann Blöchl",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -237,7 +236,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mühlviertel",
                 "pad_intern": 133,
                 "medien": [
                     2099589
@@ -253,8 +251,8 @@
             "Blöchl",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
-            "Mühlviertel",
+            null,
+            null,
             "/person/133"
         ],
         [
@@ -267,7 +265,6 @@
             "[\"SPÖ\",\"SdP\"]",
             {
                 "zit": "Johann Böhm",
-                "fraktionen": "Klub der Sozialistischen Partei Österreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ",
@@ -441,7 +438,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Burgenland",
                 "pad_intern": 149,
                 "medien": [
                     2101353
@@ -460,8 +456,8 @@
             "Böhm",
             null,
             null,
-            "Klub der Sozialistischen Partei Österreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
-            "Burgenland",
+            null,
+            null,
             "/person/149"
         ],
         [
@@ -474,7 +470,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Anton Ehrenfried",
-                "fraktionen": "Klub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -566,7 +561,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Manhartsberg",
                 "pad_intern": 255,
                 "medien": [
                     2099655
@@ -582,8 +576,8 @@
             "Ehrenfried",
             null,
             null,
-            "Klub der Österreichischen Volkspartei (V)",
-            "Viertel unterm Manhartsberg",
+            null,
+            null,
             "/person/255"
         ],
         [
@@ -596,7 +590,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Hermann Gruber",
-                "fraktionen": "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -625,7 +618,7 @@
                         "wahlpartei_sort": "Oesterreichische Volkspartei",
                         "mandat_bis": "30.03.1966",
                         "wahlkreis": "Kärnten",
-                        "fraktion": "Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei"
+                        "fraktion": "Klub der Österreichischen Volkspartei"
                     },
                     {
                         "wahlpartei_code": "ÖVP",
@@ -668,7 +661,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Kärnten, Wahlkreisverband IV (B, K u St.)",
                 "pad_intern": 521,
                 "medien": [
                     2101432
@@ -684,8 +676,8 @@
             "Gruber",
             null,
             null,
-            "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Kärnten, Wahlkreisverband IV (B, K u St.)",
+            null,
+            null,
             "/person/521"
         ],
         [
@@ -698,7 +690,6 @@
             "[\"GdP\",\"NWB\"]",
             {
                 "zit": "Dr. Ernst Hampel",
-                "fraktionen": "Verband der Abgeordneten des Nationalen Wirtschaftsblocks (W), Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "GdP",
@@ -841,7 +832,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Reststimmenmandat, Wahlkreisverband IV - Steiermark, Graz und Umgebung, Wahlkreisverband IV (B, K u St.)",
                 "pad_intern": 497,
                 "medien": [
                     2100578
@@ -857,8 +847,8 @@
             "Hampel",
             "Dr. phil.",
             null,
-            "Verband der Abgeordneten des Nationalen Wirtschaftsblocks (W), Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
-            "Reststimmenmandat, Wahlkreisverband IV - Steiermark, Graz und Umgebung, Wahlkreisverband IV (B, K u St.)",
+            null,
+            null,
             "/person/497"
         ],
         [
@@ -871,7 +861,6 @@
             "[\"CSP\"]",
             {
                 "zit": "Emma Kapral",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -924,7 +913,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband I (Wien)",
                 "pad_intern": 770,
                 "medien": [
                     2101481
@@ -940,8 +928,8 @@
             "Kapral",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
-            "Wahlkreisverband I (Wien)",
+            null,
+            null,
             "/person/770"
         ],
         [
@@ -954,7 +942,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Dr. Irmtraut Karlsson",
-                "fraktionen": "Bundesratsfraktion der SPÖ (S), Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1003,7 +990,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Partei Oesterreichs",
                         "mandat_bis": "06.11.1994",
                         "wahlkreis": "Wien",
-                        "fraktion": "Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte"
+                        "fraktion": "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -1116,7 +1103,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Innen-West, Wien",
                 "pad_intern": 777,
                 "medien": [
                     2099881
@@ -1132,8 +1118,8 @@
             "Karlsson",
             "Dr. phil.",
             null,
-            "Bundesratsfraktion der SPÖ (S), Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Wien Innen-West, Wien",
+            null,
+            null,
             "/person/777"
         ],
         [
@@ -1146,7 +1132,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Josef Krainer",
-                "fraktionen": "Bundesratsfraktion der ÖVP (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -1213,7 +1198,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Steiermark",
                 "pad_intern": 953,
                 "openGraph": {
                     "description": "Mitglied des Bundesrates, ÖVP",
@@ -1226,8 +1210,8 @@
             "Krainer",
             null,
             null,
-            "Bundesratsfraktion der ÖVP (V)",
-            "Steiermark",
+            null,
+            null,
             "/person/953"
         ],
         [
@@ -1240,7 +1224,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Dr. Otto Kranzlmayr",
-                "fraktionen": "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -1421,7 +1404,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Innviertel, Oberösterreich",
                 "pad_intern": 962,
                 "medien": [
                     2100775
@@ -1437,8 +1419,8 @@
             "Kranzlmayr",
             "Dr. iur.",
             null,
-            "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Innviertel, Oberösterreich",
+            null,
+            null,
             "/person/962"
         ],
         [
@@ -1451,7 +1433,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Sebastian Kurz",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -1677,14 +1658,13 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Wien Süd-West",
                 "pad_intern": 65321,
                 "medien": [
-                    9233173
+                    20178605
                 ],
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (XXVII. GP), ÖVP",
-                    "image": "/dokument/bild/92331/9233173_500.jpg"
+                    "image": "/dokument/bild/201786/20178605_500.jpg"
                 },
                 "aktiv": false
             },
@@ -1693,8 +1673,8 @@
             "Kurz",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Bundeswahlvorschlag, Wien Süd-West",
+            null,
+            null,
             "/person/65321"
         ],
         [
@@ -1707,7 +1687,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag. Susanne Kurz",
-                "fraktionen": "Bundesratsfraktion der SPÖ (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1845,7 +1824,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Salzburg",
                 "pad_intern": 21150,
                 "medien": [
                     5904049
@@ -1865,8 +1843,8 @@
             "Kurz",
             "Mag. phil.",
             null,
-            "Bundesratsfraktion der SPÖ (S)",
-            "Salzburg",
+            null,
+            null,
             "/person/21150"
         ],
         [
@@ -1879,7 +1857,6 @@
             "[\"CSP\"]",
             {
                 "zit": "Rudolf Manhalter",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -1969,7 +1946,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Wienerwald",
                 "pad_intern": 1046,
                 "medien": [
                     2100688
@@ -1985,8 +1961,8 @@
             "Manhalter",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
-            "Viertel unterm Wienerwald",
+            null,
+            null,
             "/person/1046"
         ],
         [
@@ -1999,7 +1975,6 @@
             "[\"SdP\"]",
             {
                 "zit": "Karl Pick",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SdP"
@@ -2049,7 +2024,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien Nordost",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -2162,7 +2137,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nordost",
                 "pad_intern": 1203,
                 "medien": [
                     2100190
@@ -2178,8 +2152,8 @@
             "Pick",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Nordost",
+            null,
+            null,
             "/person/1203"
         ],
         [
@@ -2192,7 +2166,6 @@
             "[\"CSP\"]",
             {
                 "zit": "Vinzenz Strohmaier",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -2246,7 +2219,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mittel- und Untersteier",
                 "pad_intern": 1920,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (IV. GP), CSP",
@@ -2259,8 +2231,8 @@
             "Strohmaier",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
-            "Mittel- und Untersteier",
+            null,
+            null,
             "/person/1920"
         ]
     ]

@@ -150,7 +150,7 @@ text search across all fields. Search functionality is restricted to the specifi
 provided.
 }
 \examples{
-\dontrun{
+\donttest{
   # Basic example: Get all National Council events
   events <- get_events(institution = "NR")
 
