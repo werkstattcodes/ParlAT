@@ -917,24 +917,6 @@ get_mps <- function(
   }
 
   return(df_res)
-  #TODO remove residual code below
-
-  # if (!is.null(party)) {
-  #   df_res <- df_res %>% filter(wahlpartei_full_txt %in% party)
-  # }
-
-  # if (!is.null(parl_group)) {
-  #   df_res <- df_res %>% filter(fraktion %in% parl_group)
-  # }
-
-  # if (!is.null(electoral_district)) {
-  #   df_res <- df_res %>% filter(wahlkreis %in% electoral_district)
-  # }
-
-  # if (!is.null(state)) {
-  #   df_res <- df_res %>% filter(wahlkreis_bundesland %in% state)
-  # }
-  # }
 
   #DATE FILTERING##################################
   # if date is provided, filter results by date
