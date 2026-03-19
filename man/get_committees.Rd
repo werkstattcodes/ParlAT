@@ -79,38 +79,43 @@ e.g. incorporating the extraction of data from membership lists. Data available 
 \examples{
 \donttest{
 # Basic search for committees in National Council
-get_committees(
+result <- get_committees(
   institution = "NR",
   legis_period = 27
 )
+dplyr::glimpse(result)
 
 # Search with specific text and extract member details
-get_committees(
+result <- get_committees(
   search_string = "Ibiza",
   legis_period = 27,
   institution = "NR",
   details_type = "members"
 )
+dplyr::glimpse(result)
 
 # Search only permanent committees
-get_committees(
+result <- get_committees(
   institution = "NR",
   legis_period = 28,
   permanent = TRUE
 )
+dplyr::glimpse(result)
 
 # Include subcommittees (only works when permanent = FALSE or NULL)
-get_committees(
+result <- get_committees(
   institution = "NR",
   legis_period = 27,
   include_subcommittees = TRUE
 )
+dplyr::glimpse(result)
 
 # Federal Council committees
-get_committees(
+result <- get_committees(
   institution = "BR",
   legis_period = 27
 )
+dplyr::glimpse(result)
 }
 
 }

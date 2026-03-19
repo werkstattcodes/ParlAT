@@ -496,61 +496,69 @@
 #'
 #' @examples \donttest{
 #' # Search for EU-related items in the 28th legislative period
-#' get_items(topic = "Europäische Union", legis_period = 28)
+#' result <- get_items(topic = "Europäische Union", legis_period = 28)
+#' dplyr::glimpse(result)
 #'
-#' # Search for motions (Anträge) in National Council from February 2024
-#' get_items(
+#' # Search for motions (Antraege) in National Council from February 2024
+#' result <- get_items(
 #'   institution = "NR",
 #'   item = "ANTR",
 #'   date_start = "01-02-2024",
 #'   date_end = "29-02-2024"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Search for items by specific parliamentary groups
-#' get_items(
+#' result <- get_items(
 #'   parl_group = c("SPÖ", "ÖVP"),
 #'   legis_period = 27,
 #'   topic = "Bildung"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Search for written questions with keyword
-#' get_items(
+#' result <- get_items(
 #'   item = "J_JPR_M",
 #'   keyword = "Flüchtlinge",
 #'   institution = "NR"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Search by person (minister or MP)
-#' get_items(
+#' result <- get_items(
 #'   person = "Nehammer",
 #'   date_start = "01-01-2023",
 #'   date_end = "31-12-2023"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Combine multiple search criteria
-#' get_items(
+#' result <- get_items(
 #'   topic = "Gesundheit und Ernährung",
 #'   item = "RV",  # Government bills
 #'   legis_period = 27,
 #'   institution = "NR"
 #' )
+#' dplyr::glimpse(result)
 #'
-#' # Get all positions of the Hauptausschuss on EU related matters in the 27th legislative period
-#' get_items(
+#' # Get all positions of the Hauptausschuss on EU related matters
+#' result <- get_items(
 #'   legis_period = 27,
 #'   item = "EU",
 #'   type_eu_submission = "S",
 #'   institution = "NR"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Get all statements of the sub-committee on EU affairs
 #' # (EU-Unterausschuss) during the 27th legislative period.
-#' get_items(
+#' result <- get_items(
 #'   item = "EU",
 #'   type_eu_submission = "MTEU",
 #'   legis_period = 27,
 #'   institution = "NR"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' }
 get_items <- function(

@@ -132,14 +132,18 @@ latter being the more specific option.
 
 ```{r}
 #Example with MP names:
-get_mandates(name = c(
+result <- get_mandates(name = c(
   "Karl Nehammer",
   "Andreas Babler"
 ))
+dplyr::glimpse(result)
 
 #Example with pad_intern and auxiliary function `get_pad_intern`.
-get_pad_intern("Peter Pilz")
-get_mandates(pad_intern=1210)
+result <- get_pad_intern("Peter Pilz")
+dplyr::glimpse(result)
+
+result <- get_mandates(pad_intern=1210)
+dplyr::glimpse(result)
 ```
 
 The function `get_mandates` also allows us to relatively easily calcualte the total number of days
@@ -512,13 +516,14 @@ df_meetings_20_27 %>%
 Which committees of the National Council were active during the 27th legisative period:
 ```{r, cache=TRUE}
 committesNR27 <- get_committees(legis_period=27, institution="NR")
-committesNR27
+dplyr::glimpse(committesNR27)
 ```
 
 How many committees of inquiry (Untersuchungsausschüsse) have there been over the different legislative period (API returns data from 20 legisative
 period onward):
 ```{r, cache=TRUE}
-get_committees(legis_period="XXVIII", citation="USA", institution="NR")
+result <- get_committees(legis_period="XXVIII", citation="USA", institution="NR")
+dplyr::glimpse(result)
 
 committeeInquiry <- map(seq(20,28,1), \(x) get_committees(legis_period=x, institution="NR", citation="USA")) %>% list_rbind()
 committeeInquiry %>%
@@ -529,8 +534,7 @@ committeeInquiry %>%
 Additional details on a committee can be retrieved by specifying the attribute `details_type`. As of now, `members` is the only available option. Member information is automatically unnested into the result.
 ```{r, cache=TRUE}
 committeeIbiza <- get_committees(legis_period=27, search_string="Ibiza", institution="NR", details_type="members")
-
-committeeIbiza
+dplyr::glimpse(committeeIbiza)
 ```
 
 
@@ -542,14 +546,18 @@ MP Pia Pilippa Beck, ex Strache.
 
 ```{r}
 #get first the pad_intern of the MP
-get_pad_intern("Strache")
+result <- get_pad_intern("Strache")
+dplyr::glimpse(result)
+
 #get all name variants
-get_names(pad_intern=44127)
+result <- get_names(pad_intern=44127)
+dplyr::glimpse(result)
 ``` 
 
 Providing a date, returns the applicable name at the specified date.
 ```{r}
-get_names(44127, date = "01/01/2024")
+result <- get_names(44127, date = "01/01/2024")
+dplyr::glimpse(result)
 ``` 
 
 

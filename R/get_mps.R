@@ -258,9 +258,11 @@
 #' \donttest{
 #' # Get all MPs from the current legislative period
 #' mps <- get_mps(institution = "NR", legis_period = "27")
+#' dplyr::glimpse(mps)
 #'
 #' # Get female MPs from a specific party
 #' female_mps <- get_mps(gender = "female", party = "SPÖ")
+#' dplyr::glimpse(female_mps)
 #' }
 get_mps <- function(
   search_string = NULL,

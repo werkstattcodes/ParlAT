@@ -45,42 +45,40 @@
 #' @examples
 #' \donttest{
 #' # Basic usage: meetings of the National Council for legislative period 28
-#' meetings <- get_plenary_meetings(
+#' result <- get_plenary_meetings(
 #'   institution = "NR",
 #'   legis_period = 28,
 #'   meeting_and_activities = "meetings"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Parliamentary activities during meetings
-#' get_plenary_meetings(
+#' result <- get_plenary_meetings(
 #'   institution = "NR",
 #'   legis_period = 27,
 #'   meeting_and_activities = "activities"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Federal Council meetings
-#' get_plenary_meetings(
+#' result <- get_plenary_meetings(
 #'   institution = "BR",
 #'   legis_period = 28,
 #'   meeting_and_activities = "meetings"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Multiple legislative periods
-#' get_plenary_meetings(
+#' result <- get_plenary_meetings(
 #'   institution = "NR",
 #'   legis_period = c(26, 27),
 #'   meeting_and_activities = "meetings"
 #' )
-#'
-#' # All periods from 20th onwards (NULL legis_period)
-#' get_plenary_meetings(
-#'   institution = "NR",
-#'   legis_period = NULL,
-#'   meeting_and_activities = "meetings"
-#' )
+#' dplyr::glimpse(result)
 #'
 #' # Federal Assembly (no legis_period, no meeting_and_activities)
-#' get_plenary_meetings(institution = "BV", legis_period = NULL)
+#' result <- get_plenary_meetings(institution = "BV", legis_period = NULL)
+#' dplyr::glimpse(result)
 #' }
 #'
 #' @export

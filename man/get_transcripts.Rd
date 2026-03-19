@@ -82,16 +82,18 @@ A summary of successful and failed downloads is printed at the conclusion of the
 \examples{
 \donttest{
   # Get transcripts using a search string and specifying a legislative period.
-  get_transcripts(search_string = "gesundheit",
+  result <- get_transcripts(search_string = "gesundheit",
                   legis_period = 28,
                   meeting_type = "NRSITZ",
-                  echo=TRUE)
+                  echo = TRUE)
+  dplyr::glimpse(result)
 
  # Get transcript data for a specific period of time.
- get_transcripts(meeting_type = "BRSITZ",
+ result <- get_transcripts(meeting_type = "BRSITZ",
                  date_start = "01-01-2024",
                  date_end = "30-06-2024",
                  echo = TRUE)
+ dplyr::glimpse(result)
 }
 \dontrun{
   # Retrieve all transcripts of National Council plenary meetings

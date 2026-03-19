@@ -94,18 +94,26 @@ get_mandates_single <- function(pad_intern) {
 #' @seealso [get_names()], [get_pad_intern()]
 #' @examples
 #' \donttest{
-#'   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
+#'   result <- get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
+#'   dplyr::glimpse(result)
+#'
 #'   # Returns results with latest name (Beck)
-#'   get_mandates(c("Pia Philippa Strache"))
+#'   result <- get_mandates(c("Pia Philippa Strache"))
+#'   dplyr::glimpse(result)
 #'
 #'   # Michael Pöck changed name to Michael Bernhard.
-#'   get_names(pad_intern = "83124")
+#'   result <- get_names(pad_intern = "83124")
+#'   dplyr::glimpse(result)
+#'
 #'   # Query for Micheal Pöck returns all results under the name
 #'   # Michael Bernhard, even for periods where Michael Pöck was still valid.
-#'   get_mandates(name = "Michael Pöck")
+#'   result <- get_mandates(name = "Michael Pöck")
+#'   dplyr::glimpse(result)
+#'
 #'   # Query for Michael Bernhard returns all results,
 #'   # including for those with the name Michael Pöck.
-#'   get_mandates(name = "Michael Bernhard")
+#'   result <- get_mandates(name = "Michael Bernhard")
+#'   dplyr::glimpse(result)
 #' }
 #'
 get_mandates <- function(
@@ -333,8 +341,11 @@ get_mandates <- function(
 #'
 #' @examples
 #' \donttest{
-#' get_pad_intern("Strache")
-#' get_pad_intern("Heinz-Christian Strache")
+#' result <- get_pad_intern("Strache")
+#' dplyr::glimpse(result)
+#'
+#' result <- get_pad_intern("Heinz-Christian Strache")
+#' dplyr::glimpse(result)
 #' }
 #'
 #' @seealso

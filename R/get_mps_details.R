@@ -156,6 +156,7 @@
 #'   institution = "NR",
 #'   legis_period = 27
 #' )
+#' dplyr::glimpse(plenary_nr)
 #'
 #' # Get plenary speeches for multiple legislative periods
 #' plenary_multiple <- get_mps_details(
@@ -163,6 +164,7 @@
 #'   detail_type = "plenary",
 #'   legis_period = c(26, 27)
 #' )
+#' dplyr::glimpse(plenary_multiple)
 #'
 #' # Get only legislative proposals (item type "A")
 #' proposals <- get_mps_details(
@@ -171,13 +173,7 @@
 #'   item = "A",
 #'   legis_period = 27
 #' )
-#'
-#' # Get activities for multiple legislative periods
-#' activities_multiple <- get_mps_details(
-#'   pad_intern = 2344,
-#'   detail_type = "activities",
-#'   legis_period = c(25, 26, 27)
-#' )
+#' dplyr::glimpse(proposals)
 #'
 #' # Get committee memberships for Stephanie Krisper
 #' committees <- get_mps_details(
@@ -185,6 +181,7 @@
 #'   detail_type = "committees",
 #'   legis_period = 27
 #' )
+#' dplyr::glimpse(committees)
 #'}
 #' @export
 get_mps_details <- function(

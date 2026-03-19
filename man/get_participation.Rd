@@ -117,26 +117,30 @@ Setting \code{statement_type = NULL} returns values for all statement types list
 \examples{
 \donttest{
 # Get participation data for the topic "Bildung"
-get_participation(topic = "Bildung")
+result <- get_participation(topic = "Bildung")
+dplyr::glimpse(result)
 
 # Get participation data for multiple topics and legislative periods
-get_participation(
+result <- get_participation(
   topic = c("Arbeit", "Soziales"),
   legis_period = c("27", "26"),
   item = "RGES"
 )
+dplyr::glimpse(result)
 
 # Get participation data on all ministerial drafts for legislative periods 26 and 27
-get_participation(
+result <- get_participation(
   legis_period = c(26, 27),
   item = "ME"
 )
+dplyr::glimpse(result)
 
 # Get participation data on legislative initiatives with specific initiative type
-get_participation(
+result <- get_participation(
   item = "RGES",
   initiative_type = "RV"
 )
+dplyr::glimpse(result)
 }
 
 }
