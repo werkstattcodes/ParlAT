@@ -255,7 +255,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get all MPs from the current legislative period
 #' mps <- get_mps(institution = "NR", legis_period = "27")
 #'
@@ -492,7 +492,7 @@ get_mps <- function(
 
   # party (Wahlpartei)
 
-  vec_parties = c(
+  vec_parties <- c(
     "Bauernpartei (BP)",
     "B\u00fcndnis Zukunft \u00d6sterreich (BZ\u00d6)",
     "B\u00fcrgerlich-demokratische Partei (BDP)",

@@ -1,6 +1,6 @@
 {
     "pages": 28,
-    "lastSync": "2026-03-07 04:53:34.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 28,
     "header": [
         {
@@ -8,8 +8,8 @@
             "feldId": 2701,
             "hidden": false,
             "hideValue": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "valueToNull": false,
             "listeId": 211,
             "label": "Datum",
@@ -37,8 +37,8 @@
             "feld_name": "GP_CODE"
         },
         {
-            "tooltip_rnr": 8,
             "css_class": "datum-col",
+            "tooltip_rnr": 8,
             "feldId": 2703,
             "hidden": false,
             "hideValue": false,
@@ -60,8 +60,8 @@
         },
         {
             "css_class": "betreff-col",
-            "feldId": 2705,
             "link_rnr": "2",
+            "feldId": 2705,
             "hidden": false,
             "hideValue": false,
             "rnr": 6,
@@ -75,8 +75,8 @@
             "feldId": 2713,
             "hidden": true,
             "hideValue": false,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "valueToNull": false,
             "listeId": 211,
             "label": "Zitation",
@@ -108,8 +108,8 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "ist_range": "1",
             "hidden": true,
+            "ist_range": "1",
             "hideValue": false,
             "rnr": 10,
             "valueToNull": false,
@@ -179,22 +179,22 @@
     ],
     "rows": [
         [
-            "21.03.2024",
-            "/gegenstand/XXVII/NRSITZ/257",
+            "17.04.2024",
+            "/gegenstand/XXVII/NRSITZ/261",
             "XXVII",
             "NRSITZ",
-            257,
-            "257. Sitzung (257/NRSITZ)",
-            "257/NRSITZ",
+            261,
+            "261. Sitzung (261/NRSITZ)",
+            "261/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "2024-03-21T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/257/fname_1660514.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/257/fnameorig_1660514.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2024-04-17T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/261/fname_1666338.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/261/fnameorig_1666338.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            14212464,
+            14784274,
             "NRSITZ",
-            "<a href=\"/gegenstand/XXVII/NRSITZ/257?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "23376963"
+            "<a href=\"/gegenstand/XXVII/NRSITZ/261?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "23533098"
         ]
     ]
 }

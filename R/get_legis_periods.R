@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Numeric periods
 #' get_legis_periods(legis_period = 27)
 #' get_legis_periods(legis_period = c(26, 27))

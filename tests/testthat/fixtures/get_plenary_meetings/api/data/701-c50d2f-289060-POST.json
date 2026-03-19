@@ -1,6 +1,6 @@
 {
     "pages": 78,
-    "lastSync": "2026-03-07 20:20:44.0",
+    "lastSync": "2026-03-17 22:00:45.0",
     "count": 3864,
     "header": [
         {
@@ -235,8 +235,8 @@
             "hideValue": false,
             "rnr": 23,
             "valueToNull": false,
-            "display_rnr": 3,
             "listeId": 701,
+            "display_rnr": 3,
             "label": "Betreff",
             "feld_name": "TITLE"
         },

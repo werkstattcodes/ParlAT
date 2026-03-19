@@ -103,7 +103,7 @@
 #' * [get_plenary_meetings()] for retrieving meeting URLs.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Via URL — meeting metadata (default)
 #' get_plenary_meeting_details(
 #'   url = "https://www.parlament.gv.at/gegenstand/XXVIII/NRSITZ/50?selectedStage=100"

@@ -1,6 +1,6 @@
 {
     "pages": 0,
-    "lastSync": "2026-03-07 06:08:54.0",
+    "lastSync": "2026-03-17 22:23:53.0",
     "count": 0,
     "header": [
         {
@@ -101,8 +101,8 @@
             "hideValue": false,
             "rnr": 11,
             "valueToNull": false,
-            "listeId": 101,
             "mediaType": "status",
+            "listeId": 101,
             "label": "Status",
             "sortable": "1",
             "feld_name": "STATUS",
@@ -144,8 +144,8 @@
             "hideValue": false,
             "rnr": 15,
             "valueToNull": false,
-            "listeId": 101,
             "mediaType": "link",
+            "listeId": 101,
             "label": "Geschichtsseite_Url",
             "feld_name": "HIS_URL"
         },

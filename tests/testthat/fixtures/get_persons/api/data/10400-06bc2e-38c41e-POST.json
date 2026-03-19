@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 09:41:20.0",
+    "lastSync": "2026-03-17 03:01:23.0",
     "count": 4,
     "header": [
         {
@@ -20,8 +20,8 @@
             "hideValue": false,
             "rnr": 2,
             "valueToNull": false,
-            "mediaType": "description",
             "listeId": 10400,
+            "mediaType": "description",
             "label": "Funktion",
             "feld_name": "FUNKTION_AGG"
         },
@@ -37,8 +37,8 @@
             "feld_name": "PAD_INTERN"
         },
         {
-            "link_rnr": "4",
             "feldId": 1125,
+            "link_rnr": "4",
             "hidden": false,
             "sort_rnr": 10,
             "valueToNull": false,
@@ -57,8 +57,8 @@
             "hideValue": false,
             "rnr": 5,
             "valueToNull": false,
-            "mediaType": "link",
             "listeId": 10400,
+            "mediaType": "link",
             "label": "link"
         },
         {
@@ -78,8 +78,8 @@
             "hideValue": false,
             "rnr": 7,
             "valueToNull": false,
-            "mediaType": "image",
             "listeId": 10400,
+            "mediaType": "image",
             "label": "portrait"
         },
         {
@@ -99,8 +99,8 @@
             "hideValue": false,
             "rnr": 9,
             "valueToNull": false,
-            "mediaType": "type",
             "listeId": 10400,
+            "mediaType": "type",
             "label": "objekt_typ"
         },
         {
@@ -124,6 +124,19 @@
     ],
     "rows": [
         [
+            "[\"NR\",\"NR\",\"NR\",\"NR\"]",
+            "Abgeordneter zum Nationalrat",
+            2823,
+            "Kurzbauer Johann",
+            "/person/2823",
+            "M",
+            "/dokument/bild/20999/2099959_384.jpg",
+            653463,
+            "person",
+            "Kurzbauer Johann",
+            null
+        ],
+        [
             "[\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"BR\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\",\"MPO\"]",
             "Mitglied des Bundesrates, Ordnerin, Präsidentin, Schriftführerin, Vizepräsidentin",
             21150,
@@ -143,7 +156,7 @@
             "Kurz Sebastian",
             "/person/65321",
             "M",
-            "/dokument/bild/92331/9233173_384.jpg",
+            "/dokument/bild/201786/20178605_384.jpg",
             656623,
             "person",
             "Kurz Sebastian",
@@ -160,19 +173,6 @@
             653909,
             "person",
             "Kurzmann Gerhard, Dr.",
-            null
-        ],
-        [
-            "[\"NR\",\"NR\",\"NR\",\"NR\"]",
-            "Abgeordneter zum Nationalrat",
-            2823,
-            "Kurzbauer Johann",
-            "/person/2823",
-            "M",
-            "/dokument/bild/20999/2099959_384.jpg",
-            653463,
-            "person",
-            "Kurzbauer Johann",
             null
         ]
     ]

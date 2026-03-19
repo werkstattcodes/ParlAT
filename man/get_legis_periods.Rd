@@ -29,7 +29,7 @@ A dataframe with the following columns:
 Get start and end dates of legislative periods.
 }
 \examples{
-\dontrun{
+\donttest{
 # Numeric periods
 get_legis_periods(legis_period = 27)
 get_legis_periods(legis_period = c(26, 27))

@@ -557,7 +557,7 @@ onwards, i.e. for the Second Republic.
 }
 }
 \examples{
-\dontrun{
+\donttest{
 # Search for EU-related items in the 28th legislative period
 get_items(topic = "Europäische Union", legis_period = 28)
 

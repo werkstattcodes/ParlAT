@@ -83,7 +83,7 @@
 #' Setting `statement_type = NULL` returns values for all statement types listed above.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get participation data for the topic "Bildung"
 #' get_participation(topic = "Bildung")
 #'
@@ -118,7 +118,7 @@ get_participation <- function(
   statement_type = NULL #Art der Stellungnahme - SNTYP
 ) {
   #TOPIC
-  choices_topic = c(
+  choices_topic <- c(
     "Arbeit",
     "Au\u00dfenpolitik",
     "Bildung",

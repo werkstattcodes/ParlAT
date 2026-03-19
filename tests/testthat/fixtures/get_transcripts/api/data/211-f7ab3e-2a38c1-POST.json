@@ -1,15 +1,15 @@
 {
-    "pages": 5056,
-    "lastSync": "2026-03-07 04:53:34.0",
-    "count": 5056,
+    "pages": 5057,
+    "lastSync": "2026-03-17 22:27:00.0",
+    "count": 5057,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
             "hideValue": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "valueToNull": false,
             "listeId": 211,
             "label": "Datum",
@@ -37,8 +37,8 @@
             "feld_name": "GP_CODE"
         },
         {
-            "tooltip_rnr": 8,
             "css_class": "datum-col",
+            "tooltip_rnr": 8,
             "feldId": 2703,
             "hidden": false,
             "hideValue": false,
@@ -60,8 +60,8 @@
         },
         {
             "css_class": "betreff-col",
-            "feldId": 2705,
             "link_rnr": "2",
+            "feldId": 2705,
             "hidden": false,
             "hideValue": false,
             "rnr": 6,
@@ -75,8 +75,8 @@
             "feldId": 2713,
             "hidden": true,
             "hideValue": false,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "valueToNull": false,
             "listeId": 211,
             "label": "Zitation",
@@ -108,8 +108,8 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "ist_range": "1",
             "hidden": true,
+            "ist_range": "1",
             "hideValue": false,
             "rnr": 10,
             "valueToNull": false,
@@ -179,22 +179,22 @@
     ],
     "rows": [
         [
-            "28.03.2008",
-            "/gegenstand/BR/BRSITZ/754",
-            "XXIII",
-            "BRSITZ",
-            754,
-            "754. Sitzung (754/BRSITZ/2008)",
-            "754/BRSITZ/2008",
-            "Plenarsitzung - BR",
+            "12.10.2022",
+            "/gegenstand/XXVII/NRSITZ/178",
+            "XXVII",
+            "NRSITZ",
+            178,
+            "178. Sitzung (178/NRSITZ)",
+            "178/NRSITZ",
+            "Plenarsitzung",
             "Plenar-Sitzung",
-            "2008-03-28T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/754/fname_116944.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/754/fnameorig_116944.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "BRSITZ",
-            2520670,
-            "BRSITZ",
-            null,
-            "2579617"
+            "2022-10-12T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/178/fname_1547883.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/178/fnameorig_1547883.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            138461,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/178?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "16251088"
         ]
     ]
 }

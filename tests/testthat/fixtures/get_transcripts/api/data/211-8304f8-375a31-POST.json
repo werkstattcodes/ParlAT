@@ -1,6 +1,6 @@
 {
     "pages": 14,
-    "lastSync": "2026-03-07 04:53:34.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 14,
     "header": [
         {
@@ -22,8 +22,8 @@
             "hideValue": false,
             "rnr": 2,
             "valueToNull": false,
-            "mediaType": "link",
             "listeId": 211,
+            "mediaType": "link",
             "label": "uri"
         },
         {
@@ -37,8 +37,8 @@
             "feld_name": "GP_CODE"
         },
         {
-            "css_class": "datum-col",
             "tooltip_rnr": 8,
+            "css_class": "datum-col",
             "feldId": 2703,
             "hidden": false,
             "hideValue": false,
@@ -59,14 +59,14 @@
         },
         {
             "css_class": "betreff-col",
-            "link_rnr": "2",
             "feldId": 2705,
+            "link_rnr": "2",
             "hidden": false,
             "hideValue": false,
             "rnr": 6,
             "valueToNull": false,
-            "mediaType": "title",
             "listeId": 211,
+            "mediaType": "title",
             "label": "Sitzung",
             "class": "betreff-col"
         },
@@ -87,8 +87,8 @@
             "hideValue": false,
             "rnr": 8,
             "valueToNull": false,
-            "mediaType": "description",
             "listeId": 211,
+            "mediaType": "description",
             "label": "Art",
             "class": "datum-col"
         },
@@ -105,13 +105,13 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "hideValue": false,
             "rnr": 10,
             "valueToNull": false,
-            "mediaType": "datetime",
             "listeId": 211,
+            "mediaType": "datetime",
             "label": "datum2",
             "sortable": "1",
             "feld_name": "DATUM"

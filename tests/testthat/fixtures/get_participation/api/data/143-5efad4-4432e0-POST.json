@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 17:43:37.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 2,
     "header": [
         {
@@ -48,8 +48,8 @@
             "feldId": 810,
             "hidden": false,
             "hideValue": false,
-            "sort_rnr": 8,
             "rnr": 5,
+            "sort_rnr": 8,
             "valueToNull": false,
             "listeId": 143,
             "label": "Datum",
@@ -70,8 +70,8 @@
         },
         {
             "vts_sort_field": "title_sort",
-            "feldId": 811,
             "link_rnr": "15",
+            "feldId": 811,
             "hidden": false,
             "hideValue": false,
             "rnr": 7,
@@ -344,7 +344,7 @@
             "[\"Bildung\",\"Inneres und Recht\"]",
             "RGES",
             "[\"S\"]",
-            22,
+            68,
             0,
             0,
             "I",

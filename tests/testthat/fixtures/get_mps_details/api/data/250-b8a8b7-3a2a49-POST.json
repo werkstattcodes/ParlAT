@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 01:50:09.0",
+    "lastSync": "2026-03-17 13:00:14.0",
     "count": 5,
     "header": [
         {
@@ -39,8 +39,8 @@
         },
         {
             "css_class": "fraction-col",
-            "link_rnr": "6",
             "feldId": 95,
+            "link_rnr": "6",
             "hidden": false,
             "hideValue": false,
             "rnr": 4,

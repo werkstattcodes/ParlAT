@@ -1,6 +1,6 @@
 {
     "pages": 332,
-    "lastSync": "2026-03-07 04:53:34.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 332,
     "header": [
         {
@@ -8,8 +8,8 @@
             "feldId": 2701,
             "hidden": false,
             "hideValue": false,
-            "sort_rnr": 10,
             "rnr": 1,
+            "sort_rnr": 10,
             "valueToNull": false,
             "listeId": 211,
             "label": "Datum",
@@ -37,8 +37,8 @@
             "feld_name": "GP_CODE"
         },
         {
-            "tooltip_rnr": 8,
             "css_class": "datum-col",
+            "tooltip_rnr": 8,
             "feldId": 2703,
             "hidden": false,
             "hideValue": false,
@@ -60,8 +60,8 @@
         },
         {
             "css_class": "betreff-col",
-            "feldId": 2705,
             "link_rnr": "2",
+            "feldId": 2705,
             "hidden": false,
             "hideValue": false,
             "rnr": 6,
@@ -75,8 +75,8 @@
             "feldId": 2713,
             "hidden": true,
             "hideValue": false,
-            "sort_rnr": 5,
             "rnr": 7,
+            "sort_rnr": 5,
             "valueToNull": false,
             "listeId": 211,
             "label": "Zitation",
@@ -108,8 +108,8 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "ist_range": "1",
             "hidden": true,
+            "ist_range": "1",
             "hideValue": false,
             "rnr": 10,
             "valueToNull": false,
@@ -179,22 +179,22 @@
     ],
     "rows": [
         [
-            "20.02.1980",
-            "/gegenstand/XV/NRSITZ/24",
+            "02.12.1981",
+            "/gegenstand/XV/NRSITZ/93",
             "XV",
             "NRSITZ",
-            24,
-            "24. Sitzung (24/NRSITZ)",
-            "24/NRSITZ",
+            93,
+            "93. Sitzung (93/NRSITZ)",
+            "93/NRSITZ",
             "Plenarsitzung",
             "Plenar-Sitzung",
-            "1980-02-20T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/24/imfname_146632.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "1981-12-02T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XV/NRSITZ/93/imfname_109914.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "NRSITZ",
-            3675152,
+            3675574,
             "NRSITZ",
             null,
-            "7430904"
+            "7431007"
         ]
     ]
 }

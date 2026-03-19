@@ -1,11 +1,11 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 20:53:05.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 10,
     "header": [
         {
-            "link_rnr": "16",
             "feldId": 605,
+            "link_rnr": "16",
             "hidden": false,
             "valueToNull": false,
             "mediaType": "title",
@@ -31,8 +31,8 @@
             "ist_werteliste": "1"
         },
         {
-            "export_jn": "0",
             "feldId": 604,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 3,
@@ -42,8 +42,8 @@
             "ist_web_item_id": "1"
         },
         {
-            "export_jn": "0",
             "feldId": 623,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 4,
@@ -93,8 +93,8 @@
             "feld_name": "ATTR_JSON"
         },
         {
-            "export_jn": "0",
             "feldId": 903,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 9,
@@ -104,8 +104,8 @@
             "feld_name": "PRAES"
         },
         {
-            "export_jn": "0",
             "feldId": 1223,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 10,
@@ -114,8 +114,8 @@
             "label": "vorname"
         },
         {
-            "export_jn": "0",
             "feldId": 1224,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 11,
@@ -133,8 +133,8 @@
             "label": "akgr"
         },
         {
-            "export_jn": "0",
             "feldId": 1226,
+            "export_jn": "0",
             "hidden": true,
             "hideValue": false,
             "rnr": 13,
@@ -183,7 +183,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Rosa Jochmann",
-                "fraktionen": "Klub der Sozialistischen Partei Österreichs (S), Klub der Sozialistischen Abgeordneten und Bundesräte (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S), Klub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Abgeordneten und Bundesräte (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -325,7 +324,7 @@
                         "wahlpartei_sort": "Sozialistische Partei Oesterreichs",
                         "mandat_bis": "08.11.1949",
                         "wahlkreis": "Viertel oberm Wienerwald",
-                        "fraktion": "Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs"
+                        "fraktion": "Parlamentsklub der Sozialistischen Partei Österreichs"
                     }
                 ],
                 "name_nvg": "Jochmann Rosa",
@@ -351,7 +350,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Südost, Viertel oberm Wienerwald",
                 "pad_intern": 735,
                 "openGraph": {
                     "description": "Abgeordnete zum Nationalrat (V.-XI. GP), SPÖ",
@@ -364,8 +362,8 @@
             "Jochmann",
             null,
             null,
-            "Klub der Sozialistischen Partei Österreichs (S), Klub der Sozialistischen Abgeordneten und Bundesräte (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S), Klub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Abgeordneten und Bundesräte (S)",
-            "Wien Südost, Viertel oberm Wienerwald",
+            null,
+            null,
             "/person/735"
         ],
         [
@@ -378,7 +376,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Ing. Georg Kerschbaumer",
-                "fraktionen": "Bundesratsfraktion der SPÖ (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -432,7 +429,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Kärnten",
                 "pad_intern": 2021,
                 "medien": [
                     2099888
@@ -448,8 +444,8 @@
             "Kerschbaumer",
             "Ing.",
             null,
-            "Bundesratsfraktion der SPÖ (S)",
-            "Kärnten",
+            null,
+            null,
             "/person/2021"
         ],
         [
@@ -462,7 +458,6 @@
             "[\"FPÖ\"]",
             {
                 "zit": "Dr. Albert Schmidt",
-                "fraktionen": "Klub der Freiheitlichen Partei Österreichs (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ"
@@ -533,7 +528,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband I (Burgenland, Niederösterreich, Wien)",
                 "pad_intern": 1735,
                 "medien": [
                     2101017
@@ -549,8 +543,8 @@
             "Schmidt",
             "Dr. iur.",
             null,
-            "Klub der Freiheitlichen Partei Österreichs (F)",
-            "Wahlkreisverband I (Burgenland, Niederösterreich, Wien)",
+            null,
+            null,
             "/person/1735"
         ],
         [
@@ -563,7 +557,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Elisabeth Schmidt",
-                "fraktionen": "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -672,7 +665,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich",
                 "pad_intern": 1736,
                 "medien": [
                     2101018
@@ -688,8 +680,8 @@
             "Schmidt",
             null,
             null,
-            "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Niederösterreich",
+            null,
+            null,
             "/person/1736"
         ],
         [
@@ -702,7 +694,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Dr. Erich Schmidt",
-                "fraktionen": "Klub der Sozialistischen Abgeordneten und Bundesräte (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -835,7 +826,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband II (K, OÖ, S, St, T u V), Salzburg",
                 "pad_intern": 1737,
                 "medien": [
                     2101019
@@ -851,8 +841,8 @@
             "Schmidt",
             "Dr. iur.",
             null,
-            "Klub der Sozialistischen Abgeordneten und Bundesräte (S)",
-            "Wahlkreisverband II (K, OÖ, S, St, T u V), Salzburg",
+            null,
+            null,
             "/person/1737"
         ],
         [
@@ -865,7 +855,6 @@
             "[\"GdP\"]",
             {
                 "zit": "Dr.-Ing. Friedrich Schmidt",
-                "fraktionen": "Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "GdP"
@@ -918,7 +907,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Reststimmenmandat",
                 "pad_intern": 1738,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (I. GP), GdP",
@@ -931,8 +919,8 @@
             "Schmidt",
             "Dr.-Ing.",
             null,
-            "Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
-            "Reststimmenmandat",
+            null,
+            null,
             "/person/1738"
         ],
         [
@@ -945,7 +933,6 @@
             "[\"FPÖ\",\"L\"]",
             {
                 "zit": "Mag. Dr. Heide Schmidt",
-                "fraktionen": "Klub der Freiheitlichen Partei Österreichs (F), Parlamentsklub des Liberalen Forums (L), Klub Liberales Forum (L), Parlamentsklub Liberales Forum (L), Fraktion der Freiheitlichen Bundesräte; Freiheitliche Bundesratsfraktion (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ",
@@ -977,7 +964,7 @@
                         "wahlpartei_sort": "Freiheitliche Partei Oesterreichs",
                         "mandat_bis": "04.11.1990",
                         "wahlkreis": "Wien",
-                        "fraktion": "Fraktion der Freiheitlichen Bundesräte; Freiheitliche Bundesratsfraktion"
+                        "fraktion": "Fraktion der Freiheitlichen Bundesräte"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -1122,7 +1109,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 1739,
                 "medien": [
                     2100295
@@ -1141,8 +1127,8 @@
             "Schmidt",
             "Mag. rer. soc. oec. Dr. iur.",
             null,
-            "Klub der Freiheitlichen Partei Österreichs (F), Parlamentsklub des Liberalen Forums (L), Klub Liberales Forum (L), Parlamentsklub Liberales Forum (L), Fraktion der Freiheitlichen Bundesräte; Freiheitliche Bundesratsfraktion (F)",
-            "Wien",
+            null,
+            null,
             "/person/1739"
         ],
         [
@@ -1155,7 +1141,6 @@
             "[\"CSP\"]",
             {
                 "zit": "Josef Schmidt",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -1244,7 +1229,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Vorarlberg, Wahlkreisverband III (OÖ, S, T u. V)",
                 "pad_intern": 1740,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (IV. GP), CSP",
@@ -1257,8 +1241,8 @@
             "Schmidt",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
-            "Vorarlberg, Wahlkreisverband III (OÖ, S, T u. V)",
+            null,
+            null,
             "/person/1740"
         ],
         [
@@ -1271,7 +1255,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "MMag. Michaela Schmidt",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1370,7 +1353,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Salzburg",
                 "pad_intern": 25188,
                 "medien": [
                     20154683
@@ -1386,8 +1368,8 @@
             "Schmidt",
             "MMag.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Bundeswahlvorschlag, Salzburg",
+            null,
+            null,
             "/person/25188"
         ],
         [
@@ -1400,7 +1382,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Otto Schmidt",
-                "fraktionen": "Bundesratsfraktion der SPÖ (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1454,7 +1435,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Steiermark",
                 "pad_intern": 1741,
                 "medien": [
                     2101020
@@ -1470,8 +1450,8 @@
             "Schmidt",
             null,
             null,
-            "Bundesratsfraktion der SPÖ (S)",
-            "Steiermark",
+            null,
+            null,
             "/person/1741"
         ]
     ]

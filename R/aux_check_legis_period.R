@@ -25,7 +25,7 @@ fn_check_legis_period_elements <- function(x) {
     )
   }
 
-  if (stringr::str_detect(x, stringr::regex("\\D"), negate = T)) {
+  if (stringr::str_detect(x, stringr::regex("\\D"), negate = TRUE)) {
     return(as.character(as.roman(x)))
   } else if (x == "all") {
     x <- "ALLE"
@@ -211,7 +211,7 @@ aux_convert_legis_periods <- function(legis_period, output = "character") {
 #' @importFrom purrr map_lgl
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Single check
 #' aux_check_pad_intern_exists("12345")
 #'

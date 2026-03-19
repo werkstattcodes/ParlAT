@@ -70,7 +70,7 @@ Retrieves information about plenary meetings from the Austrian Parliament's API 
 Data available from 20th legislative period onwards.
 }
 \examples{
-\dontrun{
+\donttest{
 # Basic usage: meetings of the National Council for legislative period 28
 meetings <- get_plenary_meetings(
   institution = "NR",

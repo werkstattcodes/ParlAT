@@ -171,7 +171,7 @@ get_persons_single <- function(
 #'
 #' @export
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' get_persons(c("Kogler Werner", "Kurz Sebastian"))}
 
 get_persons <- function(

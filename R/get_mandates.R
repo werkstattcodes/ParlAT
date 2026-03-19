@@ -93,7 +93,7 @@ get_mandates_single <- function(pad_intern) {
 #' @export
 #' @seealso [get_names()], [get_pad_intern()]
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
 #'   # Returns results with latest name (Beck)
 #'   get_mandates(c("Pia Philippa Strache"))
@@ -332,7 +332,7 @@ get_mandates <- function(
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_pad_intern("Strache")
 #' get_pad_intern("Heinz-Christian Strache")
 #' }

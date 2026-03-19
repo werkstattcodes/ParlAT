@@ -235,7 +235,7 @@
 #' * [get_items()] for searching parliamentary items and retrieving URLs
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get details for a specific item
 #' item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
 #' stages <- get_item_details(item_url)

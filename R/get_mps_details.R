@@ -148,7 +148,7 @@
 #'   Returns \code{NULL} invisibly if no data is found for the given parameters.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get Stephanie Krisper's plenary speeches in National Council only for the 27th legislative period
 #' plenary_nr <- get_mps_details(
 #'   pad_intern = 2344,

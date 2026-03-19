@@ -77,7 +77,7 @@ The function partly mirrors the search functionality of the Austrian Parliament'
 e.g. incorporating the extraction of data from membership lists. Data available starting from the 20th legislative period.
 }
 \examples{
-\dontrun{
+\donttest{
 # Basic search for committees in National Council
 get_committees(
   institution = "NR",

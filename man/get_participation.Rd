@@ -115,7 +115,7 @@ Setting \code{initiative_type = NULL} returns values for all initiative types li
 Setting \code{statement_type = NULL} returns values for all statement types listed above.
 }
 \examples{
-\dontrun{
+\donttest{
 # Get participation data for the topic "Bildung"
 get_participation(topic = "Bildung")
 

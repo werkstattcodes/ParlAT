@@ -306,7 +306,7 @@ Permissible values:
 }
 }
 \examples{
-\dontrun{
+\donttest{
 # Get all MPs from the current legislative period
 mps <- get_mps(institution = "NR", legis_period = "27")
 

@@ -1,6 +1,6 @@
 {
     "pages": 74,
-    "lastSync": "2026-03-07 04:53:34.0",
+    "lastSync": "2026-03-17 22:27:00.0",
     "count": 74,
     "header": [
         {
@@ -22,8 +22,8 @@
             "hideValue": false,
             "rnr": 2,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "link",
+            "listeId": 211,
             "label": "uri"
         },
         {
@@ -66,8 +66,8 @@
             "hideValue": false,
             "rnr": 6,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "title",
+            "listeId": 211,
             "label": "Sitzung",
             "class": "betreff-col"
         },
@@ -89,8 +89,8 @@
             "hideValue": false,
             "rnr": 8,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "description",
+            "listeId": 211,
             "label": "Art",
             "sortable": "1",
             "class": "datum-col"
@@ -108,13 +108,13 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "hideValue": false,
             "rnr": 10,
             "valueToNull": false,
-            "listeId": 211,
             "mediaType": "datetime",
+            "listeId": 211,
             "label": "datum2",
             "feld_name": "DATUM"
         },
@@ -179,22 +179,22 @@
     ],
     "rows": [
         [
-            "05.11.2020",
-            "/gegenstand/BR/BRSITZ/914",
+            "20.10.2022",
+            "/gegenstand/BR/BRSITZ/946",
             "XXVII",
             "BRSITZ",
-            914,
-            "914. Sitzung (914/BRSITZ/2020)",
-            "914/BRSITZ/2020",
+            946,
+            "946. Sitzung (946/BRSITZ/2022)",
+            "946/BRSITZ/2022",
             "Plenarsitzung - BR",
             "Plenar-Sitzung",
-            "2020-11-05T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/914/fname_882520.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/914/fnameorig_882520.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "2022-10-20T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/946/fname_1557178.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/946/fnameorig_1557178.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
             "BRSITZ",
-            2435447,
+            687113,
             "BRSITZ",
-            "<a href=\"/gegenstand/BR/BRSITZ/914?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
-            "2263378"
+            "<a href=\"/gegenstand/BR/BRSITZ/946?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "17016809"
         ]
     ]
 }

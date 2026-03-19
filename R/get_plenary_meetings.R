@@ -43,7 +43,7 @@
 #' - Columns returned: `institution`, `date`, `meeting_number`, `meeting_url`, `meeting_type`, `meeting_title`, `session_type`, `agenda_url_html`, `agenda_url_pdf`
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Basic usage: meetings of the National Council for legislative period 28
 #' meetings <- get_plenary_meetings(
 #'   institution = "NR",

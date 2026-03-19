@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 20:53:05.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 1,
     "header": [
         {
@@ -183,7 +183,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Dr. Elisabeth Götze",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -255,7 +254,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich",
                 "pad_intern": 5654,
                 "medien": [
                     20068188,
@@ -272,8 +270,8 @@
             "Götze",
             "Dr.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Niederösterreich",
+            null,
+            null,
             "/person/5654"
         ]
     ]

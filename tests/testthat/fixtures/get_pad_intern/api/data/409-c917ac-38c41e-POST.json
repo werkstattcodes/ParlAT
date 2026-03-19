@@ -1,11 +1,11 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-07 20:53:05.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 3,
     "header": [
         {
-            "feldId": 605,
             "link_rnr": "16",
+            "feldId": 605,
             "hidden": false,
             "valueToNull": false,
             "mediaType": "title",
@@ -31,8 +31,8 @@
             "ist_werteliste": "1"
         },
         {
-            "feldId": 604,
             "export_jn": "0",
+            "feldId": 604,
             "hidden": true,
             "hideValue": false,
             "rnr": 3,
@@ -42,8 +42,8 @@
             "ist_web_item_id": "1"
         },
         {
-            "feldId": 623,
             "export_jn": "0",
+            "feldId": 623,
             "hidden": true,
             "hideValue": false,
             "rnr": 4,
@@ -93,8 +93,8 @@
             "feld_name": "ATTR_JSON"
         },
         {
-            "feldId": 903,
             "export_jn": "0",
+            "feldId": 903,
             "hidden": true,
             "hideValue": false,
             "rnr": 9,
@@ -104,8 +104,8 @@
             "feld_name": "PRAES"
         },
         {
-            "feldId": 1223,
             "export_jn": "0",
+            "feldId": 1223,
             "hidden": true,
             "hideValue": false,
             "rnr": 10,
@@ -114,8 +114,8 @@
             "label": "vorname"
         },
         {
-            "feldId": 1224,
             "export_jn": "0",
+            "feldId": 1224,
             "hidden": true,
             "hideValue": false,
             "rnr": 11,
@@ -133,8 +133,8 @@
             "label": "akgr"
         },
         {
-            "feldId": 1226,
             "export_jn": "0",
+            "feldId": 1226,
             "hidden": true,
             "hideValue": false,
             "rnr": 13,
@@ -183,7 +183,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Lisa Aldali",
-                "fraktionen": "NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -237,7 +236,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 38385,
                 "medien": [
                     20174600
@@ -253,8 +251,8 @@
             "Aldali",
             null,
             null,
-            "NEOS Parlamentsklub (N)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/38385"
         ],
         [
@@ -267,7 +265,6 @@
             "[\"NEOS\",\"NEOS-LIF\"]",
             {
                 "zit": "Michael Bernhard",
-                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS",
@@ -300,7 +297,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "22.10.2019",
                         "wahlkreis": "Wien",
-                        "fraktion": "Klub von NEOS; NEOS Parlamentsklub"
+                        "fraktion": "NEOS Parlamentsklub"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -335,7 +332,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "29.01.2014",
                         "wahlkreis": "Wien",
-                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                        "fraktion": "Klub von NEOS und LIF"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -353,7 +350,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "08.11.2017",
                         "wahlkreis": "Wien",
-                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                        "fraktion": "Klub von NEOS"
                     },
                     {
                         "wahlkreis_bundesland": "Bundeswahlvorschlag",
@@ -451,7 +448,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Bundeswahlvorschlag",
                 "pad_intern": 83124,
                 "medien": [
                     20068165,
@@ -468,8 +464,8 @@
             "Bernhard",
             null,
             null,
-            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
-            "Wien, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/83124"
         ],
         [
@@ -482,7 +478,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Dr. Stephanie Krisper",
-                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -574,7 +569,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 2344,
                 "medien": [
                     20142646
@@ -590,8 +584,8 @@
             "Krisper",
             "Dr.",
             null,
-            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N)",
-            "Wien",
+            null,
+            null,
             "/person/2344"
         ]
     ]

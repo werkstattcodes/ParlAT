@@ -32,7 +32,7 @@ Returns all name variants of an person or a specific name used on a given date.
 This function is particularly relevant for MPs who changed their names (e.g., due to marriage or divorce).
 }
 \examples{
-\dontrun{
+\donttest{
 get_names(44127) # Philippa Pia Beck, Philippa Pia Strache
 get_names(44127, latest = TRUE) # Philippa Pia Beck, formerly Strache
 get_names(44127, date = "01/01/2023") # Philippa Pia Strache

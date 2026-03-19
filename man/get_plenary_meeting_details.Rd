@@ -128,7 +128,7 @@ Supply either \code{url} \strong{or} the combination of \code{institution},
 \code{legis_period}, and \code{meeting_number} — not both.
 }
 \examples{
-\dontrun{
+\donttest{
 # Via URL — meeting metadata (default)
 get_plenary_meeting_details(
   url = "https://www.parlament.gv.at/gegenstand/XXVIII/NRSITZ/50?selectedStage=100"

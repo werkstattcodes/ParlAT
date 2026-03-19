@@ -1,6 +1,6 @@
 {
     "pages": 78,
-    "lastSync": "2026-03-07 20:20:44.0",
+    "lastSync": "2026-03-17 22:00:45.0",
     "count": 3864,
     "header": [
         {
@@ -126,13 +126,13 @@
         {
             "feldId": 467,
             "export_jn": "1",
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
             "hideValue": false,
             "rnr": 13,
             "valueToNull": false,
-            "listeId": 701,
             "mediaType": "fromDate",
+            "listeId": 701,
             "label": "von",
             "feld_name": "VON"
         },
@@ -386,8 +386,8 @@
             "hideValue": false,
             "rnr": 36,
             "valueToNull": false,
-            "listeId": 701,
             "mediaType": "themen",
+            "listeId": 701,
             "label": "Themen",
             "feld_name": "THEMEN",
             "ist_werteliste": "1"

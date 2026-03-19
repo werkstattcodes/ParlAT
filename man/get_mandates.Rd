@@ -56,7 +56,7 @@ See examples.
 }
 }
 \examples{
-\dontrun{
+\donttest{
   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
   # Returns results with latest name (Beck)
   get_mandates(c("Pia Philippa Strache"))

@@ -494,7 +494,7 @@
 #'
 #' @export
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' # Search for EU-related items in the 28th legislative period
 #' get_items(topic = "Europäische Union", legis_period = 28)
 #'

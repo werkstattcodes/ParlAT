@@ -167,7 +167,7 @@
 #' Returns NULL if no results are found.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Get all current National Council members
 #'   nr_members <- get_mps_current(institution = "NR")
 #'
@@ -565,7 +565,7 @@ get_mps_current <- function(
 #' @return A data frame containing the list of current members of parliament that match the search criteria.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   df_members <- get_mps_current(
 #'     institution = "Nationalrat",
 #'     gender = "female",
@@ -1027,7 +1027,7 @@ get_mps_NR_current_api_request <- function(body_params) {
 #'   the specified criteria. Returns NULL if no results are found, along with a message.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get all current Federal Council members
 #' all_members <- get_mps_BR_current()
 #'
