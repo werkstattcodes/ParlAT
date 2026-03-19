@@ -97,59 +97,93 @@ See examples.
 
 ``` r
 # \donttest{
-  get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
-#> # A tibble: 10 × 16
-#>    pad_intern name                position_text      position_code position_name
-#>    <chr>      <chr>               <chr>              <chr>         <chr>        
-#>  1 5654       Dr. Elisabeth Götze Abgeordnete zum N… NR            Abgeordnete …
-#>  2 65321      Sebastian Kurz      Abgeordneter zum … NR            Abgeordneter…
-#>  3 65321      Sebastian Kurz      Abgeordneter zum … NR            Abgeordneter…
-#>  4 65321      Sebastian Kurz      Abgeordneter zum … NR            Abgeordneter…
-#>  5 65321      Sebastian Kurz      Abgeordneter zum … NR            Abgeordneter…
-#>  6 65321      Sebastian Kurz      Bundeskanzler      BK            Bundeskanzler
-#>  7 65321      Sebastian Kurz      Bundeskanzler      BK            Bundeskanzler
-#>  8 65321      Sebastian Kurz      Bundesminister fü… BM            Bundesminist…
-#>  9 65321      Sebastian Kurz      Bundesminister fü… BM            Bundesminist…
-#> 10 65321      Sebastian Kurz      Staatssekretär im… STS           Staatssekret…
-#> # ℹ 11 more variables: position_date_start <date>, position_date_end <date>,
-#> #   position_active <lgl>, parl_group <chr>, wahlkreis <chr>, party <chr>,
-#> #   party_name <chr>, electoral_district_region_code <chr>,
-#> #   electoral_district_region <chr>, legis_period <list>, url_biography <chr>
+  result <- get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
+  dplyr::glimpse(result)
+#> Rows: 10
+#> Columns: 16
+#> $ pad_intern                     <chr> "5654", "65321", "65321", "65321", "653…
+#> $ name                           <chr> "Dr. Elisabeth Götze", "Sebastian Kurz"…
+#> $ position_text                  <chr> "Abgeordnete zum Nationalrat (XXVII.-XX…
+#> $ position_code                  <chr> "NR", "NR", "NR", "NR", "NR", "BK", "BK…
+#> $ position_name                  <chr> "Abgeordnete zum Nationalrat", "Abgeord…
+#> $ position_date_start            <date> 2019-10-23, 2021-10-14, 2019-10-23, 20…
+#> $ position_date_end              <date> NA, 2021-12-08, 2020-01-07, 2018-01-22…
+#> $ position_active                <lgl> TRUE, FALSE, FALSE, FALSE, FALSE, FALSE…
+#> $ parl_group                     <chr> "Der Grüne Klub im Parlament - Klub der…
+#> $ wahlkreis                      <chr> "3 - Niederösterreich", "Bundeswahlvors…
+#> $ party                          <chr> "GRÜNE", "ÖVP", "ÖVP", "ÖVP", "ÖVP", NA…
+#> $ party_name                     <chr> "Die Grünen", "Österreichische Volkspar…
+#> $ electoral_district_region_code <chr> "3", "FB", "FB", "FB", "9E", NA, NA, NA…
+#> $ electoral_district_region      <chr> "Niederösterreich", "Bundeswahlvorschla…
+#> $ legis_period                   <list> <"XXVII", "XXVIII">, "XXVII", "XXVII",…
+#> $ url_biography                  <chr> "https://www.parlament.gv.at/person/565…
+
   # Returns results with latest name (Beck)
-  get_mandates(c("Pia Philippa Strache"))
-#> # A tibble: 1 × 16
-#>   pad_intern name  position_text position_code position_name position_date_start
-#>   <chr>      <chr> <chr>         <chr>         <chr>         <date>             
-#> 1 44127      Pia … Abgeordnete … NR            Abgeordnete … 2019-10-23         
-#> # ℹ 10 more variables: position_date_end <date>, position_active <lgl>,
-#> #   parl_group <chr>, wahlkreis <chr>, party <chr>, party_name <chr>,
-#> #   electoral_district_region_code <chr>, electoral_district_region <chr>,
-#> #   legis_period <list>, url_biography <chr>
+  result <- get_mandates(c("Pia Philippa Strache"))
+  dplyr::glimpse(result)
+#> Rows: 1
+#> Columns: 16
+#> $ pad_intern                     <chr> "44127"
+#> $ name                           <chr> "Pia Philippa Beck"
+#> $ position_text                  <chr> "Abgeordnete zum Nationalrat (XXVII. GP…
+#> $ position_code                  <chr> "NR"
+#> $ position_name                  <chr> "Abgeordnete zum Nationalrat"
+#> $ position_date_start            <date> 2019-10-23
+#> $ position_date_end              <date> 2024-10-23
+#> $ position_active                <lgl> FALSE
+#> $ parl_group                     <chr> "ohne Klubzugehörigkeit"
+#> $ wahlkreis                      <chr> "9 - Wien"
+#> $ party                          <chr> "OK"
+#> $ party_name                     <chr> "Freiheitliche Partei Österreichs"
+#> $ electoral_district_region_code <chr> "9"
+#> $ electoral_district_region      <chr> "Wien"
+#> $ legis_period                   <list> "XXVII"
+#> $ url_biography                  <chr> "https://www.parlament.gv.at/person/441…
 
   # Michael Pöck changed name to Michael Bernhard.
-  get_names(pad_intern = "83124")
-#>   index pad_intern             name date_start   date_end       name_clean
-#> 1     1      83124 Michael Bernhard 2016-08-11       <NA> Michael Bernhard
-#> 2     2      83124     Michael Pock       <NA> 2016-08-10     Michael Pock
-#>   name_family name_given                          note
-#> 1    Bernhard   Michael                           <NA>
-#> 2        Pock   Michael  (bis 10.8.2016: Michael Pock)
+  result <- get_names(pad_intern = "83124")
+  dplyr::glimpse(result)
+#> Rows: 2
+#> Columns: 9
+#> $ index       <int> 1, 2
+#> $ pad_intern  <chr> "83124", "83124"
+#> $ name        <chr> "Michael Bernhard", "Michael Pock"
+#> $ date_start  <date> 2016-08-11, NA
+#> $ date_end    <date> NA, 2016-08-10
+#> $ name_clean  <chr> "Michael Bernhard", "Michael Pock"
+#> $ name_family <chr> "Bernhard", "Pock"
+#> $ name_given  <chr> "Michael ", "Michael "
+#> $ note        <chr> NA, "(bis 10.8.2016: Michael Pock)"
+
   # Query for Micheal Pöck returns all results under the name
   # Michael Bernhard, even for periods where Michael Pöck was still valid.
-  get_mandates(name = "Michael Pöck")
+  result <- get_mandates(name = "Michael Pöck")
 #> No mandates found.
-#> NULL
+  dplyr::glimpse(result)
+#>  NULL
+
   # Query for Michael Bernhard returns all results,
   # including for those with the name Michael Pöck.
-  get_mandates(name = "Michael Bernhard")
-#> # A tibble: 2 × 17
-#>   pad_intern name  position_text position_code position_name position_date_start
-#>   <chr>      <chr> <chr>         <chr>         <chr>         <date>             
-#> 1 83124      Mich… Abgeordneter… NR            Abgeordneter… 2014-01-30         
-#> 2 83124      Mich… Abgeordneter… NR            Abgeordneter… 2013-10-29         
-#> # ℹ 11 more variables: position_date_end <date>, position_active <lgl>,
-#> #   parl_group <chr>, wahlkreis <chr>, party <chr>, party_name <chr>,
-#> #   substitute <chr>, electoral_district_region_code <chr>,
-#> #   electoral_district_region <chr>, legis_period <list>, url_biography <chr>
+  result <- get_mandates(name = "Michael Bernhard")
+  dplyr::glimpse(result)
+#> Rows: 2
+#> Columns: 17
+#> $ pad_intern                     <chr> "83124", "83124"
+#> $ name                           <chr> "Michael Bernhard", "Michael Bernhard"
+#> $ position_text                  <chr> "Abgeordneter zum Nationalrat (XXV.-XXV…
+#> $ position_code                  <chr> "NR", "NR"
+#> $ position_name                  <chr> "Abgeordneter zum Nationalrat", "Abgeor…
+#> $ position_date_start            <date> 2014-01-30, 2013-10-29
+#> $ position_date_end              <date> NA, 2014-01-29
+#> $ position_active                <lgl> TRUE, FALSE
+#> $ parl_group                     <chr> "NEOS Parlamentsklub", "Klub von NEOS u…
+#> $ wahlkreis                      <chr> "9 - Wien", "9 - Wien"
+#> $ party                          <chr> "NEOS", "NEOS-LIF"
+#> $ party_name                     <chr> "NEOS - Das neue Österreich und Liberal…
+#> $ substitute                     <chr> "Das durch Mandatsverzicht von Frau Abg…
+#> $ electoral_district_region_code <chr> "9", "9"
+#> $ electoral_district_region      <chr> "Wien", "Wien"
+#> $ legis_period                   <list> <"XXV", "XXVIII">, "XXV"
+#> $ url_biography                  <chr> "https://www.parlament.gv.at/person/83…
 # }
 ```

@@ -70,14 +70,14 @@ persons for the supplied filters.
 
 ``` r
 # \donttest{
-get_persons(c("Kogler Werner", "Kurz Sebastian"))# }
-#>   pad_intern                name gender
-#> 1       8242 Kogler Werner, Mag.      M
-#> 2      65321      Kurz Sebastian      M
-#>                                                                                                     position
-#> 1 Abgeordneter zum Nationalrat, Betraut mit der Vertretung der Bundesministerin, Bundesminister, Vizekanzler
-#> 2                                Abgeordneter zum Nationalrat, Bundeskanzler, Bundesminister, Staatssekretär
-#>            link
-#> 1  /person/8242
-#> 2 /person/65321
+result <- get_persons(c("Kogler Werner", "Kurz Sebastian"))
+dplyr::glimpse(result)
+#> Rows: 2
+#> Columns: 5
+#> $ pad_intern <chr> "8242", "65321"
+#> $ name       <chr> "Kogler Werner, Mag.", "Kurz Sebastian"
+#> $ gender     <chr> "M", "M"
+#> $ position   <chr> "Abgeordneter zum Nationalrat, Betraut mit der Vertretung d…
+#> $ link       <chr> "/person/8242", "/person/65321"
+# }
 ```

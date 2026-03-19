@@ -35,7 +35,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Retrieve Transcripts from the Austrian Parliament API</h1>
-      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/v0.0.3/R/get_transcripts.R" class="external-link"><code>R/get_transcripts.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/R/get_transcripts.R" class="external-link"><code>R/get_transcripts.R</code></a></small>
       <div class="d-none name"><code>get_transcripts.Rd</code></div>
     </div>
 
@@ -162,54 +162,44 @@ A summary of successful and failed downloads is printed at the conclusion of the
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Get transcripts using a search string and specifying a legislative period.</span></span></span>
-<span class="r-in"><span>  <span class="fu">get_transcripts</span><span class="op">(</span>search_string <span class="op">=</span> <span class="st">"gesundheit"</span>,</span></span>
+<span class="r-in"><span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_transcripts</span><span class="op">(</span>search_string <span class="op">=</span> <span class="st">"gesundheit"</span>,</span></span>
 <span class="r-in"><span>                  legis_period <span class="op">=</span> <span class="fl">28</span>,</span></span>
 <span class="r-in"><span>                  meeting_type <span class="op">=</span> <span class="st">"NRSITZ"</span>,</span></span>
-<span class="r-in"><span>                  echo<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                  echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> {"GP_CODE":["XXVIII"],"NBVS":["NRSITZ"]} </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211GP_CODE=XXVIII&amp;STENO_211NBVS=NRSITZ&amp;STENO_211search=gesundheit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    date       meeting_url       legis_period meeting_type meeting_number meeting</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2024-12-11 /gegenstand/XXVI… XXVIII       NRSITZ       5/NRSITZ       5. Sit…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2025-03-26 /gegenstand/XXVI… XXVIII       NRSITZ       13/NRSITZ      13. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2025-04-24 /gegenstand/XXVI… XXVIII       NRSITZ       17/NRSITZ      17. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2025-05-13 /gegenstand/XXVI… XXVIII       NRSITZ       21/NRSITZ      21. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2025-06-16 /gegenstand/XXVI… XXVIII       NRSITZ       32/NRSITZ      32. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2025-07-09 /gegenstand/XXVI… XXVIII       NRSITZ       35/NRSITZ      35. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2025-07-10 /gegenstand/XXVI… XXVIII       NRSITZ       37/NRSITZ      37. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2025-07-11 /gegenstand/XXVI… XXVIII       NRSITZ       39/NRSITZ      39. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2025-09-24 /gegenstand/XXVI… XXVIII       NRSITZ       41/NRSITZ      41. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2025-10-15 /gegenstand/XXVI… XXVIII       NRSITZ       44/NRSITZ      44. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 2025-10-16 /gegenstand/XXVI… XXVIII       NRSITZ       46/NRSITZ      46. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 2025-11-19 /gegenstand/XXVI… XXVIII       NRSITZ       50/NRSITZ      50. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 2025-12-10 /gegenstand/XXVI… XXVIII       NRSITZ       55/NRSITZ      55. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 2025-12-11 /gegenstand/XXVI… XXVIII       NRSITZ       57/NRSITZ      57. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 2025-12-12 /gegenstand/XXVI… XXVIII       NRSITZ       59/NRSITZ      59. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 2026-02-25 /gegenstand/XXVI… XXVIII       NRSITZ       66/NRSITZ      66. Si…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: meeting_transcript_html &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   meeting_transcript_pdf &lt;chr&gt;</span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ date                    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2024-12-11<span style="color: #949494;">, </span>2025-03-26<span style="color: #949494;">, </span>2025-04-24<span style="color: #949494;">, </span>2025-05-1…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_url             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/gegenstand/XXVIII/NRSITZ/5"<span style="color: #949494;">, </span>"/gegenstand/XX…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVII…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_type            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NRSITZ"<span style="color: #949494;">, </span>"NRSITZ"<span style="color: #949494;">, </span>"NRSITZ"<span style="color: #949494;">, </span>"NRSITZ"<span style="color: #949494;">, </span>"NRSIT…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_number          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5/NRSITZ"<span style="color: #949494;">, </span>"13/NRSITZ"<span style="color: #949494;">, </span>"17/NRSITZ"<span style="color: #949494;">, </span>"21/NRSI…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5. Sitzung (5/NRSITZ)"<span style="color: #949494;">, </span>"13. Sitzung (13/NRSI…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_transcript_html <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/dokument/XXVIII/N…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_transcript_pdf  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/dokument/XXVIII/N…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co"># Get transcript data for a specific period of time.</span></span></span>
-<span class="r-in"><span> <span class="fu">get_transcripts</span><span class="op">(</span>meeting_type <span class="op">=</span> <span class="st">"BRSITZ"</span>,</span></span>
+<span class="r-in"><span> <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_transcripts</span><span class="op">(</span>meeting_type <span class="op">=</span> <span class="st">"BRSITZ"</span>,</span></span>
 <span class="r-in"><span>                 date_start <span class="op">=</span> <span class="st">"01-01-2024"</span>,</span></span>
 <span class="r-in"><span>                 date_end <span class="op">=</span> <span class="st">"30-06-2024"</span>,</span></span>
 <span class="r-in"><span>                 echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> {"NBVS":["BRSITZ"],"DATUM":["2024-01-01T00:00:00.000Z","2024-06-30T00:00:00.000Z"]} </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211NBVS=BRSITZ&amp;STENO_211DATUM=2024-01-01T00:00:00.000Z&amp;STENO_211DATUM=2024-06-30T00:00:00.000Z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   date       meeting_url        legis_period meeting_type meeting_number meeting</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2024-02-15 /gegenstand/BR/BR… XXVII        BRSITZ       963/BRSITZ/20… 963. S…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 2024-03-14 /gegenstand/BR/BR… XXVII        BRSITZ       964/BRSITZ/20… 964. S…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 2024-04-05 /gegenstand/BR/BR… XXVII        BRSITZ       965/BRSITZ/20… 965. S…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 2024-04-24 /gegenstand/BR/BR… XXVII        BRSITZ       966/BRSITZ/20… 966. S…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 2024-05-29 /gegenstand/BR/BR… XXVII        BRSITZ       967/BRSITZ/20… 967. S…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 2024-06-27 /gegenstand/BR/BR… XXVII        BRSITZ       968/BRSITZ/20… 968. S…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: meeting_transcript_html &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   meeting_transcript_pdf &lt;chr&gt;</span></span>
+<span class="r-in"><span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ date                    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2024-02-15<span style="color: #949494;">, </span>2024-03-14<span style="color: #949494;">, </span>2024-04-05<span style="color: #949494;">, </span>2024-04-2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_url             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/gegenstand/BR/BRSITZ/963"<span style="color: #949494;">, </span>"/gegenstand/BR/B…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_type            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "BRSITZ"<span style="color: #949494;">, </span>"BRSITZ"<span style="color: #949494;">, </span>"BRSITZ"<span style="color: #949494;">, </span>"BRSITZ"<span style="color: #949494;">, </span>"BRSIT…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_number          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "963/BRSITZ/2024"<span style="color: #949494;">, </span>"964/BRSITZ/2024"<span style="color: #949494;">, </span>"965/BRS…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "963. Sitzung (963/BRSITZ/2024)"<span style="color: #949494;">, </span>"964. Sitzun…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_transcript_html <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/dokument/BR/BRSIT…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_transcript_pdf  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/dokument/BR/BRSIT…</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Retrieve all transcripts of National Council plenary meetings</span></span></span>

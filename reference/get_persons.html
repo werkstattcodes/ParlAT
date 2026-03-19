@@ -43,7 +43,7 @@ Austrian Parliament (see here).'><meta property="og:image" content="https://werk
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Search persons in Austrian political institutions</h1>
-      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/v0.0.3/R/get_persons.R" class="external-link"><code>R/get_persons.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/R/get_persons.R" class="external-link"><code>R/get_persons.R</code></a></small>
       <div class="d-none name"><code>get_persons.Rd</code></div>
     </div>
 
@@ -108,16 +108,16 @@ available persons for the supplied filters.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="fu">get_persons</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Kogler Werner"</span>, <span class="st">"Kurz Sebastian"</span><span class="op">)</span><span class="op">)</span><span class="co"># }</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   pad_intern                name gender</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       8242 Kogler Werner, Mag.      M</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      65321      Kurz Sebastian      M</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                     position</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Abgeordneter zum Nationalrat, Betraut mit der Vertretung der Bundesministerin, Bundesminister, Vizekanzler</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                Abgeordneter zum Nationalrat, Bundeskanzler, Bundesminister, Staatssekretär</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            link</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  /person/8242</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 /person/65321</span>
+<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_persons</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Kogler Werner"</span>, <span class="st">"Kurz Sebastian"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "8242"<span style="color: #949494;">, </span>"65321"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kogler Werner, Mag."<span style="color: #949494;">, </span>"Kurz Sebastian"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ gender     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M"<span style="color: #949494;">, </span>"M"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ position   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Abgeordneter zum Nationalrat, Betraut mit der Vertretung d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ link       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/person/8242"<span style="color: #949494;">, </span>"/person/65321"</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

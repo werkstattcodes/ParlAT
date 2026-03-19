@@ -28,17 +28,18 @@ person's current and previous names.
 
 ``` r
 # \donttest{
-get_pad_intern("Strache")
-#> # A tibble: 3 × 2
-#>   pad_intern names_variants                         
-#>   <chr>      <chr>                                  
-#> 1 1905       Max Strache                            
-#> 2 35518      Heinz-Christian Strache                
-#> 3 44127      Pia Philippa Beck, Pia Philippa Strache
-get_pad_intern("Heinz-Christian Strache")
-#> # A tibble: 1 × 2
-#>   pad_intern names_variants         
-#>   <chr>      <chr>                  
-#> 1 35518      Heinz-Christian Strache
+result <- get_pad_intern("Strache")
+dplyr::glimpse(result)
+#> Rows: 3
+#> Columns: 2
+#> $ pad_intern     <chr> "1905", "35518", "44127"
+#> $ names_variants <chr> "Max Strache", "Heinz-Christian Strache", "Pia Philippa…
+
+result <- get_pad_intern("Heinz-Christian Strache")
+dplyr::glimpse(result)
+#> Rows: 1
+#> Columns: 2
+#> $ pad_intern     <chr> "35518"
+#> $ names_variants <chr> "Heinz-Christian Strache"
 # }
 ```

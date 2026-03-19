@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/werkstattcodes/ParlAT/blob/v0.0.3/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/werkstattcodes/ParlAT/blob/master/DESCRIPTION)
 
 Schmidt R (2026). *ParlAT: A wrapper for the API of the Austrian
 Parliament*. R package version 0.0.3,
