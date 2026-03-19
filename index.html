@@ -17,8 +17,8 @@
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="A wrapper for the API of the Austrian Parliament">
-<meta name="description" content="The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. This includes, but is not limited to, data on past and current MPs, plenary sessions, or protocols.">
-<meta property="og:description" content="The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. This includes, but is not limited to, data on past and current MPs, plenary sessions, or protocols.">
+<meta name="description" content="The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. This includes, but is not limited to, data on past and current MPs, plenary meetings, or protocols.">
+<meta property="og:description" content="The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. This includes, but is not limited to, data on past and current MPs, plenary meetings, or protocols.">
 <meta property="og:image" content="https://werkstattcodes.github.io/ParlAT/logo.png">
 </head>
 <body>
@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
 </div>
 <!-- badges: start -->
 
-<p>The ParlAT package seeks to provide an easy way for R users to access the Open Data offered by the Austrian Parliament. By leveraging the Parliament’s API, it allows users to retrieve data on a wide range of issues such as legislative proposals, committee reports, details on MPs and their mandates, or parliamentary sessions. The package is designed to provide a consistent interface for accessing different datasets. For an introductory overview and some examples, please see the “Get started” section. For details, consult the functions’ documentation under “References”.</p>
+<p>The ParlAT package seeks to provide an easy way for R users to access the Open Data offered by the Austrian Parliament. By leveraging the Parliament’s API, it allows users to retrieve data on a wide range of issues such as legislative proposals, committee reports, details on MPs and their mandates, or parliamentary meetings. The package is designed to provide a consistent interface for accessing different datasets. For an introductory overview and some examples, please see the “Get started” section. For details, consult the functions’ documentation under “References”.</p>
 <p>Please note that the package is <strong>in a development stage</strong>. So until it has reached a mature state, upcoming changes may break existing code. If you encounter any bug etc., you are welcome to file a pertaining issue at the package’s <a href="https://github.com/werkstattcodes/ParlAT/issues" target="_blank" class="external-link">github repo</a>.</p>
 <p>Also note that neither the package nor its author is affiliated to the Austrian Parliament.</p>
 <div class="section level2">
@@ -94,8 +94,8 @@
 <p>Below a raw tabuliation of the Parliament’s 25 open datasets and the ParlAT’s pertaining function to access it. Please note that this is only subset of the available parameters. For details see the function documentation in the reference section.</p>
 <table class="table">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="54%">
+<col width="45%">
 </colgroup>
 <thead><tr class="header">
 <th>Dataset</th>
@@ -135,12 +135,12 @@
 <td><code>get_items(item="PET")</code></td>
 </tr>
 <tr class="odd">
-<td>Stenographisches Protokolle (Session transcripts)</td>
+<td>Stenographisches Protokolle (Meeting transcripts)</td>
 <td><code><a href="reference/get_transcripts.html">get_transcripts()</a></code></td>
 </tr>
 <tr class="even">
-<td>Plenarsitzungen (Plenary sessions)</td>
-<td><code><a href="reference/get_plenary_sessions.html">get_plenary_sessions()</a></code></td>
+<td>Plenarsitzungen (Plenary meetings)</td>
+<td><code><a href="reference/get_plenary_meetings.html">get_plenary_meetings()</a></code></td>
 </tr>
 <tr class="odd">
 <td>Parlamentarier seit 1918 (MPs since 1918)</td>
@@ -228,6 +228,12 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>

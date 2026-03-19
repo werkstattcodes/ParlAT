@@ -24,12 +24,12 @@ get_mandates(name = NULL, pad_intern = NULL, institution = NULL, date = NULL)
 - name:
 
   A character vector of name(s). First name followed by family name.
-  Only considered if no pad_intern(s) provided.
+  Cannot be combined with `pad_intern`; one of the two must be provided.
 
 - pad_intern:
 
-  Personal identfication number of person(s). Has to be NULL if name is
-  provided.
+  Personal identfication number of person(s). Cannot be combined with
+  `name`; one of the two must be provided.
 
 - institution:
 
@@ -96,18 +96,60 @@ See examples.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
+#> # A tibble: 10 × 16
+#>    pad_intern name                position_text      position_code position_name
+#>    <chr>      <chr>               <chr>              <chr>         <chr>        
+#>  1 5654       Dr. Elisabeth Götze Abgeordnete zum N… NR            Abgeordnete …
+#>  2 65321      Sebastian Kurz      Abgeordneter zum … NR            Abgeordneter…
+#>  3 65321      Sebastian Kurz      Abgeordneter zum … NR            Abgeordneter…
+#>  4 65321      Sebastian Kurz      Abgeordneter zum … NR            Abgeordneter…
+#>  5 65321      Sebastian Kurz      Abgeordneter zum … NR            Abgeordneter…
+#>  6 65321      Sebastian Kurz      Bundeskanzler      BK            Bundeskanzler
+#>  7 65321      Sebastian Kurz      Bundeskanzler      BK            Bundeskanzler
+#>  8 65321      Sebastian Kurz      Bundesminister fü… BM            Bundesminist…
+#>  9 65321      Sebastian Kurz      Bundesminister fü… BM            Bundesminist…
+#> 10 65321      Sebastian Kurz      Staatssekretär im… STS           Staatssekret…
+#> # ℹ 11 more variables: position_date_start <date>, position_date_end <date>,
+#> #   position_active <lgl>, parl_group <chr>, wahlkreis <chr>, party <chr>,
+#> #   party_name <chr>, electoral_district_region_code <chr>,
+#> #   electoral_district_region <chr>, legis_period <list>, url_biography <chr>
   # Returns results with latest name (Beck)
   get_mandates(c("Pia Philippa Strache"))
+#> # A tibble: 1 × 16
+#>   pad_intern name  position_text position_code position_name position_date_start
+#>   <chr>      <chr> <chr>         <chr>         <chr>         <date>             
+#> 1 44127      Pia … Abgeordnete … NR            Abgeordnete … 2019-10-23         
+#> # ℹ 10 more variables: position_date_end <date>, position_active <lgl>,
+#> #   parl_group <chr>, wahlkreis <chr>, party <chr>, party_name <chr>,
+#> #   electoral_district_region_code <chr>, electoral_district_region <chr>,
+#> #   legis_period <list>, url_biography <chr>
 
   # Michael Pöck changed name to Michael Bernhard.
   get_names(pad_intern = "83124")
+#>   index pad_intern             name date_start   date_end       name_clean
+#> 1     1      83124 Michael Bernhard 2016-08-11       <NA> Michael Bernhard
+#> 2     2      83124     Michael Pock       <NA> 2016-08-10     Michael Pock
+#>   name_family name_given                          note
+#> 1    Bernhard   Michael                           <NA>
+#> 2        Pock   Michael  (bis 10.8.2016: Michael Pock)
   # Query for Micheal Pöck returns all results under the name
   # Michael Bernhard, even for periods where Michael Pöck was still valid.
   get_mandates(name = "Michael Pöck")
+#> No mandates found.
+#> NULL
   # Query for Michael Bernhard returns all results,
   # including for those with the name Michael Pöck.
   get_mandates(name = "Michael Bernhard")
-} # }
+#> # A tibble: 2 × 17
+#>   pad_intern name  position_text position_code position_name position_date_start
+#>   <chr>      <chr> <chr>         <chr>         <chr>         <date>             
+#> 1 83124      Mich… Abgeordneter… NR            Abgeordneter… 2014-01-30         
+#> 2 83124      Mich… Abgeordneter… NR            Abgeordneter… 2013-10-29         
+#> # ℹ 11 more variables: position_date_end <date>, position_active <lgl>,
+#> #   parl_group <chr>, wahlkreis <chr>, party <chr>, party_name <chr>,
+#> #   substitute <chr>, electoral_district_region_code <chr>,
+#> #   electoral_district_region <chr>, legis_period <list>, url_biography <chr>
+# }
 ```

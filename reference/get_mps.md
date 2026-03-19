@@ -57,7 +57,8 @@ get_mps(
 
 - date:
 
-  Date for which active MPs are queried.
+  Date for which active MPs are queried. Must be a single date
+  (length 1) in format DD.MM.YYYY.
 
 - party:
 
@@ -99,9 +100,11 @@ Columns returned:
 
 - `pad_intern`: Person's unique identification number
 
+- `date`: Requested date (only included when `date` input is provided)
+
 - `name`: Name of the MP
 
-- `gender`: Gender
+- `gender`: Gender (male, female)
 
 - `parl_group`: Parliamentary group; note that the groups stated
   comprises *all* past and present groups of which the MP has been
@@ -111,7 +114,9 @@ Columns returned:
 
 - `legis_period`: Legislative period(s)
 
-- `mandate_detail`: Details on mandates in Parliament
+- `mandate_detail`: Details on mandates in Parliament at the queried
+  period of time (not all mandates). To obtain all mandates, use
+  [`get_mandates()`](https://werkstattcodes.github.io/ParlAT/reference/get_mandates.md).
 
 - `electoral_district`: Electoral district
 
@@ -542,11 +547,17 @@ Permissible values:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get all MPs from the current legislative period
 mps <- get_mps(institution = "NR", legis_period = "27")
+#> {"ATTR_JSON.mandate_detail.gremium_name":["Nationalrat"],"ATTR_JSON.mandate_detail.gp_text_full_short":["23.10.2019 - 23.10.2024: XXVII. GP"]} 
+#> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=23.10.2019%20-%2023.10.2024:%20XXVII.%20GP
+#> [1] 213
 
 # Get female MPs from a specific party
 female_mps <- get_mps(gender = "female", party = "SPÖ")
-} # }
+#> {"GESCHL_CODE":["W"],"ATTR_JSON.mandate_detail.wahlpartei_full_txt":["Sozialdemokratische Partei Österreichs (SPÖ)","Sozialistische Partei Österreichs (SPÖ)"]} 
+#> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409GESCHL_CODE=W&PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialdemokratische%20Partei%20%C3%96sterreichs%20(SP%C3%96)&PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialistische%20Partei%20%C3%96sterreichs%20(SP%C3%96)
+#> [1] 211
+# }
 ```

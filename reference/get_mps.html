@@ -11,7 +11,7 @@ from the Austrian Parliament website here."><meta property="og:image" content="h
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,7 +93,8 @@ from the Austrian Parliament website <a href="https://www.parlament.gv.at/recher
 
 
 <dt id="arg-date">date<a class="anchor" aria-label="anchor" href="#arg-date"></a></dt>
-<dd><p>Date for which active MPs are queried.</p></dd>
+<dd><p>Date for which active MPs are queried. Must be a single date
+(length 1) in format DD.MM.YYYY.</p></dd>
 
 
 <dt id="arg-party">party<a class="anchor" aria-label="anchor" href="#arg-party"></a></dt>
@@ -128,12 +129,13 @@ returned, however, are not limited to the requested period. The column <code>par
 may also contain data on the MP's membership in a parliamentary group during the requested period, but also
 also on his or her membership in other parliamentary groups in the past.</p>
 <p>Columns returned:</p><ul><li><p><code>pad_intern</code>: Person's unique identification number</p></li>
+<li><p><code>date</code>: Requested date (only included when <code>date</code> input is provided)</p></li>
 <li><p><code>name</code>: Name of the MP</p></li>
-<li><p><code>gender</code>: Gender</p></li>
+<li><p><code>gender</code>: Gender (male, female)</p></li>
 <li><p><code>parl_group</code>: Parliamentary group; note that the groups stated comprises <em>all</em> past and present groups of which the MP has been member of</p></li>
 <li><p><code>parl_group_abbrev</code>: Abbreviation of the parliamentary group</p></li>
 <li><p><code>legis_period</code>: Legislative period(s)</p></li>
-<li><p><code>mandate_detail</code>: Details on mandates in Parliament</p></li>
+<li><p><code>mandate_detail</code>: Details on mandates in Parliament at the queried period of time (not all mandates). To obtain all mandates, use <code><a href="get_mandates.html">get_mandates()</a></code>.</p></li>
 <li><p><code>electoral_district</code>: Electoral district</p></li>
 </ul></div>
     <div class="section level2">
@@ -371,13 +373,19 @@ input.</p><ul><li><p>Bauernpartei (BP)</p></li>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Get all MPs from the current legislative period</span></span></span>
 <span class="r-in"><span><span class="va">mps</span> <span class="op">&lt;-</span> <span class="fu">get_mps</span><span class="op">(</span>institution <span class="op">=</span> <span class="st">"NR"</span>, legis_period <span class="op">=</span> <span class="st">"27"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"ATTR_JSON.mandate_detail.gremium_name":["Nationalrat"],"ATTR_JSON.mandate_detail.gp_text_full_short":["23.10.2019 - 23.10.2024: XXVII. GP"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&amp;PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=23.10.2019%20-%2023.10.2024:%20XXVII.%20GP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 213</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get female MPs from a specific party</span></span></span>
 <span class="r-in"><span><span class="va">female_mps</span> <span class="op">&lt;-</span> <span class="fu">get_mps</span><span class="op">(</span>gender <span class="op">=</span> <span class="st">"female"</span>, party <span class="op">=</span> <span class="st">"SPÖ"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"GESCHL_CODE":["W"],"ATTR_JSON.mandate_detail.wahlpartei_full_txt":["Sozialdemokratische Partei Österreichs (SPÖ)","Sozialistische Partei Österreichs (SPÖ)"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409GESCHL_CODE=W&amp;PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialdemokratische%20Partei%20%C3%96sterreichs%20(SP%C3%96)&amp;PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialistische%20Partei%20%C3%96sterreichs%20(SP%C3%96)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 211</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

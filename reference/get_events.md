@@ -113,15 +113,15 @@ NULL if no results are found:
 
 Allowed event types are:
 
-- "Plenarsitzung" (Plenary Session)
+- "Plenarsitzung" (Plenary Meeting)
 
 - "Ausschusssitzung oder Ausschuss" (Committee Meeting or Committee)
 
-- "Besuch einer Plenarsitzung" (Visit to a Plenary Session)
+- "Besuch einer Plenarsitzung" (Visit to a Plenary Meeting)
 
 - "Demokratiebildung" (Democracy Education)
 
-- "Fest-/Gedenksitzung" (Ceremonial/Commemorative Session)
+- "Fest-/Gedenksitzung" (Ceremonial/Commemorative Meeting)
 
 - "Führung" (Guided Tour)
 
@@ -135,7 +135,7 @@ Allowed event types are:
 
 - "Pressekonferenz" (Press Conference)
 
-- "Sitzung der Bundesversammlung" (Federal Assembly Session)
+- "Sitzung der Bundesversammlung" (Federal Assembly Meeting)
 
 - "Sonstiger Termin" (Other Event)
 
@@ -267,9 +267,12 @@ parameters provided.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
   # Basic example: Get all National Council events
   events <- get_events(institution = "NR")
+#> {"GREMIUM":["Nationalrat"]} 
+#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat
+#> [1] 11365
 
   # Get events with specific date range
   events <- get_events(
@@ -277,30 +280,48 @@ if (FALSE) { # \dontrun{
     date_start = "01-01-2024",
     date_end = "31-01-2024"
   )
+#> {"DATERANGE":["2023-12-31T23:00:00.000Z","2024-01-31T22:59:59.000Z"],"GREMIUM":["Nationalrat"]} 
+#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2023-12-31T23:00:00.000Z&TERMIN_01DATERANGE=2024-01-31T22:59:59.000Z&TERMIN_01GREMIUM=Nationalrat
+#> [1] 16
 
-  # Get plenary sessions in the National Council chamber
+  # Get plenary meetings in the National Council chamber
   events <- get_events(
     institution = "NR",
     event_type = "Plenarsitzung",
     location = "Nationalratssaal"
   )
+#> {"GREMIUM":["Nationalrat"],"TERMINART":["Plenarsitzung"],"ORT":["Nationalratssaal"]} 
+#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat&TERMIN_01TERMINART=Plenarsitzung&TERMIN_01ORT=Nationalratssaal
+#> [1] 186
 
   # Get Federal Council events
   events <- get_events(
     institution = "BR",
     event_type = "Plenarsitzung"
   )
+#> {"GREMIUM":["Bundesrat"],"TERMINART":["Plenarsitzung"]} 
+#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Bundesrat&TERMIN_01TERMINART=Plenarsitzung
+#> [1] 1007
 
   # Get events for a specific legislative period
   events <- get_events(
     institution = "NR",
     legis_period = 28
   )
+#> {"DATERANGE":["2024-10-23T22:00:00.000Z","2026-03-19T22:59:59.000Z"],"GREMIUM":["Nationalrat"]} 
+#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2024-10-23T22:00:00.000Z&TERMIN_01DATERANGE=2026-03-19T22:59:59.000Z&TERMIN_01GREMIUM=Nationalrat
+#> [1] 554
 
   # Get events from multiple institutions
   events <- get_events(
     institution = c("NR", "BR"),
     event_type = "Plenarsitzung"
   )
-} # }
+#> {"GREMIUM":["Nationalrat"],"TERMINART":["Plenarsitzung"]} 
+#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat&TERMIN_01TERMINART=Plenarsitzung
+#> [1] 3940
+#> {"GREMIUM":["Bundesrat"],"TERMINART":["Plenarsitzung"]} 
+#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Bundesrat&TERMIN_01TERMINART=Plenarsitzung
+#> [1] 1007
+# }
 ```

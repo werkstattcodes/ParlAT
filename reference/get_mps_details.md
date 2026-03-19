@@ -3,7 +3,7 @@
 The function retrieves details on Members of Parliament (MPs) in three
 categories:
 
-- speeches held in plenary sessions ("plenary"),
+- speeches held in plenary meetings ("plenary"),
 
 - other relevant activities ("activities"), and
 
@@ -114,9 +114,9 @@ President of the National Council and as Minister. Columns returned:
 
 - `speech_title`: Title of the speech
 
-- `session_url`: URL to the session details page
+- `meeting_url`: URL to the meeting details page
 
-- `session_name`: Name of the parliamentary session
+- `meeting_name`: Name of the parliamentary meeting
 
 - `speech_transcript_url`: URL to the speech transcript
 
@@ -317,7 +317,7 @@ Possible values for `committee` are:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get Stephanie Krisper's plenary speeches in National Council only for the 27th legislative period
 plenary_nr <- get_mps_details(
   pad_intern = 2344,
@@ -325,6 +325,9 @@ plenary_nr <- get_mps_details(
   institution = "NR",
   legis_period = 27
 )
+#> {"PAD_INTERN":[2344],"GREMIUM":["N"],"GP_CODE":["XXVII"]} 
+#> https://www.parlament.gv.at/person/2344?BIO_250PAD_INTERN=2344&BIO_250GREMIUM=N&BIO_250GP_CODE=XXVII&selectedtab=PLENUM
+#> [1] 84
 
 # Get plenary speeches for multiple legislative periods
 plenary_multiple <- get_mps_details(
@@ -332,6 +335,9 @@ plenary_multiple <- get_mps_details(
   detail_type = "plenary",
   legis_period = c(26, 27)
 )
+#> {"PAD_INTERN":[2344],"GP_CODE":["XXVI","XXVII"]} 
+#> https://www.parlament.gv.at/person/2344?BIO_250PAD_INTERN=2344&BIO_250GP_CODE=XXVI&BIO_250GP_CODE=XXVII&selectedtab=PLENUM
+#> [1] 122
 
 # Get only legislative proposals (item type "A")
 proposals <- get_mps_details(
@@ -340,6 +346,9 @@ proposals <- get_mps_details(
   item = "A",
   legis_period = 27
 )
+#> {"PAD_INTERN":[2344],"gp_text_full":["XXVII"],"vhg4":["A"]} 
+#> https://www.parlament.gv.at/person/2344?PERS_AKTIVIT_025PAD_INTERN=2344&PERS_AKTIVIT_025gp_text_full=XXVII&PERS_AKTIVIT_025vhg4=A&selectedtab=AKT
+#> [1] 25
 
 # Get activities for multiple legislative periods
 activities_multiple <- get_mps_details(
@@ -347,6 +356,9 @@ activities_multiple <- get_mps_details(
   detail_type = "activities",
   legis_period = c(25, 26, 27)
 )
+#> {"PAD_INTERN":[2344],"gp_text_full":["XXV","XXVI","XXVII"]} 
+#> https://www.parlament.gv.at/person/2344?PERS_AKTIVIT_025PAD_INTERN=2344&PERS_AKTIVIT_025gp_text_full=XXV&PERS_AKTIVIT_025gp_text_full=XXVI&PERS_AKTIVIT_025gp_text_full=XXVII&selectedtab=AKT
+#> [1] 1325
 
 # Get committee memberships for Stephanie Krisper
 committees <- get_mps_details(
@@ -354,5 +366,8 @@ committees <- get_mps_details(
   detail_type = "committees",
   legis_period = 27
 )
-} # }
+#> {"PAD_INTERN":[2344],"GP_TEXT_FULL":["23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"]} 
+#> https://www.parlament.gv.at/person/2344?AUSSCHUSS_BIO_250PAD_INTERN=2344&AUSSCHUSS_BIO_250GP_TEXT_FULL=23.10.2019%20-%2023.10.2024:%20XXVII.%20Gesetzgebungsperiode%20des%20NR&selectedtab=AUS
+#> [1] 11
+# }
 ```

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,7 +120,7 @@ in the search results. Search for subcommittees is only possible if <code>perman
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
+    <p>Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes meeting dates, agendas, meeting overviews, and member lists.
 The function partly mirrors the search functionality of the Austrian Parliament's website for committees
 <a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank" class="external-link">here</a> and extends it by
 e.g. incorporating the extraction of data from membership lists. Data available starting from the 20th legislative period.</p>
@@ -128,12 +128,26 @@ e.g. incorporating the extraction of data from membership lists. Data available 
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Basic search for committees in National Council</span></span></span>
 <span class="r-in"><span><span class="fu">get_committees</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  institution <span class="op">=</span> <span class="st">"NR"</span>,</span></span>
 <span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">27</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 43 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    legis_period committee                       citation id_number url_committee</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> XXVII        Ausschuss für Arbeit und Sozia… A-AS/1         883 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> XXVII        Außenpolitischer Ausschuss      A-AU/1         884 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> XXVII        Ausschuss für Bauten und Wohnen A-BA/1         885 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> XXVII        Budgetausschuss                 A-BU/1         867 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> XXVII        Ständiger Unterausschuss des B… SA-BU/1        874 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> XXVII        Ständiger Unterausschuss in ES… SA-ESM/1       875 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> XXVII        Ausschuss für Familie und Juge… A-FA/1         886 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> XXVII        Finanzausschuss                 A-FI/1         887 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> XXVII        Ausschuss für Forschung, Innov… A-FO/1         888 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> XXVII        Geschäftsordnungsausschuss      A-GO/1         873 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 33 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Search with specific text and extract member details</span></span></span>
 <span class="r-in"><span><span class="fu">get_committees</span><span class="op">(</span></span></span>
@@ -142,6 +156,23 @@ e.g. incorporating the extraction of data from membership lists. Data available 
 <span class="r-in"><span>  institution <span class="op">=</span> <span class="st">"NR"</span>,</span></span>
 <span class="r-in"><span>  details_type <span class="op">=</span> <span class="st">"members"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 40 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    committee   url_committee id_number citation legis_period date_start         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Ibiza-Unte… https://www.…       906 A-USA/2  XXVII        2020-01-22 <span style="color: #949494;">00:00:00</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 30 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: date_end &lt;dttm&gt;, title &lt;chr&gt;, url_pdf &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   url_html &lt;chr&gt;, name &lt;chr&gt;, member_type &lt;chr&gt;, party &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   member_url &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Search only permanent committees</span></span></span>
 <span class="r-in"><span><span class="fu">get_committees</span><span class="op">(</span></span></span>
@@ -149,6 +180,18 @@ e.g. incorporating the extraction of data from membership lists. Data available 
 <span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">28</span>,</span></span>
 <span class="r-in"><span>  permanent <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   legis_period committee                        citation id_number url_committee</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> XXVIII       Ständiger Unterausschuss des Bu… SA-BU/1        908 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> XXVIII       Ständiger Unterausschuss in ESM… SA-ESM/1       909 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> XXVIII       Hauptausschuss                   A-HA/1         911 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> XXVIII       Ständiger Unterausschuss des Ha… SA-HA/1        912 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> XXVIII       Ständiger Unterausschuss in Ang… SA-EU/1        910 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> XXVIII       Ständiger Unterausschuss des Au… SA-IA/1        925 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> XXVIII       Ständiger Unterausschuss des La… SA-LV/1        930 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> XXVIII       Ständiger Unterausschuss des Re… SA-RH/1        934 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> XXVIII       Ständiger gemeinsamer Ausschuss… SA-P9/1        916 https://www.…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include subcommittees (only works when permanent = FALSE or NULL)</span></span></span>
 <span class="r-in"><span><span class="fu">get_committees</span><span class="op">(</span></span></span>
@@ -156,13 +199,41 @@ e.g. incorporating the extraction of data from membership lists. Data available 
 <span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">27</span>,</span></span>
 <span class="r-in"><span>  include_subcommittees <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 46 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    legis_period committee                       citation id_number url_committee</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> XXVII        Ausschuss für Arbeit und Sozia… A-AS/1         883 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> XXVII        Unterausschuss des Außenpoliti… A-AU/3         884 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> XXVII        Unterausschuss des Außenpoliti… A-AU/2         884 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> XXVII        Außenpolitischer Ausschuss      A-AU/1         884 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> XXVII        Ausschuss für Bauten und Wohnen A-BA/1         885 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> XXVII        Budgetausschuss                 A-BU/1         867 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> XXVII        Unterausschuss des Budgetaussc… A-BU/2         867 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> XXVII        Ständiger Unterausschuss des B… SA-BU/1        874 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> XXVII        Ständiger Unterausschuss in ES… SA-ESM/1       875 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> XXVII        Ausschuss für Familie und Juge… A-FA/1         886 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 36 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Federal Council committees</span></span></span>
 <span class="r-in"><span><span class="fu">get_committees</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  institution <span class="op">=</span> <span class="st">"BR"</span>,</span></span>
 <span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">27</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 25 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    legis_period committee                       citation id_number url_committee</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> XXVII        Ausschuss für Arbeit, Soziales… /aussch…       311 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> XXVII        Ausschuss für auswärtige Angel… /aussch…         1 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> XXVII        Ausschuss für BürgerInnenrecht… /aussch…       272 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> XXVII        EU-Ausschuss des Bundesrates    /aussch…        37 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> XXVII        Ausschuss für Familie und Juge… /aussch…       269 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> XXVII        Finanzausschuss des Bundesrates /aussch…        53 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> XXVII        Geschäftsordnungsausschuss des… /aussch…        75 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> XXVII        Gesundheitsausschuss des Bunde… /aussch…        64 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> XXVII        Gleichbehandlungsausschuss des… /aussch…       271 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> XXVII        Ausschuss für innere Angelegen… /aussch…       108 https://www.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more rows</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

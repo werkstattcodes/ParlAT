@@ -7,7 +7,7 @@ parliament Filter API).
 Quick context - Package root: contains `DESCRIPTION`, `R/`, `man/`,
 `tests/`, `vignettes/`. Core code lives in `R/`. - Key entry points:
 `R/get_events.R`, `R/get_items.R`, `R/get_mps.R`,
-`R/get_plenary_sessions.R`. - Canonical parsing helper:
+`R/get_plenary_meetings.R`. - Canonical parsing helper:
 `R/aux_json_to_tibble.R` (flatten JSON -\> tibble).
 
 Core patterns you must follow - HTTP flow: build JSON body -\>
@@ -21,7 +21,7 @@ use `aux_convert_legis_periods()` for numeric/roman/special tokens
 public `get_*()` functions return tibbles (use tidyverse style and the
 `|>` pipe). Avoid printing side-effects.
 
-Developer workflows (fast commands) - Start development session:
+Developer workflows (fast commands) - Start development meeting:
 [`devtools::load_all()`](https://devtools.r-lib.org/reference/load_all.html) -
 Run tests:
 [`devtools::test()`](https://devtools.r-lib.org/reference/test.html) or

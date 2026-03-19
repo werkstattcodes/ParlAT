@@ -13,7 +13,7 @@ facilitates searches by legislative period."><meta property="og:image" content="
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,18 +126,18 @@ facilitates searches by legislative period.</p>
 <h3 id="event-type">event_type<a class="anchor" aria-label="anchor" href="#event-type"></a></h3>
 
 
-<p>Allowed event types are:</p><ul><li><p>"Plenarsitzung" (Plenary Session)</p></li>
+<p>Allowed event types are:</p><ul><li><p>"Plenarsitzung" (Plenary Meeting)</p></li>
 <li><p>"Ausschusssitzung oder Ausschuss" (Committee Meeting or Committee)</p></li>
-<li><p>"Besuch einer Plenarsitzung" (Visit to a Plenary Session)</p></li>
+<li><p>"Besuch einer Plenarsitzung" (Visit to a Plenary Meeting)</p></li>
 <li><p>"Demokratiebildung" (Democracy Education)</p></li>
-<li><p>"Fest-/Gedenksitzung" (Ceremonial/Commemorative Session)</p></li>
+<li><p>"Fest-/Gedenksitzung" (Ceremonial/Commemorative Meeting)</p></li>
 <li><p>"Führung" (Guided Tour)</p></li>
 <li><p>"Internationales" (International)</p></li>
 <li><p>"Klubveranstaltung" (Club Event)</p></li>
 <li><p>"Konferenz" (Conference)</p></li>
 <li><p>"Parlamentarische Enquete" (Parliamentary Inquiry)</p></li>
 <li><p>"Pressekonferenz" (Press Conference)</p></li>
-<li><p>"Sitzung der Bundesversammlung" (Federal Assembly Session)</p></li>
+<li><p>"Sitzung der Bundesversammlung" (Federal Assembly Meeting)</p></li>
 <li><p>"Sonstiger Termin" (Other Event)</p></li>
 <li><p>"Veranstaltung" (Event)</p></li>
 </ul></div>
@@ -214,9 +214,12 @@ provided.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Basic example: Get all National Council events</span></span></span>
 <span class="r-in"><span>  <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu">get_events</span><span class="op">(</span>institution <span class="op">=</span> <span class="st">"NR"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"GREMIUM":["Nationalrat"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11365</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Get events with specific date range</span></span></span>
 <span class="r-in"><span>  <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu">get_events</span><span class="op">(</span></span></span>
@@ -224,32 +227,50 @@ provided.</p>
 <span class="r-in"><span>    date_start <span class="op">=</span> <span class="st">"01-01-2024"</span>,</span></span>
 <span class="r-in"><span>    date_end <span class="op">=</span> <span class="st">"31-01-2024"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"DATERANGE":["2023-12-31T23:00:00.000Z","2024-01-31T22:59:59.000Z"],"GREMIUM":["Nationalrat"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2023-12-31T23:00:00.000Z&amp;TERMIN_01DATERANGE=2024-01-31T22:59:59.000Z&amp;TERMIN_01GREMIUM=Nationalrat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 16</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Get plenary sessions in the National Council chamber</span></span></span>
+<span class="r-in"><span>  <span class="co"># Get plenary meetings in the National Council chamber</span></span></span>
 <span class="r-in"><span>  <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu">get_events</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    institution <span class="op">=</span> <span class="st">"NR"</span>,</span></span>
 <span class="r-in"><span>    event_type <span class="op">=</span> <span class="st">"Plenarsitzung"</span>,</span></span>
 <span class="r-in"><span>    location <span class="op">=</span> <span class="st">"Nationalratssaal"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"GREMIUM":["Nationalrat"],"TERMINART":["Plenarsitzung"],"ORT":["Nationalratssaal"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat&amp;TERMIN_01TERMINART=Plenarsitzung&amp;TERMIN_01ORT=Nationalratssaal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 186</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Get Federal Council events</span></span></span>
 <span class="r-in"><span>  <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu">get_events</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    institution <span class="op">=</span> <span class="st">"BR"</span>,</span></span>
 <span class="r-in"><span>    event_type <span class="op">=</span> <span class="st">"Plenarsitzung"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"GREMIUM":["Bundesrat"],"TERMINART":["Plenarsitzung"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Bundesrat&amp;TERMIN_01TERMINART=Plenarsitzung</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1007</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Get events for a specific legislative period</span></span></span>
 <span class="r-in"><span>  <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu">get_events</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    institution <span class="op">=</span> <span class="st">"NR"</span>,</span></span>
 <span class="r-in"><span>    legis_period <span class="op">=</span> <span class="fl">28</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"DATERANGE":["2024-10-23T22:00:00.000Z","2026-03-19T22:59:59.000Z"],"GREMIUM":["Nationalrat"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2024-10-23T22:00:00.000Z&amp;TERMIN_01DATERANGE=2026-03-19T22:59:59.000Z&amp;TERMIN_01GREMIUM=Nationalrat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 554</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Get events from multiple institutions</span></span></span>
 <span class="r-in"><span>  <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu">get_events</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    institution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NR"</span>, <span class="st">"BR"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    event_type <span class="op">=</span> <span class="st">"Plenarsitzung"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"GREMIUM":["Nationalrat"],"TERMINART":["Plenarsitzung"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat&amp;TERMIN_01TERMINART=Plenarsitzung</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3940</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {"GREMIUM":["Bundesrat"],"TERMINART":["Plenarsitzung"]} </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Bundesrat&amp;TERMIN_01TERMINART=Plenarsitzung</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1007</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

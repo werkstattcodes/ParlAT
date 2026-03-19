@@ -24,8 +24,10 @@
   : Get Participation Data from Austrian Parliament
 - [`get_persons()`](https://werkstattcodes.github.io/ParlAT/reference/get_persons.md)
   : Search persons in Austrian political institutions
-- [`get_plenary_sessions()`](https://werkstattcodes.github.io/ParlAT/reference/get_plenary_sessions.md)
-  : Get Data on Plenary Sessions of the Austrian Parliament
+- [`get_plenary_meeting_details()`](https://werkstattcodes.github.io/ParlAT/reference/get_plenary_meeting_details.md)
+  : Get Details of a Plenary Meeting
+- [`get_plenary_meetings()`](https://werkstattcodes.github.io/ParlAT/reference/get_plenary_meetings.md)
+  : Get Data on Plenary Meetings of the Austrian Parliament
 - [`get_transcripts()`](https://werkstattcodes.github.io/ParlAT/reference/get_transcripts.md)
   : Retrieve Transcripts from the Austrian Parliament API
 

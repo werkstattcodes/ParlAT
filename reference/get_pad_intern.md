@@ -27,8 +27,18 @@ person's current and previous names.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 get_pad_intern("Strache")
+#> # A tibble: 3 × 2
+#>   pad_intern names_variants                         
+#>   <chr>      <chr>                                  
+#> 1 1905       Max Strache                            
+#> 2 35518      Heinz-Christian Strache                
+#> 3 44127      Pia Philippa Beck, Pia Philippa Strache
 get_pad_intern("Heinz-Christian Strache")
-} # }
+#> # A tibble: 1 × 2
+#>   pad_intern names_variants         
+#>   <chr>      <chr>                  
+#> 1 35518      Heinz-Christian Strache
+# }
 ```

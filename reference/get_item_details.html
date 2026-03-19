@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get detailed stage information for a parliamentary item</h1>
-      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/R/get_items.R" class="external-link"><code>R/get_items.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/R/get_item_details.R" class="external-link"><code>R/get_item_details.R</code></a></small>
       <div class="d-none name"><code>get_item_details.Rd</code></div>
     </div>
 
@@ -67,18 +67,36 @@ supported (default).</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble containing detailed information about the parliamentary item and its stages.
-Returns <code>NULL</code> if no stages are found.</p><ul><li><p><code>item_url</code> (character): The URL of the parliamentary item.</p></li>
-<li><p><code>type</code> (character): The type of the item (e.g., BI for Bürgerinitiativen).</p></li>
+Returns <code>NULL</code> if the item has no stages yet. Emits a warning if the page
+structure is unrecognised (possible API change).</p>
+<p><strong>Item-level columns</strong> (replicated for each stage row):</p><ul><li><p><code>item_url</code> (character): The URL of the parliamentary item.</p></li>
+<li><p><code>type</code> (character): The type of the item (e.g., BI, A, UEA).</p></li>
 <li><p><code>title</code> (character): The title of the item.</p></li>
-<li><p><code>item_number</code> (character): The citation number of the item.</p></li>
+<li><p><code>item_number</code> (character): The citation number (e.g. "61/A").</p></li>
 <li><p><code>item_description</code> (character): A brief description of the item.</p></li>
-<li><p><code>state_approval</code> (character): The current approval state of the item.</p></li>
-<li><p><code>phase</code> (character): The phase of the legislative stage.</p></li>
-<li><p><code>id</code> (character): Unique identifier for the stage.</p></li>
+<li><p><code>state_statements</code> (character): Statement stage information.</p></li>
+<li><p><code>state_approval</code> (character): The current approval state.</p></li>
+<li><p><code>date_introduced</code> (Date): The date the item was introduced to parliament.</p></li>
+<li><p><code>gp_code</code> (character): Legislative period code (e.g. "XXVII").</p></li>
+<li><p><code>status_number</code> (integer): Current status number.</p></li>
+<li><p><code>status_description</code> (character): Current status description (HTML stripped).</p></li>
+<li><p><code>item_documents</code> (list): Tibble with columns <code>doc_title</code>, <code>link</code>, <code>type</code>
+for item-level documents. <code>NULL</code> if none.</p></li>
+<li><p><code>introducers</code> (list): Tibble with columns <code>role</code>, <code>name</code>, <code>frak_code</code>,
+<code>url</code> for the persons who introduced the item. <code>NULL</code> if unavailable.</p></li>
+<li><p><code>references</code> (list): Tibble with columns <code>text</code>, <code>subject</code>, <code>zitation</code>,
+<code>url</code>, <code>art</code> for related parliamentary items. <code>NULL</code> if none.</p></li>
+<li><p><code>topics</code> (list): Character vector of topic labels.</p></li>
+<li><p><code>headwords</code> (list): Character vector of headword labels.</p></li>
+<li><p><code>eurovoc</code> (list): Character vector of EuroVoc terms.</p></li>
+</ul><p><strong>Stage-level columns:</strong></p><ul><li><p><code>phase</code> (character): The phase of the legislative stage (e.g.
+"Ausschussbehandlung"). <code>NA</code> for items with flat stages (no phase wrapper).</p></li>
 <li><p><code>stage_date</code> (Date): The date of the stage.</p></li>
-<li><p><code>stage_name</code> (character): The name/description of the stage.</p></li>
-<li><p><code>stage_priority</code> (numeric): Priority of the stage.</p></li>
-<li><p><code>documents</code> (list): List-column of associated documents for the stage.</p></li>
+<li><p><code>stage_name</code> (character): The name/description of the stage (HTML stripped).</p></li>
+<li><p><code>stage_names</code> (list): Stage-level names/introducer information, if present.</p></li>
+<li><p><code>speeches</code> (list): Nested tibble with columns <code>speaker</code>, <code>speaker_url</code>,
+<code>position</code>, <code>protocol_page</code>, <code>protocol_url</code>, <code>video_url</code>. <code>NULL</code> for
+stages without debate contributions.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -101,14 +119,14 @@ legislative stages.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Get details for a specific item</span></span></span>
 <span class="r-in"><span><span class="va">item_url</span> <span class="op">&lt;-</span> <span class="st">"https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"</span></span></span>
 <span class="r-in"><span><span class="va">stages</span> <span class="op">&lt;-</span> <span class="fu">get_item_details</span><span class="op">(</span><span class="va">item_url</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Also works with relative paths</span></span></span>
 <span class="r-in"><span><span class="va">stages</span> <span class="op">&lt;-</span> <span class="fu">get_item_details</span><span class="op">(</span><span class="st">"/gegenstand/XXVIII/BI/24"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

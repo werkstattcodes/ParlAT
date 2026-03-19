@@ -57,12 +57,46 @@ to retrieve an MP's `pad_intern`
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 get_names(44127) # Philippa Pia Beck, Philippa Pia Strache
+#>   index pad_intern                 name date_start   date_end
+#> 1     1      44127    Pia Philippa Beck 2023-06-28       <NA>
+#> 2     2      44127 Pia Philippa Strache       <NA> 2023-06-27
+#>             name_clean name_family    name_given
+#> 1    Pia Philippa Beck        Beck Pia Philippa 
+#> 2 Pia Philippa Strache     Strache Pia Philippa 
+#>                                    note
+#> 1                                  <NA>
+#> 2 (bis 27.6.2023: Pia Philippa Strache)
 get_names(44127, latest = TRUE) # Philippa Pia Beck, formerly Strache
+#>   index pad_intern              name date_start date_end        name_clean
+#> 1     1      44127 Pia Philippa Beck 2023-06-28     <NA> Pia Philippa Beck
+#>   name_family    name_given note
+#> 1        Beck Pia Philippa  <NA>
 get_names(44127, date = "01/01/2023") # Philippa Pia Strache
+#>   index pad_intern                 name date_start   date_end
+#> 1     1      44127 Pia Philippa Strache       <NA> 2023-06-27
+#>             name_clean name_family    name_given
+#> 1 Pia Philippa Strache     Strache Pia Philippa 
+#>                                    note
+#> 1 (bis 27.6.2023: Pia Philippa Strache)
 # Multiple pad_interns possible:
 # e.g. Michael Pock/Bernhard; Freda Blau-Meissner/Meissner-Blau
 get_names(c(1130, 83124))
-} # }
+#>   index pad_intern                name date_start   date_end
+#> 1     1       1130 Freda Meissner-Blau 1988-05-12       <NA>
+#> 2     2       1130 Freda Blau-Meissner       <NA> 1988-05-11
+#> 3     1      83124    Michael Bernhard 2016-08-11       <NA>
+#> 4     2      83124        Michael Pock       <NA> 2016-08-10
+#>            name_clean   name_family name_given
+#> 1 Freda Meissner-Blau Meissner-Blau     Freda 
+#> 2 Freda Blau-Meissner Blau-Meissner     Freda 
+#> 3    Michael Bernhard      Bernhard   Michael 
+#> 4        Michael Pock          Pock   Michael 
+#>                                   note
+#> 1                                 <NA>
+#> 2 (bis 11.5.1988: Freda Blau-Meissner)
+#> 3                                 <NA>
+#> 4        (bis 10.8.2016: Michael Pock)
+# }
 ```

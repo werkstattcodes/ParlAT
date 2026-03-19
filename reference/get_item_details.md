@@ -26,32 +26,68 @@ get_item_details(item_url, type = "stages")
 ## Value
 
 A tibble containing detailed information about the parliamentary item
-and its stages. Returns `NULL` if no stages are found.
+and its stages. Returns `NULL` if the item has no stages yet. Emits a
+warning if the page structure is unrecognised (possible API change).
+
+**Item-level columns** (replicated for each stage row):
 
 - `item_url` (character): The URL of the parliamentary item.
 
-- `type` (character): The type of the item (e.g., BI for
-  Bürgerinitiativen).
+- `type` (character): The type of the item (e.g., BI, A, UEA).
 
 - `title` (character): The title of the item.
 
-- `item_number` (character): The citation number of the item.
+- `item_number` (character): The citation number (e.g. "61/A").
 
 - `item_description` (character): A brief description of the item.
 
-- `state_approval` (character): The current approval state of the item.
+- `state_statements` (character): Statement stage information.
 
-- `phase` (character): The phase of the legislative stage.
+- `state_approval` (character): The current approval state.
 
-- `id` (character): Unique identifier for the stage.
+- `date_introduced` (Date): The date the item was introduced to
+  parliament.
+
+- `gp_code` (character): Legislative period code (e.g. "XXVII").
+
+- `status_number` (integer): Current status number.
+
+- `status_description` (character): Current status description (HTML
+  stripped).
+
+- `item_documents` (list): Tibble with columns `doc_title`, `link`,
+  `type` for item-level documents. `NULL` if none.
+
+- `introducers` (list): Tibble with columns `role`, `name`, `frak_code`,
+  `url` for the persons who introduced the item. `NULL` if unavailable.
+
+- `references` (list): Tibble with columns `text`, `subject`,
+  `zitation`, `url`, `art` for related parliamentary items. `NULL` if
+  none.
+
+- `topics` (list): Character vector of topic labels.
+
+- `headwords` (list): Character vector of headword labels.
+
+- `eurovoc` (list): Character vector of EuroVoc terms.
+
+**Stage-level columns:**
+
+- `phase` (character): The phase of the legislative stage (e.g.
+  "Ausschussbehandlung"). `NA` for items with flat stages (no phase
+  wrapper).
 
 - `stage_date` (Date): The date of the stage.
 
-- `stage_name` (character): The name/description of the stage.
+- `stage_name` (character): The name/description of the stage (HTML
+  stripped).
 
-- `stage_priority` (numeric): Priority of the stage.
+- `stage_names` (list): Stage-level names/introducer information, if
+  present.
 
-- `documents` (list): List-column of associated documents for the stage.
+- `speeches` (list): Nested tibble with columns `speaker`,
+  `speaker_url`, `position`, `protocol_page`, `protocol_url`,
+  `video_url`. `NULL` for stages without debate contributions.
 
 ## Details
 
@@ -81,12 +117,12 @@ The function performs the following steps:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get details for a specific item
 item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
 stages <- get_item_details(item_url)
 
 # Also works with relative paths
 stages <- get_item_details("/gegenstand/XXVIII/BI/24")
-} # }
+# }
 ```

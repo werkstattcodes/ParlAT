@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,40 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.3" id="parlat-003">ParlAT 0.0.3<a class="anchor" aria-label="anchor" href="#parlat-003"></a></h2>
+<div class="section level3">
+<h3 id="breaking-changes-0-0-3">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-0-3"></a></h3>
+<ul><li>
+<code>get_plenary_sessions()</code> has been renamed to <code><a href="../reference/get_plenary_meetings.html">get_plenary_meetings()</a></code> to align with the Austrian Parliament API terminology.</li>
+<li>
+<code>get_plenary_sessions_details()</code> has been renamed to <code><a href="../reference/get_plenary_meeting_details.html">get_plenary_meeting_details()</a></code>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-functions-0-0-3">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-0-3"></a></h3>
+<ul><li>
+<code><a href="../reference/get_item_details.html">get_item_details()</a></code>: Retrieve detailed information for parliamentary items, including speech/debate data extraction and stage-level metadata.</li>
+<li>
+<code><a href="../reference/get_plenary_meeting_details.html">get_plenary_meeting_details()</a></code>: Retrieve detailed data for individual plenary meetings, with support for both URL-based and parameter-based input.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="enhancements-0-0-3">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-0-0-3"></a></h3>
+<ul><li>
+<code><a href="../reference/get_items.html">get_items()</a></code>: Significant performance improvements and better handling of compact vs. sparse API export rows. Added CLI progress messages for long-running requests.</li>
+<li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code>: New <code>date</code> column in output when date parameter is provided. Improved documentation for <code>gender</code> and <code>mandate_detail</code> fields.</li>
+<li>
+<code><a href="../reference/get_mandates.html">get_mandates()</a></code>: Enforced mutual exclusivity of <code>name</code> and <code>pad_intern</code> parameters with clearer documentation.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="internal-changes-0-0-3">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-0-0-3"></a></h3>
+<ul><li>Removed <code>tidyselect</code> from dependencies.</li>
+<li>Removed <code>R/sysdata.rda</code>.</li>
+<li>R CMD check compliance: replaced <code>T</code>/<code>F</code> with <code>TRUE</code>/<code>FALSE</code>, converted <code>\dontrun{}</code> to <code>\donttest{}</code>, fixed non-ASCII string literals.</li>
+<li>Expanded test coverage for new and existing functions.</li>
+<li>Added <code>inst/WORDLIST</code> for spell checking and <code>CONTRIBUTING.md</code>.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.2" id="parlat-002">ParlAT 0.0.2<a class="anchor" aria-label="anchor" href="#parlat-002"></a></h2>
 <ul><li>Minor improvements to input checks and error handling in several data retrieval functions.</li>
 <li>Progress messages during longer requests are now shown with <code>cli</code>, for more consistent feedback.</li>
@@ -46,7 +80,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="parlat-001">ParlAT 0.0.1<a class="anchor" aria-label="anchor" href="#parlat-001"></a></h2>
-<ul><li>Initial release of the ParlAT package providing wrappers around the Austrian Parliament Open Data API, including helpers to retrieve committees, events, mandates, members of parliament, plenary sessions, transcripts, and related datasets.</li>
+<ul><li>Initial release of the ParlAT package providing wrappers around the Austrian Parliament Open Data API, including helpers to retrieve committees, events, mandates, members of parliament, plenary meetings, transcripts, and related datasets.</li>
 <li>Added convenience utilities to harmonize names, expand legislative period identifiers, and query participation or item-specific datasets with consistent parameter handling.</li>
 <li>Published introductory documentation and reference listings to guide users through available endpoints and usage patterns.</li>
 </ul></div>

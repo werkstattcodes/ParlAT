@@ -69,6 +69,15 @@ persons for the supplied filters.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-get_persons(c("Kogler Werner", "Kurz Sebastian"))} # }
+# \donttest{
+get_persons(c("Kogler Werner", "Kurz Sebastian"))# }
+#>   pad_intern                name gender
+#> 1       8242 Kogler Werner, Mag.      M
+#> 2      65321      Kurz Sebastian      M
+#>                                                                                                     position
+#> 1 Abgeordneter zum Nationalrat, Betraut mit der Vertretung der Bundesministerin, Bundesminister, Vizekanzler
+#> 2                                Abgeordneter zum Nationalrat, Bundeskanzler, Bundesminister, Staatssekretär
+#>            link
+#> 1  /person/8242
+#> 2 /person/65321
 ```
