@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. This includes, but is not limited to, data on past and current MPs, plenary sessions, or protocols.
+The ParlAT package wraps the API of the Austrian Parliament and seeks to provide an easy way for R users to access the available Open Data. This includes, but is not limited to, data on past and current MPs, plenary meetings, or protocols.
 }
 \seealso{
 Useful links:

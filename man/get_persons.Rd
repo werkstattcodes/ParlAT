@@ -43,6 +43,6 @@ not return a match. When \code{names} is \code{NULL}, the function returns all
 available persons for the supplied filters.
 }
 \examples{
-\dontrun{
+\donttest{
 get_persons(c("Kogler Werner", "Kurz Sebastian"))}
 }

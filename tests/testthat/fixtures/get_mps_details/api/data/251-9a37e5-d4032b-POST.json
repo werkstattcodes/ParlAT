@@ -1,97 +1,107 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 01:30:22.0",
+    "lastSync": "2026-03-17 02:10:06.0",
     "count": 2,
     "header": [
         {
             "feldId": 110,
             "hidden": true,
+            "hideValue": false,
             "rnr": 1,
+            "valueToNull": false,
             "listeId": 251,
             "label": "GREMIUM",
-            "feld_name": "GREMIUM",
-            "includeHeader": true
+            "feld_name": "GREMIUM"
         },
         {
             "feldId": 111,
             "hidden": true,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 251,
             "label": "GP",
-            "feld_name": "GP_CODE",
-            "includeHeader": true
+            "feld_name": "GP_CODE"
         },
         {
             "feldId": 425,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 251,
-            "label": "gp_von",
-            "includeHeader": true
+            "label": "gp_von"
         },
         {
             "feldId": 112,
             "hidden": false,
+            "hideValue": false,
             "rnr": 4,
             "sort_rnr": 10,
+            "valueToNull": false,
             "listeId": 251,
             "label": "Sitzung",
             "sortable": "1",
-            "feld_name": "SITZUNG",
-            "includeHeader": true
+            "feld_name": "SITZUNG"
         },
         {
             "feldId": 113,
             "hidden": false,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 251,
             "label": "Rede",
-            "feld_name": "Rede",
-            "includeHeader": true
+            "feld_name": "Rede"
         },
         {
             "css_class": "buttons-col",
             "feldId": 114,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "listeId": 251,
-            "class": "buttons-col",
-            "includeHeader": true
+            "class": "buttons-col"
         },
         {
             "css_class": "buttons-col",
             "feldId": 115,
             "hidden": false,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "listeId": 251,
-            "class": "buttons-col",
-            "includeHeader": true
+            "class": "buttons-col"
         },
         {
             "feldId": 116,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 251,
             "label": "PAD_INTERN",
-            "feld_name": "PAD_INTERN",
-            "includeHeader": true
+            "feld_name": "PAD_INTERN"
         },
         {
             "feldId": 968,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
-            "mediaType": "fromDate",
+            "valueToNull": false,
             "listeId": 251,
-            "label": "fromDate",
-            "includeHeader": true
+            "mediaType": "fromDate",
+            "label": "fromDate"
         },
         {
             "feldId": 3401,
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 251,
-            "label": "Sortier",
-            "includeHeader": true
+            "label": "Sortier"
         }
     ],
     "rows": [

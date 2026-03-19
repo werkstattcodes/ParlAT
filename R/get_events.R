@@ -20,18 +20,18 @@
 #' @details
 #' ## event_type
 #' Allowed event types are:
-#'   - "Plenarsitzung" (Plenary Session)
+#'   - "Plenarsitzung" (Plenary Meeting)
 #'   - "Ausschusssitzung oder Ausschuss" (Committee Meeting or Committee)
-#'   - "Besuch einer Plenarsitzung" (Visit to a Plenary Session)
+#'   - "Besuch einer Plenarsitzung" (Visit to a Plenary Meeting)
 #'   - "Demokratiebildung" (Democracy Education)
-#'   - "Fest-/Gedenksitzung" (Ceremonial/Commemorative Session)
+#'   - "Fest-/Gedenksitzung" (Ceremonial/Commemorative Meeting)
 #'   - "Führung" (Guided Tour)
 #'   - "Internationales" (International)
 #'   - "Klubveranstaltung" (Club Event)
 #'   - "Konferenz" (Conference)
 #'   - "Parlamentarische Enquete" (Parliamentary Inquiry)
 #'   - "Pressekonferenz" (Press Conference)
-#'   - "Sitzung der Bundesversammlung" (Federal Assembly Session)
+#'   - "Sitzung der Bundesversammlung" (Federal Assembly Meeting)
 #'   - "Sonstiger Termin" (Other Event)
 #'   - "Veranstaltung" (Event)
 #'
@@ -116,7 +116,7 @@
 #' - `link2`: Secondary link (if available)
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # Basic example: Get all National Council events
 #'   events <- get_events(institution = "NR")
 #'
@@ -127,7 +127,7 @@
 #'     date_end = "31-01-2024"
 #'   )
 #'
-#'   # Get plenary sessions in the National Council chamber
+#'   # Get plenary meetings in the National Council chamber
 #'   events <- get_events(
 #'     institution = "NR",
 #'     event_type = "Plenarsitzung",
@@ -371,11 +371,11 @@ get_events <- function(
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_verbose(
-            body_req = F,
-            header_req = F,
-            header_resp = F,
-            body_resp = F,
-            info = F
+            body_req = FALSE,
+            header_req = FALSE,
+            header_resp = FALSE,
+            body_resp = FALSE,
+            info = FALSE
         )
 
     resp <- httr2::req_perform(req)

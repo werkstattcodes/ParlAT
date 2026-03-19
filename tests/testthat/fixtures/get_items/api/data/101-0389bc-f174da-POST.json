@@ -1,255 +1,279 @@
 {
     "pages": 0,
-    "lastSync": "2026-02-09 15:34:23.0",
+    "lastSync": "2026-03-17 22:23:53.0",
     "count": 0,
     "header": [
         {
-            "feldId": 244,
             "export_jn": "1",
+            "feldId": 244,
             "hidden": true,
+            "hideValue": false,
             "rnr": 1,
+            "valueToNull": false,
             "listeId": 101,
             "label": "GP",
-            "feld_name": "GP",
-            "includeHeader": true
+            "feld_name": "GP"
         },
         {
             "feldId": 245,
             "hidden": true,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 101,
             "label": "ITYP",
-            "feld_name": "ITYP",
-            "includeHeader": true
+            "feld_name": "ITYP"
         },
         {
             "feldId": 246,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 101,
             "label": "INR",
-            "feld_name": "INR",
-            "includeHeader": true
+            "feld_name": "INR"
         },
         {
             "feldId": 247,
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Zusatz",
-            "feld_name": "ZUKZ",
-            "includeHeader": true
+            "feld_name": "ZUKZ"
         },
         {
             "filterable": "1",
-            "feldId": 250,
             "export_jn": "1",
+            "feldId": 250,
             "hidden": false,
             "sort_rnr": 17,
+            "valueToNull": false,
             "mediaType": "datetime",
             "display_rnr": 1,
             "label": "Datum",
             "sortable": "1",
             "css_class": "datum-col",
+            "hideValue": false,
             "rnr": 5,
             "listeId": 101,
             "feld_name": "DATUM",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
-            "feldId": 249,
             "link_rnr": "15",
             "export_jn": "1",
+            "feldId": 249,
             "hidden": false,
+            "valueToNull": false,
             "mediaType": "title",
             "display_rnr": 2,
             "label": "Betreff",
             "sortable": "1",
             "vts_sort_field": "title_sort",
+            "hideValue": false,
             "rnr": 7,
             "listeId": 101,
-            "feld_name": "PFAD",
-            "includeHeader": true
+            "feld_name": "PFAD"
         },
         {
-            "feldId": 248,
             "export_jn": "1",
+            "feldId": 248,
             "hidden": false,
             "sort_rnr": 28,
+            "valueToNull": false,
             "mediaType": "description",
             "label": "Nummer",
             "sortable": "1",
             "css_class": "datum-col",
+            "hideValue": false,
             "rnr": 8,
             "listeId": 101,
             "feld_name": "ZITATION",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "css_class": "status-col",
             "feldId": 254,
             "hidden": false,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "mediaType": "status",
             "listeId": 101,
             "label": "Status",
             "sortable": "1",
             "feld_name": "STATUS",
-            "class": "status-col",
-            "includeHeader": true
+            "class": "status-col"
         },
         {
             "feldId": 255,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Doktyp",
-            "feld_name": "DOKTYP",
-            "includeHeader": true
+            "feld_name": "DOKTYP"
         },
         {
             "feldId": 256,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Zustimmung aktiv",
-            "feld_name": "ZZZZ",
-            "includeHeader": true
+            "feld_name": "ZZZZ"
         },
         {
             "feldId": 257,
             "hidden": true,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Doktyp_Lang",
-            "feld_name": "DOKTYP_LANG",
-            "includeHeader": true
+            "feld_name": "DOKTYP_LANG"
         },
         {
             "feldId": 258,
             "hidden": true,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "mediaType": "link",
             "listeId": 101,
             "label": "Geschichtsseite_Url",
-            "feld_name": "HIS_URL",
-            "includeHeader": true
+            "feld_name": "HIS_URL"
         },
         {
             "feldId": 341,
             "hidden": true,
+            "hideValue": false,
             "rnr": 21,
-            "display_rnr": 6,
+            "valueToNull": false,
             "listeId": 101,
+            "display_rnr": 6,
             "label": "Personen_ID",
             "feld_name": "PAD_INTERN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 342,
             "hidden": true,
+            "hideValue": false,
             "rnr": 22,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Klub/Fraktion",
             "feld_name": "FRAK_CODE",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 343,
             "hidden": true,
+            "hideValue": false,
             "rnr": 23,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Thema",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 344,
             "hidden": true,
+            "hideValue": false,
             "rnr": 24,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Schlagwort",
             "feld_name": "SW",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 345,
             "hidden": true,
+            "hideValue": false,
             "rnr": 25,
+            "valueToNull": false,
             "listeId": 101,
             "label": "EuroVoc",
             "feld_name": "EUROVOC",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 2011,
             "hidden": true,
+            "hideValue": false,
             "rnr": 29,
+            "valueToNull": false,
             "listeId": 101,
             "label": "NRGP",
-            "feld_name": "GP_CODE",
-            "includeHeader": true
+            "feld_name": "GP_CODE"
         },
         {
             "feldId": 2012,
             "hidden": true,
+            "hideValue": false,
             "rnr": 30,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Gremium",
-            "feld_name": "NRBR",
-            "includeHeader": true
+            "feld_name": "NRBR"
         },
         {
             "feldId": 201,
             "hidden": true,
+            "hideValue": false,
             "rnr": 32,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Abstimmung 3. Lesung",
-            "feld_name": "VOTE",
-            "includeHeader": true
+            "feld_name": "VOTE"
         },
         {
             "feldId": 202,
             "hidden": true,
+            "hideValue": false,
             "rnr": 33,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Dafür",
-            "feld_name": "VOTE_YES",
-            "includeHeader": true
+            "feld_name": "VOTE_YES"
         },
         {
             "feldId": 203,
             "hidden": true,
+            "hideValue": false,
             "rnr": 34,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Dagegen",
-            "feld_name": "VOTE_NO",
-            "includeHeader": true
+            "feld_name": "VOTE_NO"
         },
         {
             "feldId": 703,
             "hidden": true,
+            "hideValue": false,
             "rnr": 35,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Abstimmungstext",
-            "feld_name": "VOTE_TEXT",
-            "includeHeader": true
+            "feld_name": "VOTE_TEXT"
         },
         {
             "feldId": 704,
             "hidden": true,
+            "hideValue": false,
             "rnr": 36,
+            "valueToNull": false,
             "listeId": 101,
             "label": "Abstimmungskommentar",
-            "feld_name": "VOTE_COMMENT",
-            "includeHeader": true
+            "feld_name": "VOTE_COMMENT"
         }
     ],
     "rows": [

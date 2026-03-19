@@ -59,8 +59,8 @@ Columns returned:
 \item \code{legis_period}: Legislative period (Roman numeral)
 \item \code{institution}: Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)
 \item \code{speech_title}: Title of the speech
-\item \code{session_url}: URL to the session details page
-\item \code{session_name}: Name of the parliamentary session
+\item \code{meeting_url}: URL to the meeting details page
+\item \code{meeting_name}: Name of the parliamentary meeting
 \item \code{speech_transcript_url}: URL to the speech transcript
 \item \code{speech_media_url}: URL to speech recordings, if available
 }
@@ -102,7 +102,7 @@ Returns \code{NULL} invisibly if no data is found for the given parameters.
 \description{
 The function retrieves details on Members of Parliament (MPs) in three categories:
 \itemize{
-\item speeches held in plenary sessions ("plenary"),
+\item speeches held in plenary meetings ("plenary"),
 \item other relevant activities ("activities"), and
 \item their participation in committees ("committees").
 }
@@ -183,7 +183,7 @@ Possible values for \code{committee} are:
 }
 }
 \examples{
-\dontrun{
+\donttest{
 # Get Stephanie Krisper's plenary speeches in National Council only for the 27th legislative period
 plenary_nr <- get_mps_details(
   pad_intern = 2344,

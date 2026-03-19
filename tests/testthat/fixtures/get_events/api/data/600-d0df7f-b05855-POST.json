@@ -1,308 +1,338 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:30:04.0",
+    "lastSync": "2026-03-17 22:20:05.0",
     "count": 2,
     "header": [
         {
             "css_class": "stellungnahmen-col",
             "feldId": 361,
             "hidden": true,
+            "hideValue": false,
             "rnr": 1,
-            "mediaType": "description",
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "description",
             "label": "Datum",
             "feld_name": "DATUM",
-            "class": "stellungnahmen-col",
-            "includeHeader": true
+            "class": "stellungnahmen-col"
         },
         {
             "vts_sort_field": "date_fresh",
             "feldId": 362,
             "hidden": true,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 600,
-            "label": "Datumsort",
-            "includeHeader": true
+            "label": "Datumsort"
         },
         {
             "css_class": "col-5",
             "feldId": 363,
             "hidden": false,
-            "sort_rnr": 2,
+            "hideValue": false,
             "rnr": 3,
+            "sort_rnr": 2,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Datum",
             "sortable": "1",
             "feld_name": "ZEIT",
-            "class": "col-5",
-            "includeHeader": true
+            "class": "col-5"
         },
         {
             "css_class": "col-20",
             "feldId": 364,
             "link_rnr": "5",
             "hidden": false,
+            "hideValue": false,
             "rnr": 4,
-            "mediaType": "title",
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "title",
             "label": "Bezeichnung",
             "feld_name": "TEXT",
-            "class": "col-20",
-            "includeHeader": true
+            "class": "col-20"
         },
         {
             "feldId": 365,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
-            "mediaType": "link",
+            "valueToNull": false,
             "listeId": 600,
-            "label": "Link",
-            "includeHeader": true
+            "mediaType": "link",
+            "label": "Link"
         },
         {
             "css_class": "col-15",
             "feldId": 366,
             "hidden": true,
+            "hideValue": false,
             "rnr": 6,
-            "mediaType": "typ",
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "typ",
             "label": "Terminart",
             "sortable": "1",
             "feld_name": "TERMINART",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "css_class": "col-15",
             "feldId": 2701,
             "hidden": false,
+            "hideValue": false,
             "rnr": 7,
-            "mediaType": "typ",
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "typ",
             "label": "Terminart",
             "sortable": "1",
             "feld_name": "TERMINARTANZEIGE",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 367,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Link2",
-            "additionalinfo": "1",
-            "includeHeader": true
+            "additionalinfo": "1"
         },
         {
             "css_class": "col-15",
             "feldId": 368,
             "hidden": false,
+            "hideValue": false,
             "rnr": 9,
-            "mediaType": "ort",
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "ort",
             "label": "Ort",
             "sortable": "1",
             "feld_name": "ORT",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 378,
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Themen",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 401,
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Gremium",
-            "feld_name": "GREMIUM",
-            "includeHeader": true
+            "feld_name": "GREMIUM"
         },
         {
             "feldId": 441,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Monat",
-            "feld_name": "MONTH",
-            "includeHeader": true
+            "feld_name": "MONTH"
         },
         {
             "feldId": 461,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Tag",
-            "feld_name": "DAY",
-            "includeHeader": true
+            "feld_name": "DAY"
         },
         {
             "feldId": 501,
             "hidden": true,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Monat",
-            "feld_name": "MONTHLONG",
-            "includeHeader": true
+            "feld_name": "MONTHLONG"
         },
         {
             "feldId": 561,
             "hidden": true,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Medienrelevant?",
-            "feld_name": "MEDIENRELEVANT",
-            "includeHeader": true
+            "feld_name": "MEDIENRELEVANT"
         },
         {
             "feldId": 581,
-            "hidden": true,
             "ist_range": "1",
+            "hidden": true,
+            "hideValue": false,
             "rnr": 16,
-            "mediaType": "datetime",
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "datetime",
             "label": "Datum",
-            "feld_name": "DATERANGE",
-            "includeHeader": true
+            "feld_name": "DATERANGE"
         },
         {
             "feldId": 1521,
             "hidden": true,
+            "hideValue": false,
             "rnr": 17,
-            "mediaType": "datetimebis",
+            "valueToNull": false,
             "listeId": 600,
-            "label": "Datum Bis",
-            "includeHeader": true
+            "mediaType": "datetimebis",
+            "label": "Datum Bis"
         },
         {
             "feldId": 681,
             "hidden": true,
+            "hideValue": false,
             "rnr": 18,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Vergangen?",
-            "feld_name": "VERGANGEN",
-            "includeHeader": true
+            "feld_name": "VERGANGEN"
         },
         {
             "feldId": 1001,
             "hidden": true,
+            "hideValue": false,
             "rnr": 19,
-            "mediaType": "grouplabel",
+            "valueToNull": false,
             "listeId": 600,
-            "label": "Label",
-            "includeHeader": true
+            "mediaType": "grouplabel",
+            "label": "Label"
         },
         {
             "css_class": "col-15",
             "feldId": 1141,
             "hidden": true,
+            "hideValue": false,
             "rnr": 20,
-            "mediaType": "typ",
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "typ",
             "label": "Führungsformat",
             "feld_name": "FORMAT",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 1161,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 21,
+            "valueToNull": false,
             "listeId": 600,
             "label": "WENTRY_ID",
             "feld_name": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 1497,
             "hidden": true,
+            "hideValue": false,
             "rnr": 22,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Gruppe",
-            "feld_name": "GRUPPE",
-            "includeHeader": true
+            "feld_name": "GRUPPE"
         },
         {
             "feldId": 1762,
             "hidden": true,
+            "hideValue": false,
             "rnr": 23,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Sicht",
             "feld_name": "SICHT",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "css_class": "stellungnahmen-col",
             "feldId": 1881,
             "hidden": false,
+            "hideValue": false,
             "rnr": 24,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Ausgebucht",
             "feld_name": "BUCHUNG",
-            "class": "stellungnahmen-col",
-            "includeHeader": true
+            "class": "stellungnahmen-col"
         },
         {
             "feldId": 2441,
             "hidden": false,
+            "hideValue": false,
             "rnr": 25,
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "linkbutton",
             "label": "Anmeldung",
-            "feld_name": "ANMELDEBUTTON",
-            "includeHeader": true
+            "feld_name": "ANMELDEBUTTON"
         },
         {
             "css_class": "expand-col",
             "feldId": 7045,
             "hidden": false,
+            "hideValue": false,
             "rnr": 26,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Livestreamlink",
             "feld_name": "LIVESTREAMLINK",
-            "class": "expand-col",
-            "includeHeader": true
+            "class": "expand-col"
         },
         {
             "css_class": "expand-col",
             "feldId": 2421,
             "hidden": false,
+            "hideValue": false,
             "rnr": 27,
-            "mediaType": "ics",
+            "valueToNull": false,
             "listeId": 600,
+            "mediaType": "ics",
             "label": "ICS Download",
             "feld_name": "ICS",
-            "class": "expand-col",
-            "includeHeader": true
+            "class": "expand-col"
         },
         {
             "feldId": 2443,
             "hidden": true,
+            "hideValue": false,
             "rnr": 28,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Verfügbar",
-            "feld_name": "VERFUEGBAR",
-            "includeHeader": true
+            "feld_name": "VERFUEGBAR"
         },
         {
             "feldId": 301,
             "hidden": true,
+            "hideValue": false,
             "rnr": 29,
+            "valueToNull": false,
             "listeId": 600,
             "label": "Sprache",
             "feld_name": "FUEHRUNGSSPRACHE",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         }
     ],
     "rows": [

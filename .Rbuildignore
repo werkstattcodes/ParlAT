@@ -1,5 +1,6 @@
 ^renv$
 ^renv\.lock$
+^\.Rprofile$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
@@ -23,4 +24,7 @@
 ^run_tests_debug\.R$
 ^test_results\.csv$
 ^tools$
+^journal\.md$
 vignettes/ParlAT_cache/
+^\.playwright-mcp$
+^_temp$

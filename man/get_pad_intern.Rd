@@ -18,7 +18,7 @@ person's current and previous names.
 Get unique identificiaton number (pad_intern)
 }
 \examples{
-\dontrun{
+\donttest{
 get_pad_intern("Strache")
 get_pad_intern("Heinz-Christian Strache")
 }

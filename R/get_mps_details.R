@@ -7,7 +7,7 @@
 #'
 #' The function retrieves details on Members of Parliament (MPs) in three categories:
 #' \itemize{
-#'   \item speeches held in plenary sessions ("plenary"),
+#'   \item speeches held in plenary meetings ("plenary"),
 #'   \item other relevant activities ("activities"), and
 #'   \item their participation in committees ("committees").
 #' }
@@ -112,8 +112,8 @@
 #'   - `legis_period`: Legislative period (Roman numeral)
 #'   - `institution`: Chamber of Parliament: "NR" (National Council) or "BR" (Federal Council)
 #'   - `speech_title`: Title of the speech
-#'   - `session_url`: URL to the session details page
-#'   - `session_name`: Name of the parliamentary session
+#'   - `meeting_url`: URL to the meeting details page
+#'   - `meeting_name`: Name of the parliamentary meeting
 #'   - `speech_transcript_url`: URL to the speech transcript
 #'   - `speech_media_url`: URL to speech recordings, if available
 #'
@@ -148,7 +148,7 @@
 #'   Returns \code{NULL} invisibly if no data is found for the given parameters.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get Stephanie Krisper's plenary speeches in National Council only for the 27th legislative period
 #' plenary_nr <- get_mps_details(
 #'   pad_intern = 2344,
@@ -481,9 +481,9 @@ get_mps_details_plenary <- function(
         "gremium" = "institution",
         "rede" = "speech_title",
         "transcript_url" = "speech_transcript_url",
-        "sitzung_name" = "session_name",
+        "sitzung_name" = "meeting_name",
         "media_url" = "speech_media_url",
-        "sitzung_url" = "session_url"
+        "sitzung_url" = "meeting_url"
     )
 
     df_res <- df_res %>%
@@ -735,9 +735,9 @@ get_mps_details_activities <- function(
 
         # "rede" = "speech_title",
         # "transcript_url" = "speech_transcript_url",
-        # "sitzung_name" = "session_name",
+        # "sitzung_name" = "meeting_name",
         # "media_url" = "speech_media_url",
-        # "sitzung_url" = "session_url"
+        # "sitzung_url" = "meeting_url"
     )
 
     df_res <- df_res %>%
@@ -971,7 +971,7 @@ get_mps_details_committees <- function(
         "V4" = "committee_name_dates",
         "V5" = "institution",
         "V6" = "committee_url"
-        # "V8" = "committee_session_date_start",
+        # "V8" = "committee_meeting_date_start",
         # "V11" = "committee_duration"
     )
 

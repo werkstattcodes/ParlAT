@@ -20,7 +20,7 @@
 #' @seealso [get_pad_intern()] to retrieve an MP's `pad_intern`
 #' @export
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' get_names(44127) # Philippa Pia Beck, Philippa Pia Strache
 #' get_names(44127, latest = TRUE) # Philippa Pia Beck, formerly Strache
 #' get_names(44127, date = "01/01/2023") # Philippa Pia Strache

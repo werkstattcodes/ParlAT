@@ -1,270 +1,297 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:36:55.0",
-    "count": 1,
+    "lastSync": "2026-03-17 22:27:00.0",
+    "count": 2,
     "header": [
         {
             "feldId": 804,
             "hidden": true,
+            "hideValue": false,
             "rnr": 1,
+            "valueToNull": false,
             "listeId": 143,
             "label": "GP_CODE",
-            "feld_name": "GP_CODE",
-            "includeHeader": true
+            "feld_name": "GP_CODE"
         },
         {
             "feldId": 805,
             "hidden": true,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 143,
             "label": "ITYP",
-            "feld_name": "ITYP",
-            "includeHeader": true
+            "feld_name": "ITYP"
         },
         {
             "feldId": 806,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 143,
             "label": "INR",
-            "feld_name": "INR",
-            "includeHeader": true
+            "feld_name": "INR"
         },
         {
             "feldId": 807,
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 143,
             "label": "ZUKZ",
-            "feld_name": "ZUKZ",
-            "includeHeader": true
+            "feld_name": "ZUKZ"
         },
         {
             "css_class": "datum-col",
             "feldId": 810,
             "hidden": false,
+            "hideValue": false,
             "rnr": 5,
             "sort_rnr": 8,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Datum",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "css_class": "datum-col",
             "feldId": 1504,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "mediaType": "description",
             "listeId": 143,
             "label": "Gegenstand",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "vts_sort_field": "title_sort",
-            "feldId": 811,
             "link_rnr": "15",
+            "feldId": 811,
             "hidden": false,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "mediaType": "title",
             "listeId": 143,
             "label": "Betreff",
-            "sortable": "1",
-            "includeHeader": true
+            "sortable": "1"
         },
         {
             "vts_sort_field": "date_fresh",
             "feldId": 803,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "mediaType": "fromDate",
             "listeId": 143,
-            "label": "datumsort",
-            "includeHeader": true
+            "label": "datumsort"
         },
         {
             "css_class": "datum-col",
             "feldId": 1505,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Nr.",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 809,
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Wentry_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
             "css_class": "status-col",
             "feldId": 802,
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "mediaType": "status",
             "listeId": 143,
             "label": "Status",
-            "class": "status-col",
-            "includeHeader": true
+            "class": "status-col"
         },
         {
             "feldId": 808,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 143,
             "label": "DOKTYP",
-            "feld_name": "DOKTYP",
-            "includeHeader": true
+            "feld_name": "DOKTYP"
         },
         {
             "feldId": 801,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 143,
-            "label": "BETEILIGUNG",
-            "includeHeader": true
+            "label": "BETEILIGUNG"
         },
         {
             "feldId": 813,
             "hidden": true,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 143,
-            "label": "a",
-            "includeHeader": true
+            "label": "a"
         },
         {
             "feldId": 814,
             "hidden": true,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 143,
-            "label": "b",
-            "includeHeader": true
+            "label": "b"
         },
         {
             "css_class": "datum-col",
             "feldId": 815,
             "hidden": false,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Beteiligen",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 816,
             "hidden": true,
+            "hideValue": false,
             "rnr": 17,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Themen",
             "feld_name": "THEMEN",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 1761,
             "hidden": true,
+            "hideValue": false,
             "rnr": 18,
+            "valueToNull": false,
             "listeId": 143,
             "label": "beguttyp",
-            "feld_name": "BEGUTTYP",
-            "includeHeader": true
+            "feld_name": "BEGUTTYP"
         },
         {
             "feldId": 1031,
             "hidden": true,
+            "hideValue": false,
             "rnr": 19,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Beteiligen",
             "feld_name": "INTERAKTIONSTYP",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "css_class": "datum-col",
             "feldId": 1032,
             "hidden": false,
+            "hideValue": false,
             "rnr": 20,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Stellungnahmen",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "css_class": "datum-col",
             "feldId": 1033,
             "hidden": false,
+            "hideValue": false,
             "rnr": 21,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Unterstützungen",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "css_class": "stellungnahmen-col",
             "feldId": 817,
             "hidden": false,
+            "hideValue": false,
             "rnr": 22,
+            "valueToNull": false,
             "tooltip": "Beteiligungen der letzten 30 Tage",
             "listeId": 143,
             "label": "Trend",
             "sortable": "1",
-            "class": "stellungnahmen-col",
-            "includeHeader": true
+            "class": "stellungnahmen-col"
         },
         {
             "feldId": 1506,
             "hidden": true,
+            "hideValue": false,
             "rnr": 23,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Stellungnahme von",
-            "feld_name": "TYP",
-            "includeHeader": true
+            "feld_name": "TYP"
         },
         {
             "feldId": 1634,
             "hidden": true,
+            "hideValue": false,
             "rnr": 24,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Aktiv?",
-            "feld_name": "AKTIV",
-            "includeHeader": true
+            "feld_name": "AKTIV"
         },
         {
             "feldId": 2581,
             "hidden": true,
+            "hideValue": false,
             "rnr": 25,
+            "valueToNull": false,
             "listeId": 143,
             "label": "snflag",
-            "feld_name": "SNFLAG",
-            "includeHeader": true
+            "feld_name": "SNFLAG"
         },
         {
             "feldId": 2582,
             "hidden": true,
+            "hideValue": false,
             "rnr": 26,
+            "valueToNull": false,
             "listeId": 143,
             "label": "zustflag",
-            "feld_name": "ZUSTFLAG",
-            "includeHeader": true
+            "feld_name": "ZUSTFLAG"
         },
         {
             "feldId": 2583,
             "hidden": true,
+            "hideValue": false,
             "rnr": 27,
+            "valueToNull": false,
             "listeId": 143,
             "label": "Ressort",
-            "feld_name": "MIN",
-            "includeHeader": true
+            "feld_name": "MIN"
         }
     ],
     "rows": [
@@ -296,6 +323,35 @@
             "J",
             "N",
             null
+        ],
+        [
+            "XXVIII",
+            "I",
+            "00405",
+            null,
+            "24.02.2026",
+            "Gesetzesinitiative",
+            "Beamten-Dienstrechtsgesetz, Gehaltsgesetz u.a., Änderung (405 d.B.)",
+            "20260224",
+            "405 d.B.",
+            29818653,
+            "xxx",
+            "RV",
+            "xxx",
+            "xxx",
+            "/gegenstand/XXVIII/I/405",
+            "<a href=\"/gegenstand/XXVIII/I/405?selectedStage=101&persForm=1\"><i class=\"fa-comment-edit fal\"><\/i><span>Stellung nehmen<\/span><\/a><br/>",
+            "[\"Bildung\",\"Inneres und Recht\"]",
+            "RGES",
+            "[\"S\"]",
+            68,
+            0,
+            0,
+            "I",
+            "J",
+            "J",
+            "N",
+            "BKA"
         ]
     ]
 }

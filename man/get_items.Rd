@@ -113,10 +113,12 @@ Possible values for \code{topic} are:
 
 \code{legis_period} specifies the legislative period(s). Can be one or more of the following value(s):
 \itemize{
-\item number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV",
-\item "PN" (Provisorische Nationalversammlung, Provisional National Assembly, 1918-1919),
-\item and/or "KN" (Konstituierende Nationalversammlung, Constituent National Assembly, 1919-1920).
+\item number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
 }
+
+Only periods from the 5th legislative period (V. GP, 1945) onwards are
+supported. Earlier periods (including special codes like "PN" and "KN")
+do not return data and will be rejected.
 }
 
 \subsection{item (Gegenstand)}{
@@ -547,9 +549,15 @@ all_results <- periods \%>\%
   list_rbind()
 }\if{html}{\out{</div>}}
 }
+
+\subsection{Data Availability}{
+
+The API only returns data from the 5th legislative period (V. GP, 1945)
+onwards, i.e. for the Second Republic.
+}
 }
 \examples{
-\dontrun{
+\donttest{
 # Search for EU-related items in the 28th legislative period
 get_items(topic = "Europäische Union", legis_period = 28)
 
@@ -614,6 +622,6 @@ get_items(
 \item \code{\link[=get_persons]{get_persons()}} for searching person identifiers used in the \code{person} parameter
 \item \code{\link[=get_legis_periods]{get_legis_periods()}} for retrieving available legislative periods
 \item \code{\link[=get_committees]{get_committees()}} for committee information
-\item \code{\link[=get_plenary_sessions]{get_plenary_sessions()}} for plenary session data
+\item \code{\link[=get_plenary_meetings]{get_plenary_meetings()}} for plenary meeting data
 }
 }

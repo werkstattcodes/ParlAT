@@ -1,159 +1,175 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:10:58.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 19,
     "header": [
         {
-            "css_class": "col-15",
             "feldId": 605,
             "link_rnr": "16",
             "hidden": false,
-            "rnr": 1,
+            "valueToNull": false,
             "mediaType": "title",
-            "listeId": 409,
             "label": "Name",
+            "css_class": "col-15",
+            "hideValue": false,
+            "rnr": 1,
+            "listeId": 409,
             "feld_name": "PERSON_NAME",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "css_class": "col-10",
             "feldId": 603,
             "hidden": false,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gremium",
             "feld_name": "GREMIUM",
             "class": "col-10",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 604,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 409,
             "label": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 623,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHL_CODE",
-            "feld_name": "GESCHL_CODE",
-            "includeHeader": true
+            "feld_name": "GESCHL_CODE"
         },
         {
             "feldId": 624,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHLECHT",
-            "feld_name": "GESCHLECHT",
-            "includeHeader": true
+            "feld_name": "GESCHLECHT"
         },
         {
             "css_class": "col-15",
             "feldId": 863,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gesetzgebungsperiode",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 864,
             "hidden": true,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "parteien",
-            "includeHeader": true
+            "label": "parteien"
         },
         {
             "feldId": 643,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Attribute",
-            "feld_name": "ATTR_JSON",
-            "includeHeader": true
+            "feld_name": "ATTR_JSON"
         },
         {
             "feldId": 903,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 409,
             "label": "ist_praes",
-            "feld_name": "PRAES",
-            "includeHeader": true
+            "feld_name": "PRAES"
         },
         {
             "feldId": 1223,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "vorname",
-            "includeHeader": true
+            "label": "vorname"
         },
         {
             "feldId": 1224,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "nachname",
-            "includeHeader": true
+            "label": "nachname"
         },
         {
             "feldId": 1225,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr",
-            "includeHeader": true
+            "label": "akgr"
         },
         {
             "feldId": 1226,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr_h",
-            "includeHeader": true
+            "label": "akgr_h"
         },
         {
             "feldId": 7120,
             "hidden": false,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Klub/Fraktion",
-            "includeHeader": true
+            "label": "Klub/Fraktion"
         },
         {
             "css_class": "col-15",
             "feldId": 7121,
             "hidden": false,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Wahlkreis",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 7180,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Bio",
-            "includeHeader": true
+            "label": "Bio"
         }
     ],
     "rows": [
@@ -167,7 +183,6 @@
             "[\"GdP\"]",
             {
                 "zit": "Franz Altenbacher",
-                "fraktionen": "Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "GdP"
@@ -256,7 +271,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mittel- und Untersteier",
                 "pad_intern": 43,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (I. GP), GdP",
@@ -269,8 +283,8 @@
             "Altenbacher",
             null,
             null,
-            "Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
-            "Mittel- und Untersteier",
+            null,
+            null,
             "/person/43"
         ],
         [
@@ -283,7 +297,6 @@
             "[\"CSP\"]",
             {
                 "zit": "Alois Burgstaller",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -411,7 +424,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Innviertel",
                 "pad_intern": 158,
                 "medien": [
                     5628536
@@ -427,8 +439,8 @@
             "Burgstaller",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
-            "Innviertel",
+            null,
+            null,
             "/person/158"
         ],
         [
@@ -441,7 +453,6 @@
             "[\"GdP\"]",
             {
                 "zit": "Anton Fahrner",
-                "fraktionen": "Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "GdP"
@@ -495,7 +506,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel oberm Wienerwald",
                 "pad_intern": 296,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (III. GP), GdP",
@@ -508,8 +518,8 @@
             "Fahrner",
             null,
             null,
-            "Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
-            "Viertel oberm Wienerwald",
+            null,
+            null,
             "/person/296"
         ],
         [
@@ -522,7 +532,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Hans Haager",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei; Klub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -550,7 +559,7 @@
                         "wahlpartei_sort": "Oesterreichische Volkspartei",
                         "mandat_bis": "08.11.1949",
                         "wahlkreis": "Traunviertel",
-                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei; Klub der Österreichischen Volkspartei"
+                        "fraktion": "Parlamentsklub der Österreichischen Volkspartei"
                     }
                 ],
                 "name_nvg": "Haager Hans",
@@ -576,7 +585,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Traunviertel",
                 "pad_intern": 454,
                 "medien": [
                     2099791
@@ -592,8 +600,8 @@
             "Haager",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei; Klub der Österreichischen Volkspartei (V)",
-            "Traunviertel",
+            null,
+            null,
             "/person/454"
         ],
         [
@@ -606,7 +614,6 @@
             "[\"LBd\",\"WdU\"]",
             {
                 "zit": "Karl Hartleb",
-                "fraktionen": "Klub der Unabhängigen; Klub der Wahlpartei der Unabhängigen (U), Klub der Wahlpartei der Unabhängigen (U), Abgeordnetenverband des Landbundes für Österreich (L)",
                 "item_type": "Biogr",
                 "frak": [
                     "LBd",
@@ -742,7 +749,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Obersteier",
                 "pad_intern": 513,
                 "medien": [
                     2099807
@@ -761,8 +767,8 @@
             "Hartleb",
             null,
             null,
-            "Klub der Unabhängigen; Klub der Wahlpartei der Unabhängigen (U), Klub der Wahlpartei der Unabhängigen (U), Abgeordnetenverband des Landbundes für Österreich (L)",
-            "Obersteier",
+            null,
+            null,
             "/person/513"
         ],
         [
@@ -775,7 +781,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Franz Haunschmidt",
-                "fraktionen": "Klub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei; Klub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -905,7 +910,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mühlviertel",
                 "pad_intern": 532,
                 "medien": [
                     2100591
@@ -921,8 +925,8 @@
             "Haunschmidt",
             null,
             null,
-            "Klub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei; Klub der Österreichischen Volkspartei (V)",
-            "Mühlviertel",
+            null,
+            null,
             "/person/532"
         ],
         [
@@ -935,7 +939,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Dr. Paul Kaufmann",
-                "fraktionen": "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -1080,7 +1083,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Steiermark",
                 "pad_intern": 786,
                 "medien": [
                     2100763
@@ -1096,8 +1098,8 @@
             "Kaufmann",
             "Dr. phil.",
             null,
-            "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Steiermark",
+            null,
+            null,
             "/person/786"
         ],
         [
@@ -1110,7 +1112,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Karl Krisch",
-                "fraktionen": "Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1138,7 +1139,7 @@
                         "wahlpartei_sort": "Sozialistische Partei Oesterreichs",
                         "mandat_bis": "08.11.1949",
                         "wahlkreis": "Wien Südwest",
-                        "fraktion": "Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs"
+                        "fraktion": "Parlamentsklub der Sozialistischen Partei Österreichs"
                     }
                 ],
                 "name_nvg": "Krisch Karl",
@@ -1164,7 +1165,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Südwest",
                 "pad_intern": 980,
                 "medien": [
                     2099933
@@ -1180,8 +1180,8 @@
             "Krisch",
             null,
             null,
-            "Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
-            "Wien Südwest",
+            null,
+            null,
             "/person/980"
         ],
         [
@@ -1194,7 +1194,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Mayer",
-                "fraktionen": "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -1414,7 +1413,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich, Viertel unterm Manhartsberg",
                 "pad_intern": 1099,
                 "openGraph": {
                     "description": "Mitglied des Bundesrates, Christlichsoziale Fraktion im Bundesrate (Christlichsoziale Partei)",
@@ -1427,8 +1425,8 @@
             "Mayer",
             null,
             null,
-            "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Niederösterreich, Viertel unterm Manhartsberg",
+            null,
+            null,
             "/person/1099"
         ],
         [
@@ -1441,7 +1439,6 @@
             "[\"SdP\"]",
             {
                 "zit": "Adolf Müller",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SdP"
@@ -1550,7 +1547,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Manhartsberg",
                 "pad_intern": 1268,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (IV. GP), SdP",
@@ -1563,8 +1559,8 @@
             "Müller",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S)",
-            "Viertel unterm Manhartsberg",
+            null,
+            null,
             "/person/1268"
         ],
         [
@@ -1577,7 +1573,6 @@
             "[\"SdP\"]",
             {
                 "zit": "Alois Müller",
-                "fraktionen": "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SdP"
@@ -1631,7 +1626,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Burgenland",
                 "pad_intern": 1271,
                 "medien": [
                     2101179
@@ -1647,8 +1641,8 @@
             "Müller",
             null,
             null,
-            "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S)",
-            "Burgenland",
+            null,
+            null,
             "/person/1271"
         ],
         [
@@ -1661,7 +1655,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Franz Müller",
-                "fraktionen": "Bundesratsfraktion der SPÖ (S), Klub der Sozialistischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Abgeordneten und Bundesräte (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1808,7 +1801,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Burgenland",
                 "pad_intern": 1273,
                 "medien": [
                     2100132
@@ -1824,8 +1816,8 @@
             "Müller",
             null,
             null,
-            "Bundesratsfraktion der SPÖ (S), Klub der Sozialistischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Abgeordneten und Bundesräte (S)",
-            "Burgenland",
+            null,
+            null,
             "/person/1273"
         ],
         [
@@ -1838,7 +1830,6 @@
             "[\"F\"]",
             {
                 "zit": "Hans Müller",
-                "fraktionen": "Klub der Freiheitlichen Partei Österreichs (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "F"
@@ -1892,7 +1883,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich Süd",
                 "pad_intern": 8195,
                 "medien": [
                     2100136
@@ -1908,8 +1898,8 @@
             "Müller",
             null,
             null,
-            "Klub der Freiheitlichen Partei Österreichs (F)",
-            "Niederösterreich Süd",
+            null,
+            null,
             "/person/8195"
         ],
         [
@@ -1922,7 +1912,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Karl Müller",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -1985,7 +1974,7 @@
             "Müller",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/34149"
         ],
@@ -1999,7 +1988,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Karl Gerfried Müller",
-                "fraktionen": "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -2072,7 +2060,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Villach",
                 "pad_intern": 2817,
                 "medien": [
                     2100133
@@ -2088,8 +2075,8 @@
             "Müller",
             null,
             null,
-            "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Villach",
+            null,
+            null,
             "/person/2817"
         ],
         [
@@ -2102,7 +2089,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Dr. Lothar Müller",
-                "fraktionen": "Bundesratsfraktion der SPÖ (S), Klub der Sozialistischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -2211,7 +2197,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol",
                 "pad_intern": 1282,
                 "medien": [
                     2100137
@@ -2227,8 +2212,8 @@
             "Müller",
             "Dr. theol.",
             null,
-            "Bundesratsfraktion der SPÖ (S), Klub der Sozialistischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S)",
-            "Tirol",
+            null,
+            null,
             "/person/1282"
         ],
         [
@@ -2241,7 +2226,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Rudolf Müller",
-                "fraktionen": "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -2360,7 +2344,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Innen-Ost",
                 "pad_intern": 1276,
                 "medien": [
                     2100138
@@ -2376,8 +2359,8 @@
             "Müller",
             null,
             null,
-            "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Innen-Ost",
+            null,
+            null,
             "/person/1276"
         ],
         [
@@ -2390,7 +2373,6 @@
             "[\"GdP\"]",
             {
                 "zit": "Adam Müller-Guttenbrunn",
-                "fraktionen": "Großdeutsche Vereinigung (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "GdP"
@@ -2443,7 +2425,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Innen-Ost",
                 "pad_intern": 1284,
                 "openGraph": {
                     "description": "Mitglied der Konst. Nationalversammlung, GdP",
@@ -2456,8 +2437,8 @@
             "Müller-Guttenbrunn",
             null,
             null,
-            "Großdeutsche Vereinigung (D)",
-            "Wien Innen-Ost",
+            null,
+            null,
             "/person/1284"
         ],
         [
@@ -2470,7 +2451,6 @@
             "[\"FPÖ\"]",
             {
                 "zit": "Sandra Wassermann",
-                "fraktionen": "Freiheitlicher Parlamentsklub (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ"
@@ -2524,14 +2504,13 @@
                         }
                     ]
                 },
-                "wahlkreise": "Kärnten",
                 "pad_intern": 1866,
                 "medien": [
-                    7183933
+                    20178368
                 ],
                 "openGraph": {
                     "description": "Abgeordnete zum Nationalrat (XXVI. GP), FPÖ",
-                    "image": "/dokument/bild/71839/7183933_500.jpg"
+                    "image": "/dokument/bild/201783/20178368_500.jpg"
                 },
                 "aktiv": false
             },
@@ -2540,8 +2519,8 @@
             "Wassermann",
             null,
             null,
-            "Freiheitlicher Parlamentsklub (F)",
-            "Kärnten",
+            null,
+            null,
             "/person/1866"
         ]
     ]

@@ -1,184 +1,200 @@
 {
-    "pages": 5053,
-    "lastSync": "2026-02-09 15:37:20.0",
-    "count": 5053,
+    "pages": 5057,
+    "lastSync": "2026-03-17 22:27:00.0",
+    "count": 5057,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 2701,
             "hidden": false,
+            "hideValue": false,
             "rnr": 1,
             "sort_rnr": 10,
+            "valueToNull": false,
             "listeId": 211,
             "label": "Datum",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 2710,
             "hidden": true,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "mediaType": "link",
             "listeId": 211,
-            "label": "uri",
-            "includeHeader": true
+            "label": "uri"
         },
         {
             "feldId": 2702,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 211,
             "label": "gp_code",
-            "feld_name": "GP_CODE",
-            "includeHeader": true
+            "feld_name": "GP_CODE"
         },
         {
-            "tooltip_rnr": 8,
             "css_class": "datum-col",
+            "tooltip_rnr": 8,
             "feldId": 2703,
             "hidden": false,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 211,
             "label": "Art",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "feldId": 2704,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "inr",
-            "includeHeader": true
+            "label": "inr"
         },
         {
             "css_class": "betreff-col",
-            "feldId": 2705,
             "link_rnr": "2",
+            "feldId": 2705,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "mediaType": "title",
             "listeId": 211,
             "label": "Sitzung",
-            "class": "betreff-col",
-            "includeHeader": true
+            "class": "betreff-col"
         },
         {
             "feldId": 2713,
             "hidden": true,
+            "hideValue": false,
             "rnr": 7,
             "sort_rnr": 5,
+            "valueToNull": false,
             "listeId": 211,
             "label": "Zitation",
-            "sortable": "1",
-            "includeHeader": true
+            "sortable": "1"
         },
         {
             "css_class": "datum-col",
             "feldId": 2706,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "mediaType": "description",
             "listeId": 211,
             "label": "Art",
             "sortable": "1",
-            "class": "datum-col",
-            "includeHeader": true
+            "class": "datum-col"
         },
         {
             "tooltip_rnr": 8,
             "feldId": 2707,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Typ",
-            "includeHeader": true
+            "label": "Typ"
         },
         {
             "vts_sort_field": "date_fresh",
             "feldId": 2708,
             "hidden": true,
             "ist_range": "1",
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "mediaType": "datetime",
             "listeId": 211,
             "label": "datum2",
-            "feld_name": "DATUM",
-            "includeHeader": true
+            "feld_name": "DATUM"
         },
         {
             "feldId": 2709,
             "hidden": false,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Gesamtprotokoll",
-            "includeHeader": true
+            "label": "Gesamtprotokoll"
         },
         {
             "feldId": 2711,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 211,
             "label": "NBVS",
-            "feld_name": "NBVS",
-            "includeHeader": true
+            "feld_name": "NBVS"
         },
         {
             "feldId": 2712,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 211,
             "label": "WENTRY",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 2714,
             "hidden": true,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 211,
             "label": "DOKTYP",
-            "feld_name": "DOKTYP",
-            "includeHeader": true
+            "feld_name": "DOKTYP"
         },
         {
             "feldId": 2741,
             "hidden": false,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 211,
-            "label": "Strukturierte Darstellung",
-            "includeHeader": true
+            "label": "Strukturierte Darstellung"
         },
         {
             "feldId": 202,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "ist_wdok_id": "1",
             "listeId": 211,
-            "label": "WDOK",
-            "includeHeader": true
+            "label": "WDOK"
         }
     ],
     "rows": [
         [
-            "28.03.2008",
-            "/gegenstand/BR/BRSITZ/754",
-            "XXIII",
-            "BRSITZ",
-            754,
-            "754. Sitzung (754/BRSITZ/2008)",
-            "754/BRSITZ/2008",
-            "Plenarsitzung - BR",
+            "12.10.2022",
+            "/gegenstand/XXVII/NRSITZ/178",
+            "XXVII",
+            "NRSITZ",
+            178,
+            "178. Sitzung (178/NRSITZ)",
+            "178/NRSITZ",
+            "Plenarsitzung",
             "Plenar-Sitzung",
-            "2008-03-28T00:00:00",
-            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/754/fname_116944.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/754/fnameorig_116944.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
-            "BRSITZ",
-            2520670,
-            "BRSITZ",
-            null,
-            "2579617"
+            "2022-10-12T00:00:00",
+            "<div><div class=\"link-list\" inline><ul><li><span><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/178/fname_1547883.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVII/NRSITZ/178/fnameorig_1547883.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span><\/li><\/ul><\/div><\/div>",
+            "NRSITZ",
+            138461,
+            "NRSITZ",
+            "<a href=\"/gegenstand/XXVII/NRSITZ/178?selectedStage=111\" target=\"blank\"><i class=\"fa-file-alt fal\"><\/i>Protokolle<\/a>",
+            "16251088"
         ]
     ]
 }

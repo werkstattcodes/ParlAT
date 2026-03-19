@@ -1,3 +1,27 @@
+#' @noRd
+.align_get_items_export_rows <- function(rows, vec_headings, col_positions) {
+  if (length(rows) == 0) {
+    return(NULL)
+  }
+
+  df_res <- rows |>
+    as.data.frame()
+
+  if (ncol(df_res) <= length(vec_headings)) {
+    # Compact: rows are already aligned to visible headers sequentially.
+    # Some trailing headers may lack data (ncol < length(vec_headings)).
+    colnames(df_res) <- vec_headings[seq_len(ncol(df_res))]
+  } else {
+    # Sparse: rows are keyed by rnr positions, possibly truncated at a
+    # position lower than max(rnr). Select only positions within bounds.
+    valid <- col_positions <= ncol(df_res)
+    df_res <- df_res[, col_positions[valid], drop = FALSE]
+    colnames(df_res) <- vec_headings[valid]
+  }
+
+  df_res
+}
+
 #' Get items under negotiation ('Verhandlungsgegenstände')
 #' @encoding UTF-8
 #' @description
@@ -48,9 +72,11 @@
 #'
 #' ## legis_period (Gesetzgebungsperiode)
 #' `legis_period` specifies the legislative period(s). Can be one or more of the following value(s):
-#' * number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV",
-#' * "PN" (Provisorische Nationalversammlung, Provisional National Assembly, 1918-1919),
-#' * and/or "KN" (Konstituierende Nationalversammlung, Constituent National Assembly, 1919-1920).
+#' * number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
+#'
+#' Only periods from the 5th legislative period (V. GP, 1945) onwards are
+#' supported. Earlier periods (including special codes like "PN" and "KN")
+#' do not return data and will be rejected.
 #'
 #' ## item (Gegenstand)
 #' Possible values for `item` include:
@@ -456,15 +482,19 @@
 #'   list_rbind()
 #' ```
 #'
+#' ## Data Availability
+#' The API only returns data from the 5th legislative period (V. GP, 1945)
+#' onwards, i.e. for the Second Republic.
+#'
 #' @seealso
 #' * [get_persons()] for searching person identifiers used in the `person` parameter
 #' * [get_legis_periods()] for retrieving available legislative periods
 #' * [get_committees()] for committee information
-#' * [get_plenary_sessions()] for plenary session data
+#' * [get_plenary_meetings()] for plenary meeting data
 #'
 #' @export
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' # Search for EU-related items in the 28th legislative period
 #' get_items(topic = "Europäische Union", legis_period = 28)
 #'
@@ -585,6 +615,22 @@ get_items <- function(
     \(x) fn_check_legis_period_elements(x)
   )
 
+  # Data is only available from the 5th legislative period (Second Republic).
+  # Special codes like "PN", "KN" also predate the 5th period and return no
+
+  # data, so only numeric periods >= 5 (and "ALLE") are permitted.
+  if (length(legis_period) > 0) {
+    lp_numeric <- suppressWarnings(as.integer(as.roman(legis_period)))
+    lp_invalid <- is.na(lp_numeric) & legis_period != "ALLE" |
+      !is.na(lp_numeric) & lp_numeric < 5L
+    if (any(lp_invalid)) {
+      cli::cli_abort(
+        "Data is only available from the 5th legislative period onwards.",
+        arg = "legis_period"
+      )
+    }
+  }
+
   #DATE START; DATE END
   # Date validation using lubridate for flexible input formats
   date_start_parsed <- NULL
@@ -598,7 +644,10 @@ get_items <- function(
         "date_start must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
       )
     }
-    date_start <- paste0(format(date_start_parsed, "%Y-%m-%d"), "T00:00:00.000Z")
+    date_start <- paste0(
+      format(date_start_parsed, "%Y-%m-%d"),
+      "T00:00:00.000Z"
+    )
   }
 
   #date end
@@ -1093,6 +1142,8 @@ get_items <- function(
     purrr::compact() %>% #keep only non-empty elements
     jsonlite::toJSON()
 
+  if (echo) cli::cli_alert_info("Fetching items from API...")
+
   req <- httr2::request(
     "https://www.parlament.gv.at/Filter/api/filter/data/101"
   ) %>%
@@ -1134,43 +1185,13 @@ get_items <- function(
 
   rows <- purrr::pluck(resp_json, "rows")
 
-  if (length(rows) == 0) {
-    df_res <- NULL
-  } else {
-    df_res <- rows %>%
-      as.data.frame()
-
-    # Use rnr positions to select and reorder the correct columns
-    valid_pos <- col_positions[col_positions <= ncol(df_res)]
-    valid_headings <- vec_headings[col_positions <= ncol(df_res)]
-    df_res <- df_res[, valid_pos, drop = FALSE]
-    colnames(df_res) <- valid_headings
-  }
-
-  # RETURN ECHO
-  if (echo == TRUE) {
-    print(body_params)
-    # print url to results / transparency reasons / add search string parameter
-    body_params_li <- jsonlite::fromJSON(body_params)
-
-    query_string <- purrr::imap(
-      body_params_li,
-      \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
-      paste0(collapse = "&")
-
-    print(glue::glue(
-      "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
-    ))
-
-    print(if (is.null(df_res)) 0 else nrow(df_res))
-  }
+  # The API can return either sparse export rows keyed by `rnr` or compact rows
+  # already aligned to the visible headers.
+  df_res <- .align_get_items_export_rows(rows, vec_headings, col_positions)
 
   # STOP IF NO HITS
   if (is.null(df_res) || nrow(df_res) == 0) {
-    message("No results found for the provided search criteria.")
+    cli::cli_alert_warning("No results found for the provided search criteria.")
     return(NULL)
   }
 
@@ -1193,19 +1214,18 @@ get_items <- function(
     "schlagwort",
     "euro_voc"
   )
-  fn_parse_content <- function(x) {
-    x %>%
-      stringr::str_remove_all("\\[|\\]|\"") %>%
-      stringr::str_split(",") %>%
-      unlist() %>%
-      stringr::str_trim()
+  fn_parse_content_vec <- function(x) {
+    x |>
+      stringr::str_remove_all("\\[|\\]|\"") |>
+      stringr::str_split(",") |>
+      purrr::map(stringr::str_trim)
   }
 
-  df_res <- df_res %>%
+  df_res <- df_res |>
     dplyr::mutate(
       dplyr::across(
         dplyr::any_of(cols_pars),
-        \(x) purrr::map(x, \(y) fn_parse_content(y))
+        fn_parse_content_vec
       )
     )
 
@@ -1261,7 +1281,8 @@ get_items <- function(
   df_res <- df_res %>%
     dplyr::select(dplyr::any_of(col_select)) %>%
     dplyr::relocate(dplyr::any_of(col_select)) %>% #ensures ordering of columns
-    dplyr::mutate(date = lubridate::dmy(.data$date))
+    dplyr::mutate(date = lubridate::dmy(.data$date)) |>
+    dplyr::arrange(dplyr::desc(.data$date))
 
   # CHECK FOR DUPLICATES
   # Check for completely duplicate rows across all columns
@@ -1288,157 +1309,27 @@ get_items <- function(
   }
 
   # RETURN RESULT
+  if (echo) cli::cli_alert_success("Fetched {nrow(df_res)} item{?s}")
+
+  # ECHO: print search parameters and result URL
+  if (echo == TRUE) {
+    print(body_params)
+    body_params_li <- jsonlite::fromJSON(body_params)
+
+    query_string <- purrr::imap(
+      body_params_li,
+      \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
+    ) %>%
+      unlist() %>%
+      unname() %>%
+      paste0(collapse = "&")
+
+    print(glue::glue(
+      "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
+    ))
+
+    print(nrow(df_res))
+  }
+
   return(df_res)
-}
-
-#' Get detailed stage information for a parliamentary item
-#'
-#' `r lifecycle::badge("experimental")`
-#'
-#' Retrieves detailed stage information for a specific parliamentary item by
-#' scraping its detail page on the Austrian Parliament website. The function
-#' extracts structured data about the item's progression through different
-#' legislative stages.
-#'
-#' @param item_url Character. A single URL or path to an item on the Austrian
-#'   Parliament website. Can be an absolute URL starting with
-#'   "https://www.parlament.gv.at/" or a relative path (with or without
-#'   leading slashes). The function will normalize relative paths automatically.
-#' @param type Character. Type of data to extract. Currently only "stages" is
-#'   supported (default).
-#'
-#' @return A tibble containing detailed information about the parliamentary item and its stages.
-#'   Returns `NULL` if no stages are found.
-#'
-#' - `item_url` (character): The URL of the parliamentary item.
-#' - `type` (character): The type of the item (e.g., BI for Bürgerinitiativen).
-#' - `title` (character): The title of the item.
-#' - `item_number` (character): The citation number of the item.
-#' - `item_description` (character): A brief description of the item.
-#' - `state_approval` (character): The current approval state of the item.
-#' - `phase` (character): The phase of the legislative stage.
-#' - `id` (character): Unique identifier for the stage.
-#' - `stage_date` (Date): The date of the stage.
-#' - `stage_name` (character): The name/description of the stage.
-#' - `stage_priority` (numeric): Priority of the stage.
-#' - `documents` (list): List-column of associated documents for the stage.
-#'
-#' @details
-#' The function performs the following steps:
-#' 1. Normalizes the URL (prepends "https://www.parlament.gv.at/" if needed)
-#' 2. Scrapes the item's detail page
-#' 3. Extracts structured data from embedded JavaScript
-#' 4. Parses HTML content within stage text fields
-#' 5. Returns a tibble with stage information
-#'
-#' @seealso
-#' * [get_items()] for searching parliamentary items and retrieving URLs
-#'
-#' @examples
-#' \dontrun{
-#' # Get details for a specific item
-#' item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-#' stages <- get_item_details(item_url)
-#'
-#' # Also works with relative paths
-#' stages <- get_item_details("/gegenstand/XXVIII/BI/24")
-#' }
-#'
-#' @export
-get_item_details <- function(item_url, type = "stages") {
-  prefix <- "https://www.parlament.gv.at/"
-
-  if (!stringr::str_starts(item_url, prefix)) {
-    item_url <- item_url %>%
-      stringr::str_replace("^/+", "") %>%
-      (\(x) stringr::str_c(prefix, x))()
-  }
-
-  page <- rvest::read_html(item_url)
-
-  # Extract and parse embedded data from JavaScript
-  data_list <- page %>%
-    rvest::html_elements("script") %>%
-    rvest::html_text2() %>%
-    (\(x) x[stringr::str_detect(x, "props:")])() %>%
-    stringr::str_extract("(?s)props:.*") %>%
-    stringr::str_remove("props:\\s*") %>%
-    stringr::str_remove("\\}\\);\\s*$") %>%
-    jsonlite::fromJSON() %>%
-    (\(x) x$data)()
-
-  #GET METADATA ON ITEM
-  df_res <- tibble(
-    item_url = item_url,
-    type = data_list$content$type,
-    title = data_list$content$title,
-    item_number = data_list$content$zitation,
-    item_description = data_list$content$description,
-    state_statements = data_list$content$statementsstage,
-    state_approval = data_list$content$approvalstate
-  )
-
-  #GET STAGES DETAILS - IF STRUCTURE IS PHASE/STAGES
-  if (type == "stages" && !is.null(data_list$content$phase$stages)) {
-    df_stages <- data_list$content$phase %>%
-      dplyr::rename(stage = "stages") %>%
-      tidyr::unnest_longer("stage") %>%
-      tidyr::unnest_wider("stage", names_sep = "_") %>%
-      dplyr::rename(phase = "name", stage_name = "stage_text")
-
-    df_stages <- df_stages %>%
-      dplyr::mutate(
-        stage_name = purrr::map_chr(.data$stage_name, \(x) {
-          tryCatch(
-            {
-              x %>% rvest::read_html() %>% rvest::html_text2()
-            },
-            error = function(e) {
-              # If it fails, it's probably plain text already
-              x
-            }
-          )
-        })
-      )
-
-    # Expand df_res to match df_stages and combine
-    result <- df_res %>%
-      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
-      dplyr::bind_cols(df_stages)
-
-    return(result)
-  }
-
-  #GET STAGES DETAILS - IF STRUCTURE IS STAGES
-  if (type == "stages" && !is.null(data_list$content$stages)) {
-    df_stages <- data_list$content$stages %>%
-      tidyr::unnest_longer("fsth") %>%
-      tidyr::unnest_wider("fsth", names_sep = "_") %>%
-      dplyr::rename(session_number = "fsth_sitzung_id") %>%
-      dplyr::select(-c("fsth_fund_von", "fsth_fund_bis"))
-
-    df_stages <- df_stages %>%
-      dplyr::mutate(
-        text = purrr::map_chr(.data$text, \(x) {
-          tryCatch(
-            {
-              x %>% rvest::read_html() %>% rvest::html_text2()
-            },
-            error = function(e) {
-              # If it fails, it's probably plain text already
-              x
-            }
-          )
-        })
-      )
-
-    # Expand df_res to match df_stages and combine
-    result <- df_res %>%
-      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
-      dplyr::bind_cols(df_stages)
-
-    return(result)
-  }
-
-  return(NULL)
 }

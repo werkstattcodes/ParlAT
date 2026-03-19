@@ -71,13 +71,13 @@ Returns NULL if no results are found for the provided search criteria.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \details{
-Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes session dates, agendas, meeting overviews, and member lists.
+Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data includes meeting dates, agendas, meeting overviews, and member lists.
 The function partly mirrors the search functionality of the Austrian Parliament's website for committees
 \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">}}here\if{html}{\out{</a>}} and extends it by
 e.g. incorporating the extraction of data from membership lists. Data available starting from the 20th legislative period.
 }
 \examples{
-\dontrun{
+\donttest{
 # Basic search for committees in National Council
 get_committees(
   institution = "NR",

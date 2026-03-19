@@ -1,159 +1,175 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:10:58.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 3,
     "header": [
         {
-            "css_class": "col-15",
-            "feldId": 605,
             "link_rnr": "16",
+            "feldId": 605,
             "hidden": false,
-            "rnr": 1,
+            "valueToNull": false,
             "mediaType": "title",
-            "listeId": 409,
             "label": "Name",
+            "css_class": "col-15",
+            "hideValue": false,
+            "rnr": 1,
+            "listeId": 409,
             "feld_name": "PERSON_NAME",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "css_class": "col-10",
             "feldId": 603,
             "hidden": false,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gremium",
             "feld_name": "GREMIUM",
             "class": "col-10",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
-            "feldId": 604,
             "export_jn": "0",
+            "feldId": 604,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 409,
             "label": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
-            "feldId": 623,
             "export_jn": "0",
+            "feldId": 623,
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHL_CODE",
-            "feld_name": "GESCHL_CODE",
-            "includeHeader": true
+            "feld_name": "GESCHL_CODE"
         },
         {
             "feldId": 624,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHLECHT",
-            "feld_name": "GESCHLECHT",
-            "includeHeader": true
+            "feld_name": "GESCHLECHT"
         },
         {
             "css_class": "col-15",
             "feldId": 863,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gesetzgebungsperiode",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 864,
             "hidden": true,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "parteien",
-            "includeHeader": true
+            "label": "parteien"
         },
         {
             "feldId": 643,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Attribute",
-            "feld_name": "ATTR_JSON",
-            "includeHeader": true
+            "feld_name": "ATTR_JSON"
         },
         {
-            "feldId": 903,
             "export_jn": "0",
+            "feldId": 903,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 409,
             "label": "ist_praes",
-            "feld_name": "PRAES",
-            "includeHeader": true
+            "feld_name": "PRAES"
         },
         {
+            "export_jn": "0",
             "feldId": 1223,
-            "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "vorname",
-            "includeHeader": true
+            "label": "vorname"
         },
         {
-            "feldId": 1224,
             "export_jn": "0",
+            "feldId": 1224,
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "nachname",
-            "includeHeader": true
+            "label": "nachname"
         },
         {
             "feldId": 1225,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr",
-            "includeHeader": true
+            "label": "akgr"
         },
         {
-            "feldId": 1226,
             "export_jn": "0",
+            "feldId": 1226,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr_h",
-            "includeHeader": true
+            "label": "akgr_h"
         },
         {
             "feldId": 7120,
             "hidden": false,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Klub/Fraktion",
-            "includeHeader": true
+            "label": "Klub/Fraktion"
         },
         {
             "css_class": "col-15",
             "feldId": 7121,
             "hidden": false,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Wahlkreis",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 7180,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Bio",
-            "includeHeader": true
+            "label": "Bio"
         }
     ],
     "rows": [
@@ -167,7 +183,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Lisa Aldali",
-                "fraktionen": "NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -221,7 +236,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 38385,
                 "medien": [
                     20174600
@@ -237,8 +251,8 @@
             "Aldali",
             null,
             null,
-            "NEOS Parlamentsklub (N)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/38385"
         ],
         [
@@ -251,7 +265,6 @@
             "[\"NEOS\",\"NEOS-LIF\"]",
             {
                 "zit": "Michael Bernhard",
-                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS",
@@ -284,7 +297,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "22.10.2019",
                         "wahlkreis": "Wien",
-                        "fraktion": "Klub von NEOS; NEOS Parlamentsklub"
+                        "fraktion": "NEOS Parlamentsklub"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -319,7 +332,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "29.01.2014",
                         "wahlkreis": "Wien",
-                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                        "fraktion": "Klub von NEOS und LIF"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -337,7 +350,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "08.11.2017",
                         "wahlkreis": "Wien",
-                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                        "fraktion": "Klub von NEOS"
                     },
                     {
                         "wahlkreis_bundesland": "Bundeswahlvorschlag",
@@ -435,7 +448,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Bundeswahlvorschlag",
                 "pad_intern": 83124,
                 "medien": [
                     20068165,
@@ -452,8 +464,8 @@
             "Bernhard",
             null,
             null,
-            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
-            "Wien, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/83124"
         ],
         [
@@ -466,7 +478,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Dr. Stephanie Krisper",
-                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -558,7 +569,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 2344,
                 "medien": [
                     20142646
@@ -574,8 +584,8 @@
             "Krisper",
             "Dr.",
             null,
-            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N)",
-            "Wien",
+            null,
+            null,
             "/person/2344"
         ]
     ]

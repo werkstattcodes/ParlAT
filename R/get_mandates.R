@@ -63,8 +63,8 @@ get_mandates_single <- function(pad_intern) {
 #'
 #' The function partly mimics the behavior of the 'Personensuche' on the website
 #' of the Parliament (<a href="https://www.parlament.gv.at/recherchieren/personen/" target="_blank">here</a>).
-#' @param pad_intern Personal identfication number of person(s). Has to be NULL if name is provided.
-#' @param name A character vector of name(s). First name followed by family name. Only considered if no pad_intern(s) provided.
+#' @param pad_intern Personal identfication number of person(s). Cannot be combined with `name`; one of the two must be provided.
+#' @param name A character vector of name(s). First name followed by family name. Cannot be combined with `pad_intern`; one of the two must be provided.
 #' @param date Date to filter mandates (dmy format).
 #' @param institution Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
 #' or "PN" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
@@ -93,7 +93,7 @@ get_mandates_single <- function(pad_intern) {
 #' @export
 #' @seealso [get_names()], [get_pad_intern()]
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
 #'   # Returns results with latest name (Beck)
 #'   get_mandates(c("Pia Philippa Strache"))
@@ -114,6 +114,13 @@ get_mandates <- function(
   institution = NULL,
   date = NULL
 ) {
+  if (is.null(name) && is.null(pad_intern)) {
+    cli::cli_abort("Exactly one of {.arg name} or {.arg pad_intern} must be provided.")
+  }
+  if (!is.null(name) && !is.null(pad_intern)) {
+    cli::cli_abort("Only one of {.arg name} or {.arg pad_intern} can be provided, not both.")
+  }
+
   #INSTITUTION
   checkmate::assert_subset(
     x = institution,
@@ -325,7 +332,7 @@ get_mandates <- function(
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_pad_intern("Strache")
 #' get_pad_intern("Heinz-Christian Strache")
 #' }

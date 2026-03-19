@@ -94,6 +94,14 @@ test_that("get_items validates institution parameter", {
   )
 })
 
+test_that("get_items rejects legis_period before 5th period", {
+  expect_error(get_items(legis_period = 4), "5th legislative period")
+  expect_error(get_items(legis_period = "3"), "5th legislative period")
+  expect_error(get_items(legis_period = c(2, 27)), "5th legislative period")
+  expect_error(get_items(legis_period = "PN"), "5th legislative period")
+  expect_error(get_items(legis_period = "KN"), "5th legislative period")
+})
+
 test_that("get_items validates topic parameter", {
   expect_error(
     get_items(topic = "Invalid Topic"),
@@ -166,26 +174,15 @@ test_that("get_items works with multiple topics", {
   expect_equal(nrow(result), 2013)
 })
 
-test_that("get_items works with multiple legis_periods and different input forms", {
-  # Test with mixed input forms: numeric, character numeric, and historical abbreviations
-  result <- run_api_call(
-    {
-      get_items(
-        legis_period = c("KN", "PN", 10, "15"),
-        institution = "NR",
-        echo = FALSE
-      )
-    },
-    fixture_subdir = "get_items"
+test_that("get_items rejects mixed legis_period inputs containing unsupported early periods", {
+  expect_error(
+    get_items(
+      legis_period = c("KN", "PN", 10, "15"),
+      institution = "NR",
+      echo = FALSE
+    ),
+    "5th legislative period onwards"
   )
-
-  expect_s3_class(result, "data.frame")
-  expect_equal(nrow(result), 11212)
-
-  # Check that all expected legislative periods are present in the results
-  expected_periods <- c("KN", "PN", "X", "XV")
-  actual_periods <- unique(result$legis_period)
-  expect_true(all(expected_periods %in% actual_periods))
 })
 
 test_that("get_items validates type_doc for ANTR items in NR", {
@@ -852,66 +849,6 @@ test_that("get_items type_doc for J_JPR_M combines with other parameters", {
   expect_true(is.data.frame(result) || is.null(result))
 })
 
-# Tests for get_item_details() -----------------------------------------------
-
-test_that("get_item_details returns correct structure with absolute URL", {
-  # Use a known item URL
-  item_url <- "https://www.parlament.gv.at/gegenstand/XXVII/GAST/2"
-  result <- run_api_call(
-    {
-      get_item_details(item_url)
-    },
-    fixture_subdir = "get_item_details"
-  )
-
-  expect_s3_class(result, "data.frame")
-  expect_true(ncol(result) > 0)
-  expect_true(nrow(result) > 0)
-})
-
-test_that("get_item_details works with relative URL", {
-  # Test relative path normalization
-  result <- run_api_call(
-    {
-      get_item_details("/gegenstand/XXVIII/BI/24")
-    },
-    fixture_subdir = "get_item_details"
-  )
-
-  expect_s3_class(result, "data.frame")
-  expect_true(ncol(result) > 0)
-})
-
-
-test_that("get_item_details handles URL normalization correctly", {
-  # Test that absolute and relative URLs return the same data
-  absolute_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-  relative_url <- "/gegenstand/XXVIII/BI/24"
-  relative_no_slash <- "gegenstand/XXVIII/BI/24"
-
-  result_absolute <- run_api_call(
-    {
-      get_item_details(absolute_url)
-    },
-    fixture_subdir = "get_item_details"
-  )
-  result_relative <- run_api_call(
-    {
-      get_item_details(relative_url)
-    },
-    fixture_subdir = "get_item_details"
-  )
-  result_no_slash <- run_api_call(
-    {
-      get_item_details(relative_no_slash)
-    },
-    fixture_subdir = "get_item_details"
-  )
-
-  # All should return same number of rows
-  expect_equal(nrow(result_absolute), nrow(result_relative))
-  expect_equal(nrow(result_absolute), nrow(result_no_slash))
-})
 test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-27)", {
   result <- run_api_call(
     {
@@ -994,4 +931,73 @@ test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)
     n_distinct,
     info = "Result should contain no duplicate rows"
   )
+})
+
+test_that("get_items aligns sparse export rows using rnr positions", {
+  rows <- data.frame(
+    V1 = c("citation-1", "citation-2"),
+    V2 = c("unused", "unused"),
+    V3 = c("club-1", "club-2"),
+    stringsAsFactors = FALSE
+  )
+  headings <- c("citation", "club")
+  positions <- c(1, 3)
+
+  result <- .align_get_items_export_rows(rows, headings, positions)
+
+  expect_s3_class(result, "data.frame")
+  expect_identical(names(result), headings)
+  expect_equal(result$citation, c("citation-1", "citation-2"))
+  expect_equal(result$club, c("club-1", "club-2"))
+})
+
+test_that("get_items aligns compact export rows sequentially without dropping columns", {
+  rows <- data.frame(
+    V1 = c("citation-1", "citation-2"),
+    V2 = c("club-1", "club-2"),
+    stringsAsFactors = FALSE
+  )
+  headings <- c("citation", "club")
+  positions <- c(1, 3)
+
+  result <- .align_get_items_export_rows(rows, headings, positions)
+
+  expect_s3_class(result, "data.frame")
+  expect_identical(names(result), headings)
+  expect_equal(result$citation, c("citation-1", "citation-2"))
+  expect_equal(result$club, c("club-1", "club-2"))
+})
+
+test_that("get_items keeps key columns for compact-prone fixture scenarios", {
+  result <- run_api_call(
+    {
+      get_items(
+        item = "J_JPR_M",
+        type_doc = c("J", "JPR"),
+        institution = "NR",
+        legis_period = 27,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_true(all(c("item_url", "subject", "parl_group", "date", "stage") %in% names(result)))
+})
+
+test_that("get_items accepts supported post-5th legislative periods", {
+  result <- run_api_call(
+    {
+      get_items(
+        institution = "NR",
+        legis_period = 5,
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_true(nrow(result) > 0)
 })

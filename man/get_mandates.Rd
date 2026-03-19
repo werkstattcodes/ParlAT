@@ -7,9 +7,9 @@
 get_mandates(name = NULL, pad_intern = NULL, institution = NULL, date = NULL)
 }
 \arguments{
-\item{name}{A character vector of name(s). First name followed by family name. Only considered if no pad_intern(s) provided.}
+\item{name}{A character vector of name(s). First name followed by family name. Cannot be combined with \code{pad_intern}; one of the two must be provided.}
 
-\item{pad_intern}{Personal identfication number of person(s). Has to be NULL if name is provided.}
+\item{pad_intern}{Personal identfication number of person(s). Cannot be combined with \code{name}; one of the two must be provided.}
 
 \item{institution}{Chamber of Parliament. "NR" (Nationalrat), "BR" (Bundesrat), "KN" (Konstituierende Nationalversammlung),
 or "PN" (Provisorische Nationalversammlung). NULL covers all institutions. Note that e.g. "NR" does not only return MP's mandates,
@@ -56,7 +56,7 @@ See examples.
 }
 }
 \examples{
-\dontrun{
+\donttest{
   get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))
   # Returns results with latest name (Beck)
   get_mandates(c("Pia Philippa Strache"))

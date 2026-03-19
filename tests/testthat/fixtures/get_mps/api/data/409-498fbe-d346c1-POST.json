@@ -1,160 +1,176 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:10:58.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 88,
     "header": [
         {
-            "css_class": "col-15",
-            "feldId": 605,
             "link_rnr": "16",
+            "feldId": 605,
             "hidden": false,
-            "rnr": 1,
+            "valueToNull": false,
             "mediaType": "title",
-            "listeId": 409,
             "label": "Name",
             "sortable": "1",
+            "css_class": "col-15",
+            "hideValue": false,
+            "rnr": 1,
+            "listeId": 409,
             "feld_name": "PERSON_NAME",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "css_class": "col-10",
             "feldId": 603,
             "hidden": false,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gremium",
             "feld_name": "GREMIUM",
             "class": "col-10",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
-            "feldId": 604,
             "export_jn": "0",
+            "feldId": 604,
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 409,
             "label": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
-            "feldId": 623,
             "export_jn": "0",
+            "feldId": 623,
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHL_CODE",
-            "feld_name": "GESCHL_CODE",
-            "includeHeader": true
+            "feld_name": "GESCHL_CODE"
         },
         {
             "feldId": 624,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHLECHT",
-            "feld_name": "GESCHLECHT",
-            "includeHeader": true
+            "feld_name": "GESCHLECHT"
         },
         {
             "css_class": "col-15",
             "feldId": 863,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gesetzgebungsperiode",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 864,
             "hidden": true,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "parteien",
-            "includeHeader": true
+            "label": "parteien"
         },
         {
             "feldId": 643,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Attribute",
-            "feld_name": "ATTR_JSON",
-            "includeHeader": true
+            "feld_name": "ATTR_JSON"
         },
         {
-            "feldId": 903,
             "export_jn": "0",
+            "feldId": 903,
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 409,
             "label": "ist_praes",
-            "feld_name": "PRAES",
-            "includeHeader": true
+            "feld_name": "PRAES"
         },
         {
+            "export_jn": "0",
             "feldId": 1223,
-            "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "vorname",
-            "includeHeader": true
+            "label": "vorname"
         },
         {
-            "feldId": 1224,
             "export_jn": "0",
+            "feldId": 1224,
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "nachname",
-            "includeHeader": true
+            "label": "nachname"
         },
         {
             "feldId": 1225,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr",
-            "includeHeader": true
+            "label": "akgr"
         },
         {
-            "feldId": 1226,
             "export_jn": "0",
+            "feldId": 1226,
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr_h",
-            "includeHeader": true
+            "label": "akgr_h"
         },
         {
             "feldId": 7120,
             "hidden": false,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Klub/Fraktion",
-            "includeHeader": true
+            "label": "Klub/Fraktion"
         },
         {
             "css_class": "col-15",
             "feldId": 7121,
             "hidden": false,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Wahlkreis",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 7180,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Bio",
-            "includeHeader": true
+            "label": "Bio"
         }
     ],
     "rows": [
@@ -168,7 +184,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Claudia Bauer",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -335,7 +350,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mühlviertel, Bundeswahlvorschlag, Oberösterreich",
                 "pad_intern": 2295,
                 "medien": [
                     20154697
@@ -351,8 +365,8 @@
             "Bauer",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Mühlviertel, Bundeswahlvorschlag, Oberösterreich",
+            null,
+            null,
             "/person/2295"
         ],
         [
@@ -365,7 +379,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Angela Baumgartner",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -456,7 +469,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich Ost",
                 "pad_intern": 1974,
                 "medien": [
                     20067214,
@@ -473,8 +485,8 @@
             "Baumgartner",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Niederösterreich Ost",
+            null,
+            null,
             "/person/1974"
         ],
         [
@@ -487,7 +499,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Petra Bayr, MA MLS",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -654,7 +665,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Süd",
                 "pad_intern": 14835,
                 "medien": [
                     20068163,
@@ -671,8 +681,8 @@
             "Bayr",
             null,
             "MA MLS",
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Wien Süd",
+            null,
+            null,
             "/person/14835"
         ],
         [
@@ -685,7 +695,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag. Ruth Becher",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -834,7 +843,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nord",
                 "pad_intern": 14836,
                 "medien": [
                     20069570
@@ -850,8 +858,8 @@
             "Becher",
             "Mag. phil.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Wien Nord",
+            null,
+            null,
             "/person/14836"
         ],
         [
@@ -864,7 +872,6 @@
             "[\"OK\"]",
             {
                 "zit": "Pia Philippa Beck",
-                "fraktionen": "ohne Klubzugehörigkeit (A)",
                 "item_type": "Biogr",
                 "frak": [
                     "OK"
@@ -919,7 +926,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 44127,
                 "medien": [
                     20069635
@@ -935,8 +941,8 @@
             "Beck",
             null,
             null,
-            "ohne Klubzugehörigkeit (A)",
-            "Wien",
+            null,
+            null,
             "/person/44127"
         ],
         [
@@ -949,7 +955,6 @@
             "[\"FPÖ\"]",
             {
                 "zit": "Dr. Dagmar Belakowitsch",
-                "fraktionen": "Freiheitlicher Parlamentsklub (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ"
@@ -1098,7 +1103,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Bundeswahlvorschlag",
                 "pad_intern": 35468,
                 "medien": [
                     20068826,
@@ -1115,8 +1119,8 @@
             "Belakowitsch",
             "Dr. med. univ.",
             null,
-            "Freiheitlicher Parlamentsklub (F)",
-            "Wien, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/35468"
         ],
         [
@@ -1129,7 +1133,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Mag. Eva Blimlinger",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -1183,7 +1186,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 5649,
                 "medien": [
                     20069671
@@ -1199,8 +1201,8 @@
             "Blimlinger",
             "Mag.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Wien",
+            null,
+            null,
             "/person/5649"
         ],
         [
@@ -1213,7 +1215,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Dr. Juliane Bogner-Strauß",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -1452,7 +1453,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Graz und Umgebung, Bundeswahlvorschlag, Steiermark",
                 "pad_intern": 1975,
                 "medien": [
                     20161791,
@@ -1469,8 +1469,8 @@
             "Bogner-Strauß",
             "Mag. Dr.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Graz und Umgebung, Bundeswahlvorschlag, Steiermark",
+            null,
+            null,
             "/person/1975"
         ],
         [
@@ -1483,7 +1483,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Henrike Brandstötter",
-                "fraktionen": "NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -1555,7 +1554,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 5683,
                 "medien": [
                     20147697,
@@ -1572,8 +1570,8 @@
             "Brandstötter",
             null,
             null,
-            "NEOS Parlamentsklub (N)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/5683"
         ],
         [
@@ -1586,7 +1584,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Doris Bures",
-                "fraktionen": "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1994,15 +1991,14 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Wien Süd-West",
                 "pad_intern": 145,
                 "medien": [
                     20068828,
-                    20069287
+                    20144872
                 ],
                 "openGraph": {
                     "description": "Abgeordnete zum Nationalrat (XXV.-XXVIII. GP), SPÖ",
-                    "image": "/dokument/bild/200692/20069287_500.jpg"
+                    "image": "/dokument/bild/201448/20144872_500.jpg"
                 },
                 "aktiv": true,
                 "nrbr_praes": [
@@ -2016,8 +2012,8 @@
             "Bures",
             null,
             null,
-            "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Klub der Sozialistischen Abgeordneten und Bundesräte; Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Wien, Wien Süd-West",
+            null,
+            null,
             "/person/145"
         ],
         [
@@ -2030,7 +2026,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Ulrike Maria Böker",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -2084,7 +2079,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Oberösterreich",
                 "pad_intern": 26343,
                 "medien": [
                     20123875
@@ -2100,8 +2094,8 @@
             "Böker",
             null,
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Oberösterreich",
+            null,
+            null,
             "/person/26343"
         ],
         [
@@ -2114,7 +2108,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Romana Deckenbacher",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -2186,7 +2179,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 6506,
                 "medien": [
                     20159170,
@@ -2203,8 +2195,8 @@
             "Deckenbacher",
             "Mag.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Wien",
+            null,
+            null,
             "/person/6506"
         ],
         [
@@ -2217,7 +2209,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Martina Diesner-Wais",
-                "fraktionen": "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -2407,7 +2398,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Waldviertel, Niederösterreich",
                 "pad_intern": 16218,
                 "medien": [
                     20068172,
@@ -2424,8 +2414,8 @@
             "Diesner-Wais",
             null,
             null,
-            "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Waldviertel, Niederösterreich",
+            null,
+            null,
             "/person/16218"
         ],
         [
@@ -2438,7 +2428,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Mag. Meri Disoski",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -2510,7 +2499,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 5650,
                 "medien": [
                     20068829,
@@ -2527,8 +2515,8 @@
             "Disoski",
             "Mag.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Wien",
+            null,
+            null,
             "/person/5650"
         ],
         [
@@ -2541,7 +2529,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Dipl.-Ing. Karin Doppelbauer",
-                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -2625,7 +2612,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "08.11.2017",
                         "wahlkreis": "Bundeswahlvorschlag",
-                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                        "fraktion": "Klub von NEOS"
                     }
                 ],
                 "name_nvg": "Doppelbauer Karin, Dipl.-Ing.",
@@ -2651,7 +2638,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Oberösterreich",
                 "pad_intern": 91141,
                 "medien": [
                     20068173,
@@ -2668,8 +2654,8 @@
             "Doppelbauer",
             "Dipl.-Ing.",
             null,
-            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
-            "Bundeswahlvorschlag, Oberösterreich",
+            null,
+            null,
             "/person/91141"
         ],
         [
@@ -2682,7 +2668,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag. Muna Duzdar",
-                "fraktionen": "Bundesratsfraktion der SPÖ (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -2874,7 +2859,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Bundeswahlvorschlag",
                 "pad_intern": 60446,
                 "medien": [
                     20163223
@@ -2890,8 +2874,8 @@
             "Duzdar",
             "Mag. iur.",
             null,
-            "Bundesratsfraktion der SPÖ (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Wien, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/60446"
         ],
         [
@@ -2904,7 +2888,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Cornelia Ecker",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -3009,7 +2992,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Salzburg",
                 "pad_intern": 83109,
                 "medien": [
                     20069716
@@ -3025,8 +3007,8 @@
             "Ecker",
             null,
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Salzburg",
+            null,
+            null,
             "/person/83109"
         ],
         [
@@ -3039,7 +3021,6 @@
             "[\"FPÖ\"]",
             {
                 "zit": "Rosa Ecker, MBA",
-                "fraktionen": "Freiheitlicher Parlamentsklub (F), Fraktion der Freiheitlichen Bundesräte; Freiheitliche Bundesratsfraktion (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ"
@@ -3069,7 +3050,7 @@
                         "wahlpartei_sort": "Freiheitliche Partei Oesterreichs",
                         "mandat_bis": "22.10.2019",
                         "wahlkreis": "Oberösterreich",
-                        "fraktion": "Fraktion der Freiheitlichen Bundesräte; Freiheitliche Bundesratsfraktion"
+                        "fraktion": "Freiheitliche Bundesratsfraktion"
                     },
                     {
                         "wahlkreis_bundesland": "Oberösterreich",
@@ -3147,7 +3128,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mühlviertel, Oberösterreich",
                 "pad_intern": 87002,
                 "medien": [
                     20068830,
@@ -3164,8 +3144,8 @@
             "Ecker",
             null,
             "MBA",
-            "Freiheitlicher Parlamentsklub (F), Fraktion der Freiheitlichen Bundesräte; Freiheitliche Bundesratsfraktion (F)",
-            "Mühlviertel, Oberösterreich",
+            null,
+            null,
             "/person/87002"
         ],
         [
@@ -3178,7 +3158,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Mag. Faika El-Nagashi",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -3232,7 +3211,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 5651,
                 "medien": [
                     20069672
@@ -3248,8 +3226,8 @@
             "El-Nagashi",
             "Mag.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Wien",
+            null,
+            null,
             "/person/5651"
         ],
         [
@@ -3262,7 +3240,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Melanie Erasim, MSc",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -3370,7 +3347,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich, Weinviertel",
                 "pad_intern": 30653,
                 "medien": [
                     20111788
@@ -3386,8 +3362,8 @@
             "Erasim",
             null,
             "MSc",
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Niederösterreich, Weinviertel",
+            null,
+            null,
             "/person/30653"
         ],
         [
@@ -3400,7 +3376,6 @@
             "[\"GRÜNE\",\"OF\"]",
             {
                 "zit": "Dr. Ewa Ernst-Dziedzic",
-                "fraktionen": "ohne Fraktionszugehörigkeit (A), Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G), Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE",
@@ -3449,7 +3424,7 @@
                         "wahlpartei_sort": "Die Grünen",
                         "mandat_bis": "27.03.2018",
                         "wahlkreis": "Wien",
-                        "fraktion": "Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat"
+                        "fraktion": "Bundesratsfraktion der Grünen"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -3527,7 +3502,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Wien Süd-West",
                 "pad_intern": 87146,
                 "medien": [
                     20069742
@@ -3543,8 +3517,8 @@
             "Ernst-Dziedzic",
             "Dr. phil.",
             null,
-            "ohne Fraktionszugehörigkeit (A), Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G), Bundesratsfraktion der Grünen; Grüne Fraktion im Bundesrat (G)",
-            "Wien, Wien Süd-West",
+            null,
+            null,
             "/person/87146"
         ],
         [
@@ -3557,7 +3531,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Elisabeth Feichtinger, BEd BEd",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -3682,7 +3655,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Traunviertel, Oberösterreich",
                 "pad_intern": 2189,
                 "medien": [
                     20068182,
@@ -3699,8 +3671,8 @@
             "Feichtinger",
             null,
             "BEd BEd",
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Bundeswahlvorschlag, Traunviertel, Oberösterreich",
+            null,
+            null,
             "/person/2189"
         ],
         [
@@ -3713,7 +3685,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Fiona Fiedler, BEd",
-                "fraktionen": "NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -3785,7 +3756,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Steiermark",
                 "pad_intern": 5684,
                 "medien": [
                     20068183,
@@ -3802,8 +3772,8 @@
             "Fiedler",
             null,
             "BEd",
-            "NEOS Parlamentsklub (N)",
-            "Steiermark",
+            null,
+            null,
             "/person/5684"
         ],
         [
@@ -3816,7 +3786,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Mag. Ulrike Fischer",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -3870,7 +3839,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich",
                 "pad_intern": 5652,
                 "medien": [
                     20069674
@@ -3886,8 +3854,8 @@
             "Fischer",
             "Mag.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Niederösterreich",
+            null,
+            null,
             "/person/5652"
         ],
         [
@@ -3900,7 +3868,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Ing. Mst. DI (FH) Kerstin Fladerer, MSc",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -3954,7 +3921,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Oststeiermark",
                 "pad_intern": 29548,
                 "medien": [
                     20134668
@@ -3970,8 +3936,8 @@
             "Fladerer",
             "Ing. Mst. DI (FH)",
             "MSc",
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Oststeiermark",
+            null,
+            null,
             "/person/29548"
         ],
         [
@@ -3984,7 +3950,6 @@
             "[\"FPÖ\"]",
             {
                 "zit": "Dr. Susanne Fürst",
-                "fraktionen": "Freiheitlicher Parlamentsklub (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ"
@@ -4075,7 +4040,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Linz und Umgebung, Bundeswahlvorschlag, Oberösterreich",
                 "pad_intern": 1567,
                 "medien": [
                     20068832,
@@ -4092,8 +4056,8 @@
             "Fürst",
             "Dr. iur.",
             null,
-            "Freiheitlicher Parlamentsklub (F)",
-            "Linz und Umgebung, Bundeswahlvorschlag, Oberösterreich",
+            null,
+            null,
             "/person/1567"
         ],
         [
@@ -4106,7 +4070,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Leonore Gewessler, BA",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -4221,7 +4184,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Linz und Umgebung, Bundeswahlvorschlag",
                 "pad_intern": 5653,
                 "medien": [
                     20145473,
@@ -4238,8 +4200,8 @@
             "Gewessler",
             null,
             "BA",
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Linz und Umgebung, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/5653"
         ],
         [
@@ -4252,7 +4214,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Tanja Graf",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -4356,7 +4317,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Flachgau/Tennengau, Salzburg",
                 "pad_intern": 1977,
                 "medien": [
                     20068189,
@@ -4373,8 +4333,8 @@
             "Graf",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Flachgau/Tennengau, Salzburg",
+            null,
+            null,
             "/person/1977"
         ],
         [
@@ -4387,7 +4347,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Heike Grebien",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -4441,7 +4400,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Graz und Umgebung",
                 "pad_intern": 6504,
                 "medien": [
                     20069699
@@ -4457,8 +4415,8 @@
             "Grebien",
             null,
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Graz und Umgebung",
+            null,
+            null,
             "/person/6504"
         ],
         [
@@ -4471,7 +4429,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag. Karin Greiner",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -4630,7 +4587,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Graz und Umgebung, Bundeswahlvorschlag, Steiermark Mitte, Steiermark",
                 "pad_intern": 80479,
                 "medien": [
                     20160718,
@@ -4647,8 +4603,8 @@
             "Greiner",
             "Mag. phil.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Graz und Umgebung, Bundeswahlvorschlag, Steiermark Mitte, Steiermark",
+            null,
+            null,
             "/person/80479"
         ],
         [
@@ -4661,7 +4617,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Maria Großbauer",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -4734,7 +4689,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 1978,
                 "medien": [
                     20069587
@@ -4750,8 +4704,8 @@
             "Großbauer",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/1978"
         ],
         [
@@ -4764,7 +4718,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Kira Grünberg",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -4908,7 +4861,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol, Bundeswahlvorschlag",
                 "pad_intern": 1979,
                 "medien": [
                     20068193,
@@ -4925,8 +4877,8 @@
             "Grünberg",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Tirol, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/1979"
         ],
         [
@@ -4939,7 +4891,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Dr. Elisabeth Götze",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -5011,7 +4962,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich",
                 "pad_intern": 5654,
                 "medien": [
                     20068188,
@@ -5028,8 +4978,8 @@
             "Götze",
             "Dr.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Niederösterreich",
+            null,
+            null,
             "/person/5654"
         ],
         [
@@ -5042,7 +4992,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Mag. Sibylle Hamann",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -5096,7 +5045,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 5668,
                 "medien": [
                     20069676
@@ -5112,8 +5060,8 @@
             "Hamann",
             "Mag.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/5668"
         ],
         [
@@ -5126,7 +5074,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag. Dr. Sonja Hammerschmid",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -5225,14 +5172,13 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich",
                 "pad_intern": 88631,
                 "medien": [
-                    9232657
+                    20178702
                 ],
                 "openGraph": {
                     "description": "Abgeordnete zum Nationalrat (XXVI.-XXVII. GP), SPÖ",
-                    "image": "/dokument/bild/92326/9232657_500.jpg"
+                    "image": "/dokument/bild/201787/20178702_500.jpg"
                 },
                 "aktiv": false
             },
@@ -5241,8 +5187,8 @@
             "Hammerschmid",
             "Mag. rer. nat. Dr. rer. nat.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Niederösterreich",
+            null,
+            null,
             "/person/88631"
         ],
         [
@@ -5255,7 +5201,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Gabriele Heinisch-Hosek",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -5508,7 +5453,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Wien Umgebung, Niederösterreich",
                 "pad_intern": 8177,
                 "medien": [
                     20069710
@@ -5524,8 +5468,8 @@
             "Heinisch-Hosek",
             null,
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Bundeswahlvorschlag, Wien Umgebung, Niederösterreich",
+            null,
+            null,
             "/person/8177"
         ],
         [
@@ -5538,7 +5482,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Julia Elisabeth Herr",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -5610,7 +5553,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 5639,
                 "medien": [
                     20068203,
@@ -5627,8 +5569,8 @@
             "Herr",
             null,
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/5639"
         ],
         [
@@ -5641,7 +5583,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Eva-Maria Himmelbauer, BSc",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -5752,7 +5693,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Weinviertel",
                 "pad_intern": 72959,
                 "medien": [
                     20069706
@@ -5768,8 +5708,8 @@
             "Himmelbauer",
             null,
             "BSc",
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Weinviertel",
+            null,
+            null,
             "/person/72959"
         ],
         [
@@ -5782,7 +5722,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Eva-Maria Holzleitner, BSc",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -5900,7 +5839,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Oberösterreich",
                 "pad_intern": 2309,
                 "medien": [
                     20154858
@@ -5916,8 +5854,8 @@
             "Holzleitner",
             null,
             "BSc",
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Oberösterreich",
+            null,
+            null,
             "/person/2309"
         ],
         [
@@ -5930,7 +5868,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Dipl.-Ing. Andrea Holzner",
-                "fraktionen": "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -6038,7 +5975,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Innviertel, Oberösterreich",
                 "pad_intern": 5010,
                 "medien": [
                     20123878
@@ -6054,8 +5990,8 @@
             "Holzner",
             "Dipl.-Ing.",
             null,
-            "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Innviertel, Oberösterreich",
+            null,
+            null,
             "/person/5010"
         ],
         [
@@ -6068,7 +6004,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Johanna Jachs",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -6177,7 +6112,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mühlviertel",
                 "pad_intern": 1980,
                 "medien": [
                     20068212,
@@ -6194,8 +6128,8 @@
             "Jachs",
             "Mag. iur.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Mühlviertel",
+            null,
+            null,
             "/person/1980"
         ],
         [
@@ -6208,7 +6142,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Carmen Jeitler-Cincelli, BA",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -6299,7 +6232,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Thermenregion",
                 "pad_intern": 1981,
                 "medien": [
                     20068213,
@@ -6316,8 +6248,8 @@
             "Jeitler-Cincelli",
             "Mag. phil.",
             "BA",
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Thermenregion",
+            null,
+            null,
             "/person/1981"
         ],
         [
@@ -6330,7 +6262,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Martina Kaufmann, MMSc BA",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -6439,7 +6370,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Graz und Umgebung, Steiermark",
                 "pad_intern": 1983,
                 "medien": [
                     20069591
@@ -6455,8 +6385,8 @@
             "Kaufmann",
             null,
             "MMSc BA",
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Graz und Umgebung, Steiermark",
+            null,
+            null,
             "/person/1983"
         ],
         [
@@ -6469,7 +6399,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Rebecca Kirchbaumer",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -6542,7 +6471,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Innsbruck-Land",
                 "pad_intern": 1984,
                 "medien": [
                     20114022
@@ -6558,8 +6486,8 @@
             "Kirchbaumer",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Innsbruck-Land",
+            null,
+            null,
             "/person/1984"
         ],
         [
@@ -6572,7 +6500,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Dr. Stephanie Krisper",
-                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -6664,7 +6591,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 2344,
                 "medien": [
                     20142646
@@ -6680,8 +6606,8 @@
             "Krisper",
             "Dr.",
             null,
-            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N)",
-            "Wien",
+            null,
+            null,
             "/person/2344"
         ],
         [
@@ -6694,7 +6620,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Katharina Kucharowits",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -6816,7 +6741,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich Ost, Bundeswahlvorschlag",
                 "pad_intern": 35908,
                 "medien": [
                     20069632
@@ -6832,8 +6756,8 @@
             "Kucharowits",
             null,
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Niederösterreich Ost, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/35908"
         ],
         [
@@ -6846,7 +6770,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Dr. Gudrun Kugler",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -6937,7 +6860,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nord",
                 "pad_intern": 1986,
                 "medien": [
                     20068225,
@@ -6954,8 +6876,8 @@
             "Kugler",
             "Dr.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Wien Nord",
+            null,
+            null,
             "/person/1986"
         ],
         [
@@ -6968,7 +6890,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag. Andrea Kuntzl",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -7136,7 +7057,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Bundeswahlvorschlag",
                 "pad_intern": 8178,
                 "medien": [
                     20069711
@@ -7152,8 +7072,8 @@
             "Kuntzl",
             "Mag. rer. soc. oec.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Wien, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/8178"
         ],
         [
@@ -7166,7 +7086,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Elisabeth Köstinger",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -7366,14 +7285,13 @@
                         }
                     ]
                 },
-                "wahlkreise": "Kärnten",
                 "pad_intern": 57488,
                 "medien": [
-                    20036657
+                    20178440
                 ],
                 "openGraph": {
                     "description": "Abgeordnete zum Nationalrat (XXVI.-XXVII. GP), ÖVP",
-                    "image": "/dokument/bild/200366/20036657_500.jpg"
+                    "image": "/dokument/bild/201784/20178440_500.jpg"
                 },
                 "aktiv": false,
                 "nrbr_praes": [
@@ -7385,8 +7303,8 @@
             "Köstinger",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Kärnten",
+            null,
+            null,
             "/person/57488"
         ],
         [
@@ -7399,7 +7317,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Sigrid Maurer, BA",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -7520,7 +7437,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Bundeswahlvorschlag",
                 "pad_intern": 83101,
                 "medien": [
                     20068236,
@@ -7537,8 +7453,8 @@
             "Maurer",
             null,
             "BA",
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Wien, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/83101"
         ],
         [
@@ -7551,7 +7467,6 @@
             "[\"NEOS\",\"NEOS-LIF\"]",
             {
                 "zit": "Mag. Beate Meinl-Reisinger, MES",
-                "fraktionen": "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS",
@@ -7619,7 +7534,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "22.10.2019",
                         "wahlkreis": "Bundeswahlvorschlag",
-                        "fraktion": "Klub von NEOS; NEOS Parlamentsklub"
+                        "fraktion": "NEOS Parlamentsklub"
                     },
                     {
                         "wahlkreis_bundesland": "Bundeswahlvorschlag",
@@ -7637,7 +7552,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "29.01.2014",
                         "wahlkreis": "Bundeswahlvorschlag",
-                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                        "fraktion": "Klub von NEOS und LIF"
                     },
                     {
                         "wahlkreis_bundesland": "Bundeswahlvorschlag",
@@ -7655,7 +7570,7 @@
                         "wahlpartei_sort": "NEOS - Das neue Oesterreich und Liberales Forum",
                         "mandat_bis": "09.10.2015",
                         "wahlkreis": "Bundeswahlvorschlag",
-                        "fraktion": "Klub von NEOS und LIF; Klub von NEOS"
+                        "fraktion": "Klub von NEOS"
                     }
                 ],
                 "name_nvg": "Meinl-Reisinger Beate, Mag., MES",
@@ -7728,7 +7643,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Bundeswahlvorschlag",
                 "pad_intern": 83122,
                 "medien": [
                     20154698
@@ -7744,8 +7658,8 @@
             "Meinl-Reisinger",
             "Mag.",
             "MES",
-            "NEOS Parlamentsklub (N), Klub von NEOS; NEOS Parlamentsklub (N), Klub von NEOS und LIF; Klub von NEOS (N)",
-            "Wien, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/83122"
         ],
         [
@@ -7758,7 +7672,6 @@
             "[\"FPÖ\"]",
             {
                 "zit": "Edith Mühlberghuber",
-                "fraktionen": "Freiheitlicher Parlamentsklub (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ"
@@ -7869,14 +7782,13 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mostviertel, Niederösterreich",
                 "pad_intern": 51569,
                 "medien": [
-                    20069641
+                    20178438
                 ],
                 "openGraph": {
                     "description": "Abgeordnete zum Nationalrat (XXIV.-XXVII. GP), FPÖ",
-                    "image": "/dokument/bild/200696/20069641_500.jpg"
+                    "image": "/dokument/bild/201784/20178438_500.jpg"
                 },
                 "aktiv": false
             },
@@ -7885,8 +7797,8 @@
             "Mühlberghuber",
             null,
             null,
-            "Freiheitlicher Parlamentsklub (F)",
-            "Mostviertel, Niederösterreich",
+            null,
+            null,
             "/person/51569"
         ],
         [
@@ -7899,7 +7811,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "MMst. Mag. (FH) Maria Neumann",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -7991,7 +7902,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 3133,
                 "medien": [
                     20068291,
@@ -8008,8 +7918,8 @@
             "Neumann",
             "Mst. Mst. Mag. (FH)",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Wien",
+            null,
+            null,
             "/person/3133"
         ],
         [
@@ -8022,7 +7932,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Irene Neumann-Hartberger",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -8146,7 +8055,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 6498,
                 "medien": [
                     20068275,
@@ -8163,8 +8071,8 @@
             "Neumann-Hartberger",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/6498"
         ],
         [
@@ -8177,7 +8085,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Barbara Neßler",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -8249,7 +8156,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol",
                 "pad_intern": 5672,
                 "medien": [
                     20068241,
@@ -8266,8 +8172,8 @@
             "Neßler",
             null,
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Tirol",
+            null,
+            null,
             "/person/5672"
         ],
         [
@@ -8280,7 +8186,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Dr. Maria Theresia Niss, MBA",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -8353,7 +8258,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 2242,
                 "medien": [
                     20069601
@@ -8369,8 +8273,8 @@
             "Niss",
             "Mag. Dr.",
             "MBA",
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Wien",
+            null,
+            null,
             "/person/2242"
         ],
         [
@@ -8383,7 +8287,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag.<sup>a<\/sup> Verena Nussbaum",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -8474,7 +8377,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Graz und Umgebung",
                 "pad_intern": 2334,
                 "medien": [
                     20068242,
@@ -8491,8 +8393,8 @@
             "Nussbaum",
             "Mag.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Graz und Umgebung",
+            null,
+            null,
             "/person/2334"
         ],
         [
@@ -8505,7 +8407,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag.<sup>a<\/sup> Dr.<sup>in<\/sup> Petra Oberrauner",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -8577,7 +8478,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Kärnten",
                 "pad_intern": 5643,
                 "medien": [
                     20068278,
@@ -8594,8 +8494,8 @@
             "Oberrauner",
             "Mag. Dr.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Kärnten",
+            null,
+            null,
             "/person/5643"
         ],
         [
@@ -8608,7 +8508,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Dipl.-Kffr. (FH) Elisabeth Pfurtscheller",
-                "fraktionen": "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -8753,7 +8652,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol, Oberland",
                 "pad_intern": 83151,
                 "medien": [
                     20069732
@@ -8769,8 +8667,8 @@
             "Pfurtscheller",
             "Dipl.-Kffr. (FH)",
             null,
-            "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Tirol, Oberland",
+            null,
+            null,
             "/person/83151"
         ],
         [
@@ -8783,7 +8681,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Mag. Agnes Sirkka Prammer",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -8855,7 +8752,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Linz und Umgebung, Oberösterreich",
                 "pad_intern": 6502,
                 "medien": [
                     20068243,
@@ -8872,8 +8768,8 @@
             "Prammer",
             "Mag.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Linz und Umgebung, Oberösterreich",
+            null,
+            null,
             "/person/6502"
         ],
         [
@@ -8886,7 +8782,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Bettina Rausch-Amon",
-                "fraktionen": "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -8976,7 +8871,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Niederösterreich",
                 "pad_intern": 14275,
                 "medien": [
                     20069564
@@ -8992,8 +8886,8 @@
             "Rausch-Amon",
             "Mag. phil.",
             null,
-            "Bundesratsfraktion der ÖVP (V), Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Bundeswahlvorschlag, Niederösterreich",
+            null,
+            null,
             "/person/14275"
         ],
         [
@@ -9006,7 +8900,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Carina Reiter",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -9078,7 +8971,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Lungau/Pinzgau/Pongau",
                 "pad_intern": 5627,
                 "medien": [
                     20068284,
@@ -9095,8 +8987,8 @@
             "Reiter",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Lungau/Pinzgau/Pongau",
+            null,
+            null,
             "/person/5627"
         ],
         [
@@ -9109,7 +9001,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Dr. Pamela Rendi-Wagner, MSc",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -9195,7 +9086,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 91034,
                 "medien": [
                     20069744
@@ -9211,8 +9101,8 @@
             "Rendi-Wagner",
             "Dr.",
             "MSc",
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/91034"
         ],
         [
@@ -9225,7 +9115,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Bedrana Ribo, MA",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -9279,7 +9168,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Steiermark",
                 "pad_intern": 5673,
                 "medien": [
                     20069680
@@ -9295,8 +9183,8 @@
             "Ribo",
             null,
             "MA",
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Steiermark",
+            null,
+            null,
             "/person/5673"
         ],
         [
@@ -9309,7 +9197,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Dr. Astrid Rössler",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -9363,7 +9250,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Salzburg",
                 "pad_intern": 5674,
                 "medien": [
                     20069681
@@ -9379,8 +9265,8 @@
             "Rössler",
             "Dr.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Salzburg",
+            null,
+            null,
             "/person/5674"
         ],
         [
@@ -9393,7 +9279,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "MMMag. Gertraud Salzmann",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -9466,7 +9351,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Salzburg",
                 "pad_intern": 3716,
                 "medien": [
                     20104244
@@ -9482,8 +9366,8 @@
             "Salzmann",
             "MMMag.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Salzburg",
+            null,
+            null,
             "/person/3716"
         ],
         [
@@ -9496,7 +9380,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Corinna Scharzenberger",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -9550,7 +9433,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Obersteiermark",
                 "pad_intern": 5629,
                 "medien": [
                     20123882
@@ -9566,8 +9448,8 @@
             "Scharzenberger",
             "Mag.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Obersteiermark",
+            null,
+            null,
             "/person/5629"
         ],
         [
@@ -9580,7 +9462,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Sabine Schatz",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -9671,7 +9552,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mühlviertel",
                 "pad_intern": 2337,
                 "medien": [
                     20068248,
@@ -9688,8 +9568,8 @@
             "Schatz",
             null,
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Mühlviertel",
+            null,
+            null,
             "/person/2337"
         ],
         [
@@ -9702,7 +9582,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Elisabeth Scheucher-Pichler",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -9829,7 +9708,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Kärnten, Klagenfurt",
                 "pad_intern": 14896,
                 "medien": [
                     20068888,
@@ -9846,8 +9724,8 @@
             "Scheucher-Pichler",
             "Mag. phil.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Bundeswahlvorschlag, Kärnten, Klagenfurt",
+            null,
+            null,
             "/person/14896"
         ],
         [
@@ -9860,7 +9738,6 @@
             "[\"FPÖ\"]",
             {
                 "zit": "Carmen Schimanek",
-                "fraktionen": "Freiheitlicher Parlamentsklub (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ"
@@ -9989,14 +9866,13 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol, Bundeswahlvorschlag",
                 "pad_intern": 51559,
                 "medien": [
-                    20136228
+                    20178435
                 ],
                 "openGraph": {
                     "description": "Abgeordnete zum Nationalrat (XXVII. GP), FPÖ",
-                    "image": "/dokument/bild/201362/20136228_500.jpg"
+                    "image": "/dokument/bild/201784/20178435_500.jpg"
                 },
                 "aktiv": false
             },
@@ -10005,8 +9881,8 @@
             "Schimanek",
             null,
             null,
-            "Freiheitlicher Parlamentsklub (F)",
-            "Tirol, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/51559"
         ],
         [
@@ -10019,7 +9895,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "MMag. Michaela Schmidt",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -10118,7 +9993,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Salzburg",
                 "pad_intern": 25188,
                 "medien": [
                     20154683
@@ -10134,8 +10008,8 @@
             "Schmidt",
             "MMag.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Bundeswahlvorschlag, Salzburg",
+            null,
+            null,
             "/person/25188"
         ],
         [
@@ -10148,7 +10022,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Dr. Margarete Schramböck",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -10254,14 +10127,13 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol",
                 "pad_intern": 2978,
                 "medien": [
-                    20002590
+                    20178709
                 ],
                 "openGraph": {
                     "description": "Abgeordnete zum Nationalrat (XXVII. GP), ÖVP",
-                    "image": "/dokument/bild/200025/20002590_500.jpg"
+                    "image": "/dokument/bild/201787/20178709_500.jpg"
                 },
                 "aktiv": false
             },
@@ -10270,8 +10142,8 @@
             "Schramböck",
             "Dr. rer. soc. oec.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Tirol",
+            null,
+            null,
             "/person/2978"
         ],
         [
@@ -10284,7 +10156,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Gabriela Schwarz",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -10370,7 +10241,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 2326,
                 "medien": [
                     20171273
@@ -10386,8 +10256,8 @@
             "Schwarz",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/2326"
         ],
         [
@@ -10400,7 +10270,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Mag. Julia Seidl",
-                "fraktionen": "NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -10454,7 +10323,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag",
                 "pad_intern": 19741,
                 "medien": [
                     20086294
@@ -10470,8 +10338,8 @@
             "Seidl",
             "Mag.",
             null,
-            "NEOS Parlamentsklub (N)",
-            "Bundeswahlvorschlag",
+            null,
+            null,
             "/person/19741"
         ],
         [
@@ -10484,7 +10352,6 @@
             "[\"FPÖ\"]",
             {
                 "zit": "Petra Steger",
-                "fraktionen": "Freiheitlicher Parlamentsklub (F)",
                 "item_type": "Biogr",
                 "frak": [
                     "FPÖ"
@@ -10608,7 +10475,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien, Bundeswahlvorschlag",
                 "pad_intern": 83135,
                 "medien": [
                     20069729
@@ -10624,8 +10490,8 @@
             "Steger",
             null,
             null,
-            "Freiheitlicher Parlamentsklub (F)",
-            "Wien, Bundeswahlvorschlag",
+            null,
+            null,
             "/person/83135"
         ],
         [
@@ -10638,7 +10504,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Mag. Michaela Steinacker",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -10743,7 +10608,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Niederösterreich",
                 "pad_intern": 83059,
                 "medien": [
                     20069714
@@ -10759,8 +10623,8 @@
             "Steinacker",
             "Mag.",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Bundeswahlvorschlag, Niederösterreich",
+            null,
+            null,
             "/person/83059"
         ],
         [
@@ -10773,7 +10637,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Ing. Mag. (FH) Alexandra Tanda",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -10827,7 +10690,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol",
                 "pad_intern": 6505,
                 "medien": [
                     20069701
@@ -10843,8 +10705,8 @@
             "Tanda",
             "Ing. Mag. (FH)",
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Tirol",
+            null,
+            null,
             "/person/6505"
         ],
         [
@@ -10857,7 +10719,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Petra Tanzler",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -10943,7 +10804,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich",
                 "pad_intern": 5647,
                 "medien": [
                     20068899,
@@ -10960,8 +10820,8 @@
             "Tanzler",
             null,
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Niederösterreich",
+            null,
+            null,
             "/person/5647"
         ],
         [
@@ -10974,7 +10834,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Mag. Nina Tomaselli",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -11046,7 +10905,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Vorarlberg",
                 "pad_intern": 5678,
                 "medien": [
                     20068262,
@@ -11063,8 +10921,8 @@
             "Tomaselli",
             "Mag.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Bundeswahlvorschlag, Vorarlberg",
+            null,
+            null,
             "/person/5678"
         ],
         [
@@ -11077,7 +10935,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "MMag. Dr. Agnes Totter, BEd",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -11149,7 +11006,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Oststeiermark",
                 "pad_intern": 5632,
                 "medien": [
                     20068263,
@@ -11166,8 +11022,8 @@
             "Totter",
             "MMag. Dr.",
             "BEd",
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Oststeiermark",
+            null,
+            null,
             "/person/5632"
         ],
         [
@@ -11180,7 +11036,6 @@
             "[\"GRÜNE\"]",
             {
                 "zit": "Dipl.-Ing. Olga Voglauer",
-                "fraktionen": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE"
@@ -11252,7 +11107,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Kärnten",
                 "pad_intern": 5679,
                 "medien": [
                     20068264,
@@ -11269,8 +11123,8 @@
             "Voglauer",
             "Dipl.-Ing.",
             null,
-            "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G)",
-            "Bundeswahlvorschlag, Kärnten",
+            null,
+            null,
             "/person/5679"
         ],
         [
@@ -11283,7 +11137,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "MMag. Katharina Werner, Bakk.",
-                "fraktionen": "NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -11337,7 +11190,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Oberösterreich",
                 "pad_intern": 20281,
                 "medien": [
                     20109147
@@ -11353,8 +11205,8 @@
             "Werner",
             "MMag.",
             "Bakk.",
-            "NEOS Parlamentsklub (N)",
-            "Oberösterreich",
+            null,
+            null,
             "/person/20281"
         ],
         [
@@ -11367,7 +11219,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Petra Wimmer",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -11440,7 +11291,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Hausruckviertel",
                 "pad_intern": 2338,
                 "medien": [
                     20069612
@@ -11456,8 +11306,8 @@
             "Wimmer",
             null,
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Hausruckviertel",
+            null,
+            null,
             "/person/2338"
         ],
         [
@@ -11470,7 +11320,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag. Selma Yildirim",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -11561,7 +11410,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol",
                 "pad_intern": 2339,
                 "medien": [
                     20068902,
@@ -11578,8 +11426,8 @@
             "Yildirim",
             "Mag.",
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Tirol",
+            null,
+            null,
             "/person/2339"
         ],
         [
@@ -11592,7 +11440,6 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Nurten Yılmaz",
-                "fraktionen": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -11684,7 +11531,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nord-West",
                 "pad_intern": 83117,
                 "medien": [
                     20069719
@@ -11700,8 +11546,8 @@
             "Yılmaz",
             null,
             null,
-            "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
-            "Wien Nord-West",
+            null,
+            null,
             "/person/83117"
         ],
         [
@@ -11714,7 +11560,6 @@
             "[\"GRÜNE\",\"JETZT\",\"OK\",\"PILZ\"]",
             {
                 "zit": "Dr. Alma Zadić, LL.M.",
-                "fraktionen": "ohne Klubzugehörigkeit (A), Parlamentsklub JETZT (J), Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G), Liste Pilz (P)",
                 "item_type": "Biogr",
                 "frak": [
                     "GRÜNE",
@@ -11951,7 +11796,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Bundeswahlvorschlag, Wien",
                 "pad_intern": 2345,
                 "medien": [
                     20163231
@@ -11967,8 +11811,8 @@
             "Zadić",
             "Dr.",
             "LL.M.",
-            "ohne Klubzugehörigkeit (A), Parlamentsklub JETZT (J), Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (G), Liste Pilz (P)",
-            "Bundeswahlvorschlag, Wien",
+            null,
+            null,
             "/person/2345"
         ],
         [
@@ -11981,7 +11825,6 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Bettina Zopf",
-                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -12053,7 +11896,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Traunviertel",
                 "pad_intern": 5634,
                 "medien": [
                     20068273,
@@ -12070,8 +11912,8 @@
             "Zopf",
             null,
             null,
-            "Parlamentsklub der Österreichischen Volkspartei (V)",
-            "Traunviertel",
+            null,
+            null,
             "/person/5634"
         ],
         [
@@ -12084,7 +11926,6 @@
             "[\"NEOS\"]",
             {
                 "zit": "Mag. Martina von Künsberg Sarre",
-                "fraktionen": "NEOS Parlamentsklub (N)",
                 "item_type": "Biogr",
                 "frak": [
                     "NEOS"
@@ -12156,7 +11997,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich",
                 "pad_intern": 5685,
                 "medien": [
                     20068224,
@@ -12173,8 +12013,8 @@
             "von Künsberg Sarre",
             "Mag.",
             null,
-            "NEOS Parlamentsklub (N)",
-            "Niederösterreich",
+            null,
+            null,
             "/person/5685"
         ]
     ]

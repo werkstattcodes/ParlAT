@@ -7,7 +7,7 @@
 get_transcripts(
   search_string = NULL,
   legis_period = NULL,
-  session_type = NULL,
+  meeting_type = NULL,
   date_start = NULL,
   date_end = NULL,
   echo = TRUE,
@@ -20,7 +20,7 @@ get_transcripts(
 
 \item{legis_period}{Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric (10), character ("10") or roman numerals in character format ("X") as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).}
 
-\item{session_type}{Optional character string specifying the type(s) of session. Permissible values are "NRSITZ" (National Council - Plenary sessions) and "BRSITZ" (Federal Council - Plenary sessions). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.}
+\item{meeting_type}{Optional character string specifying the type(s) of meeting. Permissible values are "NRSITZ" (National Council - Plenary meetings) and "BRSITZ" (Federal Council - Plenary meetings). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.}
 
 \item{date_start}{Optional start date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").}
 
@@ -30,34 +30,34 @@ get_transcripts(
 
 \item{export}{Optional character string to enable PDF downloads. Set to "pdf" to download transcript PDFs. Defaults to NULL (no export).}
 
-\item{export_destination}{Character string specifying the directory path where PDFs will be saved. Defaults to "transcripts" (a folder in the current working directory). If the folder does not exist, the user will be prompted to create it in interactive sessions.}
+\item{export_destination}{Character string specifying the directory path where PDFs will be saved. Defaults to "transcripts" (a folder in the current working directory). If the folder does not exist, the user will be prompted to create it in interactive meetings.}
 }
 \value{
 A tibble containing transcript data with the following columns:
 \describe{
-\item{date}{Date of the session}
-\item{session_url}{URL to the session page}
+\item{date}{Date of the meeting}
+\item{meeting_url}{URL to the meeting page}
 \item{legis_period}{Legislative period}
-\item{session_type}{Type of session}
-\item{session_number}{Session number/citation}
-\item{session}{Session description}
-\item{session_transcript_html}{URL to HTML transcript (if available)}
-\item{session_transcript_pdf}{URL to PDF transcript (if available)}
+\item{meeting_type}{Type of meeting}
+\item{meeting_number}{Meeting number/citation}
+\item{meeting}{Meeting description}
+\item{meeting_transcript_html}{URL to HTML transcript (if available)}
+\item{meeting_transcript_pdf}{URL to PDF transcript (if available)}
 }
 }
 \description{
-\code{get_transcripts()} retrieves the transcripts of parliamentary sessions via Parliament's API (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">}}here\if{html}{\out{</a>}}).
+\code{get_transcripts()} retrieves the transcripts of parliamentary meetings via Parliament's API (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">}}here\if{html}{\out{</a>}}).
 }
 \details{
-\subsection{Session Type ('Art der Sitzung')}{
+\subsection{Meeting Type ('Art der Sitzung')}{
 
-Permissible values for \code{session_type}:
+Permissible values for \code{meeting_type}:
 \itemize{
-\item NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary sessions)
-\item BRSITZ: Bundesrat - Plenarsitzungen (Federal Council - Plenary sessions)
+\item NRSITZ: Nationalrat - Plenarsitzungen (National Council - Plenary meetings)
+\item BRSITZ: Bundesrat - Plenarsitzungen (Federal Council - Plenary meetings)
 }
 
-Note: Querying for other session types (Untersuchungsausschüsse, Enqueten, Bundesversammlung,
+Note: Querying for other meeting types (Untersuchungsausschüsse, Enqueten, Bundesversammlung,
 Ausschüsse, EU-Ausschüsse, Gedenk-/Fest-/Trauersitzungen, Jugend- und Lehrlingsparlament, Veranstaltungen)
 is currently only possible via the Parliament's website.
 }
@@ -73,33 +73,33 @@ multiple steps (e.g. by using the purrr package).
 
 When \code{export = "pdf"}, the function additionaly downloads the PDF files of the transcripts.
 The default destination is the folder "transcripts", which will be created in the root of the
-project. In interactive sessions, users are prompted to create the destination
+project. In interactive meetings, users are prompted to create the destination
 folder if it doesn't exist, and if prefered, to provide an alternative destination name.
-PDF filenames follow the pattern: \code{YYYY-MM-DD_LegislativePeriod_SessionType_SessionNumber.pdf}.
+PDF filenames follow the pattern: \code{YYYY-MM-DD_LegislativePeriod_MeetingType_MeetingNumber.pdf}.
 A summary of successful and failed downloads is printed at the conclusion of the download.
 }
 }
 \examples{
-\dontrun{
+\donttest{
   # Get transcripts using a search string and specifying a legislative period.
   get_transcripts(search_string = "gesundheit",
                   legis_period = 28,
-                  session_type = "NRSITZ",
+                  meeting_type = "NRSITZ",
                   echo=TRUE)
 
  # Get transcript data for a specific period of time.
- get_transcripts(session_type = "BRSITZ",
+ get_transcripts(meeting_type = "BRSITZ",
                  date_start = "01-01-2024",
                  date_end = "30-06-2024",
                  echo = TRUE)
-
-  # Retrieve all transcripts of National Council plenary sessions
+}
+\dontrun{
+  # Retrieve all transcripts of National Council plenary meetings
   # and download PDFs to default "transcripts" folder.
   get_transcripts(
-    session_type = "NRSITZ",
+    meeting_type = "NRSITZ",
     legis_period = 26,
     export = "pdf"
   )
-
 }
 }

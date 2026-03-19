@@ -1,160 +1,176 @@
 {
     "pages": 1,
-    "lastSync": "2026-02-09 15:10:58.0",
+    "lastSync": "2026-03-17 21:40:42.0",
     "count": 208,
     "header": [
         {
-            "css_class": "col-15",
             "feldId": 605,
             "link_rnr": "16",
             "hidden": false,
-            "rnr": 1,
+            "valueToNull": false,
             "mediaType": "title",
-            "listeId": 409,
             "label": "Name",
             "sortable": "1",
+            "css_class": "col-15",
+            "hideValue": false,
+            "rnr": 1,
+            "listeId": 409,
             "feld_name": "PERSON_NAME",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "css_class": "col-10",
             "feldId": 603,
             "hidden": false,
+            "hideValue": false,
             "rnr": 2,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gremium",
             "feld_name": "GREMIUM",
             "class": "col-10",
-            "ist_werteliste": "1",
-            "includeHeader": true
+            "ist_werteliste": "1"
         },
         {
             "feldId": 604,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 3,
+            "valueToNull": false,
             "listeId": 409,
             "label": "WENTRY_ID",
-            "ist_web_item_id": "1",
-            "includeHeader": true
+            "ist_web_item_id": "1"
         },
         {
             "feldId": 623,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 4,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHL_CODE",
-            "feld_name": "GESCHL_CODE",
-            "includeHeader": true
+            "feld_name": "GESCHL_CODE"
         },
         {
             "feldId": 624,
             "hidden": true,
+            "hideValue": false,
             "rnr": 5,
+            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHLECHT",
-            "feld_name": "GESCHLECHT",
-            "includeHeader": true
+            "feld_name": "GESCHLECHT"
         },
         {
             "css_class": "col-15",
             "feldId": 863,
             "hidden": false,
+            "hideValue": false,
             "rnr": 6,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Gesetzgebungsperiode",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 864,
             "hidden": true,
+            "hideValue": false,
             "rnr": 7,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "parteien",
-            "includeHeader": true
+            "label": "parteien"
         },
         {
             "feldId": 643,
             "hidden": true,
+            "hideValue": false,
             "rnr": 8,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Attribute",
-            "feld_name": "ATTR_JSON",
-            "includeHeader": true
+            "feld_name": "ATTR_JSON"
         },
         {
             "feldId": 903,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 9,
+            "valueToNull": false,
             "listeId": 409,
             "label": "ist_praes",
-            "feld_name": "PRAES",
-            "includeHeader": true
+            "feld_name": "PRAES"
         },
         {
             "feldId": 1223,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 10,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "vorname",
-            "includeHeader": true
+            "label": "vorname"
         },
         {
             "feldId": 1224,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 11,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "nachname",
-            "includeHeader": true
+            "label": "nachname"
         },
         {
             "feldId": 1225,
             "hidden": true,
+            "hideValue": false,
             "rnr": 12,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr",
-            "includeHeader": true
+            "label": "akgr"
         },
         {
             "feldId": 1226,
             "export_jn": "0",
             "hidden": true,
+            "hideValue": false,
             "rnr": 13,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "akgr_h",
-            "includeHeader": true
+            "label": "akgr_h"
         },
         {
             "feldId": 7120,
             "hidden": false,
+            "hideValue": false,
             "rnr": 14,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Klub/Fraktion",
-            "includeHeader": true
+            "label": "Klub/Fraktion"
         },
         {
             "css_class": "col-15",
             "feldId": 7121,
             "hidden": false,
+            "hideValue": false,
             "rnr": 15,
+            "valueToNull": false,
             "listeId": 409,
             "label": "Wahlkreis",
-            "class": "col-15",
-            "includeHeader": true
+            "class": "col-15"
         },
         {
             "feldId": 7180,
             "hidden": true,
+            "hideValue": false,
             "rnr": 16,
+            "valueToNull": false,
             "listeId": 409,
-            "label": "Bio",
-            "includeHeader": true
+            "label": "Bio"
         }
     ],
     "rows": [
@@ -168,7 +184,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Simon Abram",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -220,7 +235,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Nordtirol",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Tirol",
@@ -447,7 +462,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol, Nordtirol",
                 "pad_intern": 2003,
                 "medien": [
                     2099518
@@ -463,8 +477,8 @@
             "Abram",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Tirol, Nordtirol",
+            null,
+            null,
             "/person/2003"
         ],
         [
@@ -477,7 +491,6 @@
             "[\"AHF370\",\"AHF908\",\"SdP\"]",
             {
                 "zit": "Dr. Victor Adler",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -656,7 +669,7 @@
             "Adler",
             "Dr. med.",
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/11"
         ],
@@ -670,7 +683,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Hugo Albrecht",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -822,7 +834,7 @@
             "Albrecht",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/48"
         ],
@@ -836,7 +848,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "August Ansorge",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -988,7 +999,7 @@
             "Ansorge",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/25"
         ],
@@ -1002,7 +1013,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Josef von Baechlé",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -1153,7 +1163,7 @@
             "Baechlé",
             "Dr. iur.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/56"
         ],
@@ -1167,7 +1177,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Josef Anton, Graf Barbo-Waxenstein",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -1267,7 +1276,7 @@
             "Barbo-Waxenstein",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/58"
         ],
@@ -1281,7 +1290,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Matthäus Bauchinger",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -1432,7 +1440,7 @@
             "Bauchinger",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/63"
         ],
@@ -1446,7 +1454,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Georg Baumgartner",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -1594,7 +1601,7 @@
             "Baumgartner",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/84"
         ],
@@ -1608,7 +1615,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Ferdinand Berger",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -1759,7 +1765,7 @@
             "Berger",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/98"
         ],
@@ -1773,7 +1779,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Franz Bernt",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -1924,7 +1929,7 @@
             "Bernt",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/105"
         ],
@@ -1938,7 +1943,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Franz Beyer",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -2035,7 +2039,7 @@
             "Beyer",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/107"
         ],
@@ -2049,7 +2053,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Dr. Gustav Bodirsky",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -2115,7 +2118,7 @@
             "Bodirsky",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/142"
         ],
@@ -2129,7 +2132,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Bogendorfer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -2226,7 +2228,7 @@
             "Bogendorfer",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/154"
         ],
@@ -2240,7 +2242,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Alois Brandl",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -2360,7 +2361,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Innviertel",
                 "pad_intern": 163,
                 "medien": [
                     2100460
@@ -2376,8 +2376,8 @@
             "Brandl",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Innviertel",
+            null,
+            null,
             "/person/163"
         ],
         [
@@ -2390,7 +2390,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Michael Brandl",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -2491,7 +2490,7 @@
             "Brandl",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/131"
         ],
@@ -2505,7 +2504,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Ludwig August Bretschneider",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -2555,7 +2553,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Viertel oberm Wienerwald",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Niederösterreich",
@@ -2730,7 +2728,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel oberm Wienerwald",
                 "pad_intern": 72,
                 "medien": [
                     2099553
@@ -2746,8 +2743,8 @@
             "Bretschneider",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Viertel oberm Wienerwald",
+            null,
+            null,
             "/person/72"
         ],
         [
@@ -2760,7 +2757,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Josef Brunner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -2912,7 +2908,7 @@
             "Brunner",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/109"
         ],
@@ -2926,7 +2922,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Anton David",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -3097,7 +3092,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien West",
                 "pad_intern": 197,
                 "medien": [
                     2099602
@@ -3113,8 +3107,8 @@
             "David",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
-            "Wien West",
+            null,
+            null,
             "/person/197"
         ],
         [
@@ -3127,7 +3121,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "August Denk",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -3224,7 +3217,7 @@
             "Denk",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/201"
         ],
@@ -3238,7 +3231,6 @@
             "[\"AHF350\",\"DnP\",\"GdP\"]",
             {
                 "zit": "Dr. Franz Dinghofer",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -3522,7 +3514,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Linz und Umgebung, Wahlkreisverband III - Oberösterreich",
                 "pad_intern": 219,
                 "medien": [
                     2099614
@@ -3541,8 +3532,8 @@
             "Dinghofer",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
-            "Linz und Umgebung, Wahlkreisverband III - Oberösterreich",
+            null,
+            null,
             "/person/219"
         ],
         [
@@ -3555,7 +3546,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Leopold Diwald",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -3710,7 +3700,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Manhartsberg",
                 "pad_intern": 226,
                 "medien": [
                     2101163
@@ -3726,8 +3715,8 @@
             "Diwald",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Viertel unterm Manhartsberg",
+            null,
+            null,
             "/person/226"
         ],
         [
@@ -3740,7 +3729,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Franz Domes",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -3791,7 +3779,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Obersteier",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Steiermark",
@@ -3933,7 +3921,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Südost, Obersteier",
                 "pad_intern": 232,
                 "medien": [
                     2099621
@@ -3949,8 +3936,8 @@
             "Domes",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Südost, Obersteier",
+            null,
+            null,
             "/person/232"
         ],
         [
@@ -3963,7 +3950,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Albin Dötsch",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -4111,7 +4097,7 @@
             "Dötsch",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/229"
         ],
@@ -4125,7 +4111,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "August Einspinner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -4277,7 +4262,7 @@
             "Einspinner",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/320"
         ],
@@ -4291,7 +4276,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Eisenhut",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -4535,7 +4519,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Manhartsberg",
                 "pad_intern": 321,
                 "medien": [
                     2101166
@@ -4551,8 +4534,8 @@
             "Eisenhut",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Viertel unterm Manhartsberg",
+            null,
+            null,
             "/person/321"
         ],
         [
@@ -4565,7 +4548,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Eisterer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -4716,7 +4698,7 @@
             "Eisterer",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/288"
         ],
@@ -4730,7 +4712,6 @@
             "[\"AHF370\",\"AHF914\",\"SdP\"]",
             {
                 "zit": "Dr. Wilhelm Ellenbogen",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -4783,7 +4764,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien Nordost",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -5079,7 +5060,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nordost",
                 "pad_intern": 291,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (IV. GP), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (Sozialdemokratische Arbeiterpartei Deutschösterreichs)",
@@ -5092,8 +5072,8 @@
             "Ellenbogen",
             "Dr. med.",
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Nordost",
+            null,
+            null,
             "/person/291"
         ],
         [
@@ -5106,7 +5086,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Leopold Erb",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -5255,7 +5234,7 @@
             "Erb",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/271"
         ],
@@ -5269,7 +5248,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Eduard Erler",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -5387,7 +5365,7 @@
             "Erler",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/272"
         ],
@@ -5401,7 +5379,6 @@
             "[\"AHF330\",\"DnP\"]",
             {
                 "zit": "Adam Fahrner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -5498,7 +5475,7 @@
             "Fahrner",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/295"
         ],
@@ -5512,7 +5489,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Rudolf Felzmann",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -5612,7 +5588,7 @@
             "Felzmann",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/314"
         ],
@@ -5626,7 +5602,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. h.c. Jodok Fink",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -5896,7 +5871,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Vorarlberg",
                 "pad_intern": 328,
                 "medien": [
                     1908404
@@ -5912,8 +5886,8 @@
             "Fink",
             "Dr. h.c.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Vorarlberg",
+            null,
+            null,
             "/person/328"
         ],
         [
@@ -5926,7 +5900,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Karl Fisslthaler",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -6077,7 +6050,7 @@
             "Fisslthaler",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/341"
         ],
@@ -6091,7 +6064,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "August Forstner",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -6143,7 +6115,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien Südwest",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -6369,7 +6341,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband I (Wien), Wien Südwest",
                 "pad_intern": 373,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (IV. GP), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (Sozialdemokratische Arbeiterpartei Deutschösterreichs)",
@@ -6382,8 +6353,8 @@
             "Forstner",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Wahlkreisverband I (Wien), Wien Südwest",
+            null,
+            null,
             "/person/373"
         ],
         [
@@ -6396,7 +6367,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Ferdinand Frankenberger",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -6516,7 +6486,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Innviertel",
                 "pad_intern": 376,
                 "medien": [
                     2100470
@@ -6532,8 +6501,8 @@
             "Frankenberger",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Innviertel",
+            null,
+            null,
             "/person/376"
         ],
         [
@@ -6546,7 +6515,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Robert Freißler",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -6646,7 +6614,7 @@
             "Freißler",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/387"
         ],
@@ -6660,7 +6628,6 @@
             "[\"AHF350\",\"AHF650\",\"DnP\",\"OK\"]",
             {
                 "zit": "Max Friedmann",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), ohne Klubzugehörigkeit (A)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -6782,7 +6749,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Innen-Ost",
                 "pad_intern": 395,
                 "medien": [
                     2099741
@@ -6798,8 +6764,8 @@
             "Friedmann",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), ohne Klubzugehörigkeit (A)",
-            "Wien Innen-Ost",
+            null,
+            null,
             "/person/395"
         ],
         [
@@ -6812,7 +6778,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Viktor, Freiherr von Fuchs",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -6963,7 +6928,7 @@
             "Fuchs",
             "Dr. iur.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/422"
         ],
@@ -6977,7 +6942,6 @@
             "[\"AHF350\",\"AHF360\",\"DnP\"]",
             {
                 "zit": "Otto Ganser",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -7075,7 +7039,7 @@
             "Ganser",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/354"
         ],
@@ -7089,7 +7053,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Otto Glöckel",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -7141,7 +7104,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien Nordwest",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -7392,7 +7355,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nordwest, Wahlkreisverband I (Wien)",
                 "pad_intern": 412,
                 "medien": [
                     2100522
@@ -7408,8 +7370,8 @@
             "Glöckel",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Nordwest, Wahlkreisverband I (Wien)",
+            null,
+            null,
             "/person/412"
         ],
         [
@@ -7422,7 +7384,6 @@
             "[\"AHF320\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Adolf Glöckner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -7520,7 +7481,7 @@
             "Glöckner",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/413"
         ],
@@ -7534,7 +7495,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Josef Goll",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -7686,7 +7646,7 @@
             "Goll",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/433"
         ],
@@ -7700,7 +7660,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Grim",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -7871,7 +7830,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel oberm Wienerwald",
                 "pad_intern": 482,
                 "medien": [
                     2101172
@@ -7887,8 +7845,8 @@
             "Grim",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Viertel oberm Wienerwald",
+            null,
+            null,
             "/person/482"
         ],
         [
@@ -7901,7 +7859,6 @@
             "[\"AHF330\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Gustav Groß",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -8053,7 +8010,7 @@
             "Groß",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/504"
         ],
@@ -8067,7 +8024,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Rudolf Gruber",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -8292,7 +8248,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Wienerwald",
                 "pad_intern": 537,
                 "medien": [
                     2100485
@@ -8308,8 +8263,8 @@
             "Gruber",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Viertel unterm Wienerwald",
+            null,
+            null,
             "/person/537"
         ],
         [
@@ -8322,7 +8277,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Florian Gröger",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -8372,7 +8326,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "26.08.1921",
                         "wahlkreis": "Kärnten",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Kärnten",
@@ -8478,7 +8432,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Kärnten",
                 "pad_intern": 487,
                 "medien": [
                     2099774
@@ -8494,8 +8447,8 @@
             "Gröger",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Kärnten",
+            null,
+            null,
             "/person/487"
         ],
         [
@@ -8508,7 +8461,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Atanas von Guggenberg",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -8659,7 +8611,7 @@
             "Guggenberg",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/635"
         ],
@@ -8673,7 +8625,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Franz Hagenhofer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -8821,7 +8772,7 @@
             "Hagenhofer",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/476"
         ],
@@ -8835,7 +8786,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Ferdinand Hanusch",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -8884,7 +8834,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "28.09.1923",
                         "wahlkreis": "Graz und Umgebung",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlpartei_code": "SdP",
@@ -9119,7 +9069,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Graz und Umgebung, Viertel oberm Manhartsberg",
                 "pad_intern": 1947,
                 "medien": [
                     2099805
@@ -9135,8 +9084,8 @@
             "Hanusch",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Graz und Umgebung, Viertel oberm Manhartsberg",
+            null,
+            null,
             "/person/1947"
         ],
         [
@@ -9149,7 +9098,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Hans Hartl",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -9249,7 +9197,7 @@
             "Hartl",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/510"
         ],
@@ -9263,7 +9211,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Nepomuk Hauser",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -9463,7 +9410,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Mühlviertel",
                 "pad_intern": 534,
                 "medien": [
                     2099815
@@ -9479,8 +9425,8 @@
             "Hauser",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Mühlviertel",
+            null,
+            null,
             "/person/534"
         ],
         [
@@ -9493,7 +9439,6 @@
             "[\"AHF300\",\"AHF511\",\"AHF650\",\"DnP\"]",
             {
                 "zit": "Dr. Alois Heilinger",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -9646,7 +9591,7 @@
             "Heilinger",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/549"
         ],
@@ -9660,7 +9605,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Franz Heilmayer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -9811,7 +9755,7 @@
             "Heilmayer",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/550"
         ],
@@ -9825,7 +9769,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Dipl.-Ing. Rudolf Heine",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -9925,7 +9868,7 @@
             "Heine",
             "Dipl.-Ing.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/555"
         ],
@@ -9939,7 +9882,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Franz Held",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -10039,7 +9981,7 @@
             "Held",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/567"
         ],
@@ -10053,7 +9995,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Dr. Josef Herold",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -10204,7 +10145,7 @@
             "Herold",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/578"
         ],
@@ -10218,7 +10159,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Richard Herzmansky",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -10370,7 +10310,7 @@
             "Herzmansky",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/580"
         ],
@@ -10384,7 +10324,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Oswald Hillebrand",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -10484,12 +10423,12 @@
             "Hillebrand",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/590"
         ],
         [
-            "Hock Paul, Freiherr von",
+            "Hock Paul, Freiherr von, Dr.",
             "PN",
             650533,
             "M",
@@ -10497,8 +10436,7 @@
             "PN",
             "[\"AHF360\",\"AHF650\",\"DnP\"]",
             {
-                "zit": "Paul, Freiherr von Hock",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+                "zit": "Dr. Paul, Freiherr von Hock",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF360",
@@ -10528,7 +10466,7 @@
                         "fraktion": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs"
                     }
                 ],
-                "name_nvg": "Hock Paul, Freiherr von",
+                "name_nvg": "Hock Paul, Freiherr von, Dr.",
                 "mandate_kompakt": {
                     "bez": "Politische Mandate/Funktionen",
                     "mandate": [
@@ -10650,7 +10588,7 @@
             "Hock",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/607"
         ],
@@ -10664,7 +10602,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Hans Hofer",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -10761,7 +10698,7 @@
             "Hofer",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/622"
         ],
@@ -10775,7 +10712,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Paul Hofmann von Wellenhof",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -10924,7 +10860,7 @@
             "Hofmann von Wellenhof",
             "Dr. phil.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/633"
         ],
@@ -10938,7 +10874,6 @@
             "[\"AHF350\",\"AHF650\",\"DnP\"]",
             {
                 "zit": "Eduard Hruska",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -11039,7 +10974,7 @@
             "Hruska",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/659"
         ],
@@ -11053,7 +10988,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Franz Huber",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -11201,7 +11135,7 @@
             "Huber",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/669"
         ],
@@ -11215,7 +11149,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Michael Huber",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -11278,7 +11211,7 @@
             "Huber",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/673"
         ],
@@ -11292,7 +11225,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Anton Hueber",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -11441,7 +11373,7 @@
             "Hueber",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/677"
         ],
@@ -11455,7 +11387,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Mag. Gustav Hummer",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -11555,7 +11486,7 @@
             "Hummer",
             "Mag. pharm.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/701"
         ],
@@ -11569,7 +11500,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Alois Höher",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -11720,7 +11650,7 @@
             "Höher",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/611"
         ],
@@ -11734,7 +11664,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Hötzendorfer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -11797,7 +11726,7 @@
             "Hötzendorfer",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/617"
         ],
@@ -11811,7 +11740,6 @@
             "[\"AHF310\",\"AHF511\",\"AHF650\",\"DnP\"]",
             {
                 "zit": "Karl Iro",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF310",
@@ -11964,7 +11892,7 @@
             "Iro",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/720"
         ],
@@ -11978,7 +11906,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Karl Jedek",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -12129,7 +12056,7 @@
             "Jedek",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/729"
         ],
@@ -12143,7 +12070,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Anton Jerzabek",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -12301,7 +12227,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Südost",
                 "pad_intern": 730,
                 "medien": [
                     2099867
@@ -12317,8 +12242,8 @@
             "Jerzabek",
             "Dr. med.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Wien Südost",
+            null,
+            null,
             "/person/730"
         ],
         [
@@ -12331,7 +12256,6 @@
             "[\"AHF340\",\"AHF341\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. h.c. Franz Jesser",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -12484,7 +12408,7 @@
             "Jesser",
             "Dr. h.c.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/731"
         ],
@@ -12498,7 +12422,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Hans Jokl",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -12598,7 +12521,7 @@
             "Jokl",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/736"
         ],
@@ -12612,7 +12535,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Ing. Carl Jukel",
-                "fraktionen": "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -12797,7 +12719,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich",
                 "pad_intern": 741,
                 "medien": [
                     2099859
@@ -12813,8 +12734,8 @@
             "Jukel",
             "Ing.",
             null,
-            "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Niederösterreich",
+            null,
+            null,
             "/person/741"
         ],
         [
@@ -12827,7 +12748,6 @@
             "[\"AHF310\",\"AHF511\",\"DnP\"]",
             {
                 "zit": "Dr. Edmund Jäger",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF310",
@@ -12979,7 +12899,7 @@
             "Jäger",
             "Dr. med.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/722"
         ],
@@ -12993,7 +12913,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Wilhelm Keller",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -13093,7 +13012,7 @@
             "Keller",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1956"
         ],
@@ -13107,7 +13026,6 @@
             "[\"AHF300\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "August Maria Kemetter",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -13259,7 +13177,7 @@
             "Kemetter",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1955"
         ],
@@ -13273,7 +13191,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "abs. iur. Anton Keschmann",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -13425,7 +13342,7 @@
             "Keschmann",
             "abs. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1959"
         ],
@@ -13439,7 +13356,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Kienzl",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -13590,7 +13506,7 @@
             "Kienzl",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1961"
         ],
@@ -13604,7 +13520,6 @@
             "[\"AHF320\",\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Franz Kindermann",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -13757,7 +13672,7 @@
             "Kindermann",
             "Dr. med.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1960"
         ],
@@ -13771,7 +13686,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Ferdinand Kinz",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -13871,7 +13785,7 @@
             "Kinz",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1962"
         ],
@@ -13885,7 +13799,6 @@
             "[\"AHF350\",\"AHF351\",\"DnP\",\"GdP\"]",
             {
                 "zit": "Karl Kittinger",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Großdeutsche Vereinigung (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -14007,7 +13920,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel oberm Manhartsberg",
                 "pad_intern": 1963,
                 "medien": [
                     2101487
@@ -14023,8 +13935,8 @@
             "Kittinger",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Großdeutsche Vereinigung (D)",
-            "Viertel oberm Manhartsberg",
+            null,
+            null,
             "/person/1963"
         ],
         [
@@ -14037,7 +13949,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Gregor Kletzenbauer",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -14186,7 +14097,7 @@
             "Kletzenbauer",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/824"
         ],
@@ -14200,7 +14111,6 @@
             "[\"AHF330\",\"DnP\"]",
             {
                 "zit": "Hans Knirsch",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -14300,7 +14210,7 @@
             "Knirsch",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/850"
         ],
@@ -14314,7 +14224,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Anton Kofler",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -14414,7 +14323,7 @@
             "Kofler",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/885"
         ],
@@ -14428,7 +14337,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Johann Kopp",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -14579,7 +14487,7 @@
             "Kopp",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/919"
         ],
@@ -14593,7 +14501,6 @@
             "[\"AHF350\",\"DnP\",\"GdP\"]",
             {
                 "zit": "Emil Kraft",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -14780,7 +14687,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband IV - Steiermark, Graz und Umgebung, Deutsch-Südtirol",
                 "pad_intern": 949,
                 "medien": [
                     2099925
@@ -14796,8 +14702,8 @@
             "Kraft",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
-            "Wahlkreisverband IV - Steiermark, Graz und Umgebung, Deutsch-Südtirol",
+            null,
+            null,
             "/person/949"
         ],
         [
@@ -14810,7 +14716,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Vinzenz Kraus",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -14961,7 +14866,7 @@
             "Kraus",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/967"
         ],
@@ -14975,7 +14880,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Kreilmeir",
-                "fraktionen": "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -15147,7 +15051,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Oberösterreich",
                 "pad_intern": 968,
                 "medien": [
                     2100664
@@ -15163,8 +15066,8 @@
             "Kreilmeir",
             null,
             null,
-            "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Oberösterreich",
+            null,
+            null,
             "/person/968"
         ],
         [
@@ -15177,7 +15080,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Otto Kroy",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -15328,7 +15230,7 @@
             "Kroy",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/988"
         ],
@@ -15342,7 +15244,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Peter Krützner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -15494,7 +15395,7 @@
             "Krützner",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/991"
         ],
@@ -15508,7 +15409,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Hans Kudlich",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -15608,7 +15508,7 @@
             "Kudlich",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/996"
         ],
@@ -15622,7 +15522,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Wenzel Kuhn",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -15773,7 +15672,7 @@
             "Kuhn",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/997"
         ],
@@ -15787,7 +15686,6 @@
             "[\"AHF650\",\"DnP\"]",
             {
                 "zit": "abs. iur. Kamill Kuranda",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF650",
@@ -15938,7 +15836,7 @@
             "Kuranda",
             "abs. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1006"
         ],
@@ -15952,7 +15850,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Philipp, von Langenhan",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -16052,7 +15949,7 @@
             "Langenhan",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/781"
         ],
@@ -16066,7 +15963,6 @@
             "[\"AHF330\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Otto Lecher",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -16218,7 +16114,7 @@
             "Lecher",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/820"
         ],
@@ -16232,7 +16128,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Alois Lechner",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -16380,7 +16275,7 @@
             "Lechner",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1968"
         ],
@@ -16394,7 +16289,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Karl Leuthner",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -16446,7 +16340,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien Innen-West",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -16622,7 +16516,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Innen-West",
                 "pad_intern": 868,
                 "medien": [
                     2100780
@@ -16638,8 +16531,8 @@
             "Leuthner",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Innen-West",
+            null,
+            null,
             "/person/868"
         ],
         [
@@ -16652,7 +16545,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Emil, von Leys zu Paschpach",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -16803,7 +16695,7 @@
             "Leys zu Paschpach",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/869"
         ],
@@ -16817,7 +16709,6 @@
             "[\"AHF330\",\"AHF350\",\"AHF906\",\"DnP\"]",
             {
                 "zit": "Dr. Stefan, Edler von Licht",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -16987,7 +16878,7 @@
             "Licht",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/875"
         ],
@@ -17001,7 +16892,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Karl List",
-                "fraktionen": "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -17208,7 +17098,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich, Viertel oberm Manhartsberg",
                 "pad_intern": 896,
                 "medien": [
                     2100020
@@ -17224,8 +17113,8 @@
             "List",
             null,
             null,
-            "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Niederösterreich, Viertel oberm Manhartsberg",
+            null,
+            null,
             "/person/896"
         ],
         [
@@ -17238,7 +17127,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Rudolf, Ritter Lodgman von Auen",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -17338,7 +17226,7 @@
             "Lodgman von Auen",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/906"
         ],
@@ -17352,7 +17240,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Franz Loser",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -17503,7 +17390,7 @@
             "Loser",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/916"
         ],
@@ -17517,7 +17404,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Josef Luksch",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -17669,7 +17555,7 @@
             "Luksch",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/950"
         ],
@@ -17683,7 +17569,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Jakob Lutschounig",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -17783,7 +17668,7 @@
             "Lutschounig",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/970"
         ],
@@ -17797,7 +17682,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Dominik Löw",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -17945,7 +17829,7 @@
             "Löw",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/915"
         ],
@@ -17959,7 +17843,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Wilhelm Maixner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -18056,7 +17939,7 @@
             "Maixner",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1040"
         ],
@@ -18070,7 +17953,6 @@
             "[\"AHF310\",\"AHF511\",\"DnP\"]",
             {
                 "zit": "Vinzenz Malik",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF310",
@@ -18222,7 +18104,7 @@
             "Malik",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1043"
         ],
@@ -18236,7 +18118,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "abs. iur. Richard Marckhl",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -18401,7 +18282,7 @@
             "Marckhl",
             "abs. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1072"
         ],
@@ -18415,7 +18296,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Heinrich Mataja",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -18600,7 +18480,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nordost",
                 "pad_intern": 1086,
                 "medien": [
                     2100068
@@ -18616,8 +18495,8 @@
             "Mataja",
             "Dr. iur.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Wien Nordost",
+            null,
+            null,
             "/person/1086"
         ],
         [
@@ -18630,7 +18509,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Georg Mayer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -18727,7 +18605,7 @@
             "Mayer",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1097"
         ],
@@ -18741,7 +18619,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Mayer",
-                "fraktionen": "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -18961,7 +18838,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich, Viertel unterm Manhartsberg",
                 "pad_intern": 1099,
                 "openGraph": {
                     "description": "Mitglied des Bundesrates, Christlichsoziale Fraktion im Bundesrate (Christlichsoziale Partei)",
@@ -18974,8 +18850,8 @@
             "Mayer",
             null,
             null,
-            "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Niederösterreich, Viertel unterm Manhartsberg",
+            null,
+            null,
             "/person/1099"
         ],
         [
@@ -18988,7 +18864,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Josef Mayer",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -19098,7 +18973,7 @@
             "Mayer",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1102"
         ],
@@ -19112,7 +18987,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Franz Meixner",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -19212,7 +19086,7 @@
             "Meixner",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1132"
         ],
@@ -19226,7 +19100,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Dr. Viktor Michl",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -19377,7 +19250,7 @@
             "Michl",
             "Dr. med.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1140"
         ],
@@ -19391,7 +19264,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Wilhelm Miklas",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -19687,7 +19559,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel oberm Manhartsberg",
                 "pad_intern": 1143,
                 "medien": [
                     4745585
@@ -19706,8 +19577,8 @@
             "Miklas",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Viertel oberm Manhartsberg",
+            null,
+            null,
             "/person/1143"
         ],
         [
@@ -19720,7 +19591,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Vinzenz Muchitsch",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -19891,7 +19761,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Graz und Umgebung",
                 "pad_intern": 1252,
                 "medien": [
                     2100129
@@ -19907,8 +19776,8 @@
             "Muchitsch",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
-            "Graz und Umgebung",
+            null,
+            null,
             "/person/1252"
         ],
         [
@@ -19921,7 +19790,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Dr. Albert, Ritter von Mühlwerth",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -20072,7 +19940,7 @@
             "Mühlwerth",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1264"
         ],
@@ -20086,7 +19954,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Karl Müller",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -20149,7 +20016,7 @@
             "Müller",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/34149"
         ],
@@ -20163,7 +20030,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Rudolf Müller",
-                "fraktionen": "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -20282,7 +20148,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Innen-Ost",
                 "pad_intern": 1276,
                 "medien": [
                     2100138
@@ -20298,8 +20163,8 @@
             "Müller",
             null,
             null,
-            "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Innen-Ost",
+            null,
+            null,
             "/person/1276"
         ],
         [
@@ -20312,7 +20177,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Josef Nagele",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -20464,7 +20328,7 @@
             "Nagele",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1011"
         ],
@@ -20478,7 +20342,6 @@
             "[\"AHF511\",\"AHF650\",\"DnP\"]",
             {
                 "zit": "Dr. Wilhelm Neumann-Walter",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF511",
@@ -20576,7 +20439,7 @@
             "Neumann-Walter",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1037"
         ],
@@ -20590,7 +20453,6 @@
             "[\"AHF350\",\"AHF650\",\"DnP\"]",
             {
                 "zit": "Raimund Neunteufel",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -20691,7 +20553,7 @@
             "Neunteufel",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1039"
         ],
@@ -20705,7 +20567,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Karl Niedrist",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -20930,7 +20791,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol, Nordtirol",
                 "pad_intern": 1054,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (I.-II. GP), Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (Christlichsoziale Partei)",
@@ -20943,8 +20803,8 @@
             "Niedrist",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Tirol, Nordtirol",
+            null,
+            null,
             "/person/1054"
         ],
         [
@@ -20957,7 +20817,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Noggler",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -21054,7 +20913,7 @@
             "Noggler",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1059"
         ],
@@ -21068,7 +20927,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Heinrich von Oberleithner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -21217,7 +21075,7 @@
             "Oberleithner",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1068"
         ],
@@ -21231,7 +21089,6 @@
             "[\"AHF360\",\"AHF650\",\"AHF915\",\"DnP\"]",
             {
                 "zit": "Dr. Julius Ofner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF360",
@@ -21401,7 +21258,7 @@
             "Ofner",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1103"
         ],
@@ -21415,7 +21272,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Rafael Pacher",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -21579,7 +21435,7 @@
             "Pacher",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1146"
         ],
@@ -21593,7 +21449,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Franz Palme",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -21741,7 +21596,7 @@
             "Palme",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/1148"
         ],
@@ -21755,7 +21610,6 @@
             "[\"AHF300\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "abs. iur. Ferdinand, Freiherr von Pantz",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -21907,7 +21761,7 @@
             "Pantz",
             "abs. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1151"
         ],
@@ -21921,7 +21775,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Franz Parrer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -22114,7 +21967,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Wienerwald",
                 "pad_intern": 1156,
                 "medien": [
                     2101187
@@ -22130,8 +21982,8 @@
             "Parrer",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Viertel unterm Wienerwald",
+            null,
+            null,
             "/person/1156"
         ],
         [
@@ -22144,7 +21996,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Rudolf Paulik",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -22244,7 +22095,7 @@
             "Paulik",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1159"
         ],
@@ -22258,7 +22109,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Perwein",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -22409,7 +22259,7 @@
             "Perwein",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1182"
         ],
@@ -22423,7 +22273,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Heinrich Pichler",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -22574,7 +22423,7 @@
             "Pichler",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1200"
         ],
@@ -22588,7 +22437,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Alois Pirker",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -22740,7 +22588,7 @@
             "Pirker",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1213"
         ],
@@ -22754,7 +22602,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Emil Polke",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -22803,7 +22650,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Viertel oberm Wienerwald",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlpartei_code": "SdP",
@@ -22909,7 +22756,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel oberm Wienerwald",
                 "pad_intern": 1258,
                 "medien": [
                     2100695
@@ -22925,8 +22771,8 @@
             "Polke",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Viertel oberm Wienerwald",
+            null,
+            null,
             "/person/1258"
         ],
         [
@@ -22939,7 +22785,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Josef Pongratz",
-                "fraktionen": "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -23111,7 +22956,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Steiermark",
                 "pad_intern": 1265,
                 "medien": [
                     2100205
@@ -23127,8 +22971,8 @@
             "Pongratz",
             null,
             null,
-            "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
-            "Steiermark",
+            null,
+            null,
             "/person/1265"
         ],
         [
@@ -23141,7 +22985,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Leopold Pongratz",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -23238,7 +23081,7 @@
             "Pongratz",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1266"
         ],
@@ -23252,7 +23095,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Leopold Potzinger",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -23349,7 +23191,7 @@
             "Potzinger",
             "Dr. theol.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1280"
         ],
@@ -23363,7 +23205,6 @@
             "[\"AHF330\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Robert Primavesi",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -23515,7 +23356,7 @@
             "Primavesi",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1305"
         ],
@@ -23529,7 +23370,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Franz Prisching",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -23680,7 +23520,7 @@
             "Prisching",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1309"
         ],
@@ -23694,7 +23534,6 @@
             "[\"AHF330\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Josef Redlich",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -23859,7 +23698,7 @@
             "Redlich",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1560"
         ],
@@ -23873,7 +23712,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Franz Reifmüller",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -23973,7 +23811,7 @@
             "Reifmüller",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/1652"
         ],
@@ -23987,7 +23825,6 @@
             "[\"AHF370\",\"SPÖ\",\"SdP\"]",
             {
                 "zit": "Dr. Karl Renner",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -24041,7 +23878,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Viertel unterm Wienerwald",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Niederösterreich",
@@ -24113,7 +23950,7 @@
                         "wahlpartei_sort": "Sozialistische Partei Oesterreichs",
                         "mandat_bis": "20.12.1945",
                         "wahlkreis": "Viertel unterm Wienerwald",
-                        "fraktion": "Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs"
+                        "fraktion": "Parlamentsklub der Sozialistischen Partei Österreichs"
                     },
                     {
                         "wahlpartei_code": "SdP",
@@ -24419,7 +24256,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Wienerwald",
                 "pad_intern": 1664,
                 "medien": [
                     2100243
@@ -24438,8 +24274,8 @@
             "Renner",
             "Dr. iur.",
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
-            "Viertel unterm Wienerwald",
+            null,
+            null,
             "/person/1664"
         ],
         [
@@ -24452,7 +24288,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Hans Resel",
-                "fraktionen": "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -24624,7 +24459,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Steiermark",
                 "pad_intern": 1671,
                 "medien": [
                     2100245
@@ -24640,8 +24474,8 @@
             "Resel",
             null,
             null,
-            "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
-            "Steiermark",
+            null,
+            null,
             "/person/1671"
         ],
         [
@@ -24654,7 +24488,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Jakob Reumann",
-                "fraktionen": "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -24852,7 +24685,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 1673,
                 "medien": [
                     2100246
@@ -24868,8 +24700,8 @@
             "Reumann",
             null,
             null,
-            "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
-            "Wien",
+            null,
+            null,
             "/person/1673"
         ],
         [
@@ -24882,7 +24714,6 @@
             "[\"AHF350\",\"DnP\"]",
             {
                 "zit": "Gustav Richter",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -24948,7 +24779,7 @@
             "Richter",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1676"
         ],
@@ -24962,7 +24793,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Alois Rieger",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -25062,7 +24892,7 @@
             "Rieger",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1683"
         ],
@@ -25076,7 +24906,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Eduard Rieger",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -25128,7 +24957,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien Innen-Ost",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -25355,7 +25184,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Innen-Ost",
                 "pad_intern": 1684,
                 "medien": [
                     2100253
@@ -25371,8 +25199,8 @@
             "Rieger",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Innen-Ost",
+            null,
+            null,
             "/person/1684"
         ],
         [
@@ -25385,7 +25213,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Roitinger",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -25485,7 +25312,7 @@
             "Roitinger",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1702"
         ],
@@ -25499,7 +25326,6 @@
             "[\"AHF320\",\"AHF340\",\"DnP\"]",
             {
                 "zit": "Dr. Julius Roller",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -25677,7 +25503,7 @@
             "Roller",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1703"
         ],
@@ -25691,7 +25517,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Dr. Michael Schacherl",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -25811,7 +25636,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Graz und Umgebung",
                 "pad_intern": 1582,
                 "medien": [
                     2100701
@@ -25827,8 +25651,8 @@
             "Schacherl",
             "Dr. med.",
             null,
-            "Sozialdemokratische Vereinigung (S)",
-            "Graz und Umgebung",
+            null,
+            null,
             "/person/1582"
         ],
         [
@@ -25841,7 +25665,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Karl Schachinger",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -25992,7 +25815,7 @@
             "Schachinger",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1583"
         ],
@@ -26006,7 +25829,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Josef Scheicher",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -26157,7 +25979,7 @@
             "Scheicher",
             "Dr. theol.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1605"
         ],
@@ -26171,7 +25993,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Wilhelm Schiegl",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -26222,7 +26043,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien Südwest",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -26364,7 +26185,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Südwest",
                 "pad_intern": 1614,
                 "medien": [
                     2101199
@@ -26380,8 +26200,8 @@
             "Schiegl",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Südwest",
+            null,
+            null,
             "/person/1614"
         ],
         [
@@ -26394,7 +26214,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Josef Schlegel",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -26558,7 +26377,7 @@
             "Schlegel",
             "Dr. iur.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1725"
         ],
@@ -26572,7 +26391,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Michael Schoiswohl",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -26778,7 +26596,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Obersteier",
                 "pad_intern": 1765,
                 "medien": [
                     2100306
@@ -26794,8 +26611,8 @@
             "Schoiswohl",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Obersteier",
+            null,
+            null,
             "/person/1765"
         ],
         [
@@ -26808,7 +26625,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Schraffl",
-                "fraktionen": "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -27015,7 +26831,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol, Deutsch-Südtirol",
                 "pad_intern": 1769,
                 "medien": [
                     2100311
@@ -27031,8 +26846,8 @@
             "Schraffl",
             null,
             null,
-            "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Tirol, Deutsch-Südtirol",
+            null,
+            null,
             "/person/1769"
         ],
         [
@@ -27045,7 +26860,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Dr. Gustav Schreiner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -27197,7 +27011,7 @@
             "Schreiner",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1775"
         ],
@@ -27211,7 +27025,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Franz Schreiter",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -27311,7 +27124,7 @@
             "Schreiter",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1776"
         ],
@@ -27325,7 +27138,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Anton Schäfer",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -27473,7 +27285,7 @@
             "Schäfer",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/1585"
         ],
@@ -27487,7 +27299,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Aemilian Schöpfer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -27712,7 +27523,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol, Deutsch-Südtirol, Lienz",
                 "pad_intern": 1764,
                 "medien": [
                     2100305
@@ -27728,8 +27538,8 @@
             "Schöpfer",
             "Dr. theol.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Tirol, Deutsch-Südtirol, Lienz",
+            null,
+            null,
             "/person/1764"
         ],
         [
@@ -27742,7 +27552,6 @@
             "[\"AHF350\",\"DnP\",\"GdP\",\"NWB\"]",
             {
                 "zit": "Dr. Hans Schürff",
-                "fraktionen": "Verband der Abgeordneten des Nationalen Wirtschaftsblocks (W), Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -28011,7 +27820,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Wienerwald",
                 "pad_intern": 1779,
                 "medien": [
                     2101543
@@ -28027,8 +27835,8 @@
             "Schürff",
             "Dr. iur.",
             null,
-            "Verband der Abgeordneten des Nationalen Wirtschaftsblocks (W), Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
-            "Viertel unterm Wienerwald",
+            null,
+            null,
             "/person/1779"
         ],
         [
@@ -28041,7 +27849,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Karl Schürl",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -28141,7 +27948,7 @@
             "Schürl",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1780"
         ],
@@ -28155,7 +27962,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Anton Seidel",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -28307,7 +28113,7 @@
             "Seidel",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1828"
         ],
@@ -28321,7 +28127,6 @@
             "[\"AHF370\",\"SPÖ\",\"SdP\"]",
             {
                 "zit": "Karl Seitz",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Klub der Sozialistischen Partei Österreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -28375,7 +28180,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Reststimmenmandat",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -28693,7 +28498,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nordost, Reststimmenmandat",
                 "pad_intern": 1783,
                 "medien": [
                     2100333
@@ -28712,8 +28516,8 @@
             "Seitz",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Klub der Sozialistischen Partei Österreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
-            "Wien Nordost, Reststimmenmandat",
+            null,
+            null,
             "/person/1783"
         ],
         [
@@ -28726,7 +28530,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Josef Seliger",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -28877,7 +28680,7 @@
             "Seliger",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/1854"
         ],
@@ -28891,7 +28694,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Albert Sever",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -28943,7 +28745,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien West",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -29118,7 +28920,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband I (Wien), Wien West",
                 "pad_intern": 1855,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (IV. GP), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (Sozialdemokratische Arbeiterpartei Deutschösterreichs)",
@@ -29131,8 +28932,8 @@
             "Sever",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Wahlkreisverband I (Wien), Wien West",
+            null,
+            null,
             "/person/1855"
         ],
         [
@@ -29145,7 +28946,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Siegele",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -29293,7 +29093,7 @@
             "Siegele",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1941"
         ],
@@ -29307,7 +29107,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Ferdinand Skaret",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -29375,7 +29174,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien West",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -29550,7 +29349,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wahlkreisverband I (Wien), Wien West",
                 "pad_intern": 1873,
                 "medien": [
                     2100707
@@ -29566,8 +29364,8 @@
             "Skaret",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Wahlkreisverband I (Wien), Wien West",
+            null,
+            null,
             "/person/1873"
         ],
         [
@@ -29580,7 +29378,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Johann Smitka",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -29631,7 +29428,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Viertel unterm Wienerwald",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Niederösterreich",
@@ -29824,7 +29621,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Wienerwald",
                 "pad_intern": 1893,
                 "medien": [
                     2101203
@@ -29840,8 +29636,8 @@
             "Smitka",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Viertel unterm Wienerwald",
+            null,
+            null,
             "/person/1893"
         ],
         [
@@ -29854,7 +29650,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Dr. Rudolf Sommer",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -30002,7 +29797,7 @@
             "Sommer",
             "Dr. phil.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1896"
         ],
@@ -30016,7 +29811,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Martin Soukup",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -30168,7 +29962,7 @@
             "Soukup",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1909"
         ],
@@ -30182,7 +29976,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Erdmann Spies",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -30334,7 +30127,7 @@
             "Spies",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1813"
         ],
@@ -30348,7 +30141,6 @@
             "[\"AHF650\",\"OK\"]",
             {
                 "zit": "Simon Starck",
-                "fraktionen": "ohne Klubzugehörigkeit (A)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF650",
@@ -30496,7 +30288,7 @@
             "Starck",
             null,
             null,
-            "ohne Klubzugehörigkeit (A)",
+            null,
             null,
             "/person/1877"
         ],
@@ -30510,7 +30302,6 @@
             "[\"AHF340\",\"AHF341\",\"AHF350\",\"DnP\",\"GdP\"]",
             {
                 "zit": "Dr. Otto Steinwender",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Bundesratsfraktion der Großdeutschen Volkspartei (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -30698,7 +30489,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Kärnten",
                 "pad_intern": 1888,
                 "medien": [
                     2101555
@@ -30714,8 +30504,8 @@
             "Steinwender",
             "Dr. phil.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Bundesratsfraktion der Großdeutschen Volkspartei (D)",
-            "Kärnten",
+            null,
+            null,
             "/person/1888"
         ],
         [
@@ -30728,7 +30518,6 @@
             "[\"AHF340\",\"DnP\"]",
             {
                 "zit": "Hans Strziska",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -30828,7 +30617,7 @@
             "Strziska",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1931"
         ],
@@ -30842,7 +30631,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Dr. Franz Stumpf",
-                "fraktionen": "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -31062,7 +30850,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Tirol, Nordtirol",
                 "pad_intern": 1935,
                 "medien": [
                     2100365
@@ -31078,8 +30865,8 @@
             "Stumpf",
             "Dr. phil.",
             null,
-            "Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Tirol, Nordtirol",
+            null,
+            null,
             "/person/1935"
         ],
         [
@@ -31092,7 +30879,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Stöckler",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -31379,7 +31165,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Niederösterreich, Viertel oberm Wienerwald",
                 "pad_intern": 1892,
                 "medien": [
                     2100353
@@ -31395,8 +31180,8 @@
             "Stöckler",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Fraktion im Bundesrate (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Niederösterreich, Viertel oberm Wienerwald",
+            null,
+            null,
             "/person/1892"
         ],
         [
@@ -31409,7 +31194,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Artur Stölzel",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -31561,7 +31345,7 @@
             "Stölzel",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1899"
         ],
@@ -31575,7 +31359,6 @@
             "[\"AHF340\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Julius Sylvester",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -31723,7 +31506,7 @@
             "Sylvester",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1928"
         ],
@@ -31737,7 +31520,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Wilhelm Teltschik",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -31889,7 +31671,7 @@
             "Teltschik",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1338"
         ],
@@ -31903,7 +31685,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Oskar Teufel",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -32003,7 +31784,7 @@
             "Teufel",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1999"
         ],
@@ -32017,7 +31798,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Martin Thurnher",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -32165,7 +31945,7 @@
             "Thurnher",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1998"
         ],
@@ -32179,7 +31959,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Tomaschitz",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -32327,7 +32106,7 @@
             "Tomaschitz",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1381"
         ],
@@ -32341,7 +32120,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Josef Tomschik",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -32393,7 +32171,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Viertel unterm Wienerwald",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Niederösterreich",
@@ -32620,7 +32398,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Wienerwald",
                 "pad_intern": 1382,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (IV. GP), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (Sozialdemokratische Arbeiterpartei Deutschösterreichs)",
@@ -32633,8 +32410,8 @@
             "Tomschik",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
-            "Viertel unterm Wienerwald",
+            null,
+            null,
             "/person/1382"
         ],
         [
@@ -32647,7 +32424,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Peter Unterkircher",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -32853,7 +32629,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Nordtirol",
                 "pad_intern": 1331,
                 "medien": [
                     2101225
@@ -32869,8 +32644,8 @@
             "Unterkircher",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Nordtirol",
+            null,
+            null,
             "/person/1331"
         ],
         [
@@ -32883,7 +32658,6 @@
             "[\"AHF330\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Karl Urban",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -33048,7 +32822,7 @@
             "Urban",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1333"
         ],
@@ -33062,7 +32836,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Karl Volkert",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -33113,7 +32886,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien West",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -33255,7 +33028,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien West",
                 "pad_intern": 1363,
                 "medien": [
                     2100399
@@ -33271,8 +33043,8 @@
             "Volkert",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Wien West",
+            null,
+            null,
             "/person/1363"
         ],
         [
@@ -33285,7 +33057,6 @@
             "[\"AHF350\",\"DnP\",\"GdP\"]",
             {
                 "zit": "Dr. Leopold Waber",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -33573,7 +33344,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Nordwest, Wahlkreisverband I (Wien)",
                 "pad_intern": 1380,
                 "medien": [
                     2100400
@@ -33592,8 +33362,8 @@
             "Waber",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Verband der Abgeordneten der Großdeutschen Volkspartei (D), Großdeutsche Vereinigung (D)",
-            "Wien Nordwest, Wahlkreisverband I (Wien)",
+            null,
+            null,
             "/person/1380"
         ],
         [
@@ -33606,7 +33376,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Franz Wagner",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -33754,7 +33523,7 @@
             "Wagner",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1385"
         ],
@@ -33768,7 +33537,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Franz Wagner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -33917,7 +33685,7 @@
             "Wagner",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1388"
         ],
@@ -33931,7 +33699,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Waldl",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -34082,7 +33849,7 @@
             "Waldl",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1409"
         ],
@@ -34096,7 +33863,6 @@
             "[\"AHF340\",\"AHF341\",\"DnP\"]",
             {
                 "zit": "Dr. Viktor Waldner",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF340",
@@ -34248,7 +34014,7 @@
             "Waldner",
             "Dr. phil.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1410"
         ],
@@ -34262,7 +34028,6 @@
             "[\"AHF350\",\"DnP\",\"GdP\"]",
             {
                 "zit": "Rudolf Wedra",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Großdeutsche Vereinigung (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF350",
@@ -34383,7 +34148,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Manhartsberg",
                 "pad_intern": 1445,
                 "medien": [
                     2101569
@@ -34399,8 +34163,8 @@
             "Wedra",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D), Großdeutsche Vereinigung (D)",
-            "Viertel unterm Manhartsberg",
+            null,
+            null,
             "/person/1445"
         ],
         [
@@ -34413,7 +34177,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Weiß",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -34619,7 +34382,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Hausruckviertel",
                 "pad_intern": 1466,
                 "medien": [
                     2100713
@@ -34635,8 +34397,8 @@
             "Weiß",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Hausruckviertel",
+            null,
+            null,
             "/person/1466"
         ],
         [
@@ -34649,7 +34411,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Dr. Friedrich Wichtl",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -34749,7 +34510,7 @@
             "Wichtl",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1479"
         ],
@@ -34763,7 +34524,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Laurenz Widholz",
-                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -34813,7 +34573,7 @@
                         "wahlpartei_sort": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
                         "mandat_bis": "20.11.1923",
                         "wahlkreis": "Wien Südost",
-                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs"
+                        "fraktion": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat"
                     },
                     {
                         "wahlkreis_bundesland": "Wien",
@@ -34988,7 +34748,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien Südost",
                 "pad_intern": 1481,
                 "medien": [
                     2100424
@@ -35004,8 +34763,8 @@
             "Widholz",
             null,
             null,
-            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat; Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Sozialdemokratische Vereinigung (S)",
-            "Wien Südost",
+            null,
+            null,
             "/person/1481"
         ],
         [
@@ -35018,7 +34777,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Josef Wille",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -35166,7 +34924,7 @@
             "Wille",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1504"
         ],
@@ -35180,7 +34938,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Max Winter",
-                "fraktionen": "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -35301,7 +35058,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Wien",
                 "pad_intern": 1513,
                 "openGraph": {
                     "description": "Mitglied des Bundesrates, Fraktion der Sozialdemokratischen Bundesratsmitglieder (Sozialdemokratische Arbeiterpartei Deutschösterreichs)",
@@ -35314,8 +35070,8 @@
             "Winter",
             null,
             null,
-            "Fraktion der Sozialdemokratischen Bundesratsmitglieder (S), Sozialdemokratische Vereinigung (S)",
-            "Wien",
+            null,
+            null,
             "/person/1513"
         ],
         [
@@ -35328,7 +35084,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Johann Wohlmeyer",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -35476,7 +35231,7 @@
             "Wohlmeyer",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1530"
         ],
@@ -35490,7 +35245,6 @@
             "[\"AHF320\",\"DnP\"]",
             {
                 "zit": "Karl Hermann Wolf",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF320",
@@ -35641,7 +35395,7 @@
             "Wolf",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1534"
         ],
@@ -35655,7 +35409,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Richard Wollek",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -35848,7 +35601,6 @@
                         }
                     ]
                 },
-                "wahlkreise": "Viertel unterm Manhartsberg",
                 "pad_intern": 1539,
                 "medien": [
                     2101274
@@ -35864,8 +35616,8 @@
             "Wollek",
             null,
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C), Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
-            "Viertel unterm Manhartsberg",
+            null,
+            null,
             "/person/1539"
         ],
         [
@@ -35878,7 +35630,6 @@
             "[\"AHF370\",\"SdP\"]",
             {
                 "zit": "Ludwig Wutschel",
-                "fraktionen": "Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF370",
@@ -36029,7 +35780,7 @@
             "Wutschel",
             null,
             null,
-            "Sozialdemokratische Vereinigung (S)",
+            null,
             null,
             "/person/1556"
         ],
@@ -36043,7 +35794,6 @@
             "[\"AHF310\",\"AHF511\",\"DnP\"]",
             {
                 "zit": "Anton Karl Wüst",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF310",
@@ -36144,7 +35894,7 @@
             "Wüst",
             null,
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1550"
         ],
@@ -36158,7 +35908,6 @@
             "[\"AHF300\",\"CSP\"]",
             {
                 "zit": "Mag. Josef Zaunegger",
-                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF300",
@@ -36309,7 +36058,7 @@
             "Zaunegger",
             "Mag. pharm.",
             null,
-            "Christlichsoziale Vereinigung deutscher Abgeordneter (C)",
+            null,
             null,
             "/person/1623"
         ],
@@ -36323,7 +36072,6 @@
             "[\"AHF360\",\"AHF511\",\"DnP\"]",
             {
                 "zit": "abs. iur. Ernst Viktor Zenker",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF360",
@@ -36424,7 +36172,7 @@
             "Zenker",
             "abs. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/1634"
         ],
@@ -36438,7 +36186,6 @@
             "[\"AHF330\",\"AHF350\",\"DnP\"]",
             {
                 "zit": "Dr. Heinrich d'Elvert",
-                "fraktionen": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "AHF330",
@@ -36587,7 +36334,7 @@
             "d'Elvert",
             "Dr. iur.",
             null,
-            "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (D)",
+            null,
             null,
             "/person/261"
         ]
