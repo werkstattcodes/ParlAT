@@ -25,7 +25,6 @@ Imports:
     stringr (>= 1.6.0),
     tibble,
     tidyr,
-    tidyselect,
     utils
 URL: https://github.com/werkstattcodes/ParlAT, https://werkstattcodes.github.io/ParlAT/
 BugReports: https://github.com/werkstattcodes/ParlAT/issues

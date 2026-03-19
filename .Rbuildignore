@@ -26,3 +26,5 @@
 ^tools$
 ^journal\.md$
 vignettes/ParlAT_cache/
+^\.playwright-mcp$
+^_temp$

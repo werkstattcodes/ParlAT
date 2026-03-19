@@ -57,7 +57,8 @@
 #'                  date_start = "01-01-2024",
 #'                  date_end = "30-06-2024",
 #'                  echo = TRUE)
-#'
+#' }
+#' \dontrun{
 #'   # Retrieve all transcripts of National Council plenary meetings
 #'   # and download PDFs to default "transcripts" folder.
 #'   get_transcripts(
@@ -65,7 +66,6 @@
 #'     legis_period = 26,
 #'     export = "pdf"
 #'   )
-#'
 #' }
 get_transcripts <- function(
     search_string = NULL,

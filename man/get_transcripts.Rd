@@ -92,7 +92,8 @@ A summary of successful and failed downloads is printed at the conclusion of the
                  date_start = "01-01-2024",
                  date_end = "30-06-2024",
                  echo = TRUE)
-
+}
+\dontrun{
   # Retrieve all transcripts of National Council plenary meetings
   # and download PDFs to default "transcripts" folder.
   get_transcripts(
@@ -100,6 +101,5 @@ A summary of successful and failed downloads is printed at the conclusion of the
     legis_period = 26,
     export = "pdf"
   )
-
 }
 }
