@@ -19,8 +19,11 @@ Get unique identificiaton number (pad_intern)
 }
 \examples{
 \donttest{
-get_pad_intern("Strache")
-get_pad_intern("Heinz-Christian Strache")
+result <- get_pad_intern("Strache")
+dplyr::glimpse(result)
+
+result <- get_pad_intern("Heinz-Christian Strache")
+dplyr::glimpse(result)
 }
 
 }

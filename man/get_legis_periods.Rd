@@ -31,22 +31,26 @@ Get start and end dates of legislative periods.
 \examples{
 \donttest{
 # Numeric periods
-get_legis_periods(legis_period = 27)
-get_legis_periods(legis_period = c(26, 27))
+result <- get_legis_periods(legis_period = 27)
+dplyr::glimpse(result)
+
+result <- get_legis_periods(legis_period = c(26, 27))
+dplyr::glimpse(result)
 
 # Roman numerals
-get_legis_periods(legis_period = "XXVII")
-get_legis_periods(legis_period = c("XXVI", "XXVII"))
+result <- get_legis_periods(legis_period = "XXVII")
+dplyr::glimpse(result)
 
 # Historical periods
-get_legis_periods(legis_period = "PN")
-get_legis_periods(legis_period = c("PN", "KN"))
+result <- get_legis_periods(legis_period = "PN")
+dplyr::glimpse(result)
 
 # Mixed input types
-get_legis_periods(legis_period = c(26, "XXVII", "PN"))
+result <- get_legis_periods(legis_period = c(26, "XXVII", "PN"))
+dplyr::glimpse(result)
 
 # Filter by date
-get_legis_periods(date = "01.01.2020")
-get_legis_periods(date = c("01.01.2020", "05.05.1954"))
+result <- get_legis_periods(date = "01.01.2020")
+dplyr::glimpse(result)
 }
 }

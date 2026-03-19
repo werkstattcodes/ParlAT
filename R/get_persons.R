@@ -172,7 +172,9 @@ get_persons_single <- function(
 #' @export
 #'
 #' @examples \donttest{
-#' get_persons(c("Kogler Werner", "Kurz Sebastian"))}
+#' result <- get_persons(c("Kogler Werner", "Kurz Sebastian"))
+#' dplyr::glimpse(result)
+#' }
 
 get_persons <- function(
   names = NULL,

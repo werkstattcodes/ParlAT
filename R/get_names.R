@@ -21,12 +21,19 @@
 #' @export
 #'
 #' @examples \donttest{
-#' get_names(44127) # Philippa Pia Beck, Philippa Pia Strache
-#' get_names(44127, latest = TRUE) # Philippa Pia Beck, formerly Strache
-#' get_names(44127, date = "01/01/2023") # Philippa Pia Strache
+#' result <- get_names(44127) # Philippa Pia Beck, Philippa Pia Strache
+#' dplyr::glimpse(result)
+#'
+#' result <- get_names(44127, latest = TRUE) # Philippa Pia Beck, formerly Strache
+#' dplyr::glimpse(result)
+#'
+#' result <- get_names(44127, date = "01/01/2023") # Philippa Pia Strache
+#' dplyr::glimpse(result)
+#'
 #' # Multiple pad_interns possible:
 #' # e.g. Michael Pock/Bernhard; Freda Blau-Meissner/Meissner-Blau
-#' get_names(c(1130, 83124))
+#' result <- get_names(c(1130, 83124))
+#' dplyr::glimpse(result)
 #' }
 get_names <- function(pad_intern, date = NULL, latest = NULL) {
   if (length(pad_intern) > 1) {

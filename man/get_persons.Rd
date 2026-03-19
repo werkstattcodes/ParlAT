@@ -44,5 +44,7 @@ available persons for the supplied filters.
 }
 \examples{
 \donttest{
-get_persons(c("Kogler Werner", "Kurz Sebastian"))}
+result <- get_persons(c("Kogler Werner", "Kurz Sebastian"))
+dplyr::glimpse(result)
+}
 }

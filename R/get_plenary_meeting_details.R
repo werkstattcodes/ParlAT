@@ -105,24 +105,30 @@
 #' @examples
 #' \donttest{
 #' # Via URL — meeting metadata (default)
-#' get_plenary_meeting_details(
+#' result <- get_plenary_meeting_details(
 #'   url = "https://www.parlament.gv.at/gegenstand/XXVIII/NRSITZ/50?selectedStage=100"
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Via structured arguments — numeric legis_period
-#' get_plenary_meeting_details(institution = "NR", legis_period = 28, meeting_number = 50)
+#' result <- get_plenary_meeting_details(
+#'   institution = "NR", legis_period = 28, meeting_number = 50
+#' )
+#' dplyr::glimpse(result)
 #'
 #' # Via structured arguments — Roman numeral legis_period, speakers mode
-#' get_plenary_meeting_details(
+#' result <- get_plenary_meeting_details(
 #'   institution = "NR", legis_period = "XXVIII", meeting_number = 50,
 #'   details_on = "speakers", echo = TRUE
 #' )
+#' dplyr::glimpse(result)
 #'
 #' # Via URL — speaker list with timing information
-#' get_plenary_meeting_details(
+#' result <- get_plenary_meeting_details(
 #'   url = "https://www.parlament.gv.at/gegenstand/XXVIII/NRSITZ/50",
 #'   details_on = "speakers"
 #' )
+#' dplyr::glimpse(result)
 #' }
 #'
 #' @export

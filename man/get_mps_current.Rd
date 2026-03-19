@@ -194,6 +194,7 @@ chamber of interest, different search parameters are applicable.
 \donttest{
   # Get all current National Council members
   nr_members <- get_mps_current(institution = "NR")
+  dplyr::glimpse(nr_members)
 
   # Get female Federal Council members from Vienna
   br_female_vienna <- get_mps_current(
@@ -201,12 +202,14 @@ chamber of interest, different search parameters are applicable.
     gender = "female",
     state = "W"
   )
+  dplyr::glimpse(br_female_vienna)
 
   # Get SPÖ members from National Council
   spo_nr <- get_mps_current(
     institution = "NR",
     party = "SPÖ"
   )
+  dplyr::glimpse(spo_nr)
 }
 
 }

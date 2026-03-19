@@ -79,9 +79,11 @@ The function performs the following steps:
 # Get details for a specific item
 item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
 stages <- get_item_details(item_url)
+dplyr::glimpse(stages)
 
 # Also works with relative paths
 stages <- get_item_details("/gegenstand/XXVIII/BI/24")
+dplyr::glimpse(stages)
 }
 
 }

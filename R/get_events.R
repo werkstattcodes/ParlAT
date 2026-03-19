@@ -119,6 +119,7 @@
 #' \donttest{
 #'   # Basic example: Get all National Council events
 #'   events <- get_events(institution = "NR")
+#'   dplyr::glimpse(events)
 #'
 #'   # Get events with specific date range
 #'   events <- get_events(
@@ -126,6 +127,7 @@
 #'     date_start = "01-01-2024",
 #'     date_end = "31-01-2024"
 #'   )
+#'   dplyr::glimpse(events)
 #'
 #'   # Get plenary meetings in the National Council chamber
 #'   events <- get_events(
@@ -133,24 +135,14 @@
 #'     event_type = "Plenarsitzung",
 #'     location = "Nationalratssaal"
 #'   )
-#'
-#'   # Get Federal Council events
-#'   events <- get_events(
-#'     institution = "BR",
-#'     event_type = "Plenarsitzung"
-#'   )
+#'   dplyr::glimpse(events)
 #'
 #'   # Get events for a specific legislative period
 #'   events <- get_events(
 #'     institution = "NR",
 #'     legis_period = 28
 #'   )
-#'
-#'   # Get events from multiple institutions
-#'   events <- get_events(
-#'     institution = c("NR", "BR"),
-#'     event_type = "Plenarsitzung"
-#'   )
+#'   dplyr::glimpse(events)
 #' }
 #'
 #' @export
