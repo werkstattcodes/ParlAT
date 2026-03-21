@@ -44,7 +44,10 @@ return a multi-row tibble with one row per Sitzungsverlauf event.}
 of rows returned. Default is \code{FALSE}.}
 }
 \value{
-A tibble. The structure depends on \code{details_on}:
+A tibble. The structure depends on \code{details_on}. For short
+constitutive sessions (e.g. committee-election meetings) that had no
+debates, the \code{"speakers"}, \code{"decisions"}, and \code{"timeline"} modes may
+return a 0-row tibble with the documented columns.
 
 If \code{details_on = NULL} (default):
 \itemize{

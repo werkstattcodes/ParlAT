@@ -355,6 +355,17 @@ record_fixtures(
   ),
   get_plenary_meeting_details(
     url = "/gegenstand/XXVIII/NRSITZ/50"
+  ),
+  get_plenary_meeting_details(
+    institution = "NR",
+    legis_period = 28,
+    meeting_number = 2
+  ),
+  get_plenary_meeting_details(
+    institution = "NR",
+    legis_period = 28,
+    meeting_number = 2,
+    details_on = "timeline"
   )
 )
 
