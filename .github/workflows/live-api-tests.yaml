@@ -26,7 +26,7 @@ permissions: read-all
 jobs:
   live-api-tests:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'schedule' || github.ref == 'refs/heads/main' }}
+    if: ${{ github.event_name != 'schedule' || github.ref == 'refs/heads/master' }}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
