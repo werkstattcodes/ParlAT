@@ -11,6 +11,7 @@ output: github_document
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public..](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![Codecov test coverage](https://codecov.io/gh/werkstattcodes/ParlAT/graph/badge.svg)](https://codecov.io/gh/werkstattcodes/ParlAT)
 <!-- badges: end -->
 
 The ParlAT package seeks to provide an easy way for R users to access the Open Data offered by the Austrian Parliament. By leveraging the

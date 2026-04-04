@@ -28,3 +28,4 @@
 vignettes/ParlAT_cache/
 ^\.playwright-mcp$
 ^_temp$
+^codecov\.yml$
