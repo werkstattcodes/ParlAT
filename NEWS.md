@@ -1,5 +1,14 @@
 # ParlAT (development version)
 
+## Bug fixes
+
+- `get_plenary_meeting_details()`: Fixed handling of sparse plenary meetings
+  that are missing speakers, decisions, or timeline data.
+
+## Documentation
+
+- `get_mps()`: Documented inclusive date boundary edge case.
+
 # ParlAT 0.0.3
 
 ## Breaking changes
