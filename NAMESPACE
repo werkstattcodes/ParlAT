@@ -2,6 +2,7 @@
 
 export(get_committees)
 export(get_events)
+export(get_voting_results)
 export(get_item_details)
 export(get_items)
 export(get_legis_periods)
