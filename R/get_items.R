@@ -1243,6 +1243,7 @@ get_items <- function(
   ## rename
   renaming_map <- c(
     "gp" = "legis_period",
+    "gp_code" = "legis_period",   # alternative column name used by some query types (e.g. J_JPR_M)
     "inr" = "item_number",
     "datum" = "date",
     "ityp" = "item_type",
@@ -1256,11 +1257,12 @@ get_items <- function(
     "euro_voc" = "eurovoc",
     "geschichtsseite_url" = "item_url",
     "personen_id" = "persons",
-    "personen" = "persons",       # legacy column name used by some query types (e.g. J_JPR_M)
-    "fraktionen" = "parl_group",  # legacy column name used by some query types (e.g. J_JPR_M)
+    "personen" = "persons",       # alternative column name used by some query types (e.g. J_JPR_M)
+    "fraktionen" = "parl_group",  # alternative column name used by some query types (e.g. J_JPR_M)
     "klub_fraktion" = "parl_group",
     "schlagwort" = "keywords",
     "thema" = "topics",
+    "nrbr" = "institution",       # alternative column name used by some query types (e.g. J_JPR_M)
     "gremium" = "institution"
   )
 
