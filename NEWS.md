@@ -1,3 +1,12 @@
+# ParlAT (development version)
+
+## Bug fixes
+
+- `get_items()`: Restored legacy API column name mappings (`his_url`, `fraktionen`,
+  `personen`) that the Austrian Parliament API reverts to for certain query types.
+  Fixes live API test failures caused by missing `item_url` and `parl_group` columns
+  (#27).
+
 # ParlAT 0.0.3
 
 ## Breaking changes
