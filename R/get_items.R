@@ -1217,8 +1217,10 @@ get_items <- function(
 
   cols_pars <- c(
     "personen_id",
+    "personen",       # legacy column name used by some query types (e.g. J_JPR_M)
     "thema",
     "klub_fraktion",
+    "fraktionen",     # legacy column name used by some query types (e.g. J_JPR_M)
     "schlagwort",
     "euro_voc"
   )
@@ -1254,6 +1256,8 @@ get_items <- function(
     "euro_voc" = "eurovoc",
     "geschichtsseite_url" = "item_url",
     "personen_id" = "persons",
+    "personen" = "persons",       # legacy column name used by some query types (e.g. J_JPR_M)
+    "fraktionen" = "parl_group",  # legacy column name used by some query types (e.g. J_JPR_M)
     "klub_fraktion" = "parl_group",
     "schlagwort" = "keywords",
     "thema" = "topics",
