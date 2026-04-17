@@ -6,6 +6,12 @@
   `personen`) that the Austrian Parliament API reverts to for certain query types.
   Fixes live API test failures caused by missing `item_url` and `parl_group` columns
   (#27).
+- `get_plenary_meeting_details()`: Fixed handling of sparse plenary meetings
+  that are missing speakers, decisions, or timeline data.
+
+## Documentation
+
+- `get_mps()`: Documented inclusive date boundary edge case.
 
 # ParlAT 0.0.3
 

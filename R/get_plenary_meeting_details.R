@@ -32,7 +32,10 @@
 #' @param echo Logical. If `TRUE`, prints the URL being fetched and the number
 #'   of rows returned. Default is `FALSE`.
 #'
-#' @return A tibble. The structure depends on `details_on`:
+#' @return A tibble. The structure depends on `details_on`. For short
+#'   constitutive sessions (e.g. committee-election meetings) that had no
+#'   debates, the `"speakers"`, `"decisions"`, and `"timeline"` modes may
+#'   return a 0-row tibble with the documented columns.
 #'
 #' If `details_on = NULL` (default):
 #' - `meeting_url` (character): The URL used to fetch the data.
@@ -234,8 +237,39 @@ get_plenary_meeting_details <- function(
     } else if (details_on == "speakers") {
         # SPEAKERS — one row per speech across all debates.
         # past_debates is a list-column; element [[2]] is the data frame.
-        past_debates <- content$past_debates[[2]]
+        # For sparse meetings (e.g. short constitutive sessions),
+        # past_debates may be absent from the content entirely.
+        past_debates <- if ("past_debates" %in% names(content)) {
+            content$past_debates[[2]]
+        } else {
+            NULL
+        }
 
+        if (is.null(past_debates) || !is.data.frame(past_debates) || nrow(past_debates) == 0) {
+            df_res <- tibble::tibble(
+                meeting_url      = url,
+                meeting_title    = content$title[1],
+                meeting_citation = content$zitation[1],
+                legis_period     = content$gp_code[1],
+                meeting_type     = content$type[1],
+                debate_id        = integer(0),
+                debate_type      = character(0),
+                debate_typetext  = character(0),
+                debate_text      = character(0),
+                debate_starttime = character(0),
+                debate_endtime   = character(0),
+                debate_limit     = integer(0),
+                debate_state     = character(0),
+                speech_nr        = integer(0),
+                speech_state     = character(0),
+                speaker_name     = character(0),
+                pad_intern       = integer(0),
+                wm_type          = character(0),
+                start_time       = character(0),
+                duration         = character(0),
+                speech_limit     = integer(0)
+            )
+        } else {
         df_res <- purrr::map(
             seq_len(nrow(past_debates)),
             function(i) {
@@ -283,25 +317,45 @@ get_plenary_meeting_details <- function(
                 meeting_type     = content$type[1],
                 .before          = 1
             )
+        }
     } else if (details_on == "decisions") {
         # DECISIONS — one row per agenda item (TOP).
         # resolutions is a list-column in row 1 of the merged content data frame.
-        resolutions <- content$resolutions[[1]]
+        # For sparse meetings, resolutions may be absent entirely.
+        resolutions <- if ("resolutions" %in% names(content)) {
+            content$resolutions[[1]]
+        } else {
+            NULL
+        }
 
-        df_res <- tibble::tibble(
-            resolution_top      = resolutions$top,
-            resolution_title    = resolutions$text,
-            resolution_url      = resolutions$url,
-            resolution_citation = resolutions$zitation
-        ) |>
-            dplyr::mutate(
-                meeting_url      = url,
-                meeting_title    = content$title[1],
-                meeting_citation = content$zitation[1],
-                legis_period     = content$gp_code[1],
-                meeting_type     = content$type[1],
-                .before          = 1
+        if (is.null(resolutions) || !is.data.frame(resolutions) || nrow(resolutions) == 0) {
+            df_res <- tibble::tibble(
+                meeting_url         = character(0),
+                meeting_title       = character(0),
+                meeting_citation    = character(0),
+                legis_period        = character(0),
+                meeting_type        = character(0),
+                resolution_top      = character(0),
+                resolution_title    = character(0),
+                resolution_url      = character(0),
+                resolution_citation = character(0)
             )
+        } else {
+            df_res <- tibble::tibble(
+                resolution_top      = resolutions$top,
+                resolution_title    = resolutions$text,
+                resolution_url      = resolutions$url,
+                resolution_citation = resolutions$zitation
+            ) |>
+                dplyr::mutate(
+                    meeting_url      = url,
+                    meeting_title    = content$title[1],
+                    meeting_citation = content$zitation[1],
+                    legis_period     = content$gp_code[1],
+                    meeting_type     = content$type[1],
+                    .before          = 1
+                )
+        }
     } else if (details_on == "timeline") {
         # TIMELINE — one row per Sitzungsverlauf event.
         # stages is a list-column in row 1 of the merged content data frame.
@@ -312,45 +366,57 @@ get_plenary_meeting_details <- function(
         df_res <- tibble::tibble(
             stage_date       = stages$date,
             stage_text       = stringr::str_remove_all(stages$text, "<[^>]+>"),
-            statements       = purrr::map(seq_len(nrow(stages)), function(i) {
-                # stages$reden is a nested data frame (jsonlite simplification):
-                # 3 cols (rendertype, data, mapped) × 40 rows.
-                # Rows without reden have NA in rendertype.
-                reden_col <- stages[["reden"]]
-                if (!is.data.frame(reden_col) ||
-                    is.na(reden_col[["rendertype"]][[i]])) return(NULL)
-                rows <- reden_col[["data"]][["rows"]][[i]]
-                if (is.null(rows) || length(rows) == 0) return(NULL)
-                if (is.matrix(rows)) {
-                    purrr::map(seq_len(nrow(rows)), function(j) {
-                        s3 <- rows[j, 3]
-                        tibble::tibble(
-                            speaker_name = stringr::str_remove_all(rows[j, 1], "<[^>]+>"),
-                            speaker_url  = stringr::str_extract(rows[j, 1], "href=\"([^\"]+)\"", group = 1),
-                            wm_type      = rows[j, 2],
-                            protocol_ref = stringr::str_remove_all(s3, "<[^>]+>"),
-                            protocol_url = stringr::str_extract(s3, "href=\"([^\"]+)\"", group = 1)
-                        )
-                    }) |> purrr::list_rbind()
-                } else {
-                    purrr::map(rows, function(row) {
-                        s3 <- if (!is.null(row[[3]])) as.character(row[[3]]) else NA_character_
-                        tibble::tibble(
-                            speaker_name = stringr::str_remove_all(as.character(row[[1]]), "<[^>]+>"),
-                            speaker_url  = stringr::str_extract(as.character(row[[1]]), "href=\"([^\"]+)\"", group = 1),
-                            wm_type      = as.character(row[[2]]),
-                            protocol_ref = stringr::str_remove_all(s3, "<[^>]+>"),
-                            protocol_url = stringr::str_extract(s3, "href=\"([^\"]+)\"", group = 1)
-                        )
-                    }) |> purrr::list_rbind()
-                }
-            }),
-            stage_fsth_url   = purrr::map_chr(stages$fsth, function(f) {
-                if (is.data.frame(f) && nrow(f) > 0) f$url[1] else NA_character_
-            }),
-            stage_fsth_title = purrr::map_chr(stages$fsth, function(f) {
-                if (is.data.frame(f) && nrow(f) > 0) f$title[1] else NA_character_
-            })
+            statements       = if (!"reden" %in% names(stages)) {
+                vector("list", nrow(stages))
+            } else {
+                purrr::map(seq_len(nrow(stages)), function(i) {
+                    # stages$reden is a nested data frame (jsonlite simplification):
+                    # 3 cols (rendertype, data, mapped) × N rows.
+                    # Rows without reden have NA in rendertype.
+                    reden_col <- stages[["reden"]]
+                    if (!is.data.frame(reden_col) ||
+                        is.na(reden_col[["rendertype"]][[i]])) return(NULL)
+                    rows <- reden_col[["data"]][["rows"]][[i]]
+                    if (is.null(rows) || length(rows) == 0) return(NULL)
+                    if (is.matrix(rows)) {
+                        purrr::map(seq_len(nrow(rows)), function(j) {
+                            s3 <- rows[j, 3]
+                            tibble::tibble(
+                                speaker_name = stringr::str_remove_all(rows[j, 1], "<[^>]+>"),
+                                speaker_url  = stringr::str_extract(rows[j, 1], "href=\"([^\"]+)\"", group = 1),
+                                wm_type      = rows[j, 2],
+                                protocol_ref = stringr::str_remove_all(s3, "<[^>]+>"),
+                                protocol_url = stringr::str_extract(s3, "href=\"([^\"]+)\"", group = 1)
+                            )
+                        }) |> purrr::list_rbind()
+                    } else {
+                        purrr::map(rows, function(row) {
+                            s3 <- if (!is.null(row[[3]])) as.character(row[[3]]) else NA_character_
+                            tibble::tibble(
+                                speaker_name = stringr::str_remove_all(as.character(row[[1]]), "<[^>]+>"),
+                                speaker_url  = stringr::str_extract(as.character(row[[1]]), "href=\"([^\"]+)\"", group = 1),
+                                wm_type      = as.character(row[[2]]),
+                                protocol_ref = stringr::str_remove_all(s3, "<[^>]+>"),
+                                protocol_url = stringr::str_extract(s3, "href=\"([^\"]+)\"", group = 1)
+                            )
+                        }) |> purrr::list_rbind()
+                    }
+                })
+            },
+            stage_fsth_url   = if (!"fsth" %in% names(stages)) {
+                rep(NA_character_, nrow(stages))
+            } else {
+                purrr::map_chr(stages$fsth, function(f) {
+                    if (is.data.frame(f) && nrow(f) > 0) f$url[1] else NA_character_
+                })
+            },
+            stage_fsth_title = if (!"fsth" %in% names(stages)) {
+                rep(NA_character_, nrow(stages))
+            } else {
+                purrr::map_chr(stages$fsth, function(f) {
+                    if (is.data.frame(f) && nrow(f) > 0) f$title[1] else NA_character_
+                })
+            }
         ) |>
             dplyr::filter(!is.na(.data$stage_text)) |>
             dplyr::mutate(

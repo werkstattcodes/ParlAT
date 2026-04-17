@@ -93,6 +93,18 @@ Since an MP can change within a single legislative period, for example, family n
 'mp_details' may include multiple rows reflecting these changes.
 }
 
+\subsection{date}{
+
+When filtering by date, a mandate is considered active if the queried date falls within the interval
+[\code{mandate_start}, \code{mandate_end}] (both endpoints inclusive). On days when one MP's mandate ends and
+another's begins, both are counted as active. As a result, querying for such a handover date may return
+more members than the chamber formally holds — this applies to both the National Council
+(\code{institution = "NR"}, 183 seats) and the Federal Council (\code{institution = "BR"}, variable size).
+This is a known artefact of the inclusive date boundary used by the Parliament's API. A confirmed
+example for the National Council is \code{date = "02.09.2014"}, where Dr. Sabine Oberhauser's mandate
+ended and Doris Bures' began on the same day, yielding 184 results.
+}
+
 \subsection{parl_group}{
 
 Permissible values:
