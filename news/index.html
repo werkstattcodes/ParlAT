@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,9 +35,24 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="parlat-development-version">ParlAT (development version)<a class="anchor" aria-label="anchor" href="#parlat-development-version"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<ul><li>
+<code><a href="../reference/get_items.html">get_items()</a></code>: Restored legacy API column name mappings (<code>his_url</code>, <code>fraktionen</code>, <code>personen</code>) that the Austrian Parliament API reverts to for certain query types. Fixes live API test failures caused by missing <code>item_url</code> and <code>parl_group</code> columns (<a href="https://github.com/werkstattcodes/ParlAT/issues/27" class="external-link">#27</a>).</li>
+<li>
+<code><a href="../reference/get_plenary_meeting_details.html">get_plenary_meeting_details()</a></code>: Fixed handling of sparse plenary meetings that are missing speakers, decisions, or timeline data.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-development-version">Documentation<a class="anchor" aria-label="anchor" href="#documentation-development-version"></a></h3>
+<ul><li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code>: Documented inclusive date boundary edge case.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.3" id="parlat-003">ParlAT 0.0.3<a class="anchor" aria-label="anchor" href="#parlat-003"></a></h2>
 <div class="section level3">

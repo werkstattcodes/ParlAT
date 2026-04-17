@@ -64,7 +64,10 @@ get_plenary_meeting_details(
 
 ## Value
 
-A tibble. The structure depends on `details_on`:
+A tibble. The structure depends on `details_on`. For short constitutive
+sessions (e.g. committee-election meetings) that had no debates, the
+`"speakers"`, `"decisions"`, and `"timeline"` modes may return a 0-row
+tibble with the documented columns.
 
 If `details_on = NULL` (default):
 

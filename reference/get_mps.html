@@ -11,7 +11,7 @@ from the Austrian Parliament website here."><meta property="og:image" content="h
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@ from the Austrian Parliament website here."><meta property="og:image" content="h
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get Members of Parliament</h1>
-      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/R/get_mps.R" class="external-link"><code>R/get_mps.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/dev/R/get_mps.R" class="external-link"><code>R/get_mps.R</code></a></small>
       <div class="d-none name"><code>get_mps.Rd</code></div>
     </div>
 
@@ -159,6 +159,20 @@ period argument will exclude any results for the Federal Council (Bundesrat) sin
 The list-column 'mp_details' contains all mandate details for that MP during the specified legislative period.
 Since an MP can change within a single legislative period, for example, family name, party affiliation, parliamentary group, or the electoral district of her mandate,
 'mp_details' may include multiple rows reflecting these changes.</p>
+</div>
+
+<div class="section">
+<h3 id="date">date<a class="anchor" aria-label="anchor" href="#date"></a></h3>
+
+
+<p>When filtering by date, a mandate is considered active if the queried date falls within the interval
+[<code>mandate_start</code>, <code>mandate_end</code>] (both endpoints inclusive). On days when one MP's mandate ends and
+another's begins, both are counted as active. As a result, querying for such a handover date may return
+more members than the chamber formally holds — this applies to both the National Council
+(<code>institution = "NR"</code>, 183 seats) and the Federal Council (<code>institution = "BR"</code>, variable size).
+This is a known artefact of the inclusive date boundary used by the Parliament's API. A confirmed
+example for the National Council is <code>date = "02.09.2014"</code>, where Dr. Sabine Oberhauser's mandate
+ended and Doris Bures' began on the same day, yielding 184 results.</p>
 </div>
 
 <div class="section">

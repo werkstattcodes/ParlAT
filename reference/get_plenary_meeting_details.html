@@ -15,7 +15,7 @@ legis_period, and meeting_number — not both."><meta property="og:image" conten
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@ legis_period, and meeting_number — not both."><meta property="og:image" conten
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get Details of a Plenary Meeting</h1>
-      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/R/get_plenary_meeting_details.R" class="external-link"><code>R/get_plenary_meeting_details.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/dev/R/get_plenary_meeting_details.R" class="external-link"><code>R/get_plenary_meeting_details.R</code></a></small>
       <div class="d-none name"><code>get_plenary_meeting_details.Rd</code></div>
     </div>
 
@@ -114,7 +114,10 @@ of rows returned. Default is <code>FALSE</code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A tibble. The structure depends on <code>details_on</code>:</p>
+    <p>A tibble. The structure depends on <code>details_on</code>. For short
+constitutive sessions (e.g. committee-election meetings) that had no
+debates, the <code>"speakers"</code>, <code>"decisions"</code>, and <code>"timeline"</code> modes may
+return a 0-row tibble with the documented columns.</p>
 <p>If <code>details_on = NULL</code> (default):</p><ul><li><p><code>meeting_url</code> (character): The URL used to fetch the data.</p></li>
 <li><p><code>meeting_title</code> (character): Full title of the meeting.</p></li>
 <li><p><code>meeting_citation</code> (character): Citation reference (e.g. <code>"50/NRSITZ"</code>).</p></li>

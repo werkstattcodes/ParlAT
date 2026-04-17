@@ -1,5 +1,24 @@
 # Changelog
 
+## ParlAT (development version)
+
+### Bug fixes
+
+- [`get_items()`](https://werkstattcodes.github.io/ParlAT/reference/get_items.md):
+  Restored legacy API column name mappings (`his_url`, `fraktionen`,
+  `personen`) that the Austrian Parliament API reverts to for certain
+  query types. Fixes live API test failures caused by missing `item_url`
+  and `parl_group` columns
+  ([\#27](https://github.com/werkstattcodes/ParlAT/issues/27)).
+- [`get_plenary_meeting_details()`](https://werkstattcodes.github.io/ParlAT/reference/get_plenary_meeting_details.md):
+  Fixed handling of sparse plenary meetings that are missing speakers,
+  decisions, or timeline data.
+
+### Documentation
+
+- [`get_mps()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps.md):
+  Documented inclusive date boundary edge case.
+
 ## ParlAT 0.0.3
 
 ### Breaking changes
