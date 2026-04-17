@@ -13,7 +13,6 @@ template:
     in_header: |
       <script data-goatcounter="https://werkstattcodes.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
-    
 navbar:
   structure:
     left:  [intro, reference, articles, news]

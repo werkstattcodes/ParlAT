@@ -10,8 +10,6 @@ on:
 
 name: pkgdown.yaml
 
-permissions: read-all
-
 jobs:
   pkgdown:
     runs-on: ubuntu-latest
@@ -22,6 +20,8 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
