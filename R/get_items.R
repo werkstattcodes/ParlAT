@@ -1217,11 +1217,13 @@ get_items <- function(
 
   cols_pars <- c(
     "personen_id",
-    "personen",       # legacy column name used by some query types (e.g. J_JPR_M)
+    "personen",       # alternative column name used by some query types (e.g. J_JPR_M)
     "thema",
+    "themen",         # alternative column name used by some query types (e.g. RV, J_JPR_M)
     "klub_fraktion",
-    "fraktionen",     # legacy column name used by some query types (e.g. J_JPR_M)
+    "fraktionen",     # alternative column name used by some query types (e.g. J_JPR_M)
     "schlagwort",
+    "sw",             # alternative column name used by some query types (e.g. RV, J_JPR_M)
     "euro_voc"
   )
   fn_parse_content_vec <- function(x) {
@@ -1261,8 +1263,10 @@ get_items <- function(
     "fraktionen" = "parl_group",  # alternative column name used by some query types (e.g. J_JPR_M)
     "klub_fraktion" = "parl_group",
     "schlagwort" = "keywords",
+    "sw" = "keywords",            # alternative column name used by some query types (e.g. RV, J_JPR_M)
     "thema" = "topics",
-    "nrbr" = "institution",       # alternative column name used by some query types (e.g. J_JPR_M)
+    "themen" = "topics",          # alternative column name used by some query types (e.g. RV, J_JPR_M)
+    "nrbr" = "institution",       # alternative column name used by some query types (e.g. RV, J_JPR_M)
     "gremium" = "institution"
   )
 

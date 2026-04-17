@@ -1,6 +1,6 @@
 {
     "pages": 0,
-    "lastSync": "2026-04-17 15:55:46.0",
+    "lastSync": "2026-04-17 20:36:00.0",
     "count": 0,
     "header": [
         {
@@ -72,8 +72,8 @@
             "mediaType": "type",
             "label": "Art",
             "sortable": "1",
-            "css_class": "stellungnahmen-col",
             "vts_sort_field": "doktyp_sort",
+            "css_class": "stellungnahmen-col",
             "hideValue": false,
             "rnr": 6,
             "listeId": 101,
@@ -200,8 +200,8 @@
         {
             "vts_sort_field": "date_fresh",
             "feldId": 260,
-            "ist_range": "1",
             "hidden": true,
+            "ist_range": "1",
             "hideValue": false,
             "valueToNull": false,
             "rnr": 17,
@@ -318,8 +318,8 @@
         {
             "vts_sort_field": "inr",
             "feldId": 1821,
-            "ist_range": "1",
             "hidden": true,
+            "ist_range": "1",
             "hideValue": false,
             "valueToNull": false,
             "rnr": 28,
