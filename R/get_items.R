@@ -1250,7 +1250,7 @@ get_items <- function(
     "status" = "stage",
     "doktyp" = "type_doc",
     "doktyp_lang" = "type_doc_long",
-    # "his_url" = "item_url",
+    "his_url" = "item_url",       # legacy column name (API used this before renaming)
     "euro_voc" = "eurovoc",
     "geschichtsseite_url" = "item_url",
     "personen_id" = "persons",
