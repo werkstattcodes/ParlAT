@@ -8,6 +8,16 @@
   (#27).
 - `get_plenary_meeting_details()`: Fixed handling of sparse plenary meetings
   that are missing speakers, decisions, or timeline data.
+- `get_items()`: Restored fallback mappings for legacy and renamed Parliament
+  API export columns (`his_url`, `personen`, `fraktionen`, `themen`, `sw`,
+  `gp_code`, `nrbr`) so live queries again return stable `item_url`, topic,
+  keyword, person, parliamentary group, and institution columns. Integrated
+  and validated the live API fixes from `fix-live-api-test-failure`
+  (`9e3bc18`).
+- Live API testing: Updated the scheduled GitHub Actions workflow to run on
+  Fridays and to evaluate `master` instead of `main`, and relaxed the live
+  duplicate-row assertion for `get_items()` to reflect non-deterministic
+  upstream duplicates. Integrated the workflow fix from `2b4c57d`.
 
 ## Documentation
 
