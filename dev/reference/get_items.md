@@ -1187,8 +1187,8 @@ dplyr::glimpse(result)
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2022-03-24, 2021-05-20, 2020-10-12, 2020-10-12, 2020-…
 #> $ item_type        <chr> "S", "S", "S", "S", "S", "S", "S"
-#> $ item_number      <chr> "7", "6", "4", "5", "3", "2", "1"
-#> $ item_number_type <chr> "7/S", "6/S", "4/S", "5/S", "3/S", "2/S", "1/S"
+#> $ item_number      <chr> "7", "6", "5", "4", "3", "2", "1"
+#> $ item_number_type <chr> "7/S", "6/S", "5/S", "4/S", "3/S", "2/S", "1/S"
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5", "5"
 #> $ item_url         <chr> "/gegenstand/XXVII/S/7", "/gegenstand/XXVII/S/6", "/…
 #> $ type_doc         <chr> "S", "S", "S", "S", "S", "S", "S"
