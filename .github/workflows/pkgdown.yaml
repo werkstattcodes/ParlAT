@@ -37,7 +37,12 @@ jobs:
           needs: website
 
       - name: Build site
-        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        run: |
+          # Keep dev docs under /dev even while the package version remains a release-style tag.
+          mode <- if (Sys.getenv("GITHUB_REF_NAME") == "dev") "devel" else "release"
+          Sys.setenv(PKGDOWN_DEV_MODE = mode)
+          message("Building pkgdown site in mode: ", mode)
+          pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
         shell: Rscript {0}
 
       - name: Deploy to GitHub pages 🚀
