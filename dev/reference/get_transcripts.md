@@ -154,9 +154,9 @@ download.
                   echo = TRUE)
 #> {"GP_CODE":["XXVIII"],"NBVS":["NRSITZ"]} 
 #> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211GP_CODE=XXVIII&STENO_211NBVS=NRSITZ&STENO_211search=gesundheit
-#> [1] 17
+#> [1] 18
   dplyr::glimpse(result)
-#> Rows: 17
+#> Rows: 18
 #> Columns: 8
 #> $ date                    <date> 2024-12-11, 2025-03-26, 2025-04-24, 2025-05-1…
 #> $ meeting_url             <chr> "/gegenstand/XXVIII/NRSITZ/5", "/gegenstand/XX…

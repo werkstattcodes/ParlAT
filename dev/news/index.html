@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.3.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,12 @@
 <div class="section level3">
 <h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
 <ul><li>
+<code><a href="../reference/get_items.html">get_items()</a></code>: Restored legacy API column name mappings (<code>his_url</code>, <code>fraktionen</code>, <code>personen</code>) that the Austrian Parliament API reverts to for certain query types. Fixes live API test failures caused by missing <code>item_url</code> and <code>parl_group</code> columns (<a href="https://github.com/werkstattcodes/ParlAT/issues/27" class="external-link">#27</a>).</li>
+<li>
 <code><a href="../reference/get_plenary_meeting_details.html">get_plenary_meeting_details()</a></code>: Fixed handling of sparse plenary meetings that are missing speakers, decisions, or timeline data.</li>
+<li>
+<code><a href="../reference/get_items.html">get_items()</a></code>: Restored fallback mappings for legacy and renamed Parliament API export columns (<code>his_url</code>, <code>personen</code>, <code>fraktionen</code>, <code>themen</code>, <code>sw</code>, <code>gp_code</code>, <code>nrbr</code>) so live queries again return stable <code>item_url</code>, topic, keyword, person, parliamentary group, and institution columns. Integrated and validated the live API fixes from <code>fix-live-api-test-failure</code> (<code>9e3bc18</code>).</li>
+<li>Live API testing: Updated the scheduled GitHub Actions workflow to run on Fridays and to evaluate <code>master</code> instead of <code>main</code>, and relaxed the live duplicate-row assertion for <code><a href="../reference/get_items.html">get_items()</a></code> to reflect non-deterministic upstream duplicates. Integrated the workflow fix from <code>2b4c57d</code>.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="documentation-development-version">Documentation<a class="anchor" aria-label="anchor" href="#documentation-development-version"></a></h3>
