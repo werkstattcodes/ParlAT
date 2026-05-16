@@ -43,6 +43,7 @@ request/response for debugging, call a function with `echo = TRUE`.
 Example:
 
 ``` r
+
 # returns the httr2 response object and prints request/response
 get_events(date_start = "2024-01-01", date_end = "2024-01-31", echo = TRUE)
 ```
