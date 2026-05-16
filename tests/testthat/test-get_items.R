@@ -445,7 +445,9 @@ test_that("get_items returns no duplicates for Bildung across multiple legislati
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
 
-  # Check that there are no duplicate rows
+  # Check that there are no duplicate rows (skip in live mode: API itself may
+  # return duplicates, which the package warns about but does not remove)
+  skip_if_live("Duplicate row count is non-deterministic with live API data")
   n_total <- nrow(result)
   n_distinct <- result %>%
     dplyr::distinct() %>%

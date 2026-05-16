@@ -1,4 +1,8 @@
 url: https://werkstattcodes.github.io/ParlAT
+
+development:
+  mode: auto
+
 template:
   bootstrap: 5
   light-switch: true
@@ -9,8 +13,6 @@ template:
     in_header: |
       <script data-goatcounter="https://werkstattcodes.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
-
-    
 navbar:
   structure:
     left:  [intro, reference, articles, news]

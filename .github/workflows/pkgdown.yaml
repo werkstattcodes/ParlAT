@@ -2,7 +2,7 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, dev]
   pull_request:
   release:
     types: [published]
@@ -37,13 +37,27 @@ jobs:
           needs: website
 
       - name: Build site
-        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        run: |
+          # Keep dev docs under /dev even while the package version remains a release-style tag.
+          mode <- if (Sys.getenv("GITHUB_REF_NAME") == "dev") "devel" else "release"
+          Sys.setenv(PKGDOWN_DEV_MODE = mode)
+          message("Building pkgdown site in mode: ", mode)
+          pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
         shell: Rscript {0}
 
-      - name: Deploy to GitHub pages 🚀
-        if: github.event_name != 'pull_request'
+      - name: Deploy release to GitHub Pages 🚀
+        if: github.event_name != 'pull_request' && github.ref_name != 'dev'
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           clean: false
           branch: gh-pages
           folder: docs
+
+      - name: Deploy dev to GitHub Pages 🚀
+        if: github.event_name != 'pull_request' && github.ref_name == 'dev'
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        with:
+          clean: false
+          branch: gh-pages
+          folder: docs/dev
+          target-folder: dev

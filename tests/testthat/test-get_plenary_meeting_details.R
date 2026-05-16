@@ -225,6 +225,120 @@ test_that("get_plenary_meeting_details timeline mode keeps nested statements str
   ))
 })
 
+test_that("get_plenary_meeting_details timeline works for sparse meetings (no reden/fsth)", {
+  result <- run_api_call(
+    get_plenary_meeting_details(
+      institution = "NR",
+      legis_period = 28,
+      meeting_number = 2,
+      details_on = "timeline"
+    ),
+    fixture_subdir = "get_plenary_meeting_details"
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_true(nrow(result) > 0)
+  expect_true(all(c(
+    "meeting_url",
+    "meeting_title",
+    "meeting_citation",
+    "legis_period",
+    "meeting_type",
+    "stage_date",
+    "agenda_item",
+    "stage_text",
+    "statements",
+    "stage_fsth_url",
+    "stage_fsth_title"
+  ) %in% names(result)))
+  expect_type(result$statements, "list")
+  expect_true(all(vapply(result$statements, is.null, logical(1))))
+  expect_true(all(is.na(result$stage_fsth_url)))
+  expect_true(all(is.na(result$stage_fsth_title)))
+})
+
+test_that("get_plenary_meeting_details speakers works for sparse meetings (no past_debates)", {
+  result <- run_api_call(
+    get_plenary_meeting_details(
+      institution = "NR",
+      legis_period = 28,
+      meeting_number = 2,
+      details_on = "speakers"
+    ),
+    fixture_subdir = "get_plenary_meeting_details"
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 0)
+  expect_true(all(c(
+    "meeting_url",
+    "meeting_title",
+    "meeting_citation",
+    "legis_period",
+    "meeting_type",
+    "debate_id",
+    "debate_type",
+    "speech_nr",
+    "speaker_name",
+    "pad_intern",
+    "start_time",
+    "duration"
+  ) %in% names(result)))
+})
+
+test_that("get_plenary_meeting_details decisions works for sparse meetings (no resolutions)", {
+  result <- run_api_call(
+    get_plenary_meeting_details(
+      institution = "NR",
+      legis_period = 28,
+      meeting_number = 2,
+      details_on = "decisions"
+    ),
+    fixture_subdir = "get_plenary_meeting_details"
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 0)
+  expect_true(all(c(
+    "meeting_url",
+    "meeting_title",
+    "meeting_citation",
+    "legis_period",
+    "meeting_type",
+    "resolution_top",
+    "resolution_title",
+    "resolution_url",
+    "resolution_citation"
+  ) %in% names(result)))
+})
+
+test_that("get_plenary_meeting_details metadata works for sparse meetings", {
+  result <- run_api_call(
+    get_plenary_meeting_details(
+      institution = "NR",
+      legis_period = 28,
+      meeting_number = 2
+    ),
+    fixture_subdir = "get_plenary_meeting_details"
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 1)
+  expect_true(all(c(
+    "meeting_url",
+    "meeting_title",
+    "meeting_citation",
+    "legis_period",
+    "meeting_type",
+    "meeting_type_short",
+    "meeting_nr",
+    "date",
+    "state",
+    "start_time",
+    "end_time"
+  ) %in% names(result)))
+})
+
 test_that("get_plenary_meeting_details supports BR meetings in mocked mode", {
   result <- run_api_call(
     get_plenary_meeting_details(
