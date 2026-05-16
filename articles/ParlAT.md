@@ -20,63 +20,45 @@ df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> [1] 183
 #> {"M":["M"],"W":["W"]} 
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
-#> ⠙ Fetching MPs' names 2/183 | ETA:  3m
-#> ⠹ Fetching MPs' names 3/183 | ETA:  3m
-#> ⠸ Fetching MPs' names 6/183 | ETA:  3m
-#> ⠼ Fetching MPs' names 9/183 | ETA:  3m
-#> ⠴ Fetching MPs' names 13/183 | ETA:  3m
-#> ⠦ Fetching MPs' names 16/183 | ETA:  3m
-#> ⠧ Fetching MPs' names 19/183 | ETA:  3m
-#> ⠇ Fetching MPs' names 23/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 26/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 29/183 | ETA:  2m
-#> ⠙ Fetching MPs' names 32/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 36/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 39/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 42/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 45/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 48/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 52/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 55/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 58/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 61/183 | ETA:  2m
-#> ⠙ Fetching MPs' names 65/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 68/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 71/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 74/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 78/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 81/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 84/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 87/183 | ETA:  1m
-#> ⠏ Fetching MPs' names 90/183 | ETA:  1m
-#> ⠋ Fetching MPs' names 94/183 | ETA:  1m
-#> ⠙ Fetching MPs' names 97/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 100/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 104/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 107/183 | ETA:  1m
-#> ⠴ Fetching MPs' names 110/183 | ETA:  1m
-#> ⠦ Fetching MPs' names 113/183 | ETA:  1m
-#> ⠧ Fetching MPs' names 117/183 | ETA:  1m
-#> ⠇ Fetching MPs' names 120/183 | ETA:  1m
-#> ⠏ Fetching MPs' names 123/183 | ETA:  1m
-#> ⠋ Fetching MPs' names 127/183 | ETA:  1m
-#> ⠙ Fetching MPs' names 130/183 | ETA: 49s
-#> ⠹ Fetching MPs' names 134/183 | ETA: 45s
-#> ⠸ Fetching MPs' names 137/183 | ETA: 42s
-#> ⠼ Fetching MPs' names 140/183 | ETA: 40s
-#> ⠴ Fetching MPs' names 143/183 | ETA: 37s
-#> ⠦ Fetching MPs' names 147/183 | ETA: 33s
-#> ⠧ Fetching MPs' names 150/183 | ETA: 30s
-#> ⠇ Fetching MPs' names 153/183 | ETA: 28s
-#> ⠏ Fetching MPs' names 157/183 | ETA: 24s
-#> ⠋ Fetching MPs' names 160/183 | ETA: 21s
-#> ⠙ Fetching MPs' names 163/183 | ETA: 18s
-#> ⠹ Fetching MPs' names 166/183 | ETA: 16s
-#> ⠸ Fetching MPs' names 169/183 | ETA: 13s
-#> ⠼ Fetching MPs' names 173/183 | ETA:  9s
-#> ⠴ Fetching MPs' names 176/183 | ETA:  6s
-#> ⠦ Fetching MPs' names 179/183 | ETA:  4s
-#> ⠧ Fetching MPs' names 182/183 | ETA:  1s
+#> ⠙ Fetching MPs' names 2/183 | ETA:  2m
+#> ⠹ Fetching MPs' names 4/183 | ETA:  2m
+#> ⠸ Fetching MPs' names 9/183 | ETA:  2m
+#> ⠼ Fetching MPs' names 14/183 | ETA:  2m
+#> ⠴ Fetching MPs' names 18/183 | ETA:  2m
+#> ⠦ Fetching MPs' names 23/183 | ETA:  2m
+#> ⠧ Fetching MPs' names 28/183 | ETA:  2m
+#> ⠇ Fetching MPs' names 33/183 | ETA:  2m
+#> ⠏ Fetching MPs' names 37/183 | ETA:  2m
+#> ⠋ Fetching MPs' names 42/183 | ETA:  2m
+#> ⠙ Fetching MPs' names 46/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 51/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 56/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 60/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 65/183 | ETA:  1m
+#> ⠦ Fetching MPs' names 70/183 | ETA:  1m
+#> ⠧ Fetching MPs' names 74/183 | ETA:  1m
+#> ⠇ Fetching MPs' names 79/183 | ETA:  1m
+#> ⠏ Fetching MPs' names 84/183 | ETA:  1m
+#> ⠋ Fetching MPs' names 89/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 93/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 98/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 102/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 107/183 | ETA: 49s
+#> ⠴ Fetching MPs' names 112/183 | ETA: 46s
+#> ⠦ Fetching MPs' names 117/183 | ETA: 42s
+#> ⠧ Fetching MPs' names 122/183 | ETA: 39s
+#> ⠇ Fetching MPs' names 127/183 | ETA: 36s
+#> ⠏ Fetching MPs' names 131/183 | ETA: 33s
+#> ⠋ Fetching MPs' names 136/183 | ETA: 30s
+#> ⠙ Fetching MPs' names 141/183 | ETA: 27s
+#> ⠹ Fetching MPs' names 146/183 | ETA: 24s
+#> ⠸ Fetching MPs' names 151/183 | ETA: 20s
+#> ⠼ Fetching MPs' names 156/183 | ETA: 17s
+#> ⠴ Fetching MPs' names 160/183 | ETA: 15s
+#> ⠦ Fetching MPs' names 165/183 | ETA: 11s
+#> ⠧ Fetching MPs' names 170/183 | ETA:  8s
+#> ⠇ Fetching MPs' names 175/183 | ETA:  5s
+#> ⠏ Fetching MPs' names 180/183 | ETA:  2s
 #> Fetched 183 MPs' names.
 #> 
 nrow(df_current)
@@ -246,53 +228,37 @@ MPs (top 5 are shown below).
 ``` r
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
-#> ⠙ Fetching mandates 3/183 | ETA:  2m
-#> ⠹ Fetching mandates 6/183 | ETA:  2m
-#> ⠸ Fetching mandates 9/183 | ETA:  2m
-#> ⠼ Fetching mandates 13/183 | ETA:  2m
-#> ⠴ Fetching mandates 17/183 | ETA:  2m
-#> ⠦ Fetching mandates 21/183 | ETA:  2m
-#> ⠧ Fetching mandates 25/183 | ETA:  2m
-#> ⠇ Fetching mandates 29/183 | ETA:  2m
-#> ⠏ Fetching mandates 33/183 | ETA:  2m
-#> ⠋ Fetching mandates 37/183 | ETA:  2m
-#> ⠙ Fetching mandates 41/183 | ETA:  2m
-#> ⠹ Fetching mandates 45/183 | ETA:  2m
-#> ⠸ Fetching mandates 49/183 | ETA:  2m
-#> ⠼ Fetching mandates 53/183 | ETA:  2m
-#> ⠴ Fetching mandates 57/183 | ETA:  2m
-#> ⠦ Fetching mandates 61/183 | ETA:  2m
-#> ⠧ Fetching mandates 65/183 | ETA:  1m
-#> ⠇ Fetching mandates 69/183 | ETA:  1m
-#> ⠏ Fetching mandates 73/183 | ETA:  1m
-#> ⠋ Fetching mandates 77/183 | ETA:  1m
-#> ⠙ Fetching mandates 81/183 | ETA:  1m
-#> ⠹ Fetching mandates 85/183 | ETA:  1m
-#> ⠸ Fetching mandates 89/183 | ETA:  1m
-#> ⠼ Fetching mandates 92/183 | ETA:  1m
-#> ⠴ Fetching mandates 96/183 | ETA:  1m
-#> ⠦ Fetching mandates 100/183 | ETA:  1m
-#> ⠧ Fetching mandates 104/183 | ETA:  1m
-#> ⠇ Fetching mandates 108/183 | ETA:  1m
-#> ⠏ Fetching mandates 112/183 | ETA:  1m
-#> ⠋ Fetching mandates 116/183 | ETA:  1m
-#> ⠙ Fetching mandates 120/183 | ETA: 48s
-#> ⠹ Fetching mandates 124/183 | ETA: 45s
-#> ⠸ Fetching mandates 128/183 | ETA: 42s
-#> ⠼ Fetching mandates 131/183 | ETA: 39s
-#> ⠴ Fetching mandates 136/183 | ETA: 36s
-#> ⠦ Fetching mandates 139/183 | ETA: 33s
-#> ⠧ Fetching mandates 143/183 | ETA: 30s
-#> ⠇ Fetching mandates 147/183 | ETA: 27s
-#> ⠏ Fetching mandates 151/183 | ETA: 24s
-#> ⠋ Fetching mandates 155/183 | ETA: 21s
-#> ⠙ Fetching mandates 159/183 | ETA: 18s
-#> ⠹ Fetching mandates 163/183 | ETA: 15s
-#> ⠸ Fetching mandates 166/183 | ETA: 13s
-#> ⠼ Fetching mandates 170/183 | ETA: 10s
-#> ⠴ Fetching mandates 175/183 | ETA:  6s
-#> ⠦ Fetching mandates 179/183 | ETA:  3s
-#> ⠧ Fetching mandates 182/183 | ETA:  1s
+#> ⠙ Fetching mandates 3/183 | ETA:  1m
+#> ⠹ Fetching mandates 8/183 | ETA:  1m
+#> ⠸ Fetching mandates 14/183 | ETA:  1m
+#> ⠼ Fetching mandates 19/183 | ETA:  1m
+#> ⠴ Fetching mandates 26/183 | ETA:  1m
+#> ⠦ Fetching mandates 31/183 | ETA:  1m
+#> ⠧ Fetching mandates 37/183 | ETA:  1m
+#> ⠇ Fetching mandates 43/183 | ETA:  1m
+#> ⠏ Fetching mandates 49/183 | ETA:  1m
+#> ⠋ Fetching mandates 55/183 | ETA:  1m
+#> ⠙ Fetching mandates 61/183 | ETA:  1m
+#> ⠹ Fetching mandates 66/183 | ETA:  1m
+#> ⠸ Fetching mandates 72/183 | ETA:  1m
+#> ⠼ Fetching mandates 78/183 | ETA:  1m
+#> ⠴ Fetching mandates 84/183 | ETA:  1m
+#> ⠦ Fetching mandates 90/183 | ETA: 48s
+#> ⠧ Fetching mandates 95/183 | ETA: 45s
+#> ⠇ Fetching mandates 101/183 | ETA: 42s
+#> ⠏ Fetching mandates 107/183 | ETA: 39s
+#> ⠋ Fetching mandates 112/183 | ETA: 36s
+#> ⠙ Fetching mandates 118/183 | ETA: 33s
+#> ⠹ Fetching mandates 124/183 | ETA: 30s
+#> ⠸ Fetching mandates 130/183 | ETA: 27s
+#> ⠼ Fetching mandates 136/183 | ETA: 24s
+#> ⠴ Fetching mandates 142/183 | ETA: 21s
+#> ⠦ Fetching mandates 148/183 | ETA: 18s
+#> ⠧ Fetching mandates 154/183 | ETA: 15s
+#> ⠇ Fetching mandates 160/183 | ETA: 12s
+#> ⠏ Fetching mandates 166/183 | ETA:  9s
+#> ⠋ Fetching mandates 171/183 | ETA:  6s
+#> ⠙ Fetching mandates 178/183 | ETA:  3s
 #> Fetched mandates for 183 persons.
 #> 
 
@@ -567,17 +533,17 @@ glimpse(df_govBills %>% head())
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2024-07-05, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "2704", "2611", "2605", "2597", "2609", "2612"
-#> $ item_number_type <chr> "2704 d.B.", "2611 d.B.", "2605 d.B.", "2597 d.B.", "2609 d.B.", "2612 d.B."
+#> $ item_number      <chr> "2704", "2611", "2596", "2603", "2608", "2606"
+#> $ item_number_type <chr> "2704 d.B.", "2611 d.B.", "2596 d.B.", "2603 d.B.", "2608 d.B.", "2606 d.B."
 #> $ stage            <chr> "2", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/I/2704", "/gegenstand/XXVII/I/2611", "/gegenstand/XXVII/I/2605", "/gegenstand/XXVII/I/2597", "/gegenstand/XXVII/I/2609", "/gegenstand/XXVII/I/2612"
+#> $ item_url         <chr> "/gegenstand/XXVII/I/2704", "/gegenstand/XXVII/I/2611", "/gegenstand/XXVII/I/2596", "/gegenstand/XXVII/I/2603", "/gegenstand/XXVII/I/2608", "/gegenstand/XXVII/I/2606"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Gewerbeordnung, Änderung", "Theaterarbeitsgesetz, Änderung", "Telearbeitsgesetz – TelearbG", "Zivildienstgesetz, Änderung", "Druckgerätegesetz, Änderung; Emissionsgrenzwerte für gasförmige Schadstoffe und luftverunreinigende Partikel und die Typgenehmigung für Verbrennungsmotoren für nicht für den Straßenverkehr bestimmte mobile Maschinen und Geräte festgelegt werden (Mot-G)"
-#> $ topics           <list> "Budget und Finanzen", "Wirtschaft", NA, <"Arbeit", "Budget und Finanzen", "Inneres und Recht", "Soziales">, "Landesverteidigung", <"Klima", "Umwelt und Energie", "Wirtschaft">
-#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Handel", "Gewerbe und Industrie">, <"Arbeitsrecht I. österreichisches", "Theater">, <"Arbeitsrecht I. österreichisches", "Arbeitsinspektion", "Öffentlicher Dienst", "Rechtsanwälte und Notare", "Sozialversicherung I. Allgemeine Sozialversicherung", "Steuern und Gebühren">, "Zivildienst", <"Handel", "Gewerbe und Industrie", "Umweltschutz">
-#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Handel\",\"Industrie\",\"Unternehmen und Wettbewerb\"]", "[\"Arbeitsrecht\",\"Darstellende Künste\"]", "[\"Arbeitsrecht\",\"Gewerbeaufsicht\",\"Notar\",\"öffentliche Verwaltung\",\"öffentlicher Dienst\",\"Rechtsanwalt\",\"soziale Sicherheit\",\"Steuerwesen\"]", "[\"Zivildienst\"]", "[\"Handel\",\"Industrie\",\"Umwelt\",\"Unternehmen und Wettbewerb\"]"
-#> $ persons          <list> "55727", "18140", "18140", "18140", "2136", "18140"
+#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Gewerbeordnung, Änderung", "DORA-Vollzugsgesetz (DORA-VG); Alternative Investmentfonds Manager-Gesetz, Bankwesengesetz u.a., Änderung", "Eisenbahngesetz, Änderung", "Erneuerbaren-Ausbau-Gesetz, Änderung", "Grundbuchs-Novelle 2024 – GB-Nov 2024"
+#> $ topics           <list> "Budget und Finanzen", "Wirtschaft", NA, "Verkehr und Infrastruktur", <"Inneres und Recht", "Klima", "Umwelt und Energie">, "Inneres und Recht"
+#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Handel", "Gewerbe und Industrie">, <"Kreditwesen", "Information und Informationsverarbeitung", "Vertragsversicherungen">, "Verkehr II. Schienenverkehr", <"Bundesverfassung", "Elektrizität", "Umweltschutz">, "Zivilrecht"
+#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Handel\",\"Industrie\",\"Unternehmen und Wettbewerb\"]", "[\"Geld- und Kreditwesen\",\"Informatik\",\"Information und Informationsverarbeitung\",\"Versicherungswesen\"]", "[\"Schienentransport\"]", "[\"Elektrizitätsindustrie\",\"Umwelt\",\"Verfassung\"]", "[\"Bürgerliches Recht\"]"
+#> $ persons          <list> "55727", "18140", "55727", "5653", "5653", "2345"
 #> $ parl_group       <list> "", "", "", "", "", ""
 
 #count number of bills by legis period
