@@ -1,6 +1,6 @@
 # Changelog
 
-## ParlAT (development version)
+## ParlAT 0.0.4
 
 ### Bug fixes
 

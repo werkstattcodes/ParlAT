@@ -13,6 +13,7 @@ how to propose changes to this package.
 ## Development Workflow
 
 ``` r
+
 # Load the package for interactive development
 devtools::load_all()
 

@@ -24,6 +24,7 @@ Austrian Parliament.
 You can install ParlAT from [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("werkstattcodes/ParlAT")
 ```
@@ -31,6 +32,7 @@ pak::pak("werkstattcodes/ParlAT")
 To install the latest development version from the dev branch use
 
 ``` r
+
 pak::pak("werkstattcodes/ParlAT@dev")
 ```
 
@@ -58,32 +60,32 @@ ParlAT’s pertaining function to access it. Please note that this is only
 subset of the available parameters. For details see the function
 documentation in the reference section.
 
-| Dataset                                                                                                                             | ParlAT Function                                                                                       |
-|-------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| Anträge (Motions)                                                                                                                   | `get_items(item="ANTR")`                                                                              |
-| Ausschussberichte (Committee reports)                                                                                               | `get_items(item="AUB")`                                                                               |
-| Beschlüsse (Decisions)                                                                                                              | `get_items(item="BNR")`                                                                               |
-| Gesetzesanträge des Bundesrates (Legislative Proposals of the Federal Council)                                                      | `get_items(item="GABR")`                                                                              |
-| Regierungsvorlagen (Government Bills)                                                                                               | `get_items(item="RV")`                                                                                |
-| Aktuelle Beiligungen (Current calls for public participation)                                                                       | `get_participation(active="J")`                                                                       |
-| Bürgerinitiativen (Citizen Initiatives)                                                                                             | `get_items(item="BI")`                                                                                |
-| Petitionen (Petitions)                                                                                                              | `get_items(item="PET")`                                                                               |
-| Stenographisches Protokolle (Meeting transcripts)                                                                                   | [`get_transcripts()`](https://werkstattcodes.github.io/ParlAT/reference/get_transcripts.md)           |
-| Plenarsitzungen (Plenary meetings)                                                                                                  | [`get_plenary_meetings()`](https://werkstattcodes.github.io/ParlAT/reference/get_plenary_meetings.md) |
-| Parlamentarier seit 1918 (MPs since 1918)                                                                                           | [`get_mps()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps.md)                           |
-| Aktuelle Abg. z NR (Current members of National Council)                                                                            | `get_mps_current(institution="Nationalrat")`                                                          |
-| Aktuelle Abg. z BR (Current members of National Council)                                                                            | `get_mps_current(institution="Bundesrat")`                                                            |
-| Parlamentskorrespondenz (Corrspondance)                                                                                             | not yet implemented                                                                                   |
-| Termine (Events)                                                                                                                    | [`get_events()`](https://werkstattcodes.github.io/ParlAT/reference/get_events.md)                     |
-| Ausschüsse (Committees)                                                                                                             | [`get_committees()`](https://werkstattcodes.github.io/ParlAT/reference/get_committees.md)             |
-| Ausschussmitgliedschaften (Committee membership)                                                                                    | `get_mps_details(..., detail_type="committees")`                                                      |
-| Schriftliche Anfragen NR (Written questions National Council)                                                                       | `get_items(item="J_JPR_M", institution="Nationalrat")`                                                |
-| Schriftliche Anfragen BR (Written questions Federal Council)                                                                        | `get_items(item="J_JPR_M", institution="Bundesrat")`                                                  |
-| Stellungnahmen im EU-Hauptausschusses (Statements of the EU Main Committee)                                                         | `get_items(item="EU", type_eu_submission="S", institution="NR")`                                      |
-| Mitteilungen des EU-Unterausschusses (Communications of the EU Subcommittee)                                                        | `get_items(item="EU", type_eu_submission="MTEU", institution="NR")`                                   |
-| Stellungnahmen des Ständigen Unterausschusses des Hauptausschusses (Statements of the Permanent Subcommittee of the Main Committee) | not yet implemented                                                                                   |
-| Begründete Stellungnahmen des EU-Ausschusses (Reasoned Opinions of the EU Committee)                                                | `get_items(item="EU", type_eu_submission="SBPL-BR", institution="BR")`                                |
-| Mitteilungen des EU-Ausschusses BR (Communications of the EU Committee - Federal Council)                                           | `get_items(item="EU", type_eu_submission="MT-BR", institution="BR")`                                  |
-| Stellungnahmen des EU-Ausschusses BR (Statements of the EU Committee Federal Council)                                               | `get_items(item="EU", type_eu_submission="S-BR", institution="BR")`                                   |
+| Dataset | ParlAT Function |
+|----|----|
+| Anträge (Motions) | `get_items(item="ANTR")` |
+| Ausschussberichte (Committee reports) | `get_items(item="AUB")` |
+| Beschlüsse (Decisions) | `get_items(item="BNR")` |
+| Gesetzesanträge des Bundesrates (Legislative Proposals of the Federal Council) | `get_items(item="GABR")` |
+| Regierungsvorlagen (Government Bills) | `get_items(item="RV")` |
+| Aktuelle Beiligungen (Current calls for public participation) | `get_participation(active="J")` |
+| Bürgerinitiativen (Citizen Initiatives) | `get_items(item="BI")` |
+| Petitionen (Petitions) | `get_items(item="PET")` |
+| Stenographisches Protokolle (Meeting transcripts) | [`get_transcripts()`](https://werkstattcodes.github.io/ParlAT/reference/get_transcripts.md) |
+| Plenarsitzungen (Plenary meetings) | [`get_plenary_meetings()`](https://werkstattcodes.github.io/ParlAT/reference/get_plenary_meetings.md) |
+| Parlamentarier seit 1918 (MPs since 1918) | [`get_mps()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps.md) |
+| Aktuelle Abg. z NR (Current members of National Council) | `get_mps_current(institution="Nationalrat")` |
+| Aktuelle Abg. z BR (Current members of National Council) | `get_mps_current(institution="Bundesrat")` |
+| Parlamentskorrespondenz (Corrspondance) | not yet implemented |
+| Termine (Events) | [`get_events()`](https://werkstattcodes.github.io/ParlAT/reference/get_events.md) |
+| Ausschüsse (Committees) | [`get_committees()`](https://werkstattcodes.github.io/ParlAT/reference/get_committees.md) |
+| Ausschussmitgliedschaften (Committee membership) | `get_mps_details(..., detail_type="committees")` |
+| Schriftliche Anfragen NR (Written questions National Council) | `get_items(item="J_JPR_M", institution="Nationalrat")` |
+| Schriftliche Anfragen BR (Written questions Federal Council) | `get_items(item="J_JPR_M", institution="Bundesrat")` |
+| Stellungnahmen im EU-Hauptausschusses (Statements of the EU Main Committee) | `get_items(item="EU", type_eu_submission="S", institution="NR")` |
+| Mitteilungen des EU-Unterausschusses (Communications of the EU Subcommittee) | `get_items(item="EU", type_eu_submission="MTEU", institution="NR")` |
+| Stellungnahmen des Ständigen Unterausschusses des Hauptausschusses (Statements of the Permanent Subcommittee of the Main Committee) | not yet implemented |
+| Begründete Stellungnahmen des EU-Ausschusses (Reasoned Opinions of the EU Committee) | `get_items(item="EU", type_eu_submission="SBPL-BR", institution="BR")` |
+| Mitteilungen des EU-Ausschusses BR (Communications of the EU Committee - Federal Council) | `get_items(item="EU", type_eu_submission="MT-BR", institution="BR")` |
+| Stellungnahmen des EU-Ausschusses BR (Statements of the EU Committee Federal Council) | `get_items(item="EU", type_eu_submission="S-BR", institution="BR")` |
 
 ## References

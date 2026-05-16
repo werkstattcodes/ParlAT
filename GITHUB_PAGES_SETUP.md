@@ -59,6 +59,7 @@ If the workflow fails with permission errors:
 To build the site locally for testing:
 
 ``` r
+
 # Build the site
 pkgdown::build_site()
 

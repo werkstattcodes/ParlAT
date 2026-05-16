@@ -10,67 +10,67 @@ section](https://werkstattcodes.github.io/ParlAT/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (24 April 2026). This is done by
-the function
+(Nationalrat) at the time of writing (16 May 2026). This is done by the
+function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps_current.md).
 
 ``` r
+
 df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> [1] 183
 #> {"M":["M"],"W":["W"]} 
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
-#> ⠙ Fetching MPs' names 2/183 | ETA:  3m
-#> ⠹ Fetching MPs' names 4/183 | ETA:  3m
-#> ⠸ Fetching MPs' names 7/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 11/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 14/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 18/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 22/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 25/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 29/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 32/183 | ETA:  2m
-#> ⠙ Fetching MPs' names 36/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 39/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 43/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 46/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 50/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 53/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 57/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 61/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 64/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 67/183 | ETA:  2m
-#> ⠙ Fetching MPs' names 71/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 74/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 78/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 81/183 | ETA:  1m
-#> ⠴ Fetching MPs' names 85/183 | ETA:  1m
-#> ⠦ Fetching MPs' names 89/183 | ETA:  1m
-#> ⠧ Fetching MPs' names 92/183 | ETA:  1m
-#> ⠇ Fetching MPs' names 96/183 | ETA:  1m
-#> ⠏ Fetching MPs' names 99/183 | ETA:  1m
-#> ⠋ Fetching MPs' names 103/183 | ETA:  1m
-#> ⠙ Fetching MPs' names 106/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 110/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 113/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 117/183 | ETA:  1m
-#> ⠴ Fetching MPs' names 121/183 | ETA:  1m
-#> ⠦ Fetching MPs' names 124/183 | ETA: 50s
-#> ⠧ Fetching MPs' names 128/183 | ETA: 47s
-#> ⠇ Fetching MPs' names 131/183 | ETA: 44s
-#> ⠏ Fetching MPs' names 135/183 | ETA: 41s
-#> ⠋ Fetching MPs' names 138/183 | ETA: 38s
-#> ⠙ Fetching MPs' names 142/183 | ETA: 35s
-#> ⠹ Fetching MPs' names 146/183 | ETA: 31s
-#> ⠸ Fetching MPs' names 149/183 | ETA: 29s
-#> ⠼ Fetching MPs' names 153/183 | ETA: 25s
-#> ⠴ Fetching MPs' names 156/183 | ETA: 23s
-#> ⠦ Fetching MPs' names 160/183 | ETA: 19s
-#> ⠧ Fetching MPs' names 163/183 | ETA: 17s
-#> ⠇ Fetching MPs' names 167/183 | ETA: 14s
-#> ⠏ Fetching MPs' names 170/183 | ETA: 11s
-#> ⠋ Fetching MPs' names 174/183 | ETA:  8s
-#> ⠙ Fetching MPs' names 177/183 | ETA:  5s
-#> ⠹ Fetching MPs' names 181/183 | ETA:  2s
+#> ⠙ Fetching MPs' names 2/183 | ETA:  2m
+#> ⠹ Fetching MPs' names 5/183 | ETA:  2m
+#> ⠸ Fetching MPs' names 10/183 | ETA:  2m
+#> ⠼ Fetching MPs' names 15/183 | ETA:  2m
+#> ⠴ Fetching MPs' names 20/183 | ETA:  2m
+#> ⠦ Fetching MPs' names 26/183 | ETA:  2m
+#> ⠧ Fetching MPs' names 30/183 | ETA:  2m
+#> ⠇ Fetching MPs' names 35/183 | ETA:  1m
+#> ⠏ Fetching MPs' names 40/183 | ETA:  1m
+#> ⠋ Fetching MPs' names 45/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 50/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 54/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 60/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 65/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 70/183 | ETA:  1m
+#> ⠦ Fetching MPs' names 75/183 | ETA:  1m
+#> ⠧ Fetching MPs' names 78/183 | ETA:  1m
+#> ⠇ Fetching MPs' names 81/183 | ETA:  1m
+#> ⠏ Fetching MPs' names 84/183 | ETA:  1m
+#> ⠋ Fetching MPs' names 87/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 90/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 93/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 96/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 99/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 102/183 | ETA:  1m
+#> ⠦ Fetching MPs' names 105/183 | ETA:  1m
+#> ⠧ Fetching MPs' names 108/183 | ETA:  1m
+#> ⠇ Fetching MPs' names 111/183 | ETA:  1m
+#> ⠏ Fetching MPs' names 114/183 | ETA:  1m
+#> ⠋ Fetching MPs' names 117/183 | ETA: 49s
+#> ⠙ Fetching MPs' names 120/183 | ETA: 47s
+#> ⠹ Fetching MPs' names 123/183 | ETA: 45s
+#> ⠸ Fetching MPs' names 126/183 | ETA: 43s
+#> ⠼ Fetching MPs' names 129/183 | ETA: 41s
+#> ⠴ Fetching MPs' names 132/183 | ETA: 39s
+#> ⠦ Fetching MPs' names 135/183 | ETA: 37s
+#> ⠧ Fetching MPs' names 138/183 | ETA: 35s
+#> ⠇ Fetching MPs' names 141/183 | ETA: 33s
+#> ⠏ Fetching MPs' names 144/183 | ETA: 31s
+#> ⠋ Fetching MPs' names 147/183 | ETA: 29s
+#> ⠙ Fetching MPs' names 150/183 | ETA: 26s
+#> ⠹ Fetching MPs' names 153/183 | ETA: 24s
+#> ⠸ Fetching MPs' names 156/183 | ETA: 22s
+#> ⠼ Fetching MPs' names 159/183 | ETA: 19s
+#> ⠴ Fetching MPs' names 162/183 | ETA: 17s
+#> ⠦ Fetching MPs' names 165/183 | ETA: 15s
+#> ⠧ Fetching MPs' names 168/183 | ETA: 12s
+#> ⠇ Fetching MPs' names 171/183 | ETA: 10s
+#> ⠏ Fetching MPs' names 174/183 | ETA:  7s
+#> ⠋ Fetching MPs' names 177/183 | ETA:  5s
+#> ⠙ Fetching MPs' names 180/183 | ETA:  3s
 #> Fetched 183 MPs' names.
 #> 
 nrow(df_current)
@@ -101,6 +101,7 @@ of the Federal Council (Bundesrat). This limitation includes also
 searches for MPs across all chambers.
 
 ``` r
+
 #Search for all MPs in the National Council as of 1 January 2025
 mps_01012025 <- get_mps(date="01.01.2025", institution="NR")
 glimpse(mps_01012025)
@@ -124,6 +125,7 @@ mandate), unnesting `mp_details` may result in more than one row per MP.
 The example below reveals the changing
 
 ``` r
+
 #get all MPs of the 22th legislative peiod
 mps_legis22 <- get_mps(legis_period=22, institution="NR")
 #> {"ATTR_JSON.mandate_detail.gremium_name":["Nationalrat"],"ATTR_JSON.mandate_detail.gp_text_full_short":["20.12.2002 - 29.10.2006: XXII. GP"]} 
@@ -148,6 +150,7 @@ mps_legis22 %>%
 *Example Federal Council*
 
 ``` r
+
 #Search for all MPs who were members of the Federal Council during the 25th legislative period:
 #An error is returned since legis_period is no applicable filter for institution="BR".
 df_mps_25_br <- get_mps(legis_period=25, institution="BR")
@@ -173,6 +176,7 @@ The function takes names as well as unique identifiers (`pad_intern`) as
 inputs, with the latter being the more specific option.
 
 ``` r
+
 #Example with MP names:
 result <- get_mandates(name = c(
   "Karl Nehammer",
@@ -234,50 +238,40 @@ Council have been serving as of now, and identify the longest serving
 MPs (top 5 are shown below).
 
 ``` r
+
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
-#> ⠙ Fetching mandates 3/183 | ETA:  1m
-#> ⠹ Fetching mandates 7/183 | ETA:  2m
-#> ⠸ Fetching mandates 11/183 | ETA:  2m
-#> ⠼ Fetching mandates 16/183 | ETA:  2m
-#> ⠴ Fetching mandates 20/183 | ETA:  2m
-#> ⠦ Fetching mandates 24/183 | ETA:  2m
-#> ⠧ Fetching mandates 28/183 | ETA:  2m
-#> ⠇ Fetching mandates 33/183 | ETA:  2m
-#> ⠏ Fetching mandates 37/183 | ETA:  2m
-#> ⠋ Fetching mandates 41/183 | ETA:  2m
-#> ⠙ Fetching mandates 45/183 | ETA:  2m
-#> ⠹ Fetching mandates 49/183 | ETA:  2m
-#> ⠸ Fetching mandates 54/183 | ETA:  1m
-#> ⠼ Fetching mandates 58/183 | ETA:  1m
-#> ⠴ Fetching mandates 62/183 | ETA:  1m
-#> ⠦ Fetching mandates 66/183 | ETA:  1m
-#> ⠧ Fetching mandates 71/183 | ETA:  1m
-#> ⠇ Fetching mandates 75/183 | ETA:  1m
-#> ⠏ Fetching mandates 79/183 | ETA:  1m
-#> ⠋ Fetching mandates 83/183 | ETA:  1m
-#> ⠙ Fetching mandates 88/183 | ETA:  1m
-#> ⠹ Fetching mandates 92/183 | ETA:  1m
-#> ⠸ Fetching mandates 96/183 | ETA:  1m
-#> ⠼ Fetching mandates 100/183 | ETA:  1m
-#> ⠴ Fetching mandates 104/183 | ETA:  1m
-#> ⠦ Fetching mandates 108/183 | ETA:  1m
-#> ⠧ Fetching mandates 112/183 | ETA:  1m
-#> ⠇ Fetching mandates 117/183 | ETA: 47s
-#> ⠏ Fetching mandates 121/183 | ETA: 44s
-#> ⠋ Fetching mandates 125/183 | ETA: 41s
-#> ⠙ Fetching mandates 129/183 | ETA: 38s
-#> ⠹ Fetching mandates 134/183 | ETA: 35s
-#> ⠸ Fetching mandates 138/183 | ETA: 32s
-#> ⠼ Fetching mandates 142/183 | ETA: 29s
-#> ⠴ Fetching mandates 146/183 | ETA: 26s
-#> ⠦ Fetching mandates 151/183 | ETA: 23s
-#> ⠧ Fetching mandates 155/183 | ETA: 20s
-#> ⠇ Fetching mandates 159/183 | ETA: 17s
-#> ⠏ Fetching mandates 163/183 | ETA: 14s
-#> ⠋ Fetching mandates 168/183 | ETA: 11s
-#> ⠙ Fetching mandates 172/183 | ETA:  8s
-#> ⠹ Fetching mandates 176/183 | ETA:  5s
-#> ⠸ Fetching mandates 180/183 | ETA:  2s
+#> ⠙ Fetching mandates 4/183 | ETA:  1m
+#> ⠹ Fetching mandates 5/183 | ETA:  1m
+#> ⠸ Fetching mandates 11/183 | ETA:  1m
+#> ⠼ Fetching mandates 16/183 | ETA:  1m
+#> ⠴ Fetching mandates 22/183 | ETA:  1m
+#> ⠦ Fetching mandates 27/183 | ETA:  1m
+#> ⠧ Fetching mandates 33/183 | ETA:  1m
+#> ⠇ Fetching mandates 40/183 | ETA:  1m
+#> ⠏ Fetching mandates 45/183 | ETA:  1m
+#> ⠋ Fetching mandates 51/183 | ETA:  1m
+#> ⠙ Fetching mandates 57/183 | ETA:  1m
+#> ⠹ Fetching mandates 63/183 | ETA:  1m
+#> ⠸ Fetching mandates 68/183 | ETA:  1m
+#> ⠼ Fetching mandates 74/183 | ETA:  1m
+#> ⠴ Fetching mandates 81/183 | ETA:  1m
+#> ⠦ Fetching mandates 87/183 | ETA: 49s
+#> ⠧ Fetching mandates 92/183 | ETA: 46s
+#> ⠇ Fetching mandates 97/183 | ETA: 44s
+#> ⠏ Fetching mandates 103/183 | ETA: 41s
+#> ⠋ Fetching mandates 109/183 | ETA: 38s
+#> ⠙ Fetching mandates 114/183 | ETA: 36s
+#> ⠹ Fetching mandates 120/183 | ETA: 33s
+#> ⠸ Fetching mandates 126/183 | ETA: 29s
+#> ⠼ Fetching mandates 132/183 | ETA: 26s
+#> ⠴ Fetching mandates 138/183 | ETA: 23s
+#> ⠦ Fetching mandates 144/183 | ETA: 20s
+#> ⠧ Fetching mandates 149/183 | ETA: 18s
+#> ⠇ Fetching mandates 155/183 | ETA: 14s
+#> ⠏ Fetching mandates 161/183 | ETA: 11s
+#> ⠋ Fetching mandates 168/183 | ETA:  8s
+#> ⠙ Fetching mandates 174/183 | ETA:  5s
+#> ⠹ Fetching mandates 180/183 | ETA:  2s
 #> Fetched mandates for 183 persons.
 #> 
 
@@ -303,11 +297,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10367
-#> 2 12741      Peter Haubner                     8908
-#> 3 2834       Mag. Dr. Martin Graf              8607
-#> 4 14835      Petra Bayr, MA MLS                8526
-#> 5 14795      August Wöginger                   8526
+#> 1 145        Doris Bures                      10389
+#> 2 12741      Peter Haubner                     8930
+#> 3 2834       Mag. Dr. Martin Graf              8629
+#> 4 14835      Petra Bayr, MA MLS                8548
+#> 5 14795      August Wöginger                   8548
 ```
 
 ## Get MPs’ details
@@ -324,6 +318,7 @@ auxilary function ‘get_pad_intern()’ which returns the MP’s unique
 identifier.
 
 ``` r
+
 #get pad_intern of Karlheinz Kopf
 get_pad_intern("Karlheinz Kopf")
 #> # A tibble: 1 × 2
@@ -362,6 +357,7 @@ column containing all mandates the indiviudal held *in the relevant
 house* at the time of the plenary statement.
 
 ``` r
+
 #Example Sebastian Kurz: statements held by Sebastian Kurz in the plenary of the National Council.
 #Note different positions.
 
@@ -416,6 +412,7 @@ item abbreviations see the function reference), and subsequently
 visualise the count by party and legislative period.
 
 ``` r
+
 #get items
 df_items <- get_items(item = "J_JPR_M", legis_period = seq(20,27), echo=TRUE)
 #> ℹ Fetching items from API...
@@ -452,6 +449,7 @@ legislative period. With a few additional steps, we can easily visualise
 the results.
 
 ``` r
+
 # Create color mapping for Austrian political parties
 party_colors <- c(
   "SPÖ" = "#CE000C",
@@ -533,6 +531,7 @@ differentiate between the bills’ various topical foci and obtain the
 pertaining subtotals.
 
 ``` r
+
 df_govBills <- get_items(item = "RV", legis_period = seq(20,27)) 
 #> ℹ Fetching items from API...
 #> ✔ Fetched 2593 items
@@ -547,17 +546,17 @@ glimpse(df_govBills %>% head())
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2024-07-05, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "2704", "2606", "2598", "2602", "2607", "2596"
-#> $ item_number_type <chr> "2704 d.B.", "2606 d.B.", "2598 d.B.", "2602 d.B.", "2607 d.B.", "2596 d.B."
+#> $ item_number      <chr> "2704", "2611", "2596", "2603", "2608", "2606"
+#> $ item_number_type <chr> "2704 d.B.", "2611 d.B.", "2596 d.B.", "2603 d.B.", "2608 d.B.", "2606 d.B."
 #> $ stage            <chr> "2", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/I/2704", "/gegenstand/XXVII/I/2606", "/gegenstand/XXVII/I/2598", "/gegenstand/XXVII/I/2602", "/gegenstand/XXVII/I/2607", "/gegenstand/XXVII/I/2596"
+#> $ item_url         <chr> "/gegenstand/XXVII/I/2704", "/gegenstand/XXVII/I/2611", "/gegenstand/XXVII/I/2596", "/gegenstand/XXVII/I/2603", "/gegenstand/XXVII/I/2608", "/gegenstand/XXVII/I/2606"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Grundbuchs-Novelle 2024 – GB-Nov 2024", "Betrugsbekämpfungsgesetz 2024 Teil I – BBKG 2024 Teil I", "Qualifizierte-Einrichtungen-Gesetz; Verbandsklagen-Richtlinie-Umsetzungs-Novelle – VRUN", "Sozialversicherungs-Änderungsgesetz 2024 – SVÄG 2024", "DORA-Vollzugsgesetz (DORA-VG); Alternative Investmentfonds Manager-Gesetz, Bankwesengesetz u.a., Änderung"
-#> $ topics           <list> "Budget und Finanzen", "Inneres und Recht", <"Budget und Finanzen", "Inneres und Recht", "Soziales">, <"Budget und Finanzen", "Inneres und Recht", "Wirtschaft">, "Soziales", <"Budget und Finanzen", "Information und Medien">
-#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", "Zivilrecht", <"Strafrecht", "Kreditwesen", "Sozialversicherung I. Allgemeine Sozialversicherung", "Verwaltungsorganisation">, <"Zivilrecht", "Handel", "Gewerbe und Industrie", "Rechtsanwälte und Notare", "Rechtspflege", "Steuern und Gebühren">, "Sozialversicherung I. Allgemeine Sozialversicherung", <"Kreditwesen", "Information und Informationsverarbeitung", "Vertragsversicherungen">
-#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Bürgerliches Recht\"]", "[\"Finanzwesen\",\"soziale Sicherheit\",\"Strafrecht\",\"Verwaltungsorganisation\"]", "[\"Bürgerliches Recht\",\"Gerichtswesen\",\"Handel\",\"Industrie\",\"Notar\",\"Rechtsanwalt\",\"Steuerwesen\",\"Unternehmen und Wettbewerb\"]", "[\"soziale Sicherheit\"]", "[\"Finanzwesen\",\"Informatik\",\"Information und Informationsverarbeitung\",\"Versicherungswesen\"]"
-#> $ persons          <list> "55727", "2345", "55727", "2345", "21029", "55727"
+#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Gewerbeordnung, Änderung", "DORA-Vollzugsgesetz (DORA-VG); Alternative Investmentfonds Manager-Gesetz, Bankwesengesetz u.a., Änderung", "Eisenbahngesetz, Änderung", "Erneuerbaren-Ausbau-Gesetz, Änderung", "Grundbuchs-Novelle 2024 – GB-Nov 2024"
+#> $ topics           <list> "Budget und Finanzen", "Wirtschaft", NA, "Verkehr und Infrastruktur", <"Inneres und Recht", "Klima", "Umwelt und Energie">, "Inneres und Recht"
+#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Handel", "Gewerbe und Industrie">, <"Kreditwesen", "Information und Informationsverarbeitung", "Vertragsversicherungen">, "Verkehr II. Schienenverkehr", <"Bundesverfassung", "Elektrizität", "Umweltschutz">, "Zivilrecht"
+#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Handel\",\"Industrie\",\"Unternehmen und Wettbewerb\"]", "[\"Geld- und Kreditwesen\",\"Informatik\",\"Information und Informationsverarbeitung\",\"Versicherungswesen\"]", "[\"Schienentransport\"]", "[\"Elektrizitätsindustrie\",\"Umwelt\",\"Verfassung\"]", "[\"Bürgerliches Recht\"]"
+#> $ persons          <list> "55727", "18140", "55727", "5653", "5653", "2345"
 #> $ parl_group       <list> "", "", "", "", "", ""
 
 #count number of bills by legis period
@@ -629,6 +628,7 @@ the 20th to the 27th legislative period and count them per legislative
 period.
 
 ``` r
+
 df_petition <- get_items(item = "VOLKBG", legis_period = seq(20, 27), institution = "NR", echo = TRUE)
 #> ℹ Fetching items from API...
 #> ✔ Fetched 65 items
@@ -653,6 +653,7 @@ function `get_plenary_meetings` returns this and releated meta data
 starting from the 20th legislative period.
 
 ``` r
+
 
 df_meetings_20_27 <- get_plenary_meetings(institution = "NR", legis_period = seq(20,27), meeting_and_activities = "meetings", echo=TRUE)
 #> Request body: {"GREMIUM":["NR"],"GP_CODE":["XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII"],"SIAKT":["SI"]}
@@ -700,6 +701,7 @@ Which committees of the National Council were active during the 27th
 legisative period:
 
 ``` r
+
 committesNR27 <- get_committees(legis_period=27, institution="NR")
 dplyr::glimpse(committesNR27)
 #> Rows: 43
@@ -716,6 +718,7 @@ over the different legislative period (API returns data from 20
 legisative period onward):
 
 ``` r
+
 result <- get_committees(legis_period="XXVIII", citation="USA", institution="NR")
 dplyr::glimpse(result)
 #> Rows: 1
@@ -749,6 +752,7 @@ attribute `details_type`. As of now, `members` is the only available
 option. Member information is automatically unnested into the result.
 
 ``` r
+
 committeeIbiza <- get_committees(legis_period=27, search_string="Ibiza", institution="NR", details_type="members")
 dplyr::glimpse(committeeIbiza)
 #> Rows: 40
@@ -776,6 +780,7 @@ to marriage, divorce, or other reasons). Below an example with MP Pia
 Pilippa Beck, ex Strache.
 
 ``` r
+
 #get first the pad_intern of the MP
 result <- get_pad_intern("Strache")
 dplyr::glimpse(result)
@@ -803,6 +808,7 @@ dplyr::glimpse(result)
 Providing a date, returns the applicable name at the specified date.
 
 ``` r
+
 result <- get_names(44127, date = "01/01/2024")
 dplyr::glimpse(result)
 #> Rows: 1
