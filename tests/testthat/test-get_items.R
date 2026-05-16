@@ -434,7 +434,7 @@ test_that("get_items returns no duplicates for Bildung across multiple legislati
     {
       get_items(
         topic = "Bildung",
-        legis_period = c(26, 27),
+        legis_period = c(26, 27, 28),
         echo = FALSE
       )
     },
@@ -985,9 +985,7 @@ test_that("get_items keeps key columns for compact-prone fixture scenarios", {
   )
 
   expect_s3_class(result, "data.frame")
-  expect_true(all(
-    c("item_url", "subject", "parl_group", "date", "stage") %in% names(result)
-  ))
+  expect_true(all(c("item_url", "subject", "parl_group", "date", "stage") %in% names(result)))
 })
 
 test_that("get_items accepts supported post-5th legislative periods", {
