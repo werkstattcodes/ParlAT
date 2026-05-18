@@ -39,11 +39,13 @@ Suggests:
     ggtext,
     httptest2,
     knitr,
+    quarto,
+    RColorBrewer,
     rmarkdown,
     scales,
     spelling,
     testthat (>= 3.0.0),
     tidytext
 Config/testthat/edition: 3
-VignetteBuilder: knitr
+VignetteBuilder: knitr, quarto
 Language: en-US

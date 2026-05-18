@@ -1,0 +1,335 @@
+---
+title: "Examples"
+format: html
+---
+
+# Who spoke about what, and how does it compare to others?
+
+This example compares the topics of parliamentary items where selected MPs personally contributed in plenary debates.
+
+```{r}
+#| label: setup
+#| include: false
+
+library(ParlAT)
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(stringr)
+library(forcats)
+library(ggplot2)
+library(scales)
+library(RColorBrewer)
+```
+
+```{r}
+#| label: helpers
+#| include: false
+
+get_pad_intern("Götze")
+
+collect_mp_spoken_items <- function(pad_intern, institution = "NR") {
+  
+  pad_intern <- "5654"
+  institution <- "NR"
+  
+  pad_intern <- as.character(pad_intern)
+
+  df_plenary <- get_mps_details(
+    pad_intern = pad_intern,
+    detail_type = "plenary",
+    institution = institution,
+    echo = FALSE
+  )
+
+  if (is.null(df_plenary) || nrow(df_plenary) == 0) {
+    return(list(
+      spoken_items = tibble(),
+      diagnostics = list(
+        pad_intern = pad_intern,
+        mp_name = NA_character_,
+        mp = pad_intern,
+        unmatched_meetings = character(),
+        failed_items = character(),
+        failed_periods = character()
+      )
+    ))
+  }
+
+  mp_name <- df_plenary |>
+    filter(!is.na(name), name != "") |>
+    count(name, sort = TRUE) |>
+    slice_head(n = 1) |>
+    pull(name)
+
+  if (length(mp_name) == 0) {
+    mp_name <- pad_intern
+  }
+
+  mp <- str_extract(mp_name, "\\S+$")
+
+  periods <- df_plenary |>
+    distinct(legis_period) |>
+    mutate(period = as.integer(as.roman(legis_period))) |>
+    filter(!is.na(period)) |>
+    pull(period)
+
+  meeting_results <- periods |>
+    map(\(period) {
+      safely(get_plenary_meetings)(
+        institution = institution,
+        legis_period = period,
+        meeting_and_activities = "activities",
+        echo = FALSE
+      )
+    })
+
+  failed_periods <- periods[
+    map_lgl(meeting_results, \(x) !is.null(x$error))
+  ]
+
+  df_meeting_activities <- meeting_results |>
+    map("result") |>
+    compact() |>
+    list_rbind()
+
+  if (is.null(df_meeting_activities) || nrow(df_meeting_activities) == 0) {
+    return(list(
+      spoken_items = tibble(),
+      diagnostics = list(
+        pad_intern = pad_intern,
+        mp_name = mp_name,
+        mp = mp,
+        unmatched_meetings = unique(df_plenary$meeting_url),
+        failed_items = character(),
+        failed_periods = as.character(failed_periods)
+      )
+    ))
+  }
+
+  joined <- df_plenary |>
+    distinct(meeting_url) |>
+    mutate(
+      url_meeting_norm = meeting_url |>
+        str_replace("/sitzung/", "/gegenstand/") |> #assumption is "equivalence" of urls
+        str_remove("\\?.*")
+    ) |>
+    left_join(
+      df_meeting_activities,
+      by = c("url_meeting_norm" = "url_meeting")
+    )
+
+  unmatched_meetings <- joined |>
+    filter(is.na(url_item)) |>
+    pull(meeting_url) |>
+    unique()
+
+  item_urls <- joined |>
+    filter(!is.na(url_item)) |>
+    distinct(url_item)
+
+  item_results <- item_urls$url_item |>
+    map(safely(get_item_details))
+
+  failed_items <- item_urls$url_item[
+    map_lgl(item_results, \(x) !is.null(x$error))
+  ]
+
+  df_item_details <- item_results |>
+    map("result") |>
+    compact() |>
+    list_rbind()
+
+  if (
+    is.null(df_item_details) ||
+    nrow(df_item_details) == 0 ||
+    !"speeches" %in% names(df_item_details)
+  ) {
+    return(list(
+      spoken_items = tibble(),
+      diagnostics = list(
+        pad_intern = pad_intern,
+        mp_name = mp_name,
+        mp = mp,
+        unmatched_meetings = unmatched_meetings,
+        failed_items = failed_items,
+        failed_periods = as.character(failed_periods)
+      )
+    ))
+  }
+
+  spoke_items <- df_item_details |>
+    filter(!map_lgl(speeches, is.null)) |>
+    unnest(speeches) |>
+    filter(str_detect(speaker, fixed(mp, ignore_case = TRUE))) |>
+    distinct(item_url)
+
+  spoken_items <- df_item_details |>
+    semi_join(spoke_items, by = "item_url") |>
+    distinct(item_url, .keep_all = TRUE) |>
+    mutate(
+      pad_intern = pad_intern,
+      mp_name = mp_name,
+      mp = mp,
+      .before = 1
+    )
+
+  list(
+    spoken_items = spoken_items,
+    diagnostics = list(
+      pad_intern = pad_intern,
+      mp_name = mp_name,
+      mp = mp,
+      unmatched_meetings = unmatched_meetings,
+      failed_items = failed_items,
+      failed_periods = as.character(failed_periods)
+    )
+  )
+}
+
+plot_mp_topic_comparison <- function(
+  pad_interns,
+  top_n = 4,
+  min_label_pct = 0.05,
+  cache_path = "vignettes/data/mp_topic_profiles.rds",
+  refresh = FALSE
+) {
+  pad_interns <- as.character(pad_interns)
+
+  if (!refresh && file.exists(cache_path)) {
+    cached <- readRDS(cache_path)
+
+    if (!setequal(cached$pad_interns, pad_interns)) {
+      stop(
+        "Cached topic profiles were created for different pad_intern values. ",
+        "Re-run with refresh = TRUE to update the cache.",
+        call. = FALSE
+      )
+    }
+  } else {
+    collected <- pad_interns |>
+      map(collect_mp_spoken_items)
+
+    cached <- list(
+      pad_interns = pad_interns,
+      spoken_items = collected |>
+        map("spoken_items") |>
+        list_rbind(),
+      diagnostics = collected |>
+        map("diagnostics")
+    )
+
+    dir.create(dirname(cache_path), recursive = TRUE, showWarnings = FALSE)
+    saveRDS(cached, cache_path)
+  }
+
+  spoken_items <- cached$spoken_items
+
+  if (is.null(spoken_items) || nrow(spoken_items) == 0) {
+    stop("No spoken item topics were available for the requested MPs.", call. = FALSE)
+  }
+
+  topic_counts <- spoken_items |>
+    filter(!map_lgl(topics, is.null)) |>
+    unnest(topics) |>
+    filter(!is.na(topics), topics != "") |>
+    count(mp, topics, name = "n")
+
+  top_topics <- topic_counts |>
+    group_by(mp) |>
+    slice_max(n, n = top_n, with_ties = FALSE) |>
+    ungroup() |>
+    distinct(mp, topics)
+
+  plot_data <- topic_counts |>
+    left_join(top_topics |> mutate(keep = TRUE), by = c("mp", "topics")) |>
+    mutate(topic_label = if_else(is.na(keep), "Other", topics)) |>
+    summarise(n = sum(n), .by = c(mp, topic_label)) |>
+    mutate(pct = n / sum(n), .by = mp)
+
+  topic_order <- plot_data |>
+    filter(topic_label != "Other") |>
+    summarise(total = sum(n), .by = topic_label) |>
+    arrange(desc(total)) |>
+    pull(topic_label)
+
+  mp_order <- cached$diagnostics |>
+    map_chr("mp")
+
+  plot_data <- plot_data |>
+    mutate(
+      topic_label = factor(topic_label, levels = c(topic_order, "Other")),
+      mp = factor(mp, levels = mp_order)
+    )
+
+  topic_colors <- setNames(
+    c(
+      colorRampPalette(RColorBrewer::brewer.pal(8, "Set2"))(length(topic_order)),
+      "#cccccc"
+    ),
+    c(topic_order, "Other")
+  )
+
+  plot <- ggplot(plot_data, aes(x = mp, y = pct, fill = topic_label)) +
+    geom_col(position = position_stack(reverse = TRUE), width = 0.6) +
+    geom_text(
+      aes(label = if_else(pct >= min_label_pct, percent(pct, accuracy = 1), "")),
+      position = position_stack(vjust = 0.5, reverse = TRUE),
+      size = 3,
+      colour = "white",
+      fontface = "bold"
+    ) +
+    scale_fill_manual(values = topic_colors, name = NULL) +
+    scale_y_continuous(labels = percent_format(accuracy = 1)) +
+    coord_flip() +
+    labs(
+      x = NULL,
+      y = NULL,
+      title = "Topical focus of plenary speeches",
+      subtitle = paste0(
+        "Top ",
+        top_n,
+        " topics per MP; remaining topics grouped as 'Other'"
+      )
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      plot.title.position = "plot",
+      legend.position = "bottom",
+      legend.key.size = grid::unit(0.45, "cm"),
+      panel.grid.major.y = element_blank()
+    ) +
+    guides(fill = guide_legend(nrow = 2))
+
+  list(
+    plot = plot,
+    plot_data = plot_data,
+    spoken_items = spoken_items,
+    diagnostics = cached$diagnostics
+  )
+}
+```
+
+The cache can be refreshed manually when the underlying parliamentary data should be updated.
+
+```{r}
+#| label: refresh-mp-topic-cache
+#| eval: false
+
+result <- plot_mp_topic_comparison(
+  pad_interns = c(14795, 2344, 83409),
+  refresh = TRUE
+)
+```
+
+The rendered article uses the cached data, so the pkgdown build does not need to query the API.
+
+```{r}
+#| label: mp-topic-comparison
+
+result <- plot_mp_topic_comparison(
+  pad_interns = c(14795, 2344, 83409)
+)
+
+result$plot
+```
