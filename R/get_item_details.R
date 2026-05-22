@@ -171,6 +171,39 @@
   )
 }
 
+.normalise_item_url <- function(item_url) {
+  prefix <- "https://www.parlament.gv.at/"
+
+  if (stringr::str_starts(item_url, prefix)) {
+    return(item_url)
+  }
+
+  item_url |>
+    stringr::str_replace("^/+", "") |>
+    (\(x) stringr::str_c(prefix, x))()
+}
+
+.get_item_details_code_path <- function(item_url, type = "stages") {
+  item_url <- .normalise_item_url(item_url)
+  page <- .parlat_fetch_html(item_url)
+  json_text <- .parlat_extract_props_json(page)
+  content <- jsonlite::fromJSON(json_text)$data$content
+
+  if (identical(type, "stages") && !is.null(content$phase$stages)) {
+    return("phase_stages")
+  }
+
+  if (identical(type, "stages") && !is.null(content$stages)) {
+    return("flat_stages")
+  }
+
+  if (!is.null(content$stages) || !is.null(content$phase)) {
+    return("unknown_structure")
+  }
+
+  "no_stages"
+}
+
 #' Get detailed stage information for a parliamentary item
 #'
 #' `r lifecycle::badge("experimental")`
@@ -248,15 +281,9 @@
 #'
 #' @export
 get_item_details <- function(item_url, type = "stages") {
-  prefix <- "https://www.parlament.gv.at/"
-
   # Normalise the URL: accept absolute URLs, relative paths with or without a
   # leading slash.  Strip any leading slashes, then prepend the base URL.
-  if (!stringr::str_starts(item_url, prefix)) {
-    item_url <- item_url %>%
-      stringr::str_replace("^/+", "") %>%
-      (\(x) stringr::str_c(prefix, x))()
-  }
+  item_url <- .normalise_item_url(item_url)
 
   # Fetch the item detail page through httr2 so fixture recording can capture
   # the HTML response before we parse it with rvest.
