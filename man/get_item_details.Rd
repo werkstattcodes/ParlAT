@@ -4,7 +4,7 @@
 \alias{get_item_details}
 \title{Get detailed stage information for a parliamentary item}
 \usage{
-get_item_details(item_url, stages = TRUE)
+get_item_details(item_url, stages = TRUE, votes = TRUE)
 }
 \arguments{
 \item{item_url}{Character. A single URL or path to an item on the Austrian
@@ -15,6 +15,10 @@ leading slashes). The function will normalize relative paths automatically.}
 \item{stages}{Logical. If \code{TRUE} (default), extract stage information and
 add it as the \code{stages} list-column. If \code{FALSE}, return only item-level
 metadata.}
+
+\item{votes}{Logical. If \code{TRUE} (default), add vote information from
+\code{content$vote} as the \code{votes} list-column. If \code{FALSE}, omit vote
+information.}
 }
 \value{
 A one-row tibble containing detailed information about the
@@ -45,6 +49,7 @@ for item-level documents. \code{NULL} if none.
 \item \code{topics} (list): Character vector of topic labels.
 \item \code{headwords} (list): Character vector of headword labels.
 \item \code{eurovoc} (list): Character vector of EuroVoc terms.
+\item \code{votes} (list): Vote information from the item page. \code{NULL} if none.
 }
 
 \strong{Stage-level columns} (inside \code{stages}):

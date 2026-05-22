@@ -8,10 +8,11 @@ test_that("get_item_details returns expected one-row structure for an absolute U
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 1)
-  expect_true(all(c("item_url", "type", "title", "stages") %in% names(result)))
+  expect_true(all(c("item_url", "type", "title", "stages", "votes") %in% names(result)))
   expect_type(result$stages, "list")
   expect_s3_class(result$stages[[1]], "data.frame")
   expect_true(all(c("stage_name", "stage_date", "phase") %in% names(result$stages[[1]])))
+  expect_null(result$votes[[1]])
 })
 
 test_that("get_item_details normalizes relative URLs consistently", {
@@ -44,6 +45,16 @@ test_that("get_item_details can skip stage extraction", {
   expect_false("stages" %in% names(result))
 })
 
+test_that("get_item_details can skip vote extraction", {
+  result <- run_api_call(
+    get_item_details("/gegenstand/XXVIII/A/5", votes = FALSE),
+    fixture_subdir = "get_item_details"
+  )
+
+  expect_equal(nrow(result), 1)
+  expect_false("votes" %in% names(result))
+})
+
 test_that("get_item_details includes stable item-level metadata fields", {
   result <- run_api_call(
     get_item_details("/gegenstand/XXVII/UEA/283"),
@@ -61,6 +72,7 @@ test_that("get_item_details includes stable item-level metadata fields", {
     "topics",
     "headwords",
     "eurovoc",
+    "votes",
     "stages"
   ) %in% names(result)))
   expect_equal(nrow(result), 1)
@@ -71,6 +83,8 @@ test_that("get_item_details includes stable item-level metadata fields", {
   expect_type(result$topics, "list")
   expect_type(result$headwords, "list")
   expect_type(result$eurovoc, "list")
+  expect_type(result$votes, "list")
+  expect_null(result$votes[[1]])
   expect_equal(length(unique(result$gp_code)), 1)
   expect_equal(length(unique(result$date_introduced)), 1)
 })

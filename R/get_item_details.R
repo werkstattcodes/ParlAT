@@ -220,6 +220,9 @@
 #' @param stages Logical. If `TRUE` (default), extract stage information and
 #'   add it as the `stages` list-column. If `FALSE`, return only item-level
 #'   metadata.
+#' @param votes Logical. If `TRUE` (default), add vote information from
+#'   `content$vote` as the `votes` list-column. If `FALSE`, omit vote
+#'   information.
 #'
 #' @return A one-row tibble containing detailed information about the
 #'   parliamentary item. If `stages = TRUE`, the result contains a `stages`
@@ -248,6 +251,7 @@
 #' - `topics` (list): Character vector of topic labels.
 #' - `headwords` (list): Character vector of headword labels.
 #' - `eurovoc` (list): Character vector of EuroVoc terms.
+#' - `votes` (list): Vote information from the item page. `NULL` if none.
 #'
 #' **Stage-level columns** (inside `stages`):
 #' - `phase` (character): The phase of the legislative stage (e.g.
@@ -283,8 +287,9 @@
 #' }
 #'
 #' @export
-get_item_details <- function(item_url, stages = TRUE) {
+get_item_details <- function(item_url, stages = TRUE, votes = TRUE) {
   checkmate::assert_logical(stages, len = 1, any.missing = FALSE)
+  checkmate::assert_logical(votes, len = 1, any.missing = FALSE)
 
   # Normalise the URL: accept absolute URLs, relative paths with or without a
   # leading slash.  Strip any leading slashes, then prepend the base URL.
@@ -321,7 +326,7 @@ get_item_details <- function(item_url, stages = TRUE) {
     title = content$title,
     item_number = content$zitation,
     item_description = content$description,
-    state_statements = content$statementsstage,
+    state_statements = content$statementsstate,
     state_approval = content$approvalstate,
     date_introduced = if (!is.null(content$einlangen)) {
       as.Date(content$einlangen)
@@ -340,6 +345,11 @@ get_item_details <- function(item_url, stages = TRUE) {
     headwords = list(.extract_bubble_labels(content$headwords)),
     eurovoc = list(.extract_bubble_labels(content$eurovoc))
   )
+
+  if (votes) {
+    df_res <- df_res |>
+      dplyr::mutate(votes = list(content$vote %||% NULL))
+  }
 
   if (!stages) {
     return(df_res)
