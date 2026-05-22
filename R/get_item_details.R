@@ -183,17 +183,17 @@
     (\(x) stringr::str_c(prefix, x))()
 }
 
-.get_item_details_code_path <- function(item_url, type = "stages") {
+.get_item_details_code_path <- function(item_url) {
   item_url <- .normalise_item_url(item_url)
   page <- .parlat_fetch_html(item_url)
   json_text <- .parlat_extract_props_json(page)
   content <- jsonlite::fromJSON(json_text)$data$content
 
-  if (identical(type, "stages") && !is.null(content$phase$stages)) {
+  if (!is.null(content$phase$stages)) {
     return("phase_stages")
   }
 
-  if (identical(type, "stages") && !is.null(content$stages)) {
+  if (!is.null(content$stages)) {
     return("flat_stages")
   }
 
@@ -217,14 +217,17 @@
 #'   Parliament website. Can be an absolute URL starting with
 #'   "https://www.parlament.gv.at/" or a relative path (with or without
 #'   leading slashes). The function will normalize relative paths automatically.
-#' @param type Character. Type of data to extract. Currently only "stages" is
-#'   supported (default).
+#' @param stages Logical. If `TRUE` (default), extract stage information and
+#'   add it as the `stages` list-column. If `FALSE`, return only item-level
+#'   metadata.
 #'
-#' @return A tibble containing detailed information about the parliamentary item and its stages.
-#'   Returns `NULL` if the item has no stages yet. Emits a warning if the page
-#'   structure is unrecognised (possible API change).
+#' @return A one-row tibble containing detailed information about the
+#'   parliamentary item. If `stages = TRUE`, the result contains a `stages`
+#'   list-column with stage information, or `NULL` if the item has no stages
+#'   yet. Emits a warning if the page structure is unrecognised (possible API
+#'   change).
 #'
-#' **Item-level columns** (replicated for each stage row):
+#' **Item-level columns:**
 #' - `item_url` (character): The URL of the parliamentary item.
 #' - `type` (character): The type of the item (e.g., BI, A, UEA).
 #' - `title` (character): The title of the item.
@@ -246,7 +249,7 @@
 #' - `headwords` (list): Character vector of headword labels.
 #' - `eurovoc` (list): Character vector of EuroVoc terms.
 #'
-#' **Stage-level columns:**
+#' **Stage-level columns** (inside `stages`):
 #' - `phase` (character): The phase of the legislative stage (e.g.
 #'   "Ausschussbehandlung"). `NA` for items with flat stages (no phase wrapper).
 #' - `stage_date` (Date): The date of the stage.
@@ -262,7 +265,7 @@
 #' 2. Scrapes the item's detail page
 #' 3. Extracts structured data from embedded JavaScript
 #' 4. Parses HTML content within stage text fields
-#' 5. Returns a tibble with stage information
+#' 5. Returns a one-row tibble with item metadata and optional stage details
 #'
 #' @seealso
 #' * [get_items()] for searching parliamentary items and retrieving URLs
@@ -271,16 +274,18 @@
 #' \donttest{
 #' # Get details for a specific item
 #' item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-#' stages <- get_item_details(item_url)
-#' dplyr::glimpse(stages)
+#' details <- get_item_details(item_url)
+#' dplyr::glimpse(details)
 #'
 #' # Also works with relative paths
-#' stages <- get_item_details("/gegenstand/XXVIII/BI/24")
-#' dplyr::glimpse(stages)
+#' details <- get_item_details("/gegenstand/XXVIII/BI/24")
+#' dplyr::glimpse(details)
 #' }
 #'
 #' @export
-get_item_details <- function(item_url, type = "stages") {
+get_item_details <- function(item_url, stages = TRUE) {
+  checkmate::assert_logical(stages, len = 1, any.missing = FALSE)
+
   # Normalise the URL: accept absolute URLs, relative paths with or without a
   # leading slash.  Strip any leading slashes, then prepend the base URL.
   item_url <- .normalise_item_url(item_url)
@@ -336,12 +341,16 @@ get_item_details <- function(item_url, type = "stages") {
     eurovoc = list(.extract_bubble_labels(content$eurovoc))
   )
 
+  if (!stages) {
+    return(df_res)
+  }
+
   # ── Code path A: phase/stages structure ───────────────────────────────────
   # Some item types (e.g. Selbständige Anträge, LP XXVIII) nest stages inside a
   # "phase" wrapper: content$phase$stages.  The phase object carries a `name`
   # field (the phase label, e.g. "Ausschussbehandlung") that applies to all
   # stages within it.
-  if (type == "stages" && !is.null(content$phase$stages)) {
+  if (!is.null(content$phase$stages)) {
     # Unnest the stages list-column into one row per stage, then spread the
     # stage fields into individual columns.  The `names_sep` argument prevents
     # name collisions between stage fields and the outer phase fields.
@@ -391,14 +400,9 @@ get_item_details <- function(item_url, type = "stages") {
         "speeches"
       )))
 
-    # Replicate the single-row item metadata to match the (possibly expanded)
-    # stage table, then column-bind to produce one row per stage/session.
-    result <- df_res %>%
-      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
-      dplyr::bind_cols(df_stages) |>
-      dplyr::relocate(dplyr::any_of(c(
-        "title", "item_number", "stage_date", "stage_name", "phase"
-      )))
+    # Add the stage table as a list-column while preserving one row per item.
+    result <- df_res |>
+      dplyr::mutate(stages = list(df_stages))
 
     return(result)
   }
@@ -406,7 +410,7 @@ get_item_details <- function(item_url, type = "stages") {
   # ── Code path B: flat stages structure ────────────────────────────────────
   # Other item types (e.g. Bürgerinitiativen, Berichte) expose stages directly
   # under content$stages without a phase wrapper.
-  if (type == "stages" && !is.null(content$stages)) {
+  if (!is.null(content$stages)) {
     df_stages <- content$stages
 
     # ── Speech parsing (flat stages path) ───────────────────────────────────
@@ -485,13 +489,9 @@ get_item_details <- function(item_url, type = "stages") {
       ))) |>
       dplyr::mutate(phase = NA_character_, .before = 1L)
 
-    # Replicate item metadata and column-bind — same as path A.
-    result <- df_res %>%
-      dplyr::slice(rep(1:dplyr::n(), length.out = nrow(df_stages))) %>%
-      dplyr::bind_cols(df_stages) |>
-      dplyr::relocate(dplyr::any_of(c(
-        "title", "item_number", "stage_date", "stage_name", "phase"
-      )))
+    # Add the stage table as a list-column while preserving one row per item.
+    result <- df_res |>
+      dplyr::mutate(stages = list(df_stages))
 
     return(result)
   }
@@ -511,5 +511,6 @@ get_item_details <- function(item_url, type = "stages") {
     ))
   }
 
-  return(NULL)
+  df_res |>
+    dplyr::mutate(stages = list(NULL))
 }
