@@ -1,9 +1,9 @@
 # ParlAT 0.0.4.9000
 
 - `get_item_details()` now returns the raw item and document type codes as
-  `item_type` and `doc_type`.
+  `item_type` and `type_doc`.
 - `get_item_details()` now returns the human-readable document type as
-  `doc_type_long` instead of `type`.
+  `type_doc_long` instead of `type`.
 - `get_item_details()` now returns the legislative period as `legis_period`
   instead of `gp_code`.
 

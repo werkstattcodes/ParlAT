@@ -250,8 +250,8 @@
 #' **Item-level columns:**
 #' - `item_url` (character): The URL of the parliamentary item.
 #' - `item_type` (character): Raw item type code from `ityp`.
-#' - `doc_type` (character): Raw document type code from `doktyp`.
-#' - `doc_type_long` (character): Human-readable document type.
+#' - `type_doc` (character): Raw document type code from `doktyp`.
+#' - `type_doc_long` (character): Human-readable document type.
 #' - `title` (character): The title of the item.
 #' - `item_number` (character): The citation number (e.g. "61/A").
 #' - `item_description` (character): A brief description of the item.
@@ -343,8 +343,8 @@ get_item_details <- function(item_url, stages = TRUE, votes = TRUE) {
   df_res <- tibble::tibble(
     item_url = item_url,
     item_type = content$ityp %||% NA_character_,
-    doc_type = content$doktyp %||% NA_character_,
-    doc_type_long = content$type,
+    type_doc = content$doktyp %||% NA_character_,
+    type_doc_long = content$type,
     title = content$title,
     item_number = content$zitation,
     item_description = content$description,

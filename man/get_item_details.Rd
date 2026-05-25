@@ -31,8 +31,8 @@ change).
 \itemize{
 \item \code{item_url} (character): The URL of the parliamentary item.
 \item \code{item_type} (character): Raw item type code from \code{ityp}.
-\item \code{doc_type} (character): Raw document type code from \code{doktyp}.
-\item \code{doc_type_long} (character): Human-readable document type.
+\item \code{type_doc} (character): Raw document type code from \code{doktyp}.
+\item \code{type_doc_long} (character): Human-readable document type.
 \item \code{title} (character): The title of the item.
 \item \code{item_number} (character): The citation number (e.g. "61/A").
 \item \code{item_description} (character): A brief description of the item.
