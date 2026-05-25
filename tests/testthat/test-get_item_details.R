@@ -8,7 +8,7 @@ test_that("get_item_details returns expected one-row structure for an absolute U
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 1)
-  expect_true(all(c("item_url", "type", "title", "stages", "votes") %in% names(result)))
+  expect_true(all(c("item_url", "doc_type_long", "title", "stages", "votes") %in% names(result)))
   expect_type(result$stages, "list")
   expect_s3_class(result$stages[[1]], "data.frame")
   expect_true(all(c("stage_name", "stage_date", "phase") %in% names(result$stages[[1]])))
@@ -66,6 +66,7 @@ test_that("get_item_details includes stable item-level metadata fields", {
     "legis_period",
     "item_type",
     "doc_type",
+    "doc_type_long",
     "status_number",
     "status_description",
     "item_documents",
@@ -89,6 +90,7 @@ test_that("get_item_details includes stable item-level metadata fields", {
   expect_null(result$votes[[1]])
   expect_equal(result$item_type, "UEA")
   expect_equal(result$doc_type, "UEAM")
+  expect_equal(result$doc_type_long, "Misstrauensantrag")
   expect_equal(length(unique(result$legis_period)), 1)
   expect_equal(length(unique(result$date_introduced)), 1)
 })
