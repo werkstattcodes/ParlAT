@@ -1302,6 +1302,21 @@ get_items <- function(
     dplyr::mutate(date = lubridate::dmy(.data$date)) |>
     dplyr::arrange(dplyr::desc(.data$date))
 
+  if ("item_url" %in% names(df_res)) {
+    df_res <- df_res |>
+      dplyr::mutate(
+        item_url = purrr::map_chr(
+          .data$item_url,
+          \(url) {
+            if (is.na(url)) {
+              return(NA_character_)
+            }
+            .normalise_item_url(url)
+          }
+        )
+      )
+  }
+
   # CHECK FOR DUPLICATES
   # Check for completely duplicate rows across all columns
   n_total_rows <- nrow(df_res)
