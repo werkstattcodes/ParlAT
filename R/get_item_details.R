@@ -11,8 +11,37 @@
   )
 }
 
+.df_col_chr <- function(df, col) {
+  if (col %in% names(df)) {
+    return(df[[col]])
+  }
+
+  rep(NA_character_, nrow(df))
+}
+
 # Parse item-level documents from the API JSON.
 # Returns a tibble with columns doc_title, link, type, or NULL if empty.
+.parse_document_rows <- function(inner, title) {
+  if (is.null(inner) || length(inner) == 0) {
+    return(tibble::tibble())
+  }
+
+  if (is.data.frame(inner)) {
+    n_docs <- nrow(inner)
+    return(tibble::tibble(
+      doc_title = rep(title %||% NA_character_, n_docs),
+      link = inner$link %||% rep(NA_character_, n_docs),
+      type = inner$type %||% rep(NA_character_, n_docs)
+    ))
+  }
+
+  tibble::tibble(
+    doc_title = title %||% NA_character_,
+    link = purrr::map_chr(inner, \(d) d$link %||% NA_character_),
+    type = purrr::map_chr(inner, \(d) d$type %||% NA_character_)
+  )
+}
+
 .parse_item_documents <- function(docs_list) {
   if (is.null(docs_list) || length(docs_list) == 0) {
     return(NULL)
@@ -20,31 +49,12 @@
   if (is.data.frame(docs_list)) {
     # jsonlite may simplify to a data.frame with a nested documents column
     purrr::map2(docs_list$title, docs_list$documents, \(title, inner) {
-      if (is.null(inner) || length(inner) == 0) {
-        return(tibble::tibble())
-      }
-      if (is.data.frame(inner)) {
-        inner$doc_title <- title %||% NA_character_
-        return(inner[c("doc_title", "link", "type")])
-      }
-      tibble::tibble(
-        doc_title = title %||% NA_character_,
-        link = purrr::map_chr(inner, \(d) d$link %||% NA_character_),
-        type = purrr::map_chr(inner, \(d) d$type %||% NA_character_)
-      )
+      .parse_document_rows(inner, title)
     }) |>
       purrr::list_rbind()
   } else {
     purrr::map(docs_list, \(doc) {
-      inner <- doc$documents
-      if (is.null(inner) || length(inner) == 0) {
-        return(tibble::tibble())
-      }
-      tibble::tibble(
-        doc_title = doc$title %||% NA_character_,
-        link = purrr::map_chr(inner, \(d) d$link %||% NA_character_),
-        type = purrr::map_chr(inner, \(d) d$type %||% NA_character_)
-      )
+      .parse_document_rows(doc$documents, doc$title)
     }) |>
       purrr::list_rbind()
   }
@@ -58,14 +68,15 @@
   }
   base_url <- "https://www.parlament.gv.at"
   if (is.data.frame(names_list)) {
+    url <- .df_col_chr(names_list, "url")
     tibble::tibble(
-      role = names_list$funktext %||% NA_character_,
-      name = names_list$name %||% NA_character_,
-      frak_code = names_list$frak_code %||% NA_character_,
+      role = .df_col_chr(names_list, "funktext"),
+      name = .df_col_chr(names_list, "name"),
+      frak_code = .df_col_chr(names_list, "frak_code"),
       url = ifelse(
-        is.na(names_list$url),
+        is.na(url),
         NA_character_,
-        stringr::str_c(base_url, names_list$url)
+        stringr::str_c(base_url, url)
       )
     )
   } else {
@@ -93,7 +104,13 @@
     return(NULL)
   }
   if (is.data.frame(ref_list)) {
-    ref_list[c("text", "subject", "zitation", "url", "art")]
+    tibble::tibble(
+      text = .df_col_chr(ref_list, "text"),
+      subject = .df_col_chr(ref_list, "subject"),
+      zitation = .df_col_chr(ref_list, "zitation"),
+      url = .df_col_chr(ref_list, "url"),
+      art = .df_col_chr(ref_list, "art")
+    )
   } else {
     tibble::tibble(
       text = purrr::map_chr(ref_list, \(r) r$text %||% NA_character_),
@@ -233,13 +250,15 @@
 #' **Item-level columns:**
 #' - `item_url` (character): The URL of the parliamentary item.
 #' - `type` (character): The type of the item (e.g., BI, A, UEA).
+#' - `item_type` (character): Raw item type code from `ityp`.
+#' - `doc_type` (character): Raw document type code from `doktyp`.
 #' - `title` (character): The title of the item.
 #' - `item_number` (character): The citation number (e.g. "61/A").
 #' - `item_description` (character): A brief description of the item.
 #' - `state_statements` (character): Statement stage information.
 #' - `state_approval` (character): The current approval state.
 #' - `date_introduced` (Date): The date the item was introduced to parliament.
-#' - `gp_code` (character): Legislative period code (e.g. "XXVII").
+#' - `legis_period` (character): Legislative period code (e.g. "XXVII").
 #' - `status_number` (integer): Current status number.
 #' - `status_description` (character): Current status description (HTML stripped).
 #' - `item_documents` (list): Tibble with columns `doc_title`, `link`, `type`
@@ -324,6 +343,8 @@ get_item_details <- function(item_url, stages = TRUE, votes = TRUE) {
   df_res <- tibble::tibble(
     item_url = item_url,
     type = content$type,
+    item_type = content$ityp %||% NA_character_,
+    doc_type = content$doktyp %||% NA_character_,
     title = content$title,
     item_number = content$zitation,
     item_description = content$description,
@@ -334,7 +355,7 @@ get_item_details <- function(item_url, stages = TRUE, votes = TRUE) {
     } else {
       as.Date(NA)
     },
-    gp_code = content$gp_code %||% NA_character_,
+    legis_period = content$gp_code %||% NA_character_,
     status_number = content$status$number %||% NA_integer_,
     status_description = .strip_html(
       content$status$description %||% NA_character_

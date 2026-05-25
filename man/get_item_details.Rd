@@ -31,13 +31,15 @@ change).
 \itemize{
 \item \code{item_url} (character): The URL of the parliamentary item.
 \item \code{type} (character): The type of the item (e.g., BI, A, UEA).
+\item \code{item_type} (character): Raw item type code from \code{ityp}.
+\item \code{doc_type} (character): Raw document type code from \code{doktyp}.
 \item \code{title} (character): The title of the item.
 \item \code{item_number} (character): The citation number (e.g. "61/A").
 \item \code{item_description} (character): A brief description of the item.
 \item \code{state_statements} (character): Statement stage information.
 \item \code{state_approval} (character): The current approval state.
 \item \code{date_introduced} (Date): The date the item was introduced to parliament.
-\item \code{gp_code} (character): Legislative period code (e.g. "XXVII").
+\item \code{legis_period} (character): Legislative period code (e.g. "XXVII").
 \item \code{status_number} (integer): Current status number.
 \item \code{status_description} (character): Current status description (HTML stripped).
 \item \code{item_documents} (list): Tibble with columns \code{doc_title}, \code{link}, \code{type}

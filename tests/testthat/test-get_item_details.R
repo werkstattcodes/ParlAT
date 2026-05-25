@@ -63,7 +63,9 @@ test_that("get_item_details includes stable item-level metadata fields", {
 
   expect_true(all(c(
     "date_introduced",
-    "gp_code",
+    "legis_period",
+    "item_type",
+    "doc_type",
     "status_number",
     "status_description",
     "item_documents",
@@ -85,7 +87,9 @@ test_that("get_item_details includes stable item-level metadata fields", {
   expect_type(result$eurovoc, "list")
   expect_type(result$votes, "list")
   expect_null(result$votes[[1]])
-  expect_equal(length(unique(result$gp_code)), 1)
+  expect_equal(result$item_type, "UEA")
+  expect_equal(result$doc_type, "UEAM")
+  expect_equal(length(unique(result$legis_period)), 1)
   expect_equal(length(unique(result$date_introduced)), 1)
 })
 
@@ -102,6 +106,58 @@ test_that("get_item_details nested item metadata keeps expected columns", {
   expect_s3_class(refs, "data.frame")
   expect_named(intro, c("role", "name", "frak_code", "url"), ignore.order = TRUE)
   expect_named(refs, c("text", "subject", "zitation", "url", "art"), ignore.order = TRUE)
+})
+
+test_that("get_item_details parses item documents with missing fields", {
+  docs <- data.frame(
+    title = "Document group",
+    stringsAsFactors = FALSE
+  )
+  docs$documents <- list(data.frame(
+    document_name = "Document without link or type",
+    stringsAsFactors = FALSE
+  ))
+
+  result <- .parse_item_documents(docs)
+
+  expect_s3_class(result, "data.frame")
+  expect_named(result, c("doc_title", "link", "type"))
+  expect_equal(result$doc_title, "Document group")
+  expect_true(is.na(result$link))
+  expect_true(is.na(result$type))
+})
+
+test_that("get_item_details parses introducers with missing URLs", {
+  names <- data.frame(
+    funktext = c("Antragsteller", "Antragstellerin"),
+    name = c("Person A", "Person B"),
+    frak_code = c("A", "B"),
+    stringsAsFactors = FALSE
+  )
+
+  result <- .parse_introducers(names)
+
+  expect_s3_class(result, "data.frame")
+  expect_named(result, c("role", "name", "frak_code", "url"))
+  expect_equal(nrow(result), 2)
+  expect_true(all(is.na(result$url)))
+})
+
+test_that("get_item_details parses references with missing fields", {
+  refs <- data.frame(
+    text = c("Reference A", "Reference B"),
+    zitation = c("1/A", "2/A"),
+    stringsAsFactors = FALSE
+  )
+
+  result <- .parse_references(refs)
+
+  expect_s3_class(result, "data.frame")
+  expect_named(result, c("text", "subject", "zitation", "url", "art"))
+  expect_equal(nrow(result), 2)
+  expect_true(all(is.na(result$subject)))
+  expect_true(all(is.na(result$url)))
+  expect_true(all(is.na(result$art)))
 })
 
 test_that("get_item_details nests phase stages in stages", {
@@ -217,7 +273,7 @@ test_that("get_item_details handles items with missing optional debate fields", 
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 1)
-  expect_true(all(c("date_introduced", "gp_code", "stages") %in% names(result)))
+  expect_true(all(c("date_introduced", "legis_period", "stages") %in% names(result)))
   expect_s3_class(stage_tbl, "data.frame")
   expect_false("speeches" %in% names(stage_tbl))
 })
