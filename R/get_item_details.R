@@ -221,8 +221,8 @@
 #'   add it as the `stages` list-column. If `FALSE`, return only item-level
 #'   metadata.
 #' @param votes Logical. If `TRUE` (default), add vote information from
-#'   `content$vote` as the `votes` list-column. If `FALSE`, omit vote
-#'   information.
+#'   `content$vote` as the `votes` list-column for items of the National
+#'   Council. If `FALSE`, omit vote information.
 #'
 #' @return A one-row tibble containing detailed information about the
 #'   parliamentary item. If `stages = TRUE`, the result contains a `stages`
@@ -251,7 +251,8 @@
 #' - `topics` (list): Character vector of topic labels.
 #' - `headwords` (list): Character vector of headword labels.
 #' - `eurovoc` (list): Character vector of EuroVoc terms.
-#' - `votes` (list): Vote information from the item page. `NULL` if none.
+#' - `votes` (list): Vote information from the item page for items of the
+#'   National Council. `NULL` if none.
 #'
 #' **Stage-level columns** (inside `stages`):
 #' - `phase` (character): The phase of the legislative stage (e.g.
