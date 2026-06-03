@@ -55,6 +55,35 @@ test_that("get_item_details can skip vote extraction", {
   expect_false("votes" %in% names(result))
 })
 
+test_that("get_item_details includes non-null vote results", {
+  result <- run_api_call(
+    get_item_details("/gegenstand/XX/I/1833", stages = FALSE),
+    fixture_subdir = "get_item_details"
+  )
+
+  vote <- result$votes[[1]]
+
+  expect_equal(nrow(result), 1)
+  expect_true("votes" %in% names(result))
+  expect_type(vote, "list")
+  expect_named(
+    vote,
+    c("result", "infavor", "code", "text", "comment"),
+    ignore.order = TRUE
+  )
+  expect_true(vote$infavor)
+  expect_equal(vote$code, "SVflg")
+  expect_equal(vote$text, "Dafür: S, V. Dagegen: F, L, G")
+  expect_null(vote$comment)
+  expect_s3_class(vote$result, "data.frame")
+  expect_named(
+    vote$result,
+    c("text", "code", "color", "fraction", "infavor"),
+    ignore.order = TRUE
+  )
+  expect_equal(nrow(vote$result), 5)
+})
+
 test_that("get_item_details includes stable item-level metadata fields", {
   result <- run_api_call(
     get_item_details("/gegenstand/XXVII/UEA/283"),
@@ -67,6 +96,7 @@ test_that("get_item_details includes stable item-level metadata fields", {
     "item_type",
     "type_doc",
     "type_doc_long",
+    "item_number",
     "status_number",
     "status_description",
     "item_documents",
@@ -88,6 +118,7 @@ test_that("get_item_details includes stable item-level metadata fields", {
   expect_type(result$eurovoc, "list")
   expect_type(result$votes, "list")
   expect_null(result$votes[[1]])
+  expect_false("type" %in% names(result))
   expect_equal(result$item_type, "UEA")
   expect_equal(result$type_doc, "UEAM")
   expect_equal(result$type_doc_long, "Misstrauensantrag")
