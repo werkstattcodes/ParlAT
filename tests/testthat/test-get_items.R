@@ -20,6 +20,29 @@ test_that("get_items returns correct structure with valid parameters", {
   ) # check for duplicates
 })
 
+test_that("get_items returns absolute item URLs", {
+  result <- run_api_call(
+    {
+      get_items(
+        institution = "NR",
+        item = "ANTR",
+        date_start = "01-01-2024",
+        date_end = "31-01-2026",
+        echo = FALSE
+      )
+    },
+    fixture_subdir = "get_items"
+  )
+
+  item_urls <- stats::na.omit(result$item_url)
+
+  expect_match(
+    item_urls,
+    "^https://www\\.parlament\\.gv\\.at/",
+    all = TRUE
+  )
+})
+
 test_that("get_items handles invalid date formats", {
   expect_error(
     get_items(date_start = "2025-01-01"),

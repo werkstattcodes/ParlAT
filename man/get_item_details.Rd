@@ -4,7 +4,7 @@
 \alias{get_item_details}
 \title{Get detailed stage information for a parliamentary item}
 \usage{
-get_item_details(item_url, type = "stages")
+get_item_details(item_url, stages = TRUE, votes = TRUE)
 }
 \arguments{
 \item{item_url}{Character. A single URL or path to an item on the Austrian
@@ -12,25 +12,34 @@ Parliament website. Can be an absolute URL starting with
 "https://www.parlament.gv.at/" or a relative path (with or without
 leading slashes). The function will normalize relative paths automatically.}
 
-\item{type}{Character. Type of data to extract. Currently only "stages" is
-supported (default).}
+\item{stages}{Logical. If \code{TRUE} (default), extract stage information and
+add it as the \code{stages} list-column. If \code{FALSE}, return only item-level
+metadata.}
+
+\item{votes}{Logical. If \code{TRUE} (default), add vote information from
+\code{content$vote} as the \code{votes} list-column for items of the National
+Council. If \code{FALSE}, omit vote information.}
 }
 \value{
-A tibble containing detailed information about the parliamentary item and its stages.
-Returns \code{NULL} if the item has no stages yet. Emits a warning if the page
-structure is unrecognised (possible API change).
+A one-row tibble containing detailed information about the
+parliamentary item. If \code{stages = TRUE}, the result contains a \code{stages}
+list-column with stage information, or \code{NULL} if the item has no stages
+yet. Emits a warning if the page structure is unrecognised (possible API
+change).
 
-\strong{Item-level columns} (replicated for each stage row):
+\strong{Item-level columns:}
 \itemize{
 \item \code{item_url} (character): The URL of the parliamentary item.
-\item \code{type} (character): The type of the item (e.g., BI, A, UEA).
+\item \code{item_type} (character): Raw item type code from \code{ityp}.
+\item \code{type_doc} (character): Raw document type code from \code{doktyp}.
+\item \code{type_doc_long} (character): Human-readable document type.
 \item \code{title} (character): The title of the item.
 \item \code{item_number} (character): The citation number (e.g. "61/A").
 \item \code{item_description} (character): A brief description of the item.
 \item \code{state_statements} (character): Statement stage information.
 \item \code{state_approval} (character): The current approval state.
 \item \code{date_introduced} (Date): The date the item was introduced to parliament.
-\item \code{gp_code} (character): Legislative period code (e.g. "XXVII").
+\item \code{legis_period} (character): Legislative period code (e.g. "XXVII").
 \item \code{status_number} (integer): Current status number.
 \item \code{status_description} (character): Current status description (HTML stripped).
 \item \code{item_documents} (list): Tibble with columns \code{doc_title}, \code{link}, \code{type}
@@ -42,9 +51,11 @@ for item-level documents. \code{NULL} if none.
 \item \code{topics} (list): Character vector of topic labels.
 \item \code{headwords} (list): Character vector of headword labels.
 \item \code{eurovoc} (list): Character vector of EuroVoc terms.
+\item \code{votes} (list): Vote information from the item page for items of the
+National Council. \code{NULL} if none.
 }
 
-\strong{Stage-level columns:}
+\strong{Stage-level columns} (inside \code{stages}):
 \itemize{
 \item \code{phase} (character): The phase of the legislative stage (e.g.
 "Ausschussbehandlung"). \code{NA} for items with flat stages (no phase wrapper).
@@ -71,19 +82,19 @@ The function performs the following steps:
 \item Scrapes the item's detail page
 \item Extracts structured data from embedded JavaScript
 \item Parses HTML content within stage text fields
-\item Returns a tibble with stage information
+\item Returns a one-row tibble with item metadata and optional stage details
 }
 }
 \examples{
 \donttest{
 # Get details for a specific item
 item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-stages <- get_item_details(item_url)
-dplyr::glimpse(stages)
+details <- get_item_details(item_url)
+dplyr::glimpse(details)
 
 # Also works with relative paths
-stages <- get_item_details("/gegenstand/XXVIII/BI/24")
-dplyr::glimpse(stages)
+details <- get_item_details("/gegenstand/XXVIII/BI/24")
+dplyr::glimpse(details)
 }
 
 }
