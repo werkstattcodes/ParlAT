@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_item_details.R
 \name{get_item_details}
 \alias{get_item_details}
-\title{Get detailed stage information for a parliamentary item}
+\title{Get detailed information for a parliamentary item}
 \usage{
 get_item_details(item_url, stages = TRUE, votes = TRUE)
 }
@@ -16,16 +16,20 @@ leading slashes). The function will normalize relative paths automatically.}
 add it as the \code{stages} list-column. If \code{FALSE}, return only item-level
 metadata.}
 
-\item{votes}{Logical. If \code{TRUE} (default), add vote information from
-\code{content$vote} as the \code{votes} list-column for items of the National
-Council. If \code{FALSE}, omit vote information.}
+\item{votes}{Logical. If \code{TRUE} (default), add vote information from the
+item page as the \code{votes} list-column when it is available. Vote data is
+only expected for items where the Parliament page exposes vote
+information, especially National Council items. If \code{FALSE}, omit vote
+extraction and the \code{votes} column.}
 }
 \value{
 A one-row tibble containing detailed information about the
-parliamentary item. If \code{stages = TRUE}, the result contains a \code{stages}
-list-column with stage information, or \code{NULL} if the item has no stages
-yet. Emits a warning if the page structure is unrecognised (possible API
-change).
+parliamentary item. The \code{stages} list-column is included only when
+\code{stages = TRUE}; it contains stage information, or \code{NULL} if the item has
+no stages yet. The \code{votes} list-column is included only when
+\code{votes = TRUE}; \code{votes[[1]]} contains vote information, or \code{NULL} if no
+vote data is available. Emits a warning if the page structure is
+unrecognised (possible API change).
 
 \strong{Item-level columns:}
 \itemize{
@@ -51,8 +55,10 @@ for item-level documents. \code{NULL} if none.
 \item \code{topics} (list): Character vector of topic labels.
 \item \code{headwords} (list): Character vector of headword labels.
 \item \code{eurovoc} (list): Character vector of EuroVoc terms.
-\item \code{votes} (list): Vote information from the item page for items of the
-National Council. \code{NULL} if none.
+\item \code{votes} (list): Vote information from the item page. \code{votes[[1]]} is
+either \code{NULL} or a list with fields \code{result}, \code{infavor}, \code{code}, \code{text},
+and \code{comment}. The nested \code{result} field is a data frame with columns
+\code{text}, \code{code}, \code{color}, \code{fraction}, and \code{infavor}.
 }
 
 \strong{Stage-level columns} (inside \code{stages}):
@@ -71,10 +77,10 @@ stages without debate contributions.
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \details{
-Retrieves detailed stage information for a specific parliamentary item by
-scraping its detail page on the Austrian Parliament website. The function
-extracts structured data about the item's progression through different
-legislative stages.
+Retrieves detailed information for a specific parliamentary item by scraping
+its detail page on the Austrian Parliament website. The function returns
+item-level metadata and, optionally, structured information about legislative
+stages and votes.
 
 The function performs the following steps:
 \enumerate{
@@ -82,18 +88,21 @@ The function performs the following steps:
 \item Scrapes the item's detail page
 \item Extracts structured data from embedded JavaScript
 \item Parses HTML content within stage text fields
-\item Returns a one-row tibble with item metadata and optional stage details
+\item Returns a one-row tibble with item metadata and optional stage and vote
+details
 }
 }
 \examples{
 \donttest{
-# Get details for a specific item
-item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-details <- get_item_details(item_url)
+# Get details for a specific item with vote information
+item_url <- "https://www.parlament.gv.at/gegenstand/XX/I/1833"
+details <- get_item_details(item_url, stages = FALSE)
 dplyr::glimpse(details)
+details$votes[[1]]
+details$votes[[1]]$result
 
 # Also works with relative paths
-details <- get_item_details("/gegenstand/XXVIII/BI/24")
+details <- get_item_details("/gegenstand/XX/I/1833", stages = FALSE)
 dplyr::glimpse(details)
 }
 

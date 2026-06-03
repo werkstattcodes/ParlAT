@@ -221,14 +221,14 @@
   "no_stages"
 }
 
-#' Get detailed stage information for a parliamentary item
+#' Get detailed information for a parliamentary item
 #'
 #' `r lifecycle::badge("experimental")`
 #'
-#' Retrieves detailed stage information for a specific parliamentary item by
-#' scraping its detail page on the Austrian Parliament website. The function
-#' extracts structured data about the item's progression through different
-#' legislative stages.
+#' Retrieves detailed information for a specific parliamentary item by scraping
+#' its detail page on the Austrian Parliament website. The function returns
+#' item-level metadata and, optionally, structured information about legislative
+#' stages and votes.
 #'
 #' @param item_url Character. A single URL or path to an item on the Austrian
 #'   Parliament website. Can be an absolute URL starting with
@@ -237,15 +237,19 @@
 #' @param stages Logical. If `TRUE` (default), extract stage information and
 #'   add it as the `stages` list-column. If `FALSE`, return only item-level
 #'   metadata.
-#' @param votes Logical. If `TRUE` (default), add vote information from
-#'   `content$vote` as the `votes` list-column for items of the National
-#'   Council. If `FALSE`, omit vote information.
+#' @param votes Logical. If `TRUE` (default), add vote information from the
+#'   item page as the `votes` list-column when it is available. Vote data is
+#'   only expected for items where the Parliament page exposes vote
+#'   information, especially National Council items. If `FALSE`, omit vote
+#'   extraction and the `votes` column.
 #'
 #' @return A one-row tibble containing detailed information about the
-#'   parliamentary item. If `stages = TRUE`, the result contains a `stages`
-#'   list-column with stage information, or `NULL` if the item has no stages
-#'   yet. Emits a warning if the page structure is unrecognised (possible API
-#'   change).
+#'   parliamentary item. The `stages` list-column is included only when
+#'   `stages = TRUE`; it contains stage information, or `NULL` if the item has
+#'   no stages yet. The `votes` list-column is included only when
+#'   `votes = TRUE`; `votes[[1]]` contains vote information, or `NULL` if no
+#'   vote data is available. Emits a warning if the page structure is
+#'   unrecognised (possible API change).
 #'
 #' **Item-level columns:**
 #' - `item_url` (character): The URL of the parliamentary item.
@@ -270,8 +274,10 @@
 #' - `topics` (list): Character vector of topic labels.
 #' - `headwords` (list): Character vector of headword labels.
 #' - `eurovoc` (list): Character vector of EuroVoc terms.
-#' - `votes` (list): Vote information from the item page for items of the
-#'   National Council. `NULL` if none.
+#' - `votes` (list): Vote information from the item page. `votes[[1]]` is
+#'   either `NULL` or a list with fields `result`, `infavor`, `code`, `text`,
+#'   and `comment`. The nested `result` field is a data frame with columns
+#'   `text`, `code`, `color`, `fraction`, and `infavor`.
 #'
 #' **Stage-level columns** (inside `stages`):
 #' - `phase` (character): The phase of the legislative stage (e.g.
@@ -289,20 +295,23 @@
 #' 2. Scrapes the item's detail page
 #' 3. Extracts structured data from embedded JavaScript
 #' 4. Parses HTML content within stage text fields
-#' 5. Returns a one-row tibble with item metadata and optional stage details
+#' 5. Returns a one-row tibble with item metadata and optional stage and vote
+#'    details
 #'
 #' @seealso
 #' * [get_items()] for searching parliamentary items and retrieving URLs
 #'
 #' @examples
 #' \donttest{
-#' # Get details for a specific item
-#' item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-#' details <- get_item_details(item_url)
+#' # Get details for a specific item with vote information
+#' item_url <- "https://www.parlament.gv.at/gegenstand/XX/I/1833"
+#' details <- get_item_details(item_url, stages = FALSE)
 #' dplyr::glimpse(details)
+#' details$votes[[1]]
+#' details$votes[[1]]$result
 #'
 #' # Also works with relative paths
-#' details <- get_item_details("/gegenstand/XXVIII/BI/24")
+#' details <- get_item_details("/gegenstand/XX/I/1833", stages = FALSE)
 #' dplyr::glimpse(details)
 #' }
 #'
