@@ -5,7 +5,7 @@
 ## Usage
 
 ``` r
-get_item_details(item_url, type = "stages")
+get_item_details(item_url, stages = TRUE, votes = TRUE)
 ```
 
 ## Arguments
@@ -18,22 +18,33 @@ get_item_details(item_url, type = "stages")
   leading slashes). The function will normalize relative paths
   automatically.
 
-- type:
+- stages:
 
-  Character. Type of data to extract. Currently only "stages" is
-  supported (default).
+  Logical. If `TRUE` (default), extract stage information and add it as
+  the `stages` list-column. If `FALSE`, return only item-level metadata.
+
+- votes:
+
+  Logical. If `TRUE` (default), add vote information from `content$vote`
+  as the `votes` list-column for items of the National Council. If
+  `FALSE`, omit vote information.
 
 ## Value
 
-A tibble containing detailed information about the parliamentary item
-and its stages. Returns `NULL` if the item has no stages yet. Emits a
+A one-row tibble containing detailed information about the parliamentary
+item. If `stages = TRUE`, the result contains a `stages` list-column
+with stage information, or `NULL` if the item has no stages yet. Emits a
 warning if the page structure is unrecognised (possible API change).
 
-**Item-level columns** (replicated for each stage row):
+**Item-level columns:**
 
 - `item_url` (character): The URL of the parliamentary item.
 
-- `type` (character): The type of the item (e.g., BI, A, UEA).
+- `item_type` (character): Raw item type code from `ityp`.
+
+- `type_doc` (character): Raw document type code from `doktyp`.
+
+- `type_doc_long` (character): Human-readable document type.
 
 - `title` (character): The title of the item.
 
@@ -48,7 +59,7 @@ warning if the page structure is unrecognised (possible API change).
 - `date_introduced` (Date): The date the item was introduced to
   parliament.
 
-- `gp_code` (character): Legislative period code (e.g. "XXVII").
+- `legis_period` (character): Legislative period code (e.g. "XXVII").
 
 - `status_number` (integer): Current status number.
 
@@ -71,7 +82,10 @@ warning if the page structure is unrecognised (possible API change).
 
 - `eurovoc` (list): Character vector of EuroVoc terms.
 
-**Stage-level columns:**
+- `votes` (list): Vote information from the item page for items of the
+  National Council. `NULL` if none.
+
+**Stage-level columns** (inside `stages`):
 
 - `phase` (character): The phase of the legislative stage (e.g.
   "Ausschussbehandlung"). `NA` for items with flat stages (no phase
@@ -107,7 +121,8 @@ The function performs the following steps:
 
 4.  Parses HTML content within stage text fields
 
-5.  Returns a tibble with stage information
+5.  Returns a one-row tibble with item metadata and optional stage
+    details
 
 ## See also
 
@@ -120,53 +135,57 @@ The function performs the following steps:
 # \donttest{
 # Get details for a specific item
 item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-stages <- get_item_details(item_url)
-dplyr::glimpse(stages)
-#> Rows: 13
-#> Columns: 19
-#> $ title              <chr> "Neutralität Österreichs sichern!", "Neutralität Ös…
-#> $ item_number        <chr> "24/BI", "24/BI", "24/BI", "24/BI", "24/BI", "24/BI…
-#> $ stage_date         <chr> "20.08.2025", "21.08.2025", "22.08.2025", "24.09.20…
-#> $ stage_name         <chr> "Einlangen im Nationalrat", "Vorgesehen für den Aus…
-#> $ phase              <chr> "Einlangen NR", "Einlangen NR", "Ausschussberatunge…
+details <- get_item_details(item_url)
+dplyr::glimpse(details)
+#> Rows: 1
+#> Columns: 21
 #> $ item_url           <chr> "https://www.parlament.gv.at/gegenstand/XXVIII/BI/2…
-#> $ type               <chr> "Bürgerinitiative", "Bürgerinitiative", "Bürgerinit…
+#> $ item_type          <chr> "BI"
+#> $ type_doc           <chr> "BI"
+#> $ type_doc_long      <chr> "Bürgerinitiative"
+#> $ title              <chr> "Neutralität Österreichs sichern!"
+#> $ item_number        <chr> "24/BI"
 #> $ item_description   <chr> "Bürgerinitiative betreffend \"Neutralität Österrei…
-#> $ state_approval     <chr> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "…
-#> $ date_introduced    <date> 2025-08-20, 2025-08-20, 2025-08-20, 2025-08-20, 20…
-#> $ gp_code            <chr> "XXVIII", "XXVIII", "XXVIII", "XXVIII", "XXVIII", "…
-#> $ status_number      <int> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+#> $ state_statements   <chr> "1"
+#> $ state_approval     <chr> "1"
+#> $ date_introduced    <date> 2025-08-20
+#> $ legis_period       <chr> "XXVIII"
+#> $ status_number      <int> 3
 #> $ status_description <chr> "Ausschuss für Petitionen und Bürgerinitiativen: au…
-#> $ item_documents     <list> [<data.frame[1 x 3]>], [<data.frame[1 x 3]>], [<dat…
-#> $ introducers        <list> [<tbl_df[0 x 4]>], [<tbl_df[0 x 4]>], [<tbl_df[0 x…
-#> $ references         <list> <NULL>, <NULL>, <NULL>, <NULL>, <NULL>, <NULL>, <N…
-#> $ topics             <list> <"Außenpolitik", "Europäische Union", "Information…
-#> $ headwords          <list> <"Bürgerinitiativen", "Außenpolitik", "Europäische…
-#> $ eurovoc            <list> <"Europäische Union", "Handel", "Industrie", "Info…
+#> $ item_documents     <list> [<tbl_df[1 x 3]>]
+#> $ introducers        <list> [<tbl_df[1 x 4]>]
+#> $ references         <list> <NULL>
+#> $ topics             <list> <"Außenpolitik", "Europäische Union", "Information …
+#> $ headwords          <list> <"Bürgerinitiativen", "Außenpolitik", "Europäische …
+#> $ eurovoc            <list> <"Europäische Union", "Handel", "Industrie", "Infor…
+#> $ votes              <list> <NULL>
+#> $ stages             <list> [<tbl_df[13 x 3]>]
 
 # Also works with relative paths
-stages <- get_item_details("/gegenstand/XXVIII/BI/24")
-dplyr::glimpse(stages)
-#> Rows: 13
-#> Columns: 19
-#> $ title              <chr> "Neutralität Österreichs sichern!", "Neutralität Ös…
-#> $ item_number        <chr> "24/BI", "24/BI", "24/BI", "24/BI", "24/BI", "24/BI…
-#> $ stage_date         <chr> "20.08.2025", "21.08.2025", "22.08.2025", "24.09.20…
-#> $ stage_name         <chr> "Einlangen im Nationalrat", "Vorgesehen für den Aus…
-#> $ phase              <chr> "Einlangen NR", "Einlangen NR", "Ausschussberatunge…
+details <- get_item_details("/gegenstand/XXVIII/BI/24")
+dplyr::glimpse(details)
+#> Rows: 1
+#> Columns: 21
 #> $ item_url           <chr> "https://www.parlament.gv.at/gegenstand/XXVIII/BI/2…
-#> $ type               <chr> "Bürgerinitiative", "Bürgerinitiative", "Bürgerinit…
+#> $ item_type          <chr> "BI"
+#> $ type_doc           <chr> "BI"
+#> $ type_doc_long      <chr> "Bürgerinitiative"
+#> $ title              <chr> "Neutralität Österreichs sichern!"
+#> $ item_number        <chr> "24/BI"
 #> $ item_description   <chr> "Bürgerinitiative betreffend \"Neutralität Österrei…
-#> $ state_approval     <chr> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "…
-#> $ date_introduced    <date> 2025-08-20, 2025-08-20, 2025-08-20, 2025-08-20, 20…
-#> $ gp_code            <chr> "XXVIII", "XXVIII", "XXVIII", "XXVIII", "XXVIII", "…
-#> $ status_number      <int> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+#> $ state_statements   <chr> "1"
+#> $ state_approval     <chr> "1"
+#> $ date_introduced    <date> 2025-08-20
+#> $ legis_period       <chr> "XXVIII"
+#> $ status_number      <int> 3
 #> $ status_description <chr> "Ausschuss für Petitionen und Bürgerinitiativen: au…
-#> $ item_documents     <list> [<data.frame[1 x 3]>], [<data.frame[1 x 3]>], [<dat…
-#> $ introducers        <list> [<tbl_df[0 x 4]>], [<tbl_df[0 x 4]>], [<tbl_df[0 x…
-#> $ references         <list> <NULL>, <NULL>, <NULL>, <NULL>, <NULL>, <NULL>, <N…
-#> $ topics             <list> <"Außenpolitik", "Europäische Union", "Information…
-#> $ headwords          <list> <"Bürgerinitiativen", "Außenpolitik", "Europäische…
-#> $ eurovoc            <list> <"Europäische Union", "Handel", "Industrie", "Info…
+#> $ item_documents     <list> [<tbl_df[1 x 3]>]
+#> $ introducers        <list> [<tbl_df[1 x 4]>]
+#> $ references         <list> <NULL>
+#> $ topics             <list> <"Außenpolitik", "Europäische Union", "Information …
+#> $ headwords          <list> <"Bürgerinitiativen", "Außenpolitik", "Europäische …
+#> $ eurovoc            <list> <"Europäische Union", "Handel", "Industrie", "Infor…
+#> $ votes              <list> <NULL>
+#> $ stages             <list> [<tbl_df[13 x 3]>]
 # }
 ```

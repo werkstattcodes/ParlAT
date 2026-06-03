@@ -10,7 +10,7 @@ section](https://werkstattcodes.github.io/ParlAT/dev/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (18 May 2026). This is done by the
+(Nationalrat) at the time of writing (03 June 2026). This is done by the
 function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md).
 
@@ -21,54 +21,43 @@ df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> {"M":["M"],"W":["W"]} 
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> ⠙ Fetching MPs' names 2/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 4/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 8/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 12/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 15/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 19/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 23/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 27/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 30/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 34/183 | ETA:  2m
-#> ⠙ Fetching MPs' names 38/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 41/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 45/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 49/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 52/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 56/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 60/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 64/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 67/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 71/183 | ETA:  2m
-#> ⠙ Fetching MPs' names 75/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 79/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 82/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 86/183 | ETA:  1m
-#> ⠴ Fetching MPs' names 90/183 | ETA:  1m
-#> ⠦ Fetching MPs' names 94/183 | ETA:  1m
-#> ⠧ Fetching MPs' names 97/183 | ETA:  1m
-#> ⠇ Fetching MPs' names 101/183 | ETA:  1m
-#> ⠏ Fetching MPs' names 105/183 | ETA:  1m
-#> ⠋ Fetching MPs' names 109/183 | ETA:  1m
-#> ⠙ Fetching MPs' names 112/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 116/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 120/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 123/183 | ETA: 48s
-#> ⠴ Fetching MPs' names 127/183 | ETA: 45s
-#> ⠦ Fetching MPs' names 131/183 | ETA: 42s
-#> ⠧ Fetching MPs' names 135/183 | ETA: 39s
-#> ⠇ Fetching MPs' names 139/183 | ETA: 35s
-#> ⠏ Fetching MPs' names 142/183 | ETA: 33s
-#> ⠋ Fetching MPs' names 146/183 | ETA: 30s
-#> ⠙ Fetching MPs' names 150/183 | ETA: 26s
-#> ⠹ Fetching MPs' names 154/183 | ETA: 23s
-#> ⠸ Fetching MPs' names 158/183 | ETA: 20s
-#> ⠼ Fetching MPs' names 161/183 | ETA: 18s
-#> ⠴ Fetching MPs' names 165/183 | ETA: 14s
-#> ⠦ Fetching MPs' names 169/183 | ETA: 11s
-#> ⠧ Fetching MPs' names 173/183 | ETA:  8s
-#> ⠇ Fetching MPs' names 177/183 | ETA:  5s
-#> ⠏ Fetching MPs' names 180/183 | ETA:  2s
+#> ⠹ Fetching MPs' names 5/183 | ETA:  2m
+#> ⠸ Fetching MPs' names 10/183 | ETA:  2m
+#> ⠼ Fetching MPs' names 15/183 | ETA:  2m
+#> ⠴ Fetching MPs' names 19/183 | ETA:  2m
+#> ⠦ Fetching MPs' names 24/183 | ETA:  2m
+#> ⠧ Fetching MPs' names 29/183 | ETA:  2m
+#> ⠇ Fetching MPs' names 34/183 | ETA:  2m
+#> ⠏ Fetching MPs' names 39/183 | ETA:  1m
+#> ⠋ Fetching MPs' names 44/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 48/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 53/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 58/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 63/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 67/183 | ETA:  1m
+#> ⠦ Fetching MPs' names 72/183 | ETA:  1m
+#> ⠧ Fetching MPs' names 77/183 | ETA:  1m
+#> ⠇ Fetching MPs' names 82/183 | ETA:  1m
+#> ⠏ Fetching MPs' names 87/183 | ETA:  1m
+#> ⠋ Fetching MPs' names 91/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 96/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 100/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 105/183 | ETA: 49s
+#> ⠼ Fetching MPs' names 110/183 | ETA: 46s
+#> ⠴ Fetching MPs' names 115/183 | ETA: 43s
+#> ⠦ Fetching MPs' names 120/183 | ETA: 40s
+#> ⠧ Fetching MPs' names 124/183 | ETA: 37s
+#> ⠇ Fetching MPs' names 130/183 | ETA: 33s
+#> ⠏ Fetching MPs' names 134/183 | ETA: 31s
+#> ⠋ Fetching MPs' names 139/183 | ETA: 28s
+#> ⠙ Fetching MPs' names 144/183 | ETA: 24s
+#> ⠹ Fetching MPs' names 149/183 | ETA: 21s
+#> ⠸ Fetching MPs' names 154/183 | ETA: 18s
+#> ⠼ Fetching MPs' names 159/183 | ETA: 15s
+#> ⠴ Fetching MPs' names 163/183 | ETA: 13s
+#> ⠦ Fetching MPs' names 168/183 | ETA:  9s
+#> ⠧ Fetching MPs' names 173/183 | ETA:  6s
+#> ⠇ Fetching MPs' names 178/183 | ETA:  3s
 #> Fetched 183 MPs' names.
 #> 
 nrow(df_current)
@@ -239,46 +228,38 @@ MPs (top 5 are shown below).
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
 #> ⠙ Fetching mandates 3/183 | ETA:  1m
-#> ⠹ Fetching mandates 8/183 | ETA:  2m
-#> ⠸ Fetching mandates 12/183 | ETA:  2m
-#> ⠼ Fetching mandates 17/183 | ETA:  2m
-#> ⠴ Fetching mandates 21/183 | ETA:  2m
-#> ⠦ Fetching mandates 25/183 | ETA:  2m
-#> ⠧ Fetching mandates 30/183 | ETA:  2m
-#> ⠇ Fetching mandates 34/183 | ETA:  2m
-#> ⠏ Fetching mandates 39/183 | ETA:  2m
-#> ⠋ Fetching mandates 43/183 | ETA:  2m
-#> ⠙ Fetching mandates 48/183 | ETA:  1m
-#> ⠹ Fetching mandates 52/183 | ETA:  1m
-#> ⠸ Fetching mandates 56/183 | ETA:  1m
-#> ⠼ Fetching mandates 61/183 | ETA:  1m
-#> ⠴ Fetching mandates 65/183 | ETA:  1m
-#> ⠦ Fetching mandates 69/183 | ETA:  1m
-#> ⠧ Fetching mandates 74/183 | ETA:  1m
-#> ⠇ Fetching mandates 78/183 | ETA:  1m
-#> ⠏ Fetching mandates 83/183 | ETA:  1m
-#> ⠋ Fetching mandates 87/183 | ETA:  1m
-#> ⠙ Fetching mandates 91/183 | ETA:  1m
-#> ⠹ Fetching mandates 96/183 | ETA:  1m
-#> ⠸ Fetching mandates 100/183 | ETA:  1m
-#> ⠼ Fetching mandates 105/183 | ETA:  1m
-#> ⠴ Fetching mandates 109/183 | ETA: 50s
-#> ⠦ Fetching mandates 113/183 | ETA: 47s
-#> ⠧ Fetching mandates 118/183 | ETA: 44s
-#> ⠇ Fetching mandates 122/183 | ETA: 41s
-#> ⠏ Fetching mandates 126/183 | ETA: 39s
-#> ⠋ Fetching mandates 131/183 | ETA: 35s
-#> ⠙ Fetching mandates 135/183 | ETA: 32s
-#> ⠹ Fetching mandates 140/183 | ETA: 29s
-#> ⠸ Fetching mandates 144/183 | ETA: 26s
-#> ⠼ Fetching mandates 149/183 | ETA: 23s
-#> ⠴ Fetching mandates 153/183 | ETA: 20s
-#> ⠦ Fetching mandates 158/183 | ETA: 17s
-#> ⠧ Fetching mandates 162/183 | ETA: 14s
-#> ⠇ Fetching mandates 166/183 | ETA: 11s
-#> ⠏ Fetching mandates 171/183 | ETA:  8s
-#> ⠋ Fetching mandates 175/183 | ETA:  5s
-#> ⠙ Fetching mandates 180/183 | ETA:  2s
+#> ⠹ Fetching mandates 5/183 | ETA:  1m
+#> ⠸ Fetching mandates 11/183 | ETA:  1m
+#> ⠼ Fetching mandates 16/183 | ETA:  1m
+#> ⠴ Fetching mandates 22/183 | ETA:  1m
+#> ⠦ Fetching mandates 28/183 | ETA:  1m
+#> ⠧ Fetching mandates 33/183 | ETA:  1m
+#> ⠇ Fetching mandates 39/183 | ETA:  1m
+#> ⠏ Fetching mandates 45/183 | ETA:  1m
+#> ⠋ Fetching mandates 50/183 | ETA:  1m
+#> ⠙ Fetching mandates 56/183 | ETA:  1m
+#> ⠹ Fetching mandates 62/183 | ETA:  1m
+#> ⠸ Fetching mandates 67/183 | ETA:  1m
+#> ⠼ Fetching mandates 73/183 | ETA:  1m
+#> ⠴ Fetching mandates 79/183 | ETA:  1m
+#> ⠦ Fetching mandates 84/183 | ETA:  1m
+#> ⠧ Fetching mandates 90/183 | ETA: 49s
+#> ⠇ Fetching mandates 96/183 | ETA: 46s
+#> ⠏ Fetching mandates 101/183 | ETA: 43s
+#> ⠋ Fetching mandates 107/183 | ETA: 40s
+#> ⠙ Fetching mandates 113/183 | ETA: 37s
+#> ⠹ Fetching mandates 118/183 | ETA: 34s
+#> ⠸ Fetching mandates 124/183 | ETA: 31s
+#> ⠼ Fetching mandates 130/183 | ETA: 28s
+#> ⠴ Fetching mandates 136/183 | ETA: 25s
+#> ⠦ Fetching mandates 141/183 | ETA: 22s
+#> ⠧ Fetching mandates 147/183 | ETA: 19s
+#> ⠇ Fetching mandates 153/183 | ETA: 16s
+#> ⠏ Fetching mandates 159/183 | ETA: 13s
+#> ⠋ Fetching mandates 165/183 | ETA:  9s
+#> ⠙ Fetching mandates 170/183 | ETA:  7s
+#> ⠹ Fetching mandates 176/183 | ETA:  4s
+#> ⠸ Fetching mandates 181/183 | ETA:  1s
 #> Fetched mandates for 183 persons.
 #> 
 
@@ -304,11 +285,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10391
-#> 2 12741      Peter Haubner                     8932
-#> 3 2834       Mag. Dr. Martin Graf              8631
-#> 4 14835      Petra Bayr, MA MLS                8550
-#> 5 14795      August Wöginger                   8550
+#> 1 145        Doris Bures                      10407
+#> 2 12741      Peter Haubner                     8948
+#> 3 2834       Mag. Dr. Martin Graf              8647
+#> 4 14835      Petra Bayr, MA MLS                8566
+#> 5 14795      August Wöginger                   8566
 ```
 
 ## Get MPs’ details
@@ -439,7 +420,7 @@ dplyr::glimpse(df_items %>% head())
 #> $ item_number      <chr> "19510", "19509", "19508", "19507", "19506", "101"
 #> $ item_number_type <chr> "19510/J", "19509/J", "19508/J", "19507/J", "19506/J", "101/JPR"
 #> $ stage            <chr> "3", "3", "3", "3", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/J/19510", "/gegenstand/XXVII/J/19509", "/gegenstand/XXVII/J/19508", "/gegenstand/XXVII/J/19507", "/gegenstand/XXVII/J/19506", "/gegenstand/XXVII/JPR/101"
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/J/19510", "https://www.parlament.gv.at/gegenstand/XXVII/J/19509", "https://www.parlament.gv.at/gegenstand/XXVII/J/19508", "https://www.parlament.gv.at/gegenstand/XXVII/J/19507", "https://www.parlament.gv.at/gegenstand/XXVII/J/19506", "https://www.parlament.gv.at/gegenstand/XXVII/JPR/101"
 #> $ type_doc         <chr> "J", "J", "J", "J", "J", "JPR"
 #> $ type_doc_long    <chr> "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage an Präsidentin/Präsident/Ausschussvorsitzende"
 #> $ subject          <chr> "Steckt ukrainischer Verein hinter organisierter Beschädigung von FPÖ-Plakaten? - Frist für die Beantwortung 14.12.2024", "Linksextreme Chaoten attackieren FPÖ-Wahlfeier - Frist für die Beantwortung 14.12.2024", "Verbot des sportlichen Long-Range-Schießens für den Heeressportverein - Frist für die Beantwortung 14.12.2024", "Botschafter Michael Linhart als ÖVP-Wahlkampfhelfer bei der Vorarlberger Landtagswahl - Frist für die Beantwortung 08.12.2024", "Zustände in der Justizanstalt Salzburg - beantwortet durch 18818/AB", "Willkürlicher Ausschluss von Journalisten von der Wahlberichterstattung aus dem Parlament - beantwortet durch 100/ABPR"
@@ -553,17 +534,17 @@ glimpse(df_govBills %>% head())
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2024-07-05, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "2704", "2603", "2602", "2607", "2611", "2612"
-#> $ item_number_type <chr> "2704 d.B.", "2603 d.B.", "2602 d.B.", "2607 d.B.", "2611 d.B.", "2612 d.B."
+#> $ item_number      <chr> "2704", "2607", "2605", "2602", "2611", "2610"
+#> $ item_number_type <chr> "2704 d.B.", "2607 d.B.", "2605 d.B.", "2602 d.B.", "2611 d.B.", "2610 d.B."
 #> $ stage            <chr> "2", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "/gegenstand/XXVII/I/2704", "/gegenstand/XXVII/I/2603", "/gegenstand/XXVII/I/2602", "/gegenstand/XXVII/I/2607", "/gegenstand/XXVII/I/2611", "/gegenstand/XXVII/I/2612"
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2607", "https://www.parlament.gv.at/gegenstand/XXVII/I/2605", "https://www.parlament.gv.at/gegenstand/XXVII/I/2602", "https://www.parlament.gv.at/gegenstand/XXVII/I/2611", "https://www.parlament.gv.at/gegenstand/XXVII/I/2610"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Eisenbahngesetz, Änderung", "Qualifizierte-Einrichtungen-Gesetz; Verbandsklagen-Richtlinie-Umsetzungs-Novelle – VRUN", "Sozialversicherungs-Änderungsgesetz 2024 – SVÄG 2024", "Gewerbeordnung, Änderung", "Druckgerätegesetz, Änderung; Emissionsgrenzwerte für gasförmige Schadstoffe und luftverunreinigende Partikel und die Typgenehmigung für Verbrennungsmotoren für nicht für den Straßenverkehr bestimmte mobile Maschinen und Geräte festgelegt werden (Mot-G)"
-#> $ topics           <list> "Budget und Finanzen", "Verkehr und Infrastruktur", <"Budget und Finanzen", "Inneres und Recht", "Wirtschaft">, "Soziales", "Wirtschaft", <"Klima", "Umwelt und Energie", "Wirtschaft">
-#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", "Verkehr II. Schienenverkehr", <"Zivilrecht", "Handel", "Gewerbe und Industrie", "Rechtsanwälte und Notare", "Rechtspflege", "Steuern und Gebühren">, "Sozialversicherung I. Allgemeine Sozialversicherung", <"Handel", "Gewerbe und Industrie">, <"Handel", "Gewerbe und Industrie", "Umweltschutz">
-#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Schienentransport\"]", "[\"Bürgerliches Recht\",\"Gerichtswesen\",\"Handel\",\"Industrie\",\"Notar\",\"Rechtsanwalt\",\"Steuerwesen\",\"Unternehmen und Wettbewerb\"]", "[\"soziale Sicherheit\"]", "[\"Handel\",\"Industrie\",\"Unternehmen und Wettbewerb\"]", "[\"Handel\",\"Industrie\",\"Umwelt\",\"Unternehmen und Wettbewerb\"]"
-#> $ persons          <list> "55727", "5653", "2345", "21029", "18140", "18140"
+#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Sozialversicherungs-Änderungsgesetz 2024 – SVÄG 2024", "Theaterarbeitsgesetz, Änderung", "Qualifizierte-Einrichtungen-Gesetz; Verbandsklagen-Richtlinie-Umsetzungs-Novelle – VRUN", "Gewerbeordnung, Änderung", "Abgabenänderungsgesetz 2024 – AbgÄG 2024"
+#> $ topics           <list> "Budget und Finanzen", "Soziales", NA, <"Budget und Finanzen", "Inneres und Recht", "Wirtschaft">, "Wirtschaft", NA
+#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", "Sozialversicherung I. Allgemeine Sozialversicherung", <"Arbeitsrecht I. österreichisches", "Theater">, <"Zivilrecht", "Handel", "Gewerbe und Industrie", "Rechtsanwälte und Notare", "Rechtspflege", "Steuern und Gebühren">, <"Handel", "Gewerbe und Industrie">, <"Steuern und Gebühren", "Kreditwesen">
+#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"soziale Sicherheit\"]", "[\"Arbeitsrecht\",\"Darstellende Künste\"]", "[\"Bürgerliches Recht\",\"Gerichtswesen\",\"Handel\",\"Industrie\",\"Notar\",\"Rechtsanwalt\",\"Steuerwesen\",\"Unternehmen und Wettbewerb\"]", "[\"Handel\",\"Industrie\",\"Unternehmen und Wettbewerb\"]", "[\"Geld- und Kreditwesen\",\"Steuerwesen\"]"
+#> $ persons          <list> "55727", "21029", "18140", "2345", "18140", "55727"
 #> $ parl_group       <list> "", "", "", "", "", ""
 
 #count number of bills by legis period
