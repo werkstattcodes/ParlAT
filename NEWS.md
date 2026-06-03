@@ -1,5 +1,8 @@
 # ParlAT 0.0.4.9000
 
+- `get_item_details()` now accepts `votes = TRUE` by default and returns vote
+  information from National Council item pages in a `votes` list-column. Set
+  `votes = FALSE` to omit vote extraction.
 - `get_item_details()` now returns the raw item and document type codes as
   `item_type` and `type_doc`.
 - `get_item_details()` now returns the human-readable document type as
