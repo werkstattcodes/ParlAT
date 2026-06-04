@@ -2,34 +2,33 @@
 % Please edit documentation in R/get_item_details.R
 \name{get_item_details}
 \alias{get_item_details}
-\title{Get detailed information for a parliamentary item}
+\title{Get detailed information for a parliamentary item ('Verhandlungsgegenstand')}
 \usage{
 get_item_details(item_url, stages = TRUE, votes = TRUE)
 }
 \arguments{
-\item{item_url}{Character. A single URL or path to an item on the Austrian
+\item{item_url}{Character. A single URL or path to an item ('Verhandlungsgegenstand') on the Austrian
 Parliament website. Can be an absolute URL starting with
 "https://www.parlament.gv.at/" or a relative path (with or without
-leading slashes). The function will normalize relative paths automatically.}
+leading slashes). The function will normalize relative paths automatically. URLs are best
+obtained via a preceding call with \code{get_items()}.}
 
 \item{stages}{Logical. If \code{TRUE} (default), extract stage information and
 add it as the \code{stages} list-column. If \code{FALSE}, return only item-level
 metadata.}
 
 \item{votes}{Logical. If \code{TRUE} (default), add vote information from the
-item page as the \code{votes} list-column when it is available. Vote data is
-only expected for items where the Parliament page exposes vote
-information, especially National Council items. If \code{FALSE}, omit vote
-extraction and the \code{votes} column.}
+item page as the \code{votes} list-column. *Returns only data for votes on items
+under consideration in the third reading ('dritte Lesung') in the National Council.
+If \code{FALSE}, omits vote extraction and the \code{votes} column.}
 }
 \value{
 A one-row tibble containing detailed information about the
 parliamentary item. The \code{stages} list-column is included only when
 \code{stages = TRUE}; it contains stage information, or \code{NULL} if the item has
 no stages yet. The \code{votes} list-column is included only when
-\code{votes = TRUE}; \code{votes[[1]]} contains vote information, or \code{NULL} if no
-vote data is available. Emits a warning if the page structure is
-unrecognised (possible API change).
+\code{votes = TRUE}; Emits a warning if the page structure is
+unrecognised.
 
 \strong{Item-level columns:}
 \itemize{
@@ -75,22 +74,11 @@ stages without debate contributions.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-}
-\details{
-Retrieves detailed information for a specific parliamentary item by scraping
-its detail page on the Austrian Parliament website. The function returns
-item-level metadata and, optionally, structured information about legislative
-stages and votes.
 
-The function performs the following steps:
-\enumerate{
-\item Normalizes the URL (prepends "https://www.parlament.gv.at/" if needed)
-\item Scrapes the item's detail page
-\item Extracts structured data from embedded JavaScript
-\item Parses HTML content within stage text fields
-\item Returns a one-row tibble with item metadata and optional stage and vote
-details
-}
+Returns detailed information for a specific parliamentary item
+('Verhandlungsgegenstand') by retrieving data from its detail page on the
+Austrian Parliament website. The function returns item-level metadata and,
+optionally, structured information about legislative stages and votes.
 }
 \examples{
 \donttest{
