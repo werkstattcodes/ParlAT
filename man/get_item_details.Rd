@@ -2,35 +2,47 @@
 % Please edit documentation in R/get_item_details.R
 \name{get_item_details}
 \alias{get_item_details}
-\title{Get detailed stage information for a parliamentary item}
+\title{Get detailed information for a parliamentary item ('Verhandlungsgegenstand')}
 \usage{
-get_item_details(item_url, type = "stages")
+get_item_details(item_url, stages = TRUE, votes = TRUE)
 }
 \arguments{
-\item{item_url}{Character. A single URL or path to an item on the Austrian
+\item{item_url}{Character. A single URL or path to an item ('Verhandlungsgegenstand') on the Austrian
 Parliament website. Can be an absolute URL starting with
 "https://www.parlament.gv.at/" or a relative path (with or without
-leading slashes). The function will normalize relative paths automatically.}
+leading slashes). The function will normalize relative paths automatically. URLs are best
+obtained via a preceding call with \code{get_items()}.}
 
-\item{type}{Character. Type of data to extract. Currently only "stages" is
-supported (default).}
+\item{stages}{Logical. If \code{TRUE} (default), extract stage information and
+add it as the \code{stages} list-column. If \code{FALSE}, return only item-level
+metadata.}
+
+\item{votes}{Logical. If \code{TRUE} (default), add vote information from the
+item page as the \code{votes} list-column. *Returns only data for votes on items
+under consideration in the third reading ('dritte Lesung') in the National Council.
+If \code{FALSE}, omits vote extraction and the \code{votes} column.}
 }
 \value{
-A tibble containing detailed information about the parliamentary item and its stages.
-Returns \code{NULL} if the item has no stages yet. Emits a warning if the page
-structure is unrecognised (possible API change).
+A one-row tibble containing detailed information about the
+parliamentary item. The \code{stages} list-column is included only when
+\code{stages = TRUE}; it contains stage information, or \code{NULL} if the item has
+no stages yet. The \code{votes} list-column is included only when
+\code{votes = TRUE}; Emits a warning if the page structure is
+unrecognised.
 
-\strong{Item-level columns} (replicated for each stage row):
+\strong{Item-level columns:}
 \itemize{
 \item \code{item_url} (character): The URL of the parliamentary item.
-\item \code{type} (character): The type of the item (e.g., BI, A, UEA).
+\item \code{item_type} (character): Raw item type code from \code{ityp}.
+\item \code{type_doc} (character): Raw document type code from \code{doktyp}.
+\item \code{type_doc_long} (character): Human-readable document type.
 \item \code{title} (character): The title of the item.
 \item \code{item_number} (character): The citation number (e.g. "61/A").
 \item \code{item_description} (character): A brief description of the item.
 \item \code{state_statements} (character): Statement stage information.
 \item \code{state_approval} (character): The current approval state.
 \item \code{date_introduced} (Date): The date the item was introduced to parliament.
-\item \code{gp_code} (character): Legislative period code (e.g. "XXVII").
+\item \code{legis_period} (character): Legislative period code (e.g. "XXVII").
 \item \code{status_number} (integer): Current status number.
 \item \code{status_description} (character): Current status description (HTML stripped).
 \item \code{item_documents} (list): Tibble with columns \code{doc_title}, \code{link}, \code{type}
@@ -42,9 +54,13 @@ for item-level documents. \code{NULL} if none.
 \item \code{topics} (list): Character vector of topic labels.
 \item \code{headwords} (list): Character vector of headword labels.
 \item \code{eurovoc} (list): Character vector of EuroVoc terms.
+\item \code{votes} (list): Vote information from the item page. \code{votes[[1]]} is
+either \code{NULL} or a list with fields \code{result}, \code{infavor}, \code{code}, \code{text},
+and \code{comment}. The nested \code{result} field is a data frame with columns
+\code{text}, \code{code}, \code{color}, \code{fraction}, and \code{infavor}.
 }
 
-\strong{Stage-level columns:}
+\strong{Stage-level columns} (inside \code{stages}):
 \itemize{
 \item \code{phase} (character): The phase of the legislative stage (e.g.
 "Ausschussbehandlung"). \code{NA} for items with flat stages (no phase wrapper).
@@ -58,32 +74,24 @@ stages without debate contributions.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-}
-\details{
-Retrieves detailed stage information for a specific parliamentary item by
-scraping its detail page on the Austrian Parliament website. The function
-extracts structured data about the item's progression through different
-legislative stages.
 
-The function performs the following steps:
-\enumerate{
-\item Normalizes the URL (prepends "https://www.parlament.gv.at/" if needed)
-\item Scrapes the item's detail page
-\item Extracts structured data from embedded JavaScript
-\item Parses HTML content within stage text fields
-\item Returns a tibble with stage information
-}
+Returns detailed information for a specific parliamentary item
+('Verhandlungsgegenstand') by retrieving data from its detail page on the
+Austrian Parliament website. The function returns item-level metadata and,
+optionally, structured information about legislative stages and votes.
 }
 \examples{
 \donttest{
-# Get details for a specific item
-item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-stages <- get_item_details(item_url)
-dplyr::glimpse(stages)
+# Get details for a specific item with vote information
+item_url <- "https://www.parlament.gv.at/gegenstand/XX/I/1833"
+details <- get_item_details(item_url, stages = FALSE)
+dplyr::glimpse(details)
+details$votes[[1]]
+details$votes[[1]]$result
 
 # Also works with relative paths
-stages <- get_item_details("/gegenstand/XXVIII/BI/24")
-dplyr::glimpse(stages)
+details <- get_item_details("/gegenstand/XX/I/1833", stages = FALSE)
+dplyr::glimpse(details)
 }
 
 }
