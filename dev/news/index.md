@@ -1,6 +1,8 @@
 # Changelog
 
-## ParlAT 0.0.4.9000
+## ParlAT 0.0.5.9000
+
+## ParlAT 0.0.5
 
 - [`get_item_details()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_item_details.md)
   now accepts `votes = TRUE` by default and returns vote information
