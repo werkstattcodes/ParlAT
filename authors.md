@@ -7,16 +7,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/werkstattcodes/ParlAT/blob/v0.0.4/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/werkstattcodes/ParlAT/blob/v0.0.5/DESCRIPTION)
 
 Schmidt R (2026). *ParlAT: A wrapper for the API of the Austrian
-Parliament*. R package version 0.0.4,
+Parliament*. R package version 0.0.5,
 <https://github.com/werkstattcodes/ParlAT>.
 
     @Manual{,
       title = {ParlAT: A wrapper for the API of the Austrian Parliament},
       author = {Roland Schmidt},
       year = {2026},
-      note = {R package version 0.0.4},
+      note = {R package version 0.0.5},
       url = {https://github.com/werkstattcodes/ParlAT},
     }

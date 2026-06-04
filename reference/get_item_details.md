@@ -1,39 +1,60 @@
-# Get detailed stage information for a parliamentary item
+# Get detailed information for a parliamentary item ('Verhandlungsgegenstand')
 
 **\[experimental\]**
+
+Returns detailed information for a specific parliamentary item
+('Verhandlungsgegenstand') by retrieving data from its detail page on
+the Austrian Parliament website. The function returns item-level
+metadata and, optionally, structured information about legislative
+stages and votes.
 
 ## Usage
 
 ``` r
-get_item_details(item_url, type = "stages")
+get_item_details(item_url, stages = TRUE, votes = TRUE)
 ```
 
 ## Arguments
 
 - item_url:
 
-  Character. A single URL or path to an item on the Austrian Parliament
-  website. Can be an absolute URL starting with
-  "https://www.parlament.gv.at/" or a relative path (with or without
-  leading slashes). The function will normalize relative paths
-  automatically.
+  Character. A single URL or path to an item ('Verhandlungsgegenstand')
+  on the Austrian Parliament website. Can be an absolute URL starting
+  with "https://www.parlament.gv.at/" or a relative path (with or
+  without leading slashes). The function will normalize relative paths
+  automatically. URLs are best obtained via a preceding call with
+  [`get_items()`](https://werkstattcodes.github.io/ParlAT/reference/get_items.md).
 
-- type:
+- stages:
 
-  Character. Type of data to extract. Currently only "stages" is
-  supported (default).
+  Logical. If `TRUE` (default), extract stage information and add it as
+  the `stages` list-column. If `FALSE`, return only item-level metadata.
+
+- votes:
+
+  Logical. If `TRUE` (default), add vote information from the item page
+  as the `votes` list-column. \*Returns only data for votes on items
+  under consideration in the third reading ('dritte Lesung') in the
+  National Council. If `FALSE`, omits vote extraction and the `votes`
+  column.
 
 ## Value
 
-A tibble containing detailed information about the parliamentary item
-and its stages. Returns `NULL` if the item has no stages yet. Emits a
-warning if the page structure is unrecognised (possible API change).
+A one-row tibble containing detailed information about the parliamentary
+item. The `stages` list-column is included only when `stages = TRUE`; it
+contains stage information, or `NULL` if the item has no stages yet. The
+`votes` list-column is included only when `votes = TRUE`; Emits a
+warning if the page structure is unrecognised.
 
-**Item-level columns** (replicated for each stage row):
+**Item-level columns:**
 
 - `item_url` (character): The URL of the parliamentary item.
 
-- `type` (character): The type of the item (e.g., BI, A, UEA).
+- `item_type` (character): Raw item type code from `ityp`.
+
+- `type_doc` (character): Raw document type code from `doktyp`.
+
+- `type_doc_long` (character): Human-readable document type.
 
 - `title` (character): The title of the item.
 
@@ -48,7 +69,7 @@ warning if the page structure is unrecognised (possible API change).
 - `date_introduced` (Date): The date the item was introduced to
   parliament.
 
-- `gp_code` (character): Legislative period code (e.g. "XXVII").
+- `legis_period` (character): Legislative period code (e.g. "XXVII").
 
 - `status_number` (integer): Current status number.
 
@@ -71,7 +92,12 @@ warning if the page structure is unrecognised (possible API change).
 
 - `eurovoc` (list): Character vector of EuroVoc terms.
 
-**Stage-level columns:**
+- `votes` (list): Vote information from the item page. `votes[[1]]` is
+  either `NULL` or a list with fields `result`, `infavor`, `code`,
+  `text`, and `comment`. The nested `result` field is a data frame with
+  columns `text`, `code`, `color`, `fraction`, and `infavor`.
+
+**Stage-level columns** (inside `stages`):
 
 - `phase` (character): The phase of the legislative stage (e.g.
   "Ausschussbehandlung"). `NA` for items with flat stages (no phase
@@ -89,26 +115,6 @@ warning if the page structure is unrecognised (possible API change).
   `speaker_url`, `position`, `protocol_page`, `protocol_url`,
   `video_url`. `NULL` for stages without debate contributions.
 
-## Details
-
-Retrieves detailed stage information for a specific parliamentary item
-by scraping its detail page on the Austrian Parliament website. The
-function extracts structured data about the item's progression through
-different legislative stages.
-
-The function performs the following steps:
-
-1.  Normalizes the URL (prepends "https://www.parlament.gv.at/" if
-    needed)
-
-2.  Scrapes the item's detail page
-
-3.  Extracts structured data from embedded JavaScript
-
-4.  Parses HTML content within stage text fields
-
-5.  Returns a tibble with stage information
-
 ## See also
 
 - [`get_items()`](https://werkstattcodes.github.io/ParlAT/reference/get_items.md)
@@ -118,55 +124,85 @@ The function performs the following steps:
 
 ``` r
 # \donttest{
-# Get details for a specific item
-item_url <- "https://www.parlament.gv.at/gegenstand/XXVIII/BI/24"
-stages <- get_item_details(item_url)
-dplyr::glimpse(stages)
-#> Rows: 13
-#> Columns: 19
-#> $ title              <chr> "Neutralität Österreichs sichern!", "Neutralität Ös…
-#> $ item_number        <chr> "24/BI", "24/BI", "24/BI", "24/BI", "24/BI", "24/BI…
-#> $ stage_date         <chr> "20.08.2025", "21.08.2025", "22.08.2025", "24.09.20…
-#> $ stage_name         <chr> "Einlangen im Nationalrat", "Vorgesehen für den Aus…
-#> $ phase              <chr> "Einlangen NR", "Einlangen NR", "Ausschussberatunge…
-#> $ item_url           <chr> "https://www.parlament.gv.at/gegenstand/XXVIII/BI/2…
-#> $ type               <chr> "Bürgerinitiative", "Bürgerinitiative", "Bürgerinit…
-#> $ item_description   <chr> "Bürgerinitiative betreffend \"Neutralität Österrei…
-#> $ state_approval     <chr> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "…
-#> $ date_introduced    <date> 2025-08-20, 2025-08-20, 2025-08-20, 2025-08-20, 20…
-#> $ gp_code            <chr> "XXVIII", "XXVIII", "XXVIII", "XXVIII", "XXVIII", "…
-#> $ status_number      <int> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
-#> $ status_description <chr> "Ausschuss für Petitionen und Bürgerinitiativen: au…
-#> $ item_documents     <list> [<data.frame[1 x 3]>], [<data.frame[1 x 3]>], [<dat…
-#> $ introducers        <list> [<tbl_df[0 x 4]>], [<tbl_df[0 x 4]>], [<tbl_df[0 x…
-#> $ references         <list> <NULL>, <NULL>, <NULL>, <NULL>, <NULL>, <NULL>, <N…
-#> $ topics             <list> <"Außenpolitik", "Europäische Union", "Information…
-#> $ headwords          <list> <"Bürgerinitiativen", "Außenpolitik", "Europäische…
-#> $ eurovoc            <list> <"Europäische Union", "Handel", "Industrie", "Info…
+# Get details for a specific item with vote information
+item_url <- "https://www.parlament.gv.at/gegenstand/XX/I/1833"
+details <- get_item_details(item_url, stages = FALSE)
+dplyr::glimpse(details)
+#> Rows: 1
+#> Columns: 20
+#> $ item_url           <chr> "https://www.parlament.gv.at/gegenstand/XX/I/1833"
+#> $ item_type          <chr> "I"
+#> $ type_doc           <chr> "RV"
+#> $ type_doc_long      <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz"
+#> $ title              <chr> "Gefahrgutbeförderungsgesetz, Änderung"
+#> $ item_number        <chr> "1833 d.B."
+#> $ item_description   <chr> "Bundesgesetz, mit dem das Gefahrgutbeförderungsges…
+#> $ state_statements   <chr> "0"
+#> $ state_approval     <chr> "9 Keine Zustimmung bei dem Doktyp \"RV\" möglich"
+#> $ date_introduced    <date> 1999-05-17
+#> $ legis_period       <chr> "XX"
+#> $ status_number      <int> 5
+#> $ status_description <chr> "Kein Einspruch\n174. Sitzung des Nationalrates: Ge…
+#> $ item_documents     <list> [<tbl_df[2 x 3]>]
+#> $ introducers        <list> <NULL>
+#> $ references         <list> [<tbl_df[1 x 5]>]
+#> $ topics             <list> "Verkehr und Infrastruktur"
+#> $ headwords          <list> "Verkehr V. Sonstiges"
+#> $ eurovoc            <list> "Verkehr"
+#> $ votes              <list> [[<data.frame[5 x 5]>], TRUE, "SVflg", "Dafür: S, V…
+details$votes[[1]]
+#> $result
+#>    text code   color fraction infavor
+#> 1   SPÖ    S #FF0000       71    TRUE
+#> 2   ÖVP    V #000000       52    TRUE
+#> 3     F    F #0052FB       41   FALSE
+#> 4     L    L #B0D8F3        9   FALSE
+#> 5 GRÜNE    G #69B12E        9   FALSE
+#> 
+#> $infavor
+#> [1] TRUE
+#> 
+#> $code
+#> [1] "SVflg"
+#> 
+#> $text
+#> [1] "Dafür: S, V. Dagegen: F, L, G"
+#> 
+#> $comment
+#> NULL
+#> 
+details$votes[[1]]$result
+#>    text code   color fraction infavor
+#> 1   SPÖ    S #FF0000       71    TRUE
+#> 2   ÖVP    V #000000       52    TRUE
+#> 3     F    F #0052FB       41   FALSE
+#> 4     L    L #B0D8F3        9   FALSE
+#> 5 GRÜNE    G #69B12E        9   FALSE
 
 # Also works with relative paths
-stages <- get_item_details("/gegenstand/XXVIII/BI/24")
-dplyr::glimpse(stages)
-#> Rows: 13
-#> Columns: 19
-#> $ title              <chr> "Neutralität Österreichs sichern!", "Neutralität Ös…
-#> $ item_number        <chr> "24/BI", "24/BI", "24/BI", "24/BI", "24/BI", "24/BI…
-#> $ stage_date         <chr> "20.08.2025", "21.08.2025", "22.08.2025", "24.09.20…
-#> $ stage_name         <chr> "Einlangen im Nationalrat", "Vorgesehen für den Aus…
-#> $ phase              <chr> "Einlangen NR", "Einlangen NR", "Ausschussberatunge…
-#> $ item_url           <chr> "https://www.parlament.gv.at/gegenstand/XXVIII/BI/2…
-#> $ type               <chr> "Bürgerinitiative", "Bürgerinitiative", "Bürgerinit…
-#> $ item_description   <chr> "Bürgerinitiative betreffend \"Neutralität Österrei…
-#> $ state_approval     <chr> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "…
-#> $ date_introduced    <date> 2025-08-20, 2025-08-20, 2025-08-20, 2025-08-20, 20…
-#> $ gp_code            <chr> "XXVIII", "XXVIII", "XXVIII", "XXVIII", "XXVIII", "…
-#> $ status_number      <int> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
-#> $ status_description <chr> "Ausschuss für Petitionen und Bürgerinitiativen: au…
-#> $ item_documents     <list> [<data.frame[1 x 3]>], [<data.frame[1 x 3]>], [<dat…
-#> $ introducers        <list> [<tbl_df[0 x 4]>], [<tbl_df[0 x 4]>], [<tbl_df[0 x…
-#> $ references         <list> <NULL>, <NULL>, <NULL>, <NULL>, <NULL>, <NULL>, <N…
-#> $ topics             <list> <"Außenpolitik", "Europäische Union", "Information…
-#> $ headwords          <list> <"Bürgerinitiativen", "Außenpolitik", "Europäische…
-#> $ eurovoc            <list> <"Europäische Union", "Handel", "Industrie", "Info…
+details <- get_item_details("/gegenstand/XX/I/1833", stages = FALSE)
+dplyr::glimpse(details)
+#> Rows: 1
+#> Columns: 20
+#> $ item_url           <chr> "https://www.parlament.gv.at/gegenstand/XX/I/1833"
+#> $ item_type          <chr> "I"
+#> $ type_doc           <chr> "RV"
+#> $ type_doc_long      <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz"
+#> $ title              <chr> "Gefahrgutbeförderungsgesetz, Änderung"
+#> $ item_number        <chr> "1833 d.B."
+#> $ item_description   <chr> "Bundesgesetz, mit dem das Gefahrgutbeförderungsges…
+#> $ state_statements   <chr> "0"
+#> $ state_approval     <chr> "9 Keine Zustimmung bei dem Doktyp \"RV\" möglich"
+#> $ date_introduced    <date> 1999-05-17
+#> $ legis_period       <chr> "XX"
+#> $ status_number      <int> 5
+#> $ status_description <chr> "Kein Einspruch\n174. Sitzung des Nationalrates: Ge…
+#> $ item_documents     <list> [<tbl_df[2 x 3]>]
+#> $ introducers        <list> <NULL>
+#> $ references         <list> [<tbl_df[1 x 5]>]
+#> $ topics             <list> "Verkehr und Infrastruktur"
+#> $ headwords          <list> "Verkehr V. Sonstiges"
+#> $ eurovoc            <list> "Verkehr"
+#> $ votes              <list> [[<data.frame[5 x 5]>], TRUE, "SVflg", "Dafür: S, V…
 # }
 ```

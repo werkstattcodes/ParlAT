@@ -10,8 +10,8 @@
 - [`get_items()`](https://werkstattcodes.github.io/ParlAT/reference/get_items.md)
   : Get items under negotiation ('Verhandlungsgegenstände')
 - [`get_item_details()`](https://werkstattcodes.github.io/ParlAT/reference/get_item_details.md)
-  **\[experimental\]** : Get detailed stage information for a
-  parliamentary item
+  **\[experimental\]** : Get detailed information for a parliamentary
+  item ('Verhandlungsgegenstand')
 - [`get_mandates()`](https://werkstattcodes.github.io/ParlAT/reference/get_mandates.md)
   : Get mandates
 - [`get_mps()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps.md)
