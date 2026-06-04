@@ -1,4 +1,4 @@
-# ParlAT 0.0.4.9000
+# ParlAT 0.0.5
 
 - `get_item_details()` now accepts `votes = TRUE` by default and returns vote
   information from National Council item pages in a `votes` list-column. Set
