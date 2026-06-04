@@ -139,7 +139,7 @@ result <- get_plenary_meetings(
   meeting_and_activities = "meetings"
 )
 dplyr::glimpse(result)
-#> Rows: 80
+#> Rows: 84
 #> Columns: 10
 #> $ institution     <chr> "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR", …
 #> $ legis_period    <chr> "28", "28", "28", "28", "28", "28", "28", "28", "28", …

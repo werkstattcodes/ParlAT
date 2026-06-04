@@ -1,6 +1,12 @@
-# Get detailed information for a parliamentary item
+# Get detailed information for a parliamentary item ('Verhandlungsgegenstand')
 
 **\[experimental\]**
+
+Returns detailed information for a specific parliamentary item
+('Verhandlungsgegenstand') by retrieving data from its detail page on
+the Austrian Parliament website. The function returns item-level
+metadata and, optionally, structured information about legislative
+stages and votes.
 
 ## Usage
 
@@ -12,11 +18,12 @@ get_item_details(item_url, stages = TRUE, votes = TRUE)
 
 - item_url:
 
-  Character. A single URL or path to an item on the Austrian Parliament
-  website. Can be an absolute URL starting with
-  "https://www.parlament.gv.at/" or a relative path (with or without
-  leading slashes). The function will normalize relative paths
-  automatically.
+  Character. A single URL or path to an item ('Verhandlungsgegenstand')
+  on the Austrian Parliament website. Can be an absolute URL starting
+  with "https://www.parlament.gv.at/" or a relative path (with or
+  without leading slashes). The function will normalize relative paths
+  automatically. URLs are best obtained via a preceding call with
+  [`get_items()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_items.md).
 
 - stages:
 
@@ -26,19 +33,18 @@ get_item_details(item_url, stages = TRUE, votes = TRUE)
 - votes:
 
   Logical. If `TRUE` (default), add vote information from the item page
-  as the `votes` list-column when it is available. Vote data is only
-  expected for items where the Parliament page exposes vote information,
-  especially National Council items. If `FALSE`, omit vote extraction
-  and the `votes` column.
+  as the `votes` list-column. \*Returns only data for votes on items
+  under consideration in the third reading ('dritte Lesung') in the
+  National Council. If `FALSE`, omits vote extraction and the `votes`
+  column.
 
 ## Value
 
 A one-row tibble containing detailed information about the parliamentary
 item. The `stages` list-column is included only when `stages = TRUE`; it
 contains stage information, or `NULL` if the item has no stages yet. The
-`votes` list-column is included only when `votes = TRUE`; `votes[[1]]`
-contains vote information, or `NULL` if no vote data is available. Emits
-a warning if the page structure is unrecognised (possible API change).
+`votes` list-column is included only when `votes = TRUE`; Emits a
+warning if the page structure is unrecognised.
 
 **Item-level columns:**
 
@@ -108,27 +114,6 @@ a warning if the page structure is unrecognised (possible API change).
 - `speeches` (list): Nested tibble with columns `speaker`,
   `speaker_url`, `position`, `protocol_page`, `protocol_url`,
   `video_url`. `NULL` for stages without debate contributions.
-
-## Details
-
-Retrieves detailed information for a specific parliamentary item by
-scraping its detail page on the Austrian Parliament website. The
-function returns item-level metadata and, optionally, structured
-information about legislative stages and votes.
-
-The function performs the following steps:
-
-1.  Normalizes the URL (prepends "https://www.parlament.gv.at/" if
-    needed)
-
-2.  Scrapes the item's detail page
-
-3.  Extracts structured data from embedded JavaScript
-
-4.  Parses HTML content within stage text fields
-
-5.  Returns a one-row tibble with item metadata and optional stage and
-    vote details
 
 ## See also
 
