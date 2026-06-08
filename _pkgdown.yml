@@ -15,8 +15,15 @@ template:
         async src="//gc.zgo.at/count.js"></script>
 navbar:
   structure:
-    left:  [intro, reference, articles, news]
+    left:  [intro, reference, examples, news]
     right: [search, github, lightswitch]
+  components:
+    examples:
+      text: Examples
+      menu:
+        - text: "How do Parties vote in the Austrian National Council? (get_item_details())"
+          href: https://werk.statt.codes/posts/2026-05-21-parlat-votingpatterns/
+          target: _blank
 
 reference:
   - title: "main functions"
