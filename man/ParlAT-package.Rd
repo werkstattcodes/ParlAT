@@ -22,5 +22,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Roland Schmidt \email{rs2903@gmail.com}
 
+Authors:
+\itemize{
+  \item Roland Schmidt \email{rs2903@gmail.com}
+}
+
 }
 \keyword{internal}
