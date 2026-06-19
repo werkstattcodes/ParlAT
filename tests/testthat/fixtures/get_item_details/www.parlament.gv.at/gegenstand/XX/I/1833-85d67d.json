@@ -1,0 +1,919 @@
+{
+    "pagetype": "geschichtsseite",
+    "meta": {
+        "description": "Gefahrgutbeförderungsgesetz, Änderung (1833 d.B.)",
+        "generationTime": "Fri Apr 24 19:01:57 UTC 2026",
+        "keywords": "\"Verkehr V. Sonstiges\"",
+        "lang": "de",
+        "title": "Gefahrgutbeförderungsgesetz, Änderung (1833 d.B.) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "Gefahrgutbeförderungsgesetz, Änderung | Parlament Österreich",
+            "description": "1833 d.B."
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "breadcrumbs": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Gesetzesinitiativen",
+                "url": "/recherchieren/gegenstaende/gesetzesinitiativen/"
+            },
+            {
+                "title": "Nationalrat - XX. GP",
+                "url": "/recherchieren/gegenstaende/gesetzesinitiativen/?GP=XX"
+            },
+            {
+                "title": "Regierungsvorlage: Bundes(verfassungs)gesetz",
+                "url": "/recherchieren/gegenstaende/gesetzesinitiativen/?GP=XX&RGES=RV"
+            },
+            {
+                "title": "1833 d.B."
+            }
+        ],
+        "type": "Regierungsvorlage: Bundes(verfassungs)gesetz",
+        "sntype": "Regierungsvorlage: Bundes(verfassungs)gesetz",
+        "title": "Gefahrgutbeförderungsgesetz, Änderung",
+        "zitation": "1833 d.B.",
+        "description": "Bundesgesetz, mit dem das Gefahrgutbeförderungsgesetz, BGBl. I Nr. 145/1998, geändert wird (GGBG-Novelle 1999)",
+        "gp_code": "XX",
+        "ityp": "I",
+        "inr": 1833,
+        "doktyp": "RV",
+        "update": "2026-04-24T21:01:44",
+        "nr_gp_code": "XX",
+        "intranet": "N",
+        "group": "1",
+        "deleted": false,
+        "einlangen": "1999-05-17T00:00:00",
+        "history_ind": 2,
+        "vhg_fertig": "J",
+        "vhg_fertig_docs": "J",
+        "process": "J",
+        "statementsstate": "0",
+        "approvalstate": "9 Keine Zustimmung bei dem Doktyp \"RV\" möglich",
+        "statements": {
+            "new": 0,
+            "documents": [
+
+            ],
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Stellungnahmen",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "FP_142_vhg",
+                        "listeId": 142,
+                        "params": {
+                            "BEZUG_GP_CODE": [
+                                "XX"
+                            ],
+                            "BEZUG_ITYP": [
+                                "I"
+                            ],
+                            "BEZUG_INR": [
+                                1833
+                            ]
+                        },
+                        "fixedParams": {
+                            "BEZUG_GP_CODE": [
+                                "XX"
+                            ],
+                            "BEZUG_ITYP": [
+                                "I"
+                            ],
+                            "BEZUG_INR": [
+                                1833
+                            ]
+                        },
+                        "hideDimensions": [
+                            "BEZUG_GP_CODE",
+                            "BEZUG_ITYP",
+                            "BEZUG_INR"
+                        ],
+                        "hideColumns": [
+                            "16",
+                            "17"
+                        ],
+                        "sortrnr": 5,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        },
+        "status": {
+            "number": 5,
+            "description": "Kein Einspruch<br>174. Sitzung des Nationalrates: Gesetzesvorschlag in dritter Lesung <b>angenommen<\/b>, Dafür: SPÖ, ÖVP, dagegen: F, L, GRÜNE",
+            "bgbllinks": [
+                {
+                    "title": "Bundesgesetzblatt I Nr. 108/1999",
+                    "link": "http://www.ris.bka.gv.at/Dokument.wxe?Abfrage=BgblPdf&Dokumentnummer=1999_108_1",
+                    "type": "DEFAULT"
+                },
+                {
+                    "title": "Kunsttext",
+                    "link": "http://www.ris.bka.gv.at/Ergebnis.wxe?Abfrage=Bundesnormen&Kundmachungsorgan=BGBl.+I+Nr.&Kundmachungsnummer=108%2f1999&Suchworte=&ReturnUrl=%2fSuchen.wxe%3fQueryID%3dBundesnormen",
+                    "type": "DEFAULT"
+                }
+            ]
+        },
+        "progress": [
+            {
+                "name": "Einlangen NR",
+                "id": 1,
+                "empty": false
+            },
+            {
+                "name": "Ausschussberatungen NR",
+                "id": 3,
+                "empty": false
+            },
+            {
+                "name": "Plenarberatungen NR",
+                "id": 4,
+                "empty": false
+            },
+            {
+                "name": "Einlangen BR",
+                "id": 5,
+                "empty": false
+            },
+            {
+                "name": "Ausschussberatungen BR",
+                "id": 6,
+                "empty": false
+            },
+            {
+                "name": "Plenarberatungen BR",
+                "id": 7,
+                "empty": false
+            }
+        ],
+        "phase": [
+            {
+                "name": "Einlangen NR",
+                "id": 1,
+                "stages": [
+                    {
+                        "date": "17.05.1999",
+                        "text": "Einlangen im Nationalrat",
+                        "priority": 1
+                    },
+                    {
+                        "date": "17.05.1999",
+                        "text": "Vorgesehen für den <a href=\"/ausschuss/XX/A-VE/1/00201\">Verkehrsausschuß<\/a>"
+                    },
+                    {
+                        "date": "19.05.1999",
+                        "text": "<a href=\"/gegenstand/XX/NRSITZ/169\">169. Sitzung des Nationalrates<\/a>: Mitteilung des Einlangens",
+                        "fsth": [
+                            {
+                                "gp_code": "XX",
+                                "sitzung_id": 169,
+                                "fund_von": 43,
+                                "fund_bis": null,
+                                "url": "/dokument/XX/NRSITZ/169/SEITE_0043.html",
+                                "title": "Seite 43 des Stenographischen Protokolls der 169. Sitzung des Nationalrats"
+                            }
+                        ]
+                    }
+                ],
+                "documents": [
+
+                ]
+            },
+            {
+                "name": "Ausschussberatungen NR",
+                "id": 3,
+                "stages": [
+                    {
+                        "date": "20.05.1999",
+                        "text": "<a href=\"/gegenstand/XX/NRSITZ/170\">170. Sitzung des Nationalrates<\/a>: Zuweisung an den <a href=\"/ausschuss/XX/A-VE/1/00201\">Verkehrsausschuß<\/a>",
+                        "fsth": [
+                            {
+                                "gp_code": "XX",
+                                "sitzung_id": 170,
+                                "fund_von": 5,
+                                "fund_bis": null,
+                                "url": "/dokument/XX/NRSITZ/170/SEITE_0005.html",
+                                "title": "Seite 5 des Stenographischen Protokolls der 170. Sitzung des Nationalrats"
+                            }
+                        ]
+                    },
+                    {
+                        "date": "09.06.1999",
+                        "text": "Verkehrsausschuß: auf <a href=\"/dokument/XX/A-VE/1/00201/TO_00607444.html\">Tagesordnung<\/a> in der <a href=\"/ausschuss/XX/A-VE/1/00201?selectedStage=105&selectedSession=18&selectedDate=09061999\">18. Sitzung des Ausschusses<\/a>"
+                    },
+                    {
+                        "date": "09.06.1999",
+                        "text": "Verkehrsausschuß: Bericht <a href=\"/gegenstand/XX/I/1932\">1932 d.B.<\/a>",
+                        "priority": 1
+                    }
+                ],
+                "documents": [
+                    {
+                        "title": "Volltext",
+                        "documents": [
+                            {
+                                "link": "/dokument/XX/I/1932/fname_140856.pdf",
+                                "type": "PDF"
+                            },
+                            {
+                                "link": "/dokument/XX/I/1932/fnameorig_140856.html",
+                                "type": "HTML"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Plenarberatungen NR",
+                "id": 4,
+                "stages": [
+                    {
+                        "date": "16.06.1999",
+                        "text": "Auf der <a href=\"/dokument/XX/NRSITZ/174/TO.html\">Tagesordnung<\/a> der <a href=\"/gegenstand/XX/NRSITZ/174\">174. Sitzung des Nationalrates<\/a>"
+                    },
+                    {
+                        "date": "16.06.1999",
+                        "text": "174. Sitzung des Nationalrates: Zweite und dritte Lesung",
+                        "fsth": [
+                            {
+                                "gp_code": "XX",
+                                "sitzung_id": 174,
+                                "fund_von": 175,
+                                "fund_bis": 187,
+                                "url": "/dokument/XX/NRSITZ/174/SEITE_0175.html",
+                                "title": "Seite 175 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                            }
+                        ]
+                    },
+                    {
+                        "date": "16.06.1999",
+                        "text": "174. Sitzung des Nationalrates: Gesetzesvorschlag in zweiter Lesung <b>angenommen<\/b><br>Dafür: SPÖ, ÖVP, dagegen: F, L, GRÜNE"
+                    },
+                    {
+                        "date": "16.06.1999",
+                        "text": "Wortmeldungen in der Debatte",
+                        "reden": {
+                            "rendertype": "table",
+                            "data": {
+                                "header": [
+                                    {
+                                        "label": "Name und Klub",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-namefraktion"
+                                    },
+                                    {
+                                        "label": "Wortmeldungsart",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-wortmeldungsart"
+                                    },
+                                    {
+                                        "label": "Protokoll",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-protokoll"
+                                    },
+                                    {
+                                        "label": "Video",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-video"
+                                    }
+                                ],
+                                "rows": [
+                                    [
+                                        "<a href=\"/person/2857\" target=\"_blank\">Mag. Reinhard Firlinger (F)<\/a>",
+                                        "Contra",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 176,
+                                                "fund_bis": 177,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0176.html",
+                                                "title": "Seite 176 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/1155\" target=\"_blank\">Rudolf Parnigoni (S)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 177,
+                                                "fund_bis": 178,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0177.html",
+                                                "title": "Seite 177 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/59\" target=\"_blank\">Mag. Thomas Barmüller (L)<\/a>",
+                                        "Contra",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 178,
+                                                "fund_bis": 179,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0178.html",
+                                                "title": "Seite 178 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/943\" target=\"_blank\">Dipl.-Vw. Dr. Dieter Lukesch (V)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 179,
+                                                "fund_bis": 181,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0179.html",
+                                                "title": "Seite 179 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/2853\" target=\"_blank\">Dr. Gabriela Moser (G)<\/a>",
+                                        "Contra",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 181,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0181.html",
+                                                "title": "Seite 181 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/1833\" target=\"_blank\">Winfried Seidinger (S)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 182,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0182.html",
+                                                "title": "Seite 182 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/2839\" target=\"_blank\">Franz Lafer (F)<\/a>",
+                                        "Contra",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 183,
+                                                "fund_bis": 184,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0183.html",
+                                                "title": "Seite 183 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/1424\" target=\"_blank\">Kurt Wallner (S)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 184,
+                                                "fund_bis": 185,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0184.html",
+                                                "title": "Seite 184 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/2843\" target=\"_blank\">Dr. Susanne Preisinger (F)<\/a>",
+                                        "Contra",
+                                        [
+                                            {
+                                                "gp_code": "XX",
+                                                "sitzung_id": 174,
+                                                "fund_von": 185,
+                                                "fund_bis": 186,
+                                                "url": "/dokument/XX/NRSITZ/174/SEITE_0185.html",
+                                                "title": "Seite 185 des Stenographischen Protokolls der 174. Sitzung des Nationalrats"
+                                            }
+                                        ],
+                                        null
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "date": "16.06.1999",
+                        "text": "174. Sitzung des Nationalrates: Gesetzesvorschlag in dritter Lesung <b>angenommen<\/b><br>Dafür: SPÖ, ÖVP, dagegen: F, L, GRÜNE",
+                        "priority": 1
+                    },
+                    {
+                        "date": "22.06.1999",
+                        "text": "Übermittlung des Beschlusses an den Bundesrat"
+                    }
+                ],
+                "documents": [
+
+                ],
+                "vote": {
+                    "result": [
+                        {
+                            "text": "SPÖ",
+                            "code": "S",
+                            "color": "#FF0000",
+                            "fraction": 71,
+                            "infavor": true
+                        },
+                        {
+                            "text": "ÖVP",
+                            "code": "V",
+                            "color": "#000000",
+                            "fraction": 52,
+                            "infavor": true
+                        },
+                        {
+                            "text": "F",
+                            "code": "F",
+                            "color": "#0052FB",
+                            "fraction": 41,
+                            "infavor": false
+                        },
+                        {
+                            "text": "L",
+                            "code": "L",
+                            "color": "#B0D8F3",
+                            "fraction": 9,
+                            "infavor": false
+                        },
+                        {
+                            "text": "GRÜNE",
+                            "code": "G",
+                            "color": "#69B12E",
+                            "fraction": 9,
+                            "infavor": false
+                        }
+                    ],
+                    "infavor": true,
+                    "code": "SVflg",
+                    "text": "Dafür: S, V. Dagegen: F, L, G",
+                    "comment": null
+                }
+            },
+            {
+                "name": "Einlangen BR",
+                "id": 5,
+                "stages": [
+                    {
+                        "date": "22.06.1999",
+                        "text": "Einlangen im Bundesrat"
+                    },
+                    {
+                        "date": "22.06.1999",
+                        "text": "Mitwirkungsrecht des Bundesrates",
+                        "priority": 1
+                    }
+                ],
+                "documents": [
+
+                ]
+            },
+            {
+                "name": "Ausschussberatungen BR",
+                "id": 6,
+                "stages": [
+                    {
+                        "date": "22.06.1999",
+                        "text": "Zuweisung an den <a href=\"/ausschuss/BR/A-WS-BR/1/00224\">Ausschuss für Wissenschaft und Verkehr des Bundesrates<\/a>"
+                    },
+                    {
+                        "date": "29.06.1999",
+                        "text": "Ausschuss für Wissenschaft und Verkehr des Bundesrates: Bericht <a href=\"/gegenstand/BR/I-BR/6001\">6001/BR d.B.<\/a>",
+                        "priority": 1
+                    }
+                ],
+                "documents": [
+                    {
+                        "title": "Volltext",
+                        "documents": [
+                            {
+                                "link": "/dokument/BR/I-BR/6001/daten_000000.rtf",
+                                "type": "RTF"
+                            },
+                            {
+                                "link": "/dokument/BR/I-BR/6001/fnameorig_000000.html",
+                                "type": "HTML"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Plenarberatungen BR",
+                "id": 7,
+                "stages": [
+                    {
+                        "date": "01.07.1999",
+                        "text": "Auf der Tagesordnung der <a href=\"/gegenstand/BR/BRSITZ/656\">656. Sitzung<\/a>"
+                    },
+                    {
+                        "date": "01.07.1999",
+                        "text": "656. Sitzung: Berichterstattung durch den Bundesrat <a href=\"/person/2902\" target=\"_blank\">Horst Freiberger<\/a>",
+                        "fsth": [
+                            {
+                                "gp_code": "BR",
+                                "sitzung_id": 656,
+                                "fund_von": 150,
+                                "fund_bis": null,
+                                "url": "/dokument/BR/BRSITZ/656/SEITE_0150.html",
+                                "title": "Seite 150 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                            }
+                        ]
+                    },
+                    {
+                        "date": "01.07.1999",
+                        "text": "656. Sitzung: Debatte",
+                        "fsth": [
+                            {
+                                "gp_code": "BR",
+                                "sitzung_id": 656,
+                                "fund_von": 150,
+                                "fund_bis": 163,
+                                "url": "/dokument/BR/BRSITZ/656/SEITE_0150.html",
+                                "title": "Seite 150 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                            }
+                        ]
+                    },
+                    {
+                        "date": "01.07.1999",
+                        "text": "Wortmeldungen in der Debatte",
+                        "reden": {
+                            "rendertype": "table",
+                            "data": {
+                                "header": [
+                                    {
+                                        "label": "Name und Fraktion",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-namefraktion"
+                                    },
+                                    {
+                                        "label": "Wortmeldungsart",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-wortmeldungsart"
+                                    },
+                                    {
+                                        "label": "Protokoll",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-protokoll"
+                                    },
+                                    {
+                                        "label": "Video",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-video"
+                                    }
+                                ],
+                                "rows": [
+                                    [
+                                        "<a href=\"/person/2902\" target=\"_blank\">Horst Freiberger<\/a>",
+                                        null,
+                                        [
+                                            {
+                                                "gp_code": "BR",
+                                                "sitzung_id": 656,
+                                                "fund_von": 150,
+                                                "fund_bis": null,
+                                                "url": "/dokument/BR/BRSITZ/656/SEITE_0150.html",
+                                                "title": "Seite 150 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/3672\" target=\"_blank\">Engelbert Weilharter<\/a>",
+                                        null,
+                                        [
+                                            {
+                                                "gp_code": "BR",
+                                                "sitzung_id": 656,
+                                                "fund_von": 151,
+                                                "fund_bis": 152,
+                                                "url": "/dokument/BR/BRSITZ/656/SEITE_0151.html",
+                                                "title": "Seite 151 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/6155\" target=\"_blank\">Dr. Ferdinand Maier<\/a>",
+                                        null,
+                                        [
+                                            {
+                                                "gp_code": "BR",
+                                                "sitzung_id": 656,
+                                                "fund_von": 152,
+                                                "fund_bis": 153,
+                                                "url": "/dokument/BR/BRSITZ/656/SEITE_0152.html",
+                                                "title": "Seite 152 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/5097\" target=\"_blank\">Herbert Thumpser<\/a>",
+                                        null,
+                                        [
+                                            {
+                                                "gp_code": "BR",
+                                                "sitzung_id": 656,
+                                                "fund_von": 153,
+                                                "fund_bis": 155,
+                                                "url": "/dokument/BR/BRSITZ/656/SEITE_0153.html",
+                                                "title": "Seite 153 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/6816\" target=\"_blank\">Mag. Christof Neuner<\/a>",
+                                        null,
+                                        [
+                                            {
+                                                "gp_code": "BR",
+                                                "sitzung_id": 656,
+                                                "fund_von": 155,
+                                                "fund_bis": 156,
+                                                "url": "/dokument/BR/BRSITZ/656/SEITE_0155.html",
+                                                "title": "Seite 155 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/5715\" target=\"_blank\">Johann Ledolter<\/a>",
+                                        null,
+                                        [
+                                            {
+                                                "gp_code": "BR",
+                                                "sitzung_id": 656,
+                                                "fund_von": 156,
+                                                "fund_bis": 157,
+                                                "url": "/dokument/BR/BRSITZ/656/SEITE_0156.html",
+                                                "title": "Seite 156 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/7236\" target=\"_blank\">Mag. Eduard Mainoni<\/a>",
+                                        null,
+                                        [
+                                            {
+                                                "gp_code": "BR",
+                                                "sitzung_id": 656,
+                                                "fund_von": 157,
+                                                "fund_bis": 159,
+                                                "url": "/dokument/BR/BRSITZ/656/SEITE_0157.html",
+                                                "title": "Seite 157 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                                            }
+                                        ],
+                                        null
+                                    ],
+                                    [
+                                        "<a href=\"/person/2873\" target=\"_blank\">Dr. Caspar Einem<\/a>",
+                                        null,
+                                        [
+                                            {
+                                                "gp_code": "BR",
+                                                "sitzung_id": 656,
+                                                "fund_von": 159,
+                                                "fund_bis": 163,
+                                                "url": "/dokument/BR/BRSITZ/656/SEITE_0159.html",
+                                                "title": "Seite 159 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                                            }
+                                        ],
+                                        null
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "date": "01.07.1999",
+                        "text": "656. Sitzung: Antrag, keinen Einspruch zu erheben, <b>angenommen<\/b>",
+                        "priority": 1,
+                        "fsth": [
+                            {
+                                "gp_code": "BR",
+                                "sitzung_id": 656,
+                                "fund_von": 163,
+                                "fund_bis": null,
+                                "url": "/dokument/BR/BRSITZ/656/SEITE_0163.html",
+                                "title": "Seite 163 des Stenographischen Protokolls der 656. Sitzung des Bundesrats"
+                            }
+                        ]
+                    },
+                    {
+                        "date": "15.07.1999",
+                        "text": "Druckfehlerberichtigung<br>BGBl. I Nr. 194/1999"
+                    }
+                ],
+                "documents": [
+                    {
+                        "title": "Volltext",
+                        "documents": [
+                            {
+                                "link": "/dokument/BR/I-BR/6001/daten_000000.rtf",
+                                "type": "RTF"
+                            },
+                            {
+                                "link": "/dokument/BR/I-BR/6001/fnameorig_000000.html",
+                                "type": "HTML"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "documents": [
+            {
+                "title": "Volltext",
+                "documents": [
+                    {
+                        "link": "/dokument/XX/I/1833/fname_140760.pdf",
+                        "type": "PDF"
+                    },
+                    {
+                        "link": "/dokument/XX/I/1833/fnameorig_140760.html",
+                        "type": "HTML"
+                    }
+                ]
+            }
+        ],
+        "preconst": [
+            {
+                "gp_code": "XX",
+                "ityp": "ME",
+                "inr": 343,
+                "zukz": null,
+                "betreff": "GGBG-Novelle 1999, Änderung",
+                "zitation": "343/ME",
+                "description": "Ministerialentwurf betreffend Bundesgesetz, mit dem das Gefahrgutbeförderungsgesetz, BGBl.I Nr. 145/1998 geändert wird ( GGBG-Novelle 1999 )",
+                "url": "/gegenstand/XX/ME/343",
+                "documents": [
+                    {
+                        "title": "Entwurf gescannt",
+                        "documents": [
+                            {
+                                "link": "/dokument/XX/ME/343/imfname_137587.pdf",
+                                "type": "PDF"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "reference": [
+            {
+                "text": "Bezug zu",
+                "subject": "GGBG-Novelle 1999, Änderung",
+                "zitation": "343/ME",
+                "url": "/gegenstand/XX/ME/343",
+                "art": "B"
+            }
+        ],
+        "vote": {
+            "result": [
+                {
+                    "text": "SPÖ",
+                    "code": "S",
+                    "color": "#FF0000",
+                    "fraction": 71,
+                    "infavor": true
+                },
+                {
+                    "text": "ÖVP",
+                    "code": "V",
+                    "color": "#000000",
+                    "fraction": 52,
+                    "infavor": true
+                },
+                {
+                    "text": "F",
+                    "code": "F",
+                    "color": "#0052FB",
+                    "fraction": 41,
+                    "infavor": false
+                },
+                {
+                    "text": "L",
+                    "code": "L",
+                    "color": "#B0D8F3",
+                    "fraction": 9,
+                    "infavor": false
+                },
+                {
+                    "text": "GRÜNE",
+                    "code": "G",
+                    "color": "#69B12E",
+                    "fraction": 9,
+                    "infavor": false
+                }
+            ],
+            "infavor": true,
+            "code": "SVflg",
+            "text": "Dafür: S, V. Dagegen: F, L, G",
+            "comment": null
+        },
+        "topics": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Verkehr und Infrastruktur",
+                        "link": "/suche?thema=Verkehr und Infrastruktur"
+                    }
+                ]
+            }
+        },
+        "headwords": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Verkehr V. Sonstiges",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XX&SW=Verkehr V. Sonstiges"
+                    }
+                ]
+            }
+        },
+        "eurovoc": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Verkehr",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XX&EUROVOC=Verkehr"
+                    }
+                ]
+            }
+        }
+    }
+}

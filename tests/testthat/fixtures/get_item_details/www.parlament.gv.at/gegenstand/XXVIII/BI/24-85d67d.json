@@ -1,0 +1,811 @@
+{
+    "pagetype": "geschichtsseite",
+    "meta": {
+        "description": "Neutralität Österreichs sichern! (24/BI)",
+        "generationTime": "Thu Jun 18 23:30:11 UTC 2026",
+        "keywords": "\"Bürgerinitiativen\", \"Außenpolitik\", \"Europäische Integration\", \"Handel, Gewerbe und Industrie\", \"Information und Informationsverarbeitung\", \"Landesverteidigung\", \"Neutralität\", \"Verkehr III. Luftfahrt\"",
+        "lang": "de",
+        "title": "Neutralität Österreichs sichern! (24/BI) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "Neutralität Österreichs sichern! | Parlament Österreich",
+            "description": "24/BI"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "breadcrumbs": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Gegenstände",
+                "url": "/recherchieren/gegenstaende/"
+            },
+            {
+                "title": "Nationalrat - XXVIII. GP",
+                "url": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII"
+            },
+            {
+                "title": "Bürgerinitiative",
+                "url": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&VHG=BI&DOKTYP=BI"
+            },
+            {
+                "title": "24/BI"
+            }
+        ],
+        "type": "Bürgerinitiative",
+        "sntype": "Bürgerinitiative",
+        "title": "Neutralität Österreichs sichern!",
+        "zitation": "24/BI",
+        "description": "Bürgerinitiative betreffend \"Neutralität Österreichs sichern!\"",
+        "gp_code": "XXVIII",
+        "ityp": "BI",
+        "inr": 24,
+        "doktyp": "BI",
+        "update": "2026-06-19T01:30:01",
+        "nr_gp_code": "XXVIII",
+        "intranet": "N",
+        "group": "1",
+        "deleted": false,
+        "einlangen": "2025-08-20T00:00:00",
+        "history_ind": 2,
+        "vhg_fertig": "J",
+        "vhg_fertig_docs": "J",
+        "process": "J",
+        "statementsstate": "1",
+        "approvalstate": "1",
+        "statements": {
+            "new": 1,
+            "personform": {
+                "rendertype": "form",
+                "data": {
+                    "action": "/PtWeb/api/stellungnahme",
+                    "description": "Ihre Stellungnahme wird nur mit Ihrem Einverständnis auf der Parlamentswebsite veröffentlicht. Die Stellungnahme muss der Würde des Hauses entsprechen und darf nicht gegen zwingende gesetzliche Vorschriften verstoßen (z.B. das Strafrecht, Urheberrecht oder Datenschutzrecht).",
+                    "fields": [
+                        {
+                            "fieldType": "hidden",
+                            "id": "gpCode",
+                            "required": true,
+                            "value": "XXVIII"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "ityp",
+                            "required": true,
+                            "value": "BI"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "inr",
+                            "required": true,
+                            "value": "24"
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "vorname",
+                            "label": "Vorname",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "nachname",
+                            "label": "Nachname",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "titel",
+                            "label": "Titel",
+                            "required": false
+                        },
+                        {
+                            "fieldType": "email",
+                            "id": "email",
+                            "label": "E-Mail-Adresse",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "plz",
+                            "label": "PLZ",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "ort",
+                            "label": "Ort",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "textarea",
+                            "id": "text",
+                            "label": "Stellungnahme",
+                            "required": false
+                        },
+                        {
+                            "heading": {
+                                "title": "Anlagen",
+                                "ebene": 4,
+                                "tooltip": {
+                                    "text": "Hier können Sie Anlagen hinzufügen (Dateiformat: pdf, max. Dateigröße: 10 MB, max. drei Anlagen"
+                                }
+                            },
+                            "fieldType": "heading"
+                        },
+                        {
+                            "fieldType": "file",
+                            "id": "uploadStellungnahme",
+                            "required": false,
+                            "multiple": true,
+                            "allowedExtensions": [
+                                "pdf"
+                            ],
+                            "maxFilesize": 10000000,
+                            "maxAllowedFiles": 3
+                        },
+                        {
+                            "id": "eingeladen",
+                            "entries": [
+                                {
+                                    "label": "Diese Stellungnahme wird auf Eigeninitiative übermittelt.",
+                                    "value": "eigen",
+                                    "tooltip": {
+                                        "text": "Interessierte Privatpersonen können im Rahmen von Begutachtungsverfahren Stellungnahmen abgeben und so einen wichtigen Beitrag zum weiteren Gesetzgebungsprozess leisten."
+                                    },
+                                    "selected": true
+                                },
+                                {
+                                    "label": "Diese Stellungnahme wird auf persönliche Einladung des zuständigen Bundesministeriums übermittelt.",
+                                    "value": "bund",
+                                    "tooltip": {
+                                        "text": "Das zuständige Bundesministerium hat Sie persönlich kontaktiert und um Stellungnahme ersucht"
+                                    }
+                                }
+                            ],
+                            "fieldType": "radio"
+                        },
+                        {
+                            "id": "oeffentlich",
+                            "checkboxGroupName": "oeffentlich",
+                            "entries": [
+                                {
+                                    "label": "Ich bin mit der Veröffentlichung meiner Stellungnahme auf der Parlamentswebsite einverstanden.",
+                                    "tooltip": {
+                                        "text": "Ihre Stellungnahme wird jedenfalls den parlamentarischen Klubs und/oder dem zuständigen Ressort für ihre Arbeit zur Verfügung gestellt."
+                                    }
+                                }
+                            ],
+                            "fieldType": "checkbox"
+                        },
+                        {
+                            "id": "hinweiseGelesen",
+                            "checkboxGroupName": "hinweiseGelesen",
+                            "entries": [
+                                {
+                                    "label": "Ich bin mindestens 16 Jahre alt und habe den <a href=\\\"/DSH/index.shtml\\\">Datenschutzhinweis<\/a> zur Kenntnis genommen.",
+                                    "required": true
+                                }
+                            ],
+                            "fieldType": "checkbox"
+                        }
+                    ],
+                    "method": "POST",
+                    "preventDefault": true,
+                    "rest": true,
+                    "enctype": "multipart/form-data"
+                }
+            },
+            "orgform": {
+                "rendertype": "form",
+                "data": {
+                    "action": "/PtWeb/api/stellungnahme?org=true",
+                    "description": "Ihre Stellungnahme wird auf der Parlamentswebsite veröffentlicht. Die Stellungnahme muss der Würde des Hauses entsprechen und darf nicht gegen zwingende gesetzliche Vorschriften verstoßen (z.B. das Strafrecht, Urheberrecht oder Datenschutzrecht).",
+                    "fields": [
+                        {
+                            "fieldType": "hidden",
+                            "id": "gpCodeO",
+                            "required": true,
+                            "value": "XXVIII"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "itypO",
+                            "required": true,
+                            "value": "BI"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "inrO",
+                            "required": true,
+                            "value": "24"
+                        },
+                        {
+                            "heading": {
+                                "title": "Institution/Organisation",
+                                "ebene": 4
+                            },
+                            "fieldType": "heading"
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "orgNameO",
+                            "label": "Bezeichnung der Institution/Organisation",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "orgAbteilungO",
+                            "label": "Abteilung",
+                            "required": false
+                        },
+                        {
+                            "heading": {
+                                "title": "Kontaktdaten",
+                                "ebene": 4,
+                                "tooltip": {
+                                    "text": "Für Rückmeldungen & Rückfragen"
+                                }
+                            },
+                            "fieldType": "heading"
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "vornameO",
+                            "label": "Vorname",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "nachnameO",
+                            "label": "Nachname",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "email",
+                            "id": "emailO",
+                            "label": "E-Mail-Adresse",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "textarea",
+                            "id": "textO",
+                            "label": "Stellungnahme",
+                            "required": false
+                        },
+                        {
+                            "heading": {
+                                "title": "Anlagen",
+                                "ebene": 4,
+                                "tooltip": {
+                                    "text": "Hier können Sie Anlagen hinzufügen (Dateiformat: pdf, max. Dateigröße: 10 MB, max. drei Anlagen"
+                                }
+                            },
+                            "fieldType": "heading"
+                        },
+                        {
+                            "fieldType": "file",
+                            "id": "uploadStellungnahmeO",
+                            "required": false,
+                            "multiple": true,
+                            "allowedExtensions": [
+                                "pdf"
+                            ],
+                            "maxFilesize": 10000000,
+                            "maxAllowedFiles": 3
+                        },
+                        {
+                            "id": "eingeladenO",
+                            "entries": [
+                                {
+                                    "label": "Diese Stellungnahme wird auf Eigeninitiative übermittelt.",
+                                    "value": "eigen",
+                                    "tooltip": {
+                                        "text": "Die interessierte Öffentlichkeit kann im Rahmen von Begutachtungsverfahren Stellungnahmen abgeben und so einen wichtigen Beitrag zum weiteren Gesetzgebungsprozess leisten. Diese Möglichkeit steht sowohl privaten als auch öffentlichen Institutionen/Organisationen offen."
+                                    },
+                                    "selected": true
+                                },
+                                {
+                                    "label": "Ihre Institution/Organisation wurde vom zuständigen Bundesministerium zur Stellungnahme eingeladen.",
+                                    "value": "bund",
+                                    "tooltip": {
+                                        "text": "Das zuständige Bundesministerium hat Ihre Institution/Organisation mittels Einladungsschreiben kontaktiert und um Stellungnahme ersucht."
+                                    }
+                                }
+                            ],
+                            "fieldType": "radio"
+                        },
+                        {
+                            "fieldType": "info",
+                            "infoText": "Informationen zu den erfassten/veröffentlichten Daten finden Sie im <a href=\\\"/DSH/index.shtml\\\">Datenschutzhinweis<\/a>.",
+                            "infoType": "TEXT"
+                        }
+                    ],
+                    "method": "POST",
+                    "preventDefault": true,
+                    "rest": true,
+                    "enctype": "multipart/form-data"
+                }
+            },
+            "documents": [
+
+            ],
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Stellungnahmen",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "FP_142_vhg",
+                        "listeId": 142,
+                        "params": {
+                            "BEZUG_GP_CODE": [
+                                "XXVIII"
+                            ],
+                            "BEZUG_ITYP": [
+                                "BI"
+                            ],
+                            "BEZUG_INR": [
+                                24
+                            ]
+                        },
+                        "fixedParams": {
+                            "BEZUG_GP_CODE": [
+                                "XXVIII"
+                            ],
+                            "BEZUG_ITYP": [
+                                "BI"
+                            ],
+                            "BEZUG_INR": [
+                                24
+                            ]
+                        },
+                        "hideDimensions": [
+                            "BEZUG_GP_CODE",
+                            "BEZUG_ITYP",
+                            "BEZUG_INR"
+                        ],
+                        "hideColumns": [
+                            "16",
+                            "17"
+                        ],
+                        "sortrnr": 5,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        },
+        "approvals": {
+            "new": 1,
+            "personform": {
+                "rendertype": "form",
+                "data": {
+                    "action": "/PtWeb/api/ebi",
+                    "description": "Die gegenständliche Bürgerinitiative wurde rechtsgültig im Nationalrat eingebracht. Die elektronische Unterstützung dient der Abbildung der politischen Interessenlage und hat für die Beratungen im Nationalrat informativen Charakter.<br><br>Wie bei einer Wahl ist die Abgabe lediglich einer Unterstützung pro Person vorgesehen. Die Parlamentsdirektion behält sich vor, weitere Unterstützungen einer Person zu löschen.",
+                    "fields": [
+                        {
+                            "fieldType": "hidden",
+                            "id": "gpCode",
+                            "required": true,
+                            "value": "XXVIII"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "ityp",
+                            "required": true,
+                            "value": "BI"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "inr",
+                            "required": true,
+                            "value": "24"
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "ebiVorname",
+                            "label": "Vorname",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "ebiNachname",
+                            "label": "Nachname",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "ebiTitel",
+                            "label": "Titel",
+                            "required": false
+                        },
+                        {
+                            "fieldType": "email",
+                            "id": "ebiMail",
+                            "label": "E-Mail-Adresse",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "ebiPlz",
+                            "label": "PLZ",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "ebiOrt",
+                            "label": "Ort",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "ebiStaat",
+                            "label": "Staat",
+                            "required": true
+                        },
+                        {
+                            "id": "ebiStaatsb",
+                            "checkboxGroupName": "ebiStaatsb",
+                            "entries": [
+                                {
+                                    "label": "Ich bin mindestens 16 Jahre alt und österreichische:r Staatsbürger:in.",
+                                    "required": true,
+                                    "tooltip": {
+                                        "text": "Für die elektronische Unterstützung von Petitionen und Bürgerinitiativen sind die Vollendung des 16. Lebensjahres sowie die österreichische Staatsbürgerschaft notwendig. Dies entspricht den gemäß § 100 GOG-NR für die Unterstützung geltenden Voraussetzungen."
+                                    }
+                                }
+                            ],
+                            "fieldType": "checkbox"
+                        },
+                        {
+                            "id": "hinweiseGelesen",
+                            "checkboxGroupName": "hinweiseGelesen",
+                            "entries": [
+                                {
+                                    "label": "Ich habe den <a href=\\\"/DSH/index.shtml\\\">Datenschutzhinweis<\/a> zur Kenntnis genommen",
+                                    "required": true
+                                }
+                            ],
+                            "fieldType": "checkbox"
+                        },
+                        {
+                            "id": "ebiVeroeffentl",
+                            "checkboxGroupName": "oeffentlich",
+                            "entries": [
+                                {
+                                    "label": "Ich bin mit der Veröffentlichung meiner Daten einverstanden. Ich kann diesen Status jederzeit wieder ändern. <a href=\"https://cms-neu.parlament.gv.at/opencms/opencms/beteiligen/hilfe/haeufige-fragen/\" target=\"_blank\" title=\"Unterstützungen - FAQ\">Mehr<\/a>",
+                                    "tooltip": {
+                                        "text": "Wenn Sie dieses Feld anklicken, werden Ihr Name, PLZ und Ort in der Liste der Unterstützungen angezeigt."
+                                    }
+                                }
+                            ],
+                            "fieldType": "checkbox"
+                        }
+                    ],
+                    "method": "POST",
+                    "preventDefault": true,
+                    "rest": true
+                }
+            },
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Unterstützungen",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BI_001",
+                        "listeId": 305,
+                        "params": {
+                            "GP_CODE": [
+                                "XXVIII"
+                            ],
+                            "ITYP": [
+                                "BI"
+                            ],
+                            "INR": [
+                                24
+                            ]
+                        },
+                        "fixedParams": {
+                            "GP_CODE": [
+                                "XXVIII"
+                            ],
+                            "ITYP": [
+                                "BI"
+                            ],
+                            "INR": [
+                                24
+                            ]
+                        },
+                        "hideDimensions": [
+                            "GP_CODE",
+                            "ITYP",
+                            "INR"
+                        ],
+                        "hideColumns": [
+                            "10",
+                            "12"
+                        ],
+                        "sortrnr": 5,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        },
+        "formlink": "/gegenstand/XXVIII/BI/24?selectedStage=101&persForm=1#persForm",
+        "appformlink": "/gegenstand/XXVIII/BI/24?selectedStage=103&appForm=1#appForm",
+        "status": {
+            "number": 3,
+            "description": "Ausschuss für Petitionen und Bürgerinitiativen: auf <a href=\"/dokument/XXVIII/A-PB/1/00932/TO_16709531.html\">Tagesordnung<\/a> in der <a href=\"/ausschuss/XXVIII/A-PB/1/00932?selectedStage=105&selectedSession=6&selectedDate=25062026\">6. Sitzung des Ausschusses<\/a>"
+        },
+        "progress": [
+            {
+                "name": "Einlangen NR",
+                "id": 1,
+                "empty": false
+            },
+            {
+                "name": "Ausschussberatungen NR",
+                "id": 3,
+                "empty": false
+            },
+            {
+                "name": "Plenarberatungen NR",
+                "id": 4,
+                "empty": true
+            }
+        ],
+        "phase": [
+            {
+                "name": "Einlangen NR",
+                "id": 1,
+                "stages": [
+                    {
+                        "date": "20.08.2025",
+                        "text": "Einlangen im Nationalrat",
+                        "priority": 1
+                    },
+                    {
+                        "date": "21.08.2025",
+                        "text": "Vorgesehen für den <a href=\"/ausschuss/XXVIII/A-PB/1/00932\">Ausschuss für Petitionen und Bürgerinitiativen<\/a>"
+                    }
+                ],
+                "documents": [
+
+                ]
+            },
+            {
+                "name": "Ausschussberatungen NR",
+                "id": 3,
+                "stages": [
+                    {
+                        "date": "22.08.2025",
+                        "text": "Zuweisung an den <a href=\"/ausschuss/XXVIII/A-PB/1/00932\">Ausschuss für Petitionen und Bürgerinitiativen<\/a>"
+                    },
+                    {
+                        "date": "24.09.2025",
+                        "text": "<a href=\"/gegenstand/XXVIII/NRSITZ/41\">41. Sitzung des Nationalrates<\/a>: Mitteilung des Einlangens und der Zuweisung an den Ausschuss für Petitionen und Bürgerinitiativen"
+                    },
+                    {
+                        "date": "23.10.2025",
+                        "text": "Ausschuss für Petitionen und Bürgerinitiativen: auf <a href=\"/dokument/XXVIII/A-PB/1/00932/TO_16500061.html\">Tagesordnung<\/a> in der <a href=\"/ausschuss/XXVIII/A-PB/1/00932?selectedStage=105&selectedSession=4&selectedDate=23102025\">4. Sitzung des Ausschusses<\/a>"
+                    },
+                    {
+                        "date": "23.10.2025",
+                        "text": "Ausschuss für Petitionen und Bürgerinitiativen: Beschlussfassung auf Einholung schriftlicher Stellungnahmen im Rahmen eines \"Ausschussbegutachtungsverfahrens\""
+                    },
+                    {
+                        "date": "23.10.2025",
+                        "text": "Antrag auf Ausschussbegutachtung der Vorlage (<a href=\"/gegenstand/XXVIII/AUA/45\">45/AUA<\/a>)"
+                    },
+                    {
+                        "date": "23.10.2025",
+                        "text": "Antrag auf Einholung einer Stellungnahme von Bundesministerium für europäische und internationale Angelegenheiten - <b>angenommen<\/b>"
+                    },
+                    {
+                        "date": "09.04.2026",
+                        "text": "Ausschuss für Petitionen und Bürgerinitiativen: auf <a href=\"/dokument/XXVIII/A-PB/1/00932/TO_16709526.html\">Tagesordnung<\/a> in der <a href=\"/ausschuss/XXVIII/A-PB/1/00932?selectedStage=105&selectedSession=5&selectedDate=09042026\">5. Sitzung des Ausschusses<\/a>"
+                    },
+                    {
+                        "date": "09.04.2026",
+                        "text": "Ausschuss für Petitionen und Bürgerinitiativen: Beschlussfassung auf Einholung schriftlicher Stellungnahmen im Rahmen eines \"Ausschussbegutachtungsverfahrens\""
+                    },
+                    {
+                        "date": "09.04.2026",
+                        "text": "Antrag auf Ausschussbegutachtung der Vorlage (<a href=\"/gegenstand/XXVIII/AUA/67\">67/AUA<\/a>)"
+                    },
+                    {
+                        "date": "09.04.2026",
+                        "text": "Antrag auf Einholung einer Stellungnahme von Bundesministerium für Landesverteidigung - <b>angenommen<\/b>"
+                    },
+                    {
+                        "date": "09.04.2026",
+                        "text": "Antrag auf Einholung einer Stellungnahme von Bundeskanzleramt - Verfassungsdienst - <b>angenommen<\/b>"
+                    },
+                    {
+                        "date": "25.06.2026",
+                        "text": "Ausschuss für Petitionen und Bürgerinitiativen: auf <a href=\"/dokument/XXVIII/A-PB/1/00932/TO_16709531.html\">Tagesordnung<\/a> in der <a href=\"/ausschuss/XXVIII/A-PB/1/00932?selectedStage=105&selectedSession=6&selectedDate=25062026\">6. Sitzung des Ausschusses<\/a>",
+                        "priority": 1
+                    }
+                ],
+                "documents": [
+
+                ]
+            }
+        ],
+        "documents": [
+            {
+                "title": "Bürgerinitiative (gescanntes Original)",
+                "documents": [
+                    {
+                        "link": "/dokument/XXVIII/BI/24/imfname_1706824.pdf",
+                        "type": "PDF"
+                    }
+                ]
+            }
+        ],
+        "names": [
+            {
+                "funktext": "Erstunterzeichnerin/Erstunterzeichner",
+                "name": "Kolba, Peter",
+                "frak_code": null
+            }
+        ],
+        "correspondence": [
+            {
+                "additional": false,
+                "title": "Neu im Petitionsausschuss",
+                "date": "15.10.2025",
+                "url": "/aktuelles/pk/jahr_2025/pk0892#XXVIII_BI_00024"
+            }
+        ],
+        "topics": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Außenpolitik",
+                        "link": "/suche?thema=Außenpolitik"
+                    },
+                    {
+                        "label": "Europäische Union",
+                        "link": "/suche?thema=Europäische Union"
+                    },
+                    {
+                        "label": "Information und Medien",
+                        "link": "/suche?thema=Information und Medien"
+                    },
+                    {
+                        "label": "Landesverteidigung",
+                        "link": "/suche?thema=Landesverteidigung"
+                    },
+                    {
+                        "label": "Parlament und Demokratie",
+                        "link": "/suche?thema=Parlament und Demokratie"
+                    },
+                    {
+                        "label": "Verkehr und Infrastruktur",
+                        "link": "/suche?thema=Verkehr und Infrastruktur"
+                    },
+                    {
+                        "label": "Wirtschaft",
+                        "link": "/suche?thema=Wirtschaft"
+                    }
+                ],
+                "pretext": null,
+                "subtitle": null
+            }
+        },
+        "headwords": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Bürgerinitiativen",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Bürgerinitiativen"
+                    },
+                    {
+                        "label": "Außenpolitik",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Außenpolitik"
+                    },
+                    {
+                        "label": "Europäische Integration",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Europäische Integration"
+                    },
+                    {
+                        "label": "Handel, Gewerbe und Industrie",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Handel, Gewerbe und Industrie"
+                    },
+                    {
+                        "label": "Information und Informationsverarbeitung",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Information und Informationsverarbeitung"
+                    },
+                    {
+                        "label": "Landesverteidigung",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Landesverteidigung"
+                    },
+                    {
+                        "label": "Neutralität",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Neutralität"
+                    },
+                    {
+                        "label": "Verkehr III. Luftfahrt",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Verkehr III. Luftfahrt"
+                    }
+                ],
+                "pretext": null,
+                "subtitle": null
+            }
+        },
+        "eurovoc": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Europäische Union",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Europäische Union"
+                    },
+                    {
+                        "label": "Handel",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Handel"
+                    },
+                    {
+                        "label": "Industrie",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Industrie"
+                    },
+                    {
+                        "label": "Informatik",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Informatik"
+                    },
+                    {
+                        "label": "Information und Informationsverarbeitung",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Information und Informationsverarbeitung"
+                    },
+                    {
+                        "label": "Internationale Beziehungen",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Internationale Beziehungen"
+                    },
+                    {
+                        "label": "Luftverkehr",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Luftverkehr"
+                    },
+                    {
+                        "label": "Neutralität",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Neutralität"
+                    },
+                    {
+                        "label": "partizipative Demokratie",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=partizipative Demokratie"
+                    },
+                    {
+                        "label": "Unternehmen und Wettbewerb",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Unternehmen und Wettbewerb"
+                    },
+                    {
+                        "label": "Verteidigung",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Verteidigung"
+                    }
+                ],
+                "pretext": null,
+                "subtitle": null
+            }
+        }
+    }
+}

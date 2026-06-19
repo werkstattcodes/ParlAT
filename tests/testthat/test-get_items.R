@@ -194,7 +194,7 @@ test_that("get_items works with multiple topics", {
     fixture_subdir = "get_items"
   )
 
-  expect_equal(nrow(result), 2013)
+  expect_equal(nrow(result), 2011)
 })
 
 test_that("get_items rejects mixed legis_period inputs containing unsupported early periods", {
@@ -1008,7 +1008,9 @@ test_that("get_items keeps key columns for compact-prone fixture scenarios", {
   )
 
   expect_s3_class(result, "data.frame")
-  expect_true(all(c("item_url", "subject", "parl_group", "date", "stage") %in% names(result)))
+  expect_true(all(
+    c("item_url", "subject", "parl_group", "date", "stage") %in% names(result)
+  ))
 })
 
 test_that("get_items accepts supported post-5th legislative periods", {

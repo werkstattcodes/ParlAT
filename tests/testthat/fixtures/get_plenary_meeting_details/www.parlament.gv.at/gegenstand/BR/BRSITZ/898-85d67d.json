@@ -1,0 +1,3505 @@
+{
+    "meta": {
+        "description": "898. Sitzung des Bundesrats vom 5. Dezember 2019 (898/BRSITZ/2019)",
+        "generationTime": "Sun Feb 08 01:08:33 UTC 2026",
+        "directory": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Gegenstände",
+                "url": "/recherchieren/vhg/"
+            }
+        ],
+        "lang": "de",
+        "title": "898. Sitzung des Bundesrats vom 5. Dezember 2019 (898/BRSITZ/2019) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "898. Sitzung des Bundesrats vom 5. Dezember 2019 | Parlament Österreich",
+            "description": "898/BRSITZ/2019"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "pagetype": "geschichtsseite",
+    "content": [
+        {
+            "breadcrumbs": [
+                {
+                    "title": "Start",
+                    "url": "/"
+                },
+                {
+                    "title": "Plenarsitzungen",
+                    "url": "/recherchieren/plenarsitzungen/"
+                },
+                {
+                    "title": "Bundesrat",
+                    "url": "/recherchieren/plenarsitzungen/?NRBRBV=BR"
+                },
+                {
+                    "title": "Sitzungen des Bundesrats",
+                    "url": "/recherchieren/plenarsitzungen/?NRBRBV=BR&R_SISTEI=SI"
+                },
+                {
+                    "title": "898/BRSITZ/2019"
+                }
+            ],
+            "type": "Plenarsitzung - BR",
+            "sntype": "Plenarsitzung - BR",
+            "title": "898. Sitzung des Bundesrats vom 5. Dezember 2019",
+            "zitation": "898/BRSITZ/2019",
+            "gp_code": "BR",
+            "ityp": "BRSITZ",
+            "inr": 898,
+            "doktyp": "BRSITZ",
+            "update": "2026-02-08T02:08:33",
+            "nr_gp_code": "XXVII",
+            "intranet": "N",
+            "group": "2",
+            "deleted": false,
+            "einlangen": "2019-12-05T00:00:00",
+            "history_ind": 1.1,
+            "vhg_fertig": "J",
+            "vhg_fertig_docs": "J",
+            "process": "N",
+            "statementsstate": "9 Keine Begutachtung bei dem Doktyp \"BRSITZ\" möglich",
+            "approvalstate": "9 Keine Zustimmung bei dem Doktyp \"BRSITZ\" möglich",
+            "stages": [
+                {
+                    "date": "05.12.2019",
+                    "text": "898. Sitzung <div class=\"link-list\" inline><ul><li><span>Tagesordnung<\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/898/TO_04089132.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/BR/BRSITZ/898/TO_04089132.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><br>Beginn der Sitzung: <b>09:01 Uhr<\/b>, Ende der Sitzung: <b>13:09 Uhr<\/b>",
+                    "priority": 1,
+                    "fsth": [
+                        {
+                            "gp_code": "BR",
+                            "sitzung_id": 898,
+                            "fund_von": 1,
+                            "fund_bis": 98,
+                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0001.html",
+                            "title": "Seite 1 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                        }
+                    ]
+                },
+                {
+                    "date": "05.12.2019",
+                    "names": {
+                        "rendertype": "table",
+                        "data": {
+                            "header": [
+                                {
+                                    "label": "Name und Fraktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-namefraktion"
+                                },
+                                {
+                                    "label": "Funktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-wortmeldungsart"
+                                },
+                                {
+                                    "label": "Protokoll",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-protokoll"
+                                }
+                            ],
+                            "rows": [
+                                [
+                                    "<a href=\"/person/84868\" target=\"_blank\">Mag. Daniela Gruber-Pruner<\/a>",
+                                    "Schriftführerin",
+                                    null
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "date": "05.12.2019",
+                    "text": "Aktuelle Stunde zum Thema „Digitalisierung und MINT: Initiativen und Maßnahmen von der Elementarpädagogik bis zum Hochschulbereich\" (Bundesministerin für Bildung, Wissenschaft und Forschung) (<a href=\"/gegenstand/BR/AS-BR/73\">73/AS-BR/2019<\/a>)"
+                },
+                {
+                    "date": "05.12.2019",
+                    "text": "Wortmeldungen in der Debatte",
+                    "reden": {
+                        "rendertype": "table",
+                        "data": {
+                            "header": [
+                                {
+                                    "label": "Name und Fraktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-namefraktion"
+                                },
+                                {
+                                    "label": "Wortmeldungsart",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-wortmeldungsart"
+                                },
+                                {
+                                    "label": "Protokoll",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-protokoll"
+                                },
+                                {
+                                    "label": "Video",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-video"
+                                }
+                            ],
+                            "rows": [
+                                [
+                                    "<a href=\"/person/5009\" target=\"_blank\">Mag. Dr. Doris Berger-Grabner (V/N)<\/a>",
+                                    "Wortmeldung",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 7,
+                                            "fund_bis": 10,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209533",
+                                            "title": "Seite 7 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575536752"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/3456\" target=\"_blank\">Doris Hahn, MEd MA (S/N)<\/a>",
+                                    "Wortmeldung",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 10,
+                                            "fund_bis": 13,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209534",
+                                            "title": "Seite 10 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575537358"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/4355\" target=\"_blank\">Monika Mühlwerth (F/W)<\/a>",
+                                    "Wortmeldung",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 13,
+                                            "fund_bis": 15,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209541",
+                                            "title": "Seite 13 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575538003"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/5431\" target=\"_blank\">BM Mag. Dr. Iris Rauskala (A)<\/a>",
+                                    "Regierungsbank",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 15,
+                                            "fund_bis": 20,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209542",
+                                            "title": "Seite 15 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575538593"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/86675\" target=\"_blank\">Marianne Hackl (V/B)<\/a>",
+                                    "Wortmeldung",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 20,
+                                            "fund_bis": 21,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209547",
+                                            "title": "Seite 20 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575539704"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/84868\" target=\"_blank\">Mag. Daniela Gruber-Pruner (S/W)<\/a>",
+                                    "Wortmeldung",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 21,
+                                            "fund_bis": 23,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209611",
+                                            "title": "Seite 21 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575539989"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/62359\" target=\"_blank\">Mag. Reinhard Pisec, BA MA (F/W)<\/a>",
+                                    "Wortmeldung",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 23,
+                                            "fund_bis": 24,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209550",
+                                            "title": "Seite 23 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575540346"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/67939\" target=\"_blank\">Marco Schreuder (G/W)<\/a>",
+                                    "Wortmeldung",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 24,
+                                            "fund_bis": 26,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209552",
+                                            "title": "Seite 24 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575540713"
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "date": "TOP 1",
+                    "text": "Wahl eines/einer Vizepräsidenten/-in für den Rest des 2. Halbjahres 2019 (<a href=\"/gegenstand/BR/W-BR/161\">161/W-BR/2019<\/a>)"
+                },
+                {
+                    "date": "TOP 2",
+                    "text": "Bundesstraßen-Mautgesetz 2002 (<a href=\"/gegenstand/XXVII/A/7\">7/A<\/a>)"
+                },
+                {
+                    "date": "TOP 2",
+                    "text": "Wortmeldungen in der Debatte",
+                    "reden": {
+                        "rendertype": "table",
+                        "data": {
+                            "header": [
+                                {
+                                    "label": "Name und Fraktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-namefraktion"
+                                },
+                                {
+                                    "label": "Wortmeldungsart",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-wortmeldungsart"
+                                },
+                                {
+                                    "label": "Protokoll",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-protokoll"
+                                },
+                                {
+                                    "label": "Video",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-video"
+                                }
+                            ],
+                            "rows": [
+                                [
+                                    "<a href=\"/person/4483\" target=\"_blank\">Dominik Reisinger (S/O)<\/a>",
+                                    "Contra",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 60,
+                                            "fund_bis": 63,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209558",
+                                            "title": "Seite 60 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575541365"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/3725\" target=\"_blank\">Silvester Gfrerer (V/S)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 63,
+                                            "fund_bis": 64,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209561",
+                                            "title": "Seite 63 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575541948"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/61722\" target=\"_blank\">Gerd Krusche (F/St)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 64,
+                                            "fund_bis": 67,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209562",
+                                            "title": "Seite 64 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575542425"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/6154\" target=\"_blank\">Dipl.-Ing. Dr. Adi Gross (G/V)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 67,
+                                            "fund_bis": 69,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#R_209643_10",
+                                            "title": "Seite 67 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575543008"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/12479\" target=\"_blank\">BM Mag. Andreas Reichhardt (A)<\/a>",
+                                    "Regierungsbank",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 69,
+                                            "fund_bis": 70,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209584",
+                                            "title": "Seite 69 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575543572"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/3486\" target=\"_blank\">Dr. Peter Raggl (V/T)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 70,
+                                            "fund_bis": 72,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209577",
+                                            "title": "Seite 70 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575544031"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/3487\" target=\"_blank\">Klara Neurauter (V/T)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 72,
+                                            "fund_bis": 73,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209579",
+                                            "title": "Seite 72 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575544439"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/35471\" target=\"_blank\">Dr. Andrea Eder-Gitschthaler (V/S)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 73,
+                                            "fund_bis": 75,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209576",
+                                            "title": "Seite 73 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575544821"
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "date": "TOP 3",
+                    "text": "Verkehrstelematikbericht 2019 (<a href=\"/gegenstand/BR/III-BR/689\">III-689-BR/2019 d.B.<\/a>)"
+                },
+                {
+                    "date": "TOP 3",
+                    "text": "Wortmeldungen in der Debatte",
+                    "reden": {
+                        "rendertype": "table",
+                        "data": {
+                            "header": [
+                                {
+                                    "label": "Name und Fraktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-namefraktion"
+                                },
+                                {
+                                    "label": "Wortmeldungsart",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-wortmeldungsart"
+                                },
+                                {
+                                    "label": "Protokoll",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-protokoll"
+                                },
+                                {
+                                    "label": "Video",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-video"
+                                }
+                            ],
+                            "rows": [
+                                [
+                                    "<a href=\"/person/12479\" target=\"_blank\">BM Mag. Andreas Reichhardt (A)<\/a>",
+                                    "Regierungsbank",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 78,
+                                            "fund_bis": 78,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#R_209589_6",
+                                            "title": "Seite 78 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575545867"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/3458\" target=\"_blank\">Andrea Wagner (V/N)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 78,
+                                            "fund_bis": 80,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209583",
+                                            "title": "Seite 78 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575546114"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/5022\" target=\"_blank\">Mag. Bettina Lancaster (S/O)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 80,
+                                            "fund_bis": 82,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209603",
+                                            "title": "Seite 80 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575546589"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/86618\" target=\"_blank\">Peter Samt (F/St)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 82,
+                                            "fund_bis": 83,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209604",
+                                            "title": "Seite 82 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575547012"
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "date": "TOP 4",
+                    "text": "Tätigkeitsbericht der Schienen-Control GmbH 2018 (<a href=\"/gegenstand/BR/III-BR/690\">III-690-BR/2019 d.B.<\/a>)"
+                },
+                {
+                    "date": "TOP 4",
+                    "text": "Wortmeldungen in der Debatte",
+                    "reden": {
+                        "rendertype": "table",
+                        "data": {
+                            "header": [
+                                {
+                                    "label": "Name und Fraktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-namefraktion"
+                                },
+                                {
+                                    "label": "Wortmeldungsart",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-wortmeldungsart"
+                                },
+                                {
+                                    "label": "Protokoll",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-protokoll"
+                                },
+                                {
+                                    "label": "Video",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-video"
+                                }
+                            ],
+                            "rows": [
+                                [
+                                    "<a href=\"/person/12479\" target=\"_blank\">BM Mag. Andreas Reichhardt (A)<\/a>",
+                                    "Regierungsbank",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 83,
+                                            "fund_bis": 85,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209598",
+                                            "title": "Seite 83 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575547356"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/4986\" target=\"_blank\">Ernest Schwindsackl (V/St)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 85,
+                                            "fund_bis": 86,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209613",
+                                            "title": "Seite 85 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575547802"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/78179\" target=\"_blank\">Günther Novak (S/K)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 86,
+                                            "fund_bis": 89,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209616",
+                                            "title": "Seite 86 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575548205"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/61722\" target=\"_blank\">Gerd Krusche (F/St)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 89,
+                                            "fund_bis": 89,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209639",
+                                            "title": "Seite 89 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575548826"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/6154\" target=\"_blank\">Dipl.-Ing. Dr. Adi Gross (G/V)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 89,
+                                            "fund_bis": 90,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209606",
+                                            "title": "Seite 89 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575549022"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/4943\" target=\"_blank\">Rudolf Kaske (S/W)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 90,
+                                            "fund_bis": 92,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209612",
+                                            "title": "Seite 90 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575549164"
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "date": "TOP 5",
+                    "text": "Bericht des Bundesministers für Verkehr, Innovation und Technologie über technische Unterwegskontrollen in den Jahren 2017 & 2018 (<a href=\"/gegenstand/BR/III-BR/691\">III-691-BR/2019 d.B.<\/a>)"
+                },
+                {
+                    "date": "TOP 5",
+                    "text": "Wortmeldungen in der Debatte",
+                    "reden": {
+                        "rendertype": "table",
+                        "data": {
+                            "header": [
+                                {
+                                    "label": "Name und Fraktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-namefraktion"
+                                },
+                                {
+                                    "label": "Wortmeldungsart",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-wortmeldungsart"
+                                },
+                                {
+                                    "label": "Protokoll",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-protokoll"
+                                },
+                                {
+                                    "label": "Video",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-video"
+                                }
+                            ],
+                            "rows": [
+                                [
+                                    "<a href=\"/person/12479\" target=\"_blank\">BM Mag. Andreas Reichhardt (A)<\/a>",
+                                    "Regierungsbank",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 93,
+                                            "fund_bis": 94,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209624",
+                                            "title": "Seite 93 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575549928"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/14875\" target=\"_blank\">Martin Preineder (V/N)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 94,
+                                            "fund_bis": 95,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209623",
+                                            "title": "Seite 94 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575550314"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/4483\" target=\"_blank\">Dominik Reisinger (S/O)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 95,
+                                            "fund_bis": 96,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209629",
+                                            "title": "Seite 95 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575550553"
+                                    }
+                                ],
+                                [
+                                    "<a href=\"/person/86618\" target=\"_blank\">Peter Samt (F/St)<\/a>",
+                                    "Pro",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 96,
+                                            "fund_bis": 97,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#RU_209634",
+                                            "title": "Seite 96 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ],
+                                    {
+                                        "url": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575550773"
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "date": "TOP 6",
+                    "text": "Ständiger gemeinsamer Ausschuss (<a href=\"/gegenstand/BR/W-BR/162\">162/W-BR/2019<\/a>)"
+                },
+                {
+                    "date": "05.12.2019",
+                    "text": "Angelobung"
+                },
+                {
+                    "date": "05.12.2019",
+                    "names": {
+                        "rendertype": "table",
+                        "data": {
+                            "header": [
+                                {
+                                    "label": "Name und Fraktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-namefraktion"
+                                },
+                                {
+                                    "label": "Funktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-wortmeldungsart"
+                                },
+                                {
+                                    "label": "Protokoll",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-protokoll"
+                                }
+                            ],
+                            "rows": [
+                                [
+                                    "<a href=\"/person/5406\" target=\"_blank\">Thomas Dim<\/a>",
+                                    "Angelobte/Angelobter",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 5,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0005.html",
+                                            "title": "Seite 5 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                ],
+                                [
+                                    "<a href=\"/person/5932\" target=\"_blank\">Claudia Hauschildt-Buschberger<\/a>",
+                                    "Angelobte/Angelobter",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 5,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0005.html",
+                                            "title": "Seite 5 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                ],
+                                [
+                                    "<a href=\"/person/67939\" target=\"_blank\">Marco Schreuder<\/a>",
+                                    "Angelobte/Angelobter",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 5,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0005.html",
+                                            "title": "Seite 5 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                ],
+                                [
+                                    "<a href=\"/person/6154\" target=\"_blank\">Dipl.-Ing. Dr. Adi Gross<\/a>",
+                                    "Angelobte/Angelobter",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 5,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0005.html",
+                                            "title": "Seite 5 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                ],
+                                [
+                                    "<a href=\"/person/55727\" target=\"_blank\">Dr. Magnus Brunner, LLM<\/a>",
+                                    "Angelobte/Angelobter",
+                                    [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 5,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0005.html",
+                                            "title": "Seite 5 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "date": "05.12.2019",
+                    "text": "Gestaltung und Dauer der Redezeit (<a href=\"/gegenstand/BR/GO-BR/1314\">1314/GO-BR/2019<\/a>)",
+                    "fsth": [
+                        {
+                            "gp_code": "BR",
+                            "sitzung_id": 898,
+                            "fund_von": 6,
+                            "fund_bis": null,
+                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0006.html",
+                            "title": "Seite 6 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                        }
+                    ]
+                },
+                {
+                    "date": "05.12.2019",
+                    "text": "Unterrichtung betreffend <a href=\"/gegenstand/BR/GO-BR/1355\">Republik Österreich - Heiliger Stuhl: Regelung von vermögensrechtlichen Beziehungen (1355/GO-BR/2019)<\/a>",
+                    "fsth": [
+                        {
+                            "gp_code": "BR",
+                            "sitzung_id": 898,
+                            "fund_von": 26,
+                            "fund_bis": null,
+                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0026.html",
+                            "title": "Seite 26 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                        },
+                        {
+                            "gp_code": "BR",
+                            "sitzung_id": 898,
+                            "fund_von": 55,
+                            "fund_bis": 57,
+                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0055.html",
+                            "title": "Seite 55 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                        }
+                    ]
+                },
+                {
+                    "date": "05.12.2019",
+                    "text": "Ausübung des Stimmrechts durch den vorsitzführenden Vizepräsidenten Hubert Koller, MA gem. § 53 Abs. 3 GO-BR (<a href=\"/gegenstand/BR/GO-BR/1588\">1588/GO-BR/2019<\/a>)",
+                    "fsth": [
+                        {
+                            "gp_code": "BR",
+                            "sitzung_id": 898,
+                            "fund_von": 75,
+                            "fund_bis": null,
+                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0075.html",
+                            "title": "Seite 75 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                        }
+                    ]
+                },
+                {
+                    "date": "05.12.2019",
+                    "text": "Verlangen gemäß § 64 Abs. 2 GO-BR auf Verlesung eines Teiles des Amtlichen Protokolls sowie Genehmigung des verlesenen Teiles des Amtlichen Protokolls (<a href=\"/gegenstand/BR/GO-BR/1315\">1315/GO-BR/2019<\/a>)",
+                    "fsth": [
+                        {
+                            "gp_code": "BR",
+                            "sitzung_id": 898,
+                            "fund_von": 97,
+                            "fund_bis": null,
+                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0097.html",
+                            "title": "Seite 97 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                        }
+                    ]
+                }
+            ],
+            "documents": [
+                {
+                    "title": "Stenographisches Protokoll der 898. Sitzung ",
+                    "documents": [
+                        {
+                            "link": "/dokument/BR/BRSITZ/898/fname_798100.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/BR/BRSITZ/898/fnameorig_798100.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "stdocuments": [
+                {
+                    "title": "Stenographisches Protokoll der 898. Sitzung ",
+                    "documents": [
+                        {
+                            "link": "/dokument/BR/BRSITZ/898/fname_798100.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/BR/BRSITZ/898/fnameorig_798100.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "agenda": [
+                {
+                    "title": "Tagesordnung vom 05.12.2019",
+                    "documents": [
+                        {
+                            "link": "/dokument/BR/BRSITZ/898/TO_04089132.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/BR/BRSITZ/898/TO_04089132.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "correspondence": [
+                {
+                    "additional": false,
+                    "title": "Die Parlamentswoche vom 2. - 6. Dezember 2019",
+                    "date": "29.11.2019",
+                    "url": "/aktuelles/pk/jahr_2019/pk1143#BR_BRSITZ_00898"
+                },
+                {
+                    "additional": false,
+                    "title": "Bundesrat: Fünf neue MandatarInnen angelobt",
+                    "date": "05.12.2019",
+                    "url": "/aktuelles/pk/jahr_2019/pk1163#BR_BRSITZ_00898"
+                },
+                {
+                    "additional": false,
+                    "title": "Bundesrat befasst sich mit digitalem Wandel und Fachkräftemangel",
+                    "date": "05.12.2019",
+                    "url": "/aktuelles/pk/jahr_2019/pk1164#BR_BRSITZ_00898"
+                },
+                {
+                    "additional": false,
+                    "title": "Maut-Ausnahmen passieren Bundesrat",
+                    "date": "05.12.2019",
+                    "url": "/aktuelles/pk/jahr_2019/pk1165#BR_BRSITZ_00898"
+                },
+                {
+                    "additional": false,
+                    "title": "Verkehrsminister Reichhardt für weiteren Ausbau des Bahnangebots im Personennahverkehr",
+                    "date": "05.12.2019",
+                    "url": "/aktuelles/pk/jahr_2019/pk1166#BR_BRSITZ_00898"
+                }
+            ],
+            "topics": {
+                "rendertype": "bubbles",
+                "data": {
+                    "title": "",
+                    "bubbles": [
+                        {
+                            "label": "Parlament und Demokratie",
+                            "link": "/suche?thema=Parlament und Demokratie"
+                        },
+                        {
+                            "label": "Verkehr und Infrastruktur",
+                            "link": "/suche?thema=Verkehr und Infrastruktur"
+                        }
+                    ]
+                }
+            },
+            "aviso": [
+                {
+                    "text": "Aktuelle Stunde",
+                    "materials": [
+                        {
+                            "title": "Aktuelle Stunde mit Bildungsministerin Iris Rauskala",
+                            "ggstd_links": [
+                                {
+                                    "title": "73/AS-BR/2019",
+                                    "link": "/gegenstand/BR/AS-BR/73"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "mediathek_url": "/aktuelles/mediathek/BR/BRSITZ/898",
+            "resolutions": [
+                {
+                    "materials": [
+                        {
+                            "text": "Wahl eines/einer Vizepräsidenten/-in für den Rest des 2. Halbjahres 2019",
+                            "zitation": "161/W-BR/2019",
+                            "url": "/gegenstand/BR/W-BR/161",
+                            "prefix": null,
+                            "stages": [
+                                {
+                                    "date": "05.12.2019",
+                                    "text": "<a href=\"/gegenstand/BR/BRSITZ/898\">898. Sitzung<\/a>: Wahl der Präsidentin/des Präsidenten der Vizepräsidentin/des Vizepräsidenten<br>Einhellig (Vom 01.07.2019 bis 31.12.2019)",
+                                    "fsth": [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 58,
+                                            "fund_bis": 59,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0058.html",
+                                            "title": "Seite 58 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "top": "TOP 1",
+                    "url": "/gegenstand/BR/W-BR/161",
+                    "text": "Wahl eines/einer Vizepräsidenten/-in für den Rest des 2. Halbjahres 2019",
+                    "zitation": "161/W-BR/2019"
+                },
+                {
+                    "materials": [
+                        {
+                            "text": "Bundesstraßen-Mautgesetz 2002",
+                            "zitation": "7/A",
+                            "url": "/gegenstand/XXVII/A/7",
+                            "prefix": null,
+                            "stages": [
+                                {
+                                    "date": "05.12.2019",
+                                    "text": "<a href=\"/gegenstand/BR/BRSITZ/898\">898. Sitzung<\/a>: Antrag, keinen Einspruch zu erheben, <b>angenommen<\/b><br>mehrstimmig",
+                                    "fsth": [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 74,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0074.html",
+                                            "title": "Seite 74 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "top": "TOP 2",
+                    "url": "/gegenstand/XXVII/A/7",
+                    "text": "Bundesstraßen-Mautgesetz 2002",
+                    "zitation": "7/A"
+                },
+                {
+                    "materials": [
+                        {
+                            "text": "Verkehrstelematikbericht 2019",
+                            "zitation": "III-689-BR/2019 d.B.",
+                            "url": "/gegenstand/BR/III-BR/689",
+                            "prefix": null,
+                            "stages": [
+                                {
+                                    "date": "05.12.2019",
+                                    "text": "Kenntnisnahme des Berichts <b>angenommen<\/b><br>Einhellig",
+                                    "fsth": [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 82,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0082.html",
+                                            "title": "Seite 82 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "top": "TOP 3",
+                    "url": "/gegenstand/BR/III-BR/689",
+                    "text": "Verkehrstelematikbericht 2019",
+                    "zitation": "III-689-BR/2019 d.B."
+                },
+                {
+                    "materials": [
+                        {
+                            "text": "Tätigkeitsbericht der Schienen-Control GmbH 2018",
+                            "zitation": "III-690-BR/2019 d.B.",
+                            "url": "/gegenstand/BR/III-BR/690",
+                            "prefix": null,
+                            "stages": [
+                                {
+                                    "date": "05.12.2019",
+                                    "text": "Kenntnisnahme des Berichts <b>angenommen<\/b><br>Einhellig",
+                                    "fsth": [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 91,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0091.html",
+                                            "title": "Seite 91 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "top": "TOP 4",
+                    "url": "/gegenstand/BR/III-BR/690",
+                    "text": "Tätigkeitsbericht der Schienen-Control GmbH 2018",
+                    "zitation": "III-690-BR/2019 d.B."
+                },
+                {
+                    "materials": [
+                        {
+                            "text": "Bericht des Bundesministers für Verkehr, Innovation und Technologie über technische Unterwegskontrollen in den Jahren 2017 & 2018",
+                            "zitation": "III-691-BR/2019 d.B.",
+                            "url": "/gegenstand/BR/III-BR/691",
+                            "prefix": null,
+                            "stages": [
+                                {
+                                    "date": "05.12.2019",
+                                    "text": "Kenntnisnahme des Berichts <b>angenommen<\/b><br>Einhellig",
+                                    "fsth": [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 96,
+                                            "fund_bis": null,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0096.html",
+                                            "title": "Seite 96 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "top": "TOP 5",
+                    "url": "/gegenstand/BR/III-BR/691",
+                    "text": "Bericht des Bundesministers für Verkehr, Innovation und Technologie über technische Unterwegskontrollen in den Jahren 2017 & 2018",
+                    "zitation": "III-691-BR/2019 d.B."
+                },
+                {
+                    "materials": [
+                        {
+                            "text": "Ständiger gemeinsamer Ausschuss",
+                            "zitation": "162/W-BR/2019",
+                            "url": "/gegenstand/BR/W-BR/162",
+                            "prefix": null,
+                            "stages": [
+                                {
+                                    "date": "05.12.2019",
+                                    "text": "<a href=\"/gegenstand/BR/BRSITZ/898\">898. Sitzung<\/a>: Wahl (Von zwei Mitgliedern und von einem Ersatzmitglied)",
+                                    "fsth": [
+                                        {
+                                            "gp_code": "BR",
+                                            "sitzung_id": 898,
+                                            "fund_von": 96,
+                                            "fund_bis": 97,
+                                            "url": "/dokument/BR/BRSITZ/898/fnameorig_798100.html#Seite_0096.html",
+                                            "title": "Seite 96 des Stenographischen Protokolls der 898. Sitzung des Bundesrats"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "top": "TOP 6",
+                    "url": "/gegenstand/BR/W-BR/162",
+                    "text": "Ständiger gemeinsamer Ausschuss",
+                    "zitation": "162/W-BR/2019"
+                }
+            ],
+            "evert": true
+        },
+        {
+            "past_debates": [
+                {
+                    "id": 101,
+                    "part": 1,
+                    "verlauf": "D",
+                    "type": "AS",
+                    "typetext": "Aktuelle Stunde",
+                    "text": "Aktuelle Stunde Bundesministerin für Bildung, Wissenschaft und Forschung \"Digitalisierung und MINT: Initiativen und Maßnahmen von der Elementarpädagogik bis zum Hochschulbereich\"",
+                    "limit": 0,
+                    "starttime": "2019-12-05T09:04:00",
+                    "endtime": "10:17",
+                    "state": "fertig",
+                    "quorum": false,
+                    "names": false,
+                    "tops": true,
+                    "top": null,
+                    "speeches": [
+                        [
+                            1,
+                            "fertig",
+                            "Mag. Dr. Doris Berger-Grabner (V/N)",
+                            5009,
+                            0,
+                            "wm",
+                            "09:05",
+                            "9:55",
+                            10,
+                            null
+                        ],
+                        [
+                            2,
+                            "fertig",
+                            "Doris Hahn, MEd MA (S/N)",
+                            3456,
+                            0,
+                            "wm",
+                            "09:16",
+                            "10:00",
+                            10,
+                            null
+                        ],
+                        [
+                            3,
+                            "fertig",
+                            "Monika Mühlwerth (F/W)",
+                            4355,
+                            0,
+                            "wm",
+                            "09:26",
+                            "9:29",
+                            10,
+                            null
+                        ],
+                        [
+                            4,
+                            "fertig",
+                            "BM Mag. Dr. Iris Rauskala (A)",
+                            5431,
+                            0,
+                            "rb",
+                            "09:36",
+                            "18:03",
+                            10,
+                            "*"
+                        ],
+                        [
+                            5,
+                            "fertig",
+                            "Marianne Hackl (V/B)",
+                            86675,
+                            0,
+                            "wm",
+                            "09:55",
+                            "4:29",
+                            5,
+                            null
+                        ],
+                        [
+                            6,
+                            "fertig",
+                            "Mag. Daniela Gruber-Pruner (S/W)",
+                            84868,
+                            0,
+                            "wm",
+                            "09:59",
+                            "5:00",
+                            5,
+                            null
+                        ],
+                        [
+                            7,
+                            "fertig",
+                            "Mag. Reinhard Pisec, BA MA (F/W)",
+                            62359,
+                            0,
+                            "wm",
+                            "10:05",
+                            "5:00",
+                            5,
+                            null
+                        ],
+                        [
+                            8,
+                            "fertig",
+                            "Marco Schreuder (G/W)",
+                            67939,
+                            0,
+                            "wm",
+                            "10:11",
+                            "4:55",
+                            5,
+                            null
+                        ]
+                    ],
+                    "current_speech": null,
+                    "agenda": [
+                        {
+                            "text": "Aktuelle Stunde Bundesministerin für Bildung, Wissenschaft und Forschung \"Digitalisierung und MINT: Initiativen und Maßnahmen von der Elementarpädagogik bis zum Hochschulbereich\" (73/AS-BR/2019)",
+                            "gp_code": "BR",
+                            "ityp": "AS-BR",
+                            "inr": 73,
+                            "zukz": "",
+                            "zitation": "73/AS-BR/2019",
+                            "url": "/gegenstand/BR/AS-BR/73"
+                        }
+                    ],
+                    "openspeaker": 0,
+                    "openminutes": 0,
+                    "haslimit": false
+                },
+                {
+                    "id": 1,
+                    "part": 1,
+                    "verlauf": "D",
+                    "type": "ND",
+                    "typetext": "Normaldebatte",
+                    "text": "Wahl eines/einer Vizepräsidenten/-in für den Rest des 2. Halbjahres 2019",
+                    "limit": 0,
+                    "starttime": "2019-12-05T10:19:00",
+                    "endtime": "10:20",
+                    "state": "fertig",
+                    "quorum": false,
+                    "names": false,
+                    "tops": true,
+                    "top": "TOP 1",
+                    "speeches": [
+
+                    ],
+                    "current_speech": null,
+                    "agenda": [
+                        {
+                            "nr": 1,
+                            "text": "Wahl eines/einer Vizepräsidenten/-in für den Rest des 2. Halbjahres 2019 (161/W-BR/2019)",
+                            "gp_code": "BR",
+                            "ityp": "W-BR",
+                            "inr": 161,
+                            "zitation": "161/W-BR/2019",
+                            "zukz": null,
+                            "url": "/gegenstand/BR/W-BR/161",
+                            "quorum": false,
+                            "names": false,
+                            "wm_type": null,
+                            "wm_name": null,
+                            "wm_frac_id": null
+                        }
+                    ],
+                    "openspeaker": 0,
+                    "openminutes": 0,
+                    "to_min": 1,
+                    "to_max": 1,
+                    "haslimit": false
+                },
+                {
+                    "id": 2,
+                    "part": 1,
+                    "verlauf": "D",
+                    "type": "ND",
+                    "typetext": "Normaldebatte",
+                    "text": "Bundesstraßen-Mautgesetz 2002",
+                    "limit": 0,
+                    "starttime": "2019-12-05T10:20:00",
+                    "endtime": "11:27",
+                    "state": "fertig",
+                    "quorum": false,
+                    "names": true,
+                    "tops": true,
+                    "top": "TOP 2",
+                    "speeches": [
+                        [
+                            1,
+                            "fertig",
+                            "Dominik Reisinger (S/O)",
+                            4483,
+                            0,
+                            "c",
+                            "10:21",
+                            "10:30",
+                            10,
+                            "*"
+                        ],
+                        [
+                            2,
+                            "fertig",
+                            "Silvester Gfrerer (V/S)",
+                            3725,
+                            0,
+                            "p",
+                            "10:32",
+                            "7:39",
+                            10,
+                            "*"
+                        ],
+                        [
+                            3,
+                            "fertig",
+                            "Gerd Krusche (F/St)",
+                            61722,
+                            0,
+                            "p",
+                            "10:40",
+                            "9:09",
+                            10,
+                            "*"
+                        ],
+                        [
+                            4,
+                            "fertig",
+                            "Dipl.-Ing. Dr. Adi Gross (G/V)",
+                            6154,
+                            0,
+                            "p",
+                            "10:50",
+                            "9:21",
+                            10,
+                            "*"
+                        ],
+                        [
+                            5,
+                            "fertig",
+                            "BM Mag. Andreas Reichhardt (A)",
+                            12479,
+                            0,
+                            "rb",
+                            "10:59",
+                            "7:32",
+                            0,
+                            null
+                        ],
+                        [
+                            6,
+                            "fertig",
+                            "Dr. Peter Raggl (V/T)",
+                            3486,
+                            0,
+                            "p",
+                            "11:07",
+                            "7:14",
+                            10,
+                            "*"
+                        ],
+                        [
+                            7,
+                            "fertig",
+                            "Klara Neurauter (V/T)",
+                            3487,
+                            0,
+                            "p",
+                            "11:14",
+                            "5:45",
+                            10,
+                            "*"
+                        ],
+                        [
+                            8,
+                            "fertig",
+                            "Dr. Andrea Eder-Gitschthaler (V/S)",
+                            35471,
+                            0,
+                            "p",
+                            "11:20",
+                            "7:09",
+                            10,
+                            "*"
+                        ]
+                    ],
+                    "current_speech": null,
+                    "agenda": [
+                        {
+                            "nr": 2,
+                            "text": "Bundesstraßen-Mautgesetz 2002 (7/A)",
+                            "gp_code": "XXVII",
+                            "ityp": "A",
+                            "inr": 7,
+                            "zitation": "7/A",
+                            "zukz": null,
+                            "url": "/gegenstand/XXVII/A/7",
+                            "quorum": false,
+                            "names": true,
+                            "wm_type": "be",
+                            "wm_name": "Mag. Doris Schulz (V/O)",
+                            "wm_frac_id": null
+                        }
+                    ],
+                    "openspeaker": 0,
+                    "openminutes": 0,
+                    "to_min": 2,
+                    "to_max": 2,
+                    "haslimit": false
+                },
+                {
+                    "id": 3,
+                    "part": 1,
+                    "verlauf": "D",
+                    "type": "ND",
+                    "typetext": "Normaldebatte",
+                    "text": "Verkehrstelematikbericht 2019",
+                    "limit": 0,
+                    "starttime": "2019-12-05T11:36:00",
+                    "endtime": "12:01",
+                    "state": "fertig",
+                    "quorum": false,
+                    "names": false,
+                    "tops": true,
+                    "top": "TOP 3",
+                    "speeches": [
+                        [
+                            1,
+                            "fertig",
+                            "BM Mag. Andreas Reichhardt (A)",
+                            12479,
+                            0,
+                            "rb",
+                            "11:37",
+                            "3:46",
+                            0,
+                            null
+                        ],
+                        [
+                            2,
+                            "fertig",
+                            "Andrea Wagner (V/N)",
+                            3458,
+                            0,
+                            "p",
+                            "11:41",
+                            "7:33",
+                            10,
+                            "*"
+                        ],
+                        [
+                            3,
+                            "fertig",
+                            "Mag. Bettina Lancaster (S/O)",
+                            5022,
+                            0,
+                            "p",
+                            "11:49",
+                            "6:44",
+                            10,
+                            "*"
+                        ],
+                        [
+                            4,
+                            "fertig",
+                            "Peter Samt (F/St)",
+                            86618,
+                            0,
+                            "p",
+                            "11:56",
+                            "4:14",
+                            10,
+                            "*"
+                        ]
+                    ],
+                    "current_speech": null,
+                    "agenda": [
+                        {
+                            "nr": 3,
+                            "text": "Verkehrstelematikbericht 2019 (III-689-BR/2019 d.B.)",
+                            "gp_code": "BR",
+                            "ityp": "III-BR",
+                            "inr": 689,
+                            "zitation": "III-689-BR/2019 d.B.",
+                            "zukz": null,
+                            "url": "/gegenstand/BR/III-BR/689",
+                            "quorum": false,
+                            "names": false,
+                            "wm_type": "be",
+                            "wm_name": "Gottfried Sperl (F/St)",
+                            "wm_frac_id": null
+                        }
+                    ],
+                    "openspeaker": 0,
+                    "openminutes": 0,
+                    "to_min": 3,
+                    "to_max": 3,
+                    "haslimit": false
+                },
+                {
+                    "id": 4,
+                    "part": 1,
+                    "verlauf": "D",
+                    "type": "ND",
+                    "typetext": "Normaldebatte",
+                    "text": "Tätigkeitsbericht der Schienen-Control GmbH 2018",
+                    "limit": 0,
+                    "starttime": "2019-12-05T12:01:00",
+                    "endtime": "12:43",
+                    "state": "fertig",
+                    "quorum": false,
+                    "names": false,
+                    "tops": true,
+                    "top": "TOP 4",
+                    "speeches": [
+                        [
+                            1,
+                            "fertig",
+                            "BM Mag. Andreas Reichhardt (A)",
+                            12479,
+                            0,
+                            "rb",
+                            "12:02",
+                            "7:10",
+                            0,
+                            null
+                        ],
+                        [
+                            2,
+                            "fertig",
+                            "Ernest Schwindsackl (V/St)",
+                            4986,
+                            0,
+                            "p",
+                            "12:10",
+                            "6:38",
+                            10,
+                            "*"
+                        ],
+                        [
+                            3,
+                            "fertig",
+                            "Günther Novak (S/K)",
+                            78179,
+                            0,
+                            "p",
+                            "12:16",
+                            "9:56",
+                            10,
+                            "*"
+                        ],
+                        [
+                            4,
+                            "fertig",
+                            "Gerd Krusche (F/St)",
+                            61722,
+                            0,
+                            "p",
+                            "12:27",
+                            "3:11",
+                            10,
+                            "*"
+                        ],
+                        [
+                            5,
+                            "fertig",
+                            "Dipl.-Ing. Dr. Adi Gross (G/V)",
+                            6154,
+                            0,
+                            "p",
+                            "12:30",
+                            "1:59",
+                            10,
+                            "*"
+                        ],
+                        [
+                            6,
+                            "fertig",
+                            "Rudolf Kaske (S/W)",
+                            4943,
+                            0,
+                            "p",
+                            "12:32",
+                            "10:39",
+                            10,
+                            "*"
+                        ]
+                    ],
+                    "current_speech": null,
+                    "agenda": [
+                        {
+                            "nr": 4,
+                            "text": "Tätigkeitsbericht der Schienen-Control GmbH 2018 (III-690-BR/2019 d.B.)",
+                            "gp_code": "BR",
+                            "ityp": "III-BR",
+                            "inr": 690,
+                            "zitation": "III-690-BR/2019 d.B.",
+                            "zukz": null,
+                            "url": "/gegenstand/BR/III-BR/690",
+                            "quorum": false,
+                            "names": false,
+                            "wm_type": "be",
+                            "wm_name": "Gottfried Sperl (F/St)",
+                            "wm_frac_id": null
+                        }
+                    ],
+                    "openspeaker": 0,
+                    "openminutes": 0,
+                    "to_min": 4,
+                    "to_max": 4,
+                    "haslimit": false
+                },
+                {
+                    "id": 5,
+                    "part": 1,
+                    "verlauf": "D",
+                    "type": "ND",
+                    "typetext": "Normaldebatte",
+                    "text": "Bericht des Bundesministers für Verkehr, Innovation und Technologie über technische Unterwegskontrollen in den Jahren 2017 & 2018",
+                    "limit": 0,
+                    "starttime": "2019-12-05T12:44:00",
+                    "endtime": "13:03",
+                    "state": "fertig",
+                    "quorum": false,
+                    "names": false,
+                    "tops": true,
+                    "top": "TOP 5",
+                    "speeches": [
+                        [
+                            1,
+                            "fertig",
+                            "BM Mag. Andreas Reichhardt (A)",
+                            12479,
+                            0,
+                            "rb",
+                            "12:45",
+                            "6:14",
+                            0,
+                            null
+                        ],
+                        [
+                            2,
+                            "fertig",
+                            "Martin Preineder (V/N)",
+                            14875,
+                            0,
+                            "p",
+                            "12:52",
+                            "3:47",
+                            10,
+                            "*"
+                        ],
+                        [
+                            3,
+                            "fertig",
+                            "Dominik Reisinger (S/O)",
+                            4483,
+                            0,
+                            "p",
+                            "12:55",
+                            "3:28",
+                            10,
+                            "*"
+                        ],
+                        [
+                            4,
+                            "fertig",
+                            "Peter Samt (F/St)",
+                            86618,
+                            0,
+                            "p",
+                            "12:59",
+                            "3:56",
+                            10,
+                            "*"
+                        ]
+                    ],
+                    "current_speech": null,
+                    "agenda": [
+                        {
+                            "nr": 5,
+                            "text": "Bericht des Bundesministers für Verkehr, Innovation und Technologie über technische Unterwegskontrollen in den Jahren 2017 & 2018 (III-691-BR/2019 d.B.)",
+                            "gp_code": "BR",
+                            "ityp": "III-BR",
+                            "inr": 691,
+                            "zitation": "III-691-BR/2019 d.B.",
+                            "zukz": null,
+                            "url": "/gegenstand/BR/III-BR/691",
+                            "quorum": false,
+                            "names": false,
+                            "wm_type": "be",
+                            "wm_name": "Gottfried Sperl (F/St)",
+                            "wm_frac_id": null
+                        }
+                    ],
+                    "openspeaker": 0,
+                    "openminutes": 0,
+                    "to_min": 5,
+                    "to_max": 5,
+                    "haslimit": false
+                },
+                {
+                    "id": 6,
+                    "part": 1,
+                    "verlauf": "D",
+                    "type": "ND",
+                    "typetext": "Normaldebatte",
+                    "text": "Ständiger gemeinsamer Ausschuss",
+                    "limit": 0,
+                    "starttime": "2019-12-05T13:04:00",
+                    "endtime": "13:05",
+                    "state": "fertig",
+                    "quorum": false,
+                    "names": false,
+                    "tops": true,
+                    "top": "TOP 6",
+                    "speeches": [
+
+                    ],
+                    "current_speech": null,
+                    "agenda": [
+                        {
+                            "nr": 6,
+                            "text": "Ständiger gemeinsamer Ausschuss (162/W-BR/2019)",
+                            "gp_code": "BR",
+                            "ityp": "W-BR",
+                            "inr": 162,
+                            "zitation": "162/W-BR/2019",
+                            "zukz": null,
+                            "url": "/gegenstand/BR/W-BR/162",
+                            "quorum": false,
+                            "names": false,
+                            "wm_type": null,
+                            "wm_name": null,
+                            "wm_frac_id": null
+                        }
+                    ],
+                    "openspeaker": 0,
+                    "openminutes": 0,
+                    "to_min": 6,
+                    "to_max": 6,
+                    "haslimit": false
+                }
+            ],
+            "current_session": {
+                "parts": [
+                    {
+                        "part": 1,
+                        "date": "2019-12-05T00:00:00"
+                    }
+                ],
+                "current_part": 1
+            },
+            "info": {
+                "title": "898. Sitzung des Bundesrats am 05. Dezember 2019",
+                "description": "898. Sitzung am 05.12.2019",
+                "starttime": "2019-12-05T09:01:00",
+                "endtime": "2019-12-05T13:09:00",
+                "sessiondate": "2019-12-05T00:00:00",
+                "state": "fertig",
+                "history_url": "/sitzunghis/BR/BRSITZ/898",
+                "openspeaker": 0,
+                "openminutes": 0,
+                "specialactivities": [
+                    {
+                        "title": "Aktuelle Stunde",
+                        "id": 1,
+                        "activities": [
+                            {
+                                "title": "Aktuelle Stunde mit Bildungsministerin Iris Rauskala",
+                                "text1": "\"Digitalisierung und MINT: Initiativen und Maßnahmen von der Elementarpädagogik bis zum Hochschulbereich\" lautet das Thema der Aktuellen Stunde mit der Bundesministerin für Bildung, Wissenschaft und Forschung Iris Rauskala zu Beginn der Plenarsitzung des Bundesrats.",
+                                "text2": null,
+                                "link": "/verstehen/glossare/allgemein#aktuelle_stunde_im_bundesrat",
+                                "link_text": "Glossareintrag zur Aktuellen Stunde",
+                                "ggstd_links": [
+                                    {
+                                        "title": "73/AS-BR/2019",
+                                        "link": "/gegenstand/BR/AS-BR/73"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "startinfo": "Die Sitzung startete am Donnerstag 05. Dezember 2019 um 9:01 Uhr."
+            }
+        },
+        {
+            "completed": true,
+            "progress": [
+                {
+                    "text": "Sitzungsbeginn",
+                    "time": "09:01:05",
+                    "st_objekte_id": "209523",
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_09_01_05_00209523.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_09_01_05_00209523.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "Mandatsverzicht und Angelobung",
+                    "time": "09:01:38",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=300",
+                    "st_objekte_id": "209539",
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_09_01_39_00209539.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_09_01_39_00209539.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "Aktuelle Stunde mit Bildungsministerin Iris Rauskala",
+                    "time": "09:04:26",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101",
+                    "speeches": [
+                        {
+                            "time": "09:04:26",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_09_04_26_00209527.html",
+                            "texta": "Karl Bader, Präsident des Bundesrates",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101",
+                            "st_objekte_id": "209527",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_04_26_00209527.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_04_26_00209527.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "09:05:52",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_09_05_53_00209533.html",
+                            "texta": "Doris Berger-Grabner (ÖVP / Niederösterreich)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575536752",
+                            "st_objekte_id": "209533",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_05_53_00209533.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_05_53_00209533.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "09:15:59",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_09_16_01_00209534.html",
+                            "texta": "Doris Hahn (SPÖ / Niederösterreich)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575537358",
+                            "st_objekte_id": "209534",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_16_01_00209534.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_16_01_00209534.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "09:26:44",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_09_26_44_00209541.html",
+                            "texta": "Monika Mühlwerth (FPÖ / Wien)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575538003",
+                            "st_objekte_id": "209541",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_26_44_00209541.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_26_44_00209541.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "09:36:34",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_09_36_34_00209542.html",
+                            "texta": "Iris Rauskala, Bundesministerin",
+                            "textb": "für Bildung, Wissenschaft und Forschung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575538593",
+                            "st_objekte_id": "209542",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_36_34_00209542.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_36_34_00209542.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "09:55:05",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_09_55_05_00209547.html",
+                            "texta": "Marianne Hackl (ÖVP / Burgenland)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575539704",
+                            "st_objekte_id": "209547",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_55_05_00209547.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_55_05_00209547.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "09:59:50",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_09_59_51_00209611.html",
+                            "texta": "Daniela Gruber-Pruner (SPÖ / Wien)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575539989",
+                            "st_objekte_id": "209611",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_59_51_00209611.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_09_59_51_00209611.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "10:05:46",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_05_46_00209550.html",
+                            "texta": "Reinhard Pisec (FPÖ / Wien)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575540346",
+                            "st_objekte_id": "209550",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_05_46_00209550.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_05_46_00209550.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "10:11:53",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_11_57_00209552.html",
+                            "texta": "Marco Schreuder (ohne Fraktionszugehörigkeit / Wien)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=101&TS=1575540713",
+                            "st_objekte_id": "209552",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_11_57_00209552.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_11_57_00209552.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        }
+                    ]
+                },
+                {
+                    "text": "Präsidium",
+                    "time": "10:17:00",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=310",
+                    "st_objekte_id": "209569",
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_10_17_35_00209569.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_10_17_35_00209569.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "TOP 1 Wahl eines/einer Vizepräsidenten/-in",
+                    "time": "10:19:15",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=1",
+                    "st_objekte_id": "209630",
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_10_19_16_00209630.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_10_19_16_00209630.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "TOP 2 Mautbefreiung für ausgewählte Autobahnabschnitte",
+                    "time": "10:20:44",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2",
+                    "speeches": [
+                        {
+                            "time": "10:20:44",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_20_44_00209553.html",
+                            "texta": "Karl Bader, Präsident des Bundesrates",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2",
+                            "st_objekte_id": "209553",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_20_44_00209553.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_20_44_00209553.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "10:21:26",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_21_26_00209556.html",
+                            "texta": "Doris Schulz (ÖVP / Oberösterreich)",
+                            "textb": "Berichterstattung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575541285",
+                            "st_objekte_id": "209556",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_21_26_00209556.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_21_26_00209556.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "10:22:45",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_22_45_00209558.html",
+                            "texta": "Dominik Reisinger (SPÖ / Oberösterreich)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575541365",
+                            "st_objekte_id": "209558",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_22_45_00209558.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_22_45_00209558.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "10:32:28",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_32_28_00209561.html",
+                            "texta": "Silvester Gfrerer (ÖVP / Salzburg)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575541948",
+                            "st_objekte_id": "209561",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_32_28_00209561.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_32_28_00209561.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "10:40:25",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_40_25_00209562.html",
+                            "texta": "Gerd Krusche (FPÖ / Steiermark)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575542425",
+                            "st_objekte_id": "209562",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_40_25_00209562.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_40_25_00209562.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "10:50:08",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_50_08_00209643.html",
+                            "texta": "Adi Gross (ohne Fraktionszugehörigkeit / Vorarlberg)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575543008",
+                            "st_objekte_id": "209643",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_50_08_00209643.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_50_08_00209643.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "10:59:33",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_10_59_33_00209584.html",
+                            "texta": "Andreas Reichhardt, Bundesminister",
+                            "textb": "für Verkehr, Innovation und Technologie",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575543572",
+                            "st_objekte_id": "209584",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_59_33_00209584.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_10_59_33_00209584.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:07:12",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_07_12_00209577.html",
+                            "texta": "Peter Raggl (ÖVP / Tirol)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575544031",
+                            "st_objekte_id": "209577",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_07_12_00209577.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_07_12_00209577.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:13:59",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_13_59_00209579.html",
+                            "texta": "Klara Neurauter (ÖVP / Tirol)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575544439",
+                            "st_objekte_id": "209579",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_13_59_00209579.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_13_59_00209579.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:20:21",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_20_21_00209576.html",
+                            "texta": "Andrea Eder-Gitschthaler (ÖVP / Salzburg)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575544821",
+                            "st_objekte_id": "209576",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_20_21_00209576.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_20_21_00209576.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:27:32",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_27_32_00209636.html",
+                            "texta": "Hubert Koller, Vizepräsident des Bundesrates",
+                            "textb": "Abstimmung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=2&TS=1575545252",
+                            "st_objekte_id": "209636",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_27_32_00209636.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_27_32_00209636.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        }
+                    ]
+                },
+                {
+                    "text": "TOP 3 Verkehrstelematikbericht 2019",
+                    "time": "11:36:37",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3",
+                    "speeches": [
+                        {
+                            "time": "11:36:37",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_36_37_00209581.html",
+                            "texta": "Hubert Koller, Vizepräsident des Bundesrates",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3",
+                            "st_objekte_id": "209581",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_36_37_00209581.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_36_37_00209581.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:37:08",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_37_08_00209642.html",
+                            "texta": "Gottfried Sperl (FPÖ / Steiermark)",
+                            "textb": "Berichterstattung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575545828",
+                            "st_objekte_id": "209642",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_37_08_00209642.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_37_08_00209642.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:37:48",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_37_48_00209589.html",
+                            "texta": "Andreas Reichhardt, Bundesminister",
+                            "textb": "für Verkehr, Innovation und Technologie",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575545867",
+                            "st_objekte_id": "209589",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_37_48_00209589.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_37_48_00209589.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:41:54",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_41_54_00209583.html",
+                            "texta": "Andrea Wagner (ÖVP / Niederösterreich)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575546114",
+                            "st_objekte_id": "209583",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_41_54_00209583.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_41_54_00209583.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:49:50",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_49_50_00209603.html",
+                            "texta": "Bettina Lancaster (SPÖ / Oberösterreich)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575546589",
+                            "st_objekte_id": "209603",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_49_50_00209603.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_49_50_00209603.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "11:56:52",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_11_56_52_00209604.html",
+                            "texta": "Peter Samt (FPÖ / Steiermark)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575547012",
+                            "st_objekte_id": "209604",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_56_52_00209604.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_11_56_52_00209604.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:01:12",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_01_12_00209622.html",
+                            "texta": "Magnus Brunner, Vizepräsident des Bundesrates",
+                            "textb": "Abstimmung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=3&TS=1575547271",
+                            "st_objekte_id": "209622",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_01_12_00209622.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_01_12_00209622.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        }
+                    ]
+                },
+                {
+                    "text": "TOP 4 Tätigkeitsbericht der Schienen-Control GmbH 2018",
+                    "time": "12:01:33",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4",
+                    "speeches": [
+                        {
+                            "time": "12:01:33",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_01_33_00209594.html",
+                            "texta": "Magnus Brunner, Vizepräsident des Bundesrates",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4",
+                            "st_objekte_id": "209594",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_01_33_00209594.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_01_33_00209594.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:01:47",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_01_47_00209596.html",
+                            "texta": "Gottfried Sperl (FPÖ / Steiermark)",
+                            "textb": "Berichterstattung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575547306",
+                            "st_objekte_id": "209596",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_01_47_00209596.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_01_47_00209596.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:02:37",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_02_37_00209598.html",
+                            "texta": "Andreas Reichhardt, Bundesminister",
+                            "textb": "für Verkehr, Innovation und Technologie",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575547356",
+                            "st_objekte_id": "209598",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_02_37_00209598.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_02_37_00209598.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:10:02",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_10_02_00209613.html",
+                            "texta": "Ernest Schwindsackl (ÖVP / Steiermark)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575547802",
+                            "st_objekte_id": "209613",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_10_02_00209613.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_10_02_00209613.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:16:46",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_16_46_00209616.html",
+                            "texta": "Günther Novak (SPÖ / Kärnten)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575548205",
+                            "st_objekte_id": "209616",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_16_46_00209616.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_16_46_00209616.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:27:07",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_27_07_00209639.html",
+                            "texta": "Gerd Krusche (FPÖ / Steiermark)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575548826",
+                            "st_objekte_id": "209639",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_27_07_00209639.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_27_07_00209639.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:30:23",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_30_23_00209606.html",
+                            "texta": "Adi Gross (ohne Fraktionszugehörigkeit / Vorarlberg)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575549022",
+                            "st_objekte_id": "209606",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_30_23_00209606.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_30_23_00209606.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:32:44",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_32_44_00209612.html",
+                            "texta": "Rudolf Kaske (SPÖ / Wien)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575549164",
+                            "st_objekte_id": "209612",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_32_44_00209612.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_32_44_00209612.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:43:31",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_43_31_00209640.html",
+                            "texta": "Magnus Brunner, Vizepräsident des Bundesrates",
+                            "textb": "Abstimmung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=4&TS=1575549810",
+                            "st_objekte_id": "209640",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_43_31_00209640.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_43_31_00209640.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        }
+                    ]
+                },
+                {
+                    "text": "TOP 5 Bericht zu Kontrollen über Verkehrstüchtigkeit von Fahrzeugen 2017/18",
+                    "time": "12:44:18",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5",
+                    "speeches": [
+                        {
+                            "time": "12:44:18",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_44_18_00209619.html",
+                            "texta": "Magnus Brunner, Vizepräsident des Bundesrates",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5",
+                            "st_objekte_id": "209619",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_44_18_00209619.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_44_18_00209619.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:44:34",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_44_34_00209620.html",
+                            "texta": "Gottfried Sperl (FPÖ / Steiermark)",
+                            "textb": "Berichterstattung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575549874",
+                            "st_objekte_id": "209620",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_44_34_00209620.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_44_34_00209620.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:45:28",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_45_28_00209624.html",
+                            "texta": "Andreas Reichhardt, Bundesminister",
+                            "textb": "für Verkehr, Innovation und Technologie",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575549928",
+                            "st_objekte_id": "209624",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_45_28_00209624.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_45_28_00209624.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:51:55",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_51_58_00209623.html",
+                            "texta": "Martin Preineder (ÖVP / Niederösterreich)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575550314",
+                            "st_objekte_id": "209623",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_51_58_00209623.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_51_58_00209623.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:55:53",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_55_53_00209629.html",
+                            "texta": "Dominik Reisinger (SPÖ / Oberösterreich)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575550553",
+                            "st_objekte_id": "209629",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_55_53_00209629.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_55_53_00209629.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "12:59:34",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_12_59_34_00209634.html",
+                            "texta": "Peter Samt (FPÖ / Steiermark)",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575550773",
+                            "st_objekte_id": "209634",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_59_34_00209634.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_12_59_34_00209634.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        },
+                        {
+                            "time": "13:03:36",
+                            "filename": "/dokument/BR/BRSITZ/898/A_-_13_03_36_00209644.html",
+                            "texta": "Magnus Brunner, Vizepräsident des Bundesrates",
+                            "textb": "Abstimmung",
+                            "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=5&TS=1575551016",
+                            "st_objekte_id": "209644",
+                            "protocol": {
+                                "rendertype": "doklinklist",
+                                "data": {
+                                    "links": [
+                                        {
+                                            "documents": [
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_13_03_36_00209644.html",
+                                                    "type": "HTML"
+                                                },
+                                                {
+                                                    "link": "/dokument/BR/BRSITZ/898/A_-_13_03_36_00209644.pdf",
+                                                    "type": "PDF"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "autorisiert": true,
+                            "veroeffentlicht": "2020-04-14T09:48:00"
+                        }
+                    ]
+                },
+                {
+                    "text": "TOP 6 Wahl von Mitgliedern für den Ständigen gemeinsamen NR-BR-Ausschuss",
+                    "time": "13:03:57",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=6",
+                    "st_objekte_id": "209628",
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_13_03_57_00209628.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_13_03_57_00209628.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "Verlesung eines Teiles des Amtlichen Protokolls",
+                    "time": "13:05:08",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=320",
+                    "st_objekte_id": "209633",
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_13_05_08_00209633.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_13_05_08_00209633.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "Präsidium",
+                    "time": "13:06:45",
+                    "video": "/aktuelles/mediathek/BR/BRSITZ/898?DEBATTE=330",
+                    "st_objekte_id": "209632",
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_13_06_45_00209632.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_13_06_45_00209632.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "Sitzungsende",
+                    "time": "13:09:33",
+                    "st_objekte_id": "209635",
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_13_09_33_00209635.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/BR/BRSITZ/898/A_-_13_09_33_00209635.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
