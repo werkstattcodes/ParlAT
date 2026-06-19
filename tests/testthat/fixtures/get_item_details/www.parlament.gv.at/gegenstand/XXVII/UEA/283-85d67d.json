@@ -1,0 +1,194 @@
+{
+    "pagetype": "geschichtsseite",
+    "meta": {
+        "description": "Versagen des Vertrauens gegenüber der Bundesregierung und den Staatssekretären (283/UEA)",
+        "generationTime": "Wed Dec 24 01:30:25 UTC 2025",
+        "keywords": "\"Bundesregierung III. Sonstiges\", \"Misstrauensanträge\", \"Gesundheit\"",
+        "lang": "de",
+        "title": "Versagen des Vertrauens gegenüber der Bundesregierung und den Staatssekretären (283/UEA) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "Versagen des Vertrauens gegenüber der Bundesregierung und den Staatssekretären | Parlament Österreich",
+            "description": "283/UEA"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "breadcrumbs": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Gegenstände",
+                "url": "/recherchieren/gegenstaende/"
+            },
+            {
+                "title": "Nationalrat - XXVII. GP",
+                "url": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII"
+            },
+            {
+                "title": "Misstrauensantrag",
+                "url": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&VHG=ANTR&DOKTYP=UEAM"
+            },
+            {
+                "title": "283/UEA"
+            }
+        ],
+        "type": "Misstrauensantrag",
+        "sntype": "Misstrauensantrag",
+        "title": "Versagen des Vertrauens gegenüber der Bundesregierung und den Staatssekretären",
+        "zitation": "283/UEA",
+        "description": "Misstrauensantrag der Abgeordneten Herbert Kickl, Kolleginnen und Kollegen betreffend Versagen des Vertrauens gegenüber der Bundesregierung und den Staatssekretären",
+        "gp_code": "XXVII",
+        "ityp": "UEA",
+        "inr": 283,
+        "doktyp": "UEAM",
+        "update": "2025-12-24T02:30:25",
+        "nr_gp_code": "XXVII",
+        "intranet": "N",
+        "group": "8",
+        "deleted": false,
+        "einlangen": "2020-09-23T00:00:00",
+        "history_ind": 1.1,
+        "vhg_fertig": "J",
+        "vhg_fertig_docs": "J",
+        "process": "N",
+        "statementsstate": "9 Keine Begutachtung bei dem Doktyp \"UEAM\" möglich",
+        "approvalstate": "9 Keine Zustimmung bei dem Doktyp \"UEAM\" möglich",
+        "stages": [
+            {
+                "date": "23.09.2020",
+                "text": "<a href=\"/gegenstand/XXVII/NRSITZ/51\">51. Sitzung des Nationalrates<\/a>: Misstrauensantrag",
+                "priority": 1,
+                "fsth": [
+                    {
+                        "gp_code": "XXVII",
+                        "sitzung_id": 51,
+                        "fund_von": 76,
+                        "fund_bis": 82,
+                        "url": "/dokument/XXVII/NRSITZ/51/fnameorig_857972.html#RU_224707",
+                        "title": "Seite 76 des Stenographischen Protokolls der 51. Sitzung des Nationalrats"
+                    }
+                ]
+            },
+            {
+                "date": "23.09.2020",
+                "text": "<a href=\"/gegenstand/XXVII/NRSITZ/51\">51. Sitzung des Nationalrates<\/a>: Antrag <b>abgelehnt<\/b><br>Dafür: FPÖ, dagegen: ÖVP, SPÖ, GRÜNE, NEOS",
+                "priority": 1,
+                "fsth": [
+                    {
+                        "gp_code": "XXVII",
+                        "sitzung_id": 51,
+                        "fund_von": 126,
+                        "fund_bis": 128,
+                        "url": "/dokument/XXVII/NRSITZ/51/fnameorig_857972.html#TEXTOBJ_224983",
+                        "title": "Seite 126 des Stenographischen Protokolls der 51. Sitzung des Nationalrats"
+                    }
+                ]
+            }
+        ],
+        "documents": [
+            {
+                "title": "Entschließungsantrag (gescanntes Original)",
+                "documents": [
+                    {
+                        "link": "/dokument/XXVII/UEA/283/imfname_837674.pdf",
+                        "type": "PDF"
+                    }
+                ]
+            }
+        ],
+        "names": [
+            {
+                "funktext": "Eingebracht von",
+                "name": "Herbert Kickl",
+                "frak_code": "F",
+                "url": "/person/35520",
+                "portrait": {
+                    "rendertype": "image",
+                    "data": {
+                        "src": "/dokument/bild/201134/20113455_384.jpg",
+                        "alt": "Portraitfoto von Herbert Kickl",
+                        "bildId": 20113455,
+                        "copyright": "FPÖ Archiv "
+                    }
+                }
+            }
+        ],
+        "reference": [
+            {
+                "text": "Bezug zu",
+                "subject": "Epidemiegesetz, Tuberkulosegesetz u.a., Änderung",
+                "zitation": "826/A",
+                "url": "/gegenstand/XXVII/A/826",
+                "art": "B"
+            }
+        ],
+        "topics": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Gesundheit und Ernährung",
+                        "link": "/suche?thema=Gesundheit und Ernährung"
+                    },
+                    {
+                        "label": "Inneres und Recht",
+                        "link": "/suche?thema=Inneres und Recht"
+                    },
+                    {
+                        "label": "Parlament und Demokratie",
+                        "link": "/suche?thema=Parlament und Demokratie"
+                    }
+                ]
+            }
+        },
+        "headwords": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Bundesregierung III. Sonstiges",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&SW=Bundesregierung III. Sonstiges"
+                    },
+                    {
+                        "label": "Misstrauensanträge",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&SW=Misstrauensanträge"
+                    },
+                    {
+                        "label": "Gesundheit",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&SW=Gesundheit"
+                    }
+                ]
+            }
+        },
+        "eurovoc": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Exekutive",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&EUROVOC=Exekutive"
+                    },
+                    {
+                        "label": "Gesundheit",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&EUROVOC=Gesundheit"
+                    },
+                    {
+                        "label": "Misstrauensantrag",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&EUROVOC=Misstrauensantrag"
+                    }
+                ]
+            }
+        }
+    }
+}

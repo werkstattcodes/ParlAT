@@ -135,30 +135,75 @@
   purrr::map_chr(bubbles, \(b) b$label %||% NA_character_)
 }
 
-# Parse reden (speech) data from a character matrix of rows.
-# jsonlite simplifies reden$data$rows (an array-of-arrays) into a single
-# character matrix, collapsing all stages. Callers are responsible for
-# passing the right matrix and placing the result in the right list slot.
-# Returns a tibble with one row per speaker, or NULL if rows is not a matrix.
+# Parse reden (speech) data from a matrix or list of rows.
+# Returns a tibble with one row per speaker, or NULL if rows is empty.
 .parse_reden <- function(rows) {
-  if (!is.matrix(rows) || nrow(rows) == 0) {
+  if (is.null(rows) || length(rows) == 0) {
+    return(NULL)
+  }
+
+  row_cells <- if (is.matrix(rows)) {
+    lapply(seq_len(nrow(rows)), \(i) as.list(rows[i, ]))
+  } else if (is.list(rows)) {
+    rows
+  } else {
+    return(NULL)
+  }
+
+  row_cells <- row_cells[vapply(row_cells, length, integer(1)) >= 4]
+  if (length(row_cells) == 0) {
     return(NULL)
   }
 
   base_url <- "https://www.parlament.gv.at"
 
-  speaker_html <- rows[, 1]
-  position <- rows[, 2]
-  protocol_html <- rows[, 3]
-  video_html <- rows[, 4]
+  speaker_html <- purrr::map(row_cells, 1)
+  position <- purrr::map_chr(
+    row_cells,
+    \(row) as.character(row[[2]] %||% NA_character_)
+  )
+  protocol_html <- purrr::map(row_cells, 3)
+  video_html <- purrr::map(row_cells, 4)
 
   extract_text <- function(html) {
+    if (is.null(html) || length(html) == 0) {
+      return(NA_character_)
+    }
+    if (is.data.frame(html)) {
+      text <- html$text %||% html$title %||% NA_character_
+      return(paste(stats::na.omit(text), collapse = ", "))
+    }
+    if (is.list(html) && !is.data.frame(html)) {
+      text <- html$text %||% html$title %||% NA_character_
+      return(paste(stats::na.omit(text), collapse = ", "))
+    }
+    if (is.na(html)) {
+      return(NA_character_)
+    }
     tryCatch(
       rvest::read_html(html) |> rvest::html_text2(),
       error = function(e) html
     )
   }
   extract_href <- function(html) {
+    if (is.null(html) || length(html) == 0) {
+      return(NA_character_)
+    }
+    if (is.data.frame(html)) {
+      href <- html$url[!is.na(html$url)][1] %||% NA_character_
+      return(
+        if (!is.na(href)) stringr::str_c(base_url, href) else NA_character_
+      )
+    }
+    if (is.list(html) && !is.data.frame(html)) {
+      href <- html$url %||% NA_character_
+      return(
+        if (!is.na(href)) stringr::str_c(base_url, href) else NA_character_
+      )
+    }
+    if (is.na(html)) {
+      return(NA_character_)
+    }
     href <- tryCatch(
       rvest::read_html(html) |>
         rvest::html_element("a") |>
@@ -168,6 +213,25 @@
     if (!is.na(href)) stringr::str_c(base_url, href) else NA_character_
   }
   extract_hrefs <- function(html) {
+    if (is.null(html) || length(html) == 0) {
+      return(NA_character_)
+    }
+    if (is.data.frame(html)) {
+      hrefs <- html$url[!is.na(html$url)]
+      return(
+        if (length(hrefs) == 0) NA_character_ else stringr::str_c(base_url, hrefs)
+      )
+    }
+    if (is.list(html) && !is.data.frame(html)) {
+      hrefs <- html$url %||% character(0)
+      hrefs <- hrefs[!is.na(hrefs)]
+      return(
+        if (length(hrefs) == 0) NA_character_ else stringr::str_c(base_url, hrefs)
+      )
+    }
+    if (is.na(html)) {
+      return(NA_character_)
+    }
     hrefs <- tryCatch(
       rvest::read_html(html) |>
         rvest::html_elements("a") |>
@@ -202,9 +266,8 @@
 
 .get_item_details_code_path <- function(item_url) {
   item_url <- .normalise_item_url(item_url)
-  page <- .parlat_fetch_html(item_url)
-  json_text <- .parlat_extract_props_json(page)
-  content <- jsonlite::fromJSON(json_text)$data$content
+  json_text <- .parlat_fetch_detail_json_text(item_url)
+  content <- .parlat_parse_detail_json(json_text)$data$content
 
   if (!is.null(content$phase$stages)) {
     return("phase_stages")
@@ -314,24 +377,17 @@ get_item_details <- function(item_url, stages = TRUE, votes = TRUE) {
   # leading slash.  Strip any leading slashes, then prepend the base URL.
   item_url <- .normalise_item_url(item_url)
 
-  # Fetch the item detail page through httr2 so fixture recording can capture
-  # the HTML response before we parse it with rvest.
-  page <- .parlat_fetch_html(item_url)
+  # Fetch the item detail JSON through httr2 so fixture recording can capture
+  # the response and avoid scraping the client-side boot script.
+  json_text <- .parlat_fetch_detail_json_text(item_url)
 
   # ── JSON extraction ────────────────────────────────────────────────────────
-  # The page embeds its data as a JavaScript object literal:
-  #   ReactDOM.render(..., document.getElementById("app"), { props: { ... } });
-  # We pick the <script> block that contains "props:", then carve out
-  # everything from "props:" onward and strip the trailing "})" that closes the
-  # ReactDOM.render() call, leaving a valid JSON string.
-  json_text <- .parlat_extract_props_json(page)
-
   # fromJSON() with its default simplifyVector = TRUE recursively collapses
   # JSON arrays into R vectors/data frames wherever possible.  This is helpful
   # for flat fields (scalars, simple arrays) but can produce inconsistent types
   # for deeply nested structures like reden (speeches) — see the note in the
   # flat-stages code path below.
-  data_list <- jsonlite::fromJSON(json_text) |> (\(x) x$data)()
+  data_list <- .parlat_parse_detail_json(json_text) |> (\(x) x$data)()
 
   # ── Item-level metadata ────────────────────────────────────────────────────
   # These fields are always present regardless of the item type or structure.
@@ -459,19 +515,16 @@ get_item_details <- function(item_url, stages = TRUE, votes = TRUE) {
     #
     # IMPORTANT: parse before fsth unnesting — same reason as path A above.
     if ("reden" %in% names(df_stages)) {
-      raw_stages <- jsonlite::parse_json(json_text)$data$content$stages
+      raw_stages <- .parlat_parse_detail_json(
+        json_text,
+        simplifyVector = FALSE
+      )$data$content$stages
       speeches_list <- purrr::map(raw_stages, \(stage) {
         rows <- stage$reden$data$rows
         if (is.null(rows) || length(rows) == 0) {
           return(NULL)
         }
-        # Each row is a list of 4 cells; rbind + unlist produces the character
-        # matrix that .parse_reden() expects.
-        rows_mat <- do.call(
-          rbind,
-          lapply(rows, \(r) unlist(r, use.names = FALSE))
-        )
-        .parse_reden(rows_mat)
+        .parse_reden(rows)
       })
 
       # Sanity check: the number of parsed stages should equal the number of

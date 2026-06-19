@@ -296,6 +296,25 @@ test_that("get_item_details uses NA_character_ instead of empty protocol_url vec
   expect_true(all(url_lengths >= 1L))
 })
 
+test_that("get_item_details handles speeches without video links", {
+  speeches <- .parse_reden(list(list(
+    '<a href="/person/2857" target="_blank">Mag. Reinhard Firlinger (F)</a>',
+    "Contra",
+    data.frame(
+      url = "/dokument/XX/NRSITZ/174/SEITE_0176.html",
+      title = "Seite 176 des Stenographischen Protokolls",
+      text = "Seite 176",
+      stringsAsFactors = FALSE
+    ),
+    NULL
+  )))
+
+  expect_s3_class(speeches, "data.frame")
+  expect_equal(speeches$speaker, "Mag. Reinhard Firlinger (F)")
+  expect_equal(speeches$video_url, NA_character_)
+  expect_true(grepl("^https://www.parlament.gv.at", speeches$protocol_url[[1]]))
+})
+
 test_that("get_item_details handles items with missing optional debate fields", {
   result <- run_api_call(
     get_item_details("/gegenstand/XXVIII/BI/24"),

@@ -205,14 +205,11 @@ get_plenary_meeting_details <- function(
         cli::cli_inform("details_on: {details_label}")
     }
 
-    # FETCH PAGE AND EXTRACT EMBEDDED JAVASCRIPT DATA
-    page <- .parlat_fetch_html(url)
-
     # jsonlite simplifies the heterogeneous content array into a single
     # data frame with all keys merged across the 3 content items.
     # Row 1 = meeting metadata, row 2 = session info + debates, row 3 = progress.
-    content <- .parlat_extract_props_json(page) |>
-        jsonlite::fromJSON() |>
+    content <- .parlat_fetch_detail_json_text(url) |>
+        .parlat_parse_detail_json() |>
         (\(x) x$data$content)()
 
     # RETURN DATA
