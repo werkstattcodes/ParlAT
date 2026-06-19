@@ -1,0 +1,573 @@
+{
+    "pagetype": "geschichtsseite",
+    "meta": {
+        "description": "Versagen des Vertrauens gegenüber der Bundesregierung (5/A(E))",
+        "generationTime": "Thu Apr 02 23:21:17 UTC 2026",
+        "keywords": "\"Bundesregierung III. Sonstiges\", \"Misstrauensanträge\"",
+        "lang": "de",
+        "title": "Versagen des Vertrauens gegenüber der Bundesregierung (5/A(E)) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "Versagen des Vertrauens gegenüber der Bundesregierung | Parlament Österreich",
+            "description": "5/A(E)"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "breadcrumbs": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Gegenstände",
+                "url": "/recherchieren/gegenstaende/"
+            },
+            {
+                "title": "Nationalrat - XXVIII. GP",
+                "url": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII"
+            },
+            {
+                "title": "Selbständiger Entschließungsantrag",
+                "url": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&VHG=ANTR&VHG3=AE&DOKTYP=A(E)"
+            },
+            {
+                "title": "5/A(E)"
+            }
+        ],
+        "type": "Selbständiger Entschließungsantrag",
+        "sntype": "Selbständiger Entschließungsantrag",
+        "title": "Versagen des Vertrauens gegenüber der Bundesregierung",
+        "zitation": "5/A(E)",
+        "description": "Antrag der Abgeordneten Christian Hafenecker, MA, Kolleginnen und Kollegen betreffend Versagen des Vertrauens gegenüber der Bundesregierung",
+        "gp_code": "XXVIII",
+        "ityp": "A",
+        "inr": 5,
+        "doktyp": "A(E)",
+        "update": "2026-04-03T01:21:09",
+        "nr_gp_code": "XXVIII",
+        "intranet": "N",
+        "group": "1",
+        "deleted": false,
+        "einlangen": "2024-10-24T00:00:00",
+        "history_ind": 2,
+        "vhg_fertig": "J",
+        "vhg_fertig_docs": "J",
+        "process": "J",
+        "statementsstate": "9 Keine Begutachtung bei dem Doktyp \"A(E)\" möglich",
+        "approvalstate": "9 Keine Zustimmung bei dem Doktyp \"A(E)\" möglich",
+        "status": {
+            "number": 5,
+            "description": "Entschließungsantrag abgelehnt (<a href=\"/gegenstand/XXVIII/I/8\">8 d.B.<\/a>)",
+            "documents": [
+                {
+                    "title": "Berichterstattung",
+                    "documents": [
+                        {
+                            "link": "/dokument/XXVIII/I/8/fname_1660359.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/XXVIII/I/8/fnameorig_1660359.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ]
+        },
+        "progress": [
+            {
+                "name": "Einbringung NR",
+                "id": 1,
+                "empty": false
+            },
+            {
+                "name": "Ausschussberatungen NR",
+                "id": 3,
+                "empty": false
+            },
+            {
+                "name": "Plenarberatungen NR",
+                "id": 4,
+                "empty": false
+            }
+        ],
+        "phase": [
+            {
+                "name": "Einbringung NR",
+                "id": 1,
+                "stages": [
+                    {
+                        "date": "24.10.2024",
+                        "text": "Einbringung im Nationalrat",
+                        "priority": 1
+                    },
+                    {
+                        "date": "24.10.2024",
+                        "text": "Vorgesehen für den <a href=\"/ausschuss/XXVIII/A-BU/1/00907\">Budgetausschuss<\/a>"
+                    },
+                    {
+                        "date": "24.10.2024",
+                        "text": "Misstrauensantrag"
+                    },
+                    {
+                        "date": "24.10.2024",
+                        "text": "<a href=\"/gegenstand/XXVIII/NRSITZ/1\">1. Sitzung des Nationalrates<\/a>: Mitteilung der Einbringung",
+                        "fsth": [
+                            {
+                                "gp_code": "XXVIII",
+                                "sitzung_id": 1,
+                                "fund_von": null,
+                                "fund_bis": null,
+                                "url": "/dokument/XXVIII/NRSITZ/1/fnameorig_1688618.html#34",
+                                "title": "18:07:07 - Präsidium (RN/34)",
+                                "text": "RN/34"
+                            }
+                        ]
+                    }
+                ],
+                "documents": [
+
+                ]
+            },
+            {
+                "name": "Ausschussberatungen NR",
+                "id": 3,
+                "stages": [
+                    {
+                        "date": "24.10.2024",
+                        "text": "<a href=\"/gegenstand/XXVIII/NRSITZ/2\">2. Sitzung des Nationalrates<\/a>: Zuweisung an den <a href=\"/ausschuss/XXVIII/A-BU/1/00907\">Budgetausschuss<\/a>",
+                        "fsth": [
+                            {
+                                "gp_code": "XXVIII",
+                                "sitzung_id": 2,
+                                "fund_von": null,
+                                "fund_bis": null,
+                                "url": "/dokument/XXVIII/NRSITZ/2/fnameorig_1688488.html#2",
+                                "title": "18:10:22 - Präsidium (RN/2)",
+                                "text": "RN/2"
+                            }
+                        ]
+                    },
+                    {
+                        "date": "14.11.2024",
+                        "text": "Budgetausschuss: Bericht <a href=\"/gegenstand/XXVIII/I/8\">8 d.B.<\/a>",
+                        "priority": 1
+                    },
+                    {
+                        "date": "14.11.2024",
+                        "text": "Budgetausschuss: auf <a href=\"/dokument/XXVIII/A-BU/1/00907/TO_16438060.html\">Tagesordnung<\/a> in der <a href=\"/ausschuss/XXVIII/A-BU/1/00907?selectedStage=105&selectedSession=2&selectedDate=14112024\">2. Sitzung des Ausschusses<\/a>"
+                    }
+                ],
+                "documents": [
+                    {
+                        "title": "Berichterstattung",
+                        "documents": [
+                            {
+                                "link": "/dokument/XXVIII/I/8/fname_1660359.pdf",
+                                "type": "PDF"
+                            },
+                            {
+                                "link": "/dokument/XXVIII/I/8/fnameorig_1660359.html",
+                                "type": "HTML"
+                            }
+                        ]
+                    }
+                ],
+                "correspondence": [
+                    {
+                        "additional": false,
+                        "title": "Nationalrat: FPÖ dürfte mit Misstrauensantrag gegen die Regierung allein bleiben",
+                        "date": "14.11.2024",
+                        "url": "/aktuelles/pk/jahr_2024/pk1043#XXVIII_A_00005"
+                    }
+                ]
+            },
+            {
+                "name": "Plenarberatungen NR",
+                "id": 4,
+                "stages": [
+                    {
+                        "date": "20.11.2024",
+                        "text": "Auf der <a href=\"/dokument/XXVIII/NRSITZ/3/TO_16432630.html\">Tagesordnung<\/a> der <a href=\"/gegenstand/XXVIII/NRSITZ/3\">3. Sitzung des Nationalrates<\/a>"
+                    },
+                    {
+                        "date": "20.11.2024",
+                        "text": "Wortmeldungen in der Debatte",
+                        "reden": {
+                            "rendertype": "table",
+                            "data": {
+                                "header": [
+                                    {
+                                        "label": "Name und Klub",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-namefraktion"
+                                    },
+                                    {
+                                        "label": "Wortmeldungsart",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-wortmeldungsart"
+                                    },
+                                    {
+                                        "label": "Protokoll",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-protokoll"
+                                    },
+                                    {
+                                        "label": "Video",
+                                        "sortable": false,
+                                        "filterable": false,
+                                        "hidden": false,
+                                        "additionalInfo": false,
+                                        "class": "his-col-video"
+                                    }
+                                ],
+                                "rows": [
+                                    [
+                                        "<a href=\"/person/78586\" target=\"_blank\">Christian Hafenecker, MA (F)<\/a>",
+                                        "Contra",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#70",
+                                                "title": "13:51:17 - Christian Hafenecker (FPÖ) - TOP 5 Misstrauensantrag gegen die Regierung (RN/70)",
+                                                "text": "RN/70"
+                                            },
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#72",
+                                                "title": "13:54:55 - Christian Hafenecker (FPÖ) (fortsetzend) - TOP 5 Misstrauensantrag gegen die Regierung (RN/72)",
+                                                "text": "RN/72"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732110903"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/5439\" target=\"_blank\">Dr. Christian Stocker (V)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#73",
+                                                "title": "14:03:20 - Christian Stocker (ÖVP) - TOP 5 Misstrauensantrag gegen die Regierung (RN/73)",
+                                                "text": "RN/73"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732111407"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/3717\" target=\"_blank\">Ing. Mag. Volker Reifenberger (F)<\/a>",
+                                        "Contra",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#74",
+                                                "title": "14:09:48 - Volker Reifenberger (FPÖ) - TOP 5 Misstrauensantrag gegen die Regierung (RN/74)",
+                                                "text": "RN/74"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732111796"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/5639\" target=\"_blank\">Julia Elisabeth Herr (S)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#75",
+                                                "title": "14:16:49 - Julia Elisabeth Herr (SPÖ) - TOP 5 Misstrauensantrag gegen die Regierung (RN/75)",
+                                                "text": "RN/75"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732112216"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/30650\" target=\"_blank\">Elisabeth Heiß (F)<\/a>",
+                                        "Contra",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#76",
+                                                "title": "14:21:41 - Elisabeth Heiß (FPÖ) - TOP 5 Misstrauensantrag gegen die Regierung (RN/76)",
+                                                "text": "RN/76"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732112506"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/83125\" target=\"_blank\">Dr. Nikolaus Scherak, MA (N)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#77",
+                                                "title": "14:25:26 - Nikolaus Scherak (NEOS) - TOP 5 Misstrauensantrag gegen die Regierung (RN/77)",
+                                                "text": "RN/77"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732112734"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/83101\" target=\"_blank\">Sigrid Maurer, BA (G)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#78",
+                                                "title": "14:28:35 - Sigrid Maurer (Grüne) - TOP 5 Misstrauensantrag gegen die Regierung (RN/78)",
+                                                "text": "RN/78"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732112922"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/55227\" target=\"_blank\">Mag. Michael Hammer (V)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#79",
+                                                "title": "14:33:06 - Michael Hammer (ÖVP) - TOP 5 Misstrauensantrag gegen die Regierung (RN/79)",
+                                                "text": "RN/79"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732113196"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/22694\" target=\"_blank\">Mag. Jörg Leichtfried (S)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#80",
+                                                "title": "14:38:08 - Jörg Leichtfried (SPÖ) - TOP 5 Misstrauensantrag gegen die Regierung (RN/80)",
+                                                "text": "RN/80"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732113498"
+                                        }
+                                    ],
+                                    [
+                                        "<a href=\"/person/30720\" target=\"_blank\">Mag. Dr. Wolfgang Hattmannsdorfer (V)<\/a>",
+                                        "Pro",
+                                        [
+                                            {
+                                                "gp_code": "XXVIII",
+                                                "sitzung_id": 3,
+                                                "fund_von": null,
+                                                "fund_bis": null,
+                                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#81",
+                                                "title": "14:43:05 - Wolfgang Hattmannsdorfer (ÖVP) - TOP 5 Misstrauensantrag gegen die Regierung (RN/81)",
+                                                "text": "RN/81"
+                                            }
+                                        ],
+                                        {
+                                            "url": "/aktuelles/mediathek/XXVIII/NRSITZ/3?DEBATTE=3&TS=1732113791"
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "date": "20.11.2024",
+                        "text": "3. Sitzung des Nationalrates: Abstimmung: Antrag, den ablehnenden Ausschussbericht zur Kenntnis zu nehmen: <b>angenommen<\/b><br>Dafür: ÖVP, SPÖ, NEOS, GRÜNE, dagegen: FPÖ",
+                        "priority": 1,
+                        "fsth": [
+                            {
+                                "gp_code": "XXVIII",
+                                "sitzung_id": 3,
+                                "fund_von": null,
+                                "fund_bis": null,
+                                "url": "/dokument/XXVIII/NRSITZ/3/fnameorig_1688660.html#82",
+                                "title": "14:48:14 - Abstimmung - TOP 5 Misstrauensantrag gegen die Regierung (RN/82)",
+                                "text": "RN/82"
+                            }
+                        ]
+                    }
+                ],
+                "documents": [
+
+                ],
+                "correspondence": [
+                    {
+                        "additional": false,
+                        "title": "Nationalrat versagt Übergangsregierung nicht das Vertrauen",
+                        "date": "20.11.2024",
+                        "url": "/aktuelles/pk/jahr_2024/pk1055#XXVIII_A_00005"
+                    }
+                ]
+            }
+        ],
+        "documents": [
+            {
+                "title": "Selbständiger Entschließungsantrag (gescanntes Original)",
+                "documents": [
+                    {
+                        "link": "/dokument/XXVIII/A/5/imfname_1658575.pdf",
+                        "type": "PDF"
+                    }
+                ]
+            },
+            {
+                "title": "Entschließungsantrag (elektr. übermittelte Version)",
+                "documents": [
+                    {
+                        "link": "/dokument/XXVIII/A/5/fname_1658648.pdf",
+                        "type": "PDF"
+                    },
+                    {
+                        "link": "/dokument/XXVIII/A/5/fnameorig_1658648.html",
+                        "type": "HTML"
+                    }
+                ]
+            }
+        ],
+        "names": [
+            {
+                "funktext": "Eingebracht von",
+                "name": "Christian Hafenecker, MA",
+                "frak_code": "F",
+                "url": "/person/78586",
+                "portrait": {
+                    "rendertype": "image",
+                    "data": {
+                        "src": "/dokument/bild/201431/20143154_384.jpg",
+                        "alt": "Portraitfoto von Christian Hafenecker, MA",
+                        "bildId": 20143154,
+                        "copyright": "Parlamentsdirektion/Thomas Topf"
+                    }
+                }
+            }
+        ],
+        "correspondence": [
+            {
+                "additional": false,
+                "title": "Neu im Budgetausschuss",
+                "date": "28.10.2024",
+                "url": "/aktuelles/pk/jahr_2024/pk1012#XXVIII_A_00005"
+            },
+            {
+                "additional": false,
+                "title": "Nationalrat: FPÖ dürfte mit Misstrauensantrag gegen die Regierung allein bleiben",
+                "date": "14.11.2024",
+                "url": "/aktuelles/pk/jahr_2024/pk1043#XXVIII_A_00005"
+            },
+            {
+                "additional": false,
+                "title": "Nationalrat versagt Übergangsregierung nicht das Vertrauen",
+                "date": "20.11.2024",
+                "url": "/aktuelles/pk/jahr_2024/pk1055#XXVIII_A_00005"
+            }
+        ],
+        "topics": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Inneres und Recht",
+                        "link": "/suche?thema=Inneres und Recht"
+                    },
+                    {
+                        "label": "Parlament und Demokratie",
+                        "link": "/suche?thema=Parlament und Demokratie"
+                    }
+                ]
+            }
+        },
+        "headwords": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Bundesregierung III. Sonstiges",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Bundesregierung III. Sonstiges"
+                    },
+                    {
+                        "label": "Misstrauensanträge",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Misstrauensanträge"
+                    }
+                ]
+            }
+        },
+        "eurovoc": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Exekutive",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Exekutive"
+                    },
+                    {
+                        "label": "Misstrauensantrag",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Misstrauensantrag"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,347 @@
+{
+    "meta": {
+        "description": "2. Sitzung des Nationalrats im Anschluss an die 1. Sitzung des Nationalrats (2/NRSITZ)",
+        "generationTime": "Mon Apr 27 12:42:30 UTC 2026",
+        "directory": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Gegenstände",
+                "url": "/recherchieren/vhg/"
+            }
+        ],
+        "lang": "de",
+        "title": "2. Sitzung des Nationalrats im Anschluss an die 1. Sitzung des Nationalrats (2/NRSITZ) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "2. Sitzung des Nationalrats im Anschluss an die 1. Sitzung des Nationalrats | Parlament Österreich",
+            "description": "2/NRSITZ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "pagetype": "geschichtsseite",
+    "content": [
+        {
+            "breadcrumbs": [
+                {
+                    "title": "Start",
+                    "url": "/"
+                },
+                {
+                    "title": "Plenarsitzungen",
+                    "url": "/recherchieren/plenarsitzungen/"
+                },
+                {
+                    "title": "Nationalrat - XXVIII. GP",
+                    "url": "/recherchieren/plenarsitzungen/?NRBRBV=NR&GP=XXVIII"
+                },
+                {
+                    "title": "Sitzungen des Nationalrats",
+                    "url": "/recherchieren/plenarsitzungen/?NRBRBV=NR&GP=XXVIII&R_SISTEI=SI"
+                },
+                {
+                    "title": "2/NRSITZ"
+                }
+            ],
+            "type": "Plenarsitzung",
+            "sntype": "Plenarsitzung",
+            "title": "2. Sitzung des Nationalrats im Anschluss an die 1. Sitzung des Nationalrats",
+            "zitation": "2/NRSITZ",
+            "gp_code": "XXVIII",
+            "ityp": "NRSITZ",
+            "inr": 2,
+            "doktyp": "NRSITZ",
+            "update": "2026-04-27T14:42:30",
+            "nr_gp_code": "XXVIII",
+            "intranet": "N",
+            "group": "2",
+            "deleted": false,
+            "einlangen": "2024-10-24T00:00:00",
+            "history_ind": 1.1,
+            "vhg_fertig": "J",
+            "vhg_fertig_docs": "J",
+            "process": "N",
+            "statementsstate": "9 Keine Begutachtung bei dem Doktyp \"NRSITZ\" möglich",
+            "approvalstate": "9 Keine Zustimmung bei dem Doktyp \"NRSITZ\" möglich",
+            "stages": [
+                {
+                    "date": "24.10.2024",
+                    "text": "2. Sitzung <div class=\"link-list\" inline><ul><li><span>Tagesordnung<\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVIII/NRSITZ/2/TO_16432243.html\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-code fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">HTML<\/span><\/a><\/span>&nbsp;<span class=\"doclink\"><a href=\"/dokument/XXVIII/NRSITZ/2/TO_16432243.pdf\" target=\"_blank\"><i aria-hidden=\"true\" class=\"fa-file-pdf fa-light small\" tabindex=\"-1\" title=\"\" style=\"--opacity: 1\"><\/i>&nbsp;<span class=\"iconlinklabel\">PDF<\/span><\/a><\/span><\/li><\/ul><\/div><br>im Anschluss an die 1. Nationalratssitzung<br>Beginn der Sitzung: <b>18:10 Uhr<\/b>, Ende der Sitzung: <b>18:11 Uhr<\/b>",
+                    "priority": 1
+                },
+                {
+                    "date": "24.10.2024",
+                    "names": {
+                        "rendertype": "table",
+                        "data": {
+                            "header": [
+                                {
+                                    "label": "Name und Klub",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-namefraktion"
+                                },
+                                {
+                                    "label": "Funktion",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-wortmeldungsart"
+                                },
+                                {
+                                    "label": "Protokoll",
+                                    "sortable": false,
+                                    "filterable": false,
+                                    "hidden": false,
+                                    "additionalInfo": false,
+                                    "class": "his-col-protokoll"
+                                }
+                            ],
+                            "rows": [
+                                [
+                                    "<a href=\"/person/1977\" target=\"_blank\">Tanja Graf<\/a>",
+                                    "Schriftführerin",
+                                    null
+                                ],
+                                [
+                                    "<a href=\"/person/2996\" target=\"_blank\">Ricarda Berger<\/a>",
+                                    "Schriftführerin",
+                                    null
+                                ]
+                            ]
+                        }
+                    }
+                }
+            ],
+            "documents": [
+                {
+                    "title": "Zuweisungsmitteilung für die 2. Sitzung am 24.10.2024",
+                    "documents": [
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/fname_1658574.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/fnameorig_1658574.html",
+                            "type": "HTML"
+                        }
+                    ]
+                },
+                {
+                    "title": "Stenographisches Protokoll",
+                    "documents": [
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/imfname_1688488.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/fnameorig_1688488.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "stdocuments": [
+                {
+                    "title": "Stenographisches Protokoll",
+                    "documents": [
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/imfname_1688488.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/fnameorig_1688488.html",
+                            "type": "HTML"
+                        }
+                    ]
+                },
+                {
+                    "title": "Inhaltsverzeichnis der 2. Sitzung",
+                    "documents": [
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_00_00_00_00746494.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_00_00_00_00746494.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "agenda": [
+                {
+                    "title": "Tagesordnung vom 24.10.2024",
+                    "documents": [
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/TO_16432243.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/TO_16432243.html",
+                            "type": "HTML"
+                        }
+                    ]
+                },
+                {
+                    "title": "Inhaltsverzeichnis der 2. Sitzung",
+                    "documents": [
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_00_00_00_00746494.pdf",
+                            "type": "PDF"
+                        },
+                        {
+                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_00_00_00_00746494.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "aviso": [
+                {
+                    "materials": [
+                        {
+                            "documents": [
+                                {
+                                    "title": "Zuweisungsmitteilung für die 2. Sitzung am 24.10.2024",
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/XXVIII/NRSITZ/2/fname_1658574.pdf",
+                                            "type": "PDF"
+                                        },
+                                        {
+                                            "link": "/dokument/XXVIII/NRSITZ/2/fnameorig_1658574.html",
+                                            "type": "HTML"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "text": "Mitteilungsliste: Einlangen und Zuweisungen"
+                }
+            ],
+            "mediathek_url": "/aktuelles/mediathek/XXVIII/NRSITZ/2",
+            "evert": true
+        },
+        {
+            "current_session": {
+                "aabg": [
+
+                ],
+                "parts": [
+                    {
+                        "part": 1,
+                        "date": "2024-10-24T00:00:00"
+                    }
+                ],
+                "current_part": 1
+            },
+            "info": {
+                "title": "2. Sitzung des Nationalrats der XXVIII. GP am 24. Oktober 2024",
+                "description": "2. Sitzung am 24.10.2024",
+                "starttime": "2024-10-24T18:10:00",
+                "endtime": "2024-10-24T18:11:00",
+                "sessiondate": "2024-10-24T00:00:00",
+                "state": "fertig",
+                "history_url": "/sitzunghis/XXVIII/NRSITZ/2",
+                "openspeaker": 0,
+                "openminutes": 0,
+                "startinfo": "Die Sitzung startete am Donnerstag 24. Oktober 2024 um 18:10 Uhr."
+            }
+        },
+        {
+            "completed": true,
+            "progress": [
+                {
+                    "text": "Sitzungsbeginn",
+                    "video": "/aktuelles/mediathek/XXVIII/NRSITZ/2",
+                    "time": "18:10:15",
+                    "ts": "24-10-2024 18:10:15",
+                    "st_objekte_id": 581486,
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_18_10_15_00581486.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_18_10_15_00581486.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "Präsidium",
+                    "video": "/aktuelles/mediathek/XXVIII/NRSITZ/2?DEBATTE=300&TS=1729793418",
+                    "time": "18:10:22",
+                    "ts": "24-10-2024 18:10:22",
+                    "st_objekte_id": 581487,
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_18_10_22_00581487.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_18_10_22_00581487.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "text": "Sitzungsende",
+                    "video": null,
+                    "time": "18:11:20",
+                    "ts": "24-10-2024 18:11:20",
+                    "st_objekte_id": 581488,
+                    "protocol": {
+                        "rendertype": "doklinklist",
+                        "data": {
+                            "links": [
+                                {
+                                    "documents": [
+                                        {
+                                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_18_11_20_00581488.html",
+                                            "type": "HTML"
+                                        },
+                                        {
+                                            "link": "/dokument/XXVIII/NRSITZ/2/A_-_18_11_20_00581488.pdf",
+                                            "type": "PDF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

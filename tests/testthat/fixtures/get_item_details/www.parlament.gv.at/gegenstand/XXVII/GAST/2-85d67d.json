@@ -1,0 +1,372 @@
+{
+    "pagetype": "geschichtsseite",
+    "meta": {
+        "description": "Erklärung des Präsidenten der Parlamentarischen Versammlung des Europarates Theodoros Rousopoulos gemäß § 19a der Geschäftsordnung des Nationalrates (2/GAST)",
+        "generationTime": "Wed Mar 12 00:53:11 CET 2025",
+        "keywords": "\"Nationalrat V. Sonstiges\"",
+        "lang": "de",
+        "title": "Erklärung des Präsidenten der Parlamentarischen Versammlung des Europarates Theodoros Rousopoulos gemäß § 19a der Geschäftsordnung des Nationalrates (2/GAST) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "Erklärung des Präsidenten der Parlamentarischen Versammlung des Europarates Theodoros Rousopoulos gemäß § 19a der Geschäftsordnung des Nationalrates | Parlament Österreich",
+            "description": "2/GAST"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "breadcrumbs": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Gegenstände",
+                "url": "/recherchieren/gegenstaende/"
+            },
+            {
+                "title": "Nationalrat - XXVII. GP",
+                "url": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII"
+            },
+            {
+                "title": "Erklärung einer Persönlichkeit der europäischen und internationalen Politik",
+                "url": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&VHG=EU&VHG2=GAST&DOKTYP=GAST"
+            },
+            {
+                "title": "2/GAST"
+            }
+        ],
+        "type": "Erklärung einer Persönlichkeit der europäischen und internationalen Politik",
+        "sntype": "Erklärung einer Persönlichkeit der europäischen und internationalen Politik",
+        "title": "Erklärung des Präsidenten der Parlamentarischen Versammlung des Europarates Theodoros Rousopoulos gemäß § 19a der Geschäftsordnung des Nationalrates",
+        "zitation": "2/GAST",
+        "description": "Erklärung des Präsidenten der Parlamentarischen Versammlung des Europarates Theodoros Rousopoulos gemäß § 19a der Geschäftsordnung des Nationalrates",
+        "gp_code": "XXVII",
+        "ityp": "GAST",
+        "inr": 2,
+        "doktyp": "GAST",
+        "update": "2025-03-12T00:53:11",
+        "nr_gp_code": "XXVII",
+        "intranet": "N",
+        "group": "1",
+        "deleted": false,
+        "einlangen": "2024-05-15T00:00:00",
+        "history_ind": 1.1,
+        "vhg_fertig": "J",
+        "vhg_fertig_docs": "N",
+        "process": "N",
+        "statementsstate": "9 Keine Begutachtung bei dem Doktyp \"GAST\" möglich",
+        "approvalstate": "9 Keine Zustimmung bei dem Doktyp \"GAST\" möglich",
+        "stages": [
+            {
+                "date": "15.05.2024",
+                "text": "Auf der <a href=\"/dokument/XXVII/NRSITZ/262/TO_15714133.html\">Tagesordnung<\/a> der <a href=\"/gegenstand/XXVII/NRSITZ/262\">262. Sitzung des Nationalrates<\/a>",
+                "priority": 1
+            },
+            {
+                "date": "15.05.2024",
+                "text": "Wortmeldungen in der Debatte",
+                "reden": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Name und Klub",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false,
+                                "class": "his-col-namefraktion"
+                            },
+                            {
+                                "label": "Wortmeldungsart",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false,
+                                "class": "his-col-wortmeldungsart"
+                            },
+                            {
+                                "label": "Protokoll",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false,
+                                "class": "his-col-protokoll"
+                            },
+                            {
+                                "label": "Video",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false,
+                                "class": "his-col-video"
+                            }
+                        ],
+                        "rows": [
+                            [
+                                "<a href=\"/person/28821\" target=\"_blank\">Theodoros Rousopoulos (A)<\/a>",
+                                "Erklärung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 183,
+                                        "fund_bis": 193,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#TEXTOBJ_323831",
+                                        "title": "Seite 183 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715775743"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/15526\" target=\"_blank\">Dr. Reinhold Lopatka (V)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 193,
+                                        "fund_bis": 196,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323191",
+                                        "title": "Seite 193 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715777032"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/145\" target=\"_blank\">Doris Bures (S)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 196,
+                                        "fund_bis": 198,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323232",
+                                        "title": "Seite 196 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715777332"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/1567\" target=\"_blank\">Dr. Susanne Fürst (F)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 198,
+                                        "fund_bis": 202,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323202",
+                                        "title": "Seite 198 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715777676"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/5650\" target=\"_blank\">Mag. Meri Disoski (G)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 202,
+                                        "fund_bis": 204,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#R_323183_10",
+                                        "title": "Seite 202 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715778124"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/2344\" target=\"_blank\">Dr. Stephanie Krisper (N)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 204,
+                                        "fund_bis": 209,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323221",
+                                        "title": "Seite 204 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715778424"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/28821\" target=\"_blank\">Theodoros Rousopoulos (A)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": null,
+                                        "fund_bis": null,
+                                        "url": "/dokument/XXVII/NRSITZ/262/A_-_13_13_09_00323827.html",
+                                        "title": "Zur Rede (13:13:09)"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715778799"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/1981\" target=\"_blank\">Mag. Carmen Jeitler-Cincelli, BA (V)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 209,
+                                        "fund_bis": 212,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323242",
+                                        "title": "Seite 209 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715779027"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/14835\" target=\"_blank\">Petra Bayr, MA MLS (S)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 212,
+                                        "fund_bis": 215,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323212",
+                                        "title": "Seite 212 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715779347"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/2834\" target=\"_blank\">Mag. Dr. Martin Graf (F)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 215,
+                                        "fund_bis": 218,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323273",
+                                        "title": "Seite 215 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715779708"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/6502\" target=\"_blank\">Mag. Agnes Sirkka Prammer (G)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 218,
+                                        "fund_bis": 221,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323234",
+                                        "title": "Seite 218 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715780067"
+                                }
+                            ],
+                            [
+                                "<a href=\"/person/83125\" target=\"_blank\">Dr. Nikolaus Scherak, MA (N)<\/a>",
+                                "Wortmeldung",
+                                [
+                                    {
+                                        "gp_code": "XXVII",
+                                        "sitzung_id": 262,
+                                        "fund_von": 221,
+                                        "fund_bis": 224,
+                                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#RU_323270",
+                                        "title": "Seite 221 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                                    }
+                                ],
+                                {
+                                    "url": "/aktuelles/mediathek/XXVII/NRSITZ/262?DEBATTE=1&TS=1715780368"
+                                }
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "date": "15.05.2024",
+                "text": "262. Sitzung des Nationalrates: Erklärung",
+                "priority": 1,
+                "fsth": [
+                    {
+                        "gp_code": "XXVII",
+                        "sitzung_id": 262,
+                        "fund_von": 182,
+                        "fund_bis": 183,
+                        "url": "/dokument/XXVII/NRSITZ/262/fnameorig_1672234.html#TOP_323133",
+                        "title": "Seite 182 des Stenographischen Protokolls der 262. Sitzung des Nationalrats"
+                    }
+                ]
+            }
+        ],
+        "topics": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Parlament und Demokratie",
+                        "link": "/recherchieren/gegenstaende/?GP_CODE=XXVII&VHG=GAST&THEMEN=Parlament und Demokratie"
+                    }
+                ]
+            }
+        },
+        "headwords": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Nationalrat V. Sonstiges",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&SW=Nationalrat V. Sonstiges"
+                    }
+                ]
+            }
+        },
+        "eurovoc": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "direkt gewählte Kammer",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVII&VHG=GAST&EUROVOC=direkt gewählte Kammer"
+                    }
+                ]
+            }
+        }
+    }
+}
