@@ -1,5 +1,12 @@
 # Changelog
 
+## ParlAT 0.0.6
+
+### Bug fixes
+
+- Fixed errors in detail-page parsing caused by upstream changes on the
+  Austrian Parliament website.
+
 ## ParlAT 0.0.5
 
 - [`get_item_details()`](https://werkstattcodes.github.io/ParlAT/reference/get_item_details.md)

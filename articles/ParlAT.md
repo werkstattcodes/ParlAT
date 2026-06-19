@@ -10,7 +10,7 @@ section](https://werkstattcodes.github.io/ParlAT/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (08 June 2026). This is done by the
+(Nationalrat) at the time of writing (19 June 2026). This is done by the
 function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps_current.md).
 
@@ -20,64 +20,45 @@ df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> [1] 183
 #> {"M":["M"],"W":["W"]} 
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
-#> ⠙ Fetching MPs' names 2/183 | ETA:  3m
-#> ⠹ Fetching MPs' names 3/183 | ETA:  3m
-#> ⠸ Fetching MPs' names 6/183 | ETA:  3m
-#> ⠼ Fetching MPs' names 10/183 | ETA:  3m
-#> ⠴ Fetching MPs' names 13/183 | ETA:  3m
-#> ⠦ Fetching MPs' names 16/183 | ETA:  3m
-#> ⠧ Fetching MPs' names 19/183 | ETA:  3m
-#> ⠇ Fetching MPs' names 22/183 | ETA:  3m
-#> ⠏ Fetching MPs' names 25/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 28/183 | ETA:  2m
-#> ⠙ Fetching MPs' names 32/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 35/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 38/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 42/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 45/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 48/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 51/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 54/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 57/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 60/183 | ETA:  2m
-#> ⠙ Fetching MPs' names 63/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 67/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 70/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 73/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 76/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 79/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 82/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 86/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 89/183 | ETA:  1m
-#> ⠋ Fetching MPs' names 92/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 2/183 | ETA:  2m
+#> ⠹ Fetching MPs' names 4/183 | ETA:  2m
+#> ⠸ Fetching MPs' names 9/183 | ETA:  2m
+#> ⠼ Fetching MPs' names 14/183 | ETA:  2m
+#> ⠴ Fetching MPs' names 18/183 | ETA:  2m
+#> ⠦ Fetching MPs' names 23/183 | ETA:  2m
+#> ⠧ Fetching MPs' names 28/183 | ETA:  2m
+#> ⠇ Fetching MPs' names 33/183 | ETA:  2m
+#> ⠏ Fetching MPs' names 38/183 | ETA:  2m
+#> ⠋ Fetching MPs' names 43/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 47/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 52/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 57/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 62/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 67/183 | ETA:  1m
+#> ⠦ Fetching MPs' names 72/183 | ETA:  1m
+#> ⠧ Fetching MPs' names 77/183 | ETA:  1m
+#> ⠇ Fetching MPs' names 81/183 | ETA:  1m
+#> ⠏ Fetching MPs' names 86/183 | ETA:  1m
+#> ⠋ Fetching MPs' names 91/183 | ETA:  1m
 #> ⠙ Fetching MPs' names 95/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 98/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 101/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 104/183 | ETA:  1m
-#> ⠴ Fetching MPs' names 107/183 | ETA:  1m
-#> ⠦ Fetching MPs' names 111/183 | ETA:  1m
-#> ⠧ Fetching MPs' names 114/183 | ETA:  1m
-#> ⠇ Fetching MPs' names 117/183 | ETA:  1m
-#> ⠏ Fetching MPs' names 120/183 | ETA:  1m
-#> ⠋ Fetching MPs' names 123/183 | ETA:  1m
-#> ⠙ Fetching MPs' names 127/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 130/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 133/183 | ETA: 47s
-#> ⠼ Fetching MPs' names 136/183 | ETA: 44s
-#> ⠴ Fetching MPs' names 140/183 | ETA: 41s
-#> ⠦ Fetching MPs' names 143/183 | ETA: 38s
-#> ⠧ Fetching MPs' names 146/183 | ETA: 35s
-#> ⠇ Fetching MPs' names 149/183 | ETA: 32s
-#> ⠏ Fetching MPs' names 153/183 | ETA: 28s
-#> ⠋ Fetching MPs' names 156/183 | ETA: 25s
-#> ⠙ Fetching MPs' names 159/183 | ETA: 23s
-#> ⠹ Fetching MPs' names 162/183 | ETA: 20s
-#> ⠸ Fetching MPs' names 166/183 | ETA: 16s
-#> ⠼ Fetching MPs' names 169/183 | ETA: 13s
-#> ⠴ Fetching MPs' names 172/183 | ETA: 10s
-#> ⠦ Fetching MPs' names 175/183 | ETA:  8s
-#> ⠧ Fetching MPs' names 179/183 | ETA:  4s
-#> ⠇ Fetching MPs' names 182/183 | ETA:  1s
+#> ⠹ Fetching MPs' names 100/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 104/183 | ETA: 50s
+#> ⠼ Fetching MPs' names 109/183 | ETA: 47s
+#> ⠴ Fetching MPs' names 114/183 | ETA: 43s
+#> ⠦ Fetching MPs' names 119/183 | ETA: 40s
+#> ⠧ Fetching MPs' names 124/183 | ETA: 37s
+#> ⠇ Fetching MPs' names 128/183 | ETA: 35s
+#> ⠏ Fetching MPs' names 133/183 | ETA: 31s
+#> ⠋ Fetching MPs' names 137/183 | ETA: 29s
+#> ⠙ Fetching MPs' names 142/183 | ETA: 26s
+#> ⠹ Fetching MPs' names 147/183 | ETA: 23s
+#> ⠸ Fetching MPs' names 152/183 | ETA: 19s
+#> ⠼ Fetching MPs' names 157/183 | ETA: 16s
+#> ⠴ Fetching MPs' names 162/183 | ETA: 13s
+#> ⠦ Fetching MPs' names 167/183 | ETA: 10s
+#> ⠧ Fetching MPs' names 171/183 | ETA:  8s
+#> ⠇ Fetching MPs' names 176/183 | ETA:  4s
+#> ⠏ Fetching MPs' names 181/183 | ETA:  1s
 #> Fetched 183 MPs' names.
 #> 
 nrow(df_current)
@@ -247,54 +228,38 @@ MPs (top 5 are shown below).
 ``` r
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
-#> ⠙ Fetching mandates 3/183 | ETA:  2m
-#> ⠹ Fetching mandates 4/183 | ETA:  2m
-#> ⠸ Fetching mandates 8/183 | ETA:  2m
-#> ⠼ Fetching mandates 12/183 | ETA:  2m
-#> ⠴ Fetching mandates 16/183 | ETA:  2m
-#> ⠦ Fetching mandates 19/183 | ETA:  2m
-#> ⠧ Fetching mandates 24/183 | ETA:  2m
-#> ⠇ Fetching mandates 27/183 | ETA:  2m
-#> ⠏ Fetching mandates 31/183 | ETA:  2m
-#> ⠋ Fetching mandates 35/183 | ETA:  2m
-#> ⠙ Fetching mandates 39/183 | ETA:  2m
-#> ⠹ Fetching mandates 43/183 | ETA:  2m
-#> ⠸ Fetching mandates 46/183 | ETA:  2m
-#> ⠼ Fetching mandates 50/183 | ETA:  2m
-#> ⠴ Fetching mandates 54/183 | ETA:  2m
-#> ⠦ Fetching mandates 57/183 | ETA:  2m
-#> ⠧ Fetching mandates 62/183 | ETA:  2m
-#> ⠇ Fetching mandates 65/183 | ETA:  2m
-#> ⠏ Fetching mandates 70/183 | ETA:  1m
-#> ⠋ Fetching mandates 73/183 | ETA:  1m
-#> ⠙ Fetching mandates 77/183 | ETA:  1m
-#> ⠹ Fetching mandates 81/183 | ETA:  1m
-#> ⠸ Fetching mandates 85/183 | ETA:  1m
-#> ⠼ Fetching mandates 89/183 | ETA:  1m
-#> ⠴ Fetching mandates 93/183 | ETA:  1m
-#> ⠦ Fetching mandates 96/183 | ETA:  1m
-#> ⠧ Fetching mandates 100/183 | ETA:  1m
-#> ⠇ Fetching mandates 104/183 | ETA:  1m
-#> ⠏ Fetching mandates 108/183 | ETA:  1m
-#> ⠋ Fetching mandates 111/183 | ETA:  1m
-#> ⠙ Fetching mandates 116/183 | ETA:  1m
-#> ⠹ Fetching mandates 119/183 | ETA: 50s
-#> ⠸ Fetching mandates 123/183 | ETA: 47s
-#> ⠼ Fetching mandates 127/183 | ETA: 43s
-#> ⠴ Fetching mandates 131/183 | ETA: 40s
-#> ⠦ Fetching mandates 135/183 | ETA: 37s
-#> ⠧ Fetching mandates 138/183 | ETA: 35s
-#> ⠇ Fetching mandates 143/183 | ETA: 31s
-#> ⠏ Fetching mandates 146/183 | ETA: 29s
-#> ⠋ Fetching mandates 150/183 | ETA: 26s
-#> ⠙ Fetching mandates 154/183 | ETA: 22s
-#> ⠹ Fetching mandates 158/183 | ETA: 19s
-#> ⠸ Fetching mandates 162/183 | ETA: 16s
-#> ⠼ Fetching mandates 166/183 | ETA: 13s
-#> ⠴ Fetching mandates 169/183 | ETA: 11s
-#> ⠦ Fetching mandates 173/183 | ETA:  8s
-#> ⠧ Fetching mandates 178/183 | ETA:  4s
-#> ⠇ Fetching mandates 181/183 | ETA:  2s
+#> ⠙ Fetching mandates 3/183 | ETA:  1m
+#> ⠹ Fetching mandates 4/183 | ETA:  1m
+#> ⠸ Fetching mandates 10/183 | ETA:  1m
+#> ⠼ Fetching mandates 15/183 | ETA:  1m
+#> ⠴ Fetching mandates 21/183 | ETA:  1m
+#> ⠦ Fetching mandates 27/183 | ETA:  1m
+#> ⠧ Fetching mandates 33/183 | ETA:  1m
+#> ⠇ Fetching mandates 39/183 | ETA:  1m
+#> ⠏ Fetching mandates 45/183 | ETA:  1m
+#> ⠋ Fetching mandates 50/183 | ETA:  1m
+#> ⠙ Fetching mandates 56/183 | ETA:  1m
+#> ⠹ Fetching mandates 62/183 | ETA:  1m
+#> ⠸ Fetching mandates 69/183 | ETA:  1m
+#> ⠼ Fetching mandates 75/183 | ETA:  1m
+#> ⠴ Fetching mandates 81/183 | ETA:  1m
+#> ⠦ Fetching mandates 86/183 | ETA: 49s
+#> ⠧ Fetching mandates 91/183 | ETA: 47s
+#> ⠇ Fetching mandates 97/183 | ETA: 44s
+#> ⠏ Fetching mandates 103/183 | ETA: 41s
+#> ⠋ Fetching mandates 109/183 | ETA: 38s
+#> ⠙ Fetching mandates 114/183 | ETA: 35s
+#> ⠹ Fetching mandates 120/183 | ETA: 32s
+#> ⠸ Fetching mandates 126/183 | ETA: 29s
+#> ⠼ Fetching mandates 132/183 | ETA: 26s
+#> ⠴ Fetching mandates 138/183 | ETA: 23s
+#> ⠦ Fetching mandates 144/183 | ETA: 20s
+#> ⠧ Fetching mandates 150/183 | ETA: 17s
+#> ⠇ Fetching mandates 156/183 | ETA: 14s
+#> ⠏ Fetching mandates 162/183 | ETA: 11s
+#> ⠋ Fetching mandates 168/183 | ETA:  8s
+#> ⠙ Fetching mandates 174/183 | ETA:  5s
+#> ⠹ Fetching mandates 179/183 | ETA:  2s
 #> Fetched mandates for 183 persons.
 #> 
 
@@ -320,11 +285,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10412
-#> 2 12741      Peter Haubner                     8953
-#> 3 2834       Mag. Dr. Martin Graf              8652
-#> 4 14835      Petra Bayr, MA MLS                8571
-#> 5 14795      August Wöginger                   8571
+#> 1 145        Doris Bures                      10423
+#> 2 12741      Peter Haubner                     8964
+#> 3 2834       Mag. Dr. Martin Graf              8663
+#> 4 14835      Petra Bayr, MA MLS                8582
+#> 5 14795      August Wöginger                   8582
 ```
 
 ## Get MPs’ details
@@ -569,17 +534,17 @@ glimpse(df_govBills %>% head())
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2024-07-05, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "2704", "2603", "2610", "2600", "2612", "2602"
-#> $ item_number_type <chr> "2704 d.B.", "2603 d.B.", "2610 d.B.", "2600 d.B.", "2612 d.B.", "2602 d.B."
+#> $ item_number      <chr> "2704", "2608", "2610", "2596", "2603", "2602"
+#> $ item_number_type <chr> "2704 d.B.", "2608 d.B.", "2610 d.B.", "2596 d.B.", "2603 d.B.", "2602 d.B."
 #> $ stage            <chr> "2", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2603", "https://www.parlament.gv.at/gegenstand/XXVII/I/2610", "https://www.parlament.gv.at/gegenstand/XXVII/I/2600", "https://www.parlament.gv.at/gegenstand/XXVII/I/2612", "https://www.parlament.gv.at/gegenstand/XXVII/I/2602"
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2608", "https://www.parlament.gv.at/gegenstand/XXVII/I/2610", "https://www.parlament.gv.at/gegenstand/XXVII/I/2596", "https://www.parlament.gv.at/gegenstand/XXVII/I/2603", "https://www.parlament.gv.at/gegenstand/XXVII/I/2602"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Eisenbahngesetz, Änderung", "Abgabenänderungsgesetz 2024 – AbgÄG 2024", "IFI Beitragsgesetz 2024", "Druckgerätegesetz, Änderung; Emissionsgrenzwerte für gasförmige Schadstoffe und luftverunreinigende Partikel und die Typgenehmigung für Verbrennungsmotoren für nicht für den Straßenverkehr bestimmte mobile Maschinen und Geräte festgelegt werden (Mot-G)", "Qualifizierte-Einrichtungen-Gesetz; Verbandsklagen-Richtlinie-Umsetzungs-Novelle – VRUN"
-#> $ topics           <list> "Budget und Finanzen", "Verkehr und Infrastruktur", NA, NA, <"Klima", "Umwelt und Energie", "Wirtschaft">, <"Budget und Finanzen", "Inneres und Recht", "Wirtschaft">
-#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", "Verkehr II. Schienenverkehr", <"Steuern und Gebühren", "Kreditwesen">, "Kreditwesen", <"Handel", "Gewerbe und Industrie", "Umweltschutz">, <"Zivilrecht", "Handel", "Gewerbe und Industrie", "Rechtsanwälte und Notare", "Rechtspflege", "Steuern und Gebühren">
-#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Schienentransport\"]", "[\"Geld- und Kreditwesen\",\"Steuerwesen\"]", "[\"Geld- und Kreditwesen\"]", "[\"Handel\",\"Industrie\",\"Umwelt\",\"Unternehmen und Wettbewerb\"]", "[\"Bürgerliches Recht\",\"Gerichtswesen\",\"Handel\",\"Industrie\",\"Notar\",\"Rechtsanwalt\",\"Steuerwesen\",\"Unternehmen und Wettbewerb\"]"
-#> $ persons          <list> "55727", "5653", "55727", "55727", "18140", "2345"
+#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Erneuerbaren-Ausbau-Gesetz, Änderung", "Abgabenänderungsgesetz 2024 – AbgÄG 2024", "DORA-Vollzugsgesetz (DORA-VG); Alternative Investmentfonds Manager-Gesetz, Bankwesengesetz u.a., Änderung", "Eisenbahngesetz, Änderung", "Qualifizierte-Einrichtungen-Gesetz; Verbandsklagen-Richtlinie-Umsetzungs-Novelle – VRUN"
+#> $ topics           <list> "Budget und Finanzen", <"Inneres und Recht", "Klima", "Umwelt und Energie">, NA, NA, "Verkehr und Infrastruktur", <"Budget und Finanzen", "Inneres und Recht", "Wirtschaft">
+#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Bundesverfassung", "Elektrizität", "Umweltschutz">, <"Steuern und Gebühren", "Kreditwesen">, <"Kreditwesen", "Information und Informationsverarbeitung", "Vertragsversicherungen">, "Verkehr II. Schienenverkehr", <"Zivilrecht", "Handel", "Gewerbe und Industrie", "Rechtsanwälte und Notare", "Rechtspflege", "Steuern und Gebühren">
+#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Elektrizitätsindustrie\",\"Umwelt\",\"Verfassung\"]", "[\"Geld- und Kreditwesen\",\"Steuerwesen\"]", "[\"Geld- und Kreditwesen\",\"Informatik\",\"Information und Informationsverarbeitung\",\"Versicherungswesen\"]", "[\"Schienentransport\"]", "[\"Bürgerliches Recht\",\"Gerichtswesen\",\"Handel\",\"Industrie\",\"Notar\",\"Rechtsanwalt\",\"Steuerwesen\",\"Unternehmen und Wettbewerb\"]"
+#> $ persons          <list> "55727", "5653", "55727", "55727", "5653", "2345"
 #> $ parl_group       <list> "", "", "", "", "", ""
 
 #count number of bills by legis period
@@ -730,10 +695,10 @@ dplyr::glimpse(committesNR27)
 #> Rows: 43
 #> Columns: 5
 #> $ legis_period  <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
-#> $ committee     <chr> "Ausschuss für Arbeit und Soziales", "Außenpolitischer Ausschuss", "Ausschuss für Bauten und Wohnen", "Budgetausschuss", "Ständiger Unterausschuss des Budgetausschusses", "Ständiger Unterausschuss in ESM-Angelegenheiten", "Ausschuss für Familie und Jugend", "Finanzausschuss", "Ausschuss für Forschung, Innovation und Digitalisierung", "Geschäftsordnungsausschuss", "Gesundheitsausschuss", "Gleichbehandlungsausschuss", "Hauptausschuss", "Ständiger Unterausschuss des Hauptausschusses", "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union", "Immunitätsausschuss", "Ausschuss für innere Angelegenheiten", "Ständiger Unterausschuss des Ausschusses für innere Angelegenheiten", "Justizausschuss", "Ausschuss für Konsumentenschutz", "Kulturausschuss", "Landesverteidigungsausschuss", "Ständiger Unterausschuss des Landesverteidigungsausschusses", "Ausschuss für Land- und Forstwirtschaft", "Ausschuss für Menschenrechte", "Ausschuss für Petitionen und Bürgerinitiativen", "Rechnungshofausschuss", "Ständiger Unterausschuss des Rechnungshofausschusses", "Sportausschuss", "Tourismusausschuss", "Umweltausschuss", "Unterrichtsausschuss", "Unvereinbarkeitsausschuss", "Verfassungsausschuss", "Verkehrsausschuss", "Volksanwaltschaftsausschuss", "Ausschuss für Wirtschaft, Industrie und Energie", "Wissenschaftsausschuss", "Ständiger gemeinsamer Ausschuss im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "COFAG-Untersuchungsausschuss eingesetzt am 15.12.2023 - beendet am 03.07.2024", "\"ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss\" eingesetzt am 15.12.2023 - beendet am 03.07.2024", "ÖVP-Korruptions-Untersuchungsausschuss eingesetzt am 09.12.2021 - beendet am 27.04.2023"
-#> $ citation      <chr> "A-AS/1", "A-AU/1", "A-BA/1", "A-BU/1", "SA-BU/1", "SA-ESM/1", "A-FA/1", "A-FI/1", "A-FO/1", "A-GO/1", "A-GE/1", "A-GL/1", "A-HA/1", "SA-HA/1", "SA-EU/1", "A-IM/1", "A-IA/1", "SA-IA/1", "A-JU/1", "A-KO/1", "A-KU/1", "A-LV/1", "SA-LV/1", "A-LF/1", "A-ME/1", "A-PB/1", "A-RH/1", "SA-RH/1", "A-SP/1", "A-TO/1", "A-UM/1", "A-UN/1", "A-UV/1", "A-VF/1", "A-VE/1", "A-VO/1", "A-WH/1", "A-WI/1", "SA-P9/1", "A-USA/2", "A-USA/4", "A-USA/5", "A-USA/3"
+#> $ committee     <chr> "Ausschuss für Arbeit und Soziales", "Außenpolitischer Ausschuss", "Ausschuss für Bauten und Wohnen", "Budgetausschuss", "Ständiger Unterausschuss des Budgetausschusses", "Ständiger Unterausschuss in ESM-Angelegenheiten", "Ausschuss für Familie und Jugend", "Finanzausschuss", "Ausschuss für Forschung, Innovation und Digitalisierung", "Geschäftsordnungsausschuss", "Gesundheitsausschuss", "Gleichbehandlungsausschuss", "Hauptausschuss", "Ständiger Unterausschuss des Hauptausschusses", "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union", "Immunitätsausschuss", "Ausschuss für innere Angelegenheiten", "Ständiger Unterausschuss des Ausschusses für innere Angelegenheiten", "Justizausschuss", "Ausschuss für Konsumentenschutz", "Kulturausschuss", "Landesverteidigungsausschuss", "Ständiger Unterausschuss des Landesverteidigungsausschusses", "Ausschuss für Land- und Forstwirtschaft", "Ausschuss für Menschenrechte", "Ausschuss für Petitionen und Bürgerinitiativen", "Rechnungshofausschuss", "Ständiger Unterausschuss des Rechnungshofausschusses", "Sportausschuss", "Tourismusausschuss", "Umweltausschuss", "Unterrichtsausschuss", "Unvereinbarkeitsausschuss", "Verfassungsausschuss", "Verkehrsausschuss", "Volksanwaltschaftsausschuss", "Ausschuss für Wirtschaft, Industrie und Energie", "Wissenschaftsausschuss", "Ständiger gemeinsamer Ausschuss im Sinne des § 9 des Finanz-Verfassungsgesetzes 1948", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "\"ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss\" eingesetzt am 15.12.2023 - beendet am 03.07.2024", "COFAG-Untersuchungsausschuss eingesetzt am 15.12.2023 - beendet am 03.07.2024", "ÖVP-Korruptions-Untersuchungsausschuss eingesetzt am 09.12.2021 - beendet am 27.04.2023"
+#> $ citation      <chr> "A-AS/1", "A-AU/1", "A-BA/1", "A-BU/1", "SA-BU/1", "SA-ESM/1", "A-FA/1", "A-FI/1", "A-FO/1", "A-GO/1", "A-GE/1", "A-GL/1", "A-HA/1", "SA-HA/1", "SA-EU/1", "A-IM/1", "A-IA/1", "SA-IA/1", "A-JU/1", "A-KO/1", "A-KU/1", "A-LV/1", "SA-LV/1", "A-LF/1", "A-ME/1", "A-PB/1", "A-RH/1", "SA-RH/1", "A-SP/1", "A-TO/1", "A-UM/1", "A-UN/1", "A-UV/1", "A-VF/1", "A-VE/1", "A-VO/1", "A-WH/1", "A-WI/1", "SA-P9/1", "A-USA/2", "A-USA/5", "A-USA/4", "A-USA/3"
 #> $ id_number     <int> 883, 884, 885, 867, 874, 875, 886, 887, 888, 873, 889, 890, 868, 869, 870, 872, 877, 878, 891, 892, 882, 879, 880, 893, 894, 895, 881, 905, 896, 897, 898, 899, 871, 900, 901, 902, 903, 904, 876, 906, 906, 906, 906
-#> $ url_committee <chr> "https://www.parlament.gv.at/ausschuss/XXVII/A-AS/1/00883", "https://www.parlament.gv.at/ausschuss/XXVII/A-AU/1/00884", "https://www.parlament.gv.at/ausschuss/XXVII/A-BA/1/00885", "https://www.parlament.gv.at/ausschuss/XXVII/A-BU/1/00867", "https://www.parlament.gv.at/ausschuss/XXVII/SA-BU/1/00874", "https://www.parlament.gv.at/ausschuss/XXVII/SA-ESM/1/00875", "https://www.parlament.gv.at/ausschuss/XXVII/A-FA/1/00886", "https://www.parlament.gv.at/ausschuss/XXVII/A-FI/1/00887", "https://www.parlament.gv.at/ausschuss/XXVII/A-FO/1/00888", "https://www.parlament.gv.at/ausschuss/XXVII/A-GO/1/00873", "https://www.parlament.gv.at/ausschuss/XXVII/A-GE/1/00889", "https://www.parlament.gv.at/ausschuss/XXVII/A-GL/1/00890", "https://www.parlament.gv.at/ausschuss/XXVII/A-HA/1/00868", "https://www.parlament.gv.at/ausschuss/XXVII/SA-HA/1/00869", "https://www.parlament.gv.at/ausschuss/XXVII/SA-EU/1/00870", "https://www.parlament.gv.at/ausschuss/XXVII/A-IM/1/00872", "https://www.parlament.gv.at/ausschuss/XXVII/A-IA/1/00877", "https://www.parlament.gv.at/ausschuss/XXVII/SA-IA/1/00878", "https://www.parlament.gv.at/ausschuss/XXVII/A-JU/1/00891", "https://www.parlament.gv.at/ausschuss/XXVII/A-KO/1/00892", "https://www.parlament.gv.at/ausschuss/XXVII/A-KU/1/00882", "https://www.parlament.gv.at/ausschuss/XXVII/A-LV/1/00879", "https://www.parlament.gv.at/ausschuss/XXVII/SA-LV/1/00880", "https://www.parlament.gv.at/ausschuss/XXVII/A-LF/1/00893", "https://www.parlament.gv.at/ausschuss/XXVII/A-ME/1/00894", "https://www.parlament.gv.at/ausschuss/XXVII/A-PB/1/00895", "https://www.parlament.gv.at/ausschuss/XXVII/A-RH/1/00881", "https://www.parlament.gv.at/ausschuss/XXVII/SA-RH/1/00905", "https://www.parlament.gv.at/ausschuss/XXVII/A-SP/1/00896", "https://www.parlament.gv.at/ausschuss/XXVII/A-TO/1/00897", "https://www.parlament.gv.at/ausschuss/XXVII/A-UM/1/00898", "https://www.parlament.gv.at/ausschuss/XXVII/A-UN/1/00899", "https://www.parlament.gv.at/ausschuss/XXVII/A-UV/1/00871", "https://www.parlament.gv.at/ausschuss/XXVII/A-VF/1/00900", "https://www.parlament.gv.at/ausschuss/XXVII/A-VE/1/00901", "https://www.parlament.gv.at/ausschuss/XXVII/A-VO/1/00902", "https://www.parlament.gv.at/ausschuss/XXVII/A-WH/1/00903", "https://www.parlament.gv.at/ausschuss/XXVII/A-WI/1/00904", "https://www.parlament.gv.at/ausschuss/XXVII/SA-P9/1/00876", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/4/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/5/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/3/00906"
+#> $ url_committee <chr> "https://www.parlament.gv.at/ausschuss/XXVII/A-AS/1/00883", "https://www.parlament.gv.at/ausschuss/XXVII/A-AU/1/00884", "https://www.parlament.gv.at/ausschuss/XXVII/A-BA/1/00885", "https://www.parlament.gv.at/ausschuss/XXVII/A-BU/1/00867", "https://www.parlament.gv.at/ausschuss/XXVII/SA-BU/1/00874", "https://www.parlament.gv.at/ausschuss/XXVII/SA-ESM/1/00875", "https://www.parlament.gv.at/ausschuss/XXVII/A-FA/1/00886", "https://www.parlament.gv.at/ausschuss/XXVII/A-FI/1/00887", "https://www.parlament.gv.at/ausschuss/XXVII/A-FO/1/00888", "https://www.parlament.gv.at/ausschuss/XXVII/A-GO/1/00873", "https://www.parlament.gv.at/ausschuss/XXVII/A-GE/1/00889", "https://www.parlament.gv.at/ausschuss/XXVII/A-GL/1/00890", "https://www.parlament.gv.at/ausschuss/XXVII/A-HA/1/00868", "https://www.parlament.gv.at/ausschuss/XXVII/SA-HA/1/00869", "https://www.parlament.gv.at/ausschuss/XXVII/SA-EU/1/00870", "https://www.parlament.gv.at/ausschuss/XXVII/A-IM/1/00872", "https://www.parlament.gv.at/ausschuss/XXVII/A-IA/1/00877", "https://www.parlament.gv.at/ausschuss/XXVII/SA-IA/1/00878", "https://www.parlament.gv.at/ausschuss/XXVII/A-JU/1/00891", "https://www.parlament.gv.at/ausschuss/XXVII/A-KO/1/00892", "https://www.parlament.gv.at/ausschuss/XXVII/A-KU/1/00882", "https://www.parlament.gv.at/ausschuss/XXVII/A-LV/1/00879", "https://www.parlament.gv.at/ausschuss/XXVII/SA-LV/1/00880", "https://www.parlament.gv.at/ausschuss/XXVII/A-LF/1/00893", "https://www.parlament.gv.at/ausschuss/XXVII/A-ME/1/00894", "https://www.parlament.gv.at/ausschuss/XXVII/A-PB/1/00895", "https://www.parlament.gv.at/ausschuss/XXVII/A-RH/1/00881", "https://www.parlament.gv.at/ausschuss/XXVII/SA-RH/1/00905", "https://www.parlament.gv.at/ausschuss/XXVII/A-SP/1/00896", "https://www.parlament.gv.at/ausschuss/XXVII/A-TO/1/00897", "https://www.parlament.gv.at/ausschuss/XXVII/A-UM/1/00898", "https://www.parlament.gv.at/ausschuss/XXVII/A-UN/1/00899", "https://www.parlament.gv.at/ausschuss/XXVII/A-UV/1/00871", "https://www.parlament.gv.at/ausschuss/XXVII/A-VF/1/00900", "https://www.parlament.gv.at/ausschuss/XXVII/A-VE/1/00901", "https://www.parlament.gv.at/ausschuss/XXVII/A-VO/1/00902", "https://www.parlament.gv.at/ausschuss/XXVII/A-WH/1/00903", "https://www.parlament.gv.at/ausschuss/XXVII/A-WI/1/00904", "https://www.parlament.gv.at/ausschuss/XXVII/SA-P9/1/00876", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/5/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/4/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/3/00906"
 ```
 
 How many committees of inquiry (Untersuchungsausschüsse) have there been
