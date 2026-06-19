@@ -1,6 +1,11 @@
 # Changelog
 
-## ParlAT 0.0.5.9000
+## ParlAT 0.0.6
+
+### Bug fixes
+
+- Fixed errors in detail-page parsing caused by upstream changes on the
+  Austrian Parliament website.
 
 ## ParlAT 0.0.5
 

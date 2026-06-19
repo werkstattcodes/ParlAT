@@ -341,50 +341,61 @@ Returns NULL if no results are found.
 #> {"M":["M"],"W":["W"]} 
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> ⠙ Fetching MPs' names 2/183 | ETA:  2m
-#> ⠹ Fetching MPs' names 4/183 | ETA:  2m
-#> ⠸ Fetching MPs' names 8/183 | ETA:  2m
-#> ⠼ Fetching MPs' names 13/183 | ETA:  2m
-#> ⠴ Fetching MPs' names 18/183 | ETA:  2m
-#> ⠦ Fetching MPs' names 23/183 | ETA:  2m
-#> ⠧ Fetching MPs' names 28/183 | ETA:  2m
-#> ⠇ Fetching MPs' names 32/183 | ETA:  2m
-#> ⠏ Fetching MPs' names 37/183 | ETA:  2m
-#> ⠋ Fetching MPs' names 42/183 | ETA:  1m
-#> ⠙ Fetching MPs' names 47/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 51/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 56/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 61/183 | ETA:  1m
-#> ⠴ Fetching MPs' names 65/183 | ETA:  1m
-#> ⠦ Fetching MPs' names 70/183 | ETA:  1m
-#> ⠧ Fetching MPs' names 75/183 | ETA:  1m
-#> ⠇ Fetching MPs' names 80/183 | ETA:  1m
-#> ⠏ Fetching MPs' names 85/183 | ETA:  1m
-#> ⠋ Fetching MPs' names 89/183 | ETA:  1m
-#> ⠙ Fetching MPs' names 94/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 99/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 103/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 108/183 | ETA: 47s
-#> ⠴ Fetching MPs' names 112/183 | ETA: 45s
-#> ⠦ Fetching MPs' names 117/183 | ETA: 42s
-#> ⠧ Fetching MPs' names 122/183 | ETA: 39s
-#> ⠇ Fetching MPs' names 127/183 | ETA: 35s
-#> ⠏ Fetching MPs' names 132/183 | ETA: 32s
-#> ⠋ Fetching MPs' names 136/183 | ETA: 30s
-#> ⠙ Fetching MPs' names 141/183 | ETA: 27s
-#> ⠹ Fetching MPs' names 146/183 | ETA: 23s
-#> ⠸ Fetching MPs' names 151/183 | ETA: 20s
-#> ⠼ Fetching MPs' names 156/183 | ETA: 17s
-#> ⠴ Fetching MPs' names 161/183 | ETA: 14s
-#> ⠦ Fetching MPs' names 165/183 | ETA: 11s
-#> ⠧ Fetching MPs' names 170/183 | ETA:  8s
-#> ⠇ Fetching MPs' names 175/183 | ETA:  5s
+#> ⠹ Fetching MPs' names 5/183 | ETA:  2m
+#> ⠸ Fetching MPs' names 9/183 | ETA:  2m
+#> ⠼ Fetching MPs' names 12/183 | ETA:  2m
+#> ⠴ Fetching MPs' names 16/183 | ETA:  2m
+#> ⠦ Fetching MPs' names 20/183 | ETA:  2m
+#> ⠧ Fetching MPs' names 23/183 | ETA:  2m
+#> ⠇ Fetching MPs' names 27/183 | ETA:  2m
+#> ⠏ Fetching MPs' names 31/183 | ETA:  2m
+#> ⠋ Fetching MPs' names 35/183 | ETA:  2m
+#> ⠙ Fetching MPs' names 38/183 | ETA:  2m
+#> ⠹ Fetching MPs' names 42/183 | ETA:  2m
+#> ⠸ Fetching MPs' names 46/183 | ETA:  2m
+#> ⠼ Fetching MPs' names 49/183 | ETA:  2m
+#> ⠴ Fetching MPs' names 53/183 | ETA:  2m
+#> ⠦ Fetching MPs' names 57/183 | ETA:  2m
+#> ⠧ Fetching MPs' names 60/183 | ETA:  2m
+#> ⠇ Fetching MPs' names 64/183 | ETA:  2m
+#> ⠏ Fetching MPs' names 68/183 | ETA:  2m
+#> ⠋ Fetching MPs' names 72/183 | ETA:  2m
+#> ⠙ Fetching MPs' names 75/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 79/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 83/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 86/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 90/183 | ETA:  1m
+#> ⠦ Fetching MPs' names 94/183 | ETA:  1m
+#> ⠧ Fetching MPs' names 97/183 | ETA:  1m
+#> ⠇ Fetching MPs' names 101/183 | ETA:  1m
+#> ⠏ Fetching MPs' names 105/183 | ETA:  1m
+#> ⠋ Fetching MPs' names 108/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 112/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 116/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 119/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 123/183 | ETA: 49s
+#> ⠴ Fetching MPs' names 127/183 | ETA: 46s
+#> ⠦ Fetching MPs' names 130/183 | ETA: 43s
+#> ⠧ Fetching MPs' names 134/183 | ETA: 40s
+#> ⠇ Fetching MPs' names 138/183 | ETA: 37s
+#> ⠏ Fetching MPs' names 142/183 | ETA: 33s
+#> ⠋ Fetching MPs' names 145/183 | ETA: 31s
+#> ⠙ Fetching MPs' names 149/183 | ETA: 28s
+#> ⠹ Fetching MPs' names 153/183 | ETA: 24s
+#> ⠸ Fetching MPs' names 157/183 | ETA: 21s
+#> ⠼ Fetching MPs' names 160/183 | ETA: 19s
+#> ⠴ Fetching MPs' names 164/183 | ETA: 15s
+#> ⠦ Fetching MPs' names 168/183 | ETA: 12s
+#> ⠧ Fetching MPs' names 171/183 | ETA: 10s
+#> ⠇ Fetching MPs' names 175/183 | ETA:  6s
 #> ⠏ Fetching MPs' names 179/183 | ETA:  3s
+#> ⠋ Fetching MPs' names 182/183 | ETA:  1s
 #> Fetched 183 MPs' names.
 #> 
   dplyr::glimpse(nr_members)
 #> Rows: 183
 #> Columns: 10
-#> $ time_stamp                     <dttm> 2026-06-08 14:35:02, 2026-06-08 14:35:…
+#> $ time_stamp                     <dttm> 2026-06-19 10:18:09, 2026-06-19 10:18:…
 #> $ name                           <chr> "Lisa Aldali", "Mag. Katrin Auer", "Mag…
 #> $ pad_intern                     <chr> "38385", "30688", "30668", "30689", "19…
 #> $ party                          <chr> "NEOS", "SPÖ", "NEOS", "SPÖ", "ÖVP", "S…
@@ -404,13 +415,13 @@ Returns NULL if no results are found.
 #> [1] 4
 #> {"W":["W"],"BL":["W"]} 
 #> https://www.parlament.gv.at/recherchieren/personen/bundesrat/index.html?WFW_005W=W&WFW_005BL=W
-#> ⠙ Fetching MPs' names 2/4 | ETA:  1s
+#> ⠙ Fetching MPs' names 3/4 | ETA:  1s
 #> Fetched 4 MPs' names.
 #> 
   dplyr::glimpse(br_female_vienna)
 #> Rows: 4
 #> Columns: 11
-#> $ time_stamp                     <dttm> 2026-06-08 14:36:58, 2026-06-08 14:36:…
+#> $ time_stamp                     <dttm> 2026-06-19 10:20:38, 2026-06-19 10:20:…
 #> $ pad_intern                     <chr> "32831", "84868", "17881", "33455"
 #> $ name                           <chr> "Mag. Dr. Julia Deutsch", "Mag. Daniela…
 #> $ electoral_district_region_code <chr> "9 Wien", "9 Wien", "9 Wien", "9 Wien"
@@ -430,21 +441,23 @@ Returns NULL if no results are found.
 #> [1] 41
 #> {"M":["M"],"W":["W"],"WP":["SPÖ"]} 
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W&WFW_002WP=SP%C3%96
-#> ⠙ Fetching MPs' names 2/41 | ETA: 26s
-#> ⠹ Fetching MPs' names 6/41 | ETA: 23s
-#> ⠸ Fetching MPs' names 10/41 | ETA: 20s
-#> ⠼ Fetching MPs' names 16/41 | ETA: 16s
-#> ⠴ Fetching MPs' names 20/41 | ETA: 13s
-#> ⠦ Fetching MPs' names 25/41 | ETA: 10s
-#> ⠧ Fetching MPs' names 29/41 | ETA:  8s
-#> ⠇ Fetching MPs' names 34/41 | ETA:  4s
-#> ⠏ Fetching MPs' names 39/41 | ETA:  1s
+#> ⠙ Fetching MPs' names 2/41 | ETA: 31s
+#> ⠹ Fetching MPs' names 6/41 | ETA: 28s
+#> ⠸ Fetching MPs' names 9/41 | ETA: 26s
+#> ⠼ Fetching MPs' names 13/41 | ETA: 23s
+#> ⠴ Fetching MPs' names 17/41 | ETA: 19s
+#> ⠦ Fetching MPs' names 20/41 | ETA: 17s
+#> ⠧ Fetching MPs' names 24/41 | ETA: 14s
+#> ⠇ Fetching MPs' names 28/41 | ETA: 11s
+#> ⠏ Fetching MPs' names 31/41 | ETA:  8s
+#> ⠋ Fetching MPs' names 35/41 | ETA:  5s
+#> ⠙ Fetching MPs' names 39/41 | ETA:  2s
 #> Fetched 41 MPs' names.
 #> 
   dplyr::glimpse(spo_nr)
 #> Rows: 41
 #> Columns: 10
-#> $ time_stamp                     <dttm> 2026-06-08 14:37:01, 2026-06-08 14:37:…
+#> $ time_stamp                     <dttm> 2026-06-19 10:20:42, 2026-06-19 10:20:…
 #> $ name                           <chr> "Mag. Katrin Auer", "Roland Baumann", "…
 #> $ pad_intern                     <chr> "30688", "30689", "14835", "30693", "14…
 #> $ party                          <chr> "SPÖ", "SPÖ", "SPÖ", "SPÖ", "SPÖ", "SPÖ…
