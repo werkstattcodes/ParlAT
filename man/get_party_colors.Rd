@@ -40,6 +40,7 @@ names.
 get_party_colors()
 get_party_colors(c("SPÖ", "ÖVP", "FPÖ"))
 get_party_colors(c("S", "V", "F"))
+get_party_colors(c("ÖVP", "ÖVP"), legis_period = c(25, 26))
 
 \donttest{
 library(ggplot2)
