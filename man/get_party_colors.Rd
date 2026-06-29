@@ -42,10 +42,32 @@ get_party_colors(c("SPÖ", "ÖVP", "FPÖ"))
 get_party_colors(c("S", "V", "F"))
 get_party_colors(c("ÖVP", "ÖVP"), legis_period = c(25, 26))
 
-\donttest{
-library(ggplot2)
-ggplot(df, aes(x, y, fill = party)) +
-  geom_col() +
-  scale_fill_manual(values = get_party_colors(unique(df$party)))
-}
+party_colors <- get_party_colors(output = "tibble")
+old_par <- par(no.readonly = TRUE)
+par(mar = c(1, 7, 1, 1))
+barplot(
+  rep(1, nrow(party_colors)),
+  col = party_colors$color,
+  names.arg = party_colors$party,
+  horiz = TRUE,
+  las = 1,
+  border = NA,
+  axes = FALSE
+)
+
+oevp_colors <- get_party_colors(
+  c("ÖVP", "ÖVP"),
+  legis_period = c(25, 26),
+  output = "tibble"
+)
+barplot(
+  rep(1, nrow(oevp_colors)),
+  col = oevp_colors$color,
+  names.arg = c("Before GP 26", "From GP 26"),
+  horiz = TRUE,
+  las = 1,
+  border = NA,
+  axes = FALSE
+)
+par(old_par)
 }
