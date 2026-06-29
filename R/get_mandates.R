@@ -353,7 +353,12 @@ get_mandates <- function(
 get_pad_intern <- function(name) {
   checkmate::assert_character(name, len = 1)
 
-  pad_intern_mps <- get_mps(search_string = name, echo = FALSE)
+  name_search <- aux_clean_person_name(name)
+  if (is.na(name_search) || !nzchar(name_search)) {
+    name_search <- name
+  }
+
+  pad_intern_mps <- get_mps(search_string = name_search, echo = FALSE)
 
   if (!is.null(pad_intern_mps) && nrow(pad_intern_mps) > 0) {
     pad_intern_mps <- pad_intern_mps %>%
@@ -369,7 +374,10 @@ get_pad_intern <- function(name) {
     pad_interns_scope <- res %>%
       dplyr::filter(stringr::str_detect(
         .data$names_previous_name_clean,
-        stringr::regex(paste0("\\b", {{ name }}, "\\b"), ignore_case = FALSE)
+        stringr::regex(
+          paste0("\\b", {{ name_search }}, "\\b"),
+          ignore_case = FALSE
+        )
       )) %>%
       dplyr::pull("pad_intern") %>%
       unique()

@@ -1,9 +1,11 @@
-# ParlAT 0.0.6
+# ParlAT 0.0.6.9000
 
 ## Bug fixes
 
 - Fixed errors in detail-page parsing caused by upstream changes on the
   Austrian Parliament website.
+- `get_pad_intern()` now removes academic titles from name searches before
+  looking up matching Parliament person identifiers.
 
 # ParlAT 0.0.5
 
