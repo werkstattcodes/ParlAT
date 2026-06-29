@@ -1,5 +1,11 @@
 # ParlAT 0.0.6
 
+## New functions
+
+- `get_party_colors()` provides a reusable plotting palette for Austrian
+  parties and parliamentary groups, including common aliases and historical
+  ÖVP colors.
+
 ## Bug fixes
 
 - Fixed errors in detail-page parsing caused by upstream changes on the

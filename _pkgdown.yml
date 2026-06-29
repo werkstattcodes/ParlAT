@@ -47,7 +47,8 @@ reference:
      - get_names
      - get_pad_intern
      - get_legis_periods
- 
+     - get_party_colors
+
 
 build:
   exclude:
