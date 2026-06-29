@@ -29,6 +29,7 @@
 #' party_colors <- get_party_colors(output = "tibble")
 #' old_par <- par(no.readonly = TRUE)
 #' par(mar = c(1, 7, 1, 1))
+#' party_colors <- party_colors[nrow(party_colors):1, ]
 #' barplot(
 #'   rep(1, nrow(party_colors)),
 #'   col = party_colors$color,
@@ -44,6 +45,7 @@
 #'   legis_period = c(25, 26),
 #'   output = "tibble"
 #' )
+#' oevp_colors <- oevp_colors[nrow(oevp_colors):1, ]
 #' barplot(
 #'   rep(1, nrow(oevp_colors)),
 #'   col = oevp_colors$color,
