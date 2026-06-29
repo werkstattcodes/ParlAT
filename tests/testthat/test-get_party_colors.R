@@ -8,6 +8,8 @@ test_that("get_party_colors returns the default plotting palette", {
   expect_equal(unname(colors["FP\u00d6"]), "#0056A2")
   expect_equal(unname(colors["GR\u00dcNE"]), "#88B626")
   expect_equal(unname(colors["NEOS"]), "#E3257B")
+  expect_equal(unname(colors["FRANK"]), "#F47100")
+  expect_equal(unname(colors["STRONACH"]), "#F47100")
   expect_equal(unname(colors["OK"]), "grey")
 })
 
