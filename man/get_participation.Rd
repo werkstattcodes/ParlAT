@@ -44,7 +44,7 @@ A tibble containing the participation data with the following columns:
 \item \code{ministry}: Responsible ministry
 }
 
-Returns NULL if no results are found for the provided search criteria.
+Returns a zero-row tibble with the documented columns if no results are found.
 }
 \description{
 This function retrieves participation data from the Austrian Parliament's API based on various filter criteria.

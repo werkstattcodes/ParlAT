@@ -1,3 +1,55 @@
+# ParlAT (development version)
+
+## Breaking changes
+
+- All exported `get_*()` functions now return a **zero-row tibble with their
+  documented columns** instead of `NULL` (or `invisible(NULL)`) when the API
+  finds no results, accompanied by an informative message. Code that checked
+  `is.null(result)` should check `nrow(result) == 0` instead.
+- `get_persons()`, `get_names()`, `get_plenary_meetings()`, and the
+  `get_mps_details()` modes now return tibbles instead of plain data frames.
+- `get_mps()` no longer returns a grouped tibble.
+- All user-facing errors, warnings, and messages are now signalled via the
+  cli package; message wording may differ slightly.
+
+## Bug fixes
+
+- `get_participation()`: the graceful empty-result path was unreachable due
+  to an internal assertion that errored first; empty results now return a
+  typed zero-row tibble.
+- `get_transcripts()`: the row-limit error message incorrectly said the limit
+  was 10,000 (the actual limit is 100,000); a misplaced `sprintf()` argument
+  in the PDF-export error message was fixed.
+- `get_mps_current()`: no longer errors when a search returns no members
+  (previously `NULL` was piped into `mutate()`).
+- `get_names()`: no longer returns a bare `NA` when the person-detail fetch
+  fails, which could break its own vectorized path.
+- `get_mps_details(detail_type = "committees")`: no longer errors for MPs
+  with multiple name variants.
+- `get_mps()`: removed ~160 lines of unreachable dead code after an early
+  `return()`.
+
+## Enhancements
+
+- All API requests now retry up to three times on transient failures
+  (`httr2::req_retry()`).
+- Stale hardcoded browser cookies/session IDs and browser fingerprint
+  headers were removed from all requests; every request now sends the ParlAT
+  package user agent.
+- Person-detail JSON fetches (`get_mandates()`, `get_names()`,
+  `get_committees()` details) now go through httr2, so they are covered by
+  the httptest2 mock layer in tests.
+
+## Internal changes
+
+- New shared internal helpers (`R/utils-shared.R`) replace duplicated
+  rename-map and echo/URL-reconstruction blocks across the package.
+- Debug `print()` calls, commented `browser()` calls, no-op `req_verbose()`
+  blocks, and two large dead functions were removed.
+- New unit tests for `get_names()`, `get_mps_current()`, the detail-page
+  JSON helpers, and the pure auxiliary converters.
+- `T`/`F` abbreviations expanded; superseded `purrr::map_dfr()` replaced.
+
 # ParlAT 0.0.6
 
 ## Bug fixes

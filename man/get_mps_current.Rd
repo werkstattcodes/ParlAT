@@ -184,7 +184,7 @@ A data frame containing the list of current members of parliament that match the
 \item \code{chamber}: Chamber of Parliament ("NR" or "BR")
 }
 
-Returns NULL if no results are found.
+Returns a zero-row tibble with the documented columns if no results are found.
 }
 \description{
 Fetches current members of parliament based on provided search criteria. Depending on the

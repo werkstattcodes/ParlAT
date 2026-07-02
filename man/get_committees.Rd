@@ -65,7 +65,7 @@ A tibble (data frame) with different structures depending on \code{details_type}
 }
 }
 
-Returns NULL if no results are found for the provided search criteria.
+Returns a zero-row tibble with the documented columns if no results are found.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

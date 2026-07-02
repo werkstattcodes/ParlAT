@@ -22,6 +22,7 @@ Imports:
     purrr,
     rlang,
     rvest,
+    stats,
     stringr (>= 1.6.0),
     tibble,
     tidyr,

@@ -27,7 +27,7 @@ get_persons(
 A data frame with one row per matching person and the columns \code{pad_intern},
 \code{name}, \code{gender}, \code{position}, and \code{link}. When \code{mandates = TRUE}, the
 returned data frame additionally contains mandate details for each person.
-Returns \code{NULL} with a message if no persons are found.
+Returns a zero-row tibble with a message if no persons are found.
 }
 \description{
 The \code{get_persons} function searches for current and former individuals

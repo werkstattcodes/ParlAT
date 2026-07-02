@@ -13,6 +13,8 @@
 ^doc$
 ^Meta$
 ^CLAUDE\.md$
+^AGENTS\.md$
+^fix-lexicalError-summary\.md$
 ^\.gemini$
 ^\.claude$
 ^\.quarto$

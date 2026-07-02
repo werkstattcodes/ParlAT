@@ -30,7 +30,7 @@ get_events(
 \item{echo}{Logical indicating whether to print used search parameters, number of hits, and link to results on website of parliament. Default is TRUE.}
 }
 \value{
-A data frame containing event details with the following columns, or NULL if no results are found:
+A tibble containing event details with the following columns (zero rows if no results are found):
 \itemize{
 \item \code{date}: Event date (parsed as Date)
 \item \code{date_time_start}: Event start date and time (parsed as POSIXct)

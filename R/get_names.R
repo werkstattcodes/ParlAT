@@ -1,3 +1,16 @@
+#' Zero-row tibble matching the documented columns of get_names()
+#' @noRd
+.empty_names_tibble <- function() {
+  .parlat_empty_tibble(
+    c(
+      "index", "pad_intern", "name", "date_start", "date_end",
+      "name_clean", "name_family", "name_given", "note"
+    ),
+    int_cols = "index",
+    date_cols = c("date_start", "date_end")
+  )
+}
+
 #' Get name variants of a Member of Parliament
 #'
 #' Returns all name variants of an person or a specific name used on a given date.
@@ -35,17 +48,6 @@
 #' result <- get_names(c(1130, 83124))
 #' dplyr::glimpse(result)
 #' }
-.empty_names_tibble <- function() {
-  .parlat_empty_tibble(
-    c(
-      "index", "pad_intern", "name", "date_start", "date_end",
-      "name_clean", "name_family", "name_given", "note"
-    ),
-    int_cols = "index",
-    date_cols = c("date_start", "date_end")
-  )
-}
-
 get_names <- function(pad_intern, date = NULL, latest = NULL) {
   if (length(pad_intern) > 1) {
     return(
