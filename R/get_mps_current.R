@@ -956,7 +956,6 @@ get_mps_NR_current_api_request <- function(body_params) {
             `sec-fetch-mode` = "cors",
             `sec-fetch-site` = "same-origin",
             `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0",
-            # cookie = "JSESSIONID=8W7-0Ik_IGTvMWFmcUDtc42xP_c-TZhjBqdTemqY.appsrv05e; pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1742568811%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D; _pk_ses.1.26ca=1"
         ) %>%
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%

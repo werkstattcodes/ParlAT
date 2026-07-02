@@ -261,13 +261,10 @@ get_transcripts <- function(
 
     # Check hard limit
     if (total_count > 100000) {
-        stop(
-            "Query returns ",
-            total_count,
-            " results, which exceeds the limit of 10,000. ",
-            "Please refine your query using more specific filters (e.g., narrower date range, ",
-            "specific legislative period, or meeting type)."
-        )
+        cli::cli_abort(c(
+            "Query returns {total_count} results, which exceeds the limit of 100,000.",
+            "i" = "Please refine your query using more specific filters (e.g., narrower date range, specific legislative period, or meeting type)."
+        ))
     }
 
     # Step 2: Get all data with the total count as pagesize
@@ -291,7 +288,9 @@ get_transcripts <- function(
         #they were included
 
         if (ncol(df_res) != length(vec_headings)) {
-            print("Warning: Columns and labels of different length!")
+            cli::cli_warn(
+                "API returned {ncol(df_res)} column{?s} but {length(vec_headings)} header label{?s}; surplus labels are dropped."
+            )
 
             vec_headings <- vec_headings[seq_len(ncol(df_res))]
         }
