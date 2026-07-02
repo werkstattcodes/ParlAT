@@ -1,0 +1,260 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Krisper Stephanie, Dr.",
+        "generationTime": "Fri Mar 20 10:36:55 UTC 2026",
+        "lang": "de",
+        "title": "Krisper Stephanie, Dr. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/201426/20142646_500.jpg",
+            "title": "Krisper Stephanie, Dr. | Parlament Österreich",
+            "description": "Abgeordnete zum Nationalrat (XXVI.-XXVIII. GP), NEOS"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Dr. Stephanie Krisper",
+            "title_plain": "Dr. Stephanie Krisper",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 2344,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/201426/20142646_384.jpg",
+                "alt": "Portraitfoto von Dr. Stephanie Krisper",
+                "bildId": 20142646,
+                "copyright": "Parlamentsdirektion/Thomas Topf"
+            },
+            "biografieStand": "06.06.2023",
+            "kurzinfo_html": null,
+            "portraitvideo": "d6e9611d-ceb9-4155-934a-d1d604becc5d",
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordnete zum Nationalrat",
+                        "mandat": "Abgeordnete zum Nationalrat",
+                        "klub": "NEOS Parlamentsklub",
+                        "wahlkreis": "9 - Wien",
+                        "wahlpartei": "NEOS",
+                        "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordnete zum Nationalrat (XXVI.-XXVIII. GP), NEOS",
+                        "mandatVon": "09.11.2017",
+                        "mandatBis": "31.10.2025",
+                        "funktion_von": "09.11.2017",
+                        "funktion_bis": "31.10.2025",
+                        "aktiv": false,
+                        "zeitraum": "09.11.2017-31.10.2025"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 24.05.1980, Wien",
+                "beruflicheTaetigkeit": "Juristin",
+                "beruflicherWerdegang": [
+                    "Wissenschaftliche Mitarbeiterin, Ludwig Boltzmann-Institut für Menschenrechte 7/2015-11/2017",
+                    "Koordinatorin der Kommission V der Volksanwaltschaft als Nationaler Präventionsmechanismus gegen Folter, Volksanwaltschaft (VA), Wien  9/2013-7/2015",
+                    "Koordinatorin der Kommissionen II und III des MRB, Menschenrechtsbeirat (MRB), Wien, Niederösterreich und Burgenland 1/2009-3/2012",
+                    "Rechtsberaterin, NGO Caritas, Flüchtlingsabteilung, Eisenstadt  1/2008-12/2008",
+                    "Emergency Protection Officer, NGO Danish Refugee Council 8/2007-11/2007",
+                    "Menschenrechtsexpertin zum Sozialen, Humanitären und Kulturellen Komitee (Drittes Komitee) der UNO-Generalversammlung, Europäische Kommission zu den Vereinten Nationen 10/2006-12/2006",
+                    "Mitglied der Delegation zur 2. Sitzung des Menschenrechtsrates , Ministerium für auswärtige Angelegenheiten, Menschenrechtsabteilung, Genf 10/2006",
+                    "Mitglied der Delegation zur 62. Sitzung der UNO-Menschenrechtskommission , Ministerium für auswärtige Angelegenheiten, Menschenrechtsabteilung, Genf 3/2006-4/2006",
+                    "Assistentin für „Netzwerk Asylanwalt“ , NGO Caritas Österreich, Abteilung für Flüchtlinge und Migration, Wien 2/2006",
+                    "Short Term Officer, OSZE-Wahlbeobachtungsmission, Aserbaidschan  11/2005",
+                    "Praktikantin, UNO-Flüchtlingskommissariat (UNHCR), Legal/Protection Unit, Wien 9/2005-11/2005",
+                    "Mitglied der österr. Delegation zur 61. Sitzung der UNO-Menschenrechtskommission, Ministerium für auswärtige Angelegenheiten, Menschenrechtsabteilung, Genf 3/2005-4/2005",
+                    "Praktikantin, NGO International Helsinki Federation for Human Rights, Wien 9/2004-3/2005",
+                    "Rechtsberaterin, NGO Asyl in Not, Wien 9/2004-1/2005",
+                    "Praktikantin, Menschenrechtskammer für Bosnien-Herzegowina, Sarajevo  8/2001",
+                    "Abgeordnete zum Nationalrat (XXVI.-XXVII. GP), Parlamentsdirektion  seit 9.11.2017"
+                ],
+                "bildungsweg": [
+                    "Doktoratsstudium der Rechtswissenschaften an der Universität Wien (Dr. iur.) 9/2007-6/2012",
+                    "European Master in Human Rights and Democratization (E.MA) European Centre for Human Rights and Democratization Venedig 1.9.2003-30.6.2004",
+                    "Universitätslehrgang Studium der Rechtwissenschaften (Mag.iur.) 9/1998-3/2003",
+                    "Neusprachliches Gymnasium St. Ursula, Wien  1990-1998",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Erweiterten Landesteams von NEOS Wien 2016-2021"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                2344
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "portraitvideo": "d6e9611d-ceb9-4155-934a-d1d604becc5d",
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                2344
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                2344
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                2344
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

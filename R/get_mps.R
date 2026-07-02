@@ -707,20 +707,12 @@ get_mps <- function(
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
-      origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      # referer = "https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=ab+24.10.2024%3A+XXVIII.+Gesetzgebungsperiode",
-      `sec-ch-ua` = '"Microsoft Edge";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
-      `sec-ch-ua-mobile` = "?0",
-      `sec-ch-ua-platform` = '"Windows"',
-      `sec-fetch-dest` = "empty",
-      `sec-fetch-mode` = "cors",
-      `sec-fetch-site` = "same-origin",
-      # `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0",
+      origin = "https://www.parlament.gv.at"
     ) %>%
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+    httr2::req_retry(max_tries = 3) %>%
     httr2::req_body_raw(
       body_params,
-      # '{"ATTR_JSON.mandate_detail.gp_text_full_short":["ab 24.10.2024: XXVIII. Gesetzgebungsperiode"]}',
       type = "application/json"
     ) %>%
     httr2::req_perform()

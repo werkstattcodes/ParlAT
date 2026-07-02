@@ -1,0 +1,216 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Müller Lothar, Dr.",
+        "generationTime": "Fri Mar 20 09:50:17 UTC 2026",
+        "lang": "de",
+        "title": "Müller Lothar, Dr. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21001/2100137_500.jpg",
+            "title": "Müller Lothar, Dr. | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (XVII.-XVIII. GP), SPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Dr. Lothar Müller",
+            "title_plain": "Dr. Lothar Müller",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 1282,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21001/2100137_384.jpg",
+                "alt": "Portraitfoto von Dr. Lothar Müller",
+                "bildId": 2100137,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "16.10.2007",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub der Sozialistischen Abgeordneten und Bundesräte",
+                        "wahlkreis": "7 - Tirol",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XVII.-XVIII. GP), SPÖ",
+                        "mandatVon": "17.12.1986",
+                        "mandatBis": "10.06.1994",
+                        "funktion_von": "17.12.1986",
+                        "funktion_bis": "10.06.1994",
+                        "aktiv": false,
+                        "zeitraum": "17.12.1986-10.06.1994"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Bundesrates",
+                        "mandat": "Mitglied des Bundesrates",
+                        "klub": "Bundesratsfraktion der SPÖ",
+                        "wahlkreis": "In den Bundesrat entsendet vom Tiroler Landtag",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialistische Partei Österreichs",
+                        "gremium": "BR",
+                        "funktion": "BR",
+                        "bez": "Mitglied des Bundesrates, SPÖ",
+                        "mandatVon": "23.10.1979",
+                        "mandatBis": "16.12.1986",
+                        "funktion_von": "23.10.1979",
+                        "funktion_bis": "16.12.1986",
+                        "aktiv": false,
+                        "zeitraum": "23.10.1979-16.12.1986"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 08.12.1947, Bludenz",
+                "beruflicheTaetigkeit": "Verlagsrepräsentant",
+                "beruflicherWerdegang": [
+                    "Mitarbeiter der Klinikseelsorge Innsbruck  seit 2000",
+                    "Selbständige Tätigkeit, Lektor an Universitäten und FHs  seit 1987",
+                    "Landesparteisekretär der SPÖ Tirol 1976-1986",
+                    "Landesstellenleiter des Dr. Karl Renner-Institutes Tirol 1973-1976",
+                    "während des Studiums wissenschaftliche Hilfskraft und Vertragsassistent am Institut für Moraltheologie und Gesellschaftslehre der Universität Innsbruck"
+                ],
+                "bildungsweg": [
+                    "Studium der Theologie an der Universität Innsbruck (Mag. theol. 1972, Dr. theol. 1975)",
+                    "Gymnasium in Lochau und Graz (Matura 1966)",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Amtsführender Stadtrat der Landeshauptstadt Innsbruck 1994-2000",
+                    "Mitglied des Landesparteivorstandes der SPÖ Tirol"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1282
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1282
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1282
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

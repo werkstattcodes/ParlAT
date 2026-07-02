@@ -362,6 +362,7 @@ get_events <- function(
         ) %>%
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+        httr2::req_retry(max_tries = 3) %>%
         httr2::req_verbose(
             body_req = FALSE,
             header_req = FALSE,

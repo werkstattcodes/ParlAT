@@ -72,12 +72,10 @@ get_legis_periods <- function(legis_period = NULL, date = NULL) {
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-      `content-type` = "application/json",
-      dnt = "1",
-      origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+      origin = "https://www.parlament.gv.at"
     ) %>%
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+    httr2::req_retry(max_tries = 3) %>%
     httr2::req_body_raw(
       '{"R_WF":["FR"],"R_BW":["BL"],"M":["M"],"W":["W"],"GP":["ALLE"]}',
       "application/json"

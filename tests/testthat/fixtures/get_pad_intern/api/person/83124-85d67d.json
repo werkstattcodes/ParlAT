@@ -1,0 +1,524 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Bernhard Michael",
+        "generationTime": "Thu Jul 02 04:14:05 UTC 2026",
+        "lang": "de",
+        "title": "Bernhard Michael | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/201426/20142626_500.jpg",
+            "title": "Bernhard Michael | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (XXV.-XXVIII. GP), NEOS"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Michael Bernhard",
+            "title_plain": "Michael Bernhard",
+            "titleSuffix": "(aktiv)",
+            "ebene": 1
+        },
+        "banner": {
+            "mandate": [
+                {
+                    "funktion_text": "Abgeordneter zum Nationalrat",
+                    "mandat": "Abgeordneter zum Nationalrat",
+                    "klub": "NEOS Parlamentsklub",
+                    "wahlkreis": "9 - Wien",
+                    "wahlpartei": "NEOS",
+                    "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                    "gremium": "NR",
+                    "funktion": "NR",
+                    "bez": "Abgeordneter zum Nationalrat (XXV.-XXVIII. GP), NEOS",
+                    "mandatVon": "30.01.2014",
+                    "mandatBis": "",
+                    "funktion_von": "30.01.2014",
+                    "funktion_bis": "",
+                    "zeitraum": "30.01.2014-",
+                    "aktiv": true,
+                    "eingetreten_txt": "Das durch Mandatsverzicht von Frau Abgeordneten Dr. Stephanie Krisper mit Ablauf des 31. Oktober 2025 frei gewordene Mandat im Landeswahlkreis 9 – Wien erhielt Herr Abgeordneter Michael Bernhard. Das dadurch freigewordene Mandat auf der Bundesparteiliste erhielt Frau Lisa Aldali."
+                }
+            ],
+            "stand": "2024-11-21T10:51:45",
+            "socialMedia": [
+                {
+                    "url": "http://michaelbernhard.eu",
+                    "name": "Website von Michael Bernhard",
+                    "type": "WEBSITE"
+                },
+                {
+                    "url": "https://www.facebook.com/neos.bernhard",
+                    "name": "Facebook von Michael Bernhard",
+                    "type": "FACEBOOK"
+                }
+            ],
+            "portrait": {
+                "src": "/dokument/bild/201426/20142626_384.jpg",
+                "alt": "Portraitfoto von Michael Bernhard",
+                "bildId": 20142626,
+                "copyright": "Parlamentsdirektion/Thomas Topf"
+            },
+            "type": "Parlamentarier"
+        },
+        "personInfo": {
+            "frueherenamen": "(bis 10.8.2016: Michael Pock)",
+            "personTyp": "mandatar",
+            "gremium": "nr",
+            "pad_intern": 83124,
+            "aktiv": true,
+            "sitzplatz": "4/16"
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "KONTAKT",
+                "label": "Kontakt",
+                "selected": false
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            },
+            {
+                "id": "UNVTRANS",
+                "label": "Transparenz",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "kurzinfo_html": null,
+            "portraitvideo": "38990fc8-551f-454e-aa0c-2ced59fb80ed",
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "NEOS Parlamentsklub",
+                        "wahlkreis": "9 - Wien",
+                        "wahlpartei": "NEOS",
+                        "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XXV.-XXVIII. GP), NEOS",
+                        "mandatVon": "30.01.2014",
+                        "mandatBis": "",
+                        "funktion_von": "30.01.2014",
+                        "funktion_bis": "",
+                        "zeitraum": "30.01.2014-",
+                        "aktiv": true,
+                        "eingetreten_txt": "Das durch Mandatsverzicht von Frau Abgeordneten Dr. Stephanie Krisper mit Ablauf des 31. Oktober 2025 frei gewordene Mandat im Landeswahlkreis 9 – Wien erhielt Herr Abgeordneter Michael Bernhard. Das dadurch freigewordene Mandat auf der Bundesparteiliste erhielt Frau Lisa Aldali."
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub von NEOS und LIF",
+                        "wahlkreis": "9 - Wien",
+                        "wahlpartei": "NEOS-LIF",
+                        "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XXV. GP), NEOS-LIF",
+                        "mandatVon": "29.10.2013",
+                        "mandatBis": "29.01.2014",
+                        "funktion_von": "29.10.2013",
+                        "funktion_bis": "29.01.2014",
+                        "aktiv": false,
+                        "zeitraum": "29.10.2013-29.01.2014"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 30.04.1981, Tulln an der Donau (Niederösterreich)",
+                "beruflicheTaetigkeit": "Unternehmer",
+                "beruflicherWerdegang": [
+                    "Geschäftsführender Gesellschafter, Pristis Holding GmbH  seit 1.9.2015",
+                    "Geschäftsführer, global office Franchise AT GmbH  seit 1.11.2011",
+                    "Steuerung Outsourcingprojekte, Research Customer Satisfaction, Process & Quality Management, Tele2 Telecommunication 1.7.2005-30.8.2010",
+                    "Kundenbeziehungsmanagement, UTA Telekom 1.9.2001-30.6.2005",
+                    "Diverse Tätigkeiten, European Telecom 2000"
+                ],
+                "bildungsweg": [
+                    "Diverse Zusatzausbildungen im Managementbereich (Steuer und Recht; Telekom Branche) 1.1.2004-31.12.2008",
+                    "Studienberechtigungsprüfung „Sozial- und Wirtschaftswissenschaftliche Studien“ 2010",
+                    "Gymnasium Wien 1996",
+                    "Hauptschule 1.9.1991-30.6.1995",
+                    "Volksschule 1.9.1987-30.6.1991"
+                ],
+                "politischeFunktionen": [
+                    "Finanzreferent von NEOS - Das neue Österreich 25.1.2014-23.6.2018",
+                    "Finanzreferent von NEOS - Das neue Österreich 23.6.2018-6.7.2024",
+                    "Finanzreferent des NEOS Lab (Parteiakademie) 25.1.2014-7/2019",
+                    "Finanzreferent im Klub der NEOS - Das neue Österreich und Liberales Forum 9.10.2013-6.7.2024",
+                    "Landessprecher Liberales Forum Wien 15.1.2013-1.1.2014",
+                    "Vorsitzender Stellvertreter Liberales Forum Bund 3.3.2012-1.1.2014",
+                    "Fraktionsführer im Eurofighter Untersuchungsausschuss seit 19.4.2018",
+                    "Fraktionsführer im Eurofighter Untersuchungsausschuss 29.3.2017-20.9.2017",
+                    "Bereichssprecher für Umwelt, Petitionen und Bürgerinitiativen seit 17.12.2013",
+                    "Familiensprecher seit 13.10.2015",
+                    "Vorsitzender des parlamentarischen Ausschusses für Petitionen und Bürgerinitiativen seit 17.12.2013",
+                    "Bereichssprecher für Verkehr, Infrastruktur und Telekommunikation 17.12.2013-15.10.2017",
+                    "Gleichbehandlungssprecher 4.8.2014-10.12.2015"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Für Richtigkeit und Umfang der biografischen Daten verantwortlich: Michael Bernhard"
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                83124
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "portraitvideo": "38990fc8-551f-454e-aa0c-2ced59fb80ed",
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "kontakt": {
+            "verantwortlich": "mandatar",
+            "socialMedia": [
+                {
+                    "url": "http://michaelbernhard.eu",
+                    "name": "Website von Michael Bernhard",
+                    "type": "WEBSITE"
+                },
+                {
+                    "url": "https://www.facebook.com/neos.bernhard",
+                    "name": "Facebook von Michael Bernhard",
+                    "type": "FACEBOOK"
+                }
+            ],
+            "mail": [
+                "michael.bernhard@parlament.gv.at"
+            ],
+            "anschrift": [
+                "NEOS Parlamentsklub<br>Dr.-Karl-Renner-Ring 3<br>1017 Wien"
+            ],
+            "disclaimer": "Für Richtigkeit und Umfang der Kontaktdaten verantwortlich: Michael Bernhard",
+            "parentid": "biografietabs",
+            "tabid": "KONTAKT"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                83124
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                83124
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "unvtrans": {
+            "einleitung": "Hier finden Sie die von Mitgliedern des Nationalrates bzw. des Bundesrates nach § 6 Unvereinbarkeits- und Transparenz-Gesetz in Verbindung mit § 9 Bundesverfassungsgesetz über die Begrenzung von Bezügen öffentlicher Funktionäre zu veröffentlichenden leitenden Stellungen in AGs, GmbHs, Stiftungen und Sparkassen, sonstigen Tätigkeiten mit Vermögensvorteilen, leitenden ehrenamtlichen Tätigkeiten und jährlichen Einkommenskategorien.",
+            "header": "Liste gemäß § 9 BezBegrBVG - Abgeordneter Michael Bernhard",
+            "linkliste": [
+                {
+                    "title": "Druckversion - Liste Michael Bernhard:",
+                    "documents": [
+                        {
+                            "link": "/dokument/unvtrans/person/83124/BezBegrBVGPar9.pdf",
+                            "type": "PDF"
+                        }
+                    ]
+                },
+                {
+                    "title": "Gesamtliste gemäß § 9 BezBegrBVG - Nationalrat:",
+                    "documents": [
+                        {
+                            "link": "/person/unvtrans/BezBegrBVGPar9-NR.html",
+                            "type": "HTML"
+                        },
+                        {
+                            "link": "/dokument/unvtrans/BezBegrBVGPar9-NR.pdf",
+                            "type": "PDF"
+                        }
+                    ]
+                },
+                {
+                    "title": "Informationen zur Liste gemäß § 9 BezBegrBVG (Unv-Transparenz):",
+                    "documents": [
+                        {
+                            "link": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "unvtransData": {
+                "z1Header": "Leitende Stellungen in Aktiengesellschaft, Gesellschaft mit beschränkter Haftung, Stiftung oder Sparkasse - § 6 Abs. 2 Z 1",
+                "z1Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#leitende_stellungen",
+                "z1Zusatztext": "(Werden aus einer Tätigkeit keine Vermögensvorteile erzielt, wird dies durch * gekennzeichnet)",
+                "z1Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende Stellung",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                "Global Office Franchise AT GmbH, Innsbrucker Bundesstraße 140/2, 5020 Salzburg, FN 370138x",
+                                "geschäftsführender Gesellschafter"
+                            ],
+                            [
+                                "Pristis Holding GmbH, Argentinierstraße 42/33, 1040 Wien",
+                                "geschäftsführender Gesellschafter"
+                            ]
+                        ]
+                    }
+                },
+                "z2Header": "Sonstige Tätigkeiten, aus denen Vermögensvorteile erzielt werden - § 6 Abs. 2 Z 2",
+                "z2Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#sonstige_tatigkeiten",
+                "z2KeineAngaben": "Keine",
+                "z2Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Dienstgeber/Rechtsträger/Unternehmen",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ]
+                    }
+                },
+                "z3Header": "Leitende ehrenamtliche Tätigkeiten (keine Vermögensvorteile) - § 6 Abs. 2 Z 3",
+                "z3Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#(weitere)_leitende_ehrenamtliche_tatigkeiten",
+                "z3Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende ehrenamtliche Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                "UNOS - Unternehmerisches Österreich",
+                                "Bundessprecher"
+                            ],
+                            [
+                                "Eurosolar Austria ",
+                                "Mitglied des Vorstandes"
+                            ],
+                            [
+                                "callcenterforum.at, Verein zur Informationssteigerung im Call Center Bereich",
+                                "Vizepräsident"
+                            ]
+                        ]
+                    }
+                },
+                "einkHeader": "Einkommenskategorie -  § 6 Abs. 4 und 5",
+                "einkErklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#einkommenskategorie",
+                "einkTable": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "für das Jahr",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Einkommenskategorie",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                2024,
+                                "4&nbsp;<a href=\"/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#VS\">voraussichtlich<\/a> (von 8.001 bis 12.000 Euro)"
+                            ],
+                            [
+                                2025,
+                                "4&nbsp; (von 8.001 bis 12.000 Euro)"
+                            ],
+                            [
+                                2026,
+                                "Meldefrist endet am 30.06.2027"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "UNVTRANS"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                83124
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

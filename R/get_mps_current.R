@@ -358,8 +358,6 @@ get_mps_current <- function(
         return(NULL)
     }
 
-    max_retries <- 3L
-
     pb_id <- cli::cli_progress_bar(
         "Fetching MPs' names",
         total = length(df_res$pad_intern),
@@ -368,39 +366,28 @@ get_mps_current <- function(
         clear = FALSE
     )
 
+    # transient network failures are retried at the httr2 layer (req_retry)
     df_res <- df_res %>%
         dplyr::mutate(
             name = purrr::map_chr(.data$pad_intern, \(pad_id) {
-                result <- NA_character_
+                result <- tryCatch(
+                    {
+                        name_df <- get_names(pad_intern = pad_id)
 
-                for (attempt in seq_len(max_retries)) {
-                    result <- tryCatch(
-                        {
-                            name_df <- get_names(pad_intern = pad_id)
-
-                            if (
-                                is.null(name_df) ||
-                                identical(name_df, NA) ||
-                                !is.data.frame(name_df) ||
-                                nrow(name_df) == 0
-                            ) {
-                                NA_character_
-                            } else {
-                                name_df %>%
-                                    dplyr::filter(.data$index == 1) %>%
-                                    dplyr::pull("name")
-                            }
-                        },
-                        error = \(e) NA_character_
-                    )
-
-                    if (!is.na(result)) break
-                    Sys.sleep(1 * attempt)
-                }
+                        if (!is.data.frame(name_df) || nrow(name_df) == 0) {
+                            NA_character_
+                        } else {
+                            name_df %>%
+                                dplyr::filter(.data$index == 1) %>%
+                                dplyr::pull("name")
+                        }
+                    },
+                    error = \(e) NA_character_
+                )
 
                 if (is.na(result)) {
                     cli::cli_warn(
-                        "Failed to fetch name for pad_intern {pad_id} after {max_retries} attempts."
+                        "Failed to fetch name for pad_intern {pad_id}."
                     )
                 }
 
@@ -958,6 +945,7 @@ get_mps_NR_current_api_request <- function(body_params) {
         ) %>%
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+        httr2::req_retry(max_tries = 3) %>%
         httr2::req_verbose(
             body_req = F,
             header_req = F,
@@ -1256,6 +1244,7 @@ get_mps_BR_current_api_request <- function(body_params) {
         ) %>%
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+        httr2::req_retry(max_tries = 3) %>%
         httr2::req_verbose(
             body_req = F,
             header_req = F,

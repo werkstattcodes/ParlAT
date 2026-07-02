@@ -2,7 +2,8 @@
 # Returns an xml_document parsed from the response body.
 .parlat_fetch_html <- function(url) {
   req <- httr2::request(url) |>
-    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)")
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+    httr2::req_retry(max_tries = 3)
 
   resp <- httr2::req_perform(req)
   html <- httr2::resp_body_string(resp)
@@ -17,7 +18,8 @@
 
 .parlat_fetch_detail_json_text <- function(url) {
   req <- httr2::request(.parlat_detail_json_url(url)) |>
-    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)")
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+    httr2::req_retry(max_tries = 3)
 
   resp <- httr2::req_perform(req)
   json_text <- httr2::resp_body_string(resp)

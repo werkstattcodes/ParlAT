@@ -249,6 +249,7 @@ aux_check_pad_intern_exists <- function(pad_intern) {
   resp <- tryCatch(
     httr2::request(url_check) %>%
       httr2::req_method("HEAD") %>%
+      httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
       httr2::req_perform(),
     error = function(e) return(NULL)
   )

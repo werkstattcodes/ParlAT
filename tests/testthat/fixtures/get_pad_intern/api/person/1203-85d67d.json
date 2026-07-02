@@ -1,0 +1,198 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Pick Karl",
+        "generationTime": "Fri Mar 20 09:44:21 UTC 2026",
+        "lang": "de",
+        "title": "Pick Karl | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21001/2100190_500.jpg",
+            "title": "Pick Karl | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (IV. GP), SdP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Karl Pick",
+            "title_plain": "Karl Pick",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 1203,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21001/2100190_384.jpg",
+                "alt": "Portraitfoto von Karl Pick",
+                "bildId": 2100190,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat",
+                        "wahlkreis": "4 - Wien Nordost",
+                        "wahlpartei": "SdP",
+                        "wahlpartei_text": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (IV. GP), SdP",
+                        "mandatVon": "02.12.1930",
+                        "mandatBis": "17.02.1934",
+                        "funktion_von": "02.12.1930",
+                        "funktion_bis": "17.02.1934",
+                        "aktiv": false,
+                        "zeitraum": "02.12.1930-17.02.1934"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs",
+                        "wahlkreis": "4 - Wien Nordost",
+                        "wahlpartei": "SdP",
+                        "wahlpartei_text": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (I.-III. GP), SdP",
+                        "mandatVon": "10.11.1920",
+                        "mandatBis": "01.10.1930",
+                        "funktion_von": "10.11.1920",
+                        "funktion_bis": "01.10.1930",
+                        "aktiv": false,
+                        "zeitraum": "10.11.1920-01.10.1930"
+                    },
+                    {
+                        "funktion_text": "Mitglied der Konst. Nationalversammlung",
+                        "mandat": "Mitglied der Konst. Nationalversammlung",
+                        "klub": "Sozialdemokratische Vereinigung",
+                        "wahlkreis": null,
+                        "wahlpartei": "SdP",
+                        "wahlpartei_text": "Sozialdemokratische Arbeiterpartei Deutschösterreichs",
+                        "gremium": "KN",
+                        "funktion": "KN",
+                        "bez": "Mitglied der Konst. Nationalversammlung, SdP",
+                        "mandatVon": "04.03.1919",
+                        "mandatBis": "09.11.1920",
+                        "funktion_von": "04.03.1919",
+                        "funktion_bis": "09.11.1920",
+                        "aktiv": false,
+                        "zeitraum": "04.03.1919-09.11.1920"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 22.12.1867, Petschek/Pecky (Böhmen)",
+                "sterbtext": "Verst.: 03.08.1938, Wien",
+                "beruflicheTaetigkeit": "Handelsangestellter",
+                "beruflicherWerdegang": [
+                    "Handelsangestellter sowie"
+                ],
+                "bildungsweg": [
+                    "Handelsschule",
+                    "Abendkurs einer deutschsprachigen Handelsschule in Prag",
+                    "Gewerbelehre",
+                    "Privatschule, Realgymnasium"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Provisorischen Stadtsenats von Wien 1918",
+                    "Mitglied des Wiener Gemeinderates 1918-1919",
+                    "Gründungsmitglied des Vereins kaufmännischer Angestellter 1892",
+                    "Obmann des Zentralvereins der kaufmännischen Angestellten",
+                    "Vorstandsmitglied des Bundes der Freien Gewerkschaften Österreichs"
+                ],
+                "sonstiges": "<p>1934 kurze Zeit festgenommen, Engagement bei Angestelltenschutz u. -versicher., Sonntagsruhe im Warenhandel, 48-Stunden-Woche (1919) u. Handlungsgehilfenges., während 1. WK Unterstützung der Zimmerwalder Internationale, Verdienste um Krankenfürsorge Politische Freiheitsstrafe: 1934 für kurze Zeit festgenommen.<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": null
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1203
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1203
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        }
+    }
+}

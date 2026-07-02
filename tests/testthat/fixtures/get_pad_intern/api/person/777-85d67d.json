@@ -1,0 +1,291 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Karlsson Irmtraut, Dr.",
+        "generationTime": "Fri Mar 20 09:02:17 UTC 2026",
+        "lang": "de",
+        "title": "Karlsson Irmtraut, Dr. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/20998/2099881_500.jpg",
+            "title": "Karlsson Irmtraut, Dr. | Parlament Österreich",
+            "description": "Abgeordnete zum Nationalrat (XX. GP), SPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Dr. Irmtraut Karlsson",
+            "title_plain": "Dr. Irmtraut Karlsson",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 777,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/20998/2099881_384.jpg",
+                "alt": "Portraitfoto von Dr. Irmtraut Karlsson",
+                "bildId": 2099881,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "11.01.2011",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordnete zum Nationalrat",
+                        "mandat": "Abgeordnete zum Nationalrat",
+                        "klub": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                        "wahlkreis": "9B - Wien Innen-West",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordnete zum Nationalrat (XX. GP), SPÖ",
+                        "mandatVon": "14.03.1996",
+                        "mandatBis": "28.10.1999",
+                        "funktion_von": "14.03.1996",
+                        "funktion_bis": "28.10.1999",
+                        "aktiv": false,
+                        "zeitraum": "14.03.1996-28.10.1999"
+                    },
+                    {
+                        "funktion_text": "Abgeordnete zum Nationalrat",
+                        "mandat": "Abgeordnete zum Nationalrat",
+                        "klub": "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte",
+                        "wahlkreis": "9 - Wien",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordnete zum Nationalrat (XIX. GP), SPÖ",
+                        "mandatVon": "15.12.1994",
+                        "mandatBis": "14.01.1996",
+                        "funktion_von": "15.12.1994",
+                        "funktion_bis": "14.01.1996",
+                        "aktiv": false,
+                        "zeitraum": "15.12.1994-14.01.1996"
+                    },
+                    {
+                        "funktion_text": "Abgeordnete zum Nationalrat",
+                        "mandat": "Abgeordnete zum Nationalrat",
+                        "klub": "Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte",
+                        "wahlkreis": "9 - Wien",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordnete zum Nationalrat (XVIII. GP), SPÖ",
+                        "mandatVon": "19.10.1993",
+                        "mandatBis": "06.11.1994",
+                        "funktion_von": "19.10.1993",
+                        "funktion_bis": "06.11.1994",
+                        "aktiv": false,
+                        "zeitraum": "19.10.1993-06.11.1994"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Bundesrates",
+                        "mandat": "Mitglied des Bundesrates",
+                        "klub": "Bundesratsfraktion der SPÖ",
+                        "wahlkreis": "In den Bundesrat entsendet vom Wiener Landtag",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "BR",
+                        "funktion": "BR",
+                        "bez": "Mitglied des Bundesrates, SPÖ",
+                        "mandatVon": "29.01.1987",
+                        "mandatBis": "18.10.1993",
+                        "funktion_von": "29.01.1987",
+                        "funktion_bis": "18.10.1993",
+                        "aktiv": false,
+                        "zeitraum": "29.01.1987-18.10.1993"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 04.05.1944, Windschau (Mähren)",
+                "beruflicheTaetigkeit": "Psychologin",
+                "beruflicherWerdegang": [
+                    "Kurze Tätigkeit im Staatssekretariat für allgemeine Frauenfragen",
+                    "Magistratsabteilung XI der Stadt Wien 1972",
+                    "Leiterin der Sozialpädagogischen Grundlagenforschung"
+                ],
+                "bildungsweg": [
+                    "Institut für Höhere Studien Wien - Diplom für Soziologie 1969-1971",
+                    "Studium an der Universität Wien (Dr. phil. 1971)",
+                    "Bundesgymnasium in Wien/Döbling (Matura 1962)",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Generalsekretärin der Sozialistischen Fraueninternationale in London 1980-1986",
+                    "Bundesfrauensekretärin der SPÖ 1985-1996"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                777
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                777
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                777
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                777
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

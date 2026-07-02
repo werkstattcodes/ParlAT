@@ -1,0 +1,440 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Aldali Lisa",
+        "generationTime": "Thu Jul 02 04:12:33 UTC 2026",
+        "lang": "de",
+        "title": "Aldali Lisa | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/201746/20174600_500.jpg",
+            "title": "Aldali Lisa | Parlament Österreich",
+            "description": "Abgeordnete zum Nationalrat (XXVIII. GP), NEOS"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Lisa Aldali",
+            "title_plain": "Lisa Aldali",
+            "titleSuffix": "(aktiv)",
+            "ebene": 1
+        },
+        "banner": {
+            "mandate": [
+                {
+                    "funktion_text": "Abgeordnete zum Nationalrat",
+                    "mandat": "Abgeordnete zum Nationalrat",
+                    "klub": "NEOS Parlamentsklub",
+                    "wahlkreis": "Bundeswahlvorschlag",
+                    "wahlpartei": "NEOS",
+                    "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                    "gremium": "NR",
+                    "funktion": "NR",
+                    "bez": "Abgeordnete zum Nationalrat (XXVIII. GP), NEOS",
+                    "mandatVon": "07.11.2025",
+                    "mandatBis": "",
+                    "funktion_von": "07.11.2025",
+                    "funktion_bis": "",
+                    "zeitraum": "07.11.2025-",
+                    "aktiv": true,
+                    "eingetreten_txt": "Das durch Mandatsverzicht von Frau Abgeordneten Dr. Stephanie Krisper mit Ablauf des 31. Oktober 2025 frei gewordene Mandat im Landeswahlkreis 9 – Wien erhielt Herr Abgeordneter Michael Bernhard. Das dadurch freigewordene Mandat auf der Bundesparteiliste erhielt Frau Lisa Aldali."
+                }
+            ],
+            "stand": "2025-11-08T07:48:35",
+            "socialMedia": [
+                {
+                    "url": "https://www.facebook.com/lisa.kosovic/",
+                    "name": "Facebook von Lisa Aldali",
+                    "type": "FACEBOOK"
+                },
+                {
+                    "url": "https://www.instagram.com/l1s_a/",
+                    "name": "Instagram von Lisa Aldali",
+                    "type": "INSTAGRAM"
+                },
+                {
+                    "url": "https://at.linkedin.com/in/lisa-aldali-6807892a7",
+                    "name": "LinkedIn von Lisa Aldali",
+                    "type": "LINKEDIN"
+                }
+            ],
+            "portrait": {
+                "src": "/dokument/bild/201746/20174600_384.jpg",
+                "alt": "Portraitfoto von Lisa Aldali",
+                "bildId": 20174600,
+                "copyright": "Parlamentsdirektion/Thomas Topf"
+            },
+            "type": "Parlamentarier"
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": "nr",
+            "pad_intern": 38385,
+            "aktiv": true,
+            "sitzplatz": "6/20"
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "KONTAKT",
+                "label": "Kontakt",
+                "selected": false
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "UNVTRANS",
+                "label": "Transparenz",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordnete zum Nationalrat",
+                        "mandat": "Abgeordnete zum Nationalrat",
+                        "klub": "NEOS Parlamentsklub",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "wahlpartei": "NEOS",
+                        "wahlpartei_text": "NEOS - Das neue Österreich und Liberales Forum",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordnete zum Nationalrat (XXVIII. GP), NEOS",
+                        "mandatVon": "07.11.2025",
+                        "mandatBis": "",
+                        "funktion_von": "07.11.2025",
+                        "funktion_bis": "",
+                        "zeitraum": "07.11.2025-",
+                        "aktiv": true,
+                        "eingetreten_txt": "Das durch Mandatsverzicht von Frau Abgeordneten Dr. Stephanie Krisper mit Ablauf des 31. Oktober 2025 frei gewordene Mandat im Landeswahlkreis 9 – Wien erhielt Herr Abgeordneter Michael Bernhard. Das dadurch freigewordene Mandat auf der Bundesparteiliste erhielt Frau Lisa Aldali."
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 13.09.1989, Oberndorf bei Salzburg (Salzburg)",
+                "beruflicheTaetigkeit": "Lehrerin für Deutsch, Geschichte und politische Bildung",
+                "beruflicherWerdegang": [
+                    "Lehrerin für Deutsch, Geschichte und politische Bildung, Land Salzburg 10.9.2017-17.11.2025"
+                ],
+                "bildungsweg": [
+                    "Bachelorstudium Deutsch, Geschichte und politische Bildung 1.10.2014-1.7.2017",
+                    "Berufsreifeprüfung, Handelsakademie 1.9.2011-15.7.2014",
+                    "Ausbildung Bürokauffrau, Landesberufsschule  1.9.2006-1.7.2009",
+                    "Höhere Lehranstalt für wirtschaftliche Berufe - Fachrichtung Sozialmanagement, Caritas Schule Salzburg 1.9.2004-10.7.2006",
+                    "Hauptschule, Lofer 12.9.2000-8.7.2004",
+                    "Volksschule, Unken 7.9.1996-11.7.2000"
+                ],
+                "politischeFunktionen": [
+                    "Landessprecherin von NEOS - Das neue Österreich, Landesgruppe Salzburg 15.10.2023-22.1.2025",
+                    "Vorstandsmitglied bei NEOS Salzburg 24.5.2022-22.1.2025"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Für Richtigkeit und Umfang der biografischen Daten verantwortlich: Lisa Aldali"
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                38385
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "kontakt": {
+            "verantwortlich": "mandatar",
+            "socialMedia": [
+                {
+                    "url": "https://www.facebook.com/lisa.kosovic/",
+                    "name": "Facebook von Lisa Aldali",
+                    "type": "FACEBOOK"
+                },
+                {
+                    "url": "https://www.instagram.com/l1s_a/",
+                    "name": "Instagram von Lisa Aldali",
+                    "type": "INSTAGRAM"
+                },
+                {
+                    "url": "https://at.linkedin.com/in/lisa-aldali-6807892a7",
+                    "name": "LinkedIn von Lisa Aldali",
+                    "type": "LINKEDIN"
+                }
+            ],
+            "mail": [
+                "lisa.aldali@parlament.gv.at"
+            ],
+            "telefonnr": [
+                "+431 40 110 9000"
+            ],
+            "anschrift": [
+                "NEOS Parlamentsklub<br>Dr.-Karl-Renner-Ring 3<br>1017 Wien"
+            ],
+            "disclaimer": "Für Richtigkeit und Umfang der Kontaktdaten verantwortlich: Lisa Aldali",
+            "parentid": "biografietabs",
+            "tabid": "KONTAKT"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                38385
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                38385
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "unvtrans": {
+            "einleitung": "Hier finden Sie die von Mitgliedern des Nationalrates bzw. des Bundesrates nach § 6 Unvereinbarkeits- und Transparenz-Gesetz in Verbindung mit § 9 Bundesverfassungsgesetz über die Begrenzung von Bezügen öffentlicher Funktionäre zu veröffentlichenden leitenden Stellungen in AGs, GmbHs, Stiftungen und Sparkassen, sonstigen Tätigkeiten mit Vermögensvorteilen, leitenden ehrenamtlichen Tätigkeiten und jährlichen Einkommenskategorien.",
+            "header": "Liste gemäß § 9 BezBegrBVG - Abgeordnete Lisa Aldali",
+            "linkliste": [
+                {
+                    "title": "Druckversion - Liste Lisa Aldali:",
+                    "documents": [
+                        {
+                            "link": "/dokument/unvtrans/person/38385/BezBegrBVGPar9.pdf",
+                            "type": "PDF"
+                        }
+                    ]
+                },
+                {
+                    "title": "Gesamtliste gemäß § 9 BezBegrBVG - Nationalrat:",
+                    "documents": [
+                        {
+                            "link": "/person/unvtrans/BezBegrBVGPar9-NR.html",
+                            "type": "HTML"
+                        },
+                        {
+                            "link": "/dokument/unvtrans/BezBegrBVGPar9-NR.pdf",
+                            "type": "PDF"
+                        }
+                    ]
+                },
+                {
+                    "title": "Informationen zur Liste gemäß § 9 BezBegrBVG (Unv-Transparenz):",
+                    "documents": [
+                        {
+                            "link": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "unvtransData": {
+                "z1Header": "Leitende Stellungen in Aktiengesellschaft, Gesellschaft mit beschränkter Haftung, Stiftung oder Sparkasse - § 6 Abs. 2 Z 1",
+                "z1Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#leitende_stellungen",
+                "z1Zusatztext": "(Werden aus einer Tätigkeit keine Vermögensvorteile erzielt, wird dies durch * gekennzeichnet)",
+                "z1KeineAngaben": "Keine",
+                "z1Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende Stellung",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ]
+                    }
+                },
+                "z2Header": "Sonstige Tätigkeiten, aus denen Vermögensvorteile erzielt werden - § 6 Abs. 2 Z 2",
+                "z2Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#sonstige_tatigkeiten",
+                "z2KeineAngaben": "Keine",
+                "z2Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Dienstgeber/Rechtsträger/Unternehmen",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ]
+                    }
+                },
+                "z3Header": "Leitende ehrenamtliche Tätigkeiten (keine Vermögensvorteile) - § 6 Abs. 2 Z 3",
+                "z3Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#(weitere)_leitende_ehrenamtliche_tatigkeiten",
+                "z3KeineAngaben": "Keine",
+                "z3Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende ehrenamtliche Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ]
+                    }
+                },
+                "einkHeader": "Einkommenskategorie -  § 6 Abs. 4 und 5",
+                "einkErklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#einkommenskategorie",
+                "einkTable": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "für das Jahr",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Einkommenskategorie",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                2025,
+                                "-"
+                            ],
+                            [
+                                2026,
+                                "Meldefrist endet am 30.06.2027"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "UNVTRANS"
+        }
+    }
+}

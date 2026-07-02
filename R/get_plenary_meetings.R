@@ -255,8 +255,8 @@ get_plenary_meetings <- function(
             origin = "https://www.parlament.gv.at"
         ) |>
         httr2::req_body_raw(body_params, "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)")
-
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        httr2::req_retry(max_tries = 3)
     # FETCH FIRST PAGE
     res <- base_req |> httr2::req_perform()
     res_body <- res |> httr2::resp_body_json(simplifyVector = TRUE)

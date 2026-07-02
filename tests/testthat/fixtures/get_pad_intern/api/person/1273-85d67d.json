@@ -1,0 +1,223 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Müller Franz",
+        "generationTime": "Fri Mar 20 09:47:58 UTC 2026",
+        "lang": "de",
+        "title": "Müller Franz | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21001/2100132_500.jpg",
+            "title": "Müller Franz | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (X.-XIII. GP), SPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Franz Müller",
+            "title_plain": "Franz Müller",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 1273,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21001/2100132_384.jpg",
+                "alt": "Portraitfoto von Franz Müller",
+                "bildId": 2100132,
+                "copyright": "Photo R. Pöschlmayer"
+            },
+            "biografieStand": "29.09.1999",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub der Sozialistischen Abgeordneten und Bundesräte",
+                        "wahlkreis": "1 - Burgenland",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialistische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (X.-XIII. GP), SPÖ",
+                        "mandatVon": "13.05.1964",
+                        "mandatBis": "04.11.1975",
+                        "funktion_von": "13.05.1964",
+                        "funktion_bis": "04.11.1975",
+                        "aktiv": false,
+                        "zeitraum": "13.05.1964-04.11.1975"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Bundesrates",
+                        "mandat": "Mitglied des Bundesrates",
+                        "klub": "Bundesratsfraktion der SPÖ",
+                        "wahlkreis": "In den Bundesrat entsendet vom Burgenländischen Landtag",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialistische Partei Österreichs",
+                        "gremium": "BR",
+                        "funktion": "BR",
+                        "bez": "Mitglied des Bundesrates, SPÖ",
+                        "mandatVon": "05.05.1960",
+                        "mandatBis": "13.05.1964",
+                        "funktion_von": "05.05.1960",
+                        "funktion_bis": "13.05.1964",
+                        "aktiv": false,
+                        "zeitraum": "05.05.1960-13.05.1964"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 09.01.1915, Wien",
+                "sterbtext": "Verst.: 22.09.1999, Güssing (Burgenland)",
+                "beruflicheTaetigkeit": "Friseurmeister",
+                "beruflicherWerdegang": [
+                    "Eigenes Friseurgeschäft 1946-1975"
+                ],
+                "bildungsweg": [
+                    "Meisterprüfung 1937",
+                    "Berufsschule (erlernter Beruf: Friseur) 1930-1933",
+                    "Hauptschule",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Gemeinderates von Güssing 1950",
+                    "Vizebürgermeister der Großgemeinde Güssing bis 1964",
+                    "Bezirksparteivorsitzender der SPÖ Güssing 1954-1980",
+                    "Mitglied des Landesparteivorstandes der SPÖ Burgenland",
+                    "Ehrenobmann der SPÖ Güssing"
+                ],
+                "ehrenzeichen": [
+                    "Großes Silbernes Ehrenzeichen für Verdienste um die Republik Österreich",
+                    "Großes Ehrenzeichen für Verdienste um die Republik Österreich",
+                    "Komturkreuz des Landes Burgenland"
+                ],
+                "sonstiges": "<p>In der Zeit von 1934-1938 geringfügige politische Strafen. Während des Zweiten Weltkrieges Militärdienst sowie Gefangenschaft in Jugoslawien.<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1273
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1273
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1273
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

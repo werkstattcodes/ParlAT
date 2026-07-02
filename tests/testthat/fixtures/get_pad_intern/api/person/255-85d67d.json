@@ -1,0 +1,200 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Ehrenfried Anton",
+        "generationTime": "Fri Mar 20 10:38:56 UTC 2026",
+        "lang": "de",
+        "title": "Ehrenfried Anton | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/20996/2099655_500.jpg",
+            "title": "Ehrenfried Anton | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (VI.-VIII. GP), ÖVP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Anton Ehrenfried",
+            "title_plain": "Anton Ehrenfried",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 255,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/20996/2099655_384.jpg",
+                "alt": "Portraitfoto von Anton Ehrenfried",
+                "bildId": 2099655,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub der Österreichischen Volkspartei",
+                        "wahlkreis": "11 - Viertel unterm Manhartsberg",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (VI.-VIII. GP), ÖVP",
+                        "mandatVon": "08.11.1949",
+                        "mandatBis": "09.06.1959",
+                        "funktion_von": "08.11.1949",
+                        "funktion_bis": "09.06.1959",
+                        "aktiv": false,
+                        "zeitraum": "08.11.1949-09.06.1959"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 09.09.1895, Hollabrunn",
+                "sterbtext": "Verst.: 01.11.1974, Hollabrunn",
+                "beruflicheTaetigkeit": "Beamter",
+                "beruflicherWerdegang": [
+                    "Leitung der Volksbank Hollabrunn",
+                    "Anstellung bei einer Spar- und Kreditgenossenschaft 1939",
+                    "zwangspensioniert 1938",
+                    "Beamter der Volksbank Hollabrunn 1925",
+                    "Eintritt in die Union-Bank Wien 1919"
+                ],
+                "bildungsweg": [
+                    "Handelsakademie in Wien",
+                    "Untergymnasium in Hollabrunn",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Bürgermeister von Hollabrunn 1934-1938"
+                ],
+                "sonstiges": "<p>1938 kurze Zeit in Haft.<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                255
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                255
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                255
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

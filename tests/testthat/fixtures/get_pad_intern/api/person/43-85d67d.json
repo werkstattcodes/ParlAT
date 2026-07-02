@@ -1,0 +1,173 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Altenbacher Franz",
+        "generationTime": "Fri Mar 20 09:24:14 UTC 2026",
+        "lang": "de",
+        "title": "Altenbacher Franz | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/Foto_Platzhalter_Quadrat.svg",
+            "title": "Altenbacher Franz | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (I. GP), GdP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Franz Altenbacher",
+            "title_plain": "Franz Altenbacher",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 43,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/static/img/Foto_Platzhalter_Quadrat.svg",
+                "copyright": "Parlamentsdirektion"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Verband der Abgeordneten der Großdeutschen Volkspartei",
+                        "wahlkreis": "21 - Mittel- und Untersteier",
+                        "wahlpartei": "GdP",
+                        "wahlpartei_text": "Großdeutsche Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (I. GP), GdP",
+                        "mandatVon": "10.11.1920",
+                        "mandatBis": "12.07.1923",
+                        "funktion_von": "10.11.1920",
+                        "funktion_bis": "12.07.1923",
+                        "aktiv": false,
+                        "zeitraum": "10.11.1920-12.07.1923"
+                    },
+                    {
+                        "funktion_text": "Mitglied der Konst. Nationalversammlung",
+                        "mandat": "Mitglied der Konst. Nationalversammlung",
+                        "klub": "Großdeutsche Vereinigung",
+                        "wahlkreis": null,
+                        "wahlpartei": "GdP",
+                        "wahlpartei_text": "Großdeutsche Vereinigung",
+                        "gremium": "KN",
+                        "funktion": "KN",
+                        "bez": "Mitglied der Konst. Nationalversammlung, GdP",
+                        "mandatVon": "04.03.1919",
+                        "mandatBis": "09.11.1920",
+                        "funktion_von": "04.03.1919",
+                        "funktion_bis": "09.11.1920",
+                        "aktiv": false,
+                        "zeitraum": "04.03.1919-09.11.1920"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 07.02.1862, Mattelsberg/Madlsberg (Steiermark)",
+                "sterbtext": "Verst.: 08.11.1936, Graz",
+                "beruflicheTaetigkeit": "Müller, Grundbesitzer",
+                "beruflicherWerdegang": [
+                    "Grundbesitzer und Müller"
+                ],
+                "bildungsweg": [
+                    "Buchhaltungskurs",
+                    "Realschule 1 Klasse",
+                    "Volksschule 1909"
+                ],
+                "politischeFunktionen": [
+                    "Gemeindevorstand von Wolfsberg"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": null
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                43
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                43
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        }
+    }
+}

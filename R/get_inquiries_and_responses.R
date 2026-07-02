@@ -71,6 +71,7 @@ get_inquiries_and_responses <- function(
         ) %>%
         httr2::req_body_raw(body_params, "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+        httr2::req_retry(max_tries = 3) %>%
         httr2::req_perform()
 
     vec_headings <- res %>%

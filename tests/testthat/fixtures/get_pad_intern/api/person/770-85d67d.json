@@ -1,0 +1,163 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Kapral Emma",
+        "generationTime": "Fri Mar 20 09:03:12 UTC 2026",
+        "lang": "de",
+        "title": "Kapral Emma | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21014/2101481_500.jpg",
+            "title": "Kapral Emma | Parlament Österreich",
+            "description": "Abgeordnete zum Nationalrat (IV. GP), CSP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Emma Kapral",
+            "title_plain": "Emma Kapral",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 770,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21014/2101481_384.jpg",
+                "alt": "Portraitfoto von Emma Kapral",
+                "bildId": 2101481,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordnete zum Nationalrat",
+                        "mandat": "Abgeordnete zum Nationalrat",
+                        "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+                        "wahlkreis": "Wahlkreisverband I (Wien)",
+                        "wahlpartei": "CSP",
+                        "wahlpartei_text": "Christlichsoziale Partei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordnete zum Nationalrat (IV. GP), CSP",
+                        "mandatVon": "02.12.1930",
+                        "mandatBis": "02.05.1934",
+                        "funktion_von": "02.12.1930",
+                        "funktion_bis": "02.05.1934",
+                        "aktiv": false,
+                        "zeitraum": "02.12.1930-02.05.1934"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 18.06.1877, Wien",
+                "sterbtext": "Verst.: 18.02.1969, Wien",
+                "beruflicheTaetigkeit": "Hauptschuldirektorin",
+                "beruflicherWerdegang": [
+                    "Hauptschuldirektorin in Wien/Landstraße",
+                    "Lehrerin an verschiedenen Wiener Schulen"
+                ],
+                "bildungsweg": [
+                    "Lehrerinnenseminar der Ursulinen",
+                    "Pflichtschulen"
+                ],
+                "politischeFunktionen": [
+                    "Im Verein katholischer Lehrerinnen aktiv",
+                    "Mitgliedschaft bei der Vaterländischen Front",
+                    "Mitglied der Parteileitung der Wiener Christlichsozialen Partei",
+                    "Vizepräsidentin der Katholischen Frauenorganisation (KFO) 1933",
+                    "Obfrau des ÖAAB Wien/Landstraße 1945-1948"
+                ],
+                "sonstiges": "<p>Politische Freiheitsstrafe: 1944 kurze Gestapohaft.<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": null
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                770
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                770
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        }
+    }
+}

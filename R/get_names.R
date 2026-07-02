@@ -64,18 +64,17 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
     return(.empty_names_tibble())
   }
 
-  link_file_json <- glue::glue(
-    "https://www.parlament.gv.at/person/{pad_intern}?json=TRUE"
+  link_person <- glue::glue(
+    "https://www.parlament.gv.at/person/{pad_intern}"
   )
 
+  # fetched via httr2 so httptest2 can intercept and record the request
   file_json <- tryCatch(
     {
-      jsonlite::read_json(link_file_json)
+      json_text <- .parlat_fetch_detail_json_text(link_person)
+      .parlat_parse_detail_json(json_text, simplifyVector = FALSE)$data
     },
-    error = function(e) {
-      #warning(paste("Error reading JSON from URL:", e$message))
-      return(NULL)
-    }
+    error = function(e) NULL
   )
 
   if (is.null(file_json)) {

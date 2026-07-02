@@ -355,6 +355,7 @@ get_mps_details_plenary <- function(
             origin = "https://www.parlament.gv.at"
         ) %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+        httr2::req_retry(max_tries = 3) %>%
         httr2::req_body_raw(
             body_params,
             # '{"PAD_INTERN":[145]}',
@@ -614,6 +615,7 @@ get_mps_details_activities <- function(
             origin = "https://www.parlament.gv.at"
         ) %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+        httr2::req_retry(max_tries = 3) %>%
         httr2::req_body_raw(
             body_params,
             type = "application/json"
@@ -877,6 +879,7 @@ get_mps_details_committees <- function(
             origin = "https://www.parlament.gv.at"
         ) %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+        httr2::req_retry(max_tries = 3) %>%
         httr2::req_body_raw(
             body_params,
             type = "application/json"

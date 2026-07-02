@@ -1,0 +1,198 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Haunschmidt Franz",
+        "generationTime": "Fri Mar 20 08:17:29 UTC 2026",
+        "lang": "de",
+        "title": "Haunschmidt Franz | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21005/2100591_500.jpg",
+            "title": "Haunschmidt Franz | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (V.-IX. GP), ÖVP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Franz Haunschmidt",
+            "title_plain": "Franz Haunschmidt",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 532,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21005/2100591_384.jpg",
+                "alt": "Portraitfoto von Franz Haunschmidt",
+                "bildId": 2100591,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub der Österreichischen Volkspartei",
+                        "wahlkreis": "16 - Mühlviertel",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (V.-IX. GP), ÖVP",
+                        "mandatVon": "19.12.1945",
+                        "mandatBis": "14.12.1962",
+                        "funktion_von": "19.12.1945",
+                        "funktion_bis": "14.12.1962",
+                        "aktiv": false,
+                        "zeitraum": "19.12.1945-14.12.1962"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 05.06.1902, Sandl (Oberösterreich)",
+                "sterbtext": "Verst.: 26.05.1975, Linz",
+                "beruflicheTaetigkeit": "Kaufmann",
+                "beruflicherWerdegang": [
+                    "Übernahme der Großhandlung Anton Müller in Freistadt 1933",
+                    "Bankangestellter"
+                ],
+                "bildungsweg": [
+                    "Handelsschule",
+                    "Bürgerschule",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Bürgermeister der Stadt Freistadt 1945",
+                    "Obmannstellvertreter der Bundeskammer der gewerblichen Wirtschaft, Sektion Handel"
+                ],
+                "sonstiges": "<p>Politische Freiheitsstrafen: 1944 sieben Monate Untersuchungshaft, Hochverratsanklage.<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                532
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                532
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                532
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

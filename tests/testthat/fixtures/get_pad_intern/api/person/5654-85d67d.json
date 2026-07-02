@@ -1,0 +1,537 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Götze Elisabeth, Dr.",
+        "generationTime": "Thu Jul 02 12:10:14 UTC 2026",
+        "lang": "de",
+        "title": "Götze Elisabeth, Dr. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/200696/20069675_500.jpg",
+            "title": "Götze Elisabeth, Dr. | Parlament Österreich",
+            "description": "Abgeordnete zum Nationalrat (XXVII.-XXVIII. GP), GRÜNE"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Dr. Elisabeth Götze",
+            "title_plain": "Dr. Elisabeth Götze",
+            "titleSuffix": "(aktiv)",
+            "ebene": 1
+        },
+        "banner": {
+            "mandate": [
+                {
+                    "funktion_text": "Abgeordnete zum Nationalrat",
+                    "mandat": "Abgeordnete zum Nationalrat",
+                    "klub": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                    "wahlkreis": "3 - Niederösterreich",
+                    "wahlpartei": "GRÜNE",
+                    "wahlpartei_text": "Die Grünen",
+                    "gremium": "NR",
+                    "funktion": "NR",
+                    "bez": "Abgeordnete zum Nationalrat (XXVII.-XXVIII. GP), GRÜNE",
+                    "mandatVon": "23.10.2019",
+                    "mandatBis": "",
+                    "funktion_von": "23.10.2019",
+                    "funktion_bis": "",
+                    "zeitraum": "23.10.2019-",
+                    "aktiv": true
+                }
+            ],
+            "stand": "2023-08-29T15:05:24",
+            "socialMedia": [
+                {
+                    "url": "https://noe.gruene.at/person/elisabeth-gotze-2",
+                    "name": "Website von Dr. Elisabeth Götze",
+                    "type": "WEBSITE"
+                },
+                {
+                    "url": "https://www.facebook.com/eligoetze",
+                    "name": "Facebook von Dr. Elisabeth Götze",
+                    "type": "FACEBOOK"
+                },
+                {
+                    "url": "https://www.twitter.com/eligoetze",
+                    "name": "Twitter von Dr. Elisabeth Götze",
+                    "type": "TWITTER"
+                },
+                {
+                    "url": "https://www.instagram.com/eligoetze",
+                    "name": "Instagram von Dr. Elisabeth Götze",
+                    "type": "INSTAGRAM"
+                },
+                {
+                    "url": "https://at.linkedin.com/in/elisabeth-g%C3%B6tze-50025596",
+                    "name": "LinkedIn von Dr. Elisabeth Götze",
+                    "type": "LINKEDIN"
+                }
+            ],
+            "portrait": {
+                "src": "/dokument/bild/200696/20069675_384.jpg",
+                "alt": "Portraitfoto von Dr. Elisabeth Götze",
+                "bildId": 20069675,
+                "copyright": "Parlamentsdirektion/PHOTO SIMONIS"
+            },
+            "type": "Parlamentarier"
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": "nr",
+            "pad_intern": 5654,
+            "aktiv": true,
+            "sitzplatz": "5/13"
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "KONTAKT",
+                "label": "Kontakt",
+                "selected": false
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            },
+            {
+                "id": "UNVTRANS",
+                "label": "Transparenz",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "kurzinfo_html": null,
+            "portraitvideo": "4a25e046-c80a-479b-86bb-36fcb45412b5",
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordnete zum Nationalrat",
+                        "mandat": "Abgeordnete zum Nationalrat",
+                        "klub": "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                        "wahlkreis": "3 - Niederösterreich",
+                        "wahlpartei": "GRÜNE",
+                        "wahlpartei_text": "Die Grünen",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordnete zum Nationalrat (XXVII.-XXVIII. GP), GRÜNE",
+                        "mandatVon": "23.10.2019",
+                        "mandatBis": "",
+                        "funktion_von": "23.10.2019",
+                        "funktion_bis": "",
+                        "zeitraum": "23.10.2019-",
+                        "aktiv": true
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 1966, Wien",
+                "beruflicheTaetigkeit": "Abgeordnete zum Nationalrat",
+                "beruflicherWerdegang": [
+                    "Senior Lecturer, Wirtschaftsuniversität Wien seit 2007, aktuell karenziert",
+                    "Lehrauftrag, University of Gadjah Mada / Yogyakarta, Indonesien 2019 sowie 2018",
+                    "Lehrauftrag, Estonian Business School / Tallinn, Estland 2017",
+                    "Vortragende, Donauuni Krems 2014-2017",
+                    "Lehrauftrag, Estonian Business School / Tallinn, Estland 2016",
+                    "Vortragende, FH Wiener Neustadt 1998-2015",
+                    "Lehrauftrag, University of Victoria / Victoria, Kanada 2012",
+                    "Lehrauftrag, Hanoi University of Technology & Economics / Hanoi, Vietnam 2011",
+                    "Lehrauftrag, Graduate School of Management / St. Petersburg, Russland 2010",
+                    "Vortragende, FH Eisenstadt 2006-2010",
+                    "Lehrauftrag, University of Gadjah Mada / Yogyakarta, Indonesien 2009",
+                    "Lehrauftrag, Hanoi University of Technology & Economics / Hanoi, Vietnam 2006",
+                    "Universitätsassistentin, Wirtschaftsuniversität Wien 1998-2006",
+                    "Assistentin in einem Direktvertriebsunternehmen 1993-1998",
+                    "Universitätsassistentin, Wirtschaftsuniversität Wien 1991-1992"
+                ],
+                "bildungsweg": [
+                    "Doktoratsstudium Betriebswirtschaft Wirtschaftsuniversität Wien (Dr.rer.soc.oec.)",
+                    "Diplomstudium Betriebswirtschaft Wirtschaftsuniversität Wien (Mag.rer.soc.oec.)",
+                    "Neusprachliches Gymnasium der Dominikanerinnen Wien",
+                    "Volksschule Mondweg, Wien"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied der Landesleitung von Die Grüne Wirtschaft, Landesgruppe Niederösterreich seit 2019",
+                    "Mitglied des Gemeinderates der Marktgemeinde Eichgraben seit 2015",
+                    "Mitglied des Landesausschusses der Grünen Niederösterreich seit 2015",
+                    "Mitglied des Gemeinderates der Marktgemeinde Eichgraben 2005-2010",
+                    "Vizebürgermeisterin der Marktgemeinde Eichgraben 2015-2020",
+                    "Mitglied des Landesvorstandes der Grünen Niederösterreich 2015-2020"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Für Richtigkeit und Umfang der biografischen Daten verantwortlich: Dr. Elisabeth Götze"
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                5654
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "portraitvideo": "4a25e046-c80a-479b-86bb-36fcb45412b5",
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "kontakt": {
+            "verantwortlich": "mandatar",
+            "socialMedia": [
+                {
+                    "url": "https://noe.gruene.at/person/elisabeth-gotze-2",
+                    "name": "Website von Dr. Elisabeth Götze",
+                    "type": "WEBSITE"
+                },
+                {
+                    "url": "https://www.facebook.com/eligoetze",
+                    "name": "Facebook von Dr. Elisabeth Götze",
+                    "type": "FACEBOOK"
+                },
+                {
+                    "url": "https://www.twitter.com/eligoetze",
+                    "name": "Twitter von Dr. Elisabeth Götze",
+                    "type": "TWITTER"
+                },
+                {
+                    "url": "https://www.instagram.com/eligoetze",
+                    "name": "Instagram von Dr. Elisabeth Götze",
+                    "type": "INSTAGRAM"
+                },
+                {
+                    "url": "https://at.linkedin.com/in/elisabeth-g%C3%B6tze-50025596",
+                    "name": "LinkedIn von Dr. Elisabeth Götze",
+                    "type": "LINKEDIN"
+                }
+            ],
+            "mail": [
+                "elisabeth.goetze@parlament.gv.at",
+                "elisabeth.goetze@gruene.at"
+            ],
+            "anschrift": [
+                "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament<br>Dr.-Karl-Renner-Ring 3<br>1017 Wien"
+            ],
+            "disclaimer": "Für Richtigkeit und Umfang der Kontaktdaten verantwortlich: Dr. Elisabeth Götze",
+            "parentid": "biografietabs",
+            "tabid": "KONTAKT"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                5654
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                5654
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "unvtrans": {
+            "einleitung": "Hier finden Sie die von Mitgliedern des Nationalrates bzw. des Bundesrates nach § 6 Unvereinbarkeits- und Transparenz-Gesetz in Verbindung mit § 9 Bundesverfassungsgesetz über die Begrenzung von Bezügen öffentlicher Funktionäre zu veröffentlichenden leitenden Stellungen in AGs, GmbHs, Stiftungen und Sparkassen, sonstigen Tätigkeiten mit Vermögensvorteilen, leitenden ehrenamtlichen Tätigkeiten und jährlichen Einkommenskategorien.",
+            "header": "Liste gemäß § 9 BezBegrBVG - Abgeordnete Dr. Elisabeth Götze",
+            "linkliste": [
+                {
+                    "title": "Druckversion - Liste Dr. Elisabeth Götze:",
+                    "documents": [
+                        {
+                            "link": "/dokument/unvtrans/person/5654/BezBegrBVGPar9.pdf",
+                            "type": "PDF"
+                        }
+                    ]
+                },
+                {
+                    "title": "Gesamtliste gemäß § 9 BezBegrBVG - Nationalrat:",
+                    "documents": [
+                        {
+                            "link": "/person/unvtrans/BezBegrBVGPar9-NR.html",
+                            "type": "HTML"
+                        },
+                        {
+                            "link": "/dokument/unvtrans/BezBegrBVGPar9-NR.pdf",
+                            "type": "PDF"
+                        }
+                    ]
+                },
+                {
+                    "title": "Informationen zur Liste gemäß § 9 BezBegrBVG (Unv-Transparenz):",
+                    "documents": [
+                        {
+                            "link": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "unvtransData": {
+                "z1Header": "Leitende Stellungen in Aktiengesellschaft, Gesellschaft mit beschränkter Haftung, Stiftung oder Sparkasse - § 6 Abs. 2 Z 1",
+                "z1Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#leitende_stellungen",
+                "z1Zusatztext": "(Werden aus einer Tätigkeit keine Vermögensvorteile erzielt, wird dies durch * gekennzeichnet)",
+                "z1KeineAngaben": "Keine",
+                "z1Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende Stellung",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ]
+                    }
+                },
+                "z2Header": "Sonstige Tätigkeiten, aus denen Vermögensvorteile erzielt werden - § 6 Abs. 2 Z 2",
+                "z2Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#sonstige_tatigkeiten",
+                "z2Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Dienstgeber/Rechtsträger/Unternehmen",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                "<a href='/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#sonstige_tatigkeiten'>lit. c<\/a>: Marktgemeinde Eichgraben",
+                                "Gemeinderätin"
+                            ]
+                        ]
+                    }
+                },
+                "z3Header": "Leitende ehrenamtliche Tätigkeiten (keine Vermögensvorteile) - § 6 Abs. 2 Z 3",
+                "z3Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#(weitere)_leitende_ehrenamtliche_tatigkeiten",
+                "z3Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende ehrenamtliche Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                "Elektromobil Eichgraben",
+                                "Mitglied des Vorstandes"
+                            ],
+                            [
+                                "Die Grünen Niederösterreich",
+                                "Mitglied des Landesausschusses"
+                            ],
+                            [
+                                "Die Grünen Eichgraben",
+                                "Ortsgruppensprecherin"
+                            ],
+                            [
+                                "Grüne Wirtschaft Niederösterreich",
+                                "Mitglied der Regionalleitung"
+                            ]
+                        ]
+                    }
+                },
+                "einkHeader": "Einkommenskategorie -  § 6 Abs. 4 und 5",
+                "einkErklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#einkommenskategorie",
+                "einkTable": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "für das Jahr",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Einkommenskategorie",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                2024,
+                                "1&nbsp; (von 1 bis 1.150 Euro)"
+                            ],
+                            [
+                                2025,
+                                "1&nbsp; (von 1 bis 1.150 Euro)"
+                            ],
+                            [
+                                2026,
+                                "Meldefrist endet am 30.06.2027"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "UNVTRANS"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                5654
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

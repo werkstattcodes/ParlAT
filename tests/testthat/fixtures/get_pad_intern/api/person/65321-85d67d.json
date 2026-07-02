@@ -1,0 +1,382 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Kurz Sebastian",
+        "generationTime": "Fri Mar 20 09:57:34 UTC 2026",
+        "lang": "de",
+        "title": "Kurz Sebastian | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/201786/20178605_500.jpg",
+            "title": "Kurz Sebastian | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (XXVII. GP), ÖVP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Sebastian Kurz",
+            "title_plain": "Sebastian Kurz",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 65321,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/201786/20178605_384.jpg",
+                "alt": "Portraitfoto von Sebastian Kurz",
+                "bildId": 20178605,
+                "copyright": "Parlamentsdirektion/PHOTO SIMONIS"
+            },
+            "biografieStand": "13.01.2022",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XXVII. GP), ÖVP",
+                        "mandatVon": "14.10.2021",
+                        "mandatBis": "08.12.2021",
+                        "funktion_von": "14.10.2021",
+                        "funktion_bis": "08.12.2021",
+                        "aktiv": false,
+                        "zeitraum": "14.10.2021-08.12.2021"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XXVII. GP), ÖVP",
+                        "mandatVon": "23.10.2019",
+                        "mandatBis": "07.01.2020",
+                        "funktion_von": "23.10.2019",
+                        "funktion_bis": "07.01.2020",
+                        "aktiv": false,
+                        "zeitraum": "23.10.2019-07.01.2020"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XXVI. GP), ÖVP",
+                        "mandatVon": "09.11.2017",
+                        "mandatBis": "22.01.2018",
+                        "funktion_von": "09.11.2017",
+                        "funktion_bis": "22.01.2018",
+                        "aktiv": false,
+                        "zeitraum": "09.11.2017-22.01.2018"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                        "wahlkreis": "9E - Wien Süd-West",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XXV. GP), ÖVP",
+                        "mandatVon": "29.10.2013",
+                        "mandatBis": "16.12.2013",
+                        "funktion_von": "29.10.2013",
+                        "funktion_bis": "16.12.2013",
+                        "aktiv": false,
+                        "zeitraum": "29.10.2013-16.12.2013"
+                    },
+                    {
+                        "funktion_text": "Bundeskanzler",
+                        "mandat": "Bundeskanzler",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "BK",
+                        "funktion": "BK",
+                        "bez": "Bundeskanzler",
+                        "mandatVon": "07.01.2020",
+                        "mandatBis": "11.10.2021",
+                        "funktion_von": "07.01.2020",
+                        "funktion_bis": "11.10.2021",
+                        "aktiv": false,
+                        "zeitraum": "07.01.2020-11.10.2021"
+                    },
+                    {
+                        "funktion_text": "Bundeskanzler",
+                        "mandat": "Bundeskanzler",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "BK",
+                        "funktion": "BK",
+                        "bez": "Bundeskanzler",
+                        "mandatVon": "18.12.2017",
+                        "mandatBis": "28.05.2019",
+                        "funktion_von": "18.12.2017",
+                        "funktion_bis": "28.05.2019",
+                        "aktiv": false,
+                        "zeitraum": "18.12.2017-28.05.2019"
+                    },
+                    {
+                        "funktion_text": "Bundesminister für Europa, Integration und Äußeres",
+                        "mandat": "Bundesminister für Europa, Integration und Äußeres",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "BM",
+                        "funktion": "BM",
+                        "bez": "Bundesminister für Europa, Integration und Äußeres",
+                        "mandatVon": "01.03.2014",
+                        "mandatBis": "18.12.2017",
+                        "funktion_von": "01.03.2014",
+                        "funktion_bis": "18.12.2017",
+                        "aktiv": false,
+                        "zeitraum": "01.03.2014-18.12.2017"
+                    },
+                    {
+                        "funktion_text": "Bundesminister für europäische und internationale Angelegenheiten",
+                        "mandat": "Bundesminister für europäische und internationale Angelegenheiten",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "BM",
+                        "funktion": "BM",
+                        "bez": "Bundesminister für europäische und internationale Angelegenheiten",
+                        "mandatVon": "16.12.2013",
+                        "mandatBis": "28.02.2014",
+                        "funktion_von": "16.12.2013",
+                        "funktion_bis": "28.02.2014",
+                        "aktiv": false,
+                        "zeitraum": "16.12.2013-28.02.2014"
+                    },
+                    {
+                        "funktion_text": "Staatssekretär im Bundesministerium für Inneres",
+                        "mandat": "Staatssekretär im Bundesministerium für Inneres",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "STS",
+                        "funktion": "STS",
+                        "bez": "Staatssekretär im Bundesministerium für Inneres",
+                        "mandatVon": "21.04.2011",
+                        "mandatBis": "16.12.2013",
+                        "funktion_von": "21.04.2011",
+                        "funktion_bis": "16.12.2013",
+                        "aktiv": false,
+                        "zeitraum": "21.04.2011-16.12.2013"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 27.08.1986, Wien",
+                "beruflicheTaetigkeit": "Klubobmann",
+                "beruflicherWerdegang": [
+                    "Geschäftsführender Bundesparteiobmann der ÖVP 14.5.2017-1.7.2017"
+                ],
+                "bildungsweg": [
+                    "Präsenzdienst 2004-2005",
+                    "Gymnasium Erlgasse Wien 1996-2004",
+                    "Volksschule Wien 1992-1996"
+                ],
+                "politischeFunktionen": [
+                    "Abgeordneter zum Wiener Landtag und Mitglied des Wiener Gemeinderates 2010-2011",
+                    "Bundesparteiobmann der ÖVP  seit 1.7.2017",
+                    "Bundesobmann der Jungen ÖVP (JVP) 2009-2017",
+                    "Landesobmann der Jungen ÖVP (JVP) Wien 2008-2011",
+                    "Präsident der Politischen Akademie der ÖVP 1.9.2015-12.3.2018",
+                    "Ko-Vorsitzender der EVP-Außenministertreffen 2014-2017"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                65321
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                65321
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                65321
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                65321
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

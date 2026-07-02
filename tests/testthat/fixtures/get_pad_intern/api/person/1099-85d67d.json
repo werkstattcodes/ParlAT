@@ -1,0 +1,297 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Mayer Johann",
+        "generationTime": "Fri Mar 20 10:46:43 UTC 2026",
+        "lang": "de",
+        "title": "Mayer Johann | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/Foto_Platzhalter_Quadrat.svg",
+            "title": "Mayer Johann | Parlament Österreich",
+            "description": "Mitglied des Bundesrates, Christlichsoziale Fraktion im Bundesrate (Christlichsoziale Partei)"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Johann Mayer",
+            "title_plain": "Johann Mayer",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 1099,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/static/img/Foto_Platzhalter_Quadrat.svg",
+                "copyright": "Parlamentsdirektion"
+            },
+            "biografieStand": "18.10.2009",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Mitglied des Bundesrates",
+                        "mandat": "Mitglied des Bundesrates",
+                        "klub": "Christlichsoziale Fraktion im Bundesrate (Christlichsoziale Partei)",
+                        "wahlkreis": "In den Bundesrat entsendet vom Wiener Landtag",
+                        "wahlpartei": "CSP",
+                        "wahlpartei_text": "Christlichsoziale Partei",
+                        "gremium": "BR",
+                        "funktion": "BR",
+                        "bez": "Mitglied des Bundesrates, Christlichsoziale Fraktion im Bundesrate (Christlichsoziale Partei)",
+                        "mandatVon": "01.12.1920",
+                        "mandatBis": "23.12.1922",
+                        "funktion_von": "01.12.1920",
+                        "funktion_bis": "23.12.1922",
+                        "aktiv": false,
+                        "zeitraum": "01.12.1920-23.12.1922"
+                    },
+                    {
+                        "funktion_text": "Mitglied der Konst. Nationalversammlung",
+                        "mandat": "Mitglied der Konst. Nationalversammlung",
+                        "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
+                        "wahlkreis": null,
+                        "wahlpartei": "CSP",
+                        "wahlpartei_text": "Christlichsoziale Partei",
+                        "gremium": "KN",
+                        "funktion": "KN",
+                        "bez": "Mitglied der Konst. Nationalversammlung, Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
+                        "mandatVon": "04.03.1919",
+                        "mandatBis": "21.05.1919",
+                        "funktion_von": "04.03.1919",
+                        "funktion_bis": "21.05.1919",
+                        "aktiv": false,
+                        "zeitraum": "04.03.1919-21.05.1919"
+                    },
+                    {
+                        "funktion_text": "Mitglied der Prov. Nationalversammlung",
+                        "mandat": "Mitglied der Prov. Nationalversammlung",
+                        "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
+                        "wahlkreis": null,
+                        "wahlpartei": "CSP",
+                        "wahlpartei_text": "Christlichsoziale Partei",
+                        "gremium": "PN",
+                        "funktion": "PN",
+                        "bez": "Mitglied der Prov. Nationalversammlung, Christlichsoziale Vereinigung deutscher Abgeordneter (Christlichsoziale Partei)",
+                        "mandatVon": "21.10.1918",
+                        "mandatBis": "16.02.1919",
+                        "funktion_von": "21.10.1918",
+                        "funktion_bis": "16.02.1919",
+                        "aktiv": false,
+                        "zeitraum": "21.10.1918-16.02.1919"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Abgeordnetenhauses",
+                        "mandat": "Mitglied des Abgeordnetenhauses",
+                        "klub": "Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
+                        "wahlkreis": "Kronland: ",
+                        "wahlpartei": "AHF300",
+                        "wahlpartei_text": "Christlichsozial",
+                        "gremium": "AH",
+                        "funktion": "AH",
+                        "bez": "Mitglied des Abgeordnetenhauses (XXII. Session), Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
+                        "mandatVon": "30.05.1917",
+                        "mandatBis": "12.11.1918",
+                        "funktion_von": "30.05.1917",
+                        "funktion_bis": "12.11.1918",
+                        "aktiv": false,
+                        "zeitraum": "30.05.1917-12.11.1918"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Abgeordnetenhauses",
+                        "mandat": "Mitglied des Abgeordnetenhauses",
+                        "klub": "Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
+                        "wahlkreis": "Kronland: ",
+                        "wahlpartei": "AHF300",
+                        "wahlpartei_text": "Christlichsozial",
+                        "gremium": "AH",
+                        "funktion": "AH",
+                        "bez": "Mitglied des Abgeordnetenhauses (XXI. Session), Christlichsoziale Vereinigung deutscher Abgeordneten (Christlichsozial)",
+                        "mandatVon": "17.07.1911",
+                        "mandatBis": "25.07.1914",
+                        "funktion_von": "17.07.1911",
+                        "funktion_bis": "25.07.1914",
+                        "aktiv": false,
+                        "zeitraum": "17.07.1911-25.07.1914"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Abgeordnetenhauses",
+                        "mandat": "Mitglied des Abgeordnetenhauses",
+                        "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
+                        "wahlkreis": "Kronland: ",
+                        "wahlpartei": "AHF300",
+                        "wahlpartei_text": "Christlichsozial",
+                        "gremium": "AH",
+                        "funktion": "AH",
+                        "bez": "Mitglied des Abgeordnetenhauses (XX. Session), Christlichsoziale Vereinigung (Christlichsozial)",
+                        "mandatVon": "20.10.1909",
+                        "mandatBis": "20.03.1911",
+                        "funktion_von": "20.10.1909",
+                        "funktion_bis": "20.03.1911",
+                        "aktiv": false,
+                        "zeitraum": "20.10.1909-20.03.1911"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Abgeordnetenhauses",
+                        "mandat": "Mitglied des Abgeordnetenhauses",
+                        "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
+                        "wahlkreis": "Kronland: ",
+                        "wahlpartei": "AHF300",
+                        "wahlpartei_text": "Christlichsozial",
+                        "gremium": "AH",
+                        "funktion": "AH",
+                        "bez": "Mitglied des Abgeordnetenhauses (XIX. Session), Christlichsoziale Vereinigung (Christlichsozial)",
+                        "mandatVon": "10.03.1909",
+                        "mandatBis": "11.07.1909",
+                        "funktion_von": "10.03.1909",
+                        "funktion_bis": "11.07.1909",
+                        "aktiv": false,
+                        "zeitraum": "10.03.1909-11.07.1909"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Abgeordnetenhauses",
+                        "mandat": "Mitglied des Abgeordnetenhauses",
+                        "klub": "Christlichsoziale Vereinigung (Christlichsozial)",
+                        "wahlkreis": "Kronland: ",
+                        "wahlpartei": "AHF300",
+                        "wahlpartei_text": "Christlichsozial",
+                        "gremium": "AH",
+                        "funktion": "AH",
+                        "bez": "Mitglied des Abgeordnetenhauses (XVIII. Session), Christlichsoziale Vereinigung (Christlichsozial)",
+                        "mandatVon": "17.06.1907",
+                        "mandatBis": "05.02.1909",
+                        "funktion_von": "17.06.1907",
+                        "funktion_bis": "05.02.1909",
+                        "aktiv": false,
+                        "zeitraum": "17.06.1907-05.02.1909"
+                    },
+                    {
+                        "funktion_text": "Vorsitzender des Bundesrates",
+                        "mandat": "Vorsitzender des Bundesrates",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "VB",
+                        "funktion": "VB",
+                        "bez": "Vorsitzender des Bundesrates",
+                        "mandatVon": "01.12.1921",
+                        "mandatBis": "21.02.1922",
+                        "funktion_von": "01.12.1921",
+                        "funktion_bis": "21.02.1922",
+                        "aktiv": false,
+                        "zeitraum": "01.12.1921-21.02.1922"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 28.02.1858, Deutsch-Wagram",
+                "sterbtext": "Verst.: 12.10.1941, Bockfließ",
+                "beruflicheTaetigkeit": "Wirtschaftsbesitzer",
+                "beruflicherWerdegang": [
+                    "Übernahme der väterlichen Mühle 1880"
+                ],
+                "bildungsweg": [
+                    "Handelsschule 1876-1877",
+                    "Berufsschule (erlernter Beruf: Müller) 1870-1875",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Gemeinderates von Großengersdorf",
+                    "Reichsratsabgeordneter 1897",
+                    "Abgeordneter zum Niederösterreichischen Landtag",
+                    "Landeshauptmann-Stellvertreter von Niederösterreich",
+                    "Landeshauptmann von Niederösterreich bis 1922"
+                ],
+                "sonstiges": "<p><\/p><a href=\"/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarier-1848-1918/mayer_3\" target=\"_blank\" title=\"Dieser Link geht in einem neuen Fenster auf\" class=\"link-indicator\">siehe auch: Biografisches Lexikon der Mitglieder der österreichischen Zentralparlamente 1848-1918<\/a><p><\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": null
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1099
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1099
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        }
+    }
+}

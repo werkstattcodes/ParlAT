@@ -693,9 +693,10 @@ record_fixtures(
 )
 
 # --- get_mandates ---
-# No httptest2 fixtures needed: get_mandates_single() calls jsonlite::read_json()
-# directly (not httr2), so httptest2 cannot intercept. Tests use
-# local_mocked_bindings() instead. See test-get_mandates.R.
+# No httptest2 fixtures needed: the unit tests stub get_mandates_single() /
+# get_pad_intern() with local_mocked_bindings(). See test-get_mandates.R.
+# (get_mandates_single() now fetches via httr2, so fixtures could be recorded
+# here if fixture-based tests are added later.)
 
 # --- aux_check_pad_intern_exists ---
 record_fixtures(

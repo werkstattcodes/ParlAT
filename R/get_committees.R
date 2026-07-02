@@ -310,18 +310,10 @@ get_committees_api_request <- function(body_params) {
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-      dnt = "1",
-      origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      # referer = "https://www.parlament.gv.at/recherchieren/ausschuesse/index.html?WFP_009NRBR=NR&WFP_009GP=XXVIII",
-      `sec-ch-ua` = '"Not(A:Brand";v="99", "Google Chrome";v="133", "Chromium";v="133"',
-      `sec-ch-ua-mobile` = "?0",
-      `sec-ch-ua-platform` = '"Windows"',
-      `sec-fetch-dest` = "empty",
-      `sec-fetch-mode` = "cors",
-      `sec-fetch-site` = "same-origin",
-      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" #,
+      origin = "https://www.parlament.gv.at"
     ) %>%
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+    httr2::req_retry(max_tries = 3) %>%
     httr2::req_body_raw(body_params, type = "application/json") %>%
     httr2::req_perform()
 
@@ -337,14 +329,11 @@ get_committee_details <- function(url_committee, details_type) {
 
   # url_committee <- "https://www.parlament.gv.at/ausschuss/XXII/SA-BU/1/00034"
 
-  url_committee_json <- paste0(
-    url_committee,
-    "?json=TRUE"
-  )
-
+  # fetched via httr2 so httptest2 can intercept and record the request
   li_details <- tryCatch(
     {
-      fromJSON(url_committee_json)
+      json_text <- .parlat_fetch_detail_json_text(url_committee)
+      .parlat_parse_detail_json(json_text)$data
     },
     error = function(e) {
       cli::cli_inform("Failed to fetch committee details for URL: {url_committee}")

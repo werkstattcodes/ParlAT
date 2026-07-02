@@ -1,0 +1,218 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Krainer Josef",
+        "generationTime": "Fri Mar 20 09:40:36 UTC 2026",
+        "lang": "de",
+        "title": "Krainer Josef | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/Foto_Platzhalter_Quadrat.svg",
+            "title": "Krainer Josef | Parlament Österreich",
+            "description": "Mitglied des Bundesrates, ÖVP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Josef Krainer",
+            "title_plain": "Josef Krainer",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 953,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/static/img/Foto_Platzhalter_Quadrat.svg",
+                "copyright": "Parlamentsdirektion"
+            },
+            "biografieStand": "29.12.2006",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Mitglied des Bundesrates",
+                        "mandat": "Mitglied des Bundesrates",
+                        "klub": "Bundesratsfraktion der ÖVP",
+                        "wahlkreis": "In den Bundesrat entsendet vom Steiermärkischen Landtag",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "BR",
+                        "funktion": "BR",
+                        "bez": "Mitglied des Bundesrates, ÖVP",
+                        "mandatVon": "07.04.1965",
+                        "mandatBis": "19.04.1968",
+                        "funktion_von": "07.04.1965",
+                        "funktion_bis": "19.04.1968",
+                        "aktiv": false,
+                        "zeitraum": "07.04.1965-19.04.1968"
+                    },
+                    {
+                        "funktion_text": "Vorsitzender des Bundesrates",
+                        "mandat": "Vorsitzender des Bundesrates",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "VB",
+                        "funktion": "VB",
+                        "bez": "Vorsitzender des Bundesrates",
+                        "mandatVon": "01.01.1967",
+                        "mandatBis": "30.06.1967",
+                        "funktion_von": "01.01.1967",
+                        "funktion_bis": "30.06.1967",
+                        "aktiv": false,
+                        "zeitraum": "01.01.1967-30.06.1967"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 16.02.1903, St. Lorenzen (Steiermark)",
+                "sterbtext": "Verst.: 28.11.1971, Allerheiligen bei Wildon (Steiermark)",
+                "beruflicheTaetigkeit": "Landeshauptmann von Steiermark",
+                "beruflicherWerdegang": [
+                    "Während des Zweiten Weltkrieges Arbeit in einer Ziegelei",
+                    "Geschäftsführer des Land- und Forstarbeiterverbandes",
+                    "Ziegelwerksbesitzer",
+                    "Landwirt",
+                    "Knecht und Waldarbeiter"
+                ],
+                "bildungsweg": [
+                    "Forsttechnischer Lehrgang",
+                    "landwirtschaftliche Fachschule",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Abgeordneter zum Steiermärkischen Landtag 1934",
+                    "Bürgermeister-Stellvertreter der Landeshauptstadt Graz 1937",
+                    "Mitglied der Steiermärkischen Landesregierung 1945-1948",
+                    "Landeshauptmann von Steiermark 1948-1971"
+                ],
+                "sonstiges": "<p>Politische Freiheitsstrafe: 1938 kurze Haft.<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                953
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                953
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                953
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}
