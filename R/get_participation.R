@@ -228,13 +228,9 @@ get_participation <- function(
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-      `content-type` = "application/json",
-      cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=9-oz4HlqNiskyx82nuyPCA_jV-I4j7LaDQE6nxlz.appsrv06e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1725286623%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
-      dnt = "1",
-      origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+      origin = "https://www.parlament.gv.at"
     ) %>%
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
     httr2::req_body_raw(body_params, "application/json") %>%
     httr2::req_perform()
 
@@ -249,16 +245,6 @@ get_participation <- function(
     httr2::resp_body_json(simplifyVector = T) %>%
     purrr::pluck("rows") %>%
     as.data.frame()
-
-  checkmate::assert_data_frame(df_res, min.rows = 1)
-
-  if (length(df_res) == 0) {
-    message("No results found for the provided search criteria.")
-    return(NULL)
-  }
-
-  #assign column names
-  colnames(df_res) <- vec_headings
 
   #assign more meaningful col names/translate
 
@@ -279,6 +265,14 @@ get_participation <- function(
     "ressort" = "ministry"
   )
 
+  if (NROW(df_res) == 0 || length(df_res) == 0) {
+    cli::cli_inform("No results found for the provided search criteria.")
+    return(.parlat_empty_tibble(unname(renaming_map), date_cols = "date"))
+  }
+
+  #assign column names
+  colnames(df_res) <- vec_headings
+
   df_res <- df_res %>%
     dplyr::rename_with(
       .fn = \(x) renaming_map[x],
@@ -287,7 +281,8 @@ get_participation <- function(
 
   df_res <- df_res %>%
     dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
-    dplyr::mutate(date = lubridate::dmy(date))
+    dplyr::mutate(date = lubridate::dmy(date)) %>%
+    tibble::as_tibble()
 
   return(df_res)
 }

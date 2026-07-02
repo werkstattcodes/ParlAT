@@ -23,7 +23,7 @@ get_mandates_single <- function(pad_intern) {
   )
 
   if (is.null(file_json)) {
-    print(glue::glue("No data found for pad_intern {pad_intern}."))
+    cli::cli_inform("No data found for pad_intern {pad_intern}.")
     return(NULL)
   }
 
@@ -160,7 +160,7 @@ get_mandates <- function(
     return(df_res)
   }
 
-  if (is.null(pad_intern) && !is.na(name)) {
+  if (is.null(pad_intern) && !is.null(name)) {
     df_persons <- get_pad_intern(name)
 
     if (is.null(df_persons) || nrow(df_persons) == 0) {
@@ -175,7 +175,7 @@ get_mandates <- function(
   pad_intern_unique <- unique(pad_intern)
 
   if (length(pad_intern_unique) != length(pad_intern)) {
-    print("Duplicate pad_interns removed")
+    cli::cli_inform("Duplicate pad_interns removed.")
   }
 
   pb_id <- cli::cli_progress_bar(
@@ -318,7 +318,7 @@ get_mandates <- function(
     }
 
     if (nrow(df_res) == 0) {
-      print(glue::glue("No mandates found for institution {institution}."))
+      cli::cli_inform("No mandates found for institution {institution}.")
       return(NULL)
     }
 
@@ -354,6 +354,11 @@ get_pad_intern <- function(name) {
   checkmate::assert_character(name, len = 1)
 
   pad_intern_mps <- get_mps(search_string = name, echo = FALSE)
+
+  if (is.null(pad_intern_mps) || nrow(pad_intern_mps) == 0) {
+    cli::cli_inform("No person found for name {.val {name}}.")
+    return(.parlat_empty_tibble(c("pad_intern", "names_variants")))
+  }
 
   if (!is.null(pad_intern_mps) && nrow(pad_intern_mps) > 0) {
     pad_intern_mps <- pad_intern_mps %>%
