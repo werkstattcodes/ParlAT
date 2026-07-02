@@ -762,8 +762,12 @@ get_mps <- function(
   }
 
   if (nrow(df_res) == 0) {
-    message("No results found for the search criteria provided.")
-    return(NULL)
+    cli::cli_inform("No results found for the search criteria provided.")
+    empty_cols <- c(
+      if (!is.null(date)) "date",
+      "legis_period", "pad_intern", "link", "name", "gender", "mp_details"
+    )
+    return(.parlat_empty_tibble(empty_cols, list_cols = "mp_details"))
   }
 
   # UNNEST DATA

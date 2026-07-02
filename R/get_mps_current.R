@@ -164,7 +164,7 @@
 #' - `electoral_district_region_code`: Electoral district region code
 #' - `chamber`: Chamber of Parliament ("NR" or "BR")
 #'
-#' Returns NULL if no results are found.
+#' Returns a zero-row tibble with the documented columns if no results are found.
 #'
 #' @examples
 #' \donttest{
@@ -218,7 +218,13 @@ get_mps_current <- function(
             state = state,
             electoral_district = electoral_district,
             echo = echo
-        ) %>%
+        )
+
+        if (is.null(df_NR) || nrow(df_NR) == 0) {
+            return(.empty_mps_current_tibble())
+        }
+
+        df_NR <- df_NR %>%
             dplyr::mutate(time_stamp = Sys.time()) #add timestamp to make 'current' specific
 
         #Parse output; get meaningful column names
@@ -299,6 +305,10 @@ get_mps_current <- function(
             state = state,
             echo = echo
         )
+
+        if (is.null(df_res) || nrow(df_res) == 0) {
+            return(.empty_mps_current_tibble())
+        }
 
         #add/drop/rename columns
         df_res <- df_res %>%
@@ -1026,7 +1036,7 @@ get_mps_NR_current_api_request <- function(body_params) {
 #'   Default is NULL.
 #'
 #' @return A data frame containing information about Federal Council members matching
-#'   the specified criteria. Returns NULL if no results are found, along with a message.
+#'   the specified criteria. Returns NULL if no results are found, along with a message (internal helper).
 #'
 #' @examples
 #' \donttest{
@@ -1306,4 +1316,18 @@ aux_extract_name <- function(string) {
             last = ", "
         )
     }
+}
+
+
+#' Zero-row tibble matching the documented columns of get_mps_current()
+#' @noRd
+.empty_mps_current_tibble <- function() {
+    .parlat_empty_tibble(
+        c(
+            "time_stamp", "pad_intern", "name", "gender", "parl_group",
+            "parl_group_code", "party_name", "party_code", "state",
+            "electoral_district_region_code", "chamber"
+        ),
+        datetime_cols = "time_stamp"
+    )
 }

@@ -42,7 +42,7 @@
 #'   - `party`: Party affiliation (character, may be NA)
 #'   - `member_url`: URL to member's profile page (character)
 #'
-#' Returns NULL if no results are found for the provided search criteria.
+#' Returns a zero-row tibble with the documented columns if no results are found.
 #'
 #' @examples
 #' \donttest{
@@ -133,11 +133,11 @@ get_committees <- function(
   )
 
   if (as.numeric(as.roman(legis_period)) < 20) {
-    warning(
-      "Data only available from legislative period 20 onwards.",
-      call. = FALSE
-    )
-    return(NULL)
+    cli::cli_warn("Data only available from legislative period 20 onwards.")
+    return(.parlat_empty_tibble(
+      c("committee", "url_committee", "id_number", "citation"),
+      int_cols = "id_number"
+    ))
   }
 
   #PERMANENT
@@ -197,8 +197,11 @@ get_committees <- function(
 
   # Handle empty results
   if (length(df_res) == 0) {
-    message("No results found for the provided search criteria.")
-    return(NULL)
+    cli::cli_inform("No results found for the provided search criteria.")
+    return(.parlat_empty_tibble(
+      c("committee", "url_committee", "id_number", "citation"),
+      int_cols = "id_number"
+    ))
   }
 
   colnames(df_res) <- vec_headings

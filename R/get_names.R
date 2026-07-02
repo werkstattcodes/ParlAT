@@ -35,6 +35,17 @@
 #' result <- get_names(c(1130, 83124))
 #' dplyr::glimpse(result)
 #' }
+.empty_names_tibble <- function() {
+  .parlat_empty_tibble(
+    c(
+      "index", "pad_intern", "name", "date_start", "date_end",
+      "name_clean", "name_family", "name_given", "note"
+    ),
+    int_cols = "index",
+    date_cols = c("date_start", "date_end")
+  )
+}
+
 get_names <- function(pad_intern, date = NULL, latest = NULL) {
   if (length(pad_intern) > 1) {
     return(
@@ -49,8 +60,8 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
 
   # check if pad_intern actually exists
   if (aux_check_pad_intern_exists(pad_intern = pad_intern) != TRUE) {
-    message(paste0("No MP registered under this pad_intern: ", pad_intern))
-    return(NULL)
+    cli::cli_inform("No MP registered under this pad_intern: {pad_intern}.")
+    return(.empty_names_tibble())
   }
 
   link_file_json <- glue::glue(
@@ -68,7 +79,8 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
   )
 
   if (is.null(file_json)) {
-    return(NA)
+    cli::cli_warn("Could not retrieve data for pad_intern {pad_intern}.")
+    return(.empty_names_tibble())
   }
 
   #CURRENT NAMES
@@ -260,6 +272,9 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
     df_names <- df_names %>%
       dplyr::mutate(index = 1)
   }
+
+  df_names <- df_names %>%
+    tibble::as_tibble()
 
   if (!is.null(latest) && latest == TRUE) {
     df_names %>%

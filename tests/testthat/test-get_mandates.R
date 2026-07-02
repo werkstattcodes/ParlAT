@@ -232,14 +232,22 @@ test_that("get_mandates removes duplicate pad_interns", {
   expect_equal(call_count, 2L)
 })
 
-test_that("get_mandates returns NULL when no data found", {
+test_that("get_mandates returns an empty tibble when no data found", {
   local_mocked_bindings(
     get_mandates_single = function(pad_intern) NULL
   )
 
-  result <- get_mandates(pad_intern = "999999")
+  expect_message(
+    result <- get_mandates(pad_intern = "999999"),
+    "No mandates found"
+  )
 
-  expect_null(result)
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0)
+  expect_true(all(
+    c("pad_intern", "name", "position_code", "position_name") %in%
+      names(result)
+  ))
 })
 
 
@@ -275,14 +283,18 @@ test_that("get_mandates filters by institution = 'BR'", {
   expect_equal(nrow(result), 1)
 })
 
-test_that("get_mandates returns NULL when institution filter yields no results", {
+test_that("get_mandates returns an empty tibble when institution filter yields no results", {
   local_mocked_bindings(
     get_mandates_single = function(pad_intern) mock_mandate_row(funktion = "BM")
   )
 
-  result <- get_mandates(pad_intern = "145", institution = "NR")
+  expect_message(
+    result <- get_mandates(pad_intern = "145", institution = "NR"),
+    "No mandates found for institution NR"
+  )
 
-  expect_null(result)
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0)
 })
 
 test_that("get_mandates with institution = NULL returns all mandates", {
@@ -367,7 +379,7 @@ test_that("get_mandates looks up pad_intern when name is provided", {
   expect_equal(result$pad_intern, "145")
 })
 
-test_that("get_mandates returns NULL when name lookup yields no results", {
+test_that("get_mandates returns an empty tibble when name lookup yields no results", {
   local_mocked_bindings(
     get_pad_intern = function(name) NULL
   )
@@ -376,7 +388,8 @@ test_that("get_mandates returns NULL when name lookup yields no results", {
     result <- get_mandates(name = "NonExistentPerson"),
     "No mandates found"
   )
-  expect_null(result)
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0)
 })
 
 

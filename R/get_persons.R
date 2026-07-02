@@ -3,7 +3,7 @@
 #' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
 #' @param echo Logical. If `TRUE`, prints the API request body parameters, the constructed URL, and the number of results. Default is `FALSE`.
 #'
-#' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`). Returns `NULL` if no results are found.
+#' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`). Returns a zero-row tibble if no results are found.
 #' @noRd
 
 get_persons_single <- function(
@@ -167,7 +167,7 @@ get_persons_single <- function(
 #' @return A data frame with one row per matching person and the columns `pad_intern`,
 #'   `name`, `gender`, `position`, and `link`. When `mandates = TRUE`, the
 #'   returned data frame additionally contains mandate details for each person.
-#'   Returns `NULL` with a message if no persons are found.
+#'   Returns a zero-row tibble with a message if no persons are found.
 #'
 #' @export
 #'
@@ -203,11 +203,15 @@ get_persons <- function(
     )
   }
 
-  df_persons <- li_persons %>% purrr::list_rbind()
+  df_persons <- li_persons %>%
+    purrr::list_rbind() %>%
+    tibble::as_tibble()
 
   if (nrow(df_persons) == 0) {
-    message("No person found for the given search criteria.")
-    return(NULL)
+    cli::cli_inform("No person found for the given search criteria.")
+    return(.parlat_empty_tibble(
+      c("pad_intern", "name", "gender", "position", "link")
+    ))
   }
 
   if (isTRUE(mandates)) {

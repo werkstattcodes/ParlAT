@@ -1,3 +1,19 @@
+#' Zero-row tibble matching the stable core columns of get_mandates()
+#' @noRd
+.empty_mandates_tibble <- function() {
+  .parlat_empty_tibble(
+    c(
+      "pad_intern", "name", "position_text", "position_code",
+      "position_name", "position_date_start", "position_date_end",
+      "position_active", "parl_group", "electoral_district_region_code",
+      "electoral_district_region", "legis_period", "url_biography"
+    ),
+    date_cols = c("position_date_start", "position_date_end"),
+    lgl_cols = "position_active",
+    list_cols = "legis_period"
+  )
+}
+
 #' @title Get mandates single mandate
 #' @description
 #' Auxiliary function which retrieves mandates for a single person. Is used internally
@@ -164,8 +180,8 @@ get_mandates <- function(
     df_persons <- get_pad_intern(name)
 
     if (is.null(df_persons) || nrow(df_persons) == 0) {
-      message("No mandates found.")
-      return(NULL)
+      cli::cli_inform("No mandates found.")
+      return(.empty_mandates_tibble())
     } else {
       pad_intern <- df_persons$pad_intern
     }
@@ -197,8 +213,9 @@ get_mandates <- function(
   df_res <- purrr::list_rbind(li_res) %>%
     dplyr::as_tibble()
 
-  if (is.null(df_res) | nrow(df_res) == 0) {
-    return(NULL)
+  if (is.null(df_res) || nrow(df_res) == 0) {
+    cli::cli_inform("No mandates found.")
+    return(.empty_mandates_tibble())
   }
 
   #filter by date
@@ -319,7 +336,7 @@ get_mandates <- function(
 
     if (nrow(df_res) == 0) {
       cli::cli_inform("No mandates found for institution {institution}.")
-      return(NULL)
+      return(.empty_mandates_tibble())
     }
 
     return(df_res)

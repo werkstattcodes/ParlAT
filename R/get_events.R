@@ -94,7 +94,7 @@
 #'   - "Theophil Hansen | Lokal 3"
 #'   - "virtuell"
 #'
-#' @return A data frame containing event details with the following columns, or NULL if no results are found:
+#' @return A tibble containing event details with the following columns (zero rows if no results are found):
 #' - `date`: Event date (parsed as Date)
 #' - `date_time_start`: Event start date and time (parsed as POSIXct)
 #' - `date_time_end`: Event end date and time (parsed as POSIXct)
@@ -413,8 +413,18 @@ get_events <- function(
     }
 
     if (is.null(df_res) || nrow(df_res) == 0) {
-        message("No results found for the provided search criteria.")
-        return(NULL)
+        cli::cli_inform("No results found for the provided search criteria.")
+        return(.parlat_empty_tibble(
+            c(
+                "date", "date_time_start", "date_time_end", "title",
+                "event_type", "location", "topic", "institution",
+                "media_relevance", "guidance_type", "group", "view",
+                "fully_booked", "registration", "livestream_url",
+                "available", "language", "link", "link2"
+            ),
+            date_cols = "date",
+            datetime_cols = c("date_time_start", "date_time_end")
+        ))
     }
 
     if ("link2" %in% colnames(df_res)) {

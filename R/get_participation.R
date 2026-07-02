@@ -29,7 +29,7 @@
 #' * `support`: Number of supporters
 #' * `ministry`: Responsible ministry
 #'
-#' Returns NULL if no results are found for the provided search criteria.
+#' Returns a zero-row tibble with the documented columns if no results are found.
 #'
 #' @details
 #' This function sends a request to the Austrian Parliament's API to retrieve participation data based on the provided filter criteria. It performs input validation for each parameter and constructs the API request accordingly.

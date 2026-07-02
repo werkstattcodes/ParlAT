@@ -1198,8 +1198,16 @@ get_items <- function(
 
   # STOP IF NO HITS
   if (is.null(df_res) || nrow(df_res) == 0) {
-    cli::cli_alert_warning("No results found for the provided search criteria.")
-    return(NULL)
+    cli::cli_inform("No results found for the provided search criteria.")
+    return(.parlat_empty_tibble(
+      c(
+        "legis_period", "institution", "date", "item_type", "item_number",
+        "item_number_type", "stage", "item_url", "type_doc", "type_doc_long",
+        "subject", "topics", "keywords", "eurovoc", "persons", "parl_group"
+      ),
+      date_cols = "date",
+      list_cols = c("topics", "keywords", "eurovoc", "persons", "parl_group")
+    ))
   }
 
   # WARN IF RESULT LIMIT REACHED

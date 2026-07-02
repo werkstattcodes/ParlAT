@@ -83,7 +83,7 @@ test_that("get_committees parameter combination validation works", {
 })
 
 test_that("get_committees warns for legislative periods before 20", {
-  # Test period 19 triggers warning and returns NULL
+  # Test period 19 triggers warning and returns a zero-row tibble
   expect_warning(
     result <- get_committees(
       institution = "NR",
@@ -92,8 +92,10 @@ test_that("get_committees warns for legislative periods before 20", {
     "Data only available from legislative period 20 onwards"
   )
 
-  # Should return NULL for periods before 20
-  expect_null(result)
+  # Should return a typed zero-row tibble for periods before 20
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0)
+  expect_named(result, c("committee", "url_committee", "id_number", "citation"))
 
   # Test with period 1 as well
   expect_warning(
@@ -103,7 +105,8 @@ test_that("get_committees warns for legislative periods before 20", {
     ),
     "Data only available from legislative period 20 onwards"
   )
-  expect_null(result2)
+  expect_s3_class(result2, "tbl_df")
+  expect_equal(nrow(result2), 0)
 
   # Test with Roman numeral input
   expect_warning(
@@ -113,7 +116,8 @@ test_that("get_committees warns for legislative periods before 20", {
     ),
     "Data only available from legislative period 20 onwards"
   )
-  expect_null(result3)
+  expect_s3_class(result3, "tbl_df")
+  expect_equal(nrow(result3), 0)
 })
 
 test_that("get_committees works with different institutions", {
@@ -188,8 +192,10 @@ test_that("get_committees handles empty results gracefully", {
     )
   }, fixture_subdir = "get_committees")
 
-  # Should return NULL for no results
-  expect_true(is.null(x))
+  # Should return a typed zero-row tibble for no results
+  expect_s3_class(x, "tbl_df")
+  expect_equal(nrow(x), 0)
+  expect_named(x, c("committee", "url_committee", "id_number", "citation"))
 })
 
 test_that("get_committees works with different legis_period types", {

@@ -373,13 +373,19 @@ get_mps_details_plenary <- function(
         httr2::resp_body_json(simplifyVector = TRUE) #simplifyVector = TRUE !!
 
     df_res <- li_res %>% pluck("rows") %>% as.data.frame()
-    # ncol(df_res)
-    # class(df_res)
 
     # Exit if no match
-    if (nrow(df_res) == 0 || is.null(df_res)) {
-        message("No data found for the given parameters.")
-        return(invisible(NULL))
+    if (is.null(df_res) || nrow(df_res) == 0) {
+        cli::cli_inform("No data found for the given parameters.")
+        return(.parlat_empty_tibble(
+            c(
+                "pad_intern", "name", "position_name", "date", "legis_period",
+                "institution", "speech_title", "meeting_url", "meeting_name",
+                "speech_transcript_url", "speech_media_url"
+            ),
+            date_cols = "date",
+            list_cols = "position_name"
+        ))
     }
 
     vec_names <- li_res %>%
@@ -643,12 +649,17 @@ get_mps_details_activities <- function(
         httr2::resp_body_json(simplifyVector = TRUE) #simplifyVector = TRUE !!
 
     df_res <- li_res %>% pluck("rows") %>% as.data.frame()
-    # print(df_res)
 
     # Exit if no match
-    if (nrow(df_res) == 0 || is.null(df_res)) {
-        message("No data found for the given parameters.")
-        return(invisible(NULL))
+    if (is.null(df_res) || nrow(df_res) == 0) {
+        cli::cli_inform("No data found for the given parameters.")
+        return(.parlat_empty_tibble(
+            c(
+                "pad_intern", "legis_period", "institution", "frmdate",
+                "ityp_komm", "item_number", "item_type", "title",
+                "date_updated", "item_url", "status_numeric", "status_text"
+            )
+        ))
     }
 
     vec_names <- li_res %>%
@@ -927,9 +938,17 @@ get_mps_details_committees <- function(
     df_res <- li_res %>% pluck("rows") %>% as.data.frame()
 
     # Exit if no match
-    if (nrow(df_res) == 0 || is.null(df_res)) {
-        message("No committee data found for the given parameters.")
-        return(invisible(NULL))
+    if (is.null(df_res) || nrow(df_res) == 0) {
+        cli::cli_inform("No committee data found for the given parameters.")
+        return(.parlat_empty_tibble(
+            c(
+                "pad_intern", "name", "legis_period", "committee_name",
+                "committee_position", "institution",
+                "committee_position_start", "committee_position_end",
+                "committee_active", "committee_url"
+            ),
+            lgl_cols = "committee_active"
+        ))
     }
 
     #RENAME AND SELECT VARIALBES
@@ -985,7 +1004,7 @@ get_mps_details_committees <- function(
 
     #ADD MPinfo
 
-    mp_name <- get_names(pad_intern = pad_intern)$name
+    mp_name <- get_names(pad_intern = pad_intern, latest = TRUE)$name
 
     df_res <- df_res %>%
         dplyr::mutate(pad_intern = !!pad_intern, .before = 1) %>%

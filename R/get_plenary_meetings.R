@@ -10,7 +10,7 @@
 #' @param session_type A character string or vector. Filter by meeting period type. Permissible values: `"N"` (Ordentliche Tagung / Ordinary session), `"A"` (Ausserordentliche Tagung / Extraordinary session). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".
 #' @param meeting_type A character string or vector. Filter by sitting type. Permissible values: `"S"` (Sitzung / Regular sitting), `"SO"` (Sondersitzung / Special sitting), `"ZU"` (Zuweisungssitzung / Assignment sitting), `"N"` (Nachtrag / Addendum). Can be NULL to retrieve all sitting types. Only applicable when `meeting_and_activities = "meetings"`.
 #' @param echo Logical. If `TRUE`, prints the API request body parameters and the number of results. Default is `FALSE`.
-#' @return A data frame containing plenary meeting details, or NULL if no results found. The structure depends on the `meeting_and_activities` parameter:
+#' @return A tibble containing plenary meeting details (zero rows if no results are found). The structure depends on the `meeting_and_activities` parameter:
 #'
 #' If *`meeting_and_activities = "meetings"`*:
 #' - `institution`: parliamentary institution (e.g., "NR", "BR")
@@ -295,11 +295,35 @@ get_plenary_meetings <- function(
         df
     }
 
+    # EMPTY RESULT HELPER (schema depends on the requested mode)
+    .empty_result <- function() {
+        is_meetings_mode <- (institution == "BV") ||
+            (!is.null(meeting_and_activities) &&
+                meeting_and_activities == "meetings")
+        if (is_meetings_mode) {
+            cols <- c(
+                "institution", "legis_period", "date", "meeting_number",
+                "meeting_url", "meeting_type", "meeting_title",
+                "session_type", "agenda_url_html", "agenda_url_pdf"
+            )
+            if (institution == "BV") {
+                cols <- setdiff(cols, "legis_period")
+            }
+        } else {
+            cols <- c(
+                "institution", "legis_period", "date", "title", "url_item",
+                "meeting_number", "url_meeting", "session_type",
+                "activity_type", "doc_type", "citation"
+            )
+        }
+        .parlat_empty_tibble(cols, date_cols = "date")
+    }
+
     df_page1 <- .parse_rows(res_body$rows)
 
     if (is.null(df_page1)) {
         cli::cli_inform("No results found for the provided search criteria.")
-        return(NULL)
+        return(.empty_result())
     }
 
     # PAGINATE REMAINING PAGES
@@ -326,9 +350,11 @@ get_plenary_meetings <- function(
         df_res <- df_page1
     }
 
+    df_res <- tibble::as_tibble(df_res)
+
     if (nrow(df_res) == 0) {
         cli::cli_inform("No results found for the provided search criteria.")
-        return(NULL)
+        return(.empty_result())
     }
 
     # CLIENT-SIDE SIAKT FILTER (belt-and-suspenders; server filters by array body
@@ -340,7 +366,7 @@ get_plenary_meetings <- function(
 
     if (nrow(df_res) == 0) {
         cli::cli_inform("No results found for the provided search criteria.")
-        return(NULL)
+        return(.empty_result())
     }
 
     # AGENDA HTML PARSER (extracts PDF and HTML URLs from AGENDA HTML snippet)

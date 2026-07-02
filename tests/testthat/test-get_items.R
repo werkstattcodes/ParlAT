@@ -160,7 +160,12 @@ test_that("get_items handles empty results gracefully", {
     fixture_subdir = "get_items"
   )
 
-  expect_null(result)
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0)
+  expect_true(all(
+    c("legis_period", "institution", "date", "subject", "topics") %in%
+      names(result)
+  ))
 })
 
 test_that("get_items works with multiple parameters", {
@@ -888,8 +893,9 @@ test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-2
     fixture_subdir = "get_items"
   )
 
-  # Expect NULL for empty results (following package convention)
-  expect_null(result)
+  # Expect a typed zero-row tibble for empty results (package convention)
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0)
 })
 
 test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27)", {
