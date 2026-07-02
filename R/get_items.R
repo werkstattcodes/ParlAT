@@ -1180,7 +1180,6 @@ get_items <- function(
     httr2::req_body_raw(body_params, "application/json") %>%
     # httr2::req_body_json(body_params) %>%
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)")
-  #browser()
   resp <- httr2::req_perform(req)
   resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
   vec_headings <- resp_json %>%
