@@ -100,7 +100,7 @@ get_plenary_meetings <- function(
 
     # BV constraint: legis_period must be NULL
     if (institution == "BV" && !is.null(legis_period)) {
-        stop(
+        cli::cli_abort(
             "legis_period must be NULL for institution 'BV'. Filtering by legislative period is not supported for 'Bundesversammlung'."
         )
     }
@@ -116,12 +116,10 @@ get_plenary_meetings <- function(
             })
             if (!all(is_valid_format)) {
                 invalid_values <- legis_period[!is_valid_format]
-                stop(
-                    "Invalid legislative period(s) provided: ",
-                    paste(invalid_values, collapse = ", "),
-                    ". Permissible inputs are numeric values (e.g., 27) or Roman numerals (e.g., 'XXVII').",
-                    call. = FALSE
-                )
+                cli::cli_abort(c(
+                    "Invalid legislative period{?s} provided: {.val {invalid_values}}.",
+                    "i" = "Permissible inputs are numeric values (e.g., 27) or Roman numerals (e.g., 'XXVII')."
+                ))
             }
 
             legis_period_numeric <- aux_convert_legis_periods(
@@ -131,12 +129,8 @@ get_plenary_meetings <- function(
                 as.numeric()
 
             if (any(legis_period_numeric < 20)) {
-                stop(
-                    "Only data from the 20th legislative period onwards can be queried. ",
-                    "You provided: ",
-                    paste(legis_period, collapse = ", "),
-                    ".",
-                    call. = FALSE
+                cli::cli_abort(
+                    "Only data from the 20th legislative period onwards can be queried. You provided: {.val {legis_period}}."
                 )
             }
 
@@ -282,13 +276,8 @@ get_plenary_meetings <- function(
         }
         df <- as.data.frame(rows_raw, stringsAsFactors = FALSE)
         if (ncol(df) != length(vec_headings)) {
-            stop(
-                "Column mismatch between response rows (",
-                ncol(df),
-                ") and header definitions (",
-                length(vec_headings),
-                ").",
-                call. = FALSE
+            cli::cli_abort(
+                "Column mismatch between response rows ({ncol(df)}) and header definitions ({length(vec_headings)})."
             )
         }
         colnames(df) <- vec_headings

@@ -197,16 +197,14 @@ get_mps_details <- function(
 ) {
     # detail_type must be supplied and valid
     if (missing(detail_type) || is.null(detail_type)) {
-        stop(
-            "`detail_type` is a required parameter: Add 'activities', 'committees', or 'plenary'.",
-            call. = FALSE
+        cli::cli_abort(
+            "`detail_type` is a required parameter: Add 'activities', 'committees', or 'plenary'."
         )
     }
 
     if (detail_type == "plenary" && !is.null(search_string)) {
-        stop(
-            "search_string is only supported for details type 'activities' and 'committees', but not for plenary details.",
-            call. = FALSE
+        cli::cli_abort(
+            "search_string is only supported for details type 'activities' and 'committees', but not for plenary details."
         )
     }
 
@@ -217,9 +215,8 @@ get_mps_details <- function(
     )
 
     if (aux_check_pad_intern_exists(pad_intern) == FALSE) {
-        stop(
-            "`pad_intern` value is invalid. No entry found under this id.",
-            call. = FALSE
+        cli::cli_abort(
+            "`pad_intern` value is invalid. No entry found under this id."
         )
     }
 
@@ -229,9 +226,8 @@ get_mps_details <- function(
     )
 
     if (!is.null(item) && detail_type != "activities") {
-        stop(
-            "`item` is only supported for details type 'activities'.",
-            call. = FALSE
+        cli::cli_abort(
+            "`item` is only supported for details type 'activities'."
         )
     }
 
@@ -325,10 +321,8 @@ get_mps_details_plenary <- function(
         legis_period <- as.roman(legis_period)
 
         if (min(as.numeric(legis_period)) < 20) {
-            stop(
-                "Only data from the 20th legislative period onwards can be queried. ",
-                "You provided legis_period = ", min(as.numeric(legis_period)), ".",
-                call. = FALSE
+            cli::cli_abort(
+                "Only data from the 20th legislative period onwards can be queried. You provided legis_period = {min(as.numeric(legis_period))}."
             )
         }
     }
@@ -480,11 +474,7 @@ get_mps_details_plenary <- function(
         "sitzung_url" = "meeting_url"
     )
 
-    df_res <- df_res %>%
-        dplyr::rename_with(
-            .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-            .cols = any_of(names(renaming_map))
-        )
+    df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
     # standardize institution names in output
     df_res <- df_res %>%
@@ -544,26 +534,13 @@ get_mps_details_plenary <- function(
 
     #ECHO
     if (echo) {
-        print(body_params)
-
-        body_params_li <- jsonlite::fromJSON(body_params)
-
-        query_string <- purrr::imap(
-            body_params_li,
-            \(x, y) {
-                glue::glue(
-                    "BIO_250{URLencode(y)}={URLencode(as.character(x))}"
-                )
-            }
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/person/{pad_intern}?{query_string}&selectedtab=PLENUM"
-        ))
-        print(nrow(df_res))
+        .parlat_echo_request(
+            body_params,
+            url_base = glue::glue("https://www.parlament.gv.at/person/{pad_intern}"),
+            param_prefix = "BIO_250",
+            n_results = nrow(df_res),
+            url_suffix = "&selectedtab=PLENUM"
+        )
     }
 
     return(df_res)
@@ -603,10 +580,8 @@ get_mps_details_activities <- function(
         legis_period <- as.roman(legis_period)
 
         if (min(as.numeric(legis_period)) < 20) {
-            stop(
-                "Only data from the 20th legislative period onwards can be queried. ",
-                "You provided legis_period = ", min(as.numeric(legis_period)), ".",
-                call. = FALSE
+            cli::cli_abort(
+                "Only data from the 20th legislative period onwards can be queried. You provided legis_period = {min(as.numeric(legis_period))}."
             )
         }
     }
@@ -730,11 +705,7 @@ get_mps_details_activities <- function(
         # "sitzung_url" = "meeting_url"
     )
 
-    df_res <- df_res %>%
-        dplyr::rename_with(
-            .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-            .cols = any_of(names(renaming_map))
-        )
+    df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
     # standardize institution names in output
     df_res <- df_res %>%
@@ -805,26 +776,13 @@ get_mps_details_activities <- function(
 
     #ECHO
     if (echo) {
-        print(body_params)
-
-        body_params_li <- jsonlite::fromJSON(body_params)
-
-        query_string <- purrr::imap(
-            body_params_li,
-            \(x, y) {
-                glue::glue(
-                    "PERS_AKTIVIT_025{URLencode(y)}={URLencode(as.character(x))}"
-                )
-            }
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/person/{pad_intern}?{query_string}&selectedtab=AKT"
-        ))
-        print(nrow(df_res))
+        .parlat_echo_request(
+            body_params,
+            url_base = glue::glue("https://www.parlament.gv.at/person/{pad_intern}"),
+            param_prefix = "PERS_AKTIVIT_025",
+            n_results = nrow(df_res),
+            url_suffix = "&selectedtab=AKT"
+        )
     }
 
     return(df_res)
@@ -871,10 +829,8 @@ get_mps_details_committees <- function(
         legis_period_roman <- as.roman(legis_period)
 
         if (min(as.numeric(legis_period_roman)) < 20) {
-            stop(
-                "Only data from the 20th legislative period onwards can be queried. ",
-                "You provided legis_period = ", min(as.numeric(legis_period_roman)), ".",
-                call. = FALSE
+            cli::cli_abort(
+                "Only data from the 20th legislative period onwards can be queried. You provided legis_period = {min(as.numeric(legis_period_roman))}."
             )
         }
 
@@ -964,11 +920,7 @@ get_mps_details_committees <- function(
         # "V11" = "committee_duration"
     )
 
-    df_res <- df_res %>%
-        dplyr::rename_with(
-            .fn = \(x) renaming_map[x],
-            .cols = any_of(names(renaming_map))
-        )
+    df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
     df_res <- df_res %>%
         dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
@@ -1012,26 +964,13 @@ get_mps_details_committees <- function(
 
     #ECHO
     if (echo) {
-        print(body_params)
-
-        body_params_li <- jsonlite::fromJSON(body_params)
-
-        query_string <- purrr::imap(
-            body_params_li,
-            \(x, y) {
-                glue::glue(
-                    "AUSSCHUSS_BIO_250{URLencode(y)}={URLencode(as.character(x))}"
-                )
-            }
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/person/{pad_intern}?{query_string}&selectedtab=AUS"
-        ))
-        print(nrow(df_res))
+        .parlat_echo_request(
+            body_params,
+            url_base = glue::glue("https://www.parlament.gv.at/person/{pad_intern}"),
+            param_prefix = "AUSSCHUSS_BIO_250",
+            n_results = nrow(df_res),
+            url_suffix = "&selectedtab=AUS"
+        )
     }
 
     return(df_res)

@@ -42,7 +42,7 @@
 #' }
 get_legis_periods <- function(legis_period = NULL, date = NULL) {
   if (!is.null(legis_period) && !is.null(date)) {
-    stop("Please provide either legis_period or date, not both.")
+    cli::cli_abort("Please provide either legis_period or date, not both.")
   }
 
   #convert roman numerals in character format to numeric, ensure all inputs are character

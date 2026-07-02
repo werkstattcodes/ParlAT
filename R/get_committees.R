@@ -116,7 +116,7 @@ get_committees <- function(
   # Check length first for more informative error message
 
   if (length(legis_period) > 1) {
-    stop("Function allows only for one single legislative period")
+    cli::cli_abort("Function allows only for one single legislative period")
   }
 
   if (
@@ -124,7 +124,7 @@ get_committees <- function(
       is.null(legis_period) ||
       !(any(is.character(legis_period), is.numeric(legis_period)))
   ) {
-    stop("legis_period must be of class numeric or character")
+    cli::cli_abort("legis_period must be of class numeric or character")
   }
 
   legis_period <- aux_convert_legis_periods(
@@ -153,7 +153,7 @@ get_committees <- function(
   ## if `permanent`==T => searching for subcommittees is not possible
 
   if (isTRUE(permanent) && isTRUE(include_subcommittees)) {
-    stop(
+    cli::cli_abort(
       "Searching for subcommittees is only possible if `permanent` is not TRUE."
     )
   }
@@ -181,7 +181,7 @@ get_committees <- function(
 
   # Check if API request was successful
   if (httr2::resp_is_error(res)) {
-    stop("API request failed with status: ", httr2::resp_status(res))
+    cli::cli_abort("API request failed with status: {httr2::resp_status(res)}")
   }
 
   vec_headings <- res %>%
@@ -262,14 +262,8 @@ get_committees <- function(
       df_res <- df_res %>%
         tidyr::unnest({{ details_type }})
     } else {
-      warning(
-        paste0(
-          "Column '",
-          details_type,
-          "' not found in committee details. ",
-          "Available columns: ",
-          paste(colnames(df_res), collapse = ", ")
-        )
+      cli::cli_warn(
+        "Column {.val {details_type}} not found in committee details. Available columns: {.val {colnames(df_res)}}."
       )
     }
   }
@@ -288,23 +282,11 @@ get_committees <- function(
 
   # ECHO
   if (isTRUE(echo)) {
-    print(body_params)
-    # print url to results / transparency reasons
-    body_params_li <- jsonlite::fromJSON(body_params)
-
-    query_string <- purrr::imap(
-      body_params_li,
-      \(x, y) glue::glue("WFP_009{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
-      paste0(collapse = "&")
-
-    print(glue::glue(
-      "https://www.parlament.gv.at/recherchieren/ausschuesse/index.html?{query_string}"
-    ))
-
-    # print(nrow(df_res))
+    .parlat_echo_request(
+      body_params,
+      url_base = "https://www.parlament.gv.at/recherchieren/ausschuesse/index.html",
+      param_prefix = "WFP_009"
+    )
   }
 
   #RETURN RESULT
@@ -365,7 +347,7 @@ get_committee_details <- function(url_committee, details_type) {
       fromJSON(url_committee_json)
     },
     error = function(e) {
-      message("Failed to fetch committee details for URL: ", url_committee)
+      cli::cli_inform("Failed to fetch committee details for URL: {url_committee}")
       return(NULL)
     }
   )
@@ -526,11 +508,9 @@ get_committee_details <- function(url_committee, details_type) {
 
   # Ensure df_details is defined
   if (!exists("df_details")) {
-    warning(paste0(
-      "get_committee_details: details_type '",
-      details_type,
-      "' not implemented"
-    ))
+    cli::cli_warn(
+      "get_committee_details: details_type {.val {details_type}} not implemented"
+    )
     return(tibble::tibble())
   }
 
@@ -541,10 +521,9 @@ safe_get_committee_members <- function(url) {
   result <- tryCatch(
     get_committee_members(url),
     error = function(e) {
-      message(paste0(
-        "Failed to extract committee members for: ",
-        paste0("https://www.parlament.gv.at", url)
-      ))
+      cli::cli_inform(
+        "Failed to extract committee members for: https://www.parlament.gv.at{url}"
+      )
       tibble::tibble(
         name = "Failed to extract members",
         member_type = NA_character_,
@@ -572,7 +551,7 @@ get_committee_members <- function(url) {
 
   # No table at all
   if (length(tables) == 0 || nrow(tables[[1]]) == 0) {
-    warning(paste0("No table found in URL: ", url))
+    cli::cli_warn("No table found in URL: {url}")
     return(tibble::tibble(
       name = NA_character_,
       member_type = NA_character_,

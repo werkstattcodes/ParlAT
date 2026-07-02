@@ -85,7 +85,7 @@ get_inquiries_and_responses <- function(
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
-        message("No results found for the provided search criteria.")
+        cli::cli_inform("No results found for the provided search criteria.")
         return(NULL)
     }
 

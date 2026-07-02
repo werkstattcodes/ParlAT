@@ -8,7 +8,7 @@
 
 fn_check_legis_period_elements <- function(x) {
   if (is.null(x)) {
-    stop("`legis_period` is required.")
+    cli::cli_abort("`legis_period` is required.")
   }
 
   if (
@@ -20,7 +20,7 @@ fn_check_legis_period_elements <- function(x) {
           "KN"
         ))
   ) {
-    stop(
+    cli::cli_abort(
       "Invalid input for legis_period. Must be a numeric value or one of 'all', 'PN', or 'KN'."
     )
   }

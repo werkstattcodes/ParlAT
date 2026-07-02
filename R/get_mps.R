@@ -288,27 +288,25 @@ get_mps <- function(
   echo = TRUE
 ) {
   if (!is.null(date) && !is.null(legis_period)) {
-    stop("Please provide either date or legis_period, not both.")
+    cli::cli_abort("Please provide either date or legis_period, not both.")
   }
 
   # Validate date format early
   if (!is.null(date)) {
     if (length(date) != 1) {
-      stop("Only date inputs of length 1 are allowed.")
+      cli::cli_abort("Only date inputs of length 1 are allowed.")
     }
 
     parsed_date <- lubridate::dmy(date, quiet = TRUE)
     if (is.na(parsed_date)) {
-      stop(
-        "Invalid date: '",
-        date,
-        "'. Expected format: DD.MM.YYYY (e.g. '01.01.2020')."
+      cli::cli_abort(
+        "Invalid date: {.val {date}}. Expected format: DD.MM.YYYY (e.g. '01.01.2020')."
       )
     }
   }
 
   if (!is.null(legis_period) && !is.null(institution) && institution == "BR") {
-    stop(
+    cli::cli_abort(
       "Filtering the Federal Council (Bundesrat) by legislative period is not supported. Please use 'date' filter instead."
     )
   }
@@ -378,7 +376,7 @@ get_mps <- function(
             "PN"
           )))
   ) {
-    stop(
+    cli::cli_abort(
       "Filtering by legislative period is only supported for the National Council (Nationalrat). Either specify institution = 'NR', or, alternativley, use the date filter instead."
     )
   }
@@ -741,24 +739,13 @@ get_mps <- function(
   # PRINT ECHO
   #echo only if query without date fitler
   if (echo == TRUE && is.null(date)) {
-    print(body_params)
-    # print url to results / transparency reasons / add search string parameter
-    body_params_li <- jsonlite::fromJSON(body_params) %>%
-      c("search" = search_string)
-
-    query_string <- purrr::imap(
-      body_params_li,
-      \(x, y) glue::glue("PERSON_409{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
-      paste0(collapse = "&")
-
-    print(glue::glue(
-      "https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?{query_string}"
-    ))
-
-    print(nrow(df_res))
+    .parlat_echo_request(
+      body_params,
+      url_base = "https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918",
+      param_prefix = "PERSON_409",
+      n_results = nrow(df_res),
+      search = search_string
+    )
   }
 
   if (nrow(df_res) == 0) {
@@ -908,11 +895,7 @@ get_mps <- function(
     # "wahlpartei_sort" = "" #drop
   )
 
-  df_res <- df_res %>%
-    dplyr::rename_with(
-      .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-      .cols = any_of(names(renaming_map))
-    )
+  df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
   # SORT (most recent mandate on top)
   df_res <- df_res %>%

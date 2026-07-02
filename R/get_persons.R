@@ -120,23 +120,13 @@ get_persons_single <- function(
 
   # PRINT ECHO
   if (isTRUE(echo)) {
-    print(body_params)
-    body_params_li <- jsonlite::fromJSON(body_params) %>%
-      c("search" = search_string)
-
-    query_string <- purrr::imap(
-      body_params_li,
-      \(x, y) glue::glue("PERSON_10400{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
-      paste0(collapse = "&")
-
-    print(glue::glue(
-      "https://www.parlament.gv.at/recherchieren/personen?{query_string}"
-    ))
-
-    print(nrow(df_res))
+    .parlat_echo_request(
+      body_params,
+      url_base = "https://www.parlament.gv.at/recherchieren/personen",
+      param_prefix = "PERSON_10400",
+      n_results = nrow(df_res),
+      search = search_string
+    )
   }
 
   return(df_res)

@@ -245,7 +245,7 @@ get_transcripts <- function(
 
     # Check if no results (API returns HTTP 500 if we request pagesize = 0)
     if (total_count == 0) {
-        message("Query returned 0 results.")
+        cli::cli_inform("Query returned 0 results.")
         # Return empty tibble with correct column structure
         return(tibble::tibble(
             date = lubridate::Date(),
@@ -304,24 +304,13 @@ get_transcripts <- function(
 
     # ECHO - print request details if requested
     if (echo == TRUE) {
-        print(body_params)
-        # print url to results / transparency reasons / add search string parameter
-        body_params_li <- jsonlite::fromJSON(body_params) %>%
-            c("search" = search_string)
-
-        query_string <- purrr::imap(
-            body_params_li,
-            \(x, y) glue::glue("STENO_211{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/recherchieren/protokolle/index.html?{query_string}"
-        ))
-
-        print(nrow(df_res))
+        .parlat_echo_request(
+            body_params,
+            url_base = "https://www.parlament.gv.at/recherchieren/protokolle/index.html",
+            param_prefix = "STENO_211",
+            n_results = nrow(df_res),
+            search = search_string
+        )
     }
 
     # SELECT AND RENAME COLUMNS
@@ -335,11 +324,7 @@ get_transcripts <- function(
         "gesamtprotokoll" = "meeting_transcript"
     )
 
-    df_res <- df_res %>%
-        dplyr::rename_with(
-            .fn = \(x) renaming_map[x],
-            .cols = any_of(names(renaming_map))
-        )
+    df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
     df_res <- df_res %>%
         dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
@@ -421,29 +406,22 @@ get_transcripts <- function(
 
             if (!dir.exists(dest_path)) {
                 if (interactive()) {
-                    message(sprintf(
-                        "Folder '%s' does not exist.",
-                        dest_path
-                    ))
+                    cli::cli_inform("Folder {.path {dest_path}} does not exist.")
                     response <- readline(prompt = "Create it? (y/n): ")
                     if (tolower(trimws(response)) == "y") {
                         dir.create(dest_path, recursive = TRUE)
-                        message(sprintf("Created folder: %s", dest_path))
+                        cli::cli_inform("Created folder: {.path {dest_path}}")
                         return(dest_path)
                     } else {
-                        stop(
-                            "PDF export cancelled: destination folder not created.",
-                            call. = FALSE
+                        cli::cli_abort(
+                            "PDF export cancelled: destination folder not created."
                         )
                     }
                 } else {
-                    stop(
-                        sprintf(
-                            "Destination folder '%s' does not exist. ",
-                            "Please create it before running in non-interactive mode."
-                        ),
-                        call. = FALSE
-                    )
+                    cli::cli_abort(c(
+                        "Destination folder {.path {dest_path}} does not exist.",
+                        "i" = "Please create it before running in non-interactive mode."
+                    ))
                 }
             }
             return(dest_path)
@@ -498,13 +476,11 @@ get_transcripts <- function(
         n_pdfs <- nrow(df_to_download)
 
         if (n_pdfs == 0) {
-            message("No PDF transcripts available for download.")
+            cli::cli_inform("No PDF transcripts available for download.")
         } else {
-            message(sprintf(
-                "Downloading %d PDF(s) to '%s'...",
-                n_pdfs,
-                dest_path
-            ))
+            cli::cli_inform(
+                "Downloading {n_pdfs} PDF{?s} to {.path {dest_path}}..."
+            )
 
             # Initialize progress bar
             pb_id <- cli::cli_progress_bar(
@@ -550,16 +526,11 @@ get_transcripts <- function(
             n_failed <- n_pdfs - n_success
 
             if (n_failed == 0) {
-                message(sprintf(
-                    "Successfully downloaded %d PDF(s).",
-                    n_success
-                ))
+                cli::cli_inform("Successfully downloaded {n_success} PDF{?s}.")
             } else {
-                warning(sprintf(
-                    "Downloaded %d PDF(s). %d download(s) failed.",
-                    n_success,
-                    n_failed
-                ))
+                cli::cli_warn(
+                    "Downloaded {n_success} PDF{?s}. {n_failed} download{?s} failed."
+                )
             }
         }
     }

@@ -648,7 +648,7 @@ get_items <- function(
     checkmate::assert_character(date_start, len = 1, null.ok = TRUE)
     date_start_parsed <- lubridate::dmy(date_start, quiet = TRUE)
     if (is.na(date_start_parsed)) {
-      stop(
+      cli::cli_abort(
         "date_start must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
       )
     }
@@ -663,7 +663,7 @@ get_items <- function(
     checkmate::assert_character(date_end, len = 1, null.ok = TRUE)
     date_end_parsed <- lubridate::dmy(date_end, quiet = TRUE)
     if (is.na(date_end_parsed)) {
-      stop(
+      cli::cli_abort(
         "date_end must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
       )
     }
@@ -673,7 +673,7 @@ get_items <- function(
   # Validate date range
   if (!is.null(date_start_parsed) && !is.null(date_end_parsed)) {
     if (date_start_parsed > date_end_parsed) {
-      stop("date_start must be before or equal to date_end")
+      cli::cli_abort("date_start must be before or equal to date_end")
     }
   }
 
@@ -712,7 +712,7 @@ get_items <- function(
 
   # type_doc (Art des Antrages / Art der Anfrage)
   if (!is.null(type_doc) && is.null(item)) {
-    stop("'type_doc' can be only specified in combination with 'item'")
+    cli::cli_abort("'type_doc' can be only specified in combination with 'item'")
   }
 
   # Validation for item = "ANTR" (Motions)
@@ -807,7 +807,7 @@ get_items <- function(
   # TYPE_EU_SUBMISSION (Art der EU-Vorlage)
   # Can only be specified when item = "EU"
   if (!is.null(type_eu_submission) && (is.null(item) || !any(item %in% "EU"))) {
-    stop("'type_eu_submission' can only be specified when item = 'EU'")
+    cli::cli_abort("'type_eu_submission' can only be specified when item = 'EU'")
   }
 
   if (!is.null(type_eu_submission)) {
@@ -857,7 +857,7 @@ get_items <- function(
     # Check if NR-specific codes are used without institution="NR"
     if (any(type_eu_submission %in% choices_type_eu_submission_nr)) {
       if (is.null(institution) || institution != "NR") {
-        stop(
+        cli::cli_abort(
           "National Council type_eu_submission codes can only be used when institution = 'NR'"
         )
       }
@@ -866,7 +866,7 @@ get_items <- function(
     # Check if BR-specific codes are used without institution="BR"
     if (any(type_eu_submission %in% choices_type_eu_submission_br)) {
       if (is.null(institution) || institution != "BR") {
-        stop(
+        cli::cli_abort(
           "Federal Council type_eu_submission codes can only be used when institution = 'BR'"
         )
       }
@@ -1212,12 +1212,11 @@ get_items <- function(
 
   # WARN IF RESULT LIMIT REACHED
   if (nrow(df_res) >= 100000) {
-    warning(
-      "Query returned 100,000 rows (API maximum). Results are likely to be incomplete. ",
-      "Refine search criteria or split into multiple requests. ",
-      "See 'API Result Limits' in ?get_items for details.",
-      call. = FALSE
-    )
+    cli::cli_warn(c(
+      "Query returned 100,000 rows (API maximum). Results are likely to be incomplete.",
+      "i" = "Refine search criteria or split into multiple requests.",
+      "i" = "See 'API Result Limits' in ?get_items for details."
+    ))
   }
 
   # PARSE CONTENT TO MAKE MORE AMENABLE FOR FURTHER ANALYSIS
@@ -1277,11 +1276,7 @@ get_items <- function(
     "gremium" = "institution"
   )
 
-  df_res <- df_res %>%
-    dplyr::rename_with(
-      .fn = \(x) renaming_map[x],
-      .cols = any_of(names(renaming_map))
-    )
+  df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
   ##select
   col_select <- c(
@@ -1334,41 +1329,20 @@ get_items <- function(
   if (n_total_rows > n_distinct_rows) {
     n_duplicates <- n_total_rows - n_distinct_rows
 
-    warning(
-      "The result contains ",
-      n_duplicates,
-      " duplicate row(s). ",
-      "Total rows: ",
-      n_total_rows,
-      ", unique rows: ",
-      n_distinct_rows,
-      ". ",
-      "This may indicate data quality issues.",
-      call. = FALSE
+    cli::cli_warn(
+      "The result contains {n_duplicates} duplicate row{?s}. Total rows: {n_total_rows}, unique rows: {n_distinct_rows}. This may indicate data quality issues."
     )
   }
 
   # RETURN RESULT
-  if (echo) cli::cli_alert_success("Fetched {nrow(df_res)} item{?s}")
-
-  # ECHO: print search parameters and result URL
-  if (echo == TRUE) {
-    print(body_params)
-    body_params_li <- jsonlite::fromJSON(body_params)
-
-    query_string <- purrr::imap(
-      body_params_li,
-      \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
-      paste0(collapse = "&")
-
-    print(glue::glue(
-      "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
-    ))
-
-    print(nrow(df_res))
+  if (echo) {
+    cli::cli_alert_success("Fetched {nrow(df_res)} item{?s}")
+    .parlat_echo_request(
+      body_params,
+      url_base = "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html",
+      param_prefix = "FP_001",
+      n_results = nrow(df_res)
+    )
   }
 
   return(df_res)

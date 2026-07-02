@@ -291,7 +291,7 @@ get_mps_current <- function(
         #     stop("Postal code filter only applicable for Nationalrat (NR).")
         # }
         if (!is.null(electoral_district)) {
-            warning(
+            cli::cli_warn(
                 "electoral_district parameter is not applicable for Federal Council (BR) and will be ignored."
             )
         }
@@ -399,10 +399,8 @@ get_mps_current <- function(
                 }
 
                 if (is.na(result)) {
-                    warning(
-                        "Failed to fetch name for pad_intern: ", pad_id,
-                        " after ", max_retries, " attempts.",
-                        call. = FALSE
+                    cli::cli_warn(
+                        "Failed to fetch name for pad_intern {pad_id} after {max_retries} attempts."
                     )
                 }
 
@@ -881,7 +879,7 @@ get_mps_NR_current <- function(
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
-        message("No results found for the provided search criteria.")
+        cli::cli_inform("No results found for the provided search criteria.")
         return(NULL)
     }
     colnames(df_res) <- vec_headings
@@ -889,21 +887,12 @@ get_mps_NR_current <- function(
 
     #ECHO
     if (echo == TRUE) {
-        print(nrow(df_res))
-        print(body_params)
-
-        params_list <- jsonlite::fromJSON(body_params)
-        query_string <- purrr::imap(
-            params_list,
-            \(x, y) glue::glue("WFW_002{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?{query_string}"
-        ))
+        .parlat_echo_request(
+            body_params,
+            url_base = "https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html",
+            param_prefix = "WFW_002",
+            n_results = nrow(df_res)
+        )
     }
 
     # #PARSE HTML STRINGS
@@ -1193,7 +1182,7 @@ get_mps_BR_current <- function(
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
-        message("No results found for the provided search criteria.")
+        cli::cli_inform("No results found for the provided search criteria.")
         return(NULL)
     }
     colnames(df_res) <- vec_headings
@@ -1201,21 +1190,12 @@ get_mps_BR_current <- function(
 
     #ECHO
     if (echo == TRUE) {
-        print(nrow(df_res))
-        print(body_params)
-
-        params_list <- jsonlite::fromJSON(body_params)
-        query_string <- purrr::imap(
-            params_list,
-            \(x, y) glue::glue("WFW_005{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/recherchieren/personen/bundesrat/index.html?{query_string}"
-        ))
+        .parlat_echo_request(
+            body_params,
+            url_base = "https://www.parlament.gv.at/recherchieren/personen/bundesrat/index.html",
+            param_prefix = "WFW_005",
+            n_results = nrow(df_res)
+        )
     }
 
     # #PARSE HTML STRINGS

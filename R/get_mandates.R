@@ -292,11 +292,7 @@ get_mandates <- function(
     "eingetreten_txt" = "substitute"
   )
 
-  df_res <- df_res %>%
-    dplyr::rename_with(
-      .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-      .cols = any_of(names(renaming_map))
-    )
+  df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
   #add link to biography as means to check source
   df_res <- df_res %>%

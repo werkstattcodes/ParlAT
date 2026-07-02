@@ -170,7 +170,7 @@ get_participation <- function(
   #INITIATIVE_TYPE (DOKTYPE/ART DER GESETZESINITATIVE)
   # Only allowed when item = "RGES"
   if (!is.null(initiative_type) && (is.null(item) || !("RGES" %in% item))) {
-    stop("initiative_type can only be specified when item = \"RGES\"")
+    cli::cli_abort('initiative_type can only be specified when item = "RGES"')
   }
 
   choices_initiative_type <- c("A", "BUA", "RV")
@@ -187,7 +187,7 @@ get_participation <- function(
   #STATEMENT_TYPE (SNTYP/ART DER STELLUNGNAHME)
   # Only allowed when item = "SN"
   if (!is.null(statement_type) && (is.null(item) || !("SN" %in% item))) {
-    stop("statement_type can only be specified when item = \"SN\"")
+    cli::cli_abort('statement_type can only be specified when item = "SN"')
   }
 
   choices_statement_type <- c("SNME", "SN", "SPET", "SPET-BR", "SBI")
@@ -273,11 +273,7 @@ get_participation <- function(
   #assign column names
   colnames(df_res) <- vec_headings
 
-  df_res <- df_res %>%
-    dplyr::rename_with(
-      .fn = \(x) renaming_map[x],
-      .cols = any_of(names(renaming_map))
-    )
+  df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
   df_res <- df_res %>%
     dplyr::select(dplyr::any_of(unname(renaming_map))) %>%

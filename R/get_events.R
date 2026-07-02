@@ -199,7 +199,7 @@ get_events <- function(
 
     #LEGIS PERIOD check
     if (!is.null(date_start) && !is.null(date_end) && !is.null(legis_period)) {
-        stop(
+        cli::cli_abort(
             "Input for `legis_period` only permissible if `date_start` and `date_end` are NULL. Choose either
             `legis_period` or dates as input, not both."
         )
@@ -391,25 +391,12 @@ get_events <- function(
     }
 
     if (isTRUE(echo)) {
-        print(body_params)
-
-        # # print url to results / transparency reasons
-        body_params_li <- jsonlite::fromJSON(body_params)
-
-        query_string <- purrr::imap(
-            body_params_li,
-            \(x, y) glue::glue("TERMIN_01{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&") %>%
-            URLencode()
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/aktuelles/termine/index.html?{query_string}"
-        ))
-
-        print(if (is.null(df_res)) 0 else nrow(df_res))
+        .parlat_echo_request(
+            body_params,
+            url_base = "https://www.parlament.gv.at/aktuelles/termine/index.html",
+            param_prefix = "TERMIN_01",
+            n_results = if (is.null(df_res)) 0 else nrow(df_res)
+        )
     }
 
     if (is.null(df_res) || nrow(df_res) == 0) {
@@ -465,11 +452,7 @@ get_events <- function(
         "sprache" = "language"
     )
 
-    df_res <- df_res %>%
-        dplyr::rename_with(
-            .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-            .cols = any_of(names(renaming_map))
-        )
+    df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
     #select relevant columns
     cols_select <- c(
@@ -532,11 +515,11 @@ aux_transform_event_date <- function(
 
     # Validate that date parsing was successful
     if (is.na(date_cet)) {
-        stop(paste0(
-            param_name, " must be in day-month-year (DMY) format. ",
-            "Expected formats: '26-10-2025', '26.10.2025', or '26/10/2025'. ",
-            "Received: '", date_string, "'"
-        ), call. = FALSE)
+        cli::cli_abort(c(
+            "{param_name} must be in day-month-year (DMY) format.",
+            "i" = "Expected formats: '26-10-2025', '26.10.2025', or '26/10/2025'.",
+            "x" = "Received: {.val {date_string}}"
+        ))
     }
 
     # Set the timezone to CET
