@@ -144,7 +144,7 @@ get_participation <- function(
     "Verkehr und Infrastruktur",
     "Wirtschaft"
   )
-  checkmate::assert_subset(topic, choices_topic, empty.ok = T)
+  checkmate::assert_subset(topic, choices_topic, empty.ok = TRUE)
 
   #LEGIS PERIOD
   legis_period <- purrr::map_chr(
@@ -236,14 +236,14 @@ get_participation <- function(
     httr2::req_perform()
 
   vec_headings <- res %>%
-    httr2::resp_body_json(simplifyVector = T) %>%
+    httr2::resp_body_json(simplifyVector = TRUE) %>%
     purrr::pluck("header", "label") %>%
     stringr::str_to_snake() %>%
     make.unique(sep = "_")
 
   # extract the actual substantive data
   df_res <- res %>%
-    httr2::resp_body_json(simplifyVector = T) %>%
+    httr2::resp_body_json(simplifyVector = TRUE) %>%
     purrr::pluck("rows") %>%
     as.data.frame()
 

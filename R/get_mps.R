@@ -387,7 +387,7 @@ get_mps <- function(
 
     checkmate::assert_subset(
       x = legis_period_char,
-      choices = ParlAT::get_legis_periods()$legis_period_abbrev_num,
+      choices = get_legis_periods()$legis_period_abbrev_num,
       empty.ok = TRUE
     )
   }

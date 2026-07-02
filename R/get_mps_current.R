@@ -577,12 +577,11 @@ get_mps_current <- function(
 #' }
 #'
 #' @importFrom checkmate assert_choice assert_scalar assert_subset
-#' @importFrom httr2 request req_method req_perform req_body_raw req_headers req_url_query req_user_agent req_verbose resp_body_json
+#' @importFrom httr2 request req_method req_perform req_body_raw req_headers req_url_query req_user_agent resp_body_json
 #' @importFrom jsonlite toJSON
 #' @importFrom purrr map_chr map2_chr compact pluck imap
 #' @keywords internal
 #' @noRd
-# TODO make two functions; NR and BR
 get_mps_NR_current <- function(
     institution = NULL,
     gender = "all",
@@ -599,7 +598,7 @@ get_mps_NR_current <- function(
     checkmate::assert_subset(
         gender,
         choices_gender,
-        empty.ok = F
+        empty.ok = FALSE
     )
     ## encode
 
@@ -855,14 +854,14 @@ get_mps_NR_current <- function(
     res <- get_mps_NR_current_api_request(body_params)
 
     vec_headings <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("header", "label") %>%
         stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # EXTRACT THE ACTUAL SUBSTANTIVE DATA
     df_res <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
@@ -946,14 +945,7 @@ get_mps_NR_current_api_request <- function(body_params) {
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_retry(max_tries = 3) %>%
-        httr2::req_verbose(
-            body_req = F,
-            header_req = F,
-            header_resp = F,
-            body_resp = F,
-            info = F
-        ) %>%
-        httr2::req_perform()
+                httr2::req_perform()
 }
 
 
@@ -1028,7 +1020,7 @@ get_mps_NR_current_api_request <- function(body_params) {
 #' }
 #' @keywords internal
 #' @noRd
-#TODO function input NULL = "all"
+# note: NULL input currently means "all" for the filter parameters below
 get_mps_BR_current <- function(
     gender = "all",
     position = "all",
@@ -1042,7 +1034,7 @@ get_mps_BR_current <- function(
     checkmate::assert_subset(
         gender,
         choices_gender,
-        empty.ok = F
+        empty.ok = FALSE
     )
     ## encode
 
@@ -1159,14 +1151,14 @@ get_mps_BR_current <- function(
     res <- get_mps_BR_current_api_request(body_params)
 
     vec_headings <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("header", "label") %>%
         stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # EXTRACT THE ACTUAL SUBSTANTIVE DATA
     df_res <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
@@ -1245,14 +1237,7 @@ get_mps_BR_current_api_request <- function(body_params) {
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
         httr2::req_retry(max_tries = 3) %>%
-        httr2::req_verbose(
-            body_req = F,
-            header_req = F,
-            header_resp = F,
-            body_resp = F,
-            info = F
-        ) %>%
-        httr2::req_perform()
+                httr2::req_perform()
 }
 
 #auxiliary function to extract name from rss_description;
@@ -1274,13 +1259,13 @@ aux_extract_name <- function(string) {
     if (is.na(title_trailing) || !nzchar(title_trailing)) {
         stringr::str_flatten(
             c(title, name, name_family),
-            na.rm = T,
+            na.rm = TRUE,
             collapse = " "
         )
     } else {
         stringr::str_flatten(
             c(title, name, name_family, title_trailing),
-            na.rm = T,
+            na.rm = TRUE,
             collapse = " ",
             last = ", "
         )

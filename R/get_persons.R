@@ -83,12 +83,7 @@ get_persons_single <- function(
     httr2::req_body_raw(body_params, "application/json") %>%
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
     httr2::req_retry(max_tries = 3) %>%
-    httr2::req_verbose(
-      body_req = FALSE,
-      header_req = FALSE,
-      header_resp = FALSE
-    ) %>%
-    httr2::req_perform()
+        httr2::req_perform()
 
   df_res <- res %>%
     httr2::resp_body_json(simplifyVector = TRUE) %>%

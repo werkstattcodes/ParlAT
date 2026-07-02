@@ -544,7 +544,7 @@ get_mps_details_plenary <- function(
         )
     }
 
-    return(df_res)
+    return(tibble::as_tibble(df_res))
 }
 
 
@@ -787,7 +787,7 @@ get_mps_details_activities <- function(
         )
     }
 
-    return(df_res)
+    return(tibble::as_tibble(df_res))
 }
 
 
@@ -976,5 +976,5 @@ get_mps_details_committees <- function(
         )
     }
 
-    return(df_res)
+    return(tibble::as_tibble(df_res))
 }

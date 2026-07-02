@@ -75,14 +75,14 @@ get_inquiries_and_responses <- function(
         httr2::req_perform()
 
     vec_headings <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("header", "label") %>%
         stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # extract the actual substantive data
     df_res <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {

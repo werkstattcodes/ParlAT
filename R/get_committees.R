@@ -762,7 +762,7 @@ fn_extract_committees_other <- function(url) {
   extract_urls_from_table <- function(table_elem) {
     rows <- table_elem %>% rvest::html_elements("tr")
 
-    purrr::map_dfr(seq_along(rows), function(i) {
+    purrr::map(seq_along(rows), function(i) {
       cells <- rows[[i]] %>% rvest::html_elements("td")
       if (length(cells) == 0) {
         return(NULL)
@@ -783,7 +783,8 @@ fn_extract_committees_other <- function(url) {
       ))
       result$row_num_orig <- i
       result
-    })
+    }) %>%
+      purrr::list_rbind()
   }
 
   urls_table <- extract_urls_from_table(table_element)
