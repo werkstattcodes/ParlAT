@@ -66,7 +66,9 @@ get_party_colors <- function(parties = NULL,
 
   if (is.null(parties)) {
     if (!is.null(legis_period) && length(legis_period) != 1) {
-      stop("`legis_period` must be length 1 when `parties` is NULL.", call. = FALSE)
+      cli::cli_abort(
+        "{.arg legis_period} must be length 1 when {.arg parties} is NULL."
+      )
     }
 
     result <- lookup[lookup$default, c("key", "color")]
@@ -90,9 +92,8 @@ get_party_colors <- function(parties = NULL,
 
   checkmate::assert_character(parties, any.missing = TRUE, null.ok = FALSE)
   if (!is.null(legis_period) && !(length(legis_period) %in% c(1, length(parties)))) {
-    stop(
-      "`legis_period` must be length 1 or the same length as `parties`.",
-      call. = FALSE
+    cli::cli_abort(
+      "{.arg legis_period} must be length 1 or the same length as {.arg parties}."
     )
   }
 
@@ -100,10 +101,8 @@ get_party_colors <- function(parties = NULL,
   missing <- is.na(canonical_party) & !is.na(parties)
 
   if (any(missing) && unmatched == "error") {
-    stop(
-      "Could not match party input: ",
-      paste(parties[missing], collapse = ", "),
-      call. = FALSE
+    cli::cli_abort(
+      "Could not match party input: {.val {parties[missing]}}."
     )
   }
 

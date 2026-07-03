@@ -70,5 +70,5 @@ test_that("get_party_colors can error on unmatched input", {
   )
 
   expect_s3_class(err, "error")
-  expect_match(conditionMessage(err), "Could not match party input: unknown")
+  expect_match(conditionMessage(err), "Could not match party input: .unknown.")
 })
