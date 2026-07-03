@@ -11,6 +11,22 @@
   )
 }
 
+aux_clean_person_name <- function(name) {
+  name %>%
+    # remove trailing acad titles after comma
+    stringr::str_remove(stringr::regex(",.*$")) %>%
+    # remove leading title ending on a dot, including Abg. and acad titles
+    stringr::str_remove_all(stringr::regex("\\S*\\.\\s")) %>%
+    # remove academic titles comprising multiple capital letters
+    stringr::str_remove(
+      stringr::regex("\\p{Lu}+\\p{Ll}*\\p{Lu}+\\p{Ll}*\\b")
+    ) %>%
+    # remove bracket elements
+    stringr::str_remove_all(stringr::regex("\\([^\\(]*\\)")) %>%
+    stringr::str_trim() %>%
+    stringr::str_squish()
+}
+
 #' Get name variants of a Member of Parliament
 #'
 #' Returns all name variants of an person or a specific name used on a given date.
@@ -194,34 +210,7 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
   #get family/given name
   ## clean name
   df_names <- df_names %>%
-    #remove trailing acad titles after comma
-    dplyr::mutate(
-      name_clean = stringr::str_remove(.data$name, stringr::regex(",.*$"))
-    ) %>%
-    #remove leading title ending on a dot, including Abg. and acad titles
-    dplyr::mutate(
-      name_clean = stringr::str_remove_all(
-        .data$name_clean,
-        stringr::regex("\\S*\\.\\s")
-      )
-    ) %>%
-    #remove academic titles comprising multiple capital letters
-    dplyr::mutate(
-      name_clean = stringr::str_remove(
-        .data$name_clean,
-        stringr::regex("\\p{Lu}+\\p{Ll}*\\p{Lu}+\\p{Ll}*\\b")
-      )
-    ) %>%
-    #remove bracket elements
-    dplyr::mutate(
-      name_clean = stringr::str_remove_all(
-        .data$name_clean,
-        stringr::regex("\\([^\\(]*\\)")
-      )
-    ) %>%
-    dplyr::mutate(
-      name_clean = stringr::str_trim(.data$name_clean) %>% stringr::str_squish()
-    )
+    dplyr::mutate(name_clean = aux_clean_person_name(.data$name))
 
   df_names <- df_names %>%
     dplyr::mutate(

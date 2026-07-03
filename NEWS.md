@@ -49,6 +49,8 @@
 - Person-detail JSON fetches (`get_mandates()`, `get_names()`,
   `get_committees()` details) now go through httr2, so they are covered by
   the httptest2 mock layer in tests.
+- `get_pad_intern()` now removes academic titles from name searches before
+  looking up matching Parliament person identifiers.
 
 ## Internal changes
 
