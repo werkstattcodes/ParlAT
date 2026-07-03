@@ -15,6 +15,7 @@
 ^CLAUDE\.md$
 ^AGENTS\.md$
 ^fix-lexicalError-summary\.md$
+^REVIEW-CHANGES\.md$
 ^\.gemini$
 ^\.claude$
 ^\.quarto$
