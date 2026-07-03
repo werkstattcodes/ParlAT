@@ -301,36 +301,12 @@ There were in total `r nrow(df_items) %>% scales::number()` questions submitted 
 members of the National Council from the 20th to 27th legislative period. With a few additional steps, we can easily visualise the results.
 
 ```{r, fig.width=10, fig.height=8, out.width="100%", cache=FALSE, dependson="get_questions"}
-# Create color mapping for Austrian political parties
-party_colors <- c(
-  "SPÖ" = "#CE000C",
-  "ÖVP" = "#63C3D0",
-  "FPÖ" = "#0056A2",
-  "F" = "#0056A2",
-  "F-BZÖ" = "#0056A2",
-  "GRÜNE" = "#88B626",
-  "NEOS" = "#E3257B",
-  "NEOS/NEOS-LIF" = "#E3257B",
-  "Grüne" = "#88B626",
-  "STRONACH" = "#F47100",
-  "BZÖ" = "#F47100",
-  "LIF" = "#FFD200",
-  "L" = "#FFD200",
-  "FRANK" = "#800080",
-  "JETZT/PILZ"="lightgrey",
-  "OK" ="grey"
-)
-
-#aggregate result; account for chaning ÖVP party colors
+#aggregate result; account for changing ÖVP party colors
 df_plot <- df_items %>%
   unnest_longer(parl_group) %>%
   count(legis_period, parl_group) %>%
   mutate(
-    parl_group_color = case_when(
-      parl_group == "ÖVP" & as.numeric(legis_period) < 26 ~ "black",
-      parl_group == "ÖVP" & as.numeric(legis_period) >= 26 ~ "#63C3D0",
-      TRUE ~ party_colors[parl_group]
-    )
+    parl_group_color = get_party_colors(parl_group, legis_period)
   )  
 
 #plot
