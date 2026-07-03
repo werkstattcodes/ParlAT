@@ -50,7 +50,8 @@
   `get_committees()` details) now go through httr2, so they are covered by
   the httptest2 mock layer in tests.
 - `get_pad_intern()` now removes academic titles from name searches before
-  looking up matching Parliament person identifiers.
+  looking up matching Parliament person identifiers. Previously academic titles 
+  could cause searches to fail.
 
 ## Internal changes
 
