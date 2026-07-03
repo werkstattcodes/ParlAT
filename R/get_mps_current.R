@@ -149,7 +149,7 @@
 #'     \item "F9D": Wien Süd (Vienna South)
 #'     \item "F9E": Wien Süd-West (Vienna South-West)
 #'   }
-#' @param echo Logical. Whether to print debug information. Default is TRUE.
+#' @param echo Logical. Whether to print the URL to the corresponding search results on the Parliament website and the number of results. Default is TRUE.
 #'
 #' @return A data frame containing the list of current members of parliament that match the search criteria with the following columns:
 #' - `time_stamp`: Timestamp of when the data was retrieved

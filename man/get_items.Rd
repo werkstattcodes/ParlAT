@@ -49,7 +49,7 @@ get_items(
 
 \item{parl_group_names_standard}{Logical. If \code{TRUE}, the function expands and standardizes parliamentary group names. Default is \code{FALSE}. See Details.}
 
-\item{echo}{Logical. If \code{TRUE}, the function prints the used search parameters and the url to the pertaining search results on website of the Austrian Parliament.}
+\item{echo}{Logical. If \code{TRUE}, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results.}
 }
 \value{
 A tibble (data.frame) with one row per parliamentary item matching the search.

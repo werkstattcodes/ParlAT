@@ -9,7 +9,7 @@
 #' @param meeting_and_activities A character string. One of 'meetings' or 'activities'. 'meetings' returns plenary meeting entries; 'activities' returns parliamentary items submitted or acted upon in meetings. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.
 #' @param session_type A character string or vector. Filter by meeting period type. Permissible values: `"N"` (Ordentliche Tagung / Ordinary session), `"A"` (Ausserordentliche Tagung / Extraordinary session). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".
 #' @param meeting_type A character string or vector. Filter by sitting type. Permissible values: `"S"` (Sitzung / Regular sitting), `"SO"` (Sondersitzung / Special sitting), `"ZU"` (Zuweisungssitzung / Assignment sitting), `"N"` (Nachtrag / Addendum). Can be NULL to retrieve all sitting types. Only applicable when `meeting_and_activities = "meetings"`.
-#' @param echo Logical. If `TRUE`, prints the API request body parameters and the number of results. Default is `FALSE`.
+#' @param echo Logical. If `TRUE`, prints the URL to the corresponding search on the Parliament website, pagination progress, and the number of results. Default is `FALSE`.
 #' @return A tibble containing plenary meeting details (zero rows if no results are found). The structure depends on the `meeting_and_activities` parameter:
 #'
 #' If *`meeting_and_activities = "meetings"`*:
@@ -232,8 +232,7 @@ get_plenary_meetings <- function(
     )
 
     if (isTRUE(echo)) {
-        cli::cli_inform("Request body: {body_params}")
-        cli::cli_inform("Equivalent URL: {referer_url}")
+        cli::cli_inform("Results on the Parliament website: {referer_url}")
     }
 
     # BUILD BASE REQUEST

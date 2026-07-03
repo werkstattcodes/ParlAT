@@ -27,7 +27,7 @@ get_events(
 
 \item{date_end}{Optional character string representing the end date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.}
 
-\item{echo}{Logical indicating whether to print used search parameters, number of hits, and link to results on website of parliament. Default is TRUE.}
+\item{echo}{Logical indicating whether to print the link to the corresponding results on the Parliament website and the number of hits. Default is TRUE.}
 }
 \value{
 A tibble containing event details with the following columns (zero rows if no results are found):

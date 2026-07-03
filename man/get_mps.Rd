@@ -48,7 +48,7 @@ get_mps(
 
 \item{presidents_only}{Logical. If TRUE, returns only presidents. Default is FALSE}
 
-\item{echo}{Logical. If \code{TRUE}, the function prints the used search parameters and the url to the  pertaining search results on website of the Austrian Parliament.}
+\item{echo}{Logical. If \code{TRUE}, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results.}
 }
 \value{
 A dataframe containing information about the MPs. One row per MP. Important: The API returns details

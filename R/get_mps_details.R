@@ -30,7 +30,7 @@
 #'   Common values include "Mitglied", "Vorsitzende/r", "Stellvertretende/r Vorsitzende/r".
 #' @param search_string Character string for searching within activities (optional).
 #'   Defaults to NULL. Currently only implemented for details category "activities".
-#' @param echo Logical indicating whether to print the API request and response details. Defaults to TRUE.
+#' @param echo Logical indicating whether to print the URL to the corresponding results on the Parliament website and the number of results. Defaults to TRUE.
 #' @details
 #' ## Item type (Art des Verhandlungsgegenstandes)
 #IMPROVE #PARLSIMON

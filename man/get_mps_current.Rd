@@ -166,7 +166,7 @@ Only applicable for National Council (NR). Valid electoral districts are:
 \item "F9E": Wien Süd-West (Vienna South-West)
 }}
 
-\item{echo}{Logical. Whether to print debug information. Default is TRUE.}
+\item{echo}{Logical. Whether to print the URL to the corresponding search results on the Parliament website and the number of results. Default is TRUE.}
 }
 \value{
 A data frame containing the list of current members of parliament that match the search criteria with the following columns:

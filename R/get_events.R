@@ -8,7 +8,7 @@
 #' @param institution Character vector specifying the institution(s) to query. Must be "NR" (Nationalrat/National Council), "BR" (Bundesrat/Federal Council), or "ParlDir/Klub" ("Parliamentary Directorate/Caucus"). Can be a single value or vector for multiple institutions. NULL covers all institutions.
 #' @param event_type Optional character string indicating the event type. Must be one of the predefined event types (see Details). Default is NULL (all types).
 #' @param location Optional character string to filter events by location. Must be one of the predefined locations (see Details). Default is NULL (all locations).
-#' @param echo Logical indicating whether to print used search parameters, number of hits, and link to results on website of parliament. Default is TRUE.
+#' @param echo Logical indicating whether to print the link to the corresponding results on the Parliament website and the number of hits. Default is TRUE.
 #' @param legis_period Character or numeric value of length 1, or NULL. Specifies the legislative period to search in. Only available if `date_start` and `date_end` are NULL.
 #' @param date_start Optional character string representing the start date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.
 #' @param date_end Optional character string representing the end date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.

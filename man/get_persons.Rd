@@ -21,7 +21,7 @@ get_persons(
 
 \item{gender}{A character string. Possible values are \code{"all"}, \code{"female"}, or \code{"male"}. Default is \code{"all"}.}
 
-\item{echo}{Logical. If \code{TRUE}, prints the API request body parameters, the constructed URL, and the number of results. Default is \code{FALSE}.}
+\item{echo}{Logical. If \code{TRUE}, prints the URL to the corresponding search results on the Parliament website and the number of results. Default is \code{FALSE}.}
 }
 \value{
 A data frame with one row per matching person and the columns \code{pad_intern},

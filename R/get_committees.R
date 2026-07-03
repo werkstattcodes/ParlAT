@@ -15,7 +15,7 @@
 #' @param include_subcommittees A logical flag to indicate whether subcommittees should be included
 #'   in the search results. Search for subcommittees is only possible if `permanent` is not TRUE. Default is NULL.
 #' @param details_type A character string specifying the type of details to retrieve. Currently supports "members" to extract committee membership information. Default is NULL (no additional details).
-#' @param echo Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.
+#' @param echo Logical. If TRUE, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results. Default is NULL.
 #'
 #' @return A tibble (data frame) with different structures depending on `details_type`:
 #'

@@ -31,6 +31,10 @@
 
 ## Enhancements
 
+- `echo = TRUE` no longer prints the raw JSON request body; it prints the
+  URL to the corresponding search results on the Parliament website and the
+  number of results. The URL carries the same filter information in a
+  directly usable form.
 - All API requests now retry up to three times on transient failures
   (`httr2::req_retry()`).
 - Stale hardcoded browser cookies/session IDs and browser fingerprint

@@ -24,7 +24,7 @@ get_plenary_meetings(
 
 \item{meeting_type}{A character string or vector. Filter by sitting type. Permissible values: \code{"S"} (Sitzung / Regular sitting), \code{"SO"} (Sondersitzung / Special sitting), \code{"ZU"} (Zuweisungssitzung / Assignment sitting), \code{"N"} (Nachtrag / Addendum). Can be NULL to retrieve all sitting types. Only applicable when \code{meeting_and_activities = "meetings"}.}
 
-\item{echo}{Logical. If \code{TRUE}, prints the API request body parameters and the number of results. Default is \code{FALSE}.}
+\item{echo}{Logical. If \code{TRUE}, prints the URL to the corresponding search on the Parliament website, pagination progress, and the number of results. Default is \code{FALSE}.}
 }
 \value{
 A tibble containing plenary meeting details (zero rows if no results are found). The structure depends on the \code{meeting_and_activities} parameter:

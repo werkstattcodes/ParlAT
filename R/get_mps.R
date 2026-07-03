@@ -21,7 +21,7 @@
 #' @param state State filter. See details for permissible values.
 #' @param presidents_only Logical. If TRUE, returns only presidents. Default is FALSE
 # # @param mandate_details logical. "all" or "filter" #PENDING
-#' @param echo Logical. If `TRUE`, the function prints the used search parameters and the url to the  pertaining search results on website of the Austrian Parliament.
+#' @param echo Logical. If `TRUE`, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results.
 #'
 #' @return A dataframe containing information about the MPs. One row per MP. Important: The API returns details
 #' on all MPs who e.g. have been member of Parliament during the requested legislative period. The details

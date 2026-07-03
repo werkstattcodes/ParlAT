@@ -26,7 +26,7 @@ get_transcripts(
 
 \item{date_end}{Optional end date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").}
 
-\item{echo}{Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.}
+\item{echo}{Logical. If TRUE, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results. Default is NULL.}
 
 \item{export}{Optional character string to enable PDF downloads. Set to "pdf" to download transcript PDFs. Defaults to NULL (no export).}
 

@@ -1,7 +1,7 @@
 #' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
-#' @param echo Logical. If `TRUE`, prints the API request body parameters, the constructed URL, and the number of results. Default is `FALSE`.
+#' @param echo Logical. If `TRUE`, prints the URL to the corresponding search results on the Parliament website and the number of results. Default is `FALSE`.
 #'
 #' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`). Returns a zero-row tibble if no results are found.
 #' @noRd
@@ -148,7 +148,7 @@ get_persons_single <- function(
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param mandates Logical. If `TRUE`, mandates are retrieved for each person. Default is `FALSE`.
 #' @param gender A character string. Possible values are `"all"`, `"female"`, or `"male"`. Default is `"all"`.
-#' @param echo Logical. If `TRUE`, prints the API request body parameters, the constructed URL, and the number of results. Default is `FALSE`.
+#' @param echo Logical. If `TRUE`, prints the URL to the corresponding search results on the Parliament website and the number of results. Default is `FALSE`.
 #'
 #' @return A data frame with one row per matching person and the columns `pad_intern`,
 #'   `name`, `gender`, `position`, and `link`. When `mandates = TRUE`, the

@@ -7,7 +7,7 @@
 #' @param meeting_type Optional character string specifying the type(s) of meeting. Permissible values are "NRSITZ" (National Council - Plenary meetings) and "BRSITZ" (Federal Council - Plenary meetings). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.
 #' @param date_start Optional start date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
 #' @param date_end Optional end date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
-#' @param echo Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.
+#' @param echo Logical. If TRUE, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results. Default is NULL.
 #' @param export Optional character string to enable PDF downloads. Set to "pdf" to download transcript PDFs. Defaults to NULL (no export).
 #' @param export_destination Character string specifying the directory path where PDFs will be saved. Defaults to "transcripts" (a folder in the current working directory). If the folder does not exist, the user will be prompted to create it in interactive meetings.
 #' @return A tibble containing transcript data with the following columns:

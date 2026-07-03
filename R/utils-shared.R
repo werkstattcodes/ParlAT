@@ -19,13 +19,14 @@
     )
 }
 
-#' Echo request parameters and the equivalent website URL
+#' Echo the equivalent website URL for a request
 #'
-#' Prints (via cli) the JSON body sent to the Filter API, the URL to the
-#' matching search results on the Parliament website, and the number of
-#' results. Used by the `echo` argument of the `get_*()` functions.
+#' Prints (via cli) the URL to the matching search results on the Parliament
+#' website and the number of results. Used by the `echo` argument of the
+#' `get_*()` functions.
 #'
-#' @param body_params JSON string of the request body.
+#' @param body_params JSON string of the request body; used to reconstruct
+#'   the website query string (not printed itself).
 #' @param url_base Base URL of the corresponding search page on the
 #'   Parliament website (without query string).
 #' @param param_prefix Query-parameter prefix used by the website's search
@@ -63,10 +64,9 @@
     unname() |>
     paste0(collapse = "&")
 
-  cli::cli_inform(c(
-    "i" = "Request parameters: {body_params}",
-    "i" = "Results on the Parliament website: {url_base}?{query_string}{url_suffix}"
-  ))
+  cli::cli_inform(
+    "Results on the Parliament website: {url_base}?{query_string}{url_suffix}"
+  )
   if (!is.null(n_results)) {
     cli::cli_inform("Hits: {n_results}")
   }

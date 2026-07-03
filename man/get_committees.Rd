@@ -31,7 +31,7 @@ in the search results. Search for subcommittees is only possible if \code{perman
 
 \item{details_type}{A character string specifying the type of details to retrieve. Currently supports "members" to extract committee membership information. Default is NULL (no additional details).}
 
-\item{echo}{Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.}
+\item{echo}{Logical. If TRUE, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results. Default is NULL.}
 }
 \value{
 A tibble (data frame) with different structures depending on \code{details_type}:
