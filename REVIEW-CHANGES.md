@@ -173,6 +173,14 @@ New file `R/utils-shared.R`:
 Echo output now goes through cli (stderr) instead of `print()` (stdout),
 so it no longer pollutes captured stdout in scripts.
 
+**Follow-up (`11fc1a9`):** the raw JSON request body was dropped from the
+echo output entirely — it duplicated information already carried by the
+website URL, using internal API field names users cannot act on. `echo =
+TRUE` now prints the URL to the corresponding search results on the
+Parliament website and the hit count. The `@param echo` documentation of all
+affected functions was reworded, and `get_plenary_meetings()` (which had its
+own echo block) was aligned with the shared format.
+
 ---
 
 ## 5. Style modernization (`46d6f46`)
@@ -251,3 +259,5 @@ on the literal `"(s)"` was relaxed, since cli now pluralizes conditionally.
 | `8ab8d6d` | Update package infrastructure and NEWS |
 | `b6f5399` | Fix test errors surfaced by R CMD check |
 | `fd6b4a6` | Declare NSE pronouns via globalVariables |
+| `b55ea2d` | Add REVIEW-CHANGES.md |
+| `11fc1a9` | Drop the raw JSON body from echo output |
