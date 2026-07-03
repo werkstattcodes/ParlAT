@@ -15,3 +15,7 @@
 #' @importFrom utils as.roman URLencode
 ## usethis namespace: end
 NULL
+
+# NSE pronouns: `x`/`y` are dplyr::join_by() pronouns, `.` is the magrittr
+# placeholder. Declared so R CMD check does not flag them as undefined globals.
+utils::globalVariables(c(".", "x", "y"))
