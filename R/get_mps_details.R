@@ -960,6 +960,9 @@ get_mps_details_committees <- function(
     #ADD MPinfo
 
     mp_name <- get_names(pad_intern = pad_intern, latest = TRUE)$name
+    if (length(mp_name) != 1) {
+        mp_name <- NA_character_
+    }
 
     df_res <- df_res %>%
         dplyr::mutate(pad_intern = !!pad_intern, .before = 1) %>%

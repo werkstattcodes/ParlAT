@@ -1,14 +1,12 @@
 {
     "pages": 0,
-    "lastSync": "2026-03-17 02:10:06.0",
+    "lastSync": "2026-07-03 02:10:06.0",
     "count": 0,
     "header": [
         {
             "feldId": 110,
             "hidden": true,
-            "hideValue": false,
             "rnr": 1,
-            "valueToNull": false,
             "listeId": 251,
             "label": "GREMIUM",
             "feld_name": "GREMIUM"
@@ -16,9 +14,7 @@
         {
             "feldId": 111,
             "hidden": true,
-            "hideValue": false,
             "rnr": 2,
-            "valueToNull": false,
             "listeId": 251,
             "label": "GP",
             "feld_name": "GP_CODE"
@@ -26,19 +22,15 @@
         {
             "feldId": 425,
             "hidden": true,
-            "hideValue": false,
             "rnr": 3,
-            "valueToNull": false,
             "listeId": 251,
             "label": "gp_von"
         },
         {
             "feldId": 112,
             "hidden": false,
-            "hideValue": false,
             "rnr": 4,
             "sort_rnr": 10,
-            "valueToNull": false,
             "listeId": 251,
             "label": "Sitzung",
             "sortable": "1",
@@ -47,9 +39,7 @@
         {
             "feldId": 113,
             "hidden": false,
-            "hideValue": false,
             "rnr": 5,
-            "valueToNull": false,
             "listeId": 251,
             "label": "Rede",
             "feld_name": "Rede"
@@ -58,9 +48,7 @@
             "css_class": "buttons-col",
             "feldId": 114,
             "hidden": false,
-            "hideValue": false,
             "rnr": 6,
-            "valueToNull": false,
             "listeId": 251,
             "class": "buttons-col"
         },
@@ -68,18 +56,14 @@
             "css_class": "buttons-col",
             "feldId": 115,
             "hidden": false,
-            "hideValue": false,
             "rnr": 7,
-            "valueToNull": false,
             "listeId": 251,
             "class": "buttons-col"
         },
         {
             "feldId": 116,
             "hidden": true,
-            "hideValue": false,
             "rnr": 8,
-            "valueToNull": false,
             "listeId": 251,
             "label": "PAD_INTERN",
             "feld_name": "PAD_INTERN"
@@ -87,9 +71,7 @@
         {
             "feldId": 968,
             "hidden": true,
-            "hideValue": false,
             "rnr": 9,
-            "valueToNull": false,
             "mediaType": "fromDate",
             "listeId": 251,
             "label": "fromDate"
@@ -97,9 +79,7 @@
         {
             "feldId": 3401,
             "hidden": true,
-            "hideValue": false,
             "rnr": 10,
-            "valueToNull": false,
             "listeId": 251,
             "label": "Sortier"
         }

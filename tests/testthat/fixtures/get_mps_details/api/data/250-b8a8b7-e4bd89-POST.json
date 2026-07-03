@@ -1,15 +1,13 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-17 13:00:14.0",
+    "lastSync": "2026-07-02 18:50:37.0",
     "count": 35,
     "header": [
         {
             "css_class": "datum-col",
             "feldId": 92,
             "hidden": false,
-            "hideValue": false,
             "rnr": 1,
-            "valueToNull": false,
             "listeId": 250,
             "label": "GP",
             "sortable": "1",
@@ -19,9 +17,7 @@
         {
             "feldId": 93,
             "hidden": true,
-            "hideValue": false,
             "rnr": 2,
-            "valueToNull": false,
             "listeId": 250,
             "label": "Sort"
         },
@@ -29,9 +25,7 @@
             "css_class": "col-20",
             "feldId": 94,
             "hidden": false,
-            "hideValue": false,
             "rnr": 3,
-            "valueToNull": false,
             "listeId": 250,
             "label": "Funktion",
             "feld_name": "FUNKTION",
@@ -42,9 +36,7 @@
             "feldId": 95,
             "link_rnr": "6",
             "hidden": false,
-            "hideValue": false,
             "rnr": 4,
-            "valueToNull": false,
             "listeId": 250,
             "label": "Ausschuss",
             "class": "fraction-col"
@@ -52,27 +44,21 @@
         {
             "feldId": 96,
             "hidden": true,
-            "hideValue": false,
             "rnr": 5,
-            "valueToNull": false,
             "listeId": 250,
             "label": "nrbr"
         },
         {
             "feldId": 97,
             "hidden": true,
-            "hideValue": false,
             "rnr": 6,
-            "valueToNull": false,
             "listeId": 250,
             "label": "URL"
         },
         {
             "feldId": 98,
             "hidden": true,
-            "hideValue": false,
             "rnr": 7,
-            "valueToNull": false,
             "listeId": 250,
             "label": "PAD_INTERN",
             "feld_name": "PAD_INTERN"
@@ -80,9 +66,7 @@
         {
             "feldId": 969,
             "hidden": true,
-            "hideValue": false,
             "rnr": 8,
-            "valueToNull": false,
             "listeId": 250,
             "mediaType": "fromDate",
             "label": "fromDate"
@@ -90,9 +74,7 @@
         {
             "feldId": 564,
             "hidden": true,
-            "hideValue": false,
             "rnr": 9,
-            "valueToNull": false,
             "listeId": 250,
             "label": "Ausschuss",
             "feld_name": "AUSSCHUSS"
@@ -100,9 +82,7 @@
         {
             "feldId": 565,
             "hidden": true,
-            "hideValue": false,
             "rnr": 10,
-            "valueToNull": false,
             "listeId": 250,
             "label": "Gremium",
             "feld_name": "GREMIUM"
@@ -110,9 +90,7 @@
         {
             "feldId": 584,
             "hidden": true,
-            "hideValue": false,
             "rnr": 11,
-            "valueToNull": false,
             "listeId": 250,
             "label": "gp_text_full",
             "feld_name": "GP_TEXT_FULL"

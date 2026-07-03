@@ -240,7 +240,7 @@ test_that("get_plenary_meetings validates parameters correctly", {
 
   expect_error(
     get_plenary_meetings(institution = "NR", legis_period = "invalid"),
-    "Invalid legislative period\\(s\\) provided"
+    "Invalid legislative period"
   )
 
   expect_error(

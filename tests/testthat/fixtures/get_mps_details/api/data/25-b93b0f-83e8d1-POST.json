@@ -1,16 +1,14 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-17 00:02:36.0",
+    "lastSync": "2026-07-03 01:11:11.0",
     "count": 17,
     "header": [
         {
             "css_class": "stellungnahmen-col ",
             "feldId": 181,
             "hidden": false,
-            "hideValue": false,
             "rnr": 1,
             "sort_rnr": 19,
-            "valueToNull": false,
             "listeId": 25,
             "label": "GP",
             "sortable": "1",
@@ -21,9 +19,7 @@
             "css_class": "stellungnahmen-col ",
             "feldId": 183,
             "hidden": false,
-            "hideValue": false,
             "rnr": 2,
-            "valueToNull": false,
             "listeId": 25,
             "label": "Art",
             "feld_name": "ityp",
@@ -32,18 +28,14 @@
         {
             "feldId": 193,
             "hidden": true,
-            "hideValue": false,
             "rnr": 3,
-            "valueToNull": false,
             "listeId": 25,
             "label": "?"
         },
         {
             "feldId": 194,
             "hidden": true,
-            "hideValue": false,
             "rnr": 4,
-            "valueToNull": false,
             "listeId": 25,
             "label": "?"
         },
@@ -51,9 +43,7 @@
             "css_class": "datum-col",
             "feldId": 185,
             "hidden": false,
-            "hideValue": false,
             "rnr": 5,
-            "valueToNull": false,
             "listeId": 25,
             "label": "Nr",
             "class": "datum-col"
@@ -62,9 +52,7 @@
             "feldId": 184,
             "link_rnr": "8",
             "hidden": false,
-            "hideValue": false,
             "rnr": 6,
-            "valueToNull": false,
             "listeId": 25,
             "label": "Betreff"
         },
@@ -72,9 +60,7 @@
             "css_class": "datum-col",
             "feldId": 182,
             "hidden": false,
-            "hideValue": false,
             "rnr": 7,
-            "valueToNull": false,
             "listeId": 25,
             "label": "Aktualisierung",
             "class": "datum-col"
@@ -82,64 +68,50 @@
         {
             "feldId": 188,
             "hidden": true,
-            "hideValue": false,
             "rnr": 8,
-            "valueToNull": false,
             "listeId": 25,
             "label": "Link"
         },
         {
             "feldId": 189,
             "hidden": true,
-            "hideValue": false,
             "rnr": 9,
-            "valueToNull": false,
             "listeId": 25,
             "label": "sortdate"
         },
         {
             "feldId": 190,
             "hidden": true,
-            "hideValue": false,
             "rnr": 10,
-            "valueToNull": false,
             "listeId": 25,
             "label": "Ityp Komm"
         },
         {
             "feldId": 191,
             "hidden": true,
-            "hideValue": false,
             "rnr": 11,
-            "valueToNull": false,
             "listeId": 25,
             "label": "?"
         },
         {
             "feldId": 186,
             "hidden": false,
-            "hideValue": false,
             "rnr": 12,
-            "valueToNull": false,
-            "mediaType": "status",
             "listeId": 25,
+            "mediaType": "status",
             "label": "Status"
         },
         {
             "feldId": 192,
             "hidden": true,
-            "hideValue": false,
             "rnr": 13,
-            "valueToNull": false,
             "listeId": 25,
             "label": "?"
         },
         {
             "feldId": 187,
             "hidden": true,
-            "hideValue": false,
             "rnr": 14,
-            "valueToNull": false,
             "listeId": 25,
             "label": "PAD_INTERN",
             "feld_name": "PAD_INTERN"
@@ -147,19 +119,15 @@
         {
             "feldId": 970,
             "hidden": true,
-            "hideValue": false,
             "rnr": 15,
-            "valueToNull": false,
-            "mediaType": "fromDate",
             "listeId": 25,
+            "mediaType": "fromDate",
             "label": "fromDate"
         },
         {
             "feldId": 1085,
             "hidden": true,
-            "hideValue": false,
             "rnr": 16,
-            "valueToNull": false,
             "listeId": 25,
             "label": "gremium",
             "feld_name": "gremium"
@@ -167,9 +135,7 @@
         {
             "feldId": 1086,
             "hidden": true,
-            "hideValue": false,
             "rnr": 17,
-            "valueToNull": false,
             "listeId": 25,
             "label": "gp_text_full",
             "feld_name": "gp_text_full"
@@ -177,9 +143,7 @@
         {
             "feldId": 1880,
             "hidden": true,
-            "hideValue": false,
             "rnr": 18,
-            "valueToNull": false,
             "listeId": 25,
             "label": "vhg4",
             "feld_name": "vhg4"
@@ -187,9 +151,7 @@
         {
             "feldId": 2265,
             "hidden": true,
-            "hideValue": false,
             "rnr": 19,
-            "valueToNull": false,
             "listeId": 25,
             "label": "sort"
         }
@@ -324,27 +286,6 @@
         [
             "XXI",
             "A",
-            "00190",
-            null,
-            "190/A",
-            "Mietrechtsgesetz, Änderung ",
-            "20.03.2002",
-            "/gegenstand/XXI/A/190",
-            "20020320",
-            "Selbständiger Antrag",
-            "05",
-            "5",
-            "Aktualisiert:\n06.06.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n190/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (1053 d.B.)\n<br /> Phase:\n05\n<br />\n",
-            "145",
-            "Wed Mar 20 01:00:00 CET 2002",
-            "N",
-            "XXI",
-            "A",
-            "1999102920020320"
-        ],
-        [
-            "XXI",
-            "A",
             "00557",
             null,
             "557/A",
@@ -356,6 +297,27 @@
             "05",
             "5",
             "Aktualisiert:\n23.11.01\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Wohnungsgemeinnützigkeitsgesetz u.a., Änderung \n<br />\nNr.:\n557/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (1054 d.B.)\n<br /> Phase:\n05\n<br />\n",
+            "145",
+            "Wed Mar 20 01:00:00 CET 2002",
+            "N",
+            "XXI",
+            "A",
+            "1999102920020320"
+        ],
+        [
+            "XXI",
+            "A",
+            "00190",
+            null,
+            "190/A",
+            "Mietrechtsgesetz, Änderung ",
+            "20.03.2002",
+            "/gegenstand/XXI/A/190",
+            "20020320",
+            "Selbständiger Antrag",
+            "05",
+            "5",
+            "Aktualisiert:\n06.06.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n190/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (1053 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Mar 20 01:00:00 CET 2002",
             "N",
@@ -404,27 +366,6 @@
             "XXI",
             "A",
             "1999102920001019"
-        ],
-        [
-            "XXI",
-            "A",
-            "00091",
-            null,
-            "91/A",
-            "Konsumentenschutzgesetz, Änderung ",
-            "06.06.2000",
-            "/gegenstand/XXI/A/91",
-            "20000606",
-            "Selbständiger Antrag",
-            "05",
-            "5",
-            "Aktualisiert:\n24.02.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nKonsumentenschutzgesetz, Änderung \n<br />\nNr.:\n91/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (124 d.B.)\n<br /> Phase:\n05\n<br />\n",
-            "145",
-            "Tue Jun 06 02:00:00 CEST 2000",
-            "N",
-            "XXI",
-            "A",
-            "1999102920000606"
         ],
         [
             "XXI",
@@ -482,6 +423,27 @@
             "05",
             "5",
             "Aktualisiert:\n24.02.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n90/A\n<br />\nStatus:\nAuf der Tagesordnung der 29. Sitzung des Nationalrates Miterledigung\n<br /> Phase:\n05\n<br />\n",
+            "145",
+            "Tue Jun 06 02:00:00 CEST 2000",
+            "N",
+            "XXI",
+            "A",
+            "1999102920000606"
+        ],
+        [
+            "XXI",
+            "A",
+            "00091",
+            null,
+            "91/A",
+            "Konsumentenschutzgesetz, Änderung ",
+            "06.06.2000",
+            "/gegenstand/XXI/A/91",
+            "20000606",
+            "Selbständiger Antrag",
+            "05",
+            "5",
+            "Aktualisiert:\n24.02.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nKonsumentenschutzgesetz, Änderung \n<br />\nNr.:\n91/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (124 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Jun 06 02:00:00 CEST 2000",
             "N",
