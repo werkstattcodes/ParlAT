@@ -46,6 +46,8 @@ test_that("get_items validates date_start must be <= date_end", {
 })
 
 test_that("get_items accepts multiple date formats", {
+  skip_if_api_index_degraded()
+
   # Test that all three date formats return the same result
   result1 <- run_api_call(
     {
@@ -58,7 +60,7 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result1, "data.frame")
-  expect_equal(nrow(result1), 2526)
+  expect_row_count(nrow(result1), 2526)
 
   result2 <- run_api_call(
     {
@@ -71,7 +73,7 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result2, "data.frame")
-  expect_equal(nrow(result2), 2526)
+  expect_row_count(nrow(result2), 2526)
 
   result3 <- run_api_call(
     {
@@ -84,7 +86,11 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result3, "data.frame")
-  expect_equal(nrow(result3), 2526)
+  expect_row_count(nrow(result3), 2526)
+
+  # All three formats must resolve to the same query and thus the same rows
+  expect_equal(nrow(result1), nrow(result2))
+  expect_equal(nrow(result1), nrow(result3))
 })
 
 test_that("get_items validates institution parameter", {
@@ -160,6 +166,8 @@ test_that("get_items works with multiple parameters", {
 })
 
 test_that("get_items works with multiple topics", {
+  skip_if_api_index_degraded()
+
   result <- run_api_call(
     {
       get_items(
@@ -171,7 +179,7 @@ test_that("get_items works with multiple topics", {
     fixture_subdir = "get_items"
   )
 
-  expect_equal(nrow(result), 2013)
+  expect_row_count(nrow(result), 2013)
 })
 
 test_that("get_items rejects mixed legis_period inputs containing unsupported early periods", {
@@ -525,6 +533,8 @@ test_that("get_items accepts valid type_eu_submission values", {
 })
 
 test_that("get_items accepts multiple type_eu_submission values", {
+  skip_if_api_index_degraded()
+
   # Test multiple valid values
   result <- run_api_call(
     {
@@ -540,7 +550,7 @@ test_that("get_items accepts multiple type_eu_submission values", {
   )
 
   expect_true(is.data.frame(result) || is.null(result))
-  expect_equal(nrow(result), 8)
+  expect_row_count(nrow(result), 8)
 })
 
 test_that("get_items type_eu_submission works with all valid codes", {
@@ -870,6 +880,8 @@ test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-2
 })
 
 test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27)", {
+  skip_if_api_index_degraded()
+
   result <- run_api_call(
     {
       get_items(
@@ -903,6 +915,8 @@ test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27
 })
 
 test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)", {
+  skip_if_api_index_degraded()
+
   result <- run_api_call(
     {
       get_items(
