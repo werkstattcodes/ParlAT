@@ -2,7 +2,7 @@
     "pagetype": "biografie",
     "meta": {
         "description": "Krisper Stephanie, Dr.",
-        "generationTime": "Fri Mar 20 10:36:55 UTC 2026",
+        "generationTime": "Thu Aug 20 05:46:40 GMT 2026",
         "lang": "de",
         "title": "Krisper Stephanie, Dr. | Parlament Österreich",
         "openGraph": {
@@ -185,8 +185,8 @@
                         "hideDimensions": [
                             "PAD_INTERN"
                         ],
-                        "sortrnr": 2,
-                        "ascDesc": "ASC"
+                        "sortrnr": 14,
+                        "ascDesc": "DESC"
                     },
                     "type": "MONGODB"
                 }
@@ -230,14 +230,14 @@
             "filter": {
                 "rendertype": "filter",
                 "data": {
-                    "type": "FILTER",
+                    "type": "MONGODB",
                     "resultLayout": "TABLE",
                     "hasForm": true,
                     "hasList": true,
                     "label": "Aktivitaeten",
                     "pagesize": 20,
                     "definition": {
-                        "bez": "PERS_AKTIVIT_025",
+                        "bez": "PERS_AKTIVIT_025_MONGODB",
                         "listeId": 25,
                         "params": {
 

@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-07-02 18:50:37.0",
+    "lastSync": "2026-08-28 05:22:32.0",
     "count": 19,
     "header": [
         {
@@ -94,6 +94,44 @@
             "listeId": 250,
             "label": "gp_text_full",
             "feld_name": "GP_TEXT_FULL"
+        },
+        {
+            "feldId": 1645,
+            "ist_range": "1",
+            "hidden": true,
+            "rnr": 12,
+            "listeId": 250,
+            "mediaType": "datetime",
+            "label": "Beginn",
+            "feld_name": "BEGINNDATUM_ISO"
+        },
+        {
+            "feldId": 1665,
+            "hidden": false,
+            "sort_rnr": 14,
+            "label": "Funktionsbeginn",
+            "sortable": "1",
+            "css_class": "datum-col",
+            "rnr": 13,
+            "listeId": 250,
+            "feld_name": "FUNKTIONSBEGINN",
+            "class": "datum-col"
+        },
+        {
+            "feldId": 1666,
+            "hidden": true,
+            "rnr": 14,
+            "listeId": 250,
+            "label": "Beginn4Sort",
+            "feld_name": "BEGINN4SORT"
+        },
+        {
+            "feldId": 1685,
+            "hidden": true,
+            "rnr": 15,
+            "listeId": 250,
+            "label": "Personenregister",
+            "feld_name": "PERSONENREGISTER"
         }
     ],
     "rows": [
@@ -108,7 +146,11 @@
             "Fri Apr 20 02:00:00 CEST 2018",
             "Untersuchungsausschuss: BVT-Untersuchungsausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-04-20T00:00:00",
+            "20.04.2018",
+            "20180420",
+            null
         ],
         [
             "XXVI",
@@ -121,7 +163,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXVI",
@@ -134,7 +180,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -147,7 +197,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -160,7 +214,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -173,7 +231,11 @@
             "Wed Sep 26 02:00:00 CEST 2018",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-09-26T00:00:00",
+            "26.09.2018",
+            "20180926",
+            null
         ],
         [
             "XXVI",
@@ -186,7 +248,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXVI",
@@ -199,7 +265,11 @@
             "Thu Apr 19 02:00:00 CEST 2018",
             "Untersuchungsausschuss: Untersuchungsausschuss zur Untersuchung der politischen Verantwortung im Zusammenhang mit dem Kampfflugzeugsystem \"Eurofighter Typhoon\" von Anfang 2000 bis Ende 2017",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-04-19T00:00:00",
+            "19.04.2018",
+            "20180419",
+            null
         ],
         [
             "XXVI",
@@ -212,7 +282,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -225,7 +299,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -238,7 +316,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -251,7 +333,11 @@
             "Thu Dec 21 01:00:00 CET 2017",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-12-21T00:00:00",
+            "21.12.2017",
+            "20171221",
+            null
         ],
         [
             "XXVI",
@@ -264,7 +350,11 @@
             "Thu Dec 21 01:00:00 CET 2017",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-12-21T00:00:00",
+            "21.12.2017",
+            "20171221",
+            null
         ],
         [
             "XXVI",
@@ -277,7 +367,11 @@
             "Wed Sep 26 02:00:00 CEST 2018",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-09-26T00:00:00",
+            "26.09.2018",
+            "20180926",
+            null
         ],
         [
             "XXVI",
@@ -290,7 +384,11 @@
             "Wed Sep 26 02:00:00 CEST 2018",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-09-26T00:00:00",
+            "26.09.2018",
+            "20180926",
+            null
         ],
         [
             "XXVI",
@@ -303,7 +401,11 @@
             "Wed Sep 26 02:00:00 CEST 2018",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-09-26T00:00:00",
+            "26.09.2018",
+            "20180926",
+            null
         ],
         [
             "XXVI",
@@ -316,7 +418,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXVI",
@@ -329,7 +435,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXVI",
@@ -342,7 +452,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ]
     ]
 }

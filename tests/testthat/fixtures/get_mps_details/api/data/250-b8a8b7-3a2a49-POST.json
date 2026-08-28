@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-07-02 18:50:37.0",
+    "lastSync": "2026-08-28 05:22:32.0",
     "count": 5,
     "header": [
         {
@@ -33,8 +33,8 @@
         },
         {
             "css_class": "fraction-col",
-            "feldId": 95,
             "link_rnr": "6",
+            "feldId": 95,
             "hidden": false,
             "rnr": 4,
             "listeId": 250,
@@ -94,6 +94,44 @@
             "listeId": 250,
             "label": "gp_text_full",
             "feld_name": "GP_TEXT_FULL"
+        },
+        {
+            "feldId": 1645,
+            "ist_range": "1",
+            "hidden": true,
+            "rnr": 12,
+            "listeId": 250,
+            "mediaType": "datetime",
+            "label": "Beginn",
+            "feld_name": "BEGINNDATUM_ISO"
+        },
+        {
+            "feldId": 1665,
+            "hidden": false,
+            "sort_rnr": 14,
+            "label": "Funktionsbeginn",
+            "sortable": "1",
+            "css_class": "datum-col",
+            "rnr": 13,
+            "listeId": 250,
+            "feld_name": "FUNKTIONSBEGINN",
+            "class": "datum-col"
+        },
+        {
+            "feldId": 1666,
+            "hidden": true,
+            "rnr": 14,
+            "listeId": 250,
+            "label": "Beginn4Sort",
+            "feld_name": "BEGINN4SORT"
+        },
+        {
+            "feldId": 1685,
+            "hidden": true,
+            "rnr": 15,
+            "listeId": 250,
+            "label": "Personenregister",
+            "feld_name": "PERSONENREGISTER"
         }
     ],
     "rows": [
@@ -108,7 +146,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -121,7 +163,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Hauptausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -134,7 +180,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -147,7 +197,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -160,7 +214,11 @@
             "Fri Jan 10 01:00:00 CET 2020",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2020-01-10T00:00:00",
+            "10.01.2020",
+            "20200110",
+            null
         ]
     ]
 }
