@@ -1,6 +1,6 @@
 {
     "pages": 1,
-    "lastSync": "2026-07-03 02:10:06.0",
+    "lastSync": "2026-08-28 02:10:07.0",
     "count": 5,
     "header": [
         {
@@ -29,8 +29,8 @@
         {
             "feldId": 112,
             "hidden": false,
-            "rnr": 4,
             "sort_rnr": 10,
+            "rnr": 4,
             "listeId": 251,
             "label": "Sitzung",
             "sortable": "1",

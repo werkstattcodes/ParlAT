@@ -1,22 +1,23 @@
 {
     "pages": 1,
-    "lastSync": "2026-07-03 01:11:11.0",
+    "lastSync": "2026-08-28 03:00:57.0",
     "count": 38,
     "header": [
         {
-            "css_class": "stellungnahmen-col ",
             "feldId": 181,
             "hidden": false,
-            "rnr": 1,
             "sort_rnr": 19,
-            "listeId": 25,
             "label": "GP",
             "sortable": "1",
+            "css_class": "stellungnahmen-col ",
+            "rnr": 1,
+            "listeId": 25,
+            "feld_name": "gp_code",
             "class": "stellungnahmen-col "
         },
         {
-            "css_class": "stellungnahmen-col ",
             "tooltip_rnr": 10,
+            "css_class": "stellungnahmen-col ",
             "feldId": 183,
             "hidden": false,
             "rnr": 2,
@@ -97,8 +98,8 @@
             "feldId": 186,
             "hidden": false,
             "rnr": 12,
-            "mediaType": "status",
             "listeId": 25,
+            "mediaType": "status",
             "label": "Status"
         },
         {
@@ -120,8 +121,8 @@
             "feldId": 970,
             "hidden": true,
             "rnr": 15,
-            "mediaType": "fromDate",
             "listeId": 25,
+            "mediaType": "fromDate",
             "label": "fromDate"
         },
         {
@@ -154,6 +155,22 @@
             "rnr": 19,
             "listeId": 25,
             "label": "sort"
+        },
+        {
+            "feldId": 1725,
+            "hidden": true,
+            "rnr": 20,
+            "listeId": 25,
+            "label": "Personenregister",
+            "feld_name": "personenregister"
+        },
+        {
+            "feldId": 1726,
+            "hidden": true,
+            "rnr": 21,
+            "listeId": 25,
+            "label": "gp_text_full_short",
+            "feld_name": "gp_text_full_short"
         }
     ],
     "rows": [
@@ -173,10 +190,12 @@
             "Aktualisiert:\n10.07.06\n<br />\nArt:\nMündliche Anfrage\n<br />\nBetreff:\nGesamtabgänge der sozialen Krankenversicherung in den Jahren 2000 bis 2005 \n<br />\nNr.:\n166/M\n<br />\nStatus:\nZusatzfrage von dem Abgeordneten Karl Öllinger gestellt\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Jul 13 02:00:00 CEST 2006",
-            "N",
+            "Nationalrat",
             "XXII",
             "M",
-            "2002122020060713"
+            "2002122020060713",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -194,10 +213,12 @@
             "Aktualisiert:\n19.06.06\n<br />\nArt:\nMündliche Anfrage\n<br />\nBetreff:\nVorfinanzierung der Eurofighter durch die BAWAG P.S.K. \n<br />\nNr.:\n160/M\n<br />\nStatus:\nZusatzfrage von dem Abgeordneten Detlev Neudeck gestellt\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Jun 22 02:00:00 CEST 2006",
-            "N",
+            "Nationalrat",
             "XXII",
             "M",
-            "2002122020060622"
+            "2002122020060622",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -215,10 +236,12 @@
             "Aktualisiert:\n03.12.03\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n294/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (1532 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed May 24 02:00:00 CEST 2006",
-            "N",
+            "Nationalrat",
             "XXII",
             "A",
-            "2002122020060524"
+            "2002122020060524",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -236,10 +259,12 @@
             "Aktualisiert:\n08.03.06\n<br />\nArt:\nErklärung Präsidentin/Präsident\n<br />\nBetreff:\nMitteilung betreffend Beendigung der Klubmitgliedschaft \n<br />\nNr.:\n1193/GO\n<br />\nStatus:\nErklärung\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Mar 08 01:00:00 CET 2006",
-            "N",
+            "Nationalrat",
             "XXII",
             null,
-            "2002122020060308"
+            "2002122020060308",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -257,10 +282,12 @@
             "Aktualisiert:\n11.10.05\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nWahrnehmung der Aufsichtsrechte und -pflichten aus ASVG und Arzneimittelgesetz  - beantwortet durch 3458/AB\n<br />\nNr.:\n3504/J\n<br />\nStatus:\nSchriftliche Beantwortung am 09.12.2005 (3458/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Fri Dec 09 01:00:00 CET 2005",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020051209"
+            "2002122020051209",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -278,10 +305,12 @@
             "Aktualisiert:\n16.11.05\n<br />\nArt:\nUnselbständiger Entschließungsantrag\n<br />\nBetreff:\ngesetzliche Verankerung der Erhaltung bzw. Sanierung des Bundesgebäudebestandes \n<br />\nNr.:\n314/UEA\n<br />\nStatus:\nUnselbständiger Entschließungsantrag abgelehnt\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Nov 16 01:00:00 CET 2005",
-            "N",
+            "Nationalrat",
             "XXII",
             "UEA",
-            "2002122020051116"
+            "2002122020051116",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -299,10 +328,12 @@
             "Aktualisiert:\n16.11.05\n<br />\nArt:\nUnselbständiger Entschließungsantrag\n<br />\nBetreff:\nEnergieeinsparungen im Bereich der Bundesgebäude \n<br />\nNr.:\n315/UEA\n<br />\nStatus:\nUnselbständiger Entschließungsantrag abgelehnt\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Nov 16 01:00:00 CET 2005",
-            "N",
+            "Nationalrat",
             "XXII",
             "UEA",
-            "2002122020051116"
+            "2002122020051116",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -320,10 +351,12 @@
             "Aktualisiert:\n03.03.05\n<br />\nArt:\nSelbständiger Entschließungsantrag\n<br />\nBetreff:\nAusarbeitung eines neuen modernen HausbesorgerInnengesetzes \n<br />\nNr.:\n565/A(E)\n<br />\nStatus:\nBautenausschuss: auf Tagesordnung in der 5. Sitzung des Ausschusses, In der Sitzung vom 21. Juni 2005 vertagt!\n<br /> Phase:\n03\n<br />\n",
             "145",
             "Tue Jun 21 02:00:00 CEST 2005",
-            "N",
+            "Nationalrat",
             "XXII",
             "AE",
-            "2002122020050621"
+            "2002122020050621",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -341,10 +374,12 @@
             "Aktualisiert:\n29.09.04\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nMissstände und Geldverschwendung beim Projekt \"e-Card\"  - beantwortet durch 2158/AB\n<br />\nNr.:\n2177/J\n<br />\nStatus:\nSchriftliche Beantwortung am 30.11.2004 (2158/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Nov 30 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020041130"
+            "2002122020041130",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -362,10 +397,12 @@
             "Aktualisiert:\n29.09.04\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nMissstände und Geldverschwendung beim Projekt \"e-Card\"  - beantwortet durch 2157/AB\n<br />\nNr.:\n2179/J\n<br />\nStatus:\nSchriftliche Beantwortung am 29.11.2004 (2157/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Mon Nov 29 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020041129"
+            "2002122020041129",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -383,10 +420,12 @@
             "Aktualisiert:\n29.09.04\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nMissstände und Geldverschwendung beim Projekt \"e-Card\"  - beantwortet durch 2156/AB\n<br />\nNr.:\n2178/J\n<br />\nStatus:\nSchriftliche Beantwortung am 29.11.2004 (2156/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Mon Nov 29 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020041129"
+            "2002122020041129",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -404,10 +443,12 @@
             "Aktualisiert:\n13.10.04\n<br />\nArt:\nAntrag auf Einsetzung eines Untersuchungsausschusses\n<br />\nBetreff:\nAntrag auf Einsetzung eines Untersuchungsausschusses: Durchführung des Projektes Chipkarte (e-card) \n<br />\nNr.:\n96/GO\n<br />\nStatus:\nAntrag abgelehnt\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Oct 13 02:00:00 CEST 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             null,
-            "2002122020041013"
+            "2002122020041013",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -425,10 +466,12 @@
             "Aktualisiert:\n05.05.04\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nVerkauf und Verwertung des Gebäudekomplexes Himmelpfortgasse, Kärntnerstraße, Johannesgasse  - beantwortet durch 1701/AB\n<br />\nNr.:\n1696/J\n<br />\nStatus:\nSchriftliche Beantwortung am 05.07.2004 (1701/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Mon Jul 05 02:00:00 CEST 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040705"
+            "2002122020040705",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -446,10 +489,12 @@
             "Aktualisiert:\n05.05.04\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nVerkauf und Verwertung des Gebäudekomplexes Himmelpfortgasse, Kärntnerstraße, Johannesgasse  - beantwortet durch 1713/AB\n<br />\nNr.:\n1697/J\n<br />\nStatus:\nSchriftliche Beantwortung am 05.07.2004 (1713/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Mon Jul 05 02:00:00 CEST 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040705"
+            "2002122020040705",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -467,10 +512,12 @@
             "Aktualisiert:\n24.05.04\n<br />\nArt:\nMündliche Anfrage\n<br />\nBetreff:\nPersonalreduktionen in der Justiz \n<br />\nNr.:\n68/M\n<br />\nStatus:\nZusatzfrage von dem Abgeordneten Dipl.-Ing. Uwe Scheuch gestellt\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu May 27 02:00:00 CEST 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "M",
-            "2002122020040527"
+            "2002122020040527",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -488,10 +535,12 @@
             "Aktualisiert:\n25.03.04\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nAnfragebeantwortung 1343/AB/Absiedlung des Gerichtsgebäudes Riemergasse  - beantwortet durch 1592/AB\n<br />\nNr.:\n1633/J\n<br />\nStatus:\nSchriftliche Beantwortung am 24.05.2004 (1592/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Mon May 24 02:00:00 CEST 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040524"
+            "2002122020040524",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -509,10 +558,12 @@
             "Aktualisiert:\n24.09.03\n<br />\nArt:\nSelbständiger Entschließungsantrag\n<br />\nBetreff:\nvorrangiger Verkauf der BIG-Wohnungen und Bundeswohnungen an Mieter \n<br />\nNr.:\n230/A(E)\n<br />\nStatus:\nBautenausschuss: auf Tagesordnung in der 4. Sitzung des Ausschusses, In der Sitzung vom 11. Mai 2004 vertagt!\n<br /> Phase:\n03\n<br />\n",
             "145",
             "Tue May 11 02:00:00 CEST 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "AE",
-            "2002122020040511"
+            "2002122020040511",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -530,10 +581,12 @@
             "Aktualisiert:\n29.01.04\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nAbsiedelung des Gerichtsgebäudes Riemergasse  - beantwortet durch 1343/AB\n<br />\nNr.:\n1390/J\n<br />\nStatus:\nSchriftliche Beantwortung am 19.03.2004 (1343/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Fri Mar 19 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040319"
+            "2002122020040319",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -551,52 +604,12 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1215/AB\n<br />\nNr.:\n1152/J\n<br />\nStatus:\nSchriftliche Beantwortung am 03.02.2004 (1215/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Feb 03 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040203"
-        ],
-        [
-            "XXII",
-            "J",
-            "01155",
+            "2002122020040203",
             null,
-            "1155/J",
-            "Immobilienmanagement der Ressorts  - beantwortet durch 1198/AB",
-            "02.02.2004",
-            "/gegenstand/XXII/J/1155",
-            "20040202",
-            "Schriftliche Anfrage",
-            "05",
-            "5",
-            "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1198/AB\n<br />\nNr.:\n1155/J\n<br />\nStatus:\nSchriftliche Beantwortung am 02.02.2004 (1198/AB)\n<br /> Phase:\n05\n<br />\n",
-            "145",
-            "Mon Feb 02 01:00:00 CET 2004",
-            "N",
-            "XXII",
-            "JMIN",
-            "2002122020040202"
-        ],
-        [
-            "XXII",
-            "J",
-            "01161",
-            null,
-            "1161/J",
-            "Immobilienmanagement der Ressorts  - beantwortet durch 1213/AB",
-            "02.02.2004",
-            "/gegenstand/XXII/J/1161",
-            "20040202",
-            "Schriftliche Anfrage",
-            "05",
-            "5",
-            "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1213/AB\n<br />\nNr.:\n1161/J\n<br />\nStatus:\nSchriftliche Beantwortung am 02.02.2004 (1213/AB)\n<br /> Phase:\n05\n<br />\n",
-            "145",
-            "Mon Feb 02 01:00:00 CET 2004",
-            "N",
-            "XXII",
-            "JMIN",
-            "2002122020040202"
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -614,10 +627,58 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1193/AB\n<br />\nNr.:\n1162/J\n<br />\nStatus:\nSchriftliche Beantwortung am 02.02.2004 (1193/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Mon Feb 02 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040202"
+            "2002122020040202",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
+        ],
+        [
+            "XXII",
+            "J",
+            "01155",
+            null,
+            "1155/J",
+            "Immobilienmanagement der Ressorts  - beantwortet durch 1198/AB",
+            "02.02.2004",
+            "/gegenstand/XXII/J/1155",
+            "20040202",
+            "Schriftliche Anfrage",
+            "05",
+            "5",
+            "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1198/AB\n<br />\nNr.:\n1155/J\n<br />\nStatus:\nSchriftliche Beantwortung am 02.02.2004 (1198/AB)\n<br /> Phase:\n05\n<br />\n",
+            "145",
+            "Mon Feb 02 01:00:00 CET 2004",
+            "Nationalrat",
+            "XXII",
+            "JMIN",
+            "2002122020040202",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
+        ],
+        [
+            "XXII",
+            "J",
+            "01161",
+            null,
+            "1161/J",
+            "Immobilienmanagement der Ressorts  - beantwortet durch 1213/AB",
+            "02.02.2004",
+            "/gegenstand/XXII/J/1161",
+            "20040202",
+            "Schriftliche Anfrage",
+            "05",
+            "5",
+            "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1213/AB\n<br />\nNr.:\n1161/J\n<br />\nStatus:\nSchriftliche Beantwortung am 02.02.2004 (1213/AB)\n<br /> Phase:\n05\n<br />\n",
+            "145",
+            "Mon Feb 02 01:00:00 CET 2004",
+            "Nationalrat",
+            "XXII",
+            "JMIN",
+            "2002122020040202",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -635,31 +696,12 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1191/AB\n<br />\nNr.:\n1153/J\n<br />\nStatus:\nSchriftliche Beantwortung am 30.01.2004 (1191/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Fri Jan 30 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040130"
-        ],
-        [
-            "XXII",
-            "J",
-            "01156",
+            "2002122020040130",
             null,
-            "1156/J",
-            "Immobilienmanagement der Ressorts  - beantwortet durch 1176/AB",
-            "30.01.2004",
-            "/gegenstand/XXII/J/1156",
-            "20040130",
-            "Schriftliche Anfrage",
-            "05",
-            "5",
-            "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1176/AB\n<br />\nNr.:\n1156/J\n<br />\nStatus:\nSchriftliche Beantwortung am 30.01.2004 (1176/AB)\n<br /> Phase:\n05\n<br />\n",
-            "145",
-            "Fri Jan 30 01:00:00 CET 2004",
-            "N",
-            "XXII",
-            "JMIN",
-            "2002122020040130"
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -677,10 +719,12 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1192/AB\n<br />\nNr.:\n1163/J\n<br />\nStatus:\nSchriftliche Beantwortung am 30.01.2004 (1192/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Fri Jan 30 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040130"
+            "2002122020040130",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -698,10 +742,35 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1187/AB\n<br />\nNr.:\n1160/J\n<br />\nStatus:\nSchriftliche Beantwortung am 30.01.2004 (1187/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Fri Jan 30 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040130"
+            "2002122020040130",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
+        ],
+        [
+            "XXII",
+            "J",
+            "01156",
+            null,
+            "1156/J",
+            "Immobilienmanagement der Ressorts  - beantwortet durch 1176/AB",
+            "30.01.2004",
+            "/gegenstand/XXII/J/1156",
+            "20040130",
+            "Schriftliche Anfrage",
+            "05",
+            "5",
+            "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1176/AB\n<br />\nNr.:\n1156/J\n<br />\nStatus:\nSchriftliche Beantwortung am 30.01.2004 (1176/AB)\n<br /> Phase:\n05\n<br />\n",
+            "145",
+            "Fri Jan 30 01:00:00 CET 2004",
+            "Nationalrat",
+            "XXII",
+            "JMIN",
+            "2002122020040130",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -719,10 +788,12 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1168/AB\n<br />\nNr.:\n1158/J\n<br />\nStatus:\nSchriftliche Beantwortung am 29.01.2004 (1168/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Jan 29 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040129"
+            "2002122020040129",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -740,10 +811,12 @@
             "Aktualisiert:\n27.01.04\n<br />\nArt:\nMündliche Anfrage\n<br />\nBetreff:\nSteuerpflicht bei Errichtung eines Fonds gemäß Bundesstiftungs- und Fondsgesetz \n<br />\nNr.:\n39/M\n<br />\nStatus:\nZusatzfrage von dem Abgeordneten Mag. Werner Kogler gestellt\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Jan 29 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "M",
-            "2002122020040129"
+            "2002122020040129",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -761,10 +834,12 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1161/AB\n<br />\nNr.:\n1154/J\n<br />\nStatus:\nSchriftliche Beantwortung am 27.01.2004 (1161/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Jan 27 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040127"
+            "2002122020040127",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -782,10 +857,12 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1152/AB\n<br />\nNr.:\n1159/J\n<br />\nStatus:\nSchriftliche Beantwortung am 26.01.2004 (1152/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Mon Jan 26 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040126"
+            "2002122020040126",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -803,10 +880,12 @@
             "Aktualisiert:\n02.12.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobilienmanagement der Ressorts  - beantwortet durch 1124/AB\n<br />\nNr.:\n1157/J\n<br />\nStatus:\nSchriftliche Beantwortung am 22.01.2004 (1124/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Jan 22 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040122"
+            "2002122020040122",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -824,10 +903,12 @@
             "Aktualisiert:\n20.11.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nVerkauf der \"Himmelpfortgasse\"  - beantwortet durch 1113/AB\n<br />\nNr.:\n1107/J\n<br />\nStatus:\nSchriftliche Beantwortung am 20.01.2004 (1113/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Jan 20 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040120"
+            "2002122020040120",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -845,10 +926,12 @@
             "Aktualisiert:\n20.11.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nVerkauf der \"Himmelpfortgasse\"  - beantwortet durch 1114/AB\n<br />\nNr.:\n1108/J\n<br />\nStatus:\nSchriftliche Beantwortung am 20.01.2004 (1114/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Jan 20 01:00:00 CET 2004",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020040120"
+            "2002122020040120",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -866,10 +949,12 @@
             "Aktualisiert:\n25.09.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nWohnungsokkasionen für ÖVP-Parteigänger  - beantwortet durch 845/AB\n<br />\nNr.:\n859/J\n<br />\nStatus:\nSchriftliche Beantwortung am 24.11.2003 (845/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Mon Nov 24 01:00:00 CET 2003",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020031124"
+            "2002122020031124",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -887,10 +972,12 @@
             "Aktualisiert:\n18.06.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nImmobiliengeschäfte des Bundesministeriums für Justiz  - beantwortet durch 564/AB\n<br />\nNr.:\n575/J\n<br />\nStatus:\nSchriftliche Beantwortung am 13.08.2003 (564/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Aug 13 02:00:00 CEST 2003",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020030813"
+            "2002122020030813",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -908,10 +995,12 @@
             "Aktualisiert:\n18.06.03\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nWohnungsgemeinnützigkeitsgesetz, Änderung \n<br />\nNr.:\n170/A\n<br />\nStatus:\nBeschlossen im Bundesrat 21/BNR, Einhellig, Beschlossen im Nationalrat , Dafür: V, S, F, G. Dagegen: -\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Jul 24 02:00:00 CEST 2003",
-            "N",
+            "Nationalrat",
             "XXII",
             "A",
-            "2002122020030724"
+            "2002122020030724",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -929,10 +1018,12 @@
             "Aktualisiert:\n21.05.03\n<br />\nArt:\nSchriftliche Anfrage\n<br />\nBetreff:\nPlakatwerbung im Kunsthistorischen Museum  - beantwortet durch 407/AB\n<br />\nNr.:\n418/J\n<br />\nStatus:\nSchriftliche Beantwortung am 09.07.2003 (407/AB)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Jul 09 02:00:00 CEST 2003",
-            "N",
+            "Nationalrat",
             "XXII",
             "JMIN",
-            "2002122020030709"
+            "2002122020030709",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -950,10 +1041,12 @@
             "Aktualisiert:\n07.07.03\n<br />\nArt:\nMündliche Anfrage\n<br />\nBetreff:\nAnbot der Firma EADS über 18 Stück Abfangjäger \n<br />\nNr.:\n6/M\n<br />\nStatus:\nZusatzfrage von dem Abgeordneten Herbert Scheibner gestellt\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Jul 09 02:00:00 CEST 2003",
-            "N",
+            "Nationalrat",
             "XXII",
             "M",
-            "2002122020030709"
+            "2002122020030709",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ]
     ]
 }

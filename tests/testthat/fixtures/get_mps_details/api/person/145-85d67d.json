@@ -2,7 +2,7 @@
     "pagetype": "biografie",
     "meta": {
         "description": "Bures Doris",
-        "generationTime": "Thu Jul 02 04:01:26 UTC 2026",
+        "generationTime": "Wed Aug 26 13:41:49 GMT 2026",
         "lang": "de",
         "title": "Bures Doris | Parlament Österreich",
         "openGraph": {
@@ -202,6 +202,20 @@
                         }
                     ],
                     [
+                        "Mag.a Anna Kwolek, BA",
+                        "Referentin",
+                        {
+                            "href": "+43 1 401 10-2481",
+                            "linkText": "+43 1 401 10-2481",
+                            "type": "TEL"
+                        },
+                        {
+                            "href": "Anna.Kwolek@parlament.gv.at",
+                            "type": "MAIL",
+                            "iconSize": 3
+                        }
+                    ],
+                    [
                         "Sladana Ivic",
                         "Assistenz",
                         {
@@ -211,6 +225,19 @@
                         },
                         {
                             "href": "Sladana.Ivic@parlament.gv.at",
+                            "type": "MAIL",
+                            "iconSize": 3
+                        }
+                    ],
+                    [
+                        "Tatjana Petrovic",
+                        "Verwaltungspraktikum",
+                        {
+                            "href": null,
+                            "type": "TEL"
+                        },
+                        {
+                            "href": "Tatjana.Petrovic@parlament.gv.at",
                             "type": "MAIL",
                             "iconSize": 3
                         }
@@ -585,8 +612,8 @@
                         "hideDimensions": [
                             "PAD_INTERN"
                         ],
-                        "sortrnr": 2,
-                        "ascDesc": "ASC"
+                        "sortrnr": 14,
+                        "ascDesc": "DESC"
                     },
                     "type": "MONGODB"
                 }
@@ -802,14 +829,14 @@
             "filter": {
                 "rendertype": "filter",
                 "data": {
-                    "type": "FILTER",
+                    "type": "MONGODB",
                     "resultLayout": "TABLE",
                     "hasForm": true,
                     "hasList": true,
                     "label": "Aktivitaeten",
                     "pagesize": 20,
                     "definition": {
-                        "bez": "PERS_AKTIVIT_025",
+                        "bez": "PERS_AKTIVIT_025_MONGODB",
                         "listeId": 25,
                         "params": {
 

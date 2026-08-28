@@ -34,6 +34,13 @@
   with multiple name variants.
 - `get_mps()`: removed ~160 lines of unreachable dead code after an early
   `return()`.
+- `get_mps_details(detail_type = "activities")`: the `institution` filter
+  silently matched nothing, and the `institution` column leaked the raw
+  German names `"Nationalrat"`/`"Bundesrat"` instead of the documented
+  `"NR"`/`"BR"`. The upstream API changed its `gremium` vocabulary from
+  short codes to full names. Both directions now speak the new vocabulary,
+  so the filter works again and the column values are as documented. Code
+  that worked around this by matching `"Nationalrat"` should match `"NR"`.
 
 ## Enhancements
 

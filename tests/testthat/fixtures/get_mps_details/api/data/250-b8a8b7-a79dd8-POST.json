@@ -1,7 +1,7 @@
 {
     "pages": 1,
-    "lastSync": "2026-07-02 18:50:37.0",
-    "count": 111,
+    "lastSync": "2026-08-28 05:22:32.0",
+    "count": 114,
     "header": [
         {
             "css_class": "datum-col",
@@ -33,8 +33,8 @@
         },
         {
             "css_class": "fraction-col",
-            "feldId": 95,
             "link_rnr": "6",
+            "feldId": 95,
             "hidden": false,
             "rnr": 4,
             "listeId": 250,
@@ -67,8 +67,8 @@
             "feldId": 969,
             "hidden": true,
             "rnr": 8,
-            "listeId": 250,
             "mediaType": "fromDate",
+            "listeId": 250,
             "label": "fromDate"
         },
         {
@@ -94,6 +94,44 @@
             "listeId": 250,
             "label": "gp_text_full",
             "feld_name": "GP_TEXT_FULL"
+        },
+        {
+            "feldId": 1645,
+            "ist_range": "1",
+            "hidden": true,
+            "rnr": 12,
+            "mediaType": "datetime",
+            "listeId": 250,
+            "label": "Beginn",
+            "feld_name": "BEGINNDATUM_ISO"
+        },
+        {
+            "feldId": 1665,
+            "hidden": false,
+            "sort_rnr": 14,
+            "label": "Funktionsbeginn",
+            "sortable": "1",
+            "css_class": "datum-col",
+            "rnr": 13,
+            "listeId": 250,
+            "feld_name": "FUNKTIONSBEGINN",
+            "class": "datum-col"
+        },
+        {
+            "feldId": 1666,
+            "hidden": true,
+            "rnr": 14,
+            "listeId": 250,
+            "label": "Beginn4Sort",
+            "feld_name": "BEGINN4SORT"
+        },
+        {
+            "feldId": 1685,
+            "hidden": true,
+            "rnr": 15,
+            "listeId": 250,
+            "label": "Personenregister",
+            "feld_name": "PERSONENREGISTER"
         }
     ],
     "rows": [
@@ -108,7 +146,11 @@
             "Thu Oct 24 02:00:00 CEST 2024",
             "Hauptausschuss",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2024-10-24T00:00:00",
+            "24.10.2024",
+            "20241024",
+            null
         ],
         [
             "XXVIII",
@@ -121,7 +163,11 @@
             "Thu Oct 24 02:00:00 CEST 2024",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2024-10-24T00:00:00",
+            "24.10.2024",
+            "20241024",
+            null
         ],
         [
             "XXVIII",
@@ -134,7 +180,11 @@
             "Thu Oct 24 02:00:00 CEST 2024",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2024-10-24T00:00:00",
+            "24.10.2024",
+            "20241024",
+            null
         ],
         [
             "XXVIII",
@@ -147,7 +197,11 @@
             "Wed Oct 22 02:00:00 CEST 2025",
             "Untersuchungsausschuss: Pilnacek-Untersuchungsausschuss",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2025-10-22T00:00:00",
+            "22.10.2025",
+            "20251022",
+            null
         ],
         [
             "XXVIII",
@@ -160,7 +214,11 @@
             "Thu Oct 24 02:00:00 CEST 2024",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2024-10-24T00:00:00",
+            "24.10.2024",
+            "20241024",
+            null
         ],
         [
             "XXVIII",
@@ -173,7 +231,11 @@
             "Thu Oct 24 02:00:00 CEST 2024",
             "Hauptausschuss",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2024-10-24T00:00:00",
+            "24.10.2024",
+            "20241024",
+            null
         ],
         [
             "XXVIII",
@@ -186,7 +248,11 @@
             "Thu Oct 24 02:00:00 CEST 2024",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2024-10-24T00:00:00",
+            "24.10.2024",
+            "20241024",
+            null
         ],
         [
             "XXVIII",
@@ -199,7 +265,11 @@
             "Thu Oct 24 02:00:00 CEST 2024",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2024-10-24T00:00:00",
+            "24.10.2024",
+            "20241024",
+            null
         ],
         [
             "XXVIII",
@@ -212,7 +282,11 @@
             "Wed Feb 26 01:00:00 CET 2025",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR"
+            "ab 24.10.2024: XXVIII. Gesetzgebungsperiode des NR",
+            "2025-02-26T00:00:00",
+            "26.02.2025",
+            "20250226",
+            null
         ],
         [
             "XXVII",
@@ -225,7 +299,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Hauptausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -238,7 +316,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -251,7 +333,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -264,7 +350,11 @@
             "Wed Jan 22 01:00:00 CET 2020",
             "Untersuchungsausschuss: Ibiza-Untersuchungsausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2020-01-22T00:00:00",
+            "22.01.2020",
+            "20200122",
+            null
         ],
         [
             "XXVII",
@@ -277,7 +367,11 @@
             "Thu Dec 09 01:00:00 CET 2021",
             "Untersuchungsausschuss: ÖVP-Korruptions-Untersuchungsausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2021-12-09T00:00:00",
+            "09.12.2021",
+            "20211209",
+            null
         ],
         [
             "XXVII",
@@ -290,7 +384,11 @@
             "Fri Dec 15 01:00:00 CET 2023",
             "Untersuchungsausschuss: \"ROT-BLAUER Machtmissbrauch-Untersuchungsausschuss\"",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2023-12-15T00:00:00",
+            "15.12.2023",
+            "20231215",
+            null
         ],
         [
             "XXVII",
@@ -303,7 +401,11 @@
             "Fri Dec 15 01:00:00 CET 2023",
             "Untersuchungsausschuss: COFAG-Untersuchungsausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2023-12-15T00:00:00",
+            "15.12.2023",
+            "20231215",
+            null
         ],
         [
             "XXVII",
@@ -316,7 +418,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -329,7 +435,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Hauptausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -342,7 +452,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -355,7 +469,11 @@
             "Wed Oct 23 02:00:00 CEST 2019",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2019-10-23T00:00:00",
+            "23.10.2019",
+            "20191023",
+            null
         ],
         [
             "XXVII",
@@ -368,7 +486,11 @@
             "Fri Jan 10 01:00:00 CET 2020",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"
+            "23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR",
+            "2020-01-10T00:00:00",
+            "10.01.2020",
+            "20200110",
+            null
         ],
         [
             "XXVI",
@@ -381,7 +503,11 @@
             "Fri Apr 20 02:00:00 CEST 2018",
             "Untersuchungsausschuss: BVT-Untersuchungsausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-04-20T00:00:00",
+            "20.04.2018",
+            "20180420",
+            null
         ],
         [
             "XXVI",
@@ -394,7 +520,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXVI",
@@ -407,7 +537,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -420,7 +554,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -433,7 +571,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -446,7 +588,11 @@
             "Wed Sep 26 02:00:00 CEST 2018",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-09-26T00:00:00",
+            "26.09.2018",
+            "20180926",
+            null
         ],
         [
             "XXVI",
@@ -459,7 +605,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXVI",
@@ -472,7 +622,11 @@
             "Thu Apr 19 02:00:00 CEST 2018",
             "Untersuchungsausschuss: Untersuchungsausschuss zur Untersuchung der politischen Verantwortung im Zusammenhang mit dem Kampfflugzeugsystem \"Eurofighter Typhoon\" von Anfang 2000 bis Ende 2017",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-04-19T00:00:00",
+            "19.04.2018",
+            "20180419",
+            null
         ],
         [
             "XXVI",
@@ -485,7 +639,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -498,7 +656,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -511,7 +673,11 @@
             "Thu Nov 09 01:00:00 CET 2017",
             "Ständiger Unterausschuss in Angelegenheiten der Europäischen Union",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-11-09T00:00:00",
+            "09.11.2017",
+            "20171109",
+            null
         ],
         [
             "XXVI",
@@ -524,7 +690,11 @@
             "Thu Dec 21 01:00:00 CET 2017",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-12-21T00:00:00",
+            "21.12.2017",
+            "20171221",
+            null
         ],
         [
             "XXVI",
@@ -537,7 +707,11 @@
             "Thu Dec 21 01:00:00 CET 2017",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2017-12-21T00:00:00",
+            "21.12.2017",
+            "20171221",
+            null
         ],
         [
             "XXVI",
@@ -550,7 +724,11 @@
             "Wed Sep 26 02:00:00 CEST 2018",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-09-26T00:00:00",
+            "26.09.2018",
+            "20180926",
+            null
         ],
         [
             "XXVI",
@@ -563,7 +741,11 @@
             "Wed Sep 26 02:00:00 CEST 2018",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-09-26T00:00:00",
+            "26.09.2018",
+            "20180926",
+            null
         ],
         [
             "XXVI",
@@ -576,7 +758,11 @@
             "Wed Sep 26 02:00:00 CEST 2018",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2018-09-26T00:00:00",
+            "26.09.2018",
+            "20180926",
+            null
         ],
         [
             "XXVI",
@@ -589,7 +775,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Außenpolitischer Ausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXVI",
@@ -602,7 +792,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXVI",
@@ -615,7 +809,11 @@
             "Thu Sep 26 02:00:00 CEST 2019",
             "Hauptausschuss",
             "Nationalrat",
-            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR"
+            "09.11.2017 - 22.10.2019: XXVI. Gesetzgebungsperiode des NR",
+            "2019-09-26T00:00:00",
+            "26.09.2019",
+            "20190926",
+            null
         ],
         [
             "XXV",
@@ -628,7 +826,11 @@
             "Wed Feb 25 01:00:00 CET 2015",
             "Untersuchungsausschuss: Hypo-Untersuchungsausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2015-02-25T00:00:00",
+            "25.02.2015",
+            "20150225",
+            null
         ],
         [
             "XXV",
@@ -641,7 +843,11 @@
             "Tue Sep 23 02:00:00 CEST 2014",
             "Hauptausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2014-09-23T00:00:00",
+            "23.09.2014",
+            "20140923",
+            null
         ],
         [
             "XXV",
@@ -654,7 +860,11 @@
             "Thu Dec 18 01:00:00 CET 2014",
             "Enquete-Kommission betreffend Stärkung der Demokratie in Österreich",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2014-12-18T00:00:00",
+            "18.12.2014",
+            "20141218",
+            null
         ],
         [
             "XXV",
@@ -667,7 +877,11 @@
             "Tue Sep 01 02:00:00 CEST 2015",
             "Hauptausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2015-09-01T00:00:00",
+            "01.09.2015",
+            "20150901",
+            null
         ],
         [
             "XXV",
@@ -680,7 +894,11 @@
             "Wed Jan 27 01:00:00 CET 2016",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2016-01-27T00:00:00",
+            "27.01.2016",
+            "20160127",
+            null
         ],
         [
             "XXV",
@@ -693,7 +911,11 @@
             "Wed Sep 20 02:00:00 CEST 2017",
             "Hauptausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2017-09-20T00:00:00",
+            "20.09.2017",
+            "20170920",
+            null
         ],
         [
             "XXV",
@@ -706,7 +928,11 @@
             "Wed Sep 20 02:00:00 CEST 2017",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2017-09-20T00:00:00",
+            "20.09.2017",
+            "20170920",
+            null
         ],
         [
             "XXV",
@@ -719,7 +945,11 @@
             "Thu Sep 04 02:00:00 CEST 2014",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2014-09-04T00:00:00",
+            "04.09.2014",
+            "20140904",
+            null
         ],
         [
             "XXV",
@@ -732,7 +962,11 @@
             "Thu Sep 04 02:00:00 CEST 2014",
             "Hauptausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2014-09-04T00:00:00",
+            "04.09.2014",
+            "20140904",
+            null
         ],
         [
             "XXV",
@@ -745,7 +979,11 @@
             "Wed Oct 29 01:00:00 CET 2014",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2014-10-29T00:00:00",
+            "29.10.2014",
+            "20141029",
+            null
         ],
         [
             "XXV",
@@ -758,7 +996,11 @@
             "Wed Nov 05 01:00:00 CET 2014",
             "Enquete-Kommission betreffend Stärkung der Demokratie in Österreich",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2014-11-05T00:00:00",
+            "05.11.2014",
+            "20141105",
+            null
         ],
         [
             "XXV",
@@ -771,7 +1013,11 @@
             "Tue Sep 01 02:00:00 CEST 2015",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2015-09-01T00:00:00",
+            "01.09.2015",
+            "20150901",
+            null
         ],
         [
             "XXV",
@@ -784,7 +1030,11 @@
             "Tue Sep 01 02:00:00 CEST 2015",
             "Hauptausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2015-09-01T00:00:00",
+            "01.09.2015",
+            "20150901",
+            null
         ],
         [
             "XXV",
@@ -797,7 +1047,11 @@
             "Wed Sep 20 02:00:00 CEST 2017",
             "Geschäftsordnungsausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2017-09-20T00:00:00",
+            "20.09.2017",
+            "20170920",
+            null
         ],
         [
             "XXV",
@@ -810,7 +1064,11 @@
             "Wed Sep 20 02:00:00 CEST 2017",
             "Hauptausschuss",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2017-09-20T00:00:00",
+            "20.09.2017",
+            "20170920",
+            null
         ],
         [
             "XXV",
@@ -823,7 +1081,11 @@
             "Wed Sep 20 02:00:00 CEST 2017",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR"
+            "29.10.2013 - 08.11.2017: XXV. Gesetzgebungsperiode des NR",
+            "2017-09-20T00:00:00",
+            "20.09.2017",
+            "20170920",
+            null
         ],
         [
             "XXIV",
@@ -836,7 +1098,11 @@
             "Tue Oct 28 01:00:00 CET 2008",
             "Finanzausschuss",
             "Nationalrat",
-            "28.10.2008 - 28.10.2013: XXIV. Gesetzgebungsperiode des NR"
+            "28.10.2008 - 28.10.2013: XXIV. Gesetzgebungsperiode des NR",
+            "2008-10-28T00:00:00",
+            "28.10.2008",
+            "20081028",
+            null
         ],
         [
             "XXIII",
@@ -849,7 +1115,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Bautenausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -862,7 +1132,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Justizausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -875,7 +1149,11 @@
             "Mon Oct 30 01:00:00 CET 2006",
             "Immunitätsausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-10-30T00:00:00",
+            "30.10.2006",
+            "20061030",
+            null
         ],
         [
             "XXIII",
@@ -888,7 +1166,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Bautenausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -901,7 +1183,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Finanzausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -914,7 +1200,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Justizausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -927,7 +1217,11 @@
             "Mon Oct 30 01:00:00 CET 2006",
             "Ständiger Unterausschuss des Hauptausschusses",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-10-30T00:00:00",
+            "30.10.2006",
+            "20061030",
+            null
         ],
         [
             "XXIII",
@@ -940,7 +1234,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Ausschuss für Arbeit und Soziales",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -953,7 +1251,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Ausschuss für Sportangelegenheiten",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -966,7 +1268,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Familienausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -979,7 +1285,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Gleichbehandlungsausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXIII",
@@ -992,7 +1302,11 @@
             "Wed Nov 29 01:00:00 CET 2006",
             "Verfassungsausschuss",
             "Nationalrat",
-            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR"
+            "30.10.2006 - 27.10.2008: XXIII. Gesetzgebungsperiode des NR",
+            "2006-11-29T00:00:00",
+            "29.11.2006",
+            "20061129",
+            null
         ],
         [
             "XXII",
@@ -1005,7 +1319,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Bautenausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1018,7 +1336,11 @@
             "Tue Mar 30 02:00:00 CEST 2004",
             "Enquete-Kommission: \"Architekturpolitik und Baukultur in Österreich\"",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2004-03-30T00:00:00",
+            "30.03.2004",
+            "20040330",
+            null
         ],
         [
             "XXII",
@@ -1031,7 +1353,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Justizausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1044,7 +1370,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Bautenausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1057,7 +1387,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Familienausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1070,7 +1404,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Finanzausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1083,7 +1421,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Justizausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1096,7 +1438,11 @@
             "Mon Apr 14 02:00:00 CEST 2003",
             "Ständiger Unterausschuss des Rechnungshofausschusses",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-04-14T00:00:00",
+            "14.04.2003",
+            "20030414",
+            null
         ],
         [
             "XXII",
@@ -1109,7 +1455,11 @@
             "Wed Feb 04 01:00:00 CET 2004",
             "Enquete-Kommission: \"Architekturpolitik und Baukultur in Österreich\"",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2004-02-04T00:00:00",
+            "04.02.2004",
+            "20040204",
+            null
         ],
         [
             "XXII",
@@ -1122,7 +1472,11 @@
             "Wed Sep 21 02:00:00 CEST 2005",
             "Ständiger Unterausschuss des Rechnungshofausschusses",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2005-09-21T00:00:00",
+            "21.09.2005",
+            "20050921",
+            null
         ],
         [
             "XXII",
@@ -1135,7 +1489,11 @@
             "Tue Jun 06 02:00:00 CEST 2006",
             "Unterausschuss des Justizausschusses: Wohnungsgemeinnützigkeitsgesetz",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2006-06-06T00:00:00",
+            "06.06.2006",
+            "20060606",
+            null
         ],
         [
             "XXII",
@@ -1148,7 +1506,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Ausschuss für Sportangelegenheiten",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1161,7 +1523,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Gleichbehandlungsausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1174,7 +1540,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Kulturausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1187,7 +1557,11 @@
             "Wed Feb 26 01:00:00 CET 2003",
             "Unterrichtsausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2003-02-26T00:00:00",
+            "26.02.2003",
+            "20030226",
+            null
         ],
         [
             "XXII",
@@ -1200,7 +1574,11 @@
             "Wed Oct 13 02:00:00 CEST 2004",
             "Familienausschuss",
             "Nationalrat",
-            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR"
+            "20.12.2002 - 29.10.2006: XXII. Gesetzgebungsperiode des NR",
+            "2004-10-13T00:00:00",
+            "13.10.2004",
+            "20041013",
+            null
         ],
         [
             "XXI",
@@ -1213,7 +1591,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Familienausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1226,7 +1608,11 @@
             "Wed Dec 15 01:00:00 CET 1999",
             "Bautenausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-12-15T00:00:00",
+            "15.12.1999",
+            "19991215",
+            null
         ],
         [
             "XXI",
@@ -1239,7 +1625,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Justizausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1252,7 +1642,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Ausschuss für Sportangelegenheiten",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1265,7 +1659,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Bautenausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1278,7 +1676,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Familienausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1291,7 +1693,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Gleichbehandlungsausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1304,7 +1710,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Justizausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1317,7 +1727,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Finanzausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1330,7 +1744,11 @@
             "Thu Nov 18 01:00:00 CET 1999",
             "Verfassungsausschuss",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "1999-11-18T00:00:00",
+            "18.11.1999",
+            "19991118",
+            null
         ],
         [
             "XXI",
@@ -1343,7 +1761,11 @@
             "Wed Apr 26 02:00:00 CEST 2000",
             "Ausschuss für Sportangelegenheiten",
             "Nationalrat",
-            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR"
+            "29.10.1999 - 19.12.2002: XXI. Gesetzgebungsperiode des NR",
+            "2000-04-26T00:00:00",
+            "26.04.2000",
+            "20000426",
+            null
         ],
         [
             "XX",
@@ -1356,7 +1778,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Familienausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1369,7 +1795,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Gleichbehandlungsausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1382,7 +1812,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Justizausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1395,7 +1829,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Bautenausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1408,7 +1846,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Familienausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1421,7 +1863,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Gleichbehandlungsausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1434,7 +1880,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Justizausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1447,7 +1897,11 @@
             "Wed Mar 27 01:00:00 CET 1996",
             "Unterausschuss des Justizausschusses: Strafrechtsänderungsgesetz und Strafprozeßordnung",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-03-27T00:00:00",
+            "27.03.1996",
+            "19960327",
+            null
         ],
         [
             "XX",
@@ -1460,7 +1914,11 @@
             "Tue Sep 30 02:00:00 CEST 1997",
             "Unterausschuss des Gleichbehandlungsausschusses: Frauen-Volksbegehren",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1997-09-30T00:00:00",
+            "30.09.1997",
+            "19970930",
+            null
         ],
         [
             "XX",
@@ -1473,7 +1931,11 @@
             "Tue May 11 02:00:00 CEST 1999",
             "Unterausschuss des Familienausschusses: Lage der Jugend in Österreich",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1999-05-11T00:00:00",
+            "11.05.1999",
+            "19990511",
+            null
         ],
         [
             "XX",
@@ -1486,7 +1948,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Rechnungshofausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1499,7 +1965,11 @@
             "Mon Jan 15 01:00:00 CET 1996",
             "Unvereinbarkeitsausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            "15.01.1996",
+            "19960115",
+            null
         ],
         [
             "XX",
@@ -1512,7 +1982,11 @@
             "Thu May 30 02:00:00 CEST 1996",
             "Ausschuss für Petitionen und Bürgerinitiativen",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-05-30T00:00:00",
+            "30.05.1996",
+            "19960530",
+            null
         ],
         [
             "XX",
@@ -1525,7 +1999,11 @@
             "Thu Jul 10 02:00:00 CEST 1997",
             "Besonderer Ausschuss zur Vorberatung des Gentechnik-Volksbegehrens",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1997-07-10T00:00:00",
+            "10.07.1997",
+            "19970710",
+            null
         ],
         [
             "XX",
@@ -1538,7 +2016,62 @@
             "Thu Jun 04 02:00:00 CEST 1998",
             "Kulturausschuss",
             "Nationalrat",
-            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR"
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1998-06-04T00:00:00",
+            "04.06.1998",
+            "19980604",
+            null
+        ],
+        [
+            "XVIII",
+            "999919901105",
+            null,
+            "Ausschussmitgliedschaften in der XVIII. Gesetzgebungsperiode",
+            "NR",
+            "<a href=\"/dokument/XVIII/WD/19/imfname_209429.pdf\" target=\"_blank\"><i class=\"fa-file-pdf fal\"><\/i><span class=\"sr-only\">Index zu den Stenografischen Protokollen des Nationalrates und des Bundesrates für die XVIII. GP - Personenregister B - Doris Bures<\/span><\/a>",
+            "145",
+            "Mon Nov 05 01:00:00 CET 1990",
+            null,
+            "Nationalrat",
+            "05.11.1990 - 06.11.1994: XVIII. Gesetzgebungsperiode des NR",
+            "1990-11-05T00:00:00",
+            null,
+            "19901105",
+            "Nationalrat"
+        ],
+        [
+            "XIX",
+            "999919941107",
+            null,
+            "Ausschussmitgliedschaften in der XIX. Gesetzgebungsperiode",
+            "NR",
+            "<a href=\"/dokument/XIX/WD/42/imfname_207883.pdf\" target=\"_blank\"><i class=\"fa-file-pdf fal\"><\/i><span class=\"sr-only\">Index zu den Stenografischen Protokollen des Nationalrates und des Bundesrates für die XIX. GP - Personenregister B - Doris Bures<\/span><\/a>",
+            "145",
+            "Mon Nov 07 01:00:00 CET 1994",
+            null,
+            "Nationalrat",
+            "07.11.1994 - 14.01.1996: XIX. Gesetzgebungsperiode des NR",
+            "1994-11-07T00:00:00",
+            null,
+            "19941107",
+            "Nationalrat"
+        ],
+        [
+            "XX",
+            "999919960115",
+            null,
+            "Ausschussmitgliedschaften in der XX. Gesetzgebungsperiode",
+            "NR",
+            "<a href=\"/dokument/XX/WD/38/fnameorig_216927.html\" target=\"_blank\"><i class=\"fa-file-code fal\"><\/i><span class=\"sr-only\">Index zu den Stenografischen Protokollen des Nationalrates und des Bundesrates für die XX. GP - Personenregister B - Doris Bures<\/span><\/a>",
+            "145",
+            "Mon Jan 15 01:00:00 CET 1996",
+            null,
+            "Nationalrat",
+            "15.01.1996 - 28.10.1999: XX. Gesetzgebungsperiode des NR",
+            "1996-01-15T00:00:00",
+            null,
+            "19960115",
+            "Nationalrat"
         ]
     ]
 }

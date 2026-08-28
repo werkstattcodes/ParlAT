@@ -1,22 +1,23 @@
 {
     "pages": 1,
-    "lastSync": "2026-07-03 01:11:11.0",
+    "lastSync": "2026-08-28 03:00:57.0",
     "count": 17,
     "header": [
         {
-            "css_class": "stellungnahmen-col ",
             "feldId": 181,
             "hidden": false,
-            "rnr": 1,
             "sort_rnr": 19,
-            "listeId": 25,
             "label": "GP",
             "sortable": "1",
+            "css_class": "stellungnahmen-col ",
+            "rnr": 1,
+            "listeId": 25,
+            "feld_name": "gp_code",
             "class": "stellungnahmen-col "
         },
         {
-            "tooltip_rnr": 10,
             "css_class": "stellungnahmen-col ",
+            "tooltip_rnr": 10,
             "feldId": 183,
             "hidden": false,
             "rnr": 2,
@@ -49,8 +50,8 @@
             "class": "datum-col"
         },
         {
-            "feldId": 184,
             "link_rnr": "8",
+            "feldId": 184,
             "hidden": false,
             "rnr": 6,
             "listeId": 25,
@@ -154,6 +155,22 @@
             "rnr": 19,
             "listeId": 25,
             "label": "sort"
+        },
+        {
+            "feldId": 1725,
+            "hidden": true,
+            "rnr": 20,
+            "listeId": 25,
+            "label": "Personenregister",
+            "feld_name": "personenregister"
+        },
+        {
+            "feldId": 1726,
+            "hidden": true,
+            "rnr": 21,
+            "listeId": 25,
+            "label": "gp_text_full_short",
+            "feld_name": "gp_text_full_short"
         }
     ],
     "rows": [
@@ -173,10 +190,12 @@
             "Aktualisiert:\n25.05.23\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nParlamentsgebäudesanierungsgesetz, Änderung; Bundesgesetz, mit dem eine Ermächtigung zur Überschreitung der Höchstgrenzen des Parlamentsgebäudesanierungsgesetzes erteilt wird \n<br />\nNr.:\n3410/A\n<br />\nStatus:\nBeschlossen im Bundesrat 752/BNR, Dafür: ÖVP, SPÖ, GRÜNE, OF, dagegen: FPÖ, Beschlossen im Nationalrat , Dafür: ÖVP, SPÖ, FPÖ, GRÜNE, NEOS, dagegen: -\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Jun 29 02:00:00 CEST 2023",
-            "N",
+            "Nationalrat",
             "XXVII",
             "A",
-            "2019102320230629"
+            "2019102320230629",
+            null,
+            "23.10.2019 - 23.10.2024: XXVII. GP des NR"
         ],
         [
             "XXVII",
@@ -194,10 +213,12 @@
             "Aktualisiert:\n05.11.20\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nParlamentsgebäudesanierungsgesetz, Änderung \n<br />\nNr.:\n984/A\n<br />\nStatus:\nBeschlossen im Bundesrat 137/BNR, Einhellig, Beschlossen im Nationalrat , Dafür: V, S, F, G, N. Dagegen: -\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Dec 03 01:00:00 CET 2020",
-            "N",
+            "Nationalrat",
             "XXVII",
             "A",
-            "2019102320201203"
+            "2019102320201203",
+            null,
+            "23.10.2019 - 23.10.2024: XXVII. GP des NR"
         ],
         [
             "XXVI",
@@ -215,10 +236,12 @@
             "Aktualisiert:\n22.03.18\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nDatenschutzgesetz, Änderung \n<br />\nNr.:\n188/A\n<br />\nStatus:\nBeschlossen im Bundesrat 28/BNR, mehrstimmig, Beschlossen im Nationalrat , Dafür: ÖVP, SPÖ, FPÖ, NEOS, dagegen: PILZ\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Apr 26 02:00:00 CEST 2018",
-            "N",
+            "Nationalrat",
             "XXVI",
             "A",
-            "2017110920180426"
+            "2017110920180426",
+            null,
+            "09.11.2017 - 22.10.2019: XXVI. GP des NR"
         ],
         [
             "XXV",
@@ -236,10 +259,12 @@
             "Aktualisiert:\n29.06.17\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nNationalfonds der Republik Österreich für Opfer des Nationalsozialismus, Änderung \n<br />\nNr.:\n2270/A\n<br />\nStatus:\nBeschlossen im Bundesrat 557/BNR, Einhellig, Beschlossen im Nationalrat , Dafür: S, V, F, G, N. Dagegen: -\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Oct 05 02:00:00 CEST 2017",
-            "N",
+            "Nationalrat",
             "XXV",
             "A",
-            "2013102920171005"
+            "2013102920171005",
+            null,
+            "29.10.2013 - 08.11.2017: XXV. GP des NR"
         ],
         [
             "XXII",
@@ -257,10 +282,12 @@
             "Aktualisiert:\n03.12.03\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n294/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (1532 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed May 24 02:00:00 CEST 2006",
-            "N",
+            "Nationalrat",
             "XXII",
             "A",
-            "2002122020060524"
+            "2002122020060524",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXII",
@@ -278,10 +305,12 @@
             "Aktualisiert:\n18.06.03\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nWohnungsgemeinnützigkeitsgesetz, Änderung \n<br />\nNr.:\n170/A\n<br />\nStatus:\nBeschlossen im Bundesrat 21/BNR, Einhellig, Beschlossen im Nationalrat , Dafür: V, S, F, G. Dagegen: -\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Jul 24 02:00:00 CEST 2003",
-            "N",
+            "Nationalrat",
             "XXII",
             "A",
-            "2002122020030724"
+            "2002122020030724",
+            null,
+            "20.12.2002 - 29.10.2006: XXII. GP des NR"
         ],
         [
             "XXI",
@@ -299,10 +328,12 @@
             "Aktualisiert:\n23.11.01\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Wohnungsgemeinnützigkeitsgesetz u.a., Änderung \n<br />\nNr.:\n557/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (1054 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Mar 20 01:00:00 CET 2002",
-            "N",
+            "Nationalrat",
             "XXI",
             "A",
-            "1999102920020320"
+            "1999102920020320",
+            null,
+            "29.10.1999 - 19.12.2002: XXI. GP des NR"
         ],
         [
             "XXI",
@@ -320,31 +351,12 @@
             "Aktualisiert:\n06.06.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n190/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (1053 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Wed Mar 20 01:00:00 CET 2002",
-            "N",
+            "Nationalrat",
             "XXI",
             "A",
-            "1999102920020320"
-        ],
-        [
-            "XXI",
-            "A",
-            "00256",
+            "1999102920020320",
             null,
-            "256/A",
-            "Einkommensteuergesetz, Änderung ",
-            "19.10.2000",
-            "/gegenstand/XXI/A/256",
-            "20001019",
-            "Selbständiger Antrag",
-            "05",
-            "5",
-            "Aktualisiert:\n20.09.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nEinkommensteuergesetz, Änderung \n<br />\nNr.:\n256/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (328 d.B.)\n<br /> Phase:\n05\n<br />\n",
-            "145",
-            "Thu Oct 19 02:00:00 CEST 2000",
-            "N",
-            "XXI",
-            "A",
-            "1999102920001019"
+            "29.10.1999 - 19.12.2002: XXI. GP des NR"
         ],
         [
             "XXI",
@@ -362,31 +374,35 @@
             "Aktualisiert:\n07.06.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nKonsumentenschutzgesetz, Änderung \n<br />\nNr.:\n207/A\n<br />\nStatus:\nZugewiesen an: Bautenausschuss, Beratungen nicht aufgenommen\n<br /> Phase:\n02\n<br />\n",
             "145",
             "Thu Oct 19 02:00:00 CEST 2000",
-            "N",
+            "Nationalrat",
             "XXI",
             "A",
-            "1999102920001019"
+            "1999102920001019",
+            null,
+            "29.10.1999 - 19.12.2002: XXI. GP des NR"
         ],
         [
             "XXI",
             "A",
-            "00066",
+            "00256",
             null,
-            "66/A",
-            "Mietrechtsgesetz, Änderung ",
-            "06.06.2000",
-            "/gegenstand/XXI/A/66",
-            "20000606",
+            "256/A",
+            "Einkommensteuergesetz, Änderung ",
+            "19.10.2000",
+            "/gegenstand/XXI/A/256",
+            "20001019",
             "Selbständiger Antrag",
             "05",
             "5",
-            "Aktualisiert:\n26.01.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n66/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (141 d.B.)\n<br /> Phase:\n05\n<br />\n",
+            "Aktualisiert:\n20.09.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nEinkommensteuergesetz, Änderung \n<br />\nNr.:\n256/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (328 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
-            "Tue Jun 06 02:00:00 CEST 2000",
-            "N",
+            "Thu Oct 19 02:00:00 CEST 2000",
+            "Nationalrat",
             "XXI",
             "A",
-            "1999102920000606"
+            "1999102920001019",
+            null,
+            "29.10.1999 - 19.12.2002: XXI. GP des NR"
         ],
         [
             "XXI",
@@ -404,10 +420,35 @@
             "Aktualisiert:\n26.01.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nKonsumentenschutzgesetz, Änderung \n<br />\nNr.:\n70/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (124 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Jun 06 02:00:00 CEST 2000",
-            "N",
+            "Nationalrat",
             "XXI",
             "A",
-            "1999102920000606"
+            "1999102920000606",
+            null,
+            "29.10.1999 - 19.12.2002: XXI. GP des NR"
+        ],
+        [
+            "XXI",
+            "A",
+            "00066",
+            null,
+            "66/A",
+            "Mietrechtsgesetz, Änderung ",
+            "06.06.2000",
+            "/gegenstand/XXI/A/66",
+            "20000606",
+            "Selbständiger Antrag",
+            "05",
+            "5",
+            "Aktualisiert:\n26.01.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n66/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (141 d.B.)\n<br /> Phase:\n05\n<br />\n",
+            "145",
+            "Tue Jun 06 02:00:00 CEST 2000",
+            "Nationalrat",
+            "XXI",
+            "A",
+            "1999102920000606",
+            null,
+            "29.10.1999 - 19.12.2002: XXI. GP des NR"
         ],
         [
             "XXI",
@@ -425,10 +466,12 @@
             "Aktualisiert:\n24.02.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n90/A\n<br />\nStatus:\nAuf der Tagesordnung der 29. Sitzung des Nationalrates Miterledigung\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Jun 06 02:00:00 CEST 2000",
-            "N",
+            "Nationalrat",
             "XXI",
             "A",
-            "1999102920000606"
+            "1999102920000606",
+            null,
+            "29.10.1999 - 19.12.2002: XXI. GP des NR"
         ],
         [
             "XXI",
@@ -446,10 +489,12 @@
             "Aktualisiert:\n24.02.00\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nKonsumentenschutzgesetz, Änderung \n<br />\nNr.:\n91/A\n<br />\nStatus:\nGesetzesantrag abgelehnt (124 d.B.)\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Tue Jun 06 02:00:00 CEST 2000",
-            "N",
+            "Nationalrat",
             "XXI",
             "A",
-            "1999102920000606"
+            "1999102920000606",
+            null,
+            "29.10.1999 - 19.12.2002: XXI. GP des NR"
         ],
         [
             "XX",
@@ -467,10 +512,12 @@
             "Aktualisiert:\n16.02.99\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n1009/A\n<br />\nStatus:\nZugewiesen an: Justizausschuß, Beratungen noch nicht aufgenommen\n<br /> Phase:\n02\n<br />\n",
             "145",
             "Wed Feb 24 01:00:00 CET 1999",
-            "N",
+            "Nationalrat",
             "XX",
             "A",
-            "1996011519990224"
+            "1996011519990224",
+            null,
+            "15.01.1996 - 28.10.1999: XX. GP des NR"
         ],
         [
             "XX",
@@ -488,10 +535,12 @@
             "Aktualisiert:\n26.11.98\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n958/A\n<br />\nStatus:\nKein Einspruch, Gesetzesvorschlag in dritter Lesung angenommen, Dafür: S, V, F, L, G, dagegen: -\n<br /> Phase:\n05\n<br />\n",
             "145",
             "Thu Dec 17 01:00:00 CET 1998",
-            "N",
+            "Nationalrat",
             "XX",
             "A",
-            "1996011519981217"
+            "1996011519981217",
+            null,
+            "15.01.1996 - 28.10.1999: XX. GP des NR"
         ],
         [
             "XX",
@@ -509,10 +558,12 @@
             "Aktualisiert:\n10.12.97\n<br />\nArt:\nSelbständiger Antrag\n<br />\nBetreff:\nMietrechtsgesetz, Änderung \n<br />\nNr.:\n646/A\n<br />\nStatus:\nZugewiesen an: Justizausschuß, Beratungen noch nicht aufgenommen\n<br /> Phase:\n02\n<br />\n",
             "145",
             "Wed Dec 10 01:00:00 CET 1997",
-            "N",
+            "Nationalrat",
             "XX",
             "A",
-            "1996011519971210"
+            "1996011519971210",
+            null,
+            "15.01.1996 - 28.10.1999: XX. GP des NR"
         ]
     ]
 }

@@ -481,8 +481,8 @@ get_mps_details_plenary <- function(
     df_res <- df_res %>%
         dplyr::mutate(
             institution = dplyr::case_when(
-                .data$institution == "N" ~ "NR",
-                .data$institution == "B" ~ "BR",
+                .data$institution %in% c("N", "Nationalrat") ~ "NR",
+                .data$institution %in% c("B", "Bundesrat") ~ "BR",
                 TRUE ~ .data$institution
             )
         )
@@ -570,8 +570,8 @@ get_mps_details_activities <- function(
     if (!is.null(institution)) {
         institution <- switch(
             institution,
-            "NR" = "N",
-            "BR" = "B",
+            "NR" = "Nationalrat",
+            "BR" = "Bundesrat",
             institution
         )
     }
@@ -713,8 +713,8 @@ get_mps_details_activities <- function(
     df_res <- df_res %>%
         dplyr::mutate(
             institution = dplyr::case_when(
-                .data$institution == "N" ~ "NR",
-                .data$institution == "B" ~ "BR",
+                .data$institution %in% c("N", "Nationalrat") ~ "NR",
+                .data$institution %in% c("B", "Bundesrat") ~ "BR",
                 TRUE ~ .data$institution
             )
         )
