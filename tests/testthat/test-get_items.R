@@ -345,14 +345,22 @@ test_that("get_items echo parameter works", {
   # This test checks console output behavior - run only in live mode
   skip_if_mocked("Echo output testing requires live API")
 
-  # Test with echo = TRUE (should print output)
-  expect_output(
+  # Test with echo = TRUE (should report the results URL).
+  # echo output is emitted via cli::cli_inform(), which signals a message
+  # condition and therefore writes to stderr, not stdout. Capture all
+  # messages rather than using expect_output()/expect_message(): the first
+  # message is the "Fetching items" status line, not the URL.
+  echo_messages <- capture_messages(
     get_items(
       item = "RV",
       legis_period = "27",
       echo = TRUE
-    ),
-    "https://www.parlament.gv.at"
+    )
+  )
+  expect_match(
+    paste(echo_messages, collapse = ""),
+    "parlament.gv.at",
+    fixed = TRUE
   )
 
   # Test with echo = FALSE (should not print)
