@@ -86,12 +86,19 @@
 <code><a href="../reference/get_pad_intern.html">get_pad_intern()</a></code> now removes academic titles from name searches before looking up matching Parliament person identifiers. Previously academic titles could cause searches to fail.</li>
 </ul></div>
 <div class="section level3">
+<h3 id="documentation-development-version">Documentation<a class="anchor" aria-label="anchor" href="#documentation-development-version"></a></h3>
+<ul><li>Reference pages gained Examples sections, and the <code><a href="../reference/get_party_colors.html">get_party_colors()</a></code> examples now render the actual color swatches.</li>
+<li>Fixed dropdown styling in the pkgdown navbar on the package website.</li>
+</ul></div>
+<div class="section level3">
 <h3 id="internal-changes-development-version">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-development-version"></a></h3>
 <ul><li>New shared internal helpers (<code>R/utils-shared.R</code>) replace duplicated rename-map and echo/URL-reconstruction blocks across the package.</li>
 <li>Debug <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> calls, commented <code><a href="https://rdrr.io/r/base/browser.html" class="external-link">browser()</a></code> calls, no-op <code>req_verbose()</code> blocks, and two large dead functions were removed.</li>
 <li>New unit tests for <code><a href="../reference/get_names.html">get_names()</a></code>, <code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>, the detail-page JSON helpers, and the pure auxiliary converters.</li>
 <li>
 <code>T</code>/<code>F</code> abbreviations expanded; superseded <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">purrr::map_dfr()</a></code> replaced.</li>
+<li>Live tests skip count-sensitive assertions while the Parliament search index is degraded (<code>skip_if_api_index_degraded()</code>), and row-count assertions tolerate ±10% drift in live mode (<code>expect_row_count()</code>), so upstream outages no longer look like package regressions. Adds <code>tools/check_api_index.sh</code> for a manual health check and a daily workflow that monitors index health.</li>
+<li>Non-standard-evaluation pronouns declared via <code><a href="https://rdrr.io/r/utils/globalVariables.html" class="external-link">globalVariables()</a></code>; remaining R CMD check NOTEs resolved.</li>
 </ul></div>
 </div>
     <div class="section level2">

@@ -23,41 +23,37 @@ df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> 
 #> ⠹ Fetching MPs' names 10/183 | ETA:  1m
 #> 
-#> ⠸ Fetching MPs' names 19/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 20/183 | ETA: 47s
 #> 
-#> ⠼ Fetching MPs' names 28/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 31/183 | ETA: 44s
 #> 
-#> ⠴ Fetching MPs' names 37/183 | ETA: 48s
+#> ⠴ Fetching MPs' names 41/183 | ETA: 41s
 #> 
-#> ⠦ Fetching MPs' names 46/183 | ETA: 45s
+#> ⠦ Fetching MPs' names 52/183 | ETA: 38s
 #> 
-#> ⠧ Fetching MPs' names 55/183 | ETA: 42s
+#> ⠧ Fetching MPs' names 62/183 | ETA: 35s
 #> 
-#> ⠇ Fetching MPs' names 64/183 | ETA: 39s
+#> ⠇ Fetching MPs' names 72/183 | ETA: 32s
 #> 
-#> ⠏ Fetching MPs' names 74/183 | ETA: 36s
+#> ⠏ Fetching MPs' names 83/183 | ETA: 29s
 #> 
-#> ⠋ Fetching MPs' names 83/183 | ETA: 33s
+#> ⠋ Fetching MPs' names 93/183 | ETA: 26s
 #> 
-#> ⠙ Fetching MPs' names 92/183 | ETA: 30s
+#> ⠙ Fetching MPs' names 104/183 | ETA: 23s
 #> 
-#> ⠹ Fetching MPs' names 101/183 | ETA: 27s
+#> ⠹ Fetching MPs' names 114/183 | ETA: 20s
 #> 
-#> ⠸ Fetching MPs' names 110/183 | ETA: 24s
+#> ⠸ Fetching MPs' names 125/183 | ETA: 17s
 #> 
-#> ⠼ Fetching MPs' names 119/183 | ETA: 21s
+#> ⠼ Fetching MPs' names 135/183 | ETA: 14s
 #> 
-#> ⠴ Fetching MPs' names 128/183 | ETA: 18s
+#> ⠴ Fetching MPs' names 145/183 | ETA: 11s
 #> 
-#> ⠦ Fetching MPs' names 138/183 | ETA: 15s
+#> ⠦ Fetching MPs' names 156/183 | ETA:  8s
 #> 
-#> ⠧ Fetching MPs' names 147/183 | ETA: 12s
+#> ⠧ Fetching MPs' names 166/183 | ETA:  5s
 #> 
-#> ⠇ Fetching MPs' names 156/183 | ETA:  9s
-#> 
-#> ⠏ Fetching MPs' names 165/183 | ETA:  6s
-#> 
-#> ⠋ Fetching MPs' names 174/183 | ETA:  3s
+#> ⠇ Fetching MPs' names 177/183 | ETA:  2s
 #> 
 #> Fetched 183 MPs' names.
 nrow(df_current)
@@ -224,18 +220,17 @@ MPs (top 5 are shown below).
 ``` r
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
-#> ⠙ Fetching mandates 7/183 | ETA: 28s
-#> ⠹ Fetching mandates 11/183 | ETA: 29s
-#> ⠸ Fetching mandates 28/183 | ETA: 27s
-#> ⠼ Fetching mandates 44/183 | ETA: 25s
-#> ⠴ Fetching mandates 60/183 | ETA: 22s
-#> ⠦ Fetching mandates 77/183 | ETA: 19s
-#> ⠧ Fetching mandates 93/183 | ETA: 16s
-#> ⠇ Fetching mandates 108/183 | ETA: 14s
-#> ⠏ Fetching mandates 124/183 | ETA: 11s
-#> ⠋ Fetching mandates 141/183 | ETA:  8s
-#> ⠙ Fetching mandates 157/183 | ETA:  5s
-#> ⠹ Fetching mandates 173/183 | ETA:  2s
+#> ⠙ Fetching mandates 8/183 | ETA: 25s
+#> ⠹ Fetching mandates 18/183 | ETA: 26s
+#> ⠸ Fetching mandates 37/183 | ETA: 23s
+#> ⠼ Fetching mandates 55/183 | ETA: 21s
+#> ⠴ Fetching mandates 73/183 | ETA: 18s
+#> ⠦ Fetching mandates 91/183 | ETA: 15s
+#> ⠧ Fetching mandates 108/183 | ETA: 12s
+#> ⠇ Fetching mandates 126/183 | ETA:  9s
+#> ⠏ Fetching mandates 145/183 | ETA:  6s
+#> ⠋ Fetching mandates 163/183 | ETA:  3s
+#> ⠙ Fetching mandates 181/183 | ETA:  0s
 #> Fetched mandates for 183 persons.
 #> 
 
