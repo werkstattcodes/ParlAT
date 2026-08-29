@@ -60,6 +60,12 @@
   looking up matching Parliament person identifiers. Previously academic titles 
   could cause searches to fail.
 
+## Documentation
+
+- Reference pages gained Examples sections, and the `get_party_colors()`
+  examples now render the actual color swatches.
+- Fixed dropdown styling in the pkgdown navbar on the package website.
+
 ## Internal changes
 
 - New shared internal helpers (`R/utils-shared.R`) replace duplicated
@@ -69,6 +75,14 @@
 - New unit tests for `get_names()`, `get_mps_current()`, the detail-page
   JSON helpers, and the pure auxiliary converters.
 - `T`/`F` abbreviations expanded; superseded `purrr::map_dfr()` replaced.
+- Live tests skip count-sensitive assertions while the Parliament search
+  index is degraded (`skip_if_api_index_degraded()`), and row-count
+  assertions tolerate ±10% drift in live mode (`expect_row_count()`), so
+  upstream outages no longer look like package regressions. Adds
+  `tools/check_api_index.sh` for a manual health check and a daily workflow
+  that monitors index health.
+- Non-standard-evaluation pronouns declared via `globalVariables()`;
+  remaining R CMD check NOTEs resolved.
 
 # ParlAT 0.0.6
 
