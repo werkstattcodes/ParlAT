@@ -85,8 +85,9 @@ get_mps_details(
 
 - echo:
 
-  Logical indicating whether to print the API request and response
-  details. Defaults to TRUE.
+  Logical indicating whether to print the URL to the corresponding
+  results on the Parliament website and the number of results. Defaults
+  to TRUE.
 
 ## Value
 
@@ -325,9 +326,9 @@ plenary_nr <- get_mps_details(
   institution = "NR",
   legis_period = 27
 )
-#> {"PAD_INTERN":[2344],"GREMIUM":["N"],"GP_CODE":["XXVII"]} 
+#> Results on the Parliament website:
 #> https://www.parlament.gv.at/person/2344?BIO_250PAD_INTERN=2344&BIO_250GREMIUM=N&BIO_250GP_CODE=XXVII&selectedtab=PLENUM
-#> [1] 84
+#> Hits: 84
 dplyr::glimpse(plenary_nr)
 #> Rows: 84
 #> Columns: 11
@@ -349,9 +350,9 @@ plenary_multiple <- get_mps_details(
   detail_type = "plenary",
   legis_period = c(26, 27)
 )
-#> {"PAD_INTERN":[2344],"GP_CODE":["XXVI","XXVII"]} 
+#> Results on the Parliament website:
 #> https://www.parlament.gv.at/person/2344?BIO_250PAD_INTERN=2344&BIO_250GP_CODE=XXVI&BIO_250GP_CODE=XXVII&selectedtab=PLENUM
-#> [1] 122
+#> Hits: 122
 dplyr::glimpse(plenary_multiple)
 #> Rows: 122
 #> Columns: 11
@@ -374,9 +375,9 @@ proposals <- get_mps_details(
   item = "A",
   legis_period = 27
 )
-#> {"PAD_INTERN":[2344],"gp_text_full":["XXVII"],"vhg4":["A"]} 
+#> Results on the Parliament website:
 #> https://www.parlament.gv.at/person/2344?PERS_AKTIVIT_025PAD_INTERN=2344&PERS_AKTIVIT_025gp_text_full=XXVII&PERS_AKTIVIT_025vhg4=A&selectedtab=AKT
-#> [1] 25
+#> Hits: 25
 dplyr::glimpse(proposals)
 #> Rows: 25
 #> Columns: 10
@@ -397,9 +398,9 @@ committees <- get_mps_details(
   detail_type = "committees",
   legis_period = 27
 )
-#> {"PAD_INTERN":[2344],"GP_TEXT_FULL":["23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"]} 
+#> Results on the Parliament website:
 #> https://www.parlament.gv.at/person/2344?AUSSCHUSS_BIO_250PAD_INTERN=2344&AUSSCHUSS_BIO_250GP_TEXT_FULL=23.10.2019%20-%2023.10.2024:%20XXVII.%20Gesetzgebungsperiode%20des%20NR&selectedtab=AUS
-#> [1] 11
+#> Hits: 11
 dplyr::glimpse(committees)
 #> Rows: 11
 #> Columns: 10

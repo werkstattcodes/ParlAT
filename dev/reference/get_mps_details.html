@@ -19,7 +19,7 @@ the different tabs e.g., here.'><meta property="og:image" content="https://werks
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,7 +123,7 @@ Common values include "Mitglied", "Vorsitzende/r", "Stellvertretende/r Vorsitzen
 
 
 <dt id="arg-echo">echo<a class="anchor" aria-label="anchor" href="#arg-echo"></a></dt>
-<dd><p>Logical indicating whether to print the API request and response details. Defaults to TRUE.</p></dd>
+<dd><p>Logical indicating whether to print the URL to the corresponding results on the Parliament website and the number of results. Defaults to TRUE.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -255,9 +255,9 @@ Columns returned:</p><ul><li><p><code>pad_intern</code>: Unique identifier for t
 <span class="r-in"><span>  institution <span class="op">=</span> <span class="st">"NR"</span>,</span></span>
 <span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">27</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"PAD_INTERN":[2344],"GREMIUM":["N"],"GP_CODE":["XXVII"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/person/2344?BIO_250PAD_INTERN=2344&amp;BIO_250GREMIUM=N&amp;BIO_250GP_CODE=XXVII&amp;selectedtab=PLENUM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 84</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/person/2344?BIO_250PAD_INTERN=2344&amp;BIO_250GREMIUM=N&amp;BIO_250GP_CODE=XXVII&amp;selectedtab=PLENUM</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 84</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">plenary_nr</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 84</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 11</span>
@@ -279,9 +279,9 @@ Columns returned:</p><ul><li><p><code>pad_intern</code>: Unique identifier for t
 <span class="r-in"><span>  detail_type <span class="op">=</span> <span class="st">"plenary"</span>,</span></span>
 <span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">26</span>, <span class="fl">27</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"PAD_INTERN":[2344],"GP_CODE":["XXVI","XXVII"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/person/2344?BIO_250PAD_INTERN=2344&amp;BIO_250GP_CODE=XXVI&amp;BIO_250GP_CODE=XXVII&amp;selectedtab=PLENUM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 122</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/person/2344?BIO_250PAD_INTERN=2344&amp;BIO_250GP_CODE=XXVI&amp;BIO_250GP_CODE=XXVII&amp;selectedtab=PLENUM</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 122</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">plenary_multiple</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 122</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 11</span>
@@ -304,9 +304,9 @@ Columns returned:</p><ul><li><p><code>pad_intern</code>: Unique identifier for t
 <span class="r-in"><span>  item <span class="op">=</span> <span class="st">"A"</span>,</span></span>
 <span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">27</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"PAD_INTERN":[2344],"gp_text_full":["XXVII"],"vhg4":["A"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/person/2344?PERS_AKTIVIT_025PAD_INTERN=2344&amp;PERS_AKTIVIT_025gp_text_full=XXVII&amp;PERS_AKTIVIT_025vhg4=A&amp;selectedtab=AKT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 25</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/person/2344?PERS_AKTIVIT_025PAD_INTERN=2344&amp;PERS_AKTIVIT_025gp_text_full=XXVII&amp;PERS_AKTIVIT_025vhg4=A&amp;selectedtab=AKT</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 25</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">proposals</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 25</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 10</span>
@@ -327,9 +327,9 @@ Columns returned:</p><ul><li><p><code>pad_intern</code>: Unique identifier for t
 <span class="r-in"><span>  detail_type <span class="op">=</span> <span class="st">"committees"</span>,</span></span>
 <span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">27</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"PAD_INTERN":[2344],"GP_TEXT_FULL":["23.10.2019 - 23.10.2024: XXVII. Gesetzgebungsperiode des NR"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/person/2344?AUSSCHUSS_BIO_250PAD_INTERN=2344&amp;AUSSCHUSS_BIO_250GP_TEXT_FULL=23.10.2019%20-%2023.10.2024:%20XXVII.%20Gesetzgebungsperiode%20des%20NR&amp;selectedtab=AUS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/person/2344?AUSSCHUSS_BIO_250PAD_INTERN=2344&amp;AUSSCHUSS_BIO_250GP_TEXT_FULL=23.10.2019%20-%2023.10.2024:%20XXVII.%20Gesetzgebungsperiode%20des%20NR&amp;selectedtab=AUS</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 11</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">committees</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 10</span>
@@ -355,7 +355,7 @@ Columns returned:</p><ul><li><p><code>pad_intern</code>: Unique identifier for t
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

@@ -60,9 +60,9 @@ get_committees(
 
 - echo:
 
-  Logical. If TRUE, the function prints the used search parameters and
-  the url to the pertaining search results on the website of the
-  Austrian Parliament. Default is NULL.
+  Logical. If TRUE, the function prints the URL to the pertaining search
+  results on the website of the Austrian Parliament and the number of
+  results. Default is NULL.
 
 ## Value
 
@@ -114,7 +114,8 @@ A tibble (data frame) with different structures depending on
 
   - `member_url`: URL to member's profile page (character)
 
-Returns NULL if no results are found for the provided search criteria.
+Returns a zero-row tibble with the documented columns if no results are
+found.
 
 ## Details
 

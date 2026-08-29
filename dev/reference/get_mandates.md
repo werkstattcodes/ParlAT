@@ -160,7 +160,21 @@ See examples.
   result <- get_mandates(name = "Michael Pöck")
 #> No mandates found.
   dplyr::glimpse(result)
-#>  NULL
+#> Rows: 0
+#> Columns: 13
+#> $ pad_intern                     <chr> 
+#> $ name                           <chr> 
+#> $ position_text                  <chr> 
+#> $ position_code                  <chr> 
+#> $ position_name                  <chr> 
+#> $ position_date_start            <date> 
+#> $ position_date_end              <date> 
+#> $ position_active                <lgl> 
+#> $ parl_group                     <chr> 
+#> $ electoral_district_region_code <chr> 
+#> $ electoral_district_region      <chr> 
+#> $ legis_period                   <list> list()
+#> $ url_biography                  <chr> 
 
   # Query for Michael Bernhard returns all results,
   # including for those with the name Michael Pöck.

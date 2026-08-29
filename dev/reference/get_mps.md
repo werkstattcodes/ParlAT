@@ -82,9 +82,9 @@ get_mps(
 
 - echo:
 
-  Logical. If `TRUE`, the function prints the used search parameters and
-  the url to the pertaining search results on website of the Austrian
-  Parliament.
+  Logical. If `TRUE`, the function prints the URL to the pertaining
+  search results on the website of the Austrian Parliament and the
+  number of results.
 
 ## Value
 
@@ -564,13 +564,12 @@ Permissible values:
 # \donttest{
 # Get all MPs from the current legislative period
 mps <- get_mps(institution = "NR", legis_period = "27")
-#> {"ATTR_JSON.mandate_detail.gremium_name":["Nationalrat"],"ATTR_JSON.mandate_detail.gp_text_full_short":["23.10.2019 - 23.10.2024: XXVII. GP"]} 
+#> Results on the Parliament website:
 #> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=23.10.2019%20-%2023.10.2024:%20XXVII.%20GP
-#> [1] 213
+#> Hits: 213
 dplyr::glimpse(mps)
 #> Rows: 213
 #> Columns: 6
-#> Groups: pad_intern [213]
 #> $ pad_intern   <int> 145, 1567, 1937, 1944, 1970, 1974, 1975, 1976, 1977, 1978…
 #> $ legis_period <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XX…
 #> $ name         <chr> "Doris Bures", "Dr. Susanne Fürst", "Mag. Christian Ragge…
@@ -580,13 +579,12 @@ dplyr::glimpse(mps)
 
 # Get female MPs from a specific party
 female_mps <- get_mps(gender = "female", party = "SPÖ")
-#> {"GESCHL_CODE":["W"],"ATTR_JSON.mandate_detail.wahlpartei_full_txt":["Sozialdemokratische Partei Österreichs (SPÖ)","Sozialistische Partei Österreichs (SPÖ)"]} 
+#> Results on the Parliament website:
 #> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409GESCHL_CODE=W&PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialdemokratische%20Partei%20%C3%96sterreichs%20(SP%C3%96)&PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialistische%20Partei%20%C3%96sterreichs%20(SP%C3%96)
-#> [1] 211
+#> Hits: 211
 dplyr::glimpse(female_mps)
 #> Rows: 500
 #> Columns: 6
-#> Groups: pad_intern [211]
 #> $ pad_intern   <int> 46, 46, 46, 54, 81, 81, 81, 81, 113, 113, 113, 118, 118, …
 #> $ legis_period <chr> "XV", "XIV", "XIII", "BR", "XXI", "XX", "XIX", "XVIII", "…
 #> $ name         <chr> "Anneliese Albrecht", "Anneliese Albrecht", "Anneliese Al…

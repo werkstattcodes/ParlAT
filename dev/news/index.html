@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +42,58 @@
       <small>Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="parlat-development-version">ParlAT (development version)<a class="anchor" aria-label="anchor" href="#parlat-development-version"></a></h2>
+<div class="section level3">
+<h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<ul><li>
+<code><a href="../reference/get_party_colors.html">get_party_colors()</a></code> provides a reusable plotting palette for Austrian parties and parliamentary groups, including common aliases and historical ÖVP colors.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="breaking-changes-development-version">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h3>
+<ul><li>All exported <code>get_*()</code> functions now return a <strong>zero-row tibble with their documented columns</strong> instead of <code>NULL</code> (or <code>invisible(NULL)</code>) when the API finds no results, accompanied by an informative message. Code that checked <code>is.null(result)</code> should check <code>nrow(result) == 0</code> instead.</li>
+<li>
+<code><a href="../reference/get_persons.html">get_persons()</a></code>, <code><a href="../reference/get_names.html">get_names()</a></code>, <code><a href="../reference/get_plenary_meetings.html">get_plenary_meetings()</a></code>, and the <code><a href="../reference/get_mps_details.html">get_mps_details()</a></code> modes now return tibbles instead of plain data frames.</li>
+<li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code> no longer returns a grouped tibble.</li>
+<li>All user-facing errors, warnings, and messages are now signalled via the cli package; message wording may differ slightly.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<ul><li>
+<code><a href="../reference/get_participation.html">get_participation()</a></code>: the graceful empty-result path was unreachable due to an internal assertion that errored first; empty results now return a typed zero-row tibble.</li>
+<li>
+<code><a href="../reference/get_transcripts.html">get_transcripts()</a></code>: the row-limit error message incorrectly said the limit was 10,000 (the actual limit is 100,000); a misplaced <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf()</a></code> argument in the PDF-export error message was fixed.</li>
+<li>
+<code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>: no longer errors when a search returns no members (previously <code>NULL</code> was piped into <code>mutate()</code>).</li>
+<li>
+<code><a href="../reference/get_names.html">get_names()</a></code>: no longer returns a bare <code>NA</code> when the person-detail fetch fails, which could break its own vectorized path.</li>
+<li>
+<code>get_mps_details(detail_type = "committees")</code>: no longer errors for MPs with multiple name variants.</li>
+<li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code>: removed ~160 lines of unreachable dead code after an early <code><a href="https://rdrr.io/r/base/function.html" class="external-link">return()</a></code>.</li>
+<li>
+<code>get_mps_details(detail_type = "activities")</code>: the <code>institution</code> filter silently matched nothing, and the <code>institution</code> column leaked the raw German names <code>"Nationalrat"</code>/<code>"Bundesrat"</code> instead of the documented <code>"NR"</code>/<code>"BR"</code>. The upstream API changed its <code>gremium</code> vocabulary from short codes to full names. Both directions now speak the new vocabulary, so the filter works again and the column values are as documented. Code that worked around this by matching <code>"Nationalrat"</code> should match <code>"NR"</code>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="enhancements-development-version">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-development-version"></a></h3>
+<ul><li>
+<code>echo = TRUE</code> no longer prints the raw JSON request body; it prints the URL to the corresponding search results on the Parliament website and the number of results. The URL carries the same filter information in a directly usable form.</li>
+<li>All API requests now retry up to three times on transient failures (<code><a href="https://httr2.r-lib.org/reference/req_retry.html" class="external-link">httr2::req_retry()</a></code>).</li>
+<li>Stale hardcoded browser cookies/session IDs and browser fingerprint headers were removed from all requests; every request now sends the ParlAT package user agent.</li>
+<li>Person-detail JSON fetches (<code><a href="../reference/get_mandates.html">get_mandates()</a></code>, <code><a href="../reference/get_names.html">get_names()</a></code>, <code><a href="../reference/get_committees.html">get_committees()</a></code> details) now go through httr2, so they are covered by the httptest2 mock layer in tests.</li>
+<li>
+<code><a href="../reference/get_pad_intern.html">get_pad_intern()</a></code> now removes academic titles from name searches before looking up matching Parliament person identifiers. Previously academic titles could cause searches to fail.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="internal-changes-development-version">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-development-version"></a></h3>
+<ul><li>New shared internal helpers (<code>R/utils-shared.R</code>) replace duplicated rename-map and echo/URL-reconstruction blocks across the package.</li>
+<li>Debug <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> calls, commented <code><a href="https://rdrr.io/r/base/browser.html" class="external-link">browser()</a></code> calls, no-op <code>req_verbose()</code> blocks, and two large dead functions were removed.</li>
+<li>New unit tests for <code><a href="../reference/get_names.html">get_names()</a></code>, <code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>, the detail-page JSON helpers, and the pure auxiliary converters.</li>
+<li>
+<code>T</code>/<code>F</code> abbreviations expanded; superseded <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">purrr::map_dfr()</a></code> replaced.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.6" id="parlat-006">ParlAT 0.0.6<a class="anchor" aria-label="anchor" href="#parlat-006"></a></h2>
 <div class="section level3">
@@ -131,7 +183,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

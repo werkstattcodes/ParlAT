@@ -55,9 +55,9 @@ get_transcripts(
 
 - echo:
 
-  Logical. If TRUE, the function prints the used search parameters and
-  the url to the pertaining search results on the website of the
-  Austrian Parliament. Default is NULL.
+  Logical. If TRUE, the function prints the URL to the pertaining search
+  results on the website of the Austrian Parliament and the number of
+  results. Default is NULL.
 
 - export:
 
@@ -152,11 +152,11 @@ download.
                   legis_period = 28,
                   meeting_type = "NRSITZ",
                   echo = TRUE)
-#> {"GP_CODE":["XXVIII"],"NBVS":["NRSITZ"]} 
+#> Results on the Parliament website:
 #> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211GP_CODE=XXVIII&STENO_211NBVS=NRSITZ&STENO_211search=gesundheit
-#> [1] 21
+#> Hits: 24
   dplyr::glimpse(result)
-#> Rows: 21
+#> Rows: 24
 #> Columns: 8
 #> $ date                    <date> 2024-12-11, 2025-03-26, 2025-04-24, 2025-05-1…
 #> $ meeting_url             <chr> "/gegenstand/XXVIII/NRSITZ/5", "/gegenstand/XX…
@@ -172,9 +172,9 @@ download.
                  date_start = "01-01-2024",
                  date_end = "30-06-2024",
                  echo = TRUE)
-#> {"NBVS":["BRSITZ"],"DATUM":["2024-01-01T00:00:00.000Z","2024-06-30T00:00:00.000Z"]} 
+#> Results on the Parliament website:
 #> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211NBVS=BRSITZ&STENO_211DATUM=2024-01-01T00:00:00.000Z&STENO_211DATUM=2024-06-30T00:00:00.000Z
-#> [1] 6
+#> Hits: 6
  dplyr::glimpse(result)
 #> Rows: 6
 #> Columns: 8

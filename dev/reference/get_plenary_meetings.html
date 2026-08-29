@@ -9,7 +9,7 @@ Data available from 20th legislative period onwards."><meta property="og:image" 
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,12 +87,12 @@ Data available from 20th legislative period onwards.</p>
 
 
 <dt id="arg-echo">echo<a class="anchor" aria-label="anchor" href="#arg-echo"></a></dt>
-<dd><p>Logical. If <code>TRUE</code>, prints the API request body parameters and the number of results. Default is <code>FALSE</code>.</p></dd>
+<dd><p>Logical. If <code>TRUE</code>, prints the URL to the corresponding search on the Parliament website, pagination progress, and the number of results. Default is <code>FALSE</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame containing plenary meeting details, or NULL if no results found. The structure depends on the <code>meeting_and_activities</code> parameter:</p>
+    <p>A tibble containing plenary meeting details (zero rows if no results are found). The structure depends on the <code>meeting_and_activities</code> parameter:</p>
 <p>If <em><code>meeting_and_activities = "meetings"</code></em>:</p><ul><li><p><code>institution</code>: parliamentary institution (e.g., "NR", "BR")</p></li>
 <li><p><code>legis_period</code>: legislative period (not returned if institution is 'BV')</p></li>
 <li><p><code>date</code>: date of the meeting</p></li>
@@ -129,7 +129,7 @@ Data available from 20th legislative period onwards.</p>
 <span class="r-in"><span>  meeting_and_activities <span class="op">=</span> <span class="st">"meetings"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>…</span>
@@ -149,19 +149,19 @@ Data available from 20th legislative period onwards.</p>
 <span class="r-in"><span>  meeting_and_activities <span class="op">=</span> <span class="st">"activities"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 3,629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 3,646</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "27"<span style="color: #949494;">, </span>"27"<span style="color: #949494;">, </span>"27"<span style="color: #949494;">, </span>"27"<span style="color: #949494;">, </span>"27"<span style="color: #949494;">, </span>"27"<span style="color: #949494;">, </span>"27"<span style="color: #949494;">, </span>"27"<span style="color: #949494;">, </span>"27"<span style="color: #949494;">, </span>"…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2019-10-23<span style="color: #949494;">, </span>2019-10-23<span style="color: #949494;">, </span>2019-10-23<span style="color: #949494;">, </span>2019-10-23<span style="color: #949494;">, </span>2019-1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ title          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Einberufung zur XXVII. GP und zugleich zur ordentliche…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ url_item       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/GO/1"<span style="color: #949494;">, </span>"h…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ title          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Wahl der Präsidenten des Nationalrates"<span style="color: #949494;">, </span>"Wahl der Sch…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ url_item       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/W/1"<span style="color: #949494;">, </span>"ht…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ meeting_number <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>"1"<span style="color: #949494;">, </span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ url_meeting    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/NRSITZ/1"…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ session_type   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>"N"<span style="color: #949494;">, </span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ activity_type  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sonstiges"<span style="color: #949494;">, </span>"Sonstiges"<span style="color: #949494;">, </span>"Sonstiges"<span style="color: #949494;">, </span>"Sonstiges"<span style="color: #949494;">, </span>"De…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ doc_type       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Einberufung einer Tagung"<span style="color: #949494;">, </span>"Zuschrift"<span style="color: #949494;">, </span>"Sonstige Gesc…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ citation       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1/GO"<span style="color: #949494;">, </span>"2/GO"<span style="color: #949494;">, </span>"3/GO"<span style="color: #949494;">, </span>"6/GO"<span style="color: #949494;">, </span>"7/GO"<span style="color: #949494;">, </span>"8/GO"<span style="color: #949494;">, </span>"9/GO"<span style="color: #949494;">,</span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ activity_type  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sonstiges"<span style="color: #949494;">, </span>"Sonstiges"<span style="color: #949494;">, </span>"Sonstiges"<span style="color: #949494;">, </span>"Sonstiges"<span style="color: #949494;">, </span>"So…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ doc_type       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Wahl von Funktionsträgern"<span style="color: #949494;">, </span>"Wahl von Funktionsträgern…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ citation       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1/W"<span style="color: #949494;">, </span>"2/W"<span style="color: #949494;">, </span>"3/W"<span style="color: #949494;">, </span>"4/W"<span style="color: #949494;">, </span>"5/W"<span style="color: #949494;">, </span>"1/GO"<span style="color: #949494;">, </span>"2/GO"<span style="color: #949494;">, </span>"3/G…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Federal Council meetings</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_plenary_meetings</span><span class="op">(</span></span></span>
@@ -170,7 +170,7 @@ Data available from 20th legislative period onwards.</p>
 <span class="r-in"><span>  meeting_and_activities <span class="op">=</span> <span class="st">"meetings"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "BR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>"28"<span style="color: #949494;">, </span>…</span>
@@ -230,7 +230,7 @@ Data available from 20th legislative period onwards.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

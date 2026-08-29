@@ -11,7 +11,7 @@ from the Austrian Parliament website here."><meta property="og:image" content="h
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,7 +122,7 @@ from the Austrian Parliament website <a href="https://www.parlament.gv.at/recher
 
 
 <dt id="arg-echo">echo<a class="anchor" aria-label="anchor" href="#arg-echo"></a></dt>
-<dd><p>Logical. If <code>TRUE</code>, the function prints the used search parameters and the url to the  pertaining search results on website of the Austrian Parliament.</p></dd>
+<dd><p>Logical. If <code>TRUE</code>, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -394,13 +394,12 @@ input.</p><ul><li><p>Bauernpartei (BP)</p></li>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Get all MPs from the current legislative period</span></span></span>
 <span class="r-in"><span><span class="va">mps</span> <span class="op">&lt;-</span> <span class="fu">get_mps</span><span class="op">(</span>institution <span class="op">=</span> <span class="st">"NR"</span>, legis_period <span class="op">=</span> <span class="st">"27"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"ATTR_JSON.mandate_detail.gremium_name":["Nationalrat"],"ATTR_JSON.mandate_detail.gp_text_full_short":["23.10.2019 - 23.10.2024: XXVII. GP"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&amp;PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=23.10.2019%20-%2023.10.2024:%20XXVII.%20GP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 213</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&amp;PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=23.10.2019%20-%2023.10.2024:%20XXVII.%20GP</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 213</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mps</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 213</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Groups: pad_intern [213]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 145<span style="color: #949494;">, </span>1567<span style="color: #949494;">, </span>1937<span style="color: #949494;">, </span>1944<span style="color: #949494;">, </span>1970<span style="color: #949494;">, </span>1974<span style="color: #949494;">, </span>1975<span style="color: #949494;">, </span>1976<span style="color: #949494;">, </span>1977<span style="color: #949494;">, </span>1978…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XX…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Doris Bures"<span style="color: #949494;">, </span>"Dr. Susanne Fürst"<span style="color: #949494;">, </span>"Mag. Christian Ragge…</span>
@@ -410,13 +409,12 @@ input.</p><ul><li><p>Bauernpartei (BP)</p></li>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get female MPs from a specific party</span></span></span>
 <span class="r-in"><span><span class="va">female_mps</span> <span class="op">&lt;-</span> <span class="fu">get_mps</span><span class="op">(</span>gender <span class="op">=</span> <span class="st">"female"</span>, party <span class="op">=</span> <span class="st">"SPÖ"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"GESCHL_CODE":["W"],"ATTR_JSON.mandate_detail.wahlpartei_full_txt":["Sozialdemokratische Partei Österreichs (SPÖ)","Sozialistische Partei Österreichs (SPÖ)"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409GESCHL_CODE=W&amp;PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialdemokratische%20Partei%20%C3%96sterreichs%20(SP%C3%96)&amp;PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialistische%20Partei%20%C3%96sterreichs%20(SP%C3%96)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 211</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409GESCHL_CODE=W&amp;PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialdemokratische%20Partei%20%C3%96sterreichs%20(SP%C3%96)&amp;PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialistische%20Partei%20%C3%96sterreichs%20(SP%C3%96)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 211</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">female_mps</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Groups: pad_intern [211]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 46<span style="color: #949494;">, </span>46<span style="color: #949494;">, </span>46<span style="color: #949494;">, </span>54<span style="color: #949494;">, </span>81<span style="color: #949494;">, </span>81<span style="color: #949494;">, </span>81<span style="color: #949494;">, </span>81<span style="color: #949494;">, </span>113<span style="color: #949494;">, </span>113<span style="color: #949494;">, </span>113<span style="color: #949494;">, </span>118<span style="color: #949494;">, </span>118<span style="color: #949494;">, </span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XV"<span style="color: #949494;">, </span>"XIV"<span style="color: #949494;">, </span>"XIII"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"XXI"<span style="color: #949494;">, </span>"XX"<span style="color: #949494;">, </span>"XIX"<span style="color: #949494;">, </span>"XVIII"<span style="color: #949494;">, </span>"…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Anneliese Albrecht"<span style="color: #949494;">, </span>"Anneliese Albrecht"<span style="color: #949494;">, </span>"Anneliese Al…</span>
@@ -435,7 +433,7 @@ input.</p><ul><li><p>Bauernpartei (BP)</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

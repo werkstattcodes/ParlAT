@@ -15,7 +15,7 @@ Austrian Parliament (see here).'><meta property="og:image" content="https://werk
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.6.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,7 +91,7 @@ Austrian Parliament (see <a href="https://www.parlament.gv.at/recherchieren/pers
 
 
 <dt id="arg-echo">echo<a class="anchor" aria-label="anchor" href="#arg-echo"></a></dt>
-<dd><p>Logical. If <code>TRUE</code>, prints the API request body parameters, the constructed URL, and the number of results. Default is <code>FALSE</code>.</p></dd>
+<dd><p>Logical. If <code>TRUE</code>, prints the URL to the corresponding search results on the Parliament website and the number of results. Default is <code>FALSE</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -99,7 +99,7 @@ Austrian Parliament (see <a href="https://www.parlament.gv.at/recherchieren/pers
     <p>A data frame with one row per matching person and the columns <code>pad_intern</code>,
 <code>name</code>, <code>gender</code>, <code>position</code>, and <code>link</code>. When <code>mandates = TRUE</code>, the
 returned data frame additionally contains mandate details for each person.
-Returns <code>NULL</code> with a message if no persons are found.</p>
+Returns a zero-row tibble with a message if no persons are found.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -133,7 +133,7 @@ available persons for the supplied filters.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

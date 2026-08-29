@@ -39,3 +39,5 @@
   : Get unique identificiaton number (pad_intern)
 - [`get_legis_periods()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_legis_periods.md)
   : Get start and end dates of legislative periods.
+- [`get_party_colors()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_party_colors.md)
+  : Get colors for Austrian political parties

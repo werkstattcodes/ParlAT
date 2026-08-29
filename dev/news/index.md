@@ -1,5 +1,100 @@
 # Changelog
 
+## ParlAT (development version)
+
+### New features
+
+- [`get_party_colors()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_party_colors.md)
+  provides a reusable plotting palette for Austrian parties and
+  parliamentary groups, including common aliases and historical ÖVP
+  colors.
+
+### Breaking changes
+
+- All exported `get_*()` functions now return a **zero-row tibble with
+  their documented columns** instead of `NULL` (or `invisible(NULL)`)
+  when the API finds no results, accompanied by an informative message.
+  Code that checked `is.null(result)` should check `nrow(result) == 0`
+  instead.
+- [`get_persons()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_persons.md),
+  [`get_names()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_names.md),
+  [`get_plenary_meetings()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_plenary_meetings.md),
+  and the
+  [`get_mps_details()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_details.md)
+  modes now return tibbles instead of plain data frames.
+- [`get_mps()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps.md)
+  no longer returns a grouped tibble.
+- All user-facing errors, warnings, and messages are now signalled via
+  the cli package; message wording may differ slightly.
+
+### Bug fixes
+
+- [`get_participation()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_participation.md):
+  the graceful empty-result path was unreachable due to an internal
+  assertion that errored first; empty results now return a typed
+  zero-row tibble.
+- [`get_transcripts()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_transcripts.md):
+  the row-limit error message incorrectly said the limit was 10,000 (the
+  actual limit is 100,000); a misplaced
+  [`sprintf()`](https://rdrr.io/r/base/sprintf.html) argument in the
+  PDF-export error message was fixed.
+- [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md):
+  no longer errors when a search returns no members (previously `NULL`
+  was piped into `mutate()`).
+- [`get_names()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_names.md):
+  no longer returns a bare `NA` when the person-detail fetch fails,
+  which could break its own vectorized path.
+- `get_mps_details(detail_type = "committees")`: no longer errors for
+  MPs with multiple name variants.
+- [`get_mps()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps.md):
+  removed ~160 lines of unreachable dead code after an early
+  [`return()`](https://rdrr.io/r/base/function.html).
+- `get_mps_details(detail_type = "activities")`: the `institution`
+  filter silently matched nothing, and the `institution` column leaked
+  the raw German names `"Nationalrat"`/`"Bundesrat"` instead of the
+  documented `"NR"`/`"BR"`. The upstream API changed its `gremium`
+  vocabulary from short codes to full names. Both directions now speak
+  the new vocabulary, so the filter works again and the column values
+  are as documented. Code that worked around this by matching
+  `"Nationalrat"` should match `"NR"`.
+
+### Enhancements
+
+- `echo = TRUE` no longer prints the raw JSON request body; it prints
+  the URL to the corresponding search results on the Parliament website
+  and the number of results. The URL carries the same filter information
+  in a directly usable form.
+- All API requests now retry up to three times on transient failures
+  ([`httr2::req_retry()`](https://httr2.r-lib.org/reference/req_retry.html)).
+- Stale hardcoded browser cookies/session IDs and browser fingerprint
+  headers were removed from all requests; every request now sends the
+  ParlAT package user agent.
+- Person-detail JSON fetches
+  ([`get_mandates()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mandates.md),
+  [`get_names()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_names.md),
+  [`get_committees()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_committees.md)
+  details) now go through httr2, so they are covered by the httptest2
+  mock layer in tests.
+- [`get_pad_intern()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_pad_intern.md)
+  now removes academic titles from name searches before looking up
+  matching Parliament person identifiers. Previously academic titles
+  could cause searches to fail.
+
+### Internal changes
+
+- New shared internal helpers (`R/utils-shared.R`) replace duplicated
+  rename-map and echo/URL-reconstruction blocks across the package.
+- Debug [`print()`](https://rdrr.io/r/base/print.html) calls, commented
+  [`browser()`](https://rdrr.io/r/base/browser.html) calls, no-op
+  `req_verbose()` blocks, and two large dead functions were removed.
+- New unit tests for
+  [`get_names()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_names.md),
+  [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md),
+  the detail-page JSON helpers, and the pure auxiliary converters.
+- `T`/`F` abbreviations expanded; superseded
+  [`purrr::map_dfr()`](https://purrr.tidyverse.org/reference/map_dfr.html)
+  replaced.
+
 ## ParlAT 0.0.6
 
 ### Bug fixes
