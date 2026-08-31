@@ -25,7 +25,11 @@ get_items(
 \arguments{
 \item{topic}{(Thema) Character vector or \code{NULL}. Specifies the topic(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
 
-\item{institution}{Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is \code{NULL} which returns both chambers.}
+\item{institution}{Character string. Either "NR" (Nationalrat, National
+Council) or "BR" (Bundesrat, Federal Council). Default is \code{NULL}, which
+returns both chambers. When combined with \code{person}, this filters the
+parliamentary items; it does not restrict the person's institutional
+affiliations.}
 
 \item{legis_period}{Character vector or \code{NULL}. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is \code{NULL}.}
 
@@ -39,7 +43,10 @@ get_items(
 
 \item{type_eu_submission}{(Art der EU-Vorlage) Character vector or \code{NULL}. Type(s) of EU submission to search for. Can only be specified when \code{item = "EU"}. See 'Details' for possible values. Default is \code{NULL}.}
 
-\item{person}{Character string or \code{NULL}. Name of a person to search for (family name, optionally followed by first name). Default is \code{NULL}.}
+\item{person}{Character string or \code{NULL}. Name of a person to search for
+(family name, optionally followed by first name). People are resolved
+across all institutional categories before other item filters are applied.
+Default is \code{NULL}.}
 
 \item{keyword}{Character vector or \code{NULL}. Keyword(s) to search for. Default is \code{NULL}.}
 
@@ -520,6 +527,15 @@ has featured different abbreviations for their parliamentary group: "FPÖ", "F",
 \code{parl_group_names_standard = TRUE}, an input of "F" (or any other variant) will return
 the results for all three abbreviations.
 }
+
+\subsection{Combining person and institution filters}{
+
+When \code{person} and \code{institution} are supplied together, the person lookup is
+performed across all institutional categories. The \code{institution} value then
+filters the parliamentary items by chamber. For example, a federal minister
+can be associated with National Council items even if the person is not
+categorized as a National Council member.
+}
 }
 \note{
 \subsection{Free Text Search}{
@@ -589,9 +605,9 @@ dplyr::glimpse(result)
 
 # Search by person (minister or MP)
 result <- get_items(
-  person = "Nehammer",
-  date_start = "01-01-2023",
-  date_end = "31-12-2023"
+  person = "Kurz Sebastian",
+  institution = "NR",
+  legis_period = 27
 )
 dplyr::glimpse(result)
 

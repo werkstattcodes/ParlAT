@@ -20,6 +20,10 @@
 
 ## Bug fixes
 
+- `get_items()`: combining `person` with `institution` now resolves the person
+  across all institutional categories and applies the institution filter only
+  to the returned items. An unmatched person returns a typed zero-row result
+  instead of sending an unfiltered item request.
 - `get_participation()`: the graceful empty-result path was unreachable due
   to an internal assertion that errored first; empty results now return a
   typed zero-row tibble.

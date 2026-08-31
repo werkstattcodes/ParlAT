@@ -123,6 +123,41 @@ test_that("get_items validates institution parameter", {
   )
 })
 
+test_that("get_items resolves people independently of the item institution", {
+  local_mocked_bindings(
+    get_persons = function(names) {
+      expect_equal(names, "Kurz Sebastian")
+      tibble::tibble(pad_intern = character())
+    }
+  )
+  local_mocked_bindings(
+    req_perform = function(...) {
+      stop("The item API must not be called for an unmatched person.")
+    },
+    .package = "httr2"
+  )
+
+  expect_message(
+    result <- get_items(
+      institution = "NR",
+      person = "Kurz Sebastian",
+      echo = FALSE
+    ),
+    "No person found.*no items were requested"
+  )
+
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0L)
+  expect_named(
+    result,
+    c(
+      "legis_period", "institution", "date", "item_type", "item_number",
+      "item_number_type", "stage", "item_url", "type_doc", "type_doc_long",
+      "subject", "topics", "keywords", "eurovoc", "persons", "parl_group"
+    )
+  )
+})
+
 test_that("get_items rejects legis_period before 5th period", {
   expect_error(get_items(legis_period = 4), "5th legislative period")
   expect_error(get_items(legis_period = "3"), "5th legislative period")

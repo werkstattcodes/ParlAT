@@ -1,4 +1,17 @@
 #' @noRd
+.empty_items_tibble <- function() {
+  .parlat_empty_tibble(
+    c(
+      "legis_period", "institution", "date", "item_type", "item_number",
+      "item_number_type", "stage", "item_url", "type_doc", "type_doc_long",
+      "subject", "topics", "keywords", "eurovoc", "persons", "parl_group"
+    ),
+    date_cols = "date",
+    list_cols = c("topics", "keywords", "eurovoc", "persons", "parl_group")
+  )
+}
+
+#' @noRd
 .align_get_items_export_rows <- function(rows, vec_headings, col_positions) {
   if (length(rows) == 0) {
     return(NULL)
@@ -30,14 +43,21 @@
 #' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">here</a>).
 #'
 #' @param topic (Thema) Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
-#' @param institution Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is `NULL` which returns both chambers.
+#' @param institution Character string. Either "NR" (Nationalrat, National
+#'   Council) or "BR" (Bundesrat, Federal Council). Default is `NULL`, which
+#'   returns both chambers. When combined with `person`, this filters the
+#'   parliamentary items; it does not restrict the person's institutional
+#'   affiliations.
 #' @param legis_period Character vector or `NULL`. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is `NULL`.
 #' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param date_end Character string. End date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param item (Gegenstand) Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param type_doc (Art des Antrages / Art der Anfrage) Character vector or `NULL`. Specifies the document type for certain item types. Permissible values depend on both `item` and `institution`. See 'Details' for possible values. Default is `NULL`.
 #' @param type_eu_submission (Art der EU-Vorlage) Character vector or `NULL`. Type(s) of EU submission to search for. Can only be specified when `item = "EU"`. See 'Details' for possible values. Default is `NULL`.
-#' @param person Character string or `NULL`. Name of a person to search for (family name, optionally followed by first name). Default is `NULL`.
+#' @param person Character string or `NULL`. Name of a person to search for
+#'   (family name, optionally followed by first name). People are resolved
+#'   across all institutional categories before other item filters are applied.
+#'   Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
 #' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See Details.
@@ -437,6 +457,13 @@
 #' `parl_group_names_standard = TRUE`, an input of "F" (or any other variant) will return
 #' the results for all three abbreviations.
 #'
+#' ## Combining person and institution filters
+#' When `person` and `institution` are supplied together, the person lookup is
+#' performed across all institutional categories. The `institution` value then
+#' filters the parliamentary items by chamber. For example, a federal minister
+#' can be associated with National Council items even if the person is not
+#' categorized as a National Council member.
+#'
 #' @return
 #' A tibble (data.frame) with one row per parliamentary item matching the search.
 #' The returned object contains the most commonly used columns (some are optional
@@ -526,9 +553,9 @@
 #'
 #' # Search by person (minister or MP)
 #' result <- get_items(
-#'   person = "Nehammer",
-#'   date_start = "01-01-2023",
-#'   date_end = "31-12-2023"
+#'   person = "Kurz Sebastian",
+#'   institution = "NR",
+#'   legis_period = 27
 #' )
 #' dplyr::glimpse(result)
 #'
@@ -878,10 +905,18 @@ get_items <- function(
   ## accepts multiple values
   ## pad_intern needs to be character, not numeric
   if (!is.null(person)) {
-    person_input <- get_persons(names = person, institution = institution) %>%
-      dplyr::pull("pad_intern") %>%
-      unique() %>%
+    person_matches <- suppressMessages(get_persons(names = person))
+    person_input <- person_matches |>
+      dplyr::pull("pad_intern") |>
+      unique() |>
       as.character()
+
+    if (length(person_input) == 0L) {
+      cli::cli_inform(
+        "No person found for the given search criteria; no items were requested."
+      )
+      return(.empty_items_tibble())
+    }
   } else {
     person_input <- NULL
   }
@@ -1200,15 +1235,7 @@ get_items <- function(
   # STOP IF NO HITS
   if (is.null(df_res) || nrow(df_res) == 0) {
     cli::cli_inform("No results found for the provided search criteria.")
-    return(.parlat_empty_tibble(
-      c(
-        "legis_period", "institution", "date", "item_type", "item_number",
-        "item_number_type", "stage", "item_url", "type_doc", "type_doc_long",
-        "subject", "topics", "keywords", "eurovoc", "persons", "parl_group"
-      ),
-      date_cols = "date",
-      list_cols = c("topics", "keywords", "eurovoc", "persons", "parl_group")
-    ))
+    return(.empty_items_tibble())
   }
 
   # WARN IF RESULT LIMIT REACHED
