@@ -24,7 +24,8 @@
   events across all available dates, including a completely unfiltered call.
   The echoed Parliament website URL derives its date and availability filters
   from the returned rows so it reproduces the API results instead of applying
-  the website's current-events defaults.
+  the website's current-events defaults. Austrian civil-date boundaries are
+  serialized consistently across operating systems.
 - `get_items()`: combining `person` with `institution` now resolves the person
   across all institutional categories and applies the institution filter only
   to the returned items. `institution` accepts both `"NR"`/`"BR"` and the full

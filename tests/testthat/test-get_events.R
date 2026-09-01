@@ -99,6 +99,29 @@ test_that("get_events works with complex parameter combinations", {
   }
 })
 
+test_that("echo does not change returned event data", {
+  get_filtered_events <- function(echo) {
+    run_api_call(
+      {
+        get_events(
+          institution = "NR",
+          date_start = "01-01-2024",
+          date_end = "31-03-2024",
+          event_type = "Plenarsitzung",
+          location = "Nationalratssaal",
+          echo = echo
+        )
+      },
+      fixture_subdir = "get_events"
+    )
+  }
+
+  expect_identical(
+    get_filtered_events(echo = TRUE),
+    get_filtered_events(echo = FALSE)
+  )
+})
+
 test_that("empty event filters serialize as a JSON object", {
   expect_identical(.get_events_body_to_json(list()), "{}")
 
@@ -124,10 +147,7 @@ test_that("event echo derives filters that override website defaults", {
     jsonlite::fromJSON()
 
   expect_equal(echo_body$GREMIUM, "Nationalrat")
-  echo_start <- lubridate::ymd_hms(echo_body$DATERANGE, tz = "UTC") |>
-    lubridate::with_tz("Europe/Vienna") |>
-    as.Date()
-  expect_equal(echo_start, as.Date("1920-11-10"))
+  expect_equal(echo_body$DATERANGE, "1920-11-09T23:00:00.000Z")
   expect_equal(echo_body$VERFUEGBAR, c("J", "V"))
 })
 
@@ -203,20 +223,36 @@ test_that("aux_transform_event_date works correctly", {
 })
 
 test_that("aux_transform_event_date returns correct format", {
-  # Test that the function returns ISO 8601 UTC format
-  result <- ParlAT:::aux_transform_event_date("01-01-2024", "test_date", FALSE)
-  expect_match(result, "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.000Z$")
-
-  # Test end date processing (should add 1 day minus 1 second)
-  start_result <- ParlAT:::aux_transform_event_date(
-    "01-01-2024",
-    "start_date",
-    FALSE
+  expect_equal(
+    ParlAT:::aux_transform_event_date(
+      "10-11-1920",
+      "date_start",
+      FALSE
+    ),
+    "1920-11-09T23:00:00.000Z"
   )
-  end_result <- ParlAT:::aux_transform_event_date(
-    "01-01-2024",
-    "end_date",
-    TRUE
+  expect_equal(
+    ParlAT:::aux_transform_event_date(
+      "01-01-2024",
+      "date_start",
+      FALSE
+    ),
+    "2023-12-31T23:00:00.000Z"
   )
-  expect_false(start_result == end_result)
+  expect_equal(
+    ParlAT:::aux_transform_event_date(
+      "01-07-2024",
+      "date_start",
+      FALSE
+    ),
+    "2024-06-30T22:00:00.000Z"
+  )
+  expect_equal(
+    ParlAT:::aux_transform_event_date(
+      "01-07-2024",
+      "date_end",
+      TRUE
+    ),
+    "2024-07-01T21:59:59.000Z"
+  )
 })

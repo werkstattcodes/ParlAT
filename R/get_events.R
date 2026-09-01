@@ -563,10 +563,10 @@ aux_transform_event_date <- function(
     checkmate::assert_character(date_string, len = 1)
 
     # Parse the date string (day-month-year format)
-    date_cet <- lubridate::dmy(date_string, quiet = TRUE)
+    date_vienna <- lubridate::dmy(date_string, quiet = TRUE)
 
     # Validate that date parsing was successful
-    if (is.na(date_cet)) {
+    if (is.na(date_vienna)) {
         cli::cli_abort(c(
             "{param_name} must be in day-month-year (DMY) format.",
             "i" = "Expected formats: '26-10-2025', '26.10.2025', or '26/10/2025'.",
@@ -574,16 +574,21 @@ aux_transform_event_date <- function(
         ))
     }
 
-    # Set the timezone to CET
-    date_cet <- lubridate::force_tz(date_cet, tzone = "CET")
+    # Interpret the calendar date in Austrian civil time
+    date_vienna <- lubridate::force_tz(
+        date_vienna,
+        tzone = "Europe/Vienna"
+    )
 
     # For end dates, add 1 day minus 1 second to include the full end day
     if (is_end_date) {
-        date_cet <- date_cet + lubridate::days(1) - lubridate::seconds(1)
+        date_vienna <- date_vienna +
+            lubridate::days(1) -
+            lubridate::seconds(1)
     }
 
     # Convert to UTC
-    date_utc <- lubridate::with_tz(date_cet, tzone = "UTC")
+    date_utc <- lubridate::with_tz(date_vienna, tzone = "UTC")
 
     # Format the result in ISO 8601 format
     return(format(date_utc, "%Y-%m-%dT%H:%M:%S.000Z"))
