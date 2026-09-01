@@ -61,9 +61,13 @@
 <div class="section level3">
 <h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
 <ul><li>
+<code><a href="../reference/get_items.html">get_items()</a></code>: combining <code>person</code> with <code>institution</code> now resolves the person across all institutional categories and applies the institution filter only to the returned items. <code>institution</code> accepts both <code>"NR"</code>/<code>"BR"</code> and the full German names <code>"Nationalrat"</code>/<code>"Bundesrat"</code>. When <code>legis_period = NULL</code>, the echoed Parliament website URL now explicitly selects all available periods so it reproduces the package results instead of defaulting to the current period. An unmatched person returns a typed zero-row result instead of sending an unfiltered item request.</li>
+<li>
 <code><a href="../reference/get_participation.html">get_participation()</a></code>: the graceful empty-result path was unreachable due to an internal assertion that errored first; empty results now return a typed zero-row tibble.</li>
 <li>
-<code><a href="../reference/get_transcripts.html">get_transcripts()</a></code>: the row-limit error message incorrectly said the limit was 10,000 (the actual limit is 100,000); a misplaced <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf()</a></code> argument in the PDF-export error message was fixed.</li>
+<code><a href="../reference/get_plenary_meetings.html">get_plenary_meetings()</a></code>: when <code>legis_period = NULL</code>, the echoed Parliament website URL now explicitly selects every available period instead of defaulting to the current period.</li>
+<li>
+<code><a href="../reference/get_transcripts.html">get_transcripts()</a></code>: the row-limit error message incorrectly said the limit was 10,000 (the actual limit is 100,000); a misplaced <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf()</a></code> argument in the PDF-export error message was fixed. All-period searches now echo a website URL that explicitly selects every available period instead of defaulting to the current period.</li>
 <li>
 <code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>: no longer errors when a search returns no members (previously <code>NULL</code> was piped into <code>mutate()</code>).</li>
 <li>

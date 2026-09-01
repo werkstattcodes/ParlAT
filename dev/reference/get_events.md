@@ -291,7 +291,7 @@ parameters provided.
 #> $ registration    <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
 #> $ livestream_url  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "<div clas…
 #> $ language        <chr> NA, "[\"Deutsch\"]", "[\"Deutsch\"]", "[\"Deutsch\"]",…
-#> $ link            <chr> NA, "/erleben/fuehrungen/266078", "/erleben/fuehrungen…
+#> $ link            <chr> NA, "/erleben/fuehrungen/266076", "/erleben/fuehrungen…
 
   # Get events with specific date range
   events <- get_events(
@@ -355,7 +355,7 @@ parameters provided.
     legis_period = 28
   )
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2024-10-23T22:00:00.000Z&TERMIN_01DATERANGE=2026-08-29T21:59:59.000Z&TERMIN_01GREMIUM=Nationalrat
+#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2024-10-23T22:00:00.000Z&TERMIN_01DATERANGE=2026-09-01T21:59:59.000Z&TERMIN_01GREMIUM=Nationalrat
 #> Hits: 657
   dplyr::glimpse(events)
 #> Rows: 657

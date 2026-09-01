@@ -70,7 +70,10 @@
 
 
 <dt id="arg-legis-period">legis_period<a class="anchor" aria-label="anchor" href="#arg-legis-period"></a></dt>
-<dd><p>Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric (10), character ("10") or roman numerals in character format ("X") as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).</p></dd>
+<dd><p>Legislative period(s). <code>NULL</code> (the default) queries all
+available legislative periods. Accepts numeric (<code>10</code>), character (<code>"10"</code>),
+or Roman numerals (<code>"X"</code>), as well as <code>"KN"</code> (Konstituierende
+Nationalversammlung) and <code>"PN"</code> (Provisorische Nationalversammlung).</p></dd>
 
 
 <dt id="arg-meeting-type">meeting_type<a class="anchor" aria-label="anchor" href="#arg-meeting-type"></a></dt>
@@ -86,7 +89,9 @@
 
 
 <dt id="arg-echo">echo<a class="anchor" aria-label="anchor" href="#arg-echo"></a></dt>
-<dd><p>Logical. If TRUE, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results. Default is NULL.</p></dd>
+<dd><p>Logical. If <code>TRUE</code>, the function prints the URL to the
+corresponding search results on the website of the Austrian Parliament
+and the number of results. Default is <code>TRUE</code>.</p></dd>
 
 
 <dt id="arg-export">export<a class="anchor" aria-label="anchor" href="#arg-export"></a></dt>
@@ -146,6 +151,9 @@ is currently only possible via the Parliament's website.</p>
 <p>Queries returning more than 10,000 results will raise
 an error; in these cases it is recommended to cut your query into
 multiple steps (e.g. by using the purrr package).</p>
+<p>If <code>legis_period = NULL</code> and <code>echo = TRUE</code>, the website URL explicitly
+selects every available period. This reproduces the unrestricted API search
+instead of using the website's current-period default.</p>
 </div>
 
 <div class="section">
@@ -171,7 +179,7 @@ A summary of successful and failed downloads is printed at the conclusion of the
 <span class="r-in"><span>                  meeting_type <span class="op">=</span> <span class="st">"NRSITZ"</span>,</span></span>
 <span class="r-in"><span>                  echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211GP_CODE=XXVIII&amp;STENO_211NBVS=NRSITZ&amp;STENO_211search=gesundheit</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/protokolle?STENO_211GP_CODE=XXVIII&amp;STENO_211NBVS=NRSITZ&amp;STENO_211search=gesundheit</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 24</span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 24</span>
@@ -191,7 +199,7 @@ A summary of successful and failed downloads is printed at the conclusion of the
 <span class="r-in"><span>                 date_end <span class="op">=</span> <span class="st">"30-06-2024"</span>,</span></span>
 <span class="r-in"><span>                 echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211NBVS=BRSITZ&amp;STENO_211DATUM=2024-01-01T00:00:00.000Z&amp;STENO_211DATUM=2024-06-30T00:00:00.000Z</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/protokolle?STENO_211NBVS=BRSITZ&amp;STENO_211DATUM=2024-01-01T00:00:00.000Z&amp;STENO_211DATUM=2024-06-30T00:00:00.000Z&amp;STENO_211GP_CODE=I&amp;STENO_211GP_CODE=II&amp;STENO_211GP_CODE=III&amp;STENO_211GP_CODE=IV&amp;STENO_211GP_CODE=V&amp;STENO_211GP_CODE=VI&amp;STENO_211GP_CODE=VII&amp;STENO_211GP_CODE=VIII&amp;STENO_211GP_CODE=IX&amp;STENO_211GP_CODE=X&amp;STENO_211GP_CODE=XI&amp;STENO_211GP_CODE=XII&amp;STENO_211GP_CODE=XIII&amp;STENO_211GP_CODE=XIV&amp;STENO_211GP_CODE=XV&amp;STENO_211GP_CODE=XVI&amp;STENO_211GP_CODE=XVII&amp;STENO_211GP_CODE=XVIII&amp;STENO_211GP_CODE=XIX&amp;STENO_211GP_CODE=XX&amp;STENO_211GP_CODE=XXI&amp;STENO_211GP_CODE=XXII&amp;STENO_211GP_CODE=XXIII&amp;STENO_211GP_CODE=XXIV&amp;STENO_211GP_CODE=XXV&amp;STENO_211GP_CODE=XXVI&amp;STENO_211GP_CODE=XXVII&amp;STENO_211GP_CODE=XXVIII&amp;STENO_211GP_CODE=KN&amp;STENO_211GP_CODE=PN</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 6</span>
 <span class="r-in"><span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 6</span>

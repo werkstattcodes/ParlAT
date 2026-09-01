@@ -28,10 +28,10 @@ get_transcripts(
 
 - legis_period:
 
-  Legislative period(s). Default NULL queries for all legislative
-  periods. Accepts numeric (10), character ("10") or roman numerals in
-  character format ("X") as well as "KN" (Konstituierende
-  Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
+  Legislative period(s). `NULL` (the default) queries all available
+  legislative periods. Accepts numeric (`10`), character (`"10"`), or
+  Roman numerals (`"X"`), as well as `"KN"` (Konstituierende
+  Nationalversammlung) and `"PN"` (Provisorische Nationalversammlung).
 
 - meeting_type:
 
@@ -55,9 +55,9 @@ get_transcripts(
 
 - echo:
 
-  Logical. If TRUE, the function prints the URL to the pertaining search
-  results on the website of the Austrian Parliament and the number of
-  results. Default is NULL.
+  Logical. If `TRUE`, the function prints the URL to the corresponding
+  search results on the website of the Austrian Parliament and the
+  number of results. Default is `TRUE`.
 
 - export:
 
@@ -131,6 +131,10 @@ Queries returning more than 10,000 results will raise an error; in these
 cases it is recommended to cut your query into multiple steps (e.g. by
 using the purrr package).
 
+If `legis_period = NULL` and `echo = TRUE`, the website URL explicitly
+selects every available period. This reproduces the unrestricted API
+search instead of using the website's current-period default.
+
 ### PDF Export
 
 When `export = "pdf"`, the function additionaly downloads the PDF files
@@ -153,7 +157,7 @@ download.
                   meeting_type = "NRSITZ",
                   echo = TRUE)
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211GP_CODE=XXVIII&STENO_211NBVS=NRSITZ&STENO_211search=gesundheit
+#> https://www.parlament.gv.at/recherchieren/protokolle?STENO_211GP_CODE=XXVIII&STENO_211NBVS=NRSITZ&STENO_211search=gesundheit
 #> Hits: 24
   dplyr::glimpse(result)
 #> Rows: 24
@@ -173,7 +177,7 @@ download.
                  date_end = "30-06-2024",
                  echo = TRUE)
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/recherchieren/protokolle/index.html?STENO_211NBVS=BRSITZ&STENO_211DATUM=2024-01-01T00:00:00.000Z&STENO_211DATUM=2024-06-30T00:00:00.000Z
+#> https://www.parlament.gv.at/recherchieren/protokolle?STENO_211NBVS=BRSITZ&STENO_211DATUM=2024-01-01T00:00:00.000Z&STENO_211DATUM=2024-06-30T00:00:00.000Z&STENO_211GP_CODE=I&STENO_211GP_CODE=II&STENO_211GP_CODE=III&STENO_211GP_CODE=IV&STENO_211GP_CODE=V&STENO_211GP_CODE=VI&STENO_211GP_CODE=VII&STENO_211GP_CODE=VIII&STENO_211GP_CODE=IX&STENO_211GP_CODE=X&STENO_211GP_CODE=XI&STENO_211GP_CODE=XII&STENO_211GP_CODE=XIII&STENO_211GP_CODE=XIV&STENO_211GP_CODE=XV&STENO_211GP_CODE=XVI&STENO_211GP_CODE=XVII&STENO_211GP_CODE=XVIII&STENO_211GP_CODE=XIX&STENO_211GP_CODE=XX&STENO_211GP_CODE=XXI&STENO_211GP_CODE=XXII&STENO_211GP_CODE=XXIII&STENO_211GP_CODE=XXIV&STENO_211GP_CODE=XXV&STENO_211GP_CODE=XXVI&STENO_211GP_CODE=XXVII&STENO_211GP_CODE=XXVIII&STENO_211GP_CODE=KN&STENO_211GP_CODE=PN
 #> Hits: 6
  dplyr::glimpse(result)
 #> Rows: 6

@@ -104,47 +104,113 @@ consult the <a href="../reference/index.html">reference section</a>.</p>
 <h2 id="get-current-mps-in-the-national-council-nationalrat">Get current MPs in the National Council (Nationalrat)<a class="anchor" aria-label="anchor" href="#get-current-mps-in-the-national-council-nationalrat"></a>
 </h2>
 <p>Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (29 August 2026). This is done by
-the function <code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>.</p>
+(Nationalrat) at the time of writing (01 September 2026). This is done
+by the function <code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_current</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mps_current.html">get_mps_current</a></span><span class="op">(</span>institution <span class="op">=</span> <span class="st">"NR"</span>, echo<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&amp;WFW_002W=W</span></span>
 <span><span class="co">#&gt; Hits: 183</span></span>
-<span><span class="co">#&gt; ⠙ Fetching MPs' names 4/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; ⠙ Fetching MPs' names 4/183 | ETA: 46s</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠹ Fetching MPs' names 10/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; ⠹ Fetching MPs' names 11/183 | ETA: 44s</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠸ Fetching MPs' names 20/183 | ETA: 47s</span></span>
+<span><span class="co">#&gt; ⠸ Fetching MPs' names 23/183 | ETA: 41s</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠼ Fetching MPs' names 31/183 | ETA: 44s</span></span>
+<span><span class="co">#&gt; ⠼ Fetching MPs' names 35/183 | ETA: 38s</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠴ Fetching MPs' names 41/183 | ETA: 41s</span></span>
+<span><span class="co">#&gt; ⠴ Fetching MPs' names 43/183 | ETA: 41s</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠦ Fetching MPs' names 52/183 | ETA: 38s</span></span>
+<span><span class="co">#&gt; ⠦ Fetching MPs' names 46/183 | ETA: 47s</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠧ Fetching MPs' names 62/183 | ETA: 35s</span></span>
+<span><span class="co">#&gt; ⠧ Fetching MPs' names 49/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠇ Fetching MPs' names 72/183 | ETA: 32s</span></span>
+<span><span class="co">#&gt; ⠇ Fetching MPs' names 52/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠏ Fetching MPs' names 83/183 | ETA: 29s</span></span>
+<span><span class="co">#&gt; ⠏ Fetching MPs' names 55/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠋ Fetching MPs' names 93/183 | ETA: 26s</span></span>
+<span><span class="co">#&gt; ⠋ Fetching MPs' names 58/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠙ Fetching MPs' names 104/183 | ETA: 23s</span></span>
+<span><span class="co">#&gt; ⠙ Fetching MPs' names 61/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠹ Fetching MPs' names 114/183 | ETA: 20s</span></span>
+<span><span class="co">#&gt; ⠹ Fetching MPs' names 64/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠸ Fetching MPs' names 125/183 | ETA: 17s</span></span>
+<span><span class="co">#&gt; ⠸ Fetching MPs' names 67/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠼ Fetching MPs' names 135/183 | ETA: 14s</span></span>
+<span><span class="co">#&gt; ⠼ Fetching MPs' names 70/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠴ Fetching MPs' names 145/183 | ETA: 11s</span></span>
+<span><span class="co">#&gt; ⠴ Fetching MPs' names 73/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠦ Fetching MPs' names 156/183 | ETA:  8s</span></span>
+<span><span class="co">#&gt; ⠦ Fetching MPs' names 76/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠧ Fetching MPs' names 166/183 | ETA:  5s</span></span>
+<span><span class="co">#&gt; ⠧ Fetching MPs' names 79/183 | ETA:  1m</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⠇ Fetching MPs' names 177/183 | ETA:  2s</span></span>
+<span><span class="co">#&gt; ⠇ Fetching MPs' names 82/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠏ Fetching MPs' names 85/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠋ Fetching MPs' names 88/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠙ Fetching MPs' names 91/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠹ Fetching MPs' names 94/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠸ Fetching MPs' names 97/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠼ Fetching MPs' names 100/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠴ Fetching MPs' names 103/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠦ Fetching MPs' names 106/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠧ Fetching MPs' names 109/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠇ Fetching MPs' names 112/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠏ Fetching MPs' names 115/183 | ETA:  1m</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠋ Fetching MPs' names 118/183 | ETA: 48s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠙ Fetching MPs' names 121/183 | ETA: 46s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠹ Fetching MPs' names 124/183 | ETA: 45s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠸ Fetching MPs' names 127/183 | ETA: 43s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠼ Fetching MPs' names 130/183 | ETA: 41s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠴ Fetching MPs' names 133/183 | ETA: 39s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠦ Fetching MPs' names 136/183 | ETA: 37s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠧ Fetching MPs' names 139/183 | ETA: 34s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠇ Fetching MPs' names 142/183 | ETA: 32s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠏ Fetching MPs' names 145/183 | ETA: 30s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠋ Fetching MPs' names 148/183 | ETA: 28s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠙ Fetching MPs' names 151/183 | ETA: 26s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠹ Fetching MPs' names 154/183 | ETA: 23s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠸ Fetching MPs' names 157/183 | ETA: 21s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠼ Fetching MPs' names 160/183 | ETA: 19s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠴ Fetching MPs' names 163/183 | ETA: 16s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠦ Fetching MPs' names 166/183 | ETA: 14s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠧ Fetching MPs' names 169/183 | ETA: 11s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠇ Fetching MPs' names 172/183 | ETA:  9s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠏ Fetching MPs' names 175/183 | ETA:  7s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠋ Fetching MPs' names 178/183 | ETA:  4s</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠙ Fetching MPs' names 181/183 | ETA:  2s</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Fetched 183 MPs' names.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">df_current</span><span class="op">)</span></span>
@@ -292,17 +358,34 @@ National Council have been serving as of now, and identify the longest
 serving MPs (top 5 are shown below).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_mandates</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_mandates.html">get_mandates</a></span><span class="op">(</span>pad_intern<span class="op">=</span><span class="va">df_current</span><span class="op">$</span><span class="va">pad_intern</span>, institution <span class="op">=</span> <span class="st">"NR"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ⠙ Fetching mandates 8/183 | ETA: 25s</span></span>
-<span><span class="co">#&gt; ⠹ Fetching mandates 18/183 | ETA: 26s</span></span>
-<span><span class="co">#&gt; ⠸ Fetching mandates 37/183 | ETA: 23s</span></span>
-<span><span class="co">#&gt; ⠼ Fetching mandates 55/183 | ETA: 21s</span></span>
-<span><span class="co">#&gt; ⠴ Fetching mandates 73/183 | ETA: 18s</span></span>
-<span><span class="co">#&gt; ⠦ Fetching mandates 91/183 | ETA: 15s</span></span>
-<span><span class="co">#&gt; ⠧ Fetching mandates 108/183 | ETA: 12s</span></span>
-<span><span class="co">#&gt; ⠇ Fetching mandates 126/183 | ETA:  9s</span></span>
-<span><span class="co">#&gt; ⠏ Fetching mandates 145/183 | ETA:  6s</span></span>
-<span><span class="co">#&gt; ⠋ Fetching mandates 163/183 | ETA:  3s</span></span>
-<span><span class="co">#&gt; ⠙ Fetching mandates 181/183 | ETA:  0s</span></span>
+<span><span class="co">#&gt; ⠙ Fetching mandates 8/183 | ETA: 22s</span></span>
+<span><span class="co">#&gt; ⠹ Fetching mandates 14/183 | ETA: 23s</span></span>
+<span><span class="co">#&gt; ⠸ Fetching mandates 31/183 | ETA: 26s</span></span>
+<span><span class="co">#&gt; ⠼ Fetching mandates 37/183 | ETA: 32s</span></span>
+<span><span class="co">#&gt; ⠴ Fetching mandates 43/183 | ETA: 37s</span></span>
+<span><span class="co">#&gt; ⠦ Fetching mandates 49/183 | ETA: 39s</span></span>
+<span><span class="co">#&gt; ⠧ Fetching mandates 55/183 | ETA: 40s</span></span>
+<span><span class="co">#&gt; ⠇ Fetching mandates 61/183 | ETA: 40s</span></span>
+<span><span class="co">#&gt; ⠏ Fetching mandates 67/183 | ETA: 40s</span></span>
+<span><span class="co">#&gt; ⠋ Fetching mandates 73/183 | ETA: 40s</span></span>
+<span><span class="co">#&gt; ⠙ Fetching mandates 79/183 | ETA: 38s</span></span>
+<span><span class="co">#&gt; ⠹ Fetching mandates 85/183 | ETA: 37s</span></span>
+<span><span class="co">#&gt; ⠸ Fetching mandates 91/183 | ETA: 36s</span></span>
+<span><span class="co">#&gt; ⠼ Fetching mandates 97/183 | ETA: 34s</span></span>
+<span><span class="co">#&gt; ⠴ Fetching mandates 103/183 | ETA: 32s</span></span>
+<span><span class="co">#&gt; ⠦ Fetching mandates 109/183 | ETA: 30s</span></span>
+<span><span class="co">#&gt; ⠧ Fetching mandates 115/183 | ETA: 28s</span></span>
+<span><span class="co">#&gt; ⠇ Fetching mandates 121/183 | ETA: 26s</span></span>
+<span><span class="co">#&gt; ⠏ Fetching mandates 127/183 | ETA: 23s</span></span>
+<span><span class="co">#&gt; ⠋ Fetching mandates 133/183 | ETA: 21s</span></span>
+<span><span class="co">#&gt; ⠙ Fetching mandates 139/183 | ETA: 19s</span></span>
+<span><span class="co">#&gt; ⠹ Fetching mandates 145/183 | ETA: 16s</span></span>
+<span><span class="co">#&gt; ⠸ Fetching mandates 151/183 | ETA: 14s</span></span>
+<span><span class="co">#&gt; ⠼ Fetching mandates 157/183 | ETA: 11s</span></span>
+<span><span class="co">#&gt; ⠴ Fetching mandates 163/183 | ETA:  9s</span></span>
+<span><span class="co">#&gt; ⠦ Fetching mandates 169/183 | ETA:  6s</span></span>
+<span><span class="co">#&gt; ⠧ Fetching mandates 175/183 | ETA:  4s</span></span>
+<span><span class="co">#&gt; ⠇ Fetching mandates 181/183 | ETA:  1s</span></span>
 <span><span class="co">#&gt; Fetched mandates for 183 persons.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span></span>
@@ -328,11 +411,11 @@ serving MPs (top 5 are shown below).</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 3</span></span></span>
 <span><span class="co">#&gt;   pad_intern name                 position_days_sum</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 145        Doris Bures                      <span style="text-decoration: underline;">10</span>494</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 12741      Peter Haubner                     <span style="text-decoration: underline;">9</span>035</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2834       Mag. Dr. Martin Graf              <span style="text-decoration: underline;">8</span>734</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 14835      Petra Bayr, MA MLS                <span style="text-decoration: underline;">8</span>653</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 14795      August Wöginger                   <span style="text-decoration: underline;">8</span>653</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 145        Doris Bures                      <span style="text-decoration: underline;">10</span>497</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 12741      Peter Haubner                     <span style="text-decoration: underline;">9</span>038</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2834       Mag. Dr. Martin Graf              <span style="text-decoration: underline;">8</span>737</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 14835      Petra Bayr, MA MLS                <span style="text-decoration: underline;">8</span>656</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 14795      August Wöginger                   <span style="text-decoration: underline;">8</span>656</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-mps-details">Get MPs’ details<a class="anchor" aria-label="anchor" href="#get-mps-details"></a>
@@ -433,7 +516,7 @@ subsequently visualise the count by party and legislative period.</p>
 <span><span class="va">df_items</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_items.html">get_items</a></span><span class="op">(</span>item <span class="op">=</span> <span class="st">"J_JPR_M"</span>, legis_period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">27</span><span class="op">)</span>, echo<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Fetched 77208 items</span></span>
-<span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001GP_CODE=XX&amp;FP_001GP_CODE=XXI&amp;FP_001GP_CODE=XXII&amp;FP_001GP_CODE=XXIII&amp;FP_001GP_CODE=XXIV&amp;FP_001GP_CODE=XXV&amp;FP_001GP_CODE=XXVI&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=J_JPR_M</span></span>
+<span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001GP_CODE=XX&amp;FP_001GP_CODE=XXI&amp;FP_001GP_CODE=XXII&amp;FP_001GP_CODE=XXIII&amp;FP_001GP_CODE=XXIV&amp;FP_001GP_CODE=XXV&amp;FP_001GP_CODE=XXVI&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=J_JPR_M</span></span>
 <span><span class="co">#&gt; Hits: 77208</span></span>
 <span></span>
 <span></span>
@@ -509,7 +592,7 @@ various topical foci and obtain the pertaining subtotals.</p>
 <code class="sourceCode R"><span><span class="va">df_govBills</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_items.html">get_items</a></span><span class="op">(</span>item <span class="op">=</span> <span class="st">"RV"</span>, legis_period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">27</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Fetched 2593 items</span></span>
-<span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001GP_CODE=XX&amp;FP_001GP_CODE=XXI&amp;FP_001GP_CODE=XXII&amp;FP_001GP_CODE=XXIII&amp;FP_001GP_CODE=XXIV&amp;FP_001GP_CODE=XXV&amp;FP_001GP_CODE=XXVI&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=RV</span></span>
+<span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001GP_CODE=XX&amp;FP_001GP_CODE=XXI&amp;FP_001GP_CODE=XXII&amp;FP_001GP_CODE=XXIII&amp;FP_001GP_CODE=XXIV&amp;FP_001GP_CODE=XXV&amp;FP_001GP_CODE=XXVI&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=RV</span></span>
 <span><span class="co">#&gt; Hits: 2593</span></span>
 <span></span>
 <span><span class="fu">glimpse</span><span class="op">(</span><span class="va">df_govBills</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -519,17 +602,17 @@ various topical foci and obtain the pertaining subtotals.</p>
 <span><span class="co">#&gt; $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"</span></span>
 <span><span class="co">#&gt; $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2024-07-05<span style="color: #949494;">, </span>2024-06-12<span style="color: #949494;">, </span>2024-06-12<span style="color: #949494;">, </span>2024-06-12<span style="color: #949494;">, </span>2024-06-12<span style="color: #949494;">, </span>2024-06-12</span></span>
 <span><span class="co">#&gt; $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"</span></span>
-<span><span class="co">#&gt; $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2704"<span style="color: #949494;">, </span>"2604"<span style="color: #949494;">, </span>"2598"<span style="color: #949494;">, </span>"2606"<span style="color: #949494;">, </span>"2605"<span style="color: #949494;">, </span>"2609"</span></span>
-<span><span class="co">#&gt; $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2704 d.B."<span style="color: #949494;">, </span>"2604 d.B."<span style="color: #949494;">, </span>"2598 d.B."<span style="color: #949494;">, </span>"2606 d.B."<span style="color: #949494;">, </span>"2605 d.B."<span style="color: #949494;">, </span>"2609 d.B."</span></span>
+<span><span class="co">#&gt; $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2704"<span style="color: #949494;">, </span>"2603"<span style="color: #949494;">, </span>"2598"<span style="color: #949494;">, </span>"2608"<span style="color: #949494;">, </span>"2610"<span style="color: #949494;">, </span>"2607"</span></span>
+<span><span class="co">#&gt; $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2704 d.B."<span style="color: #949494;">, </span>"2603 d.B."<span style="color: #949494;">, </span>"2598 d.B."<span style="color: #949494;">, </span>"2608 d.B."<span style="color: #949494;">, </span>"2610 d.B."<span style="color: #949494;">, </span>"2607 d.B."</span></span>
 <span><span class="co">#&gt; $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"</span></span>
-<span><span class="co">#&gt; $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2604"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2598"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2606"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2605"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2609"</span></span>
+<span><span class="co">#&gt; $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2603"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2598"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2608"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2610"<span style="color: #949494;">, </span>"https://www.parlament.gv.at/gegenstand/XXVII/I/2607"</span></span>
 <span><span class="co">#&gt; $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "RV"<span style="color: #949494;">, </span>"RV"<span style="color: #949494;">, </span>"RV"<span style="color: #949494;">, </span>"RV"<span style="color: #949494;">, </span>"RV"<span style="color: #949494;">, </span>"RV"</span></span>
 <span><span class="co">#&gt; $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Regierungsvorlage: Bundes(verfassungs)gesetz"<span style="color: #949494;">, </span>"Regierungsvorlage: Bundes(verfassungs)gesetz"<span style="color: #949494;">, </span>"Regierungsvorlage: Bundes(verfassungs)gesetz"<span style="color: #949494;">, </span>"Regierungsvorlage: Bundes(verfassungs)gesetz"<span style="color: #949494;">, </span>"Regierungsvorlage: Bundes(verfassungs)gesetz"<span style="color: #949494;">, </span>"Regierungsvorlage: Bundes(verfassungs)gesetz"</span></span>
-<span><span class="co">#&gt; $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bundeshaushaltsgesetzes 2013, Änderung"<span style="color: #949494;">, </span>"Katastrophenfondsgesetz, Änderung"<span style="color: #949494;">, </span>"Betrugsbekämpfungsgesetz 2024 Teil I – BBKG 2024 Teil I"<span style="color: #949494;">, </span>"Grundbuchs-Novelle 2024 – GB-Nov 2024"<span style="color: #949494;">, </span>"Theaterarbeitsgesetz, Änderung"<span style="color: #949494;">, </span>"Zivildienstgesetz, Änderung"</span></span>
-<span><span class="co">#&gt; $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "Budget und Finanzen"<span style="color: #949494;">, </span>&lt;"Budget und Finanzen", "Inneres und Recht"&gt;<span style="color: #949494;">, </span>&lt;"Budget und Finanzen", "Inneres und Recht", "Soziales"&gt;<span style="color: #949494;">, </span>"Inneres und Recht"<span style="color: #949494;">, </span>&lt;"Arbeit", "Kultur"&gt;<span style="color: #949494;">, </span>"Landesverteidigung"</span></span>
-<span><span class="co">#&gt; $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "Bundeshaushalt III. Sonstiges"<span style="color: #949494;">, </span>&lt;"Bundeshaushalt III. Sonstiges", "Zivilschutz"&gt;<span style="color: #949494;">, </span>&lt;"Strafrecht", "Kreditwesen", "Sozialversicherung I. Allgemeine Sozialversicherung", "Verwaltungsorganisation"&gt;<span style="color: #949494;">, </span>"Zivilrecht"<span style="color: #949494;">, </span>&lt;"Arbeitsrecht I. österreichisches", "Theater"&gt;<span style="color: #949494;">, </span>"Zivildienst"</span></span>
-<span><span class="co">#&gt; $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Öffentliche Finanzen und Haushaltspolitik\"]"<span style="color: #949494;">, </span>"[\"Öffentliche Finanzen und Haushaltspolitik\",\"Zivilschutz\"]"<span style="color: #949494;">, </span>"[\"Finanzwesen\",\"soziale Sicherheit\",\"Strafrecht\",\"Verwaltungsorganisation\"]"<span style="color: #949494;">, </span>"[\"Bürgerliches Recht\"]"<span style="color: #949494;">, </span>"[\"Arbeitsrecht\",\"Darstellende Künste\"]"<span style="color: #949494;">, </span>"[\"Zivildienst\"]"</span></span>
-<span><span class="co">#&gt; $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "55727"<span style="color: #949494;">, </span>"55727"<span style="color: #949494;">, </span>"55727"<span style="color: #949494;">, </span>"2345"<span style="color: #949494;">, </span>"18140"<span style="color: #949494;">, </span>"2136"</span></span>
+<span><span class="co">#&gt; $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bundeshaushaltsgesetzes 2013, Änderung"<span style="color: #949494;">, </span>"Eisenbahngesetz, Änderung"<span style="color: #949494;">, </span>"Betrugsbekämpfungsgesetz 2024 Teil I – BBKG 2024 Teil I"<span style="color: #949494;">, </span>"Erneuerbaren-Ausbau-Gesetz, Änderung"<span style="color: #949494;">, </span>"Abgabenänderungsgesetz 2024 – AbgÄG 2024"<span style="color: #949494;">, </span>"Sozialversicherungs-Änderungsgesetz 2024 – SVÄG 2024"</span></span>
+<span><span class="co">#&gt; $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "Budget und Finanzen"<span style="color: #949494;">, </span>"Verkehr und Infrastruktur"<span style="color: #949494;">, </span>&lt;"Budget und Finanzen", "Inneres und Recht", "Soziales"&gt;<span style="color: #949494;">, </span>&lt;"Inneres und Recht", "Klima", "Umwelt und Energie"&gt;<span style="color: #949494;">, </span>"Budget und Finanzen"<span style="color: #949494;">, </span>"Soziales"</span></span>
+<span><span class="co">#&gt; $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "Bundeshaushalt III. Sonstiges"<span style="color: #949494;">, </span>"Verkehr II. Schienenverkehr"<span style="color: #949494;">, </span>&lt;"Strafrecht", "Kreditwesen", "Sozialversicherung I. Allgemeine Sozialversicherung", "Verwaltungsorganisation"&gt;<span style="color: #949494;">, </span>&lt;"Bundesverfassung", "Elektrizität", "Umweltschutz"&gt;<span style="color: #949494;">, </span>&lt;"Steuern und Gebühren", "Kreditwesen"&gt;<span style="color: #949494;">, </span>"Sozialversicherung I. Allgemeine Sozialversicherung"</span></span>
+<span><span class="co">#&gt; $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Öffentliche Finanzen und Haushaltspolitik\"]"<span style="color: #949494;">, </span>"[\"Schienentransport\"]"<span style="color: #949494;">, </span>"[\"Finanzwesen\",\"soziale Sicherheit\",\"Strafrecht\",\"Verwaltungsorganisation\"]"<span style="color: #949494;">, </span>"[\"Elektrizitätsindustrie\",\"Umwelt\",\"Verfassung\"]"<span style="color: #949494;">, </span>"[\"Finanzwesen\",\"Steuerwesen\"]"<span style="color: #949494;">, </span>"[\"soziale Sicherheit\"]"</span></span>
+<span><span class="co">#&gt; $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "55727"<span style="color: #949494;">, </span>"5653"<span style="color: #949494;">, </span>"55727"<span style="color: #949494;">, </span>"5653"<span style="color: #949494;">, </span>"55727"<span style="color: #949494;">, </span>"21029"</span></span>
 <span><span class="co">#&gt; $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""</span></span>
 <span></span>
 <span><span class="co">#count number of bills by legis period</span></span>
@@ -599,7 +682,7 @@ period.</p>
 <code class="sourceCode R"><span><span class="va">df_petition</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_items.html">get_items</a></span><span class="op">(</span>item <span class="op">=</span> <span class="st">"VOLKBG"</span>, legis_period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">27</span><span class="op">)</span>, institution <span class="op">=</span> <span class="st">"NR"</span>, echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Fetched 65 items</span></span>
-<span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR&amp;FP_001GP_CODE=XX&amp;FP_001GP_CODE=XXI&amp;FP_001GP_CODE=XXII&amp;FP_001GP_CODE=XXIII&amp;FP_001GP_CODE=XXIV&amp;FP_001GP_CODE=XXV&amp;FP_001GP_CODE=XXVI&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=VOLKBG</span></span>
+<span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001NRBR=NR&amp;FP_001GP_CODE=XX&amp;FP_001GP_CODE=XXI&amp;FP_001GP_CODE=XXII&amp;FP_001GP_CODE=XXIII&amp;FP_001GP_CODE=XXIV&amp;FP_001GP_CODE=XXV&amp;FP_001GP_CODE=XXVI&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=VOLKBG</span></span>
 <span><span class="co">#&gt; Hits: 65</span></span>
 <span><span class="va">df_petition</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count</span><span class="op">(</span><span class="va">legis_period</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   legis_period  n</span></span>
@@ -620,7 +703,7 @@ meta data starting from the 20th legislative period.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">df_meetings_20_27</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_plenary_meetings.html">get_plenary_meetings</a></span><span class="op">(</span>institution <span class="op">=</span> <span class="st">"NR"</span>, legis_period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">27</span><span class="op">)</span>, meeting_and_activities <span class="op">=</span> <span class="st">"meetings"</span>, echo<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/plenarsitzungen/?PLENAR_701GREMIUM=NR&amp;PLENAR_701SIAKT=SI&amp;PLENAR_701GP_CODE=XX&amp;PLENAR_701GP_CODE=XXI&amp;PLENAR_701GP_CODE=XXII&amp;PLENAR_701GP_CODE=XXIII&amp;PLENAR_701GP_CODE=XXIV&amp;PLENAR_701GP_CODE=XXV&amp;PLENAR_701GP_CODE=XXVI&amp;PLENAR_701GP_CODE=XXVII</span></span>
+<span><span class="co">#&gt; Results on the Parliament website: https://www.parlament.gv.at/recherchieren/plenarsitzungen?PLENAR_701GREMIUM=NR&amp;PLENAR_701SIAKT=SI&amp;PLENAR_701GP_CODE=XX&amp;PLENAR_701GP_CODE=XXI&amp;PLENAR_701GP_CODE=XXII&amp;PLENAR_701GP_CODE=XXIII&amp;PLENAR_701GP_CODE=XXIV&amp;PLENAR_701GP_CODE=XXV&amp;PLENAR_701GP_CODE=XXVI&amp;PLENAR_701GP_CODE=XXVII</span></span>
 <span><span class="co">#&gt; Fetching 27 pages...</span></span>
 <span><span class="co">#&gt; Hits: 1327</span></span>
 <span></span>

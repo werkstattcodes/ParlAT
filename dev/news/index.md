@@ -29,15 +29,31 @@
 
 ### Bug fixes
 
+- [`get_items()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_items.md):
+  combining `person` with `institution` now resolves the person across
+  all institutional categories and applies the institution filter only
+  to the returned items. `institution` accepts both `"NR"`/`"BR"` and
+  the full German names `"Nationalrat"`/`"Bundesrat"`. When
+  `legis_period = NULL`, the echoed Parliament website URL now
+  explicitly selects all available periods so it reproduces the package
+  results instead of defaulting to the current period. An unmatched
+  person returns a typed zero-row result instead of sending an
+  unfiltered item request.
 - [`get_participation()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_participation.md):
   the graceful empty-result path was unreachable due to an internal
   assertion that errored first; empty results now return a typed
   zero-row tibble.
+- [`get_plenary_meetings()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_plenary_meetings.md):
+  when `legis_period = NULL`, the echoed Parliament website URL now
+  explicitly selects every available period instead of defaulting to the
+  current period.
 - [`get_transcripts()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_transcripts.md):
   the row-limit error message incorrectly said the limit was 10,000 (the
   actual limit is 100,000); a misplaced
   [`sprintf()`](https://rdrr.io/r/base/sprintf.html) argument in the
-  PDF-export error message was fixed.
+  PDF-export error message was fixed. All-period searches now echo a
+  website URL that explicitly selects every available period instead of
+  defaulting to the current period.
 - [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md):
   no longer errors when a search returns no members (previously `NULL`
   was piped into `mutate()`).

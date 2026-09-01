@@ -3,7 +3,9 @@
 Retrieves information about plenary meetings from the Austrian
 Parliament's API (see
 [here](https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html)).
-Data available from 20th legislative period onwards.
+Explicit period filters are available from the 20th legislative period
+onwards. With `legis_period = NULL`, the API returns all available
+periods.
 
 ## Usage
 
@@ -28,10 +30,12 @@ get_plenary_meetings(
 
 - legis_period:
 
-  Numeric value or vector specifying the legislative period(s). Can also
-  be NULL to retrieve all periods from 20th onwards. **Must be NULL when
-  institution is "BV"** (Bundesversammlung does not use legislative
-  periods).
+  Numeric value or vector specifying the legislative period(s). Explicit
+  filters are supported from the 20th period onwards. `NULL` retrieves
+  all available periods, including periods before the 20th and the
+  historical codes `"KN"` and `"PN"`. It must be `NULL` when
+  `institution = "BV"` because the Bundesversammlung does not use
+  legislative periods.
 
 - meeting_and_activities:
 
