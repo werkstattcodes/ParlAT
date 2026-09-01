@@ -35,20 +35,43 @@
   df_res
 }
 
+#' @noRd
+.get_items_echo_request <- function(body_params, legis_period, n_results) {
+  echo_params <- jsonlite::fromJSON(body_params)
+
+  if (length(legis_period) == 0L) {
+    echo_params$GP_CODE <- c(
+      as.character(as.roman(5:28)),
+      "KN",
+      "PN"
+    )
+  }
+
+  .parlat_echo_request(
+    jsonlite::toJSON(echo_params),
+    url_base = "https://www.parlament.gv.at/recherchieren/gegenstaende",
+    param_prefix = "FP_001",
+    n_results = n_results
+  )
+}
+
 #' Get items under negotiation ('Verhandlungsgegenstände')
 #' @encoding UTF-8
 #' @description
 #' `get_items` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 #' in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
-#' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">here</a>).
+#' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende" target="_blank">here</a>).
 #'
 #' @param topic (Thema) Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
-#' @param institution Character string. Either "NR" (Nationalrat, National
-#'   Council) or "BR" (Bundesrat, Federal Council). Default is `NULL`, which
-#'   returns both chambers. When combined with `person`, this filters the
-#'   parliamentary items; it does not restrict the person's institutional
-#'   affiliations.
-#' @param legis_period Character vector or `NULL`. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is `NULL`.
+#' @param institution Character string. Either `"NR"` or `"Nationalrat"`
+#'   (National Council), or `"BR"` or `"Bundesrat"` (Federal Council).
+#'   Default is `NULL`, which returns both chambers. When combined with
+#'   `person`, this filters the parliamentary items; it does not restrict the
+#'   person's institutional affiliations.
+#' @param legis_period Character vector or `NULL`. Specifies the legislative
+#'   period(s) to search in. If `NULL` (the default), the search covers all
+#'   legislative periods for which data are available. See 'Details' for
+#'   possible values.
 #' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param date_end Character string. End date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param item (Gegenstand) Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
@@ -91,12 +114,16 @@
 #' * "Wirtschaft" (economy)
 #'
 #' ## legis_period (Gesetzgebungsperiode)
-#' `legis_period` specifies the legislative period(s). Can be one or more of the following value(s):
+#' `legis_period` specifies the legislative period(s). It can be one or more of
+#' the following values:
 #' * number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
 #'
-#' Only periods from the 5th legislative period (V. GP, 1945) onwards are
-#' supported. Earlier periods (including special codes like "PN" and "KN")
-#' do not return data and will be rejected.
+#' Explicit period filters are supported from the 5th legislative period
+#' (V. GP, 1945) onwards. If `legis_period = NULL`, no period restriction is
+#' applied and the search covers all available periods, including records with
+#' the historical special period codes "KN" and "PN". When `echo = TRUE`, the
+#' website URL explicitly selects every available period so it reproduces this
+#' all-period search instead of using the website's current-period default.
 #'
 #' ## item (Gegenstand)
 #' Possible values for `item` include:
@@ -460,8 +487,9 @@
 #' ## Combining person and institution filters
 #' When `person` and `institution` are supplied together, the person lookup is
 #' performed across all institutional categories. The `institution` value then
-#' filters the parliamentary items by chamber. For example, a federal minister
-#' can be associated with National Council items even if the person is not
+#' filters the parliamentary items by chamber. The full German chamber names
+#' and their abbreviations are equivalent. For example, a federal minister can
+#' be associated with National Council items even if the person is not
 #' categorized as a National Council member.
 #'
 #' @return
@@ -554,7 +582,7 @@
 #' # Search by person (minister or MP)
 #' result <- get_items(
 #'   person = "Kurz Sebastian",
-#'   institution = "NR",
+#'   institution = "Nationalrat", # "NR" is equivalent
 #'   legis_period = 27
 #' )
 #' dplyr::glimpse(result)
@@ -633,16 +661,17 @@ get_items <- function(
   #INSTITUTION
   checkmate::assert_subset(
     institution,
-    choices = c("BR", "NR"),
+    choices = c("BR", "Bundesrat", "NR", "Nationalrat"),
     empty.ok = TRUE
   )
-  ##encode
+  if (!is.null(institution)) {
+    institution <- dplyr::recode(
+      institution,
+      "Bundesrat" = "BR",
+      "Nationalrat" = "NR"
+    )
+  }
   institution_input <- institution
-  # institution_input <- switch(
-  #   institution,
-  #   Nationalrat = "NR",
-  #   Bundesrat = "BR"
-  # )
 
   #LEGIS PERIOD
   legis_period <- purrr::map_chr(
@@ -650,17 +679,18 @@ get_items <- function(
     \(x) fn_check_legis_period_elements(x)
   )
 
-  # Data is only available from the 5th legislative period (Second Republic).
-  # Special codes like "PN", "KN" also predate the 5th period and return no
-
-  # data, so only numeric periods >= 5 (and "ALLE") are permitted.
+  # Explicit filters are currently limited to the 5th legislative period and
+  # later. A NULL filter remains unrestricted and includes KN and PN records.
   if (length(legis_period) > 0) {
     lp_numeric <- suppressWarnings(as.integer(as.roman(legis_period)))
     lp_invalid <- is.na(lp_numeric) & legis_period != "ALLE" |
       !is.na(lp_numeric) & lp_numeric < 5L
     if (any(lp_invalid)) {
       cli::cli_abort(
-        "Data is only available from the 5th legislative period onwards.",
+        paste(
+          "Explicit `legis_period` values are supported from the 5th",
+          "legislative period onwards."
+        ),
         arg = "legis_period"
       )
     }
@@ -1365,10 +1395,9 @@ get_items <- function(
   # RETURN RESULT
   if (echo) {
     cli::cli_alert_success("Fetched {nrow(df_res)} item{?s}")
-    .parlat_echo_request(
+    .get_items_echo_request(
       body_params,
-      url_base = "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html",
-      param_prefix = "FP_001",
+      legis_period = legis_period,
       n_results = nrow(df_res)
     )
   }

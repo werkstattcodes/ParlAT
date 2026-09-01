@@ -123,6 +123,106 @@ test_that("get_items validates institution parameter", {
   )
 })
 
+test_that("get_items accepts full and abbreviated chamber names", {
+  local_mocked_bindings(
+    get_persons = function(names) {
+      tibble::tibble(pad_intern = character())
+    }
+  )
+  local_mocked_bindings(
+    req_perform = function(...) {
+      stop("The item API must not be called for an unmatched person.")
+    },
+    .package = "httr2"
+  )
+
+  aliases <- c("NR", "Nationalrat", "BR", "Bundesrat")
+  results <- purrr::map(aliases, \(chamber) {
+    suppressMessages(get_items(
+      institution = chamber,
+      person = "Unknown Person",
+      echo = FALSE
+    ))
+  })
+
+  expect_length(results, 4L)
+  expect_equal(purrr::map_int(results, nrow), rep(0L, 4L))
+})
+
+test_that("get_items echo URL represents a NULL period as all periods", {
+  body_params <- jsonlite::toJSON(list(
+    NRBR = "NR",
+    PAD_INTERN = "65321"
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_items_echo_request(
+      body_params,
+      legis_period = character(),
+      n_results = 2685L
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+  expected_periods <- c(as.character(as.roman(5:28)), "KN", "PN")
+
+  expect_length(url_message, 1L)
+  expect_match(
+    url_message,
+    "https://www.parlament.gv.at/recherchieren/gegenstaende?",
+    fixed = TRUE
+  )
+  expect_equal(
+    stringr::str_count(url_message, "FP_001GP_CODE="),
+    length(expected_periods)
+  )
+  purrr::walk(expected_periods, \(period) {
+    expect_match(
+      url_message,
+      paste0("FP_001GP_CODE=", period),
+      fixed = TRUE
+    )
+  })
+  expect_match(url_message, "FP_001NRBR=NR", fixed = TRUE)
+  expect_match(url_message, "FP_001PAD_INTERN=65321", fixed = TRUE)
+  expect_no_match(url_message, "index.html", fixed = TRUE)
+})
+
+test_that("get_items echo URL preserves an explicit period", {
+  body_params <- jsonlite::toJSON(list(
+    NRBR = "NR",
+    GP_CODE = "XXVII",
+    PAD_INTERN = "65321"
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_items_echo_request(
+      body_params,
+      legis_period = "XXVII",
+      n_results = 872L
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+
+  expect_length(url_message, 1L)
+  expect_equal(
+    stringr::str_count(url_message, "FP_001GP_CODE="),
+    1L
+  )
+  expect_match(url_message, "FP_001GP_CODE=XXVII", fixed = TRUE)
+})
+
 test_that("get_items resolves people independently of the item institution", {
   local_mocked_bindings(
     get_persons = function(names) {

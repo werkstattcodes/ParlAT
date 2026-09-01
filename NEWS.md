@@ -22,8 +22,12 @@
 
 - `get_items()`: combining `person` with `institution` now resolves the person
   across all institutional categories and applies the institution filter only
-  to the returned items. An unmatched person returns a typed zero-row result
-  instead of sending an unfiltered item request.
+  to the returned items. `institution` accepts both `"NR"`/`"BR"` and the full
+  German names `"Nationalrat"`/`"Bundesrat"`. When `legis_period = NULL`, the
+  echoed Parliament website URL now explicitly selects all available periods
+  so it reproduces the package results instead of defaulting to the current
+  period. An unmatched person returns a typed zero-row result instead of
+  sending an unfiltered item request.
 - `get_participation()`: the graceful empty-result path was unreachable due
   to an internal assertion that errored first; empty results now return a
   typed zero-row tibble.

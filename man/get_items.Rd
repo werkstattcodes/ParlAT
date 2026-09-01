@@ -25,13 +25,16 @@ get_items(
 \arguments{
 \item{topic}{(Thema) Character vector or \code{NULL}. Specifies the topic(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
 
-\item{institution}{Character string. Either "NR" (Nationalrat, National
-Council) or "BR" (Bundesrat, Federal Council). Default is \code{NULL}, which
-returns both chambers. When combined with \code{person}, this filters the
-parliamentary items; it does not restrict the person's institutional
-affiliations.}
+\item{institution}{Character string. Either \code{"NR"} or \code{"Nationalrat"}
+(National Council), or \code{"BR"} or \code{"Bundesrat"} (Federal Council).
+Default is \code{NULL}, which returns both chambers. When combined with
+\code{person}, this filters the parliamentary items; it does not restrict the
+person's institutional affiliations.}
 
-\item{legis_period}{Character vector or \code{NULL}. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is \code{NULL}.}
+\item{legis_period}{Character vector or \code{NULL}. Specifies the legislative
+period(s) to search in. If \code{NULL} (the default), the search covers all
+legislative periods for which data are available. See 'Details' for
+possible values.}
 
 \item{date_start}{Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is \code{NULL}.}
 
@@ -85,7 +88,7 @@ or returned as list-columns for multi-valued fields):
 \description{
 \code{get_items} searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
-mirrors the search functionality offered on the Austrian Parliament's website (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">}}here\if{html}{\out{</a>}}).
+mirrors the search functionality offered on the Austrian Parliament's website (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/gegenstaende" target="_blank">}}here\if{html}{\out{</a>}}).
 }
 \details{
 \subsection{topic (Thema)}{
@@ -118,14 +121,18 @@ Possible values for \code{topic} are:
 
 \subsection{legis_period (Gesetzgebungsperiode)}{
 
-\code{legis_period} specifies the legislative period(s). Can be one or more of the following value(s):
+\code{legis_period} specifies the legislative period(s). It can be one or more of
+the following values:
 \itemize{
 \item number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
 }
 
-Only periods from the 5th legislative period (V. GP, 1945) onwards are
-supported. Earlier periods (including special codes like "PN" and "KN")
-do not return data and will be rejected.
+Explicit period filters are supported from the 5th legislative period
+(V. GP, 1945) onwards. If \code{legis_period = NULL}, no period restriction is
+applied and the search covers all available periods, including records with
+the historical special period codes "KN" and "PN". When \code{echo = TRUE}, the
+website URL explicitly selects every available period so it reproduces this
+all-period search instead of using the website's current-period default.
 }
 
 \subsection{item (Gegenstand)}{
@@ -532,8 +539,9 @@ the results for all three abbreviations.
 
 When \code{person} and \code{institution} are supplied together, the person lookup is
 performed across all institutional categories. The \code{institution} value then
-filters the parliamentary items by chamber. For example, a federal minister
-can be associated with National Council items even if the person is not
+filters the parliamentary items by chamber. The full German chamber names
+and their abbreviations are equivalent. For example, a federal minister can
+be associated with National Council items even if the person is not
 categorized as a National Council member.
 }
 }
@@ -606,7 +614,7 @@ dplyr::glimpse(result)
 # Search by person (minister or MP)
 result <- get_items(
   person = "Kurz Sebastian",
-  institution = "NR",
+  institution = "Nationalrat", # "NR" is equivalent
   legis_period = 27
 )
 dplyr::glimpse(result)
