@@ -2,7 +2,7 @@
 
 This function retrieves event data based on search parameters from the
 Austrian Parliament API. It mirrors the search functionality on the
-Austrian Parliament website at [this
+Austrian Parliament website at [the 'Termine'
 page](https://www.parlament.gv.at/aktuelles/termine/index.html), and
 additionally facilitates searches by legislative period.
 
@@ -45,7 +45,8 @@ get_events(
 
   Character or numeric value of length 1, or NULL. Specifies the
   legislative period to search in. Only available if `date_start` and
-  `date_end` are NULL.
+  `date_end` are NULL. When all three parameters are NULL, events from
+  all available dates are returned.
 
 - date_start:
 
@@ -109,6 +110,12 @@ if no results are found):
 - `link2`: Secondary link (if available)
 
 ## Details
+
+When `legis_period`, `date_start`, and `date_end` are all NULL, the API
+search is unrestricted by date. The echoed Parliament website URL
+derives an explicit lower date bound and availability values from the
+returned rows so that the website reproduces the unrestricted API
+results instead of applying its current-events defaults.
 
 ### event_type
 
@@ -272,7 +279,7 @@ parameters provided.
   # Basic example: Get all National Council events
   events <- get_events(institution = "NR")
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat
+#> https://www.parlament.gv.at/aktuelles/termine?TERMIN_01GREMIUM=Nationalrat&TERMIN_01DATERANGE=1918-11-12T23:00:00.000Z&TERMIN_01VERFUEGBAR=J&TERMIN_01VERFUEGBAR=V
 #> Hits: 11306
   dplyr::glimpse(events)
 #> Rows: 11,306
@@ -291,7 +298,7 @@ parameters provided.
 #> $ registration    <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
 #> $ livestream_url  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "<div clas…
 #> $ language        <chr> NA, "[\"Deutsch\"]", "[\"Deutsch\"]", "[\"Deutsch\"]",…
-#> $ link            <chr> NA, "/erleben/fuehrungen/266076", "/erleben/fuehrungen…
+#> $ link            <chr> NA, "/erleben/fuehrungen/266080", "/erleben/fuehrungen…
 
   # Get events with specific date range
   events <- get_events(
@@ -300,7 +307,7 @@ parameters provided.
     date_end = "31-01-2024"
   )
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2023-12-31T23:00:00.000Z&TERMIN_01DATERANGE=2024-01-31T22:59:59.000Z&TERMIN_01GREMIUM=Nationalrat
+#> https://www.parlament.gv.at/aktuelles/termine?TERMIN_01DATERANGE=2023-12-31T23:00:00.000Z&TERMIN_01DATERANGE=2024-01-31T22:59:59.000Z&TERMIN_01GREMIUM=Nationalrat&TERMIN_01VERFUEGBAR=J
 #> Hits: 16
   dplyr::glimpse(events)
 #> Rows: 16
@@ -328,7 +335,7 @@ parameters provided.
     location = "Nationalratssaal"
   )
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat&TERMIN_01TERMINART=Plenarsitzung&TERMIN_01ORT=Nationalratssaal
+#> https://www.parlament.gv.at/aktuelles/termine?TERMIN_01GREMIUM=Nationalrat&TERMIN_01TERMINART=Plenarsitzung&TERMIN_01ORT=Nationalratssaal&TERMIN_01DATERANGE=2023-01-24T23:00:00.000Z&TERMIN_01VERFUEGBAR=J
 #> Hits: 196
   dplyr::glimpse(events)
 #> Rows: 196
@@ -355,7 +362,7 @@ parameters provided.
     legis_period = 28
   )
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2024-10-23T22:00:00.000Z&TERMIN_01DATERANGE=2026-09-01T21:59:59.000Z&TERMIN_01GREMIUM=Nationalrat
+#> https://www.parlament.gv.at/aktuelles/termine?TERMIN_01DATERANGE=2024-10-23T22:00:00.000Z&TERMIN_01DATERANGE=2026-09-01T21:59:59.000Z&TERMIN_01GREMIUM=Nationalrat&TERMIN_01VERFUEGBAR=J&TERMIN_01VERFUEGBAR=V
 #> Hits: 657
   dplyr::glimpse(events)
 #> Rows: 657

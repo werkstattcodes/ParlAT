@@ -29,6 +29,12 @@
 
 ### Bug fixes
 
+- [`get_events()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_events.md):
+  leaving the legislative period and dates unset now returns events
+  across all available dates, including a completely unfiltered call.
+  The echoed Parliament website URL derives its date and availability
+  filters from the returned rows so it reproduces the API results
+  instead of applying the website’s current-events defaults.
 - [`get_items()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_items.md):
   combining `person` with `institution` now resolves the person across
   all institutional categories and applies the institution filter only
