@@ -2,14 +2,17 @@
 #'
 #' This function retrieves event data based on search parameters from the Austrian Parliament API.
 #' It mirrors the search functionality on the Austrian Parliament website at
-#' <a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">this page</a>, and additionally
+#' <a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">the 'Termine' page</a>, and additionally
 #' facilitates searches by legislative period.
 #'
 #' @param institution Character vector specifying the institution(s) to query. Must be "NR" (Nationalrat/National Council), "BR" (Bundesrat/Federal Council), or "ParlDir/Klub" ("Parliamentary Directorate/Caucus"). Can be a single value or vector for multiple institutions. NULL covers all institutions.
 #' @param event_type Optional character string indicating the event type. Must be one of the predefined event types (see Details). Default is NULL (all types).
 #' @param location Optional character string to filter events by location. Must be one of the predefined locations (see Details). Default is NULL (all locations).
 #' @param echo Logical indicating whether to print the link to the corresponding results on the Parliament website and the number of hits. Default is TRUE.
-#' @param legis_period Character or numeric value of length 1, or NULL. Specifies the legislative period to search in. Only available if `date_start` and `date_end` are NULL.
+#' @param legis_period Character or numeric value of length 1, or NULL.
+#'   Specifies the legislative period to search in. Only available if
+#'   `date_start` and `date_end` are NULL. When all three parameters are NULL,
+#'   events from all available dates are returned.
 #' @param date_start Optional character string representing the start date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.
 #' @param date_end Optional character string representing the end date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.
 #'
@@ -18,6 +21,12 @@
 #' provided.
 #'
 #' @details
+#' When `legis_period`, `date_start`, and `date_end` are all NULL, the API
+#' search is unrestricted by date. The echoed Parliament website URL derives
+#' an explicit lower date bound and availability values from the returned rows
+#' so that the website reproduces the unrestricted API results instead of
+#' applying its current-events defaults.
+#'
 #' ## event_type
 #' Allowed event types are:
 #'   - "Plenarsitzung" (Plenary Meeting)
@@ -333,9 +342,9 @@ get_events <- function(
         GREMIUM = institution_input,
         TERMINART = event_type,
         ORT = location
-    ) %>%
-        purrr::compact() %>%
-        jsonlite::toJSON()
+    ) |>
+        purrr::compact() |>
+        .get_events_body_to_json()
 
     req <- httr2::request(
         "https://www.parlament.gv.at/Filter/api/filter/data/600"
@@ -377,9 +386,10 @@ get_events <- function(
     }
 
     if (isTRUE(echo)) {
+        echo_body_params <- .get_events_echo_body(body_params, resp_json)
         .parlat_echo_request(
-            body_params,
-            url_base = "https://www.parlament.gv.at/aktuelles/termine/index.html",
+            echo_body_params,
+            url_base = "https://www.parlament.gv.at/aktuelles/termine",
             param_prefix = "TERMIN_01",
             n_results = if (is.null(df_res)) 0 else nrow(df_res)
         )
@@ -471,6 +481,62 @@ get_events <- function(
         dplyr::arrange(dplyr::desc(date))
 
     return(df_res)
+}
+
+
+.get_events_body_to_json <- function(body_params) {
+    if (length(body_params) == 0L) {
+        return("{}")
+    }
+
+    jsonlite::toJSON(body_params)
+}
+
+
+.get_events_echo_body <- function(body_params, resp_json) {
+    echo_params <- jsonlite::fromJSON(body_params)
+    field_names <- purrr::pluck(resp_json, "header", "feld_name") |>
+        unlist(use.names = FALSE)
+    rows <- purrr::pluck(resp_json, "rows")
+
+    if (length(rows) == 0L || length(field_names) == 0L) {
+        return(.get_events_body_to_json(echo_params))
+    }
+
+    event_rows <- as.data.frame(rows)
+
+    if (!"DATERANGE" %in% names(echo_params)) {
+        date_index <- match("DATUM", field_names)
+        if (!is.na(date_index) && date_index <= ncol(event_rows)) {
+            event_dates <- lubridate::dmy(
+                event_rows[[date_index]],
+                quiet = TRUE
+            )
+            event_dates <- event_dates[!is.na(event_dates)]
+            if (length(event_dates) > 0L) {
+                earliest_date <- format(min(event_dates), "%d-%m-%Y")
+                echo_params$DATERANGE <- aux_transform_event_date(
+                    earliest_date,
+                    "date_start",
+                    is_end_date = FALSE
+                )
+            }
+        }
+    }
+
+    availability_index <- match("VERFUEGBAR", field_names)
+    if (!is.na(availability_index) && availability_index <= ncol(event_rows)) {
+        availability <- as.character(event_rows[[availability_index]])
+        availability <- availability[
+            !is.na(availability) & nzchar(availability)
+        ]
+        availability <- sort(unique(availability))
+        if (length(availability) > 0L) {
+            echo_params$VERFUEGBAR <- availability
+        }
+    }
+
+    .get_events_body_to_json(echo_params)
 }
 
 

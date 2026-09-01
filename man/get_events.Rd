@@ -21,7 +21,10 @@ get_events(
 
 \item{location}{Optional character string to filter events by location. Must be one of the predefined locations (see Details). Default is NULL (all locations).}
 
-\item{legis_period}{Character or numeric value of length 1, or NULL. Specifies the legislative period to search in. Only available if \code{date_start} and \code{date_end} are NULL.}
+\item{legis_period}{Character or numeric value of length 1, or NULL.
+Specifies the legislative period to search in. Only available if
+\code{date_start} and \code{date_end} are NULL. When all three parameters are NULL,
+events from all available dates are returned.}
 
 \item{date_start}{Optional character string representing the start date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.}
 
@@ -56,10 +59,15 @@ A tibble containing event details with the following columns (zero rows if no re
 \description{
 This function retrieves event data based on search parameters from the Austrian Parliament API.
 It mirrors the search functionality on the Austrian Parliament website at
-\if{html}{\out{<a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">}}this page\if{html}{\out{</a>}}, and additionally
+\if{html}{\out{<a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">}}the 'Termine' page\if{html}{\out{</a>}}, and additionally
 facilitates searches by legislative period.
 }
 \details{
+When \code{legis_period}, \code{date_start}, and \code{date_end} are all NULL, the API
+search is unrestricted by date. The echoed Parliament website URL derives
+an explicit lower date bound and availability values from the returned rows
+so that the website reproduces the unrestricted API results instead of
+applying its current-events defaults.
 \subsection{event_type}{
 
 Allowed event types are:

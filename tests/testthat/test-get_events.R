@@ -99,6 +99,68 @@ test_that("get_events works with complex parameter combinations", {
   }
 })
 
+test_that("empty event filters serialize as a JSON object", {
+  expect_identical(.get_events_body_to_json(list()), "{}")
+
+  body <- .get_events_body_to_json(list(GREMIUM = "Nationalrat")) |>
+    jsonlite::fromJSON()
+  expect_equal(body$GREMIUM, "Nationalrat")
+})
+
+test_that("event echo derives filters that override website defaults", {
+  response <- list(
+    header = data.frame(
+      feld_name = c("DATUM", "VERFUEGBAR", "TITLE")
+    ),
+    rows = data.frame(
+      date = c("17.07.2027", "10.11.1920", "01.09.2026"),
+      available = c("J", "V", "J"),
+      title = c("Future", "Historical", "Current")
+    )
+  )
+  body <- jsonlite::toJSON(list(GREMIUM = "Nationalrat"))
+
+  echo_body <- .get_events_echo_body(body, response) |>
+    jsonlite::fromJSON()
+
+  expect_equal(echo_body$GREMIUM, "Nationalrat")
+  echo_start <- lubridate::ymd_hms(echo_body$DATERANGE, tz = "UTC") |>
+    lubridate::with_tz("Europe/Vienna") |>
+    as.Date()
+  expect_equal(echo_start, as.Date("1920-11-10"))
+  expect_equal(echo_body$VERFUEGBAR, c("J", "V"))
+})
+
+test_that("event echo preserves explicit dates and empty results", {
+  response <- list(
+    header = data.frame(feld_name = c("DATUM", "VERFUEGBAR")),
+    rows = data.frame(
+      date = "10.11.1920",
+      available = "V"
+    )
+  )
+  date_range <- c(
+    "2024-01-01T00:00:00.000Z",
+    "2024-12-31T23:59:59.000Z"
+  )
+  body <- jsonlite::toJSON(list(DATERANGE = date_range))
+
+  echo_body <- .get_events_echo_body(body, response) |>
+    jsonlite::fromJSON()
+
+  expect_equal(echo_body$DATERANGE, date_range)
+  expect_equal(echo_body$VERFUEGBAR, "V")
+
+  empty_response <- list(
+    header = response$header,
+    rows = data.frame(date = character(), available = character())
+  )
+  expect_identical(
+    .get_events_echo_body("{}", empty_response),
+    "{}"
+  )
+})
+
 test_that("aux_transform_event_date works correctly", {
   # Test valid dates
   expect_no_error(ParlAT:::aux_transform_event_date(
