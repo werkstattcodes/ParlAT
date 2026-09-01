@@ -223,6 +223,33 @@ test_that("get_items echo URL preserves an explicit period", {
   expect_match(url_message, "FP_001GP_CODE=XXVII", fixed = TRUE)
 })
 
+test_that("get_items echo URL preserves explicit historical periods", {
+  body_params <- jsonlite::toJSON(list(
+    NRBR = "NR",
+    GP_CODE = c("PN", "KN")
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_items_echo_request(
+      body_params,
+      legis_period = c("PN", "KN"),
+      n_results = 2213L
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+
+  expect_length(url_message, 1L)
+  expect_equal(stringr::str_count(url_message, "FP_001GP_CODE="), 2L)
+  expect_match(url_message, "FP_001GP_CODE=PN", fixed = TRUE)
+  expect_match(url_message, "FP_001GP_CODE=KN", fixed = TRUE)
+})
+
 test_that("get_items resolves people independently of the item institution", {
   local_mocked_bindings(
     get_persons = function(names) {
@@ -262,8 +289,13 @@ test_that("get_items rejects legis_period before 5th period", {
   expect_error(get_items(legis_period = 4), "5th legislative period")
   expect_error(get_items(legis_period = "3"), "5th legislative period")
   expect_error(get_items(legis_period = c(2, 27)), "5th legislative period")
-  expect_error(get_items(legis_period = "PN"), "5th legislative period")
-  expect_error(get_items(legis_period = "KN"), "5th legislative period")
+})
+
+test_that("get_items accepts historical legislative period codes", {
+  expect_identical(
+    .normalize_get_items_legis_period(c("KN", "PN", 10, "15")),
+    c("KN", "PN", "X", "XV")
+  )
 })
 
 test_that("get_items validates topic parameter", {
@@ -345,14 +377,14 @@ test_that("get_items works with multiple topics", {
   expect_row_count(nrow(result), 2011)
 })
 
-test_that("get_items rejects mixed legis_period inputs containing unsupported early periods", {
+test_that("get_items rejects mixed inputs containing early numbered periods", {
   expect_error(
     get_items(
-      legis_period = c("KN", "PN", 10, "15"),
+      legis_period = c("KN", "PN", 4, "15"),
       institution = "NR",
       echo = FALSE
     ),
-    "5th legislative period onwards"
+    "5th legislative period"
   )
 })
 

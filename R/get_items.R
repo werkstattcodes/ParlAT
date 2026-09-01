@@ -51,6 +51,33 @@
   )
 }
 
+.normalize_get_items_legis_period <- function(legis_period) {
+  normalized <- purrr::map_chr(
+    legis_period,
+    \(x) fn_check_legis_period_elements(x)
+  )
+
+  if (length(normalized) == 0L) {
+    return(normalized)
+  }
+
+  numeric_period <- suppressWarnings(as.integer(as.roman(normalized)))
+  special_period <- normalized %in% c("ALLE", "KN", "PN")
+  invalid <- !special_period & (is.na(numeric_period) | numeric_period < 5L)
+
+  if (any(invalid)) {
+    cli::cli_abort(
+      paste(
+        "Explicit numbered `legis_period` values are supported from the 5th",
+        "legislative period onwards; `\"KN\"` and `\"PN\"` are also supported."
+      ),
+      arg = "legis_period"
+    )
+  }
+
+  normalized
+}
+
 #' Get items under negotiation ('Verhandlungsgegenstände')
 #' @encoding UTF-8
 #' @description
@@ -64,10 +91,10 @@
 #'   Default is `NULL`, which returns both chambers. When combined with
 #'   `person`, this filters the parliamentary items; it does not restrict the
 #'   person's institutional affiliations.
-#' @param legis_period Character vector or `NULL`. Specifies the legislative
-#'   period(s) to search in. If `NULL` (the default), the search covers all
-#'   legislative periods for which data are available. See 'Details' for
-#'   possible values.
+#' @param legis_period Character or numeric vector, or `NULL`. Specifies the
+#'   legislative period(s) to search in. If `NULL` (the default), no period
+#'   restriction is applied. See 'Details' for possible values and the API
+#'   result limit.
 #' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param date_end Character string. End date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param item (Gegenstand) Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
@@ -112,14 +139,18 @@
 #' ## legis_period (Gesetzgebungsperiode)
 #' `legis_period` specifies the legislative period(s). It can be one or more of
 #' the following values:
-#' * number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
+#' * number(s) or character(s) indicating the relevant period(s), i.e., "25",
+#'   25, or "XXV";
+#' * `"PN"` for the Provisional National Assembly; or
+#' * `"KN"` for the Constituent National Assembly.
 #'
-#' Explicit period filters are supported from the 5th legislative period
-#' (V. GP, 1945) onwards. If `legis_period = NULL`, no period restriction is
-#' applied and the search covers all available periods, including records with
-#' the historical special period codes "KN" and "PN". When `echo = TRUE`, the
-#' website URL explicitly selects every available period so it reproduces this
-#' all-period search instead of using the website's current-period default.
+#' Explicit numbered period filters are supported from the 5th legislative
+#' period (V. GP, 1945) onwards; `"PN"` and `"KN"` are also supported. If
+#' `legis_period = NULL`, no period restriction is applied. Broad searches can
+#' still omit periods from the returned data when the API's 100,000-row export
+#' limit is reached. When `echo = TRUE`, the website URL explicitly selects
+#' every available period so it reproduces the unrestricted search instead of
+#' using the website's current-period default.
 #'
 #' ## item (Gegenstand)
 #' Possible values for `item` include:
@@ -534,8 +565,10 @@
 #' ```
 #'
 #' ## Data Availability
-#' The API only returns data from the 5th legislative period (V. GP, 1945)
-#' onwards, i.e. for the Second Republic.
+#' Numbered legislative periods are available from the 5th period (V. GP,
+#' 1945) onwards. Historical material is also available for the Provisional
+#' National Assembly (`"PN"`) and Constituent National Assembly (`"KN"`).
+#' Coverage and completeness vary by document type.
 #'
 #' @seealso
 #' * [get_persons()] for searching person identifiers used in the `person` parameter
@@ -582,6 +615,13 @@
 #'   legis_period = 27
 #' )
 #' dplyr::glimpse(result)
+#'
+#' # Search historical items from the national assemblies of 1918-1920
+#' historical_items <- get_items(
+#'   institution = "NR",
+#'   legis_period = c("PN", "KN")
+#' )
+#' dplyr::glimpse(historical_items)
 #'
 #' # Combine multiple search criteria
 #' result <- get_items(
@@ -670,27 +710,7 @@ get_items <- function(
   institution_input <- institution
 
   #LEGIS PERIOD
-  legis_period <- purrr::map_chr(
-    legis_period,
-    \(x) fn_check_legis_period_elements(x)
-  )
-
-  # Explicit filters are currently limited to the 5th legislative period and
-  # later. A NULL filter remains unrestricted and includes KN and PN records.
-  if (length(legis_period) > 0) {
-    lp_numeric <- suppressWarnings(as.integer(as.roman(legis_period)))
-    lp_invalid <- is.na(lp_numeric) & legis_period != "ALLE" |
-      !is.na(lp_numeric) & lp_numeric < 5L
-    if (any(lp_invalid)) {
-      cli::cli_abort(
-        paste(
-          "Explicit `legis_period` values are supported from the 5th",
-          "legislative period onwards."
-        ),
-        arg = "legis_period"
-      )
-    }
-  }
+  legis_period <- .normalize_get_items_legis_period(legis_period)
 
   #DATE START; DATE END
   # Date validation using lubridate for flexible input formats

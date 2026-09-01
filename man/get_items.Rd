@@ -31,10 +31,10 @@ Default is \code{NULL}, which returns both chambers. When combined with
 \code{person}, this filters the parliamentary items; it does not restrict the
 person's institutional affiliations.}
 
-\item{legis_period}{Character vector or \code{NULL}. Specifies the legislative
-period(s) to search in. If \code{NULL} (the default), the search covers all
-legislative periods for which data are available. See 'Details' for
-possible values.}
+\item{legis_period}{Character or numeric vector, or \code{NULL}. Specifies the
+legislative period(s) to search in. If \code{NULL} (the default), no period
+restriction is applied. See 'Details' for possible values and the API
+result limit.}
 
 \item{date_start}{Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is \code{NULL}.}
 
@@ -124,15 +124,19 @@ Possible values for \code{topic} are:
 \code{legis_period} specifies the legislative period(s). It can be one or more of
 the following values:
 \itemize{
-\item number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
+\item number(s) or character(s) indicating the relevant period(s), i.e., "25",
+25, or "XXV";
+\item \code{"PN"} for the Provisional National Assembly; or
+\item \code{"KN"} for the Constituent National Assembly.
 }
 
-Explicit period filters are supported from the 5th legislative period
-(V. GP, 1945) onwards. If \code{legis_period = NULL}, no period restriction is
-applied and the search covers all available periods, including records with
-the historical special period codes "KN" and "PN". When \code{echo = TRUE}, the
-website URL explicitly selects every available period so it reproduces this
-all-period search instead of using the website's current-period default.
+Explicit numbered period filters are supported from the 5th legislative
+period (V. GP, 1945) onwards; \code{"PN"} and \code{"KN"} are also supported. If
+\code{legis_period = NULL}, no period restriction is applied. Broad searches can
+still omit periods from the returned data when the API's 100,000-row export
+limit is reached. When \code{echo = TRUE}, the website URL explicitly selects
+every available period so it reproduces the unrestricted search instead of
+using the website's current-period default.
 }
 
 \subsection{item (Gegenstand)}{
@@ -576,8 +580,10 @@ all_results <- periods \%>\%
 
 \subsection{Data Availability}{
 
-The API only returns data from the 5th legislative period (V. GP, 1945)
-onwards, i.e. for the Second Republic.
+Numbered legislative periods are available from the 5th period (V. GP,
+1945) onwards. Historical material is also available for the Provisional
+National Assembly (\code{"PN"}) and Constituent National Assembly (\code{"KN"}).
+Coverage and completeness vary by document type.
 }
 }
 \examples{
@@ -618,6 +624,13 @@ result <- get_items(
   legis_period = 27
 )
 dplyr::glimpse(result)
+
+# Search historical items from the national assemblies of 1918-1920
+historical_items <- get_items(
+  institution = "NR",
+  legis_period = c("PN", "KN")
+)
+dplyr::glimpse(historical_items)
 
 # Combine multiple search criteria
 result <- get_items(
