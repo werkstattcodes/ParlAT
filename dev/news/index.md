@@ -34,7 +34,9 @@
   across all available dates, including a completely unfiltered call.
   The echoed Parliament website URL derives its date and availability
   filters from the returned rows so it reproduces the API results
-  instead of applying the website’s current-events defaults.
+  instead of applying the website’s current-events defaults. Austrian
+  civil-date boundaries are serialized consistently across operating
+  systems.
 - [`get_items()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_items.md):
   combining `person` with `institution` now resolves the person across
   all institutional categories and applies the institution filter only
@@ -42,8 +44,9 @@
   the full German names `"Nationalrat"`/`"Bundesrat"`. When
   `legis_period = NULL`, the echoed Parliament website URL now
   explicitly selects all available periods so it reproduces the package
-  results instead of defaulting to the current period. An unmatched
-  person returns a typed zero-row result instead of sending an
+  results instead of defaulting to the current period. The historical
+  period codes `"PN"` and `"KN"` can now be selected explicitly. An
+  unmatched person returns a typed zero-row result instead of sending an
   unfiltered item request.
 - [`get_participation()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_participation.md):
   the graceful empty-result path was unreachable due to an internal

@@ -45,10 +45,10 @@ get_items(
 
 - legis_period:
 
-  Character vector or `NULL`. Specifies the legislative period(s) to
-  search in. If `NULL` (the default), the search covers all legislative
-  periods for which data are available. See 'Details' for possible
-  values.
+  Character or numeric vector, or `NULL`. Specifies the legislative
+  period(s) to search in. If `NULL` (the default), no period restriction
+  is applied. See 'Details' for possible values and the API result
+  limit.
 
 - date_start:
 
@@ -213,15 +213,19 @@ are:
 more of the following values:
 
 - number(s) or character(s) indicating the relevant period(s), i.e.,
-  "25", 25, or "XXV".
+  "25", 25, or "XXV";
 
-Explicit period filters are supported from the 5th legislative period
-(V. GP, 1945) onwards. If `legis_period = NULL`, no period restriction
-is applied and the search covers all available periods, including
-records with the historical special period codes "KN" and "PN". When
-`echo = TRUE`, the website URL explicitly selects every available period
-so it reproduces this all-period search instead of using the website's
-current-period default.
+- `"PN"` for the Provisional National Assembly; or
+
+- `"KN"` for the Constituent National Assembly.
+
+Explicit numbered period filters are supported from the 5th legislative
+period (V. GP, 1945) onwards; `"PN"` and `"KN"` are also supported. If
+`legis_period = NULL`, no period restriction is applied. Broad searches
+can still omit periods from the returned data when the API's 100,000-row
+export limit is reached. When `echo = TRUE`, the website URL explicitly
+selects every available period so it reproduces the unrestricted search
+instead of using the website's current-period default.
 
 ### item (Gegenstand)
 
@@ -982,8 +986,10 @@ warning because the results may be incomplete.
 
 ### Data Availability
 
-The API only returns data from the 5th legislative period (V. GP, 1945)
-onwards, i.e. for the Second Republic.
+Numbered legislative periods are available from the 5th period (V. GP,
+1945) onwards. Historical material is also available for the Provisional
+National Assembly (`"PN"`) and Constituent National Assembly (`"KN"`).
+Coverage and completeness vary by document type.
 
 ## See also
 
@@ -1155,6 +1161,36 @@ dplyr::glimpse(result)
 #> $ persons          <list> <"14842", "65321">, "65321", <"65321", "83125">, <"6…
 #> $ parl_group       <list> "SPÖ", "ÖVP", "NEOS", "NEOS", "FPÖ", "FPÖ", "ÖVP", "…
 
+# Search historical items from the national assemblies of 1918-1920
+historical_items <- get_items(
+  institution = "NR",
+  legis_period = c("PN", "KN")
+)
+#> ℹ Fetching items from API...
+#> ✔ Fetched 2213 items
+#> Results on the Parliament website:
+#> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001NRBR=NR&FP_001GP_CODE=PN&FP_001GP_CODE=KN
+#> Hits: 2213
+dplyr::glimpse(historical_items)
+#> Rows: 2,213
+#> Columns: 16
+#> $ legis_period     <chr> "KN", "KN", "KN", "KN", "KN", "KN", "KN", "KN", "KN",…
+#> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR",…
+#> $ date             <date> 1920-10-30, 1920-10-16, 1920-10-01, 1920-10-01, 1920…
+#> $ item_type        <chr> "AB-KN", "AB-KN", "UEA-KN", "I-KN", "KNSITZ", "I-KN",…
+#> $ item_number      <chr> "178", "182", "113", "1000", "102", "1034", "180", "1…
+#> $ item_number_type <chr> "178/AB-KN", "182/AB-KN", "113/UEA-KN", "1000 d.B./AU…
+#> $ stage            <chr> "5", "5", "5", "5", "5", "3", "5", "5", "3", "3", "5"…
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/KN/AB-KN/178"…
+#> $ type_doc         <chr> "AB-KN", "AB-KN", "UEA-KN", "AUB-KN", "KNSITZ", "A(E)…
+#> $ type_doc_long    <chr> "Anfragebeantwortung Konst. Nationalversammlung", "An…
+#> $ subject          <chr> "Gewährung von Zuwendungen an die katholischen Geistl…
+#> $ topics           <list> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+#> $ keywords         <list> NA, NA, "Amnestie", NA, NA, "Notstand", NA, NA, "Kra…
+#> $ eurovoc          <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+#> $ persons          <list> "64227", "208", <"20", "487", "1161">, "1262", "", "…
+#> $ parl_group       <list> "", "SdP", <"CSP", "GdP", "SdP">, "SdP", "", "CSP", …
+
 # Combine multiple search criteria
 result <- get_items(
   topic = "Gesundheit und Ernährung",
@@ -1174,7 +1210,7 @@ dplyr::glimpse(result)
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR",…
 #> $ date             <date> 2024-05-15, 2024-04-17, 2024-03-20, 2024-01-31, 2023…
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I", "I", "I", "I", "I", "I"…
-#> $ item_number      <chr> "2551", "2530", "2503", "2433", "2310", "2303", "2271…
+#> $ item_number      <chr> "2551", "2530", "2503", "2433", "2303", "2310", "2271…
 #> $ item_number_type <chr> "2551 d.B.", "2530 d.B.", "2503 d.B.", "2433 und Zu 2…
 #> $ stage            <chr> "5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5"…
 #> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2551"…
