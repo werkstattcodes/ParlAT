@@ -32,6 +32,83 @@ test_that(".parlat_empty_tibble defaults untyped columns to character", {
   expect_type(result$b, "character")
 })
 
+# --- .parlat_match_tibble_prototype -----------------------------------------
+
+test_that(".parlat_match_tibble_prototype matches columns and types", {
+  prototype <- .parlat_empty_tibble(
+    c(
+      "date", "fetched_at", "tags", "active",
+      "count", "value", "label", "missing"
+    ),
+    date_cols = "date",
+    datetime_cols = "fetched_at",
+    list_cols = "tags",
+    lgl_cols = "active",
+    int_cols = "count",
+    num_cols = "value"
+  )
+  input <- tibble::tibble(
+    extra = "drop me",
+    label = factor("example"),
+    value = 2L,
+    count = 7,
+    active = 1L,
+    tags = list(c("a", "b")),
+    fetched_at = 0,
+    date = "2026-09-01"
+  )
+
+  result <- .parlat_match_tibble_prototype(input, prototype)
+
+  expect_identical(names(result), names(prototype))
+  expect_identical(
+    unname(vapply(result, \(x) class(x)[[1]], character(1))),
+    c(
+      "Date", "POSIXct", "list", "logical",
+      "integer", "numeric", "character", "character"
+    )
+  )
+  expect_identical(result$date, as.Date("2026-09-01"))
+  expect_identical(as.numeric(result$fetched_at), 0)
+  expect_identical(attr(result$fetched_at, "tzone"), "UTC")
+  expect_identical(result$tags, list(c("a", "b")))
+  expect_identical(result$active, TRUE)
+  expect_identical(result$count, 7L)
+  expect_identical(result$value, 2)
+  expect_identical(result$label, "example")
+  expect_identical(result$missing, NA_character_)
+})
+
+test_that(".parlat_match_tibble_prototype preserves types for zero rows", {
+  prototype <- .parlat_empty_tibble(
+    c("date", "fetched_at", "tags", "active", "count", "value", "label"),
+    date_cols = "date",
+    datetime_cols = "fetched_at",
+    list_cols = "tags",
+    lgl_cols = "active",
+    int_cols = "count",
+    num_cols = "value"
+  )
+  input <- tibble::tibble(
+    extra = character(),
+    fetched_at = numeric(),
+    label = character()
+  )
+
+  result <- .parlat_match_tibble_prototype(input, prototype)
+
+  expect_identical(nrow(result), 0L)
+  expect_identical(names(result), names(prototype))
+  expect_identical(
+    unname(vapply(result, \(x) class(x)[[1]], character(1))),
+    c(
+      "Date", "POSIXct", "list", "logical",
+      "integer", "numeric", "character"
+    )
+  )
+  expect_identical(attr(result$fetched_at, "tzone"), "UTC")
+})
+
 # --- .parlat_apply_renaming --------------------------------------------------
 
 test_that(".parlat_apply_renaming renames mapped columns and ignores missing", {

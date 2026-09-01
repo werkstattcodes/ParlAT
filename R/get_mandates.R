@@ -1,12 +1,13 @@
-#' Zero-row tibble matching the stable core columns of get_mandates()
+#' Zero-row tibble matching the stable columns of get_mandates()
 #' @noRd
 .empty_mandates_tibble <- function() {
   .parlat_empty_tibble(
     c(
       "pad_intern", "name", "position_text", "position_code",
       "position_name", "position_date_start", "position_date_end",
-      "position_active", "parl_group", "electoral_district_region_code",
-      "electoral_district_region", "legis_period", "url_biography"
+      "position_active", "parl_group", "party", "party_name", "substitute",
+      "electoral_district_region_code", "electoral_district_region",
+      "legis_period", "url_biography"
     ),
     date_cols = c("position_date_start", "position_date_end"),
     lgl_cols = "position_active",
@@ -105,6 +106,9 @@ get_mandates_single <- function(pad_intern) {
 #' - `electoral_district_region`: Electoral district region name
 #' - `legis_period`: Legislative period(s) (list-column)
 #' - `url_biography`: URL to the person's biography page
+#'
+#'   When no mandates match, a zero-row tibble with the same columns and
+#'   column types is returned.
 #' @export
 #' @seealso [get_names()], [get_pad_intern()]
 #' @examples
@@ -242,6 +246,17 @@ get_mandates <- function(
       )
   }
 
+  if (nrow(df_res) == 0) {
+    return(.empty_mandates_tibble())
+  }
+
+  optional_source_columns <- c(
+    "klub", "wahlpartei", "wahlpartei_text", "eingetreten_txt", "wahlkreis"
+  )
+  for (col in setdiff(optional_source_columns, names(df_res))) {
+    df_res[[col]] <- rep(NA_character_, nrow(df_res))
+  }
+
   # return(df_res)
   #sort columns
   df_res <- df_res %>%
@@ -301,6 +316,11 @@ get_mandates <- function(
         .data$pad_intern
       )
     )
+
+  df_res <- .parlat_match_tibble_prototype(
+    df_res,
+    .empty_mandates_tibble()
+  )
 
   # # only institution of interest
   if (!is.null(institution)) {

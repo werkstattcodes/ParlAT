@@ -14,6 +14,26 @@ mock_person_json <- function(title = "Mag. Anna Muster") {
   )
 }
 
+expect_names_schema <- function(result) {
+  expect_s3_class(result, "tbl_df")
+  expect_identical(
+    names(result),
+    c(
+      "index", "pad_intern", "name", "date_start", "date_end",
+      "name_clean", "name_family", "name_given", "note"
+    )
+  )
+  expect_type(result$index, "integer")
+  expect_type(result$pad_intern, "character")
+  expect_type(result$name, "character")
+  expect_s3_class(result$date_start, "Date")
+  expect_s3_class(result$date_end, "Date")
+  expect_type(result$name_clean, "character")
+  expect_type(result$name_family, "character")
+  expect_type(result$name_given, "character")
+  expect_type(result$note, "character")
+}
+
 test_that("get_names returns the current name with cleaned variants", {
   local_mocked_bindings(
     aux_check_pad_intern_exists = function(pad_intern) TRUE,
@@ -22,12 +42,15 @@ test_that("get_names returns the current name with cleaned variants", {
 
   result <- get_names(pad_intern = "145")
 
-  expect_s3_class(result, "tbl_df")
+  expect_names_schema(result)
   expect_equal(nrow(result), 1)
   expect_equal(result$name, "Mag. Anna Muster")
   expect_equal(result$name_clean, "Anna Muster")
   expect_equal(result$name_family, "Muster")
   expect_equal(result$index, 1)
+  expect_identical(result$date_start, as.Date(NA))
+  expect_identical(result$date_end, as.Date(NA))
+  expect_identical(result$note, NA_character_)
 })
 
 test_that("get_names returns an empty tibble for unknown pad_intern", {
@@ -40,12 +63,8 @@ test_that("get_names returns an empty tibble for unknown pad_intern", {
     "No MP registered"
   )
 
-  expect_s3_class(result, "tbl_df")
+  expect_names_schema(result)
   expect_equal(nrow(result), 0)
-  expect_true(all(
-    c("index", "pad_intern", "name", "date_start", "date_end") %in%
-      names(result)
-  ))
 })
 
 test_that("get_names warns and returns an empty tibble when the fetch fails", {
@@ -61,7 +80,7 @@ test_that("get_names warns and returns an empty tibble when the fetch fails", {
     "Could not retrieve data"
   )
 
-  expect_s3_class(result, "tbl_df")
+  expect_names_schema(result)
   expect_equal(nrow(result), 0)
 })
 
@@ -76,7 +95,7 @@ test_that("get_names is vectorized over pad_intern", {
 
   result <- get_names(pad_intern = c("111", "222"))
 
-  expect_s3_class(result, "tbl_df")
+  expect_names_schema(result)
   expect_equal(nrow(result), 2)
   expect_setequal(result$pad_intern, c("111", "222"))
 })

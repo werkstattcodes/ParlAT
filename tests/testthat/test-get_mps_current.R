@@ -34,28 +34,45 @@ test_that("get_mps_current validates the institution argument", {
 })
 
 test_that("get_mps_current returns a typed empty tibble when NR yields nothing", {
+  nr_result <- mock_nr_raw()
   local_mocked_bindings(
-    get_mps_NR_current = function(...) NULL
+    get_mps_NR_current = function(...) nr_result,
+    get_names = function(pad_intern, ...) mock_names_result()
   )
 
-  result <- get_mps_current(institution = "NR", echo = FALSE)
+  populated <- get_mps_current(institution = "NR", echo = FALSE)
+  nr_result <- NULL
+  empty <- get_mps_current(institution = "NR", echo = FALSE)
 
-  expect_s3_class(result, "tbl_df")
-  expect_equal(nrow(result), 0)
-  expect_true(all(
-    c("time_stamp", "pad_intern", "name", "chamber") %in% names(result)
-  ))
+  expect_s3_class(empty, "tbl_df")
+  expect_equal(nrow(empty), 0)
+  expect_identical(names(empty), names(populated))
+  expect_identical(lapply(empty, class), lapply(populated, class))
+  expect_identical(
+    attr(empty$time_stamp, "tzone"),
+    attr(populated$time_stamp, "tzone")
+  )
 })
 
 test_that("get_mps_current returns a typed empty tibble when BR yields nothing", {
+  br_result <- mock_br_raw()
   local_mocked_bindings(
-    get_mps_BR_current = function(...) NULL
+    get_mps_BR_current = function(...) br_result,
+    get_names = function(pad_intern, ...) mock_names_result("Bernd Beispiel")
   )
 
-  result <- get_mps_current(institution = "BR", echo = FALSE)
+  populated <- get_mps_current(institution = "BR", echo = FALSE)
+  br_result <- NULL
+  empty <- get_mps_current(institution = "BR", echo = FALSE)
 
-  expect_s3_class(result, "tbl_df")
-  expect_equal(nrow(result), 0)
+  expect_s3_class(empty, "tbl_df")
+  expect_equal(nrow(empty), 0)
+  expect_identical(names(empty), names(populated))
+  expect_identical(lapply(empty, class), lapply(populated, class))
+  expect_identical(
+    attr(empty$time_stamp, "tzone"),
+    attr(populated$time_stamp, "tzone")
+  )
 })
 
 test_that("get_mps_current parses NR results and fetches names", {

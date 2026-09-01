@@ -26,8 +26,10 @@ get_persons(
 \value{
 A data frame with one row per matching person and the columns \code{pad_intern},
 \code{name}, \code{gender}, \code{position}, and \code{link}. When \code{mandates = TRUE}, the
-returned data frame additionally contains mandate details for each person.
-Returns a zero-row tibble with a message if no persons are found.
+returned data frame additionally contains every column returned by
+\code{\link[=get_mandates]{get_mandates()}}, prefixed with \code{mandates_}. If no persons are found, a
+zero-row tibble with the same columns and column types as the requested
+output mode is returned with a message.
 }
 \description{
 The \code{get_persons} function searches for current and former individuals

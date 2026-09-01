@@ -1,3 +1,131 @@
+.parlat_empty_committee_members <- function() {
+  .parlat_empty_tibble(
+    c("name", "member_type", "party", "member_url")
+  )
+}
+
+.parlat_empty_committees <- function(details_type = NULL) {
+  cols <- c(
+    "legis_period",
+    "committee",
+    "citation",
+    "id_number",
+    "url_committee"
+  )
+
+  if (identical(details_type, "members")) {
+    cols <- c(
+      cols,
+      "date_start",
+      "date_end",
+      "url_pdf",
+      "url_html",
+      "members"
+    )
+  }
+
+  .parlat_empty_tibble(
+    cols,
+    int_cols = "id_number",
+    datetime_cols = intersect(c("date_start", "date_end"), cols),
+    list_cols = intersect("members", cols)
+  )
+}
+
+.parlat_normalize_committee_members <- function(members) {
+  if (is.null(members) || !is.data.frame(members) || nrow(members) == 0) {
+    return(.parlat_empty_committee_members())
+  }
+
+  member_cols <- c("name", "member_type", "party", "member_url")
+  members <- tibble::as_tibble(members)
+
+  for (col in setdiff(member_cols, names(members))) {
+    members[[col]] <- NA_character_
+  }
+
+  members <- members |>
+    dplyr::mutate(dplyr::across(dplyr::all_of(member_cols), as.character)) |>
+    dplyr::select(dplyr::all_of(member_cols))
+
+  if (nrow(members) == 1 && all(is.na(members))) {
+    return(.parlat_empty_committee_members())
+  }
+
+  members
+}
+
+.parlat_normalize_committees <- function(
+  committees,
+  legis_period,
+  details_type = NULL
+) {
+  if (nrow(committees) == 0) {
+    return(.parlat_empty_committees(details_type))
+  }
+
+  if (!"legis_period" %in% names(committees)) {
+    committees$legis_period <- as.character(legis_period)
+  }
+
+  committees <- committees |>
+    dplyr::mutate(
+      legis_period = dplyr::coalesce(
+        as.character(.data$legis_period),
+        as.character(legis_period)
+      ),
+      committee = as.character(.data$committee),
+      citation = as.character(.data$citation),
+      id_number = as.integer(.data$id_number),
+      url_committee = as.character(.data$url_committee)
+    )
+
+  if (!identical(details_type, "members")) {
+    return(committees |>
+      dplyr::select(dplyr::all_of(names(.parlat_empty_committees()))))
+  }
+
+  for (col in c("date_start", "date_end")) {
+    if (!col %in% names(committees)) {
+      committees[[col]] <- rep(as.POSIXct(NA, tz = "UTC"), nrow(committees))
+    } else if (inherits(committees[[col]], "POSIXt")) {
+      committees[[col]] <- as.POSIXct(committees[[col]], tz = "UTC")
+      attr(committees[[col]], "tzone") <- "UTC"
+    } else {
+      committees[[col]] <- lubridate::ymd_hms(
+        committees[[col]],
+        tz = "UTC",
+        quiet = TRUE
+      )
+    }
+  }
+
+  for (col in c("url_pdf", "url_html")) {
+    if (!col %in% names(committees)) {
+      committees[[col]] <- NA_character_
+    } else {
+      committees[[col]] <- as.character(committees[[col]])
+    }
+  }
+
+  if (!"members" %in% names(committees)) {
+    committees$members <- rep(
+      list(.parlat_empty_committee_members()),
+      nrow(committees)
+    )
+  } else {
+    committees$members <- purrr::map(
+      committees$members,
+      .parlat_normalize_committee_members
+    )
+  }
+
+  committees |>
+    dplyr::select(
+      dplyr::all_of(names(.parlat_empty_committees("members")))
+    )
+}
+
 #' Retrieve Committee Data from the Austrian Parliament API
 #'
 #' `r lifecycle::badge("experimental")`
@@ -42,7 +170,9 @@
 #'   - `party`: Party affiliation (character, may be NA)
 #'   - `member_url`: URL to member's profile page (character)
 #'
-#' Returns a zero-row tibble with the documented columns if no results are found.
+#' If no results are found, the zero-row tibble has exactly the same columns,
+#' order, and column types as a non-empty result for the requested
+#' `details_type`.
 #'
 #' @examples
 #' \donttest{
@@ -134,10 +264,7 @@ get_committees <- function(
 
   if (as.numeric(as.roman(legis_period)) < 20) {
     cli::cli_warn("Data only available from legislative period 20 onwards.")
-    return(.parlat_empty_tibble(
-      c("committee", "url_committee", "id_number", "citation"),
-      int_cols = "id_number"
-    ))
+    return(.parlat_empty_committees(details_type))
   }
 
   #PERMANENT
@@ -198,10 +325,7 @@ get_committees <- function(
   # Handle empty results
   if (length(df_res) == 0) {
     cli::cli_inform("No results found for the provided search criteria.")
-    return(.parlat_empty_tibble(
-      c("committee", "url_committee", "id_number", "citation"),
-      int_cols = "id_number"
-    ))
+    return(.parlat_empty_committees(details_type))
   }
 
   colnames(df_res) <- vec_headings
@@ -242,6 +366,18 @@ get_committees <- function(
       ))
   }
 
+  if (nrow(df_res) == 0) {
+    if (isTRUE(echo)) {
+      .parlat_echo_request(
+        body_params,
+        url_base = "https://www.parlament.gv.at/recherchieren/ausschuesse/index.html",
+        param_prefix = "WFP_009"
+      )
+    }
+
+    return(.parlat_empty_committees(details_type))
+  }
+
   #GET DETAILS
   if (!is.null(details_type)) {
     df_res <- df_res %>%
@@ -255,30 +391,20 @@ get_committees <- function(
           .progress = TRUE
         )
       ) %>%
-      tidyr::unnest("details")
+      tidyr::unnest("details", keep_empty = TRUE)
 
-    # Check if the details_type column exists before unnesting
-    if (details_type %in% colnames(df_res)) {
-      df_res <- df_res %>%
-        tidyr::unnest({{ details_type }})
-    } else {
+    if (!details_type %in% colnames(df_res)) {
       cli::cli_warn(
         "Column {.val {details_type}} not found in committee details. Available columns: {.val {colnames(df_res)}}."
       )
     }
   }
 
-  if (is.null(details_type)) {
-    df_res <- df_res %>%
-      dplyr::mutate(legis_period = legis_period, .before = 1) %>%
-      dplyr::select(
-        "legis_period",
-        "committee",
-        "citation",
-        "id_number",
-        "url_committee"
-      )
-  }
+  df_res <- .parlat_normalize_committees(
+    df_res,
+    legis_period = legis_period,
+    details_type = details_type
+  )
 
   # ECHO
   if (isTRUE(echo)) {
@@ -480,12 +606,7 @@ get_committee_details <- function(url_committee, details_type) {
       dplyr::mutate(
         members = purrr::map(.data$url_html, \(x) {
           if (all(is.na(x))) {
-            tibble::tibble(
-              name = NA_character_,
-              member_type = NA_character_,
-              party = NA_character_,
-              member_url = NA_character_
-            )
+            .parlat_empty_committee_members()
           } else {
             safe_get_committee_members(x)
           }
@@ -1229,4 +1350,3 @@ fn_extract_committees_type3 <- function(url) {
 
   return(result)
 }
-

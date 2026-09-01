@@ -169,22 +169,16 @@ Only applicable for National Council (NR). Valid electoral districts are:
 \item{echo}{Logical. Whether to print the URL to the corresponding search results on the Parliament website and the number of results. Default is TRUE.}
 }
 \value{
-A data frame containing the list of current members of parliament that match the search criteria with the following columns:
-\itemize{
-\item \code{time_stamp}: Timestamp of when the data was retrieved
-\item \code{pad_intern}: Person's unique identification number
-\item \code{name}: Full name of the MP
-\item \code{gender}: Gender of the MP
-\item \code{parl_group}: Full name of the parliamentary group
-\item \code{parl_group_code}: Code/abbreviation of the parliamentary group
-\item \code{party_name}: Full name of the political party
-\item \code{party_code}: Code/abbreviation of the political party
-\item \code{state}: Federal state (Bundesland)
-\item \code{electoral_district_region_code}: Electoral district region code
-\item \code{chamber}: Chamber of Parliament ("NR" or "BR")
-}
-
-Returns a zero-row tibble with the documented columns if no results are found.
+A data frame containing the current members matching the search
+criteria. The columns depend on \code{institution}. National Council (\code{"NR"})
+results contain \code{time_stamp}, \code{name}, \code{pad_intern}, \code{party}, \code{parl_group},
+\code{electoral_district_region_code}, \code{electoral_district_region}, \code{state},
+\code{link}, and \code{chamber}. Federal Council (\code{"BR"}) results contain
+\code{time_stamp}, \code{name}, \code{pad_intern}, \code{state},
+\code{electoral_district_region_code}, \code{parl_group}, \code{parl_group_code},
+\code{party_name}, \code{party_code}, and \code{chamber}. If no results are found, a
+zero-row tibble with the columns and column types for the requested
+institution is returned.
 }
 \description{
 Fetches current members of parliament based on provided search criteria. Depending on the

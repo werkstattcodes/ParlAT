@@ -40,6 +40,10 @@
 #' - `mandate_detail`: Details on mandates in Parliament at the queried period of time (not all mandates). To obtain all mandates, use `get_mandates()`.
 #' - `electoral_district`: Electoral district
 #'
+#' If no MPs match, the zero-row data frame has the same columns and column
+#' types as a non-empty result for the requested mode. In particular, `date`
+#' remains a `Date` column when the `date` argument is supplied.
+#'
 #' @details
 #'
 #' ## search_string
@@ -746,7 +750,11 @@ get_mps <- function(
       if (!is.null(date)) "date",
       "legis_period", "pad_intern", "link", "name", "gender", "mp_details"
     )
-    return(.parlat_empty_tibble(empty_cols, list_cols = "mp_details"))
+    return(.parlat_empty_tibble(
+      empty_cols,
+      date_cols = if (!is.null(date)) "date" else character(),
+      list_cols = "mp_details"
+    ))
   }
 
   # UNNEST DATA

@@ -46,6 +46,9 @@ aux_clean_person_name <- function(name) {
 #' - `name_family`: Family name/surname
 #' - `name_given`: Given name/first name
 #' - `note`: Raw value from the source data
+#'
+#' Zero-row results and results without previous-name records retain these
+#' columns in the documented order and with the same column types.
 #' @seealso [get_pad_intern()] to retrieve an MP's `pad_intern`
 #' @export
 #'
@@ -263,8 +266,10 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
       dplyr::mutate(index = 1)
   }
 
-  df_names <- df_names %>%
-    tibble::as_tibble()
+  df_names <- .parlat_match_tibble_prototype(
+    df_names,
+    .empty_names_tibble()
+  )
 
   if (!is.null(latest) && latest == TRUE) {
     df_names %>%

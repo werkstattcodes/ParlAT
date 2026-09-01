@@ -77,6 +77,29 @@ mock_mandates_multi <- function() {
   )
 }
 
+mandate_columns <- c(
+  "pad_intern", "name", "position_text", "position_code", "position_name",
+  "position_date_start", "position_date_end", "position_active", "parl_group",
+  "party", "party_name", "substitute", "electoral_district_region_code",
+  "electoral_district_region", "legis_period", "url_biography"
+)
+
+mandate_classes <- stats::setNames(
+  c(
+    rep("character", 5), "Date", "Date", "logical",
+    rep("character", 6), "list", "character"
+  ),
+  mandate_columns
+)
+
+expect_mandate_schema <- function(result) {
+  expect_identical(names(result), mandate_columns)
+  expect_identical(
+    vapply(result, \(x) class(x)[[1]], character(1)),
+    mandate_classes
+  )
+}
+
 
 # --- Input validation tests (no API needed) --------------------------------
 
@@ -120,32 +143,29 @@ test_that("get_mandates returns expected output columns", {
   result <- get_mandates(pad_intern = "145")
 
   expect_s3_class(result, "data.frame")
+  expect_mandate_schema(result)
+})
 
-  expected_cols <- c(
-    "pad_intern",
-    "name",
-    "position_text",
-    "position_code",
-    "position_name",
-    "position_date_start",
-    "position_date_end",
-    "position_active",
-    "parl_group",
-    "party",
-    "party_name",
-    "electoral_district_region_code",
-    "electoral_district_region",
-    "legis_period",
-    "url_biography"
+test_that("get_mandates fills missing optional source columns", {
+  local_mocked_bindings(
+    get_mandates_single = function(pad_intern) {
+      mock_mandate_row() |>
+        dplyr::select(
+          -"klub", -"wahlpartei", -"wahlpartei_text",
+          -"eingetreten_txt", -"wahlkreis"
+        )
+    }
   )
 
-  expect_true(
-    all(expected_cols %in% names(result)),
-    info = paste(
-      "Missing columns:",
-      paste(setdiff(expected_cols, names(result)), collapse = ", ")
-    )
-  )
+  result <- get_mandates(pad_intern = "145")
+
+  expect_mandate_schema(result)
+  expect_identical(result$parl_group, NA_character_)
+  expect_identical(result$party, NA_character_)
+  expect_identical(result$party_name, NA_character_)
+  expect_identical(result$substitute, NA_character_)
+  expect_identical(result$electoral_district_region_code, NA_character_)
+  expect_identical(result$electoral_district_region, NA_character_)
 })
 
 test_that("get_mandates renames columns correctly", {
@@ -244,10 +264,7 @@ test_that("get_mandates returns an empty tibble when no data found", {
 
   expect_s3_class(result, "tbl_df")
   expect_equal(nrow(result), 0)
-  expect_true(all(
-    c("pad_intern", "name", "position_code", "position_name") %in%
-      names(result)
-  ))
+  expect_mandate_schema(result)
 })
 
 
@@ -295,6 +312,7 @@ test_that("get_mandates returns an empty tibble when institution filter yields n
 
   expect_s3_class(result, "tbl_df")
   expect_equal(nrow(result), 0)
+  expect_mandate_schema(result)
 })
 
 test_that("get_mandates with institution = NULL returns all mandates", {
@@ -352,12 +370,12 @@ test_that("get_mandates date filter excludes expired mandates", {
     )
   )
 
-  # Date after mandate ended: returns 0-row data frame
-  # (date filter does not convert empty results to NULL, unlike institution filter)
+  # Date after mandate ended: returns a schema-stable zero-row tibble.
   result <- get_mandates(pad_intern = "145", date = "01.01.2020")
 
-  expect_s3_class(result, "data.frame")
+  expect_s3_class(result, "tbl_df")
   expect_equal(nrow(result), 0)
+  expect_mandate_schema(result)
 })
 
 
@@ -390,6 +408,7 @@ test_that("get_mandates returns an empty tibble when name lookup yields no resul
   )
   expect_s3_class(result, "tbl_df")
   expect_equal(nrow(result), 0)
+  expect_mandate_schema(result)
 })
 
 

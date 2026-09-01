@@ -1,3 +1,20 @@
+#' Zero-row tibble matching a get_persons() output mode
+#' @noRd
+.empty_persons_tibble <- function(mandates = FALSE) {
+  persons <- .parlat_empty_tibble(
+    c("pad_intern", "name", "gender", "position", "link")
+  )
+
+  if (!isTRUE(mandates)) {
+    return(persons)
+  }
+
+  mandate_columns <- .empty_mandates_tibble()
+  names(mandate_columns) <- paste0("mandates_", names(mandate_columns))
+
+  dplyr::bind_cols(persons, mandate_columns)
+}
+
 #' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
@@ -152,8 +169,10 @@ get_persons_single <- function(
 #'
 #' @return A data frame with one row per matching person and the columns `pad_intern`,
 #'   `name`, `gender`, `position`, and `link`. When `mandates = TRUE`, the
-#'   returned data frame additionally contains mandate details for each person.
-#'   Returns a zero-row tibble with a message if no persons are found.
+#'   returned data frame additionally contains every column returned by
+#'   [get_mandates()], prefixed with `mandates_`. If no persons are found, a
+#'   zero-row tibble with the same columns and column types as the requested
+#'   output mode is returned with a message.
 #'
 #' @export
 #'
@@ -195,9 +214,7 @@ get_persons <- function(
 
   if (nrow(df_persons) == 0) {
     cli::cli_inform("No person found for the given search criteria.")
-    return(.parlat_empty_tibble(
-      c("pad_intern", "name", "gender", "position", "link")
-    ))
+    return(.empty_persons_tibble(mandates = mandates))
   }
 
   if (isTRUE(mandates)) {
@@ -212,5 +229,8 @@ get_persons <- function(
       tidyr::unnest_wider(mandates, names_sep = "_")
   }
 
-  return(df_persons)
+  .parlat_match_tibble_prototype(
+    df_persons,
+    .empty_persons_tibble(mandates = mandates)
+  )
 }

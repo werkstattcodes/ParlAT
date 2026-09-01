@@ -151,20 +151,16 @@
 #'   }
 #' @param echo Logical. Whether to print the URL to the corresponding search results on the Parliament website and the number of results. Default is TRUE.
 #'
-#' @return A data frame containing the list of current members of parliament that match the search criteria with the following columns:
-#' - `time_stamp`: Timestamp of when the data was retrieved
-#' - `pad_intern`: Person's unique identification number
-#' - `name`: Full name of the MP
-#' - `gender`: Gender of the MP
-#' - `parl_group`: Full name of the parliamentary group
-#' - `parl_group_code`: Code/abbreviation of the parliamentary group
-#' - `party_name`: Full name of the political party
-#' - `party_code`: Code/abbreviation of the political party
-#' - `state`: Federal state (Bundesland)
-#' - `electoral_district_region_code`: Electoral district region code
-#' - `chamber`: Chamber of Parliament ("NR" or "BR")
-#'
-#' Returns a zero-row tibble with the documented columns if no results are found.
+#' @return A data frame containing the current members matching the search
+#'   criteria. The columns depend on `institution`. National Council (`"NR"`)
+#'   results contain `time_stamp`, `name`, `pad_intern`, `party`, `parl_group`,
+#'   `electoral_district_region_code`, `electoral_district_region`, `state`,
+#'   `link`, and `chamber`. Federal Council (`"BR"`) results contain
+#'   `time_stamp`, `name`, `pad_intern`, `state`,
+#'   `electoral_district_region_code`, `parl_group`, `parl_group_code`,
+#'   `party_name`, `party_code`, and `chamber`. If no results are found, a
+#'   zero-row tibble with the columns and column types for the requested
+#'   institution is returned.
 #'
 #' @examples
 #' \donttest{
@@ -221,7 +217,7 @@ get_mps_current <- function(
         )
 
         if (is.null(df_NR) || nrow(df_NR) == 0) {
-            return(.empty_mps_current_tibble())
+            return(.empty_mps_current_tibble(institution))
         }
 
         df_NR <- df_NR %>%
@@ -307,7 +303,7 @@ get_mps_current <- function(
         )
 
         if (is.null(df_res) || nrow(df_res) == 0) {
-            return(.empty_mps_current_tibble())
+            return(.empty_mps_current_tibble(institution))
         }
 
         #add/drop/rename columns
@@ -1273,15 +1269,29 @@ aux_extract_name <- function(string) {
 }
 
 
-#' Zero-row tibble matching the documented columns of get_mps_current()
+#' Zero-row tibble matching an output variant of get_mps_current()
 #' @noRd
-.empty_mps_current_tibble <- function() {
-    .parlat_empty_tibble(
-        c(
-            "time_stamp", "pad_intern", "name", "gender", "parl_group",
-            "parl_group_code", "party_name", "party_code", "state",
-            "electoral_district_region_code", "chamber"
+.empty_mps_current_tibble <- function(institution) {
+    cols <- switch(
+        institution,
+        NR = c(
+            "time_stamp", "name", "pad_intern", "party", "parl_group",
+            "electoral_district_region_code", "electoral_district_region",
+            "state", "link", "chamber"
         ),
+        BR = c(
+            "time_stamp", "name", "pad_intern", "state",
+            "electoral_district_region_code", "parl_group",
+            "parl_group_code", "party_name", "party_code", "chamber"
+        )
+    )
+
+    result <- .parlat_empty_tibble(
+        cols,
         datetime_cols = "time_stamp"
     )
+
+    # Sys.time(), used by successful results, has no explicit tzone attribute.
+    attr(result$time_stamp, "tzone") <- NULL
+    result
 }

@@ -171,3 +171,56 @@
 
   tibble::as_tibble(proto)
 }
+
+#' Match a data frame to a typed zero-row prototype
+#'
+#' Adds absent columns, casts present columns to the prototype types, removes
+#' extra columns, and orders the result to match `prototype`.
+#'
+#' @param df A data frame.
+#' @param prototype A typed zero-row data frame.
+#' @return A tibble matching `prototype`.
+#' @keywords internal
+#' @noRd
+.parlat_match_tibble_prototype <- function(df, prototype) {
+  n <- nrow(df)
+
+  for (col in names(prototype)) {
+    column_prototype <- prototype[[col]]
+
+    if (!col %in% names(df)) {
+      df[[col]] <- column_prototype[rep(NA_integer_, n)]
+    } else if (inherits(column_prototype, "Date")) {
+      df[[col]] <- as.Date(df[[col]])
+    } else if (inherits(column_prototype, "POSIXct")) {
+      timezone <- attr(column_prototype, "tzone")
+      if (is.null(timezone) || length(timezone) == 0L) {
+        timezone <- "UTC"
+      }
+
+      if (is.numeric(df[[col]]) && !inherits(df[[col]], "POSIXct")) {
+        df[[col]] <- as.POSIXct(
+          df[[col]],
+          origin = "1970-01-01",
+          tz = timezone
+        )
+      } else {
+        df[[col]] <- as.POSIXct(df[[col]], tz = timezone)
+      }
+    } else if (is.list(column_prototype)) {
+      df[[col]] <- as.list(df[[col]])
+    } else if (is.logical(column_prototype)) {
+      df[[col]] <- as.logical(df[[col]])
+    } else if (is.integer(column_prototype)) {
+      df[[col]] <- as.integer(df[[col]])
+    } else if (is.numeric(column_prototype)) {
+      df[[col]] <- as.numeric(df[[col]])
+    } else {
+      df[[col]] <- as.character(df[[col]])
+    }
+  }
+
+  df |>
+    tibble::as_tibble() |>
+    dplyr::select(dplyr::all_of(names(prototype)))
+}

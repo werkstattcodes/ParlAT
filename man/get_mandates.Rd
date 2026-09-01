@@ -37,6 +37,9 @@ A dataframe with the following columns:
 \item \code{electoral_district_region}: Electoral district region name
 \item \code{legis_period}: Legislative period(s) (list-column)
 \item \code{url_biography}: URL to the person's biography page
+
+When no mandates match, a zero-row tibble with the same columns and
+column types is returned.
 }
 }
 \description{

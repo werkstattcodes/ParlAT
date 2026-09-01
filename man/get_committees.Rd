@@ -65,7 +65,9 @@ A tibble (data frame) with different structures depending on \code{details_type}
 }
 }
 
-Returns a zero-row tibble with the documented columns if no results are found.
+If no results are found, the zero-row tibble has exactly the same columns,
+order, and column types as a non-empty result for the requested
+\code{details_type}.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

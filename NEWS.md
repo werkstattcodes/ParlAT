@@ -20,6 +20,9 @@
 
 ## Bug fixes
 
+- `get_committees()`: zero-row results now retain the exact default or
+  `details_type = "members"` schema, including typed dates and the `members`
+  list-column where requested.
 - `get_events()`: leaving the legislative period and dates unset now returns
   events across all available dates, including a completely unfiltered call.
   The echoed Parliament website URL derives its date and availability filters
@@ -35,9 +38,33 @@
   period. The historical period codes `"PN"` and `"KN"` can now be selected
   explicitly. An unmatched person returns a typed zero-row result instead of
   sending an unfiltered item request.
+- `get_mandates()`: all empty-result paths now return the complete documented
+  schema, including party and substitute columns. Non-empty results use the
+  same column order and types when optional upstream fields are absent.
+- `get_mps()`: empty date-filtered searches now retain the `date` column as a
+  `Date`, matching non-empty results.
+- `get_mps()`: removed ~160 lines of unreachable dead code after an early
+  `return()`.
+- `get_mps_current()`: no longer errors when a search returns no members
+  (previously `NULL` was piped into `mutate()`). Empty National Council and
+  Federal Council searches now retain their respective result schemas.
+- `get_mps_details(detail_type = "activities")`: the `institution` filter
+  silently matched nothing, and the `institution` column leaked the raw
+  German names `"Nationalrat"`/`"Bundesrat"` instead of the documented
+  `"NR"`/`"BR"`. The upstream API changed its `gremium` vocabulary from
+  short codes to full names. Both directions now speak the new vocabulary,
+  so the filter works again and the column values are as documented. Code
+  that worked around this by matching `"Nationalrat"` should match `"NR"`.
+- `get_mps_details(detail_type = "committees")`: no longer errors for MPs
+  with multiple name variants.
+- `get_names()`: no longer returns a bare `NA` when the person-detail fetch
+  fails, which could break its own vectorized path. Empty results and people
+  without previous-name records now retain the complete documented schema.
 - `get_participation()`: the graceful empty-result path was unreachable due
   to an internal assertion that errored first; empty results now return a
   typed zero-row tibble.
+- `get_persons()`: empty searches with `mandates = TRUE`, and matching people
+  without mandates, now retain the complete typed `mandates_*` schema.
 - `get_plenary_meetings()`: when `legis_period = NULL`, the echoed Parliament
   website URL now explicitly selects every available period instead of
   defaulting to the current period.
@@ -46,21 +73,6 @@
   in the PDF-export error message was fixed. All-period searches now echo a
   website URL that explicitly selects every available period instead of
   defaulting to the current period.
-- `get_mps_current()`: no longer errors when a search returns no members
-  (previously `NULL` was piped into `mutate()`).
-- `get_names()`: no longer returns a bare `NA` when the person-detail fetch
-  fails, which could break its own vectorized path.
-- `get_mps_details(detail_type = "committees")`: no longer errors for MPs
-  with multiple name variants.
-- `get_mps()`: removed ~160 lines of unreachable dead code after an early
-  `return()`.
-- `get_mps_details(detail_type = "activities")`: the `institution` filter
-  silently matched nothing, and the `institution` column leaked the raw
-  German names `"Nationalrat"`/`"Bundesrat"` instead of the documented
-  `"NR"`/`"BR"`. The upstream API changed its `gremium` vocabulary from
-  short codes to full names. Both directions now speak the new vocabulary,
-  so the filter works again and the column values are as documented. Code
-  that worked around this by matching `"Nationalrat"` should match `"NR"`.
 
 ## Enhancements
 

@@ -145,6 +145,49 @@ test_that("get_mps accepts gender filter with date parameter", {
   expect_false(identical(result_female, result_male))
 })
 
+test_that("get_mps returns a typed date-mode schema for empty API results", {
+  local_mocked_bindings(
+    get_legis_periods = function(...) {
+      tibble::tibble(legis_period = "XXVII")
+    }
+  )
+  local_mocked_bindings(
+    req_perform = function(req) {
+      httr2::response(
+        headers = list(`content-type` = "application/json"),
+        body = charToRaw('{"rows":[]}')
+      )
+    },
+    .package = "httr2"
+  )
+
+  expect_message(
+    result <- get_mps(
+      date = "01.01.2020",
+      institution = "NR",
+      echo = FALSE
+    ),
+    "No results found"
+  )
+
+  expect_s3_class(result, "tbl_df")
+  expect_identical(
+    names(result),
+    c(
+      "date", "legis_period", "pad_intern", "link", "name", "gender",
+      "mp_details"
+    )
+  )
+  expect_s3_class(result$date, "Date")
+  expect_type(result$legis_period, "character")
+  expect_type(result$pad_intern, "character")
+  expect_type(result$link, "character")
+  expect_type(result$name, "character")
+  expect_type(result$gender, "character")
+  expect_type(result$mp_details, "list")
+  expect_identical(nrow(result), 0L)
+})
+
 test_that("get_mps validates date length", {
   expect_error(
     get_mps(date = c("01.01.2020", "02.01.2020"), institution = "NR"),

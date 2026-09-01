@@ -1,3 +1,46 @@
+committee_result_cols <- function(details_type = NULL) {
+  cols <- c(
+    "legis_period",
+    "committee",
+    "citation",
+    "id_number",
+    "url_committee"
+  )
+
+  if (identical(details_type, "members")) {
+    cols <- c(
+      cols,
+      "date_start",
+      "date_end",
+      "url_pdf",
+      "url_html",
+      "members"
+    )
+  }
+
+  cols
+}
+
+expect_committee_result_schema <- function(result, details_type = NULL) {
+  expect_s3_class(result, "tbl_df")
+  expect_identical(names(result), committee_result_cols(details_type))
+  expect_type(result$legis_period, "character")
+  expect_type(result$committee, "character")
+  expect_type(result$citation, "character")
+  expect_type(result$id_number, "integer")
+  expect_type(result$url_committee, "character")
+
+  if (identical(details_type, "members")) {
+    expect_identical(class(result$date_start), c("POSIXct", "POSIXt"))
+    expect_identical(class(result$date_end), c("POSIXct", "POSIXt"))
+    expect_identical(attr(result$date_start, "tzone"), "UTC")
+    expect_identical(attr(result$date_end, "tzone"), "UTC")
+    expect_type(result$url_pdf, "character")
+    expect_type(result$url_html, "character")
+    expect_type(result$members, "list")
+  }
+}
+
 test_that("get_committees returns valid data structure", {
   x <- run_api_call({
     get_committees(
@@ -7,7 +50,7 @@ test_that("get_committees returns valid data structure", {
   }, fixture_subdir = "get_committees")
 
   # Test basic structure
-  expect_true(is.data.frame(x))
+  expect_committee_result_schema(x)
 
   if (!is.null(x) && nrow(x) > 0) {
     # Test expected columns exist
@@ -83,19 +126,19 @@ test_that("get_committees parameter combination validation works", {
 })
 
 test_that("get_committees warns for legislative periods before 20", {
-  # Test period 19 triggers warning and returns a zero-row tibble
-  expect_warning(
-    result <- get_committees(
-      institution = "NR",
-      legis_period = 19
-    ),
-    "Data only available from legislative period 20 onwards"
-  )
+  for (details_type in list(NULL, "members")) {
+    expect_warning(
+      result <- get_committees(
+        institution = "NR",
+        legis_period = 19,
+        details_type = details_type
+      ),
+      "Data only available from legislative period 20 onwards"
+    )
 
-  # Should return a typed zero-row tibble for periods before 20
-  expect_s3_class(result, "tbl_df")
-  expect_equal(nrow(result), 0)
-  expect_named(result, c("committee", "url_committee", "id_number", "citation"))
+    expect_equal(nrow(result), 0)
+    expect_committee_result_schema(result, details_type)
+  }
 
   # Test with period 1 as well
   expect_warning(
@@ -183,19 +226,63 @@ test_that("get_committees with search_string works", {
 })
 
 test_that("get_committees handles empty results gracefully", {
-  # Try a search that's likely to return no results
-  x <- run_api_call({
-    get_committees(
-      institution = "NR",
-      legis_period = 27,
-      search_string = "ThisShouldNotExistAnywhere12345"
-    )
-  }, fixture_subdir = "get_committees")
+  for (details_type in list(NULL, "members")) {
+    x <- run_api_call({
+      get_committees(
+        institution = "NR",
+        legis_period = 27,
+        search_string = "ThisShouldNotExistAnywhere12345",
+        details_type = details_type
+      )
+    }, fixture_subdir = "get_committees")
 
-  # Should return a typed zero-row tibble for no results
-  expect_s3_class(x, "tbl_df")
-  expect_equal(nrow(x), 0)
-  expect_named(x, c("committee", "url_committee", "id_number", "citation"))
+    expect_equal(nrow(x), 0)
+    expect_committee_result_schema(x, details_type)
+  }
+})
+
+test_that("get_committees preserves schemas after citation filtering", {
+  for (details_type in list(NULL, "members")) {
+    result <- run_api_call({
+      get_committees(
+        institution = "NR",
+        legis_period = 27,
+        citation = "ThisCitationDoesNotExist12345",
+        details_type = details_type
+      )
+    }, fixture_subdir = "get_committees")
+
+    expect_equal(nrow(result), 0)
+    expect_committee_result_schema(result, details_type)
+  }
+})
+
+test_that("get_committees normalizes unavailable member details", {
+  result <- .parlat_normalize_committees(
+    tibble::tibble(
+      committee = "Ausschuss",
+      citation = "1/A",
+      id_number = 1L,
+      url_committee = "https://www.parlament.gv.at/ausschuss/XXVII/A/1",
+      details = list(tibble::tibble())
+    ),
+    legis_period = "XXVII",
+    details_type = "members"
+  )
+
+  expect_committee_result_schema(result, "members")
+  expect_identical(nrow(result), 1L)
+  expect_identical("details" %in% names(result), FALSE)
+  expect_s3_class(result$members[[1]], "tbl_df")
+  expect_identical(
+    names(result$members[[1]]),
+    c("name", "member_type", "party", "member_url")
+  )
+  expect_identical(nrow(result$members[[1]]), 0L)
+  expect_identical(
+    unname(vapply(result$members[[1]], is.character, logical(1))),
+    rep(TRUE, 4)
+  )
 })
 
 test_that("get_committees works with different legis_period types", {
