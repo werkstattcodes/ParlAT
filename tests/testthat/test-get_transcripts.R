@@ -2,6 +2,67 @@
 
 # Basic functionality tests
 
+test_that("transcript echo URL represents a NULL period as all periods", {
+  body_params <- jsonlite::toJSON(list(NBVS = "NRSITZ"))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_transcripts_echo_request(
+      body_params,
+      legis_period = character(),
+      n_results = 6847L,
+      search_string = NULL
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+  query_parts <- strsplit(sub("^[^?]+\\?", "", url_message), "&")[[1]]
+  period_params <- query_parts[grepl("STENO_211GP_CODE=", query_parts)]
+  periods <- sub("STENO_211GP_CODE=", "", period_params, fixed = TRUE)
+  expected_periods <- c(as.character(as.roman(1:28)), "KN", "PN")
+
+  expect_length(url_message, 1L)
+  expect_match(
+    url_message,
+    "https://www.parlament.gv.at/recherchieren/protokolle?",
+    fixed = TRUE
+  )
+  expect_setequal(periods, expected_periods)
+  expect_match(url_message, "STENO_211NBVS=NRSITZ", fixed = TRUE)
+  expect_no_match(url_message, "index.html", fixed = TRUE)
+})
+
+test_that("transcript echo URL preserves an explicit period", {
+  body_params <- jsonlite::toJSON(list(
+    GP_CODE = "XXVII",
+    NBVS = "NRSITZ"
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_transcripts_echo_request(
+      body_params,
+      legis_period = "XXVII",
+      n_results = 1L,
+      search_string = "budget"
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+
+  expect_equal(stringr::str_count(url_message, "STENO_211GP_CODE="), 1L)
+  expect_match(url_message, "STENO_211GP_CODE=XXVII", fixed = TRUE)
+  expect_match(url_message, "search=budget", fixed = TRUE)
+})
+
 test_that("get_transcripts returns data frame with correct number of meetings", {
   # Nationalrat
   result_nr <- run_api_call(

@@ -1,13 +1,40 @@
+#' @noRd
+.get_transcripts_echo_request <- function(
+    body_params,
+    legis_period,
+    n_results,
+    search_string
+) {
+    echo_body_params <- .parlat_echo_body_all_periods(
+        body_params,
+        legis_period,
+        first_period = 1L
+    )
+
+    .parlat_echo_request(
+        echo_body_params,
+        url_base = "https://www.parlament.gv.at/recherchieren/protokolle",
+        param_prefix = "STENO_211",
+        n_results = n_results,
+        search = search_string
+    )
+}
+
 #' Retrieve Transcripts from the Austrian Parliament API
 #'
 #' `get_transcripts()` retrieves the transcripts of parliamentary meetings via Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">here</a>).
 #'
 #' @param search_string Optional character string to filter transcripts by keywords. Defaults to NULL.
-#' @param legis_period Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric (10), character ("10") or roman numerals in character format ("X") as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
+#' @param legis_period Legislative period(s). `NULL` (the default) queries all
+#'   available legislative periods. Accepts numeric (`10`), character (`"10"`),
+#'   or Roman numerals (`"X"`), as well as `"KN"` (Konstituierende
+#'   Nationalversammlung) and `"PN"` (Provisorische Nationalversammlung).
 #' @param meeting_type Optional character string specifying the type(s) of meeting. Permissible values are "NRSITZ" (National Council - Plenary meetings) and "BRSITZ" (Federal Council - Plenary meetings). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.
 #' @param date_start Optional start date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
 #' @param date_end Optional end date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
-#' @param echo Logical. If TRUE, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results. Default is NULL.
+#' @param echo Logical. If `TRUE`, the function prints the URL to the
+#'   corresponding search results on the website of the Austrian Parliament
+#'   and the number of results. Default is `TRUE`.
 #' @param export Optional character string to enable PDF downloads. Set to "pdf" to download transcript PDFs. Defaults to NULL (no export).
 #' @param export_destination Character string specifying the directory path where PDFs will be saved. Defaults to "transcripts" (a folder in the current working directory). If the folder does not exist, the user will be prompted to create it in interactive meetings.
 #' @return A tibble containing transcript data with the following columns:
@@ -35,6 +62,10 @@
 #' Queries returning more than 10,000 results will raise
 #' an error; in these cases it is recommended to cut your query into
 #' multiple steps (e.g. by using the purrr package).
+#'
+#' If `legis_period = NULL` and `echo = TRUE`, the website URL explicitly
+#' selects every available period. This reproduces the unrestricted API search
+#' instead of using the website's current-period default.
 #'
 #' ## PDF Export
 #' When `export = "pdf"`, the function additionaly downloads the PDF files of the transcripts.
@@ -290,12 +321,11 @@ get_transcripts <- function(
 
     # ECHO - print request details if requested
     if (echo == TRUE) {
-        .parlat_echo_request(
+        .get_transcripts_echo_request(
             body_params,
-            url_base = "https://www.parlament.gv.at/recherchieren/protokolle/index.html",
-            param_prefix = "STENO_211",
+            legis_period = legis_period_input,
             n_results = nrow(df_res),
-            search = search_string
+            search_string = search_string
         )
     }
 

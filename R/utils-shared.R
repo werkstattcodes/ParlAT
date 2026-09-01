@@ -73,6 +73,57 @@
   invisible(NULL)
 }
 
+#' Return all legislative-period codes used by Parliament search pages
+#'
+#' The website requires explicit period parameters to override its current-
+#' period default. `last_period` must be updated when a new legislative period
+#' starts.
+#'
+#' @param first_period First numbered legislative period to include.
+#' @param last_period Last numbered legislative period to include.
+#' @return Character vector of Roman numerals followed by `"KN"` and `"PN"`.
+#' @keywords internal
+#' @noRd
+.parlat_all_legis_period_codes <- function(
+  first_period = 1L,
+  last_period = 28L
+) {
+  c(
+    as.character(as.roman(seq.int(first_period, last_period))),
+    "KN",
+    "PN"
+  )
+}
+
+#' Add explicit all-period values to an echo-only request body
+#'
+#' API requests interpret an omitted period as unrestricted, but some website
+#' search pages restore the current legislative period when their URL omits the
+#' same parameter. This helper changes only the body used to construct the
+#' website URL.
+#'
+#' @param body_params JSON request body.
+#' @param legis_period Normalized period input; an empty value means all.
+#' @param first_period First numbered period supported by the search page.
+#' @param period_param Period parameter name in the request body.
+#' @return JSON request body suitable for `.parlat_echo_request()`.
+#' @keywords internal
+#' @noRd
+.parlat_echo_body_all_periods <- function(
+  body_params,
+  legis_period,
+  first_period = 1L,
+  period_param = "GP_CODE"
+) {
+  if (length(legis_period) > 0L) {
+    return(body_params)
+  }
+
+  echo_params <- jsonlite::fromJSON(body_params)
+  echo_params[[period_param]] <- .parlat_all_legis_period_codes(first_period)
+  jsonlite::toJSON(echo_params)
+}
+
 #' Create a zero-row tibble with the given column names
 #'
 #' Used by the `get_*()` functions to return type-stable empty results when

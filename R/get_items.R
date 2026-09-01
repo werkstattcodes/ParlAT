@@ -37,18 +37,14 @@
 
 #' @noRd
 .get_items_echo_request <- function(body_params, legis_period, n_results) {
-  echo_params <- jsonlite::fromJSON(body_params)
-
-  if (length(legis_period) == 0L) {
-    echo_params$GP_CODE <- c(
-      as.character(as.roman(5:28)),
-      "KN",
-      "PN"
-    )
-  }
+  echo_body_params <- .parlat_echo_body_all_periods(
+    body_params,
+    legis_period,
+    first_period = 5L
+  )
 
   .parlat_echo_request(
-    jsonlite::toJSON(echo_params),
+    echo_body_params,
     url_base = "https://www.parlament.gv.at/recherchieren/gegenstaende",
     param_prefix = "FP_001",
     n_results = n_results

@@ -292,6 +292,52 @@ test_that("get_plenary_meetings handles NULL legislative period", {
   }
 })
 
+test_that("plenary website URL represents a NULL period as all periods", {
+  expected_periods <- c(as.character(as.roman(1:28)), "KN", "PN")
+
+  purrr::walk(c("NR", "BR", "BV"), \(institution) {
+    url <- .plenary_meetings_website_url(
+      institution = institution,
+      meeting_and_activities_input = if (institution == "BV") NULL else "SI",
+      legis_period_input = NULL,
+      tagungsart_input = NULL,
+      sitzungsart_input = NULL
+    )
+    query_parts <- strsplit(sub("^[^?]+\\?", "", url), "&")[[1]]
+    period_params <- query_parts[grepl("PLENAR_701GP_CODE=", query_parts)]
+    periods <- sub("PLENAR_701GP_CODE=", "", period_params, fixed = TRUE)
+
+    expect_match(
+      url,
+      "https://www.parlament.gv.at/recherchieren/plenarsitzungen?",
+      fixed = TRUE
+    )
+    expect_setequal(periods, expected_periods)
+    expect_match(
+      url,
+      paste0("PLENAR_701GREMIUM=", institution),
+      fixed = TRUE
+    )
+  })
+})
+
+test_that("plenary website URL preserves explicit periods", {
+  url <- .plenary_meetings_website_url(
+    institution = "NR",
+    meeting_and_activities_input = "SI",
+    legis_period_input = c("XXVII", "XXVIII"),
+    tagungsart_input = "N",
+    sitzungsart_input = "S"
+  )
+  query_parts <- strsplit(sub("^[^?]+\\?", "", url), "&")[[1]]
+  period_params <- query_parts[grepl("PLENAR_701GP_CODE=", query_parts)]
+  periods <- sub("PLENAR_701GP_CODE=", "", period_params, fixed = TRUE)
+
+  expect_equal(periods, c("XXVII", "XXVIII"))
+  expect_match(url, "PLENAR_701TAGUNGSART=N", fixed = TRUE)
+  expect_match(url, "PLENAR_701SITZUNGSART=S", fixed = TRUE)
+})
+
 test_that("get_plenary_meetings validates legis_period >= 20", {
   expect_error(
     get_plenary_meetings(

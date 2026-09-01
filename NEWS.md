@@ -31,9 +31,14 @@
 - `get_participation()`: the graceful empty-result path was unreachable due
   to an internal assertion that errored first; empty results now return a
   typed zero-row tibble.
+- `get_plenary_meetings()`: when `legis_period = NULL`, the echoed Parliament
+  website URL now explicitly selects every available period instead of
+  defaulting to the current period.
 - `get_transcripts()`: the row-limit error message incorrectly said the limit
   was 10,000 (the actual limit is 100,000); a misplaced `sprintf()` argument
-  in the PDF-export error message was fixed.
+  in the PDF-export error message was fixed. All-period searches now echo a
+  website URL that explicitly selects every available period instead of
+  defaulting to the current period.
 - `get_mps_current()`: no longer errors when a search returns no members
   (previously `NULL` was piped into `mutate()`).
 - `get_names()`: no longer returns a bare `NA` when the person-detail fetch

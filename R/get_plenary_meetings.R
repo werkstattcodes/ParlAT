@@ -1,11 +1,51 @@
+#' @noRd
+.plenary_meetings_website_url <- function(
+    institution,
+    meeting_and_activities_input,
+    legis_period_input,
+    tagungsart_input,
+    sitzungsart_input
+) {
+    website_periods <- if (length(legis_period_input) > 0L) {
+        legis_period_input
+    } else {
+        .parlat_all_legis_period_codes()
+    }
+
+    query_params <- c(
+        paste0("PLENAR_701GREMIUM=", institution),
+        if (!is.null(meeting_and_activities_input)) {
+            paste0("PLENAR_701SIAKT=", meeting_and_activities_input)
+        },
+        paste0("PLENAR_701GP_CODE=", website_periods),
+        if (!is.null(tagungsart_input)) {
+            paste0("PLENAR_701TAGUNGSART=", tagungsart_input)
+        },
+        if (!is.null(sitzungsart_input)) {
+            paste0("PLENAR_701SITZUNGSART=", sitzungsart_input)
+        }
+    )
+
+    paste0(
+        "https://www.parlament.gv.at/recherchieren/plenarsitzungen?",
+        paste(query_params, collapse = "&")
+    )
+}
+
 #' @title Get Data on Plenary Meetings of the Austrian Parliament
 #'
 #' @description
 #' Retrieves information about plenary meetings from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">here</a>).
-#' Data available from 20th legislative period onwards.
+#' Explicit period filters are available from the 20th legislative period
+#' onwards. With `legis_period = NULL`, the API returns all available periods.
 #'
 #' @param institution A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).
-#' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. **Must be NULL when institution is "BV"** (Bundesversammlung does not use legislative periods).
+#' @param legis_period Numeric value or vector specifying the legislative
+#'   period(s). Explicit filters are supported from the 20th period onwards.
+#'   `NULL` retrieves all available periods, including periods before the 20th
+#'   and the historical codes `"KN"` and `"PN"`. It must be `NULL` when
+#'   `institution = "BV"` because the Bundesversammlung does not use
+#'   legislative periods.
 #' @param meeting_and_activities A character string. One of 'meetings' or 'activities'. 'meetings' returns plenary meeting entries; 'activities' returns parliamentary items submitted or acted upon in meetings. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.
 #' @param session_type A character string or vector. Filter by meeting period type. Permissible values: `"N"` (Ordentliche Tagung / Ordinary session), `"A"` (Ausserordentliche Tagung / Extraordinary session). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".
 #' @param meeting_type A character string or vector. Filter by sitting type. Permissible values: `"S"` (Sitzung / Regular sitting), `"SO"` (Sondersitzung / Special sitting), `"ZU"` (Zuweisungssitzung / Assignment sitting), `"N"` (Nachtrag / Addendum). Can be NULL to retrieve all sitting types. Only applicable when `meeting_and_activities = "meetings"`.
@@ -206,29 +246,14 @@ get_plenary_meetings <- function(
 
     body_params <- jsonlite::toJSON(body_list, auto_unbox = TRUE)
 
-    # BUILD REFERER URL — mirrors the website's filter URL pattern so the
-    # server can identify the request as originating from the search page.
-    # Multiple GP_CODE values produce repeated params: GP_CODE=XXVI&GP_CODE=XXVII
-    referer_url <- paste0(
-        "https://www.parlament.gv.at/recherchieren/plenarsitzungen/?",
-        paste(
-            c(
-                paste0("PLENAR_701GREMIUM=", institution),
-                if (!is.null(meeting_and_activities_input)) {
-                    paste0("PLENAR_701SIAKT=", meeting_and_activities_input)
-                },
-                if (!is.null(legis_period_input)) {
-                    paste0("PLENAR_701GP_CODE=", legis_period_input)
-                },
-                if (!is.null(tagungsart_input)) {
-                    paste0("PLENAR_701TAGUNGSART=", tagungsart_input)
-                },
-                if (!is.null(sitzungsart_input)) {
-                    paste0("PLENAR_701SITZUNGSART=", sitzungsart_input)
-                }
-            ),
-            collapse = "&"
-        )
+    # BUILD REFERER URL — explicit all-period values prevent the website from
+    # restoring its current-period default when legis_period is NULL.
+    referer_url <- .plenary_meetings_website_url(
+        institution = institution,
+        meeting_and_activities_input = meeting_and_activities_input,
+        legis_period_input = legis_period_input,
+        tagungsart_input = tagungsart_input,
+        sitzungsart_input = sitzungsart_input
     )
 
     if (isTRUE(echo)) {

@@ -87,3 +87,21 @@ test_that(".parlat_echo_request appends the url_suffix", {
     "selectedtab=PLENUM"
   )
 })
+
+test_that(".parlat_echo_body_all_periods changes only unrestricted echoes", {
+  body_params <- jsonlite::toJSON(list(NBVS = "NRSITZ"))
+  expected_periods <- c(as.character(as.roman(1:28)), "KN", "PN")
+
+  all_period_body <- .parlat_echo_body_all_periods(
+    body_params,
+    legis_period = character()
+  ) |>
+    jsonlite::fromJSON()
+
+  expect_equal(all_period_body$NBVS, "NRSITZ")
+  expect_equal(all_period_body$GP_CODE, expected_periods)
+  expect_identical(
+    .parlat_echo_body_all_periods(body_params, legis_period = "XXVII"),
+    body_params
+  )
+})

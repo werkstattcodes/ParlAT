@@ -18,7 +18,10 @@ get_transcripts(
 \arguments{
 \item{search_string}{Optional character string to filter transcripts by keywords. Defaults to NULL.}
 
-\item{legis_period}{Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric (10), character ("10") or roman numerals in character format ("X") as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).}
+\item{legis_period}{Legislative period(s). \code{NULL} (the default) queries all
+available legislative periods. Accepts numeric (\code{10}), character (\code{"10"}),
+or Roman numerals (\code{"X"}), as well as \code{"KN"} (Konstituierende
+Nationalversammlung) and \code{"PN"} (Provisorische Nationalversammlung).}
 
 \item{meeting_type}{Optional character string specifying the type(s) of meeting. Permissible values are "NRSITZ" (National Council - Plenary meetings) and "BRSITZ" (Federal Council - Plenary meetings). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.}
 
@@ -26,7 +29,9 @@ get_transcripts(
 
 \item{date_end}{Optional end date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").}
 
-\item{echo}{Logical. If TRUE, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results. Default is NULL.}
+\item{echo}{Logical. If \code{TRUE}, the function prints the URL to the
+corresponding search results on the website of the Austrian Parliament
+and the number of results. Default is \code{TRUE}.}
 
 \item{export}{Optional character string to enable PDF downloads. Set to "pdf" to download transcript PDFs. Defaults to NULL (no export).}
 
@@ -67,6 +72,10 @@ is currently only possible via the Parliament's website.
 Queries returning more than 10,000 results will raise
 an error; in these cases it is recommended to cut your query into
 multiple steps (e.g. by using the purrr package).
+
+If \code{legis_period = NULL} and \code{echo = TRUE}, the website URL explicitly
+selects every available period. This reproduces the unrestricted API search
+instead of using the website's current-period default.
 }
 
 \subsection{PDF Export}{
