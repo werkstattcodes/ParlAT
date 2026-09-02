@@ -19,37 +19,37 @@ by the function
 df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> Results on the Parliament website: https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> Hits: 183
-#> ⠙ Fetching MPs' names 5/183 | ETA: 44s
+#> ⠙ Fetching MPs' names 4/183 | ETA: 46s
 #> 
-#> ⠹ Fetching MPs' names 11/183 | ETA: 43s
+#> ⠹ Fetching MPs' names 11/183 | ETA: 44s
 #> 
-#> ⠸ Fetching MPs' names 24/183 | ETA: 39s
+#> ⠸ Fetching MPs' names 23/183 | ETA: 41s
 #> 
-#> ⠼ Fetching MPs' names 36/183 | ETA: 36s
+#> ⠼ Fetching MPs' names 35/183 | ETA: 37s
 #> 
-#> ⠴ Fetching MPs' names 48/183 | ETA: 34s
+#> ⠴ Fetching MPs' names 47/183 | ETA: 34s
 #> 
-#> ⠦ Fetching MPs' names 60/183 | ETA: 31s
+#> ⠦ Fetching MPs' names 58/183 | ETA: 32s
 #> 
-#> ⠧ Fetching MPs' names 72/183 | ETA: 28s
+#> ⠧ Fetching MPs' names 70/183 | ETA: 29s
 #> 
-#> ⠇ Fetching MPs' names 84/183 | ETA: 25s
+#> ⠇ Fetching MPs' names 82/183 | ETA: 26s
 #> 
-#> ⠏ Fetching MPs' names 96/183 | ETA: 22s
+#> ⠏ Fetching MPs' names 94/183 | ETA: 22s
 #> 
-#> ⠋ Fetching MPs' names 108/183 | ETA: 19s
+#> ⠋ Fetching MPs' names 106/183 | ETA: 19s
 #> 
-#> ⠙ Fetching MPs' names 120/183 | ETA: 16s
+#> ⠙ Fetching MPs' names 118/183 | ETA: 16s
 #> 
-#> ⠹ Fetching MPs' names 133/183 | ETA: 12s
+#> ⠹ Fetching MPs' names 130/183 | ETA: 13s
 #> 
-#> ⠸ Fetching MPs' names 145/183 | ETA:  9s
+#> ⠸ Fetching MPs' names 142/183 | ETA: 10s
 #> 
-#> ⠼ Fetching MPs' names 157/183 | ETA:  6s
+#> ⠼ Fetching MPs' names 154/183 | ETA:  7s
 #> 
-#> ⠴ Fetching MPs' names 169/183 | ETA:  3s
+#> ⠴ Fetching MPs' names 165/183 | ETA:  5s
 #> 
-#> ⠦ Fetching MPs' names 181/183 | ETA:  0s
+#> ⠦ Fetching MPs' names 177/183 | ETA:  2s
 #> 
 #> Fetched 183 MPs' names.
 nrow(df_current)
@@ -106,7 +106,7 @@ The example below reveals the changing
 
 #get all MPs of the 22th legislative peiod
 mps_legis22 <- get_mps(legis_period=22, institution="NR")
-#> Results on the Parliament website: https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=20.12.2002%20-%2029.10.2006:%20XXII.%20GP
+#> Results on the Parliament website: https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=20.12.2002%20-%2029.10.2006%3A%20XXII.%20GP
 #> Hits: 209
 
 #unnest details on their mandats
@@ -217,15 +217,14 @@ MPs (top 5 are shown below).
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
 #> ⠙ Fetching mandates 9/183 | ETA: 22s
-#> ⠹ Fetching mandates 13/183 | ETA: 22s
-#> ⠸ Fetching mandates 34/183 | ETA: 21s
-#> ⠼ Fetching mandates 55/183 | ETA: 18s
-#> ⠴ Fetching mandates 76/183 | ETA: 15s
-#> ⠦ Fetching mandates 97/183 | ETA: 12s
-#> ⠧ Fetching mandates 118/183 | ETA:  9s
-#> ⠇ Fetching mandates 140/183 | ETA:  6s
-#> ⠏ Fetching mandates 158/183 | ETA:  4s
-#> ⠋ Fetching mandates 179/183 | ETA:  1s
+#> ⠹ Fetching mandates 26/183 | ETA: 22s
+#> ⠸ Fetching mandates 47/183 | ETA: 19s
+#> ⠼ Fetching mandates 67/183 | ETA: 17s
+#> ⠴ Fetching mandates 88/183 | ETA: 14s
+#> ⠦ Fetching mandates 109/183 | ETA: 11s
+#> ⠧ Fetching mandates 130/183 | ETA:  8s
+#> ⠇ Fetching mandates 150/183 | ETA:  5s
+#> ⠏ Fetching mandates 171/183 | ETA:  2s
 #> Fetched mandates for 183 persons.
 #> 
 

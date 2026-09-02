@@ -569,7 +569,7 @@ Permissible values:
 # Get all MPs from the current legislative period
 mps <- get_mps(institution = "NR", legis_period = "27")
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=23.10.2019%20-%2023.10.2024:%20XXVII.%20GP
+#> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409ATTR_JSON.mandate_detail.gremium_name=Nationalrat&PERSON_409ATTR_JSON.mandate_detail.gp_text_full_short=23.10.2019%20-%2023.10.2024%3A%20XXVII.%20GP
 #> Hits: 213
 dplyr::glimpse(mps)
 #> Rows: 213
@@ -584,7 +584,7 @@ dplyr::glimpse(mps)
 # Get female MPs from a specific party
 female_mps <- get_mps(gender = "female", party = "SPÖ")
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409GESCHL_CODE=W&PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialdemokratische%20Partei%20%C3%96sterreichs%20(SP%C3%96)&PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialistische%20Partei%20%C3%96sterreichs%20(SP%C3%96)
+#> https://www.parlament.gv.at/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarierinnen-ab-1918?PERSON_409GESCHL_CODE=W&PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialdemokratische%20Partei%20%C3%96sterreichs%20%28SP%C3%96%29&PERSON_409ATTR_JSON.mandate_detail.wahlpartei_full_txt=Sozialistische%20Partei%20%C3%96sterreichs%20%28SP%C3%96%29
 #> Hits: 211
 dplyr::glimpse(female_mps)
 #> Rows: 500

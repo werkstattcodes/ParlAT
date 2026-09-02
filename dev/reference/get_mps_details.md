@@ -399,7 +399,7 @@ committees <- get_mps_details(
   legis_period = 27
 )
 #> Results on the Parliament website:
-#> https://www.parlament.gv.at/person/2344?AUSSCHUSS_BIO_250PAD_INTERN=2344&AUSSCHUSS_BIO_250GP_TEXT_FULL=23.10.2019%20-%2023.10.2024:%20XXVII.%20Gesetzgebungsperiode%20des%20NR&selectedtab=AUS
+#> https://www.parlament.gv.at/person/2344?AUSSCHUSS_BIO_250PAD_INTERN=2344&AUSSCHUSS_BIO_250GP_TEXT_FULL=23.10.2019%20-%2023.10.2024%3A%20XXVII.%20Gesetzgebungsperiode%20des%20NR&selectedtab=AUS
 #> Hits: 11
 dplyr::glimpse(committees)
 #> Rows: 11
