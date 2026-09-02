@@ -383,6 +383,7 @@ get_events <- function(
             as.data.frame()
 
         colnames(df_res) <- vec_headings
+        df_res <- tibble::as_tibble(df_res)
     }
 
     if (isTRUE(echo)) {

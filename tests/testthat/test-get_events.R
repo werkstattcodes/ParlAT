@@ -40,7 +40,7 @@ test_that("legis_period mutual exclusivity with dates works", {
   expect_no_error(get_events(legis_period = 28))
 })
 
-test_that("get_events returns correct data structure", {
+test_that("get_events returns a tibble for non-empty results", {
   res <- run_api_call(
     {
       get_events(legis_period = 27, institution = "NR")
@@ -48,8 +48,7 @@ test_that("get_events returns correct data structure", {
     fixture_subdir = "get_events"
   )
 
-  # Check if result is a tibble/data.frame
-  expect_s3_class(res, "data.frame")
+  expect_s3_class(res, "tbl_df")
 })
 
 test_that("get_events handles empty results gracefully", {
@@ -65,15 +64,10 @@ test_that("get_events handles empty results gracefully", {
     fixture_subdir = "get_events"
   )
 
-  # Expecting NULL or 0-row tibble depending on implementation
-  if (is.null(res)) {
-    expect_null(res)
-  } else {
-    expect_equal(nrow(res), 0)
-    # Even if empty, should have correct columns
-    expected_cols <- c("title", "institution", "location")
-    expect_true(all(expected_cols %in% names(res)))
-  }
+  expect_s3_class(res, "tbl_df")
+  expect_identical(nrow(res), 0L)
+  expected_cols <- c("title", "institution", "location")
+  expect_true(all(expected_cols %in% names(res)))
 })
 
 test_that("get_events works with complex parameter combinations", {
@@ -90,7 +84,7 @@ test_that("get_events works with complex parameter combinations", {
     fixture_subdir = "get_events"
   )
 
-  expect_s3_class(res, "data.frame")
+  expect_s3_class(res, "tbl_df")
 
   # If data returned, verify filtering worked
   if (nrow(res) > 0) {
