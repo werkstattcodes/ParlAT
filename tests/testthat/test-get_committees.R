@@ -285,6 +285,348 @@ test_that("get_committees normalizes unavailable member details", {
   )
 })
 
+ordinary_membership_html <- function(
+  include_header_table = FALSE,
+  include_column_header = FALSE
+) {
+  header <- if (include_header_table) {
+    "<table><tr><td>Stand</td><td>3. März 2025</td></tr></table>"
+  } else {
+    ""
+  }
+  column_header <- if (include_column_header) {
+    paste0(
+      "<thead><tr><th>Fraktion</th><th>Mitglieder</th>",
+      "<th>Ersatzmitglieder</th></tr></thead>"
+    )
+  } else {
+    ""
+  }
+
+  paste0(
+    "<html><body>",
+    header,
+    "<table>",
+    column_header,
+    "<tr><td></td><td>Mitglieder:</td><td>Ersatzmitglieder:</td></tr>",
+    "<tr><td>SPÖ :</td>",
+    "<td><a href='/person/1'>Anna Beispiel</a></td>",
+    "<td><a href='/person/2'>Berta Beispiel</a></td></tr>",
+    "<tr><td></td><td>Vorsitzende/r:</td>",
+    "<td><a href='/person/3'>Clara Beispiel</a></td></tr>",
+    "</table></body></html>"
+  )
+}
+
+test_that("committee members parse an ordinary NR table in position one", {
+  fetch_count <- 0L
+  local_mocked_bindings(
+    .parlat_fetch_html = function(url) {
+      fetch_count <<- fetch_count + 1L
+      rvest::read_html(ordinary_membership_html())
+    }
+  )
+
+  result <- get_committee_members("/dokument/XXVIII/A-AS/1/MIT_1.html")
+
+  expect_identical(fetch_count, 1L)
+  expect_identical(
+    names(result),
+    c("name", "member_type", "party", "member_url")
+  )
+  expect_setequal(
+    result$name,
+    c("Anna Beispiel", "Berta Beispiel", "Clara Beispiel")
+  )
+  expect_identical(
+    unname(vapply(result, is.character, logical(1))),
+    rep(TRUE, 4)
+  )
+})
+
+test_that("committee members select a BR membership table after its header", {
+  local_mocked_bindings(
+    .parlat_fetch_html = function(url) {
+      rvest::read_html(ordinary_membership_html(include_header_table = TRUE))
+    }
+  )
+
+  result <- get_committee_members(
+    "/dokument/BR/A-AK-BR/1/00311/MIT_00311.html"
+  )
+
+  expect_identical(nrow(result), 3L)
+  expect_setequal(
+    result$name,
+    c("Anna Beispiel", "Berta Beispiel", "Clara Beispiel")
+  )
+})
+
+test_that("ordinary member names remain aligned with URLs after a th header", {
+  local_mocked_bindings(
+    .parlat_fetch_html = function(url) {
+      rvest::read_html(ordinary_membership_html(include_column_header = TRUE))
+    }
+  )
+
+  result <- get_committee_members("/dokument/XXVIII/A-AS/1/MIT_1.html")
+  urls_by_name <- stats::setNames(result$member_url, result$name)
+
+  expect_identical(urls_by_name[["Anna Beispiel"]], "/person/1")
+  expect_identical(urls_by_name[["Berta Beispiel"]], "/person/2")
+  expect_identical(urls_by_name[["Clara Beispiel"]], "/person/3")
+})
+
+test_that("committee members preserve the two-column Hauptausschuss layout", {
+  html <- paste0(
+    "<html><body><table>",
+    "<tr><td><b>ÖVP</b><a href='/person/1'>Anna Beispiel</a></td>",
+    "<td>Mitglied</td></tr>",
+    "<tr><td><a href='/dokument/XXVIII/A-HA/1'>Dokument</a></td>",
+    "<td>Navigation</td></tr>",
+    "</table></body></html>"
+  )
+  local_mocked_bindings(
+    .parlat_fetch_html = function(url) rvest::read_html(html)
+  )
+
+  result <- get_committee_members(
+    "/dokument/XXVIII/A-HA/1/00915/MIT_00915.html"
+  )
+
+  expect_identical(nrow(result), 1L)
+  expect_identical(result$name, "Anna Beispiel")
+  expect_identical(result$member_type, "member")
+  expect_identical(result$party, "ÖVP")
+  expect_identical(result$member_url, "/person/1")
+})
+
+test_that("SA-P9 tables are paired with content markers, not positions", {
+  html <- paste0(
+    "<html><body>",
+    "<table><tr><td>Nationalrat entsendet</td></tr></table>",
+    "<table><tr><td>Unrelated</td><td>three</td><td>columns</td></tr></table>",
+    "<table>",
+    "<tr><td>SPÖ :</td><td><a href='/person/1'>Anna NR</a></td>",
+    "<td><a href='/person/2'>Berta NR</a></td></tr>",
+    "</table>",
+    "<table><tr><td>Bundesrat entsendet</td></tr></table>",
+    "<table>",
+    "<tr><td>ÖVP :</td><td><a href='/person/3'>Clara BR</a></td>",
+    "<td><a href='/person/4'>Dora BR</a></td></tr>",
+    "</table>",
+    "</body></html>"
+  )
+  local_mocked_bindings(
+    .parlat_fetch_html = function(url) {
+      rvest::read_html(html)
+    }
+  )
+
+  result <- get_committee_members(
+    "/dokument/XXVII/SA-P9/1/00876/MIT_00876.html"
+  )
+  neutral_result <- get_committee_members(
+    "/dokument/XXVII/A-TEST/1/00876/MIT_00876.html"
+  )
+
+  expect_identical(neutral_result, result)
+  expect_setequal(result$name, c("Anna NR", "Berta NR", "Clara BR", "Dora BR"))
+  expect_identical(
+    names(result),
+    c("name", "member_type", "party", "member_url")
+  )
+  expect_identical(
+    unname(vapply(result, is.character, logical(1))),
+    rep(TRUE, 4)
+  )
+})
+
+test_that("malformed committee membership pages warn and return typed empty data", {
+  local_mocked_bindings(
+    .parlat_fetch_html = function(url) {
+      rvest::read_html(
+        "<html><body><table><tr><td>Header</td><td>Value</td></tr></table></body></html>"
+      )
+    }
+  )
+
+  warnings <- list()
+  result <- withCallingHandlers(
+    get_committee_members("/dokument/BR/A-BR/1/MIT_1.html"),
+    warning = function(condition) {
+      warnings[[length(warnings) + 1L]] <<- condition
+      invokeRestart("muffleWarning")
+    }
+  )
+
+  expect_length(warnings, 1L)
+  expect_match(
+    conditionMessage(warnings[[1]]),
+    "No supported committee membership table was found"
+  )
+  expect_s3_class(result, "tbl_df")
+  expect_identical(nrow(result), 0L)
+  expect_identical(
+    names(result),
+    c("name", "member_type", "party", "member_url")
+  )
+  expect_identical(
+    unname(vapply(result, is.character, logical(1))),
+    rep(TRUE, 4)
+  )
+})
+
+test_that("committee detail documents collapse into one non-photo row", {
+  detail_data <- list(
+    content = list(
+      gp_code = "XXVII",
+      aus_von = "2019-10-23T00:00:00",
+      aus_bis = "2024-10-23T00:00:00",
+      documents = list(
+        list(
+          title = "Bebildertes Mitgliederverzeichnis",
+          documents = list(
+            list(type = "PDF", link = "/MITFOTO_1.pdf"),
+            list(type = "HTML", link = "/MITFOTO_1.html")
+          )
+        ),
+        list(
+          title = "Mitgliederliste",
+          documents = list(
+            list(type = "PDF", link = "/MIT_1.pdf"),
+            list(type = "HTML", link = "/MIT_1.html")
+          )
+        )
+      )
+    )
+  )
+  local_mocked_bindings(
+    .parlat_fetch_detail_json_text = function(url) "detail JSON",
+    .parlat_parse_detail_json = function(json_text, ...) {
+      list(data = detail_data)
+    },
+    safe_get_committee_members = function(url) {
+      tibble::tibble(
+        name = "Anna Beispiel",
+        member_type = "member",
+        party = "SPÖ",
+        member_url = "/person/1"
+      )
+    }
+  )
+
+  result <- get_committee_details(
+    "https://www.parlament.gv.at/ausschuss/XXVII/A-AS/1/1",
+    "members"
+  )
+
+  expect_identical(nrow(result), 1L)
+  expect_identical(result$url_pdf, "/MIT_1.pdf")
+  expect_identical(result$url_html, "/MIT_1.html")
+  expect_identical(length(result$members), 1L)
+  expect_identical(result$members[[1]]$name, "Anna Beispiel")
+})
+
+test_that("flat mixed documents discard photo records, not the ordinary pair", {
+  documents <- tibble::tibble(
+    type = c("PDF", "HTML", "PDF", "HTML"),
+    link = c(
+      "/MITFOTO_1.pdf",
+      "/MITFOTO_1.html",
+      "/MIT_1.pdf",
+      "/MIT_1.html"
+    )
+  )
+
+  result <- .parlat_select_committee_documents(documents)
+
+  expect_identical(result$url_pdf, "/MIT_1.pdf")
+  expect_identical(result$url_html, "/MIT_1.html")
+})
+
+test_that("exact committee citations accept both display orders", {
+  response <- httr2::response(
+    headers = list(`content-type` = "application/json"),
+    body = charToRaw(jsonlite::toJSON(
+      list(
+        header = list(
+          list(label = "Ausschuss"),
+          list(label = "link")
+        ),
+        rows = list(
+          c(
+            "Ständiger Unterausschuss 1",
+            "/ausschuss/XXII/SA-BU/1/00034"
+          ),
+          c(
+            "Ständiger Unterausschuss 10",
+            "/ausschuss/XXII/SA-BU/10/00035"
+          )
+        )
+      ),
+      auto_unbox = TRUE
+    ))
+  )
+  local_mocked_bindings(
+    get_committees_api_request = function(body_params) response
+  )
+
+  number_first <- get_committees(
+    institution = "NR",
+    legis_period = 22,
+    citation = "1/SA-BU",
+    echo = FALSE
+  )
+  canonical <- get_committees(
+    institution = "NR",
+    legis_period = 22,
+    citation = "SA-BU/1",
+    echo = FALSE
+  )
+  regex_result <- get_committees(
+    institution = "NR",
+    legis_period = 22,
+    citation = "SA-BU/1[0]?",
+    echo = FALSE
+  )
+
+  expect_identical(number_first, canonical)
+  expect_identical(nrow(number_first), 1L)
+  expect_identical(nrow(regex_result), 2L)
+  expect_identical(canonical$citation, "SA-BU/1")
+  expect_identical(
+    .parlat_normalize_committee_citation("^1/SA-BU$"),
+    "^1/SA-BU$"
+  )
+})
+
+test_that("committee citation validation rejects missing and vector inputs", {
+  missing_error <- tryCatch(
+    get_committees(
+      institution = "NR",
+      legis_period = 22,
+      citation = NA_character_,
+      echo = FALSE
+    ),
+    error = identity
+  )
+  vector_error <- tryCatch(
+    get_committees(
+      institution = "NR",
+      legis_period = 22,
+      citation = c("SA-BU/1", "SA-BU/10"),
+      echo = FALSE
+    ),
+    error = identity
+  )
+
+  expect_s3_class(missing_error, "error")
+  expect_match(conditionMessage(missing_error), "May not be NA")
+  expect_s3_class(vector_error, "error")
+  expect_match(conditionMessage(vector_error), "Must have length 1")
+})
+
 test_that("get_committees works with different legis_period types", {
   # Test numeric
   x1 <- run_api_call({
@@ -362,26 +704,30 @@ test_that("get_committees returns identical results for different legis_period f
 })
 
 test_that("get_committees handles committees with empty documents", {
-  skip_on_cran()
-
-  # Test the specific case from legis_period 22 that had empty documents
-  x <- run_api_call({
-    get_committees(
-      legis_period = 22,
-      institution = "NR",
-      details_type = "members",
-      citation = "1/SA-BU"
+  detail_data <- list(
+    content = list(
+      gp_code = "XXII",
+      aus_von = "2003-01-01T00:00:00",
+      aus_bis = "2006-01-01T00:00:00"
     )
-  }, fixture_subdir = "get_committees")
+  )
+  local_mocked_bindings(
+    .parlat_fetch_detail_json_text = function(url) "detail JSON",
+    .parlat_parse_detail_json = function(json_text, ...) {
+      list(data = detail_data)
+    }
+  )
 
-  expect_true(is.data.frame(x))
+  result <- get_committee_details(
+    "https://www.parlament.gv.at/ausschuss/XXII/SA-BU/1/00034",
+    "members"
+  )
 
-  if (!is.null(x) && nrow(x) > 0) {
-    # Should have url_pdf and url_html columns even if they're NA
-    expect_true("url_pdf" %in% colnames(x))
-    expect_true("url_html" %in% colnames(x))
-    expect_true("members" %in% colnames(x))
-  }
+  expect_identical(nrow(result), 1L)
+  expect_identical(result$url_pdf, NA_character_)
+  expect_identical(result$url_html, NA_character_)
+  expect_identical(length(result$members), 1L)
+  expect_identical(result$members[[1]], .parlat_empty_committee_members())
 })
 
 test_that("get_committees with details_type='members' has no unexpected list-columns", {

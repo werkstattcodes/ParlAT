@@ -126,6 +126,182 @@
     )
 }
 
+.parlat_normalize_committee_citation <- function(citation) {
+  if (stringr::str_detect(citation, "^[0-9]+/[[:alnum:]-]+$")) {
+    citation <- stringr::str_replace(
+      citation,
+      "^([0-9]+)/([[:alnum:]-]+)$",
+      "\\2/\\1"
+    )
+  }
+
+  if (stringr::str_detect(citation, "^[[:alnum:]-]+/[0-9]+$")) {
+    return(paste0("^", citation, "$"))
+  }
+
+  citation
+}
+
+.parlat_committee_document_records <- function(documents) {
+  if (is.null(documents) || length(documents) == 0) {
+    return(tibble::tibble(type = character(), link = character()))
+  }
+
+  if (is.data.frame(documents)) {
+    if (all(c("type", "link") %in% names(documents))) {
+      return(documents |>
+        tibble::as_tibble() |>
+        dplyr::transmute(
+          type = as.character(.data$type),
+          link = as.character(.data$link)
+        ))
+    }
+
+    nested <- purrr::keep(documents, is.list)
+    return(purrr::map(nested, .parlat_committee_document_records) |>
+      purrr::list_rbind())
+  }
+
+  if (is.list(documents)) {
+    if (all(c("type", "link") %in% names(documents))) {
+      return(tibble::tibble(
+        type = as.character(documents$type),
+        link = as.character(documents$link)
+      ))
+    }
+
+    return(purrr::map(documents, .parlat_committee_document_records) |>
+      purrr::list_rbind())
+  }
+
+  tibble::tibble(type = character(), link = character())
+}
+
+.parlat_committee_document_groups <- function(documents) {
+  if (is.null(documents) || length(documents) == 0) {
+    return(list())
+  }
+
+  if (is.data.frame(documents) && "documents" %in% names(documents)) {
+    return(purrr::map(seq_len(nrow(documents)), \(i) {
+      label_col <- intersect(c("title", "name", "label"), names(documents))
+      label <- if (length(label_col) > 0) {
+        as.character(documents[[label_col[[1]]]][[i]])
+      } else {
+        NA_character_
+      }
+
+      list(
+        label = label,
+        records = .parlat_committee_document_records(
+          documents$documents[[i]]
+        )
+      )
+    }))
+  }
+
+  if (is.list(documents) && "documents" %in% names(documents)) {
+    label_name <- intersect(c("title", "name", "label"), names(documents))
+    label <- if (length(label_name) > 0) {
+      as.character(documents[[label_name[[1]]]][[1]])
+    } else {
+      NA_character_
+    }
+
+    return(list(list(
+      label = label,
+      records = .parlat_committee_document_records(documents$documents)
+    )))
+  }
+
+  if (is.data.frame(documents) || all(c("type", "link") %in% names(documents))) {
+    return(list(list(
+      label = NA_character_,
+      records = .parlat_committee_document_records(documents)
+    )))
+  }
+
+  purrr::map(documents, .parlat_committee_document_groups) |>
+    unlist(recursive = FALSE)
+}
+
+.parlat_select_committee_documents <- function(documents) {
+  groups <- .parlat_committee_document_groups(documents)
+  groups <- purrr::map(groups, \(group) {
+    is_photo_record <- stringr::str_detect(
+      paste(group$records$type, group$records$link),
+      stringr::regex("MITFOTO|Bebildert", ignore_case = TRUE)
+    )
+    is_photo_record[is.na(is_photo_record)] <- FALSE
+    group$records <- group$records[!is_photo_record, , drop = FALSE]
+    group
+  })
+  groups <- purrr::keep(groups, \(group) nrow(group$records) > 0)
+
+  if (length(groups) == 0) {
+    return(tibble::tibble(
+      url_pdf = NA_character_,
+      url_html = NA_character_
+    ))
+  }
+
+  is_photo_group <- purrr::map_lgl(groups, \(group) {
+    text <- paste(group$label, collapse = " ")
+    stringr::str_detect(
+      text,
+      stringr::regex("MITFOTO|Bebildert", ignore_case = TRUE)
+    )
+  })
+  groups <- groups[!is_photo_group]
+
+  if (length(groups) == 0) {
+    return(tibble::tibble(
+      url_pdf = NA_character_,
+      url_html = NA_character_
+    ))
+  }
+
+  has_html <- purrr::map_lgl(groups, \(group) {
+    any(
+      stringr::str_to_upper(group$records$type) == "HTML" |
+        stringr::str_detect(
+          group$records$link,
+          stringr::regex("\\.html(?:$|\\?)", ignore_case = TRUE)
+        ),
+      na.rm = TRUE
+    )
+  })
+  selected <- groups[[if (any(has_html)) which(has_html)[[1]] else 1]]$records
+
+  pdf_index <- which(
+    stringr::str_to_upper(selected$type) == "PDF" |
+      stringr::str_detect(
+        selected$link,
+        stringr::regex("\\.pdf(?:$|\\?)", ignore_case = TRUE)
+      )
+  )
+  html_index <- which(
+    stringr::str_to_upper(selected$type) == "HTML" |
+      stringr::str_detect(
+        selected$link,
+        stringr::regex("\\.html(?:$|\\?)", ignore_case = TRUE)
+      )
+  )
+
+  tibble::tibble(
+    url_pdf = if (length(pdf_index) > 0) {
+      selected$link[[pdf_index[[1]]]]
+    } else {
+      NA_character_
+    },
+    url_html = if (length(html_index) > 0) {
+      selected$link[[html_index[[1]]]]
+    } else {
+      NA_character_
+    }
+  )
+}
+
 #' Retrieve Committee Data from the Austrian Parliament API
 #'
 #' `r lifecycle::badge("experimental")`
@@ -139,7 +315,11 @@
 #' @param institution A character string specifying the institution. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat/Federal Council). Required.
 #' @param legis_period A character or numeric vector of length 1 for a specific legislative period. Required. Data available starting from the 20th legislative period.
 #' @param permanent A logical flag indicating whether only permanent committees should be queried. Default is NULL (both permanent and non-permanent).
-#' @param citation A character vector for filtering results by committee citation code (e.g., "1/SA-BU"). This is applied as a post-processing filter after API results are retrieved. Default is NULL (no filtering).
+#' @param citation A character string for filtering results by committee citation
+#'   code. Exact citations may use either number-first form (for example,
+#'   `"1/SA-BU"`) or the canonical code-first form (`"SA-BU/1"`). Other
+#'   values are treated as regular expressions. The filter is applied after API
+#'   results are retrieved. Default is `NULL` (no filtering).
 #' @param include_subcommittees A logical flag to indicate whether subcommittees should be included
 #'   in the search results. Search for subcommittees is only possible if `permanent` is not TRUE. Default is NULL.
 #' @param details_type A character string specifying the type of details to retrieve. Currently supports "members" to extract committee membership information. Default is NULL (no additional details).
@@ -229,6 +409,7 @@ get_committees <- function(
 ) {
   # PARAMETER VALIDATION
   checkmate::assert_character(search_string, len = 1, null.ok = TRUE)
+  checkmate::assert_string(citation, na.ok = FALSE, null.ok = TRUE)
   checkmate::assert_subset(
     x = institution,
     choices = c("NR", "BR"),
@@ -359,10 +540,11 @@ get_committees <- function(
 
   # Pseudo filter
   if (!is.null(citation)) {
+    citation_filter <- .parlat_normalize_committee_citation(citation)
     df_res <- df_res %>%
       dplyr::filter(stringr::str_detect(
         .data$citation,
-        stringr::regex({{ citation }}, ignore_case = TRUE)
+        stringr::regex(citation_filter, ignore_case = TRUE)
       ))
   }
 
@@ -544,71 +726,22 @@ get_committee_details <- function(url_committee, details_type) {
         across(dplyr::starts_with("date"), \(x) lubridate::ymd_hms(x))
       )
 
-    # Check if documents column has any data
-    has_documents <- !is.null(df_details$documents[[1]]) &&
-      length(df_details$documents[[1]]) > 0
-    if (has_documents) {
-      df_details <- df_details %>%
-        tidyr::unnest("documents") %>%
-        tidyr::unnest("documents") %>%
-        dplyr::rename(any_of(c(url = "link", url_type = "type"))) %>%
-        dplyr::mutate(
-          url_pdf = dplyr::if_else(
-            .data$url_type == "PDF",
-            .data$url,
-            NA_character_
-          ),
-          url_html = dplyr::if_else(
-            .data$url_type == "HTML",
-            .data$url,
-            NA_character_
-          )
-        ) %>%
-        dplyr::select(-"url", -"url_type")
+    documents <- if ("documents" %in% names(df_details)) {
+      df_details$documents[[1]]
     } else {
-      # If no documents, create placeholder columns
-      df_details <- df_details %>%
-        dplyr::select(-"documents") %>%
-        dplyr::mutate(
-          url_pdf = NA_character_,
-          url_html = NA_character_
-        )
+      NULL
     }
+    document_links <- .parlat_select_committee_documents(documents)
 
-    #remove links to member list with fotos; would duplicate retrieval of members & features different page structure
-    df_details <- df_details %>%
-      dplyr::filter(
-        is.na(.data$url_html) |
-          !stringr::str_detect(
-            .data$url_html,
-            stringr::regex("FOTO", ignore_case = TRUE)
-          )
-      )
-
-    # Only apply title filter if title column exists
-    if ("title" %in% colnames(df_details)) {
-      df_details <- df_details %>%
-        dplyr::filter(
-          !dplyr::coalesce(
-            stringr::str_detect(
-              .data$title,
-              stringr::regex("Bebildertes", ignore_case = TRUE)
-            ),
-            FALSE
-          )
-        )
-    }
-
-    # print(df_details$url_html)
-
-    df_details <- df_details %>%
-      # dplyr::filter(!stringr::str_detect(url_pdf, stringr::regex("FOTO"))) %>% #remove url to 'bebildertes mitgliederverzeichnis to avoid duplicates"
+    df_details <- df_details |>
+      dplyr::select(-dplyr::any_of("documents")) |>
+      dplyr::bind_cols(document_links) |>
       dplyr::mutate(
-        members = purrr::map(.data$url_html, \(x) {
-          if (all(is.na(x))) {
+        members = purrr::map(.data$url_html, \(url) {
+          if (is.na(url) || !nzchar(url)) {
             .parlat_empty_committee_members()
           } else {
-            safe_get_committee_members(x)
+            safe_get_committee_members(url)
           }
         })
       )
@@ -628,25 +761,33 @@ get_committee_details <- function(url_committee, details_type) {
 }
 
 safe_get_committee_members <- function(url) {
-  result <- tryCatch(
-    get_committee_members(url),
-    error = function(e) {
-      cli::cli_inform(
-        "Failed to extract committee members for: https://www.parlament.gv.at{url}"
-      )
-      tibble::tibble(
-        name = "Failed to extract members",
-        member_type = NA_character_,
-        party = NA_character_,
-        member_url = NA_character_
-      )
-    }
-  )
-  return(result)
+  get_committee_members(url)
+}
+
+.parlat_is_ordinary_membership_table <- function(table) {
+  if (!is.data.frame(table) || ncol(table) < 3 || nrow(table) == 0) {
+    return(FALSE)
+  }
+
+  second_column <- as.character(table[[2]])
+  any(stringr::str_detect(second_column, "^Mitglieder"), na.rm = TRUE) &&
+    any(
+      stringr::str_detect(second_column, "^(Vorsitz|Ob)"),
+      na.rm = TRUE
+    )
+}
+
+.parlat_is_hauptausschuss_table <- function(table, table_node) {
+  if (!is.data.frame(table) || ncol(table) != 2 || nrow(table) == 0) {
+    return(FALSE)
+  }
+
+  person_links <- table_node |>
+    rvest::html_elements("a[href*='/person/']")
+  length(person_links) > 0
 }
 
 get_committee_members <- function(url) {
-  # Normalize URL to full path
   url <- if (
     stringr::str_detect(url, stringr::regex("^https://www.parlament.gv.at"))
   ) {
@@ -655,74 +796,76 @@ get_committee_members <- function(url) {
     paste0("https://www.parlament.gv.at", url)
   }
 
-  # Read HTML and check table structure
-  html_doc <- url %>% rvest::read_html()
-  tables <- html_doc %>% rvest::html_table()
+  tryCatch(
+    {
+      html_doc <- .parlat_fetch_html(url)
+      table_nodes <- html_doc |>
+        rvest::html_elements("table")
 
-  # No table at all
-  if (length(tables) == 0 || nrow(tables[[1]]) == 0) {
-    cli::cli_warn("No table found in URL: {url}")
-    return(tibble::tibble(
-      name = NA_character_,
-      member_type = NA_character_,
-      party = NA_character_,
-      member_url = NA_character_
-    ))
-  }
+      if (length(table_nodes) == 0) {
+        cli::cli_abort("The page contains no tables.")
+      }
 
-  df_check <- tables[[1]]
+      table_text <- purrr::map_chr(table_nodes, rvest::html_text2)
+      is_base_special_committee <- all(purrr::map_lgl(
+        c("Nationalrat entsendet", "Bundesrat entsendet"),
+        \(marker) any(
+          stringr::str_detect(table_text, stringr::fixed(marker)),
+          na.rm = TRUE
+        )
+      ))
 
-  # PRIORITY 1: Check for base SA-P9/A-USA member list URLs (Type 3 structure)
-  # Only the base member list URLs use Type 3 structure
-  # Base pattern: /SA-P9/1/00152/MIT_00152.html (no version number after document ID)
-  # NOT versioned: /A-USA/2/00944/MIT_00944.html (these are actually document versions, use type1/2)
-  # The key difference: base member lists have pattern /committee/number/docid/MIT_docid.html
-  # Versioned documents have different structure detected by table count
-  is_base_special_committee <- stringr::str_detect(
-    url,
-    "/(SA-P9)/\\d+/\\d+/MIT_"
-  )
+      if (is_base_special_committee) {
+        members <- fn_extract_committees_type3(html_doc)
+      } else {
+        tables <- purrr::map(table_nodes, rvest::html_table)
+        ordinary_index <- which(purrr::map_lgl(
+          tables,
+          .parlat_is_ordinary_membership_table
+        ))
 
-  if (is_base_special_committee) {
-    return(fn_extract_committees_type3(url))
-  }
+        if (length(ordinary_index) > 0) {
+          selected <- ordinary_index[[1]]
+          members <- fn_extract_committees_other(
+            tables[[selected]],
+            table_nodes[[selected]]
+          )
+        } else {
+          haupt_indices <- which(purrr::map2_lgl(
+            tables,
+            table_nodes,
+            .parlat_is_hauptausschuss_table
+          ))
 
-  # PRIORITY 2: Check table column count for Type 1
-  is_type1 <- ncol(df_check) == 2
+          if (length(haupt_indices) == 0) {
+            cli::cli_abort(
+              "No supported committee membership table was found."
+            )
+          }
 
-  # Type 1: 2-column tables
-  if (is_type1) {
-    return(fn_extract_hauptausschuss(url))
-  }
+          members <- fn_extract_hauptausschuss(
+            table_nodes[haupt_indices]
+          )
+        }
+      }
 
-  # Type 2 or Type 3: Both have 3 columns
-  # Check if table matches Type 2 patterns before trying Type 2 extraction
-  has_mitglieder_pattern <- any(stringr::str_detect(
-    df_check[[2]],
-    "^Mitglieder"
-  ))
-  has_vorsitzender_pattern <- any(stringr::str_detect(
-    df_check[[2]],
-    "^Vorsitzender|^Ob"
-  ))
+      members <- .parlat_normalize_committee_members(members)
+      if (nrow(members) == 0) {
+        cli::cli_abort(
+          "The selected membership layout contained no person records."
+        )
+      }
 
-  # Type 3: 3-column table but doesn't match Type 2 patterns
-  # if (!has_mitglieder_pattern && !has_vorsitzender_pattern) {
-  #   return(fn_extract_committees_type3(url, html_doc))
-  # }
-
-  # Type 2: 3-column table with expected patterns
-  # Wrap in tryCatch to handle unexpected failures
-  result <- tryCatch(
-    fn_extract_committees_other(url),
+      members
+    },
     error = function(e) {
-      # If Type 2 extraction fails, try Type 3
-      # message(paste0("Type 2 extraction failed for ", url, ", trying Type 3"))
-      fn_extract_committees_type3(url)
+      cli::cli_warn(c(
+        "Could not extract committee members from {.url {url}}.",
+        "x" = conditionMessage(e)
+      ))
+      .parlat_empty_committee_members()
     }
   )
-
-  return(result)
 }
 
 
@@ -743,9 +886,7 @@ get_committee_members <- function(url) {
 #' - The returned tibble is formed by row-binding results from all tables;
 #'   columns that are missing for particular tables will be NA after binding.
 #'
-#' @param url Character. A URL, file path, or other input acceptable to
-#'   rvest::read_html() that points to the HTML page containing the
-#'   Hauptausschuss tables.
+#' @param table_nodes The selected Hauptausschuss HTML table nodes.
 #'
 #' @return A tibble with one row per extracted person. Typical columns include:
 #'   - url: character; the raw href attribute extracted from the person's <a> tag
@@ -767,23 +908,18 @@ get_committee_members <- function(url) {
 #' @examples
 #' \donttest{
 #' # Parse a live committee page (example URL)
-#' fn_extract_hauptausschuss("https://example.org/parliament/committees/hauptausschuss")
+#' fn_extract_hauptausschuss(table_nodes)
 #' }
 #'
 #' @keywords internal
 #' @noRd
-fn_extract_hauptausschuss <- function(url) {
-  # Read HTML and extract tables
-  tables <- url %>%
-    rvest::read_html() %>%
-    rvest::html_elements("table")
-
+fn_extract_hauptausschuss <- function(table_nodes) {
   # Initialize list to store results from all tables
   all_results <- list()
 
   # Process each table
-  for (i in seq_along(tables)) {
-    table_node <- tables[[i]]
+  for (i in seq_along(table_nodes)) {
+    table_node <- table_nodes[[i]]
 
     # Use a local environment as accumulator for recursive traversal
     acc <- new.env(parent = emptyenv())
@@ -800,10 +936,16 @@ fn_extract_hauptausschuss <- function(url) {
         # This is a party name - update current party
         acc$current_party <- rvest::html_text2(node)
       } else if (node_name == "a") {
-        # This is a person link
-        acc$persons <- c(acc$persons, rvest::html_text2(node))
-        acc$urls <- c(acc$urls, rvest::html_attr(node, "href"))
-        acc$parties <- c(acc$parties, acc$current_party)
+        href <- rvest::html_attr(node, "href")
+        is_person_link <- !is.na(href) && stringr::str_detect(
+          href,
+          "(?:^https://www[.]parlament[.]gv[.]at)?/person/"
+        )
+        if (is_person_link) {
+          acc$persons <- c(acc$persons, rvest::html_text2(node))
+          acc$urls <- c(acc$urls, href)
+          acc$parties <- c(acc$parties, acc$current_party)
+        }
       }
 
       # Recursively process child nodes
@@ -844,7 +986,11 @@ fn_extract_hauptausschuss <- function(url) {
   }
 
   # Combine all table results
-  df <- dplyr::bind_rows(all_results) %>%
+  if (length(all_results) == 0) {
+    cli::cli_abort("The Hauptausschuss tables contain no person links.")
+  }
+
+  df <- dplyr::bind_rows(all_results) |>
     dplyr::select(-"table_index")
 
   # Ensure all expected columns exist
@@ -852,46 +998,33 @@ fn_extract_hauptausschuss <- function(url) {
     df$party <- NA_character_
   }
 
-  df %>%
-    dplyr::select("name", "member_type", "party", "member_url")
+  .parlat_normalize_committee_members(df)
 }
 
 
-fn_extract_committees_other <- function(url) {
-  url <- if (
-    stringr::str_detect(url, stringr::regex("^https://www.parlament.gv.at"))
-  ) {
-    url
-  } else {
-    paste0("https://www.parlament.gv.at", url)
+fn_extract_committees_other <- function(df_members_raw, table_element) {
+  if (!is.data.frame(df_members_raw) || ncol(df_members_raw) < 3) {
+    cli::cli_abort("The ordinary membership table has fewer than three columns.")
   }
 
-  # Read HTML
-  html_doc <- url %>% rvest::read_html()
-
-  # Get table text content
-  all_tables <- html_doc %>%
-    rvest::html_table()
-  df_members_raw <- all_tables[[1]]
-
-  # Get table element for URL extraction
-  all_table_elements <- html_doc %>%
-    rvest::html_elements("table")
-  table_element <- all_table_elements[[1]]
+  df_members_raw <- df_members_raw[, seq_len(3), drop = FALSE] |>
+    tibble::as_tibble(.name_repair = "minimal")
+  names(df_members_raw) <- c("X1", "X2", "X3")
 
   # Extract URLs from table rows
   extract_urls_from_table <- function(table_elem) {
-    rows <- table_elem %>% rvest::html_elements("tr")
+    rows <- table_elem |>
+      rvest::html_elements("tr") |>
+      purrr::keep(\(row) length(rvest::html_elements(row, "td")) > 0)
 
-    purrr::map(seq_along(rows), function(i) {
-      cells <- rows[[i]] %>% rvest::html_elements("td")
-      if (length(cells) == 0) {
-        return(NULL)
-      }
+    purrr::map(seq_along(rows), \(i) {
+      cells <- rows[[i]] |> rvest::html_elements("td")
 
       # Extract URLs from each cell
-      urls_list <- purrr::map(cells, function(cell) {
-        links <- cell %>% rvest::html_elements("a") %>% rvest::html_attr("href")
+      urls_list <- purrr::map(cells, \(cell) {
+        links <- cell |>
+          rvest::html_elements("a") |>
+          rvest::html_attr("href")
         if (length(links) == 0) {
           return(NA_character_)
         }
@@ -904,11 +1037,26 @@ fn_extract_committees_other <- function(url) {
       ))
       result$row_num_orig <- i
       result
-    }) %>%
+    }) |>
       purrr::list_rbind()
   }
 
   urls_table <- extract_urls_from_table(table_element)
+
+  if (is.null(urls_table) || nrow(urls_table) == 0) {
+    urls_table <- tibble::tibble(
+      row_num_orig = seq_len(nrow(df_members_raw)),
+      url_X1 = NA_character_,
+      url_X2 = NA_character_,
+      url_X3 = NA_character_
+    )
+  } else {
+    for (col in c("url_X1", "url_X2", "url_X3")) {
+      if (!col %in% names(urls_table)) {
+        urls_table[[col]] <- NA_character_
+      }
+    }
+  }
 
   # Add row numbers to raw data for joining
   df_members_raw <- df_members_raw %>%
@@ -920,15 +1068,28 @@ fn_extract_committees_other <- function(url) {
     dplyr::left_join(urls_table, by = "row_num_orig")
 
   df_members <- {
-    idx_m <- which(stringr::str_detect(df_members_raw$X2, "^Mitglieder"))[1]
-    idx_v <- which(stringr::str_detect(df_members_raw$X2, "^Vorsitzender|^Ob"))[
-      1
-    ]
-    if (is.na(idx_m) || is.na(idx_v) || idx_v <= idx_m + 1) {
-      tibble::tibble()
-    } else {
-      dplyr::slice(df_members_raw, (idx_m + 1):(idx_v - 1))
+    member_markers <- which(stringr::str_detect(
+      df_members_raw$X2,
+      "^Mitglieder"
+    ))
+    office_markers <- which(stringr::str_detect(
+      df_members_raw$X2,
+      "^(Vorsitz|Ob)"
+    ))
+
+    if (length(member_markers) == 0 || length(office_markers) == 0) {
+      cli::cli_abort(
+        "The ordinary membership table is missing its section markers."
+      )
     }
+
+    idx_m <- member_markers[[1]]
+    office_markers <- office_markers[office_markers > idx_m]
+    if (length(office_markers) == 0 || office_markers[[1]] <= idx_m + 1) {
+      cli::cli_abort("The ordinary membership section contains no member rows.")
+    }
+
+    dplyr::slice(df_members_raw, (idx_m + 1):(office_markers[[1]] - 1))
   }
 
   df_members_first <- df_members %>%
@@ -1027,7 +1188,7 @@ fn_extract_committees_other <- function(url) {
   office_start_row <- {
     match_rows <- which(stringr::str_detect(
       df_members_raw$X2,
-      stringr::regex("^(Vorsitzender|Ob)")
+      stringr::regex("^(Vorsitz|Ob)")
     ))
     if (length(match_rows) == 0) Inf else min(match_rows)
   }
@@ -1074,56 +1235,109 @@ fn_extract_committees_other <- function(url) {
     dplyr::rename("name" = "X3", "member_type" = "X2") %>%
     dplyr::select(-"url_X3", -"url_split", -"member_idx", -"row_num_orig")
 
-  dplyr::bind_rows(df_office, df_members_first, df_members_second) %>%
-    dplyr::select("name", "member_type", "party", "member_url")
+  result <- dplyr::bind_rows(df_office, df_members_first, df_members_second)
+  .parlat_normalize_committee_members(result)
 }
 
 
-fn_extract_committees_type3 <- function(url) {
-  #check url
-  url <- if (
-    stringr::str_detect(url, stringr::regex("^https://www.parlament.gv.at"))
-  ) {
-    url
-  } else {
-    paste0("https://www.parlament.gv.at", url)
-  }
-
-  tables_elements <- url %>%
-    rvest::read_html() %>%
-    rvest::html_elements("table")
-
-  # NATIONAL COUNCIL members
-  table_text <- tables_elements[[1]] %>%
-    rvest::html_text() %>%
-    unlist()
-  checkNRTable1 <- any(stringr::str_detect(
+.parlat_special_committee_table_indices <- function(table_nodes, tables) {
+  table_text <- purrr::map_chr(table_nodes, rvest::html_text2)
+  nr_marker <- which(stringr::str_detect(
     table_text,
-    stringr::regex("Nationalrat entsendet")
+    stringr::fixed("Nationalrat entsendet")
+  ))
+  br_marker <- which(stringr::str_detect(
+    table_text,
+    stringr::fixed("Bundesrat entsendet")
   ))
 
-  #get all names and url; create tibble
-  individuals_names <- tables_elements[[2]] %>%
-    rvest::html_elements("tr a") %>%
-    rvest::html_text2()
-
-  individuals_urls <- tables_elements[[2]] %>%
-    rvest::html_elements("tr a") %>%
-    rvest::html_attr("href")
-
-  if (length(individuals_names) == length(individuals_urls)) {
-    df_individuals <- tibble(
-      name = individuals_names,
-      url = individuals_urls
+  if (length(nr_marker) == 0 || length(br_marker) == 0) {
+    cli::cli_abort(
+      "The SA-P9 page is missing its Nationalrat or Bundesrat marker."
     )
   }
 
-  #get table with members and party affiliation
-  tables <- url %>%
-    rvest::read_html() %>%
-    rvest::html_table()
+  nr_marker <- nr_marker[[1]]
+  br_marker <- br_marker[br_marker > nr_marker]
+  if (length(br_marker) == 0) {
+    cli::cli_abort("The SA-P9 committee markers are in an unsupported order.")
+  }
+  br_marker <- br_marker[[1]]
 
-  members <- tables[[2]] %>%
+  find_member_table <- function(start, end, institution) {
+    if (end <= start) {
+      cli::cli_abort(
+        "No table follows the {institution} marker on the SA-P9 page."
+      )
+    }
+    candidates <- seq.int(start + 1L, end)
+    candidates <- candidates[candidates <= length(tables)]
+    is_member_table <- purrr::map_lgl(candidates, \(i) {
+      table <- tables[[i]]
+      person_links <- table_nodes[[i]] |>
+        rvest::html_elements("a[href*='/person/']")
+      is.data.frame(table) &&
+        ncol(table) >= 3 &&
+        nrow(table) > 0 &&
+        length(person_links) > 0 &&
+        any(stringr::str_detect(as.character(table[[1]]), ":"), na.rm = TRUE)
+    })
+
+    matches <- candidates[is_member_table]
+    if (length(matches) == 0) {
+      cli::cli_abort(
+        "No supported {institution} member table follows its SA-P9 marker."
+      )
+    }
+    matches[[1]]
+  }
+
+  list(
+    nr = find_member_table(nr_marker, br_marker - 1L, "Nationalrat"),
+    br = find_member_table(br_marker, length(tables), "Bundesrat")
+  )
+}
+
+fn_extract_committees_type3 <- function(html_doc) {
+  table_nodes <- html_doc |>
+    rvest::html_elements("table")
+  tables <- purrr::map(table_nodes, rvest::html_table)
+
+  if (length(table_nodes) == 0) {
+    cli::cli_abort("The SA-P9 membership page contains no tables.")
+  }
+
+  table_indices <- .parlat_special_committee_table_indices(table_nodes, tables)
+  nr_table_node <- table_nodes[[table_indices$nr]]
+  br_table_node <- table_nodes[[table_indices$br]]
+  nr_table <- tables[[table_indices$nr]][, seq_len(3), drop = FALSE] |>
+    tibble::as_tibble(.name_repair = "minimal")
+  br_table <- tables[[table_indices$br]][, seq_len(3), drop = FALSE] |>
+    tibble::as_tibble(.name_repair = "minimal")
+  names(nr_table) <- names(br_table) <- c("X1", "X2", "X3")
+
+  #get all names and url; create tibble
+  individuals_names <- nr_table_node %>%
+    rvest::html_elements("tr a[href*='/person/']") %>%
+    rvest::html_text2()
+
+  individuals_urls <- nr_table_node %>%
+    rvest::html_elements("tr a[href*='/person/']") %>%
+    rvest::html_attr("href")
+
+  if (
+    length(individuals_names) == 0 ||
+      length(individuals_names) != length(individuals_urls)
+  ) {
+    cli::cli_abort("The SA-P9 National Council person links are malformed.")
+  }
+
+  df_individuals <- tibble::tibble(
+    name = individuals_names,
+    url = individuals_urls
+  )
+
+  members <- nr_table %>%
     dplyr::filter(
       !dplyr::if_all(everything(), \(x) {
         is.na(x) |
@@ -1152,7 +1366,7 @@ fn_extract_committees_type3 <- function(url) {
     dplyr::mutate(institution = "NR")
 
   #NR substitutes
-  substitutes <- tables[[2]] %>%
+  substitutes <- nr_table %>%
     dplyr::filter(
       !dplyr::if_all(everything(), \(x) {
         is.na(x) |
@@ -1182,7 +1396,7 @@ fn_extract_committees_type3 <- function(url) {
     dplyr::mutate(institution = "NR")
 
   # NR officers
-  office_NR <- tables[[2]] %>%
+  office_NR <- nr_table %>%
     dplyr::filter(
       !dplyr::if_all(everything(), \(x) {
         is.na(x) |
@@ -1199,35 +1413,27 @@ fn_extract_committees_type3 <- function(url) {
     dplyr::mutate(institution = "NR")
 
   # FEDERAL COUNCIL
-  table_text_br <- tables_elements[[3]] %>%
-    rvest::html_text() %>%
-    unlist()
-  checkNRTable3 <- any(stringr::str_detect(
-    table_text_br,
-    stringr::regex("Bundesrat entsendet")
-  ))
-
-  individuals_names <- tables_elements[[4]] %>%
-    rvest::html_elements("tr a") %>%
+  individuals_names <- br_table_node %>%
+    rvest::html_elements("tr a[href*='/person/']") %>%
     rvest::html_text2()
 
-  individuals_urls <- tables_elements[[4]] %>%
-    rvest::html_elements("tr a") %>%
+  individuals_urls <- br_table_node %>%
+    rvest::html_elements("tr a[href*='/person/']") %>%
     rvest::html_attr("href")
 
-  if (length(individuals_names) == length(individuals_urls)) {
-    df_individuals <- tibble(
-      name = individuals_names,
-      url = individuals_urls
-    )
+  if (
+    length(individuals_names) == 0 ||
+      length(individuals_names) != length(individuals_urls)
+  ) {
+    cli::cli_abort("The SA-P9 Federal Council person links are malformed.")
   }
 
-  #get table with members and party affiliation
-  tables <- url %>%
-    rvest::read_html() %>%
-    rvest::html_table()
+  df_individuals <- tibble::tibble(
+    name = individuals_names,
+    url = individuals_urls
+  )
 
-  members <- tables[[4]] %>%
+  members <- br_table %>%
     dplyr::filter(
       !dplyr::if_all(everything(), \(x) {
         is.na(x) |
@@ -1266,7 +1472,7 @@ fn_extract_committees_type3 <- function(url) {
     dplyr::mutate(institution = "BR")
 
   #BR substitutes
-  substitutes <- tables[[4]] %>%
+  substitutes <- br_table %>%
     dplyr::filter(
       !dplyr::if_all(everything(), \(x) {
         is.na(x) |
@@ -1306,7 +1512,7 @@ fn_extract_committees_type3 <- function(url) {
     dplyr::mutate(institution = "BR")
 
   # BR officers
-  office_BR <- tables[[4]] %>%
+  office_BR <- br_table %>%
     dplyr::filter(
       !dplyr::if_all(everything(), \(x) {
         is.na(x) |
@@ -1341,12 +1547,11 @@ fn_extract_committees_type3 <- function(url) {
     office_BR_full
   )
 
-  # Standardize column names to match expected schema
   result <- result %>%
     dplyr::rename(
       member_type = "position",
       member_url = "url"
     )
 
-  return(result)
+  .parlat_normalize_committee_members(result)
 }

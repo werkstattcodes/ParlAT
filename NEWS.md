@@ -22,7 +22,12 @@
 
 - `get_committees()`: zero-row results now retain the exact default or
   `details_type = "members"` schema, including typed dates and the `members`
-  list-column where requested.
+  list-column where requested. Member details now return one row per committee,
+  combine the PDF and HTML membership links, ignore illustrated member lists,
+  and select National Council, Federal Council, Hauptausschuss, and special
+  committee layouts defensively. Unsupported layouts warn and yield an empty
+  member tibble instead of a fabricated failure row. Exact citations accept
+  both `"1/SA-BU"` and canonical `"SA-BU/1"` order.
 - `get_events()`: leaving the legislative period and dates unset now returns
   events across all available dates, including a completely unfiltered call.
   The echoed Parliament website URL derives its date and availability filters
