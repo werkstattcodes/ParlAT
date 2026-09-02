@@ -194,9 +194,10 @@ aux_convert_legis_periods <- function(legis_period, output = "character") {
 #'
 #' @details The function sends a HEAD request to
 #'   "https://www.parlament.gv.at/person/{pad_intern}" using httr2. If the HTTP
-#'   request fails or the response indicates an HTTP error, the function
-#'   returns FALSE for that identifier. For vector inputs the function maps the
-#'   check over all elements and returns a logical vector.
+#'   request is retried up to three times for transient failures. If all attempts
+#'   fail or the final response indicates an HTTP error, the function returns
+#'   FALSE for that identifier. For vector inputs the function maps the check
+#'   over all elements and returns a logical vector.
 #'
 #' @note This function performs network I/O and may be slow for many identifiers.
 #'   Use sparingly or add your own caching/rate-limiting as needed. Because it
@@ -250,6 +251,7 @@ aux_check_pad_intern_exists <- function(pad_intern) {
     httr2::request(url_check) %>%
       httr2::req_method("HEAD") %>%
       httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+      httr2::req_retry(max_tries = 3) %>%
       httr2::req_perform(),
     error = function(e) return(NULL)
   )

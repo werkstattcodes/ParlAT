@@ -218,6 +218,36 @@ test_that("aux_check_pad_intern_exists handles empty and whitespace strings", {
 
 # Test network error handling --------------------------------------------
 
+test_that("aux_check_pad_intern_exists configures httr2 retries", {
+  performed_request <- NULL
+
+  testthat::local_mocked_bindings(
+    request = function(url) list(url = url),
+    req_method = function(req, method) {
+      req$method <- method
+      req
+    },
+    req_user_agent = function(req, string) {
+      req$user_agent <- string
+      req
+    },
+    req_retry = function(req, max_tries) {
+      req$max_tries <- max_tries
+      req
+    },
+    req_perform = function(req) {
+      performed_request <<- req
+      structure(list(status_code = 200L), class = "httr2_response")
+    },
+    resp_is_error = function(resp) FALSE,
+    .package = "httr2"
+  )
+
+  expect_identical(aux_check_pad_intern_exists("145"), TRUE)
+  expect_identical(performed_request$method, "HEAD")
+  expect_identical(performed_request$max_tries, 3)
+})
+
 test_that("aux_check_pad_intern_exists validates input before network calls", {
   # Test with input that contains invalid characters - should error before network call
   expect_error(

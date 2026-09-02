@@ -81,6 +81,9 @@
 
 ## Enhancements
 
+- `aux_check_pad_intern_exists()` now uses `httr2::req_retry()` for its
+  preliminary person-page check so transient failures are retried up to three
+  times before an identifier is treated as unavailable.
 - `echo = TRUE` no longer prints the raw JSON request body; it prints the
   URL to the corresponding search results on the Parliament website and the
   number of results. The URL carries the same filter information in a
