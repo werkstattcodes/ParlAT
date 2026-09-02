@@ -241,6 +241,117 @@ test_that("get_committees handles empty results gracefully", {
   }
 })
 
+test_that("get_committees echoes the returned hit count", {
+  response <- httr2::response(
+    headers = list(`content-type` = "application/json"),
+    body = charToRaw(jsonlite::toJSON(
+      list(
+        header = list(
+          list(label = "Ausschuss"),
+          list(label = "link")
+        ),
+        rows = list(
+          c("Ausschuss A", "/ausschuss/XXVII/A/1/00001"),
+          c("Ausschuss B", "/ausschuss/XXVII/B/2/00002")
+        )
+      ),
+      auto_unbox = TRUE
+    ))
+  )
+  local_mocked_bindings(
+    get_committees_api_request = function(body_params) response
+  )
+  messages <- character()
+
+  result <- withCallingHandlers(
+    get_committees(
+      institution = "NR",
+      legis_period = 27,
+      echo = TRUE
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  expect_identical(nrow(result), 2L)
+  expect_match(paste(messages, collapse = ""), "Hits: 2", fixed = TRUE)
+})
+
+test_that("get_committees echoes zero hits for an empty API result", {
+  response <- httr2::response(
+    headers = list(`content-type` = "application/json"),
+    body = charToRaw(jsonlite::toJSON(
+      list(
+        header = list(
+          list(label = "Ausschuss"),
+          list(label = "link")
+        ),
+        rows = list()
+      ),
+      auto_unbox = TRUE
+    ))
+  )
+  local_mocked_bindings(
+    get_committees_api_request = function(body_params) response
+  )
+  messages <- character()
+
+  result <- withCallingHandlers(
+    get_committees(
+      institution = "NR",
+      legis_period = 27,
+      echo = TRUE
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  expect_identical(nrow(result), 0L)
+  expect_match(paste(messages, collapse = ""), "Hits: 0", fixed = TRUE)
+})
+
+test_that("get_committees echoes zero hits after citation filtering", {
+  response <- httr2::response(
+    headers = list(`content-type` = "application/json"),
+    body = charToRaw(jsonlite::toJSON(
+      list(
+        header = list(
+          list(label = "Ausschuss"),
+          list(label = "link")
+        ),
+        rows = list(
+          c("Ausschuss A", "/ausschuss/XXVII/A/1/00001")
+        )
+      ),
+      auto_unbox = TRUE
+    ))
+  )
+  local_mocked_bindings(
+    get_committees_api_request = function(body_params) response
+  )
+  messages <- character()
+
+  result <- withCallingHandlers(
+    get_committees(
+      institution = "NR",
+      legis_period = 27,
+      citation = "not-a-match",
+      echo = TRUE
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  expect_identical(nrow(result), 0L)
+  expect_match(paste(messages, collapse = ""), "Hits: 0", fixed = TRUE)
+})
+
 test_that("get_committees preserves schemas after citation filtering", {
   for (details_type in list(NULL, "members")) {
     result <- run_api_call({

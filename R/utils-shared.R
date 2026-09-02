@@ -55,8 +55,9 @@
   query_string <- purrr::imap(
     params_li,
     \(x, y) {
+      encoded_value <- utils::URLencode(as.character(x), reserved = TRUE)
       glue::glue(
-        "{param_prefix}{URLencode(y)}={URLencode(as.character(x))}"
+        "{param_prefix}{URLencode(y)}={encoded_value}"
       )
     }
   ) |>

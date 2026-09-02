@@ -506,6 +506,15 @@ get_committees <- function(
   # Handle empty results
   if (length(df_res) == 0) {
     cli::cli_inform("No results found for the provided search criteria.")
+    if (isTRUE(echo)) {
+      .parlat_echo_request(
+        body_params,
+        url_base = "https://www.parlament.gv.at/recherchieren/ausschuesse/index.html",
+        param_prefix = "WFP_009",
+        n_results = 0L
+      )
+    }
+
     return(.parlat_empty_committees(details_type))
   }
 
@@ -553,7 +562,8 @@ get_committees <- function(
       .parlat_echo_request(
         body_params,
         url_base = "https://www.parlament.gv.at/recherchieren/ausschuesse/index.html",
-        param_prefix = "WFP_009"
+        param_prefix = "WFP_009",
+        n_results = 0L
       )
     }
 
@@ -593,7 +603,8 @@ get_committees <- function(
     .parlat_echo_request(
       body_params,
       url_base = "https://www.parlament.gv.at/recherchieren/ausschuesse/index.html",
-      param_prefix = "WFP_009"
+      param_prefix = "WFP_009",
+      n_results = nrow(df_res)
     )
   }
 

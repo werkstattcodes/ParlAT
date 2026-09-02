@@ -27,7 +27,9 @@
   and select National Council, Federal Council, Hauptausschuss, and special
   committee layouts defensively. Unsupported layouts warn and yield an empty
   member tibble instead of a fabricated failure row. Exact citations accept
-  both `"1/SA-BU"` and canonical `"SA-BU/1"` order.
+  both `"1/SA-BU"` and canonical `"SA-BU/1"` order. Echo output now reports
+  the number of rows actually returned, including zero after citation
+  filtering.
 - `get_events()`: leaving the legislative period and dates unset now returns
   events across all available dates, including a completely unfiltered call.
   The echoed Parliament website URL derives its date and availability filters
@@ -87,7 +89,8 @@
 - `echo = TRUE` no longer prints the raw JSON request body; it prints the
   URL to the corresponding search results on the Parliament website and the
   number of results. The URL carries the same filter information in a
-  directly usable form.
+  directly usable form, with reserved characters in query values safely
+  encoded.
 - All API requests now retry up to three times on transient failures
   (`httr2::req_retry()`).
 - Stale hardcoded browser cookies/session IDs and browser fingerprint

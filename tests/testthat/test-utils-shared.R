@@ -151,6 +151,36 @@ test_that(".parlat_echo_request reports parameters, URL, and hit count", {
   expect_match(all_msgs, "42")
 })
 
+test_that(".parlat_echo_request encodes reserved values and repeats vectors", {
+  body_params <- jsonlite::toJSON(list(
+    FILTER = c("budget&tax=one/two?year", "second/value")
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .parlat_echo_request(
+      body_params,
+      url_base = "https://www.parlament.gv.at/test",
+      param_prefix = "PFX_001"
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+  expect_length(url_message, 1L)
+  expect_match(
+    url_message,
+    paste0(
+      "PFX_001FILTER=budget%26tax%3Done%2Ftwo%3Fyear&",
+      "PFX_001FILTER=second%2Fvalue"
+    ),
+    fixed = TRUE
+  )
+})
+
 test_that(".parlat_echo_request appends the url_suffix", {
   body_params <- jsonlite::toJSON(list(A = "1"))
 
