@@ -98,8 +98,10 @@ Austrian Parliament (see <a href="https://www.parlament.gv.at/recherchieren/pers
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A data frame with one row per matching person and the columns <code>pad_intern</code>,
 <code>name</code>, <code>gender</code>, <code>position</code>, and <code>link</code>. When <code>mandates = TRUE</code>, the
-returned data frame additionally contains mandate details for each person.
-Returns a zero-row tibble with a message if no persons are found.</p>
+returned data frame additionally contains every column returned by
+<code><a href="get_mandates.html">get_mandates()</a></code>, prefixed with <code>mandates_</code>. If no persons are found, a
+zero-row tibble with the same columns and column types as the requested
+output mode is returned with a message.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>

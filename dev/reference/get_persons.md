@@ -56,9 +56,12 @@ get_persons(
 
 A data frame with one row per matching person and the columns
 `pad_intern`, `name`, `gender`, `position`, and `link`. When
-`mandates = TRUE`, the returned data frame additionally contains mandate
-details for each person. Returns a zero-row tibble with a message if no
-persons are found.
+`mandates = TRUE`, the returned data frame additionally contains every
+column returned by
+[`get_mandates()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mandates.md),
+prefixed with `mandates_`. If no persons are found, a zero-row tibble
+with the same columns and column types as the requested output mode is
+returned with a message.
 
 ## Details
 

@@ -10,7 +10,7 @@ section](https://werkstattcodes.github.io/ParlAT/dev/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (01 September 2026). This is done
+(Nationalrat) at the time of writing (02 September 2026). This is done
 by the function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md).
 
@@ -21,49 +21,45 @@ df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> Hits: 183
 #> ⠙ Fetching MPs' names 3/183 | ETA:  1m
 #> 
-#> ⠹ Fetching MPs' names 7/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 8/183 | ETA:  1m
 #> 
-#> ⠸ Fetching MPs' names 15/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 17/183 | ETA:  1m
 #> 
-#> ⠼ Fetching MPs' names 23/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 25/183 | ETA:  1m
 #> 
-#> ⠴ Fetching MPs' names 32/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 34/183 | ETA:  1m
 #> 
-#> ⠦ Fetching MPs' names 40/183 | ETA:  1m
+#> ⠦ Fetching MPs' names 43/183 | ETA: 48s
 #> 
-#> ⠧ Fetching MPs' names 48/183 | ETA: 50s
+#> ⠧ Fetching MPs' names 52/183 | ETA: 45s
 #> 
-#> ⠇ Fetching MPs' names 56/183 | ETA: 47s
+#> ⠇ Fetching MPs' names 61/183 | ETA: 42s
 #> 
-#> ⠏ Fetching MPs' names 64/183 | ETA: 44s
+#> ⠏ Fetching MPs' names 70/183 | ETA: 39s
 #> 
-#> ⠋ Fetching MPs' names 72/183 | ETA: 41s
+#> ⠋ Fetching MPs' names 78/183 | ETA: 36s
 #> 
-#> ⠙ Fetching MPs' names 81/183 | ETA: 37s
+#> ⠙ Fetching MPs' names 87/183 | ETA: 33s
 #> 
-#> ⠹ Fetching MPs' names 89/183 | ETA: 35s
+#> ⠹ Fetching MPs' names 96/183 | ETA: 30s
 #> 
-#> ⠸ Fetching MPs' names 97/183 | ETA: 32s
+#> ⠸ Fetching MPs' names 105/183 | ETA: 27s
 #> 
-#> ⠼ Fetching MPs' names 105/183 | ETA: 29s
+#> ⠼ Fetching MPs' names 114/183 | ETA: 23s
 #> 
-#> ⠴ Fetching MPs' names 113/183 | ETA: 26s
+#> ⠴ Fetching MPs' names 123/183 | ETA: 20s
 #> 
-#> ⠦ Fetching MPs' names 122/183 | ETA: 22s
+#> ⠦ Fetching MPs' names 132/183 | ETA: 17s
 #> 
-#> ⠧ Fetching MPs' names 130/183 | ETA: 19s
+#> ⠧ Fetching MPs' names 140/183 | ETA: 15s
 #> 
-#> ⠇ Fetching MPs' names 138/183 | ETA: 16s
+#> ⠇ Fetching MPs' names 149/183 | ETA: 12s
 #> 
-#> ⠏ Fetching MPs' names 146/183 | ETA: 14s
+#> ⠏ Fetching MPs' names 158/183 | ETA:  8s
 #> 
-#> ⠋ Fetching MPs' names 155/183 | ETA: 10s
+#> ⠋ Fetching MPs' names 167/183 | ETA:  5s
 #> 
-#> ⠙ Fetching MPs' names 163/183 | ETA:  7s
-#> 
-#> ⠹ Fetching MPs' names 171/183 | ETA:  4s
-#> 
-#> ⠸ Fetching MPs' names 179/183 | ETA:  1s
+#> ⠙ Fetching MPs' names 176/183 | ETA:  2s
 #> 
 #> Fetched 183 MPs' names.
 nrow(df_current)
@@ -184,9 +180,9 @@ dplyr::glimpse(result)
 #> $ position_date_end              <date> 2025-01-21, 2020-01-07, 2025-01-10, 2021-12-06, 2025-03-06, 2024-10-23, NA, 2025-04-02, NA
 #> $ position_active                <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE
 #> $ parl_group                     <chr> "Parlamentsklub der Österreichischen Volkspartei", "Parlamentsklub der Österreichischen Volkspartei", NA, NA, "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament", "Bundesratsfraktion der SPÖ", NA, NA, NA
-#> $ wahlkreis                      <chr> "Bundeswahlvorschlag", "Bundeswahlvorschlag", NA, NA, "Bundeswahlvorschlag", "In den Bundesrat entsendet vom Niederösterreichischen Landtag", NA, NA, NA
 #> $ party                          <chr> "ÖVP", "ÖVP", NA, NA, "SPÖ", "SPÖ", NA, NA, NA
 #> $ party_name                     <chr> "Österreichische Volkspartei", "Österreichische Volkspartei", NA, NA, "Sozialdemokratische Partei Österreichs", "Sozialdemokratische Partei Österreichs", NA, NA, NA
+#> $ substitute                     <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA
 #> $ electoral_district_region_code <chr> "FB", "FB", NA, NA, "FB", "In", NA, NA, NA
 #> $ electoral_district_region      <chr> "Bundeswahlvorschlag", "Bundeswahlvorschlag", NA, NA, "Bundeswahlvorschlag", "In den Bundesrat entsendet vom Niederösterreichischen Landtag", NA, NA, NA
 #> $ legis_period                   <list> "XXVIII", <"XXVI", "XXVII">, <>, <>, "XXVIII", <>, <>, <>, <>
@@ -204,7 +200,7 @@ result <- get_mandates(pad_intern=1210)
 dplyr::glimpse(result)
 #> Rows: 5
 #> Columns: 16
-#> $ pad_intern                     <dbl> 1210, 1210, 1210, 1210, 1210
+#> $ pad_intern                     <chr> "1210", "1210", "1210", "1210", "1210"
 #> $ name                           <chr> "Dr. Peter Pilz", "Dr. Peter Pilz", "Dr. Peter Pilz", "Dr. Peter Pilz", "Dr. Peter Pilz"
 #> $ position_text                  <chr> "Abgeordneter zum Nationalrat (XXVI. GP), JETZT", "Abgeordneter zum Nationalrat (XXVI. GP), PILZ", "Abgeordneter zum Nationalrat (XXV. GP), ohne Klubzugehörigkeit", "Abgeordneter zum Nationalrat (XXI.-XXV. GP), GRÜNE", "Abgeordneter zum Nationalrat (XVII.-XVIII. GP), GRÜNE"
 #> $ position_code                  <chr> "NR", "NR", "NR", "NR", "NR"
@@ -213,9 +209,9 @@ dplyr::glimpse(result)
 #> $ position_date_end              <date> 2019-10-22, 2018-11-19, 2017-11-08, 2017-07-16, 1991-12-08
 #> $ position_active                <lgl> FALSE, FALSE, FALSE, FALSE, FALSE
 #> $ parl_group                     <chr> "Parlamentsklub JETZT", "Liste Pilz", "ohne Klubzugehörigkeit", "Der Grüne Klub im Parlament - Klub der Grünen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament", "Der Grüne Klub - Klub der Grün-Alternativen Abgeordneten"
-#> $ wahlkreis                      <chr> "Bundeswahlvorschlag", "Bundeswahlvorschlag", "Bundeswahlvorschlag", "Bundeswahlvorschlag", "Wahlkreisverband II (K, OÖ, S, St, T u V)"
 #> $ party                          <chr> "JETZT", "PILZ", "OK", "GRÜNE", "GRÜNE"
 #> $ party_name                     <chr> "Liste Peter Pilz", "Liste Peter Pilz", "Die Grünen", "Die Grünen", "Die Grünen"
+#> $ substitute                     <chr> NA, NA, NA, NA, NA
 #> $ electoral_district_region_code <chr> "FB", "FB", "FB", "FB", "Wahlkreisverband"
 #> $ electoral_district_region      <chr> "Bundeswahlvorschlag", "Bundeswahlvorschlag", "Bundeswahlvorschlag", "Bundeswahlvorschlag", "Wahlkreisverband II (K, OÖ, S, St, T u V)"
 #> $ legis_period                   <list> "XXVI", "XXVI", "XXV", <"XXI", "XXV">, <"XVII", "XVIII">
@@ -230,19 +226,18 @@ MPs (top 5 are shown below).
 ``` r
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
-#> ⠙ Fetching mandates 6/183 | ETA: 30s
-#> ⠹ Fetching mandates 15/183 | ETA: 32s
-#> ⠸ Fetching mandates 30/183 | ETA: 30s
-#> ⠼ Fetching mandates 44/183 | ETA: 28s
-#> ⠴ Fetching mandates 59/183 | ETA: 25s
-#> ⠦ Fetching mandates 74/183 | ETA: 22s
-#> ⠧ Fetching mandates 89/183 | ETA: 19s
-#> ⠇ Fetching mandates 103/183 | ETA: 16s
-#> ⠏ Fetching mandates 118/183 | ETA: 13s
-#> ⠋ Fetching mandates 133/183 | ETA: 10s
-#> ⠙ Fetching mandates 148/183 | ETA:  7s
-#> ⠹ Fetching mandates 162/183 | ETA:  4s
-#> ⠸ Fetching mandates 177/183 | ETA:  1s
+#> ⠙ Fetching mandates 7/183 | ETA: 28s
+#> ⠹ Fetching mandates 9/183 | ETA: 29s
+#> ⠸ Fetching mandates 25/183 | ETA: 29s
+#> ⠼ Fetching mandates 41/183 | ETA: 26s
+#> ⠴ Fetching mandates 57/183 | ETA: 23s
+#> ⠦ Fetching mandates 73/183 | ETA: 20s
+#> ⠧ Fetching mandates 89/183 | ETA: 18s
+#> ⠇ Fetching mandates 104/183 | ETA: 15s
+#> ⠏ Fetching mandates 120/183 | ETA: 12s
+#> ⠋ Fetching mandates 136/183 | ETA:  9s
+#> ⠙ Fetching mandates 152/183 | ETA:  6s
+#> ⠹ Fetching mandates 168/183 | ETA:  3s
 #> Fetched mandates for 183 persons.
 #> 
 
@@ -268,11 +263,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10497
-#> 2 12741      Peter Haubner                     9038
-#> 3 2834       Mag. Dr. Martin Graf              8737
-#> 4 14835      Petra Bayr, MA MLS                8656
-#> 5 14795      August Wöginger                   8656
+#> 1 145        Doris Bures                      10498
+#> 2 12741      Peter Haubner                     9039
+#> 3 2834       Mag. Dr. Martin Graf              8738
+#> 4 14835      Petra Bayr, MA MLS                8657
+#> 5 14795      August Wöginger                   8657
 ```
 
 ## Get MPs’ details
@@ -483,17 +478,17 @@ glimpse(df_govBills %>% head())
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2024-07-05, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "2704", "2603", "2598", "2608", "2610", "2607"
-#> $ item_number_type <chr> "2704 d.B.", "2603 d.B.", "2598 d.B.", "2608 d.B.", "2610 d.B.", "2607 d.B."
+#> $ item_number      <chr> "2704", "2609", "2607", "2606", "2600", "2596"
+#> $ item_number_type <chr> "2704 d.B.", "2609 d.B.", "2607 d.B.", "2606 d.B.", "2600 d.B.", "2596 d.B."
 #> $ stage            <chr> "2", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2603", "https://www.parlament.gv.at/gegenstand/XXVII/I/2598", "https://www.parlament.gv.at/gegenstand/XXVII/I/2608", "https://www.parlament.gv.at/gegenstand/XXVII/I/2610", "https://www.parlament.gv.at/gegenstand/XXVII/I/2607"
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2609", "https://www.parlament.gv.at/gegenstand/XXVII/I/2607", "https://www.parlament.gv.at/gegenstand/XXVII/I/2606", "https://www.parlament.gv.at/gegenstand/XXVII/I/2600", "https://www.parlament.gv.at/gegenstand/XXVII/I/2596"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Eisenbahngesetz, Änderung", "Betrugsbekämpfungsgesetz 2024 Teil I – BBKG 2024 Teil I", "Erneuerbaren-Ausbau-Gesetz, Änderung", "Abgabenänderungsgesetz 2024 – AbgÄG 2024", "Sozialversicherungs-Änderungsgesetz 2024 – SVÄG 2024"
-#> $ topics           <list> "Budget und Finanzen", "Verkehr und Infrastruktur", <"Budget und Finanzen", "Inneres und Recht", "Soziales">, <"Inneres und Recht", "Klima", "Umwelt und Energie">, "Budget und Finanzen", "Soziales"
-#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", "Verkehr II. Schienenverkehr", <"Strafrecht", "Kreditwesen", "Sozialversicherung I. Allgemeine Sozialversicherung", "Verwaltungsorganisation">, <"Bundesverfassung", "Elektrizität", "Umweltschutz">, <"Steuern und Gebühren", "Kreditwesen">, "Sozialversicherung I. Allgemeine Sozialversicherung"
-#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Schienentransport\"]", "[\"Finanzwesen\",\"soziale Sicherheit\",\"Strafrecht\",\"Verwaltungsorganisation\"]", "[\"Elektrizitätsindustrie\",\"Umwelt\",\"Verfassung\"]", "[\"Finanzwesen\",\"Steuerwesen\"]", "[\"soziale Sicherheit\"]"
-#> $ persons          <list> "55727", "5653", "55727", "5653", "55727", "21029"
+#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Zivildienstgesetz, Änderung", "Sozialversicherungs-Änderungsgesetz 2024 – SVÄG 2024", "Grundbuchs-Novelle 2024 – GB-Nov 2024", "IFI Beitragsgesetz 2024", "DORA-Vollzugsgesetz (DORA-VG); Alternative Investmentfonds Manager-Gesetz, Bankwesengesetz u.a., Änderung"
+#> $ topics           <list> "Budget und Finanzen", "Landesverteidigung", "Soziales", "Inneres und Recht", <"Außenpolitik", "Budget und Finanzen">, <"Budget und Finanzen", "Information und Medien">
+#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", "Zivildienst", "Sozialversicherung I. Allgemeine Sozialversicherung", "Zivilrecht", <"Kreditwesen", "Entwicklungszusammenarbeit">, <"Kreditwesen", "Information und Informationsverarbeitung", "Vertragsversicherungen">
+#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Zivildienst\"]", "[\"soziale Sicherheit\"]", "[\"Bürgerliches Recht\"]", "[\"Finanzwesen\",\"Politik der Zusammenarbeit\"]", "[\"Finanzwesen\",\"Informatik\",\"Information und Informationsverarbeitung\",\"Versicherungswesen\"]"
+#> $ persons          <list> "55727", "2136", "21029", "2345", "55727", "55727"
 #> $ parl_group       <list> "", "", "", "", "", ""
 
 #count number of bills by legis period
@@ -690,22 +685,18 @@ option. Member information is automatically unnested into the result.
 
 committeeIbiza <- get_committees(legis_period=27, search_string="Ibiza", institution="NR", details_type="members")
 dplyr::glimpse(committeeIbiza)
-#> Rows: 40
-#> Columns: 14
-#> $ committee     <chr> "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021", "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021"
-#> $ url_committee <chr> "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906", "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906"
-#> $ id_number     <int> 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906
-#> $ citation      <chr> "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2"
-#> $ legis_period  <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
-#> $ date_start    <dttm> 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22
-#> $ date_end      <dttm> 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23
-#> $ title         <chr> "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen", "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-innen, Verfahrensanwälte/-innen"
-#> $ url_pdf       <chr> "/dokument/XXVII/A-USA/2/00906/MIT_00906.pdf", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
-#> $ url_html      <chr> NA, "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/dokument/XXVII/A-USA/2/00906/MIT_00906.html"
-#> $ name          <chr> NA, "Präsident Sobotka Wolfgang, Mag.", "Zweite Präsidentin Bures Doris", "Dritter Präsident Hofer Norbert, Ing.", "Ofenauer Friedrich, Mag.", "Yildirim Selma, Mag.", "Belakowitsch Dagmar, Dr.", "Pöschl Wolfgang, Dr.", "Rohrer Ronald, Dr.", "Joklik Andreas, Dr.", "Weiß Barbara, Mag. Dr., LL.M.", "Gödl Ernst, Mag.", "Holzleitner Eva Maria, BSc", "Hafenecker Christian, MA", "Fürlinger Klaus, Mag.", "Gödl Ernst, Mag.", "Hanger Andreas, Mag.", "Kaufmann Martina, MMSc BA", "Stocker Christian, Dr.", "Holzleitner Eva Maria, BSc", "Krainer Kai Jan", "Matznetter Christoph, Dr.", "Fürst Susanne, Dr.", "Hafenecker Christian, MA", "Stögmüller David", "Tomaselli Nina, Mag.", "Krisper Stephanie, Dr.", "Deckenbacher Romana, Mag.", "Smodics-Neumann Maria, Mag.", "Niss Maria Theresia, Mag. Dr., MBA", "Obernosterer Gabriel", "Schwarz Gabriela", "Kollross Andreas", "Kucharowits Katharina", "Yılmaz Nurten", "Graf Martin, Mag. Dr.", "Ries Christian", "Bürstmayr Georg, Mag.", "Rössler Astrid, Dr.", "Brandstätter Helmut, Dr."
-#> $ member_type   <chr> NA, "Vorsitzender", "Vorsitzender-Vertreterin", "Vorsitzender-Vertreter", "Vorsitzender-Stellvertreter", "Vorsitzender-Stellvertreterin", "Vorsitzender-Stellvertreterin", "Verfahrensrichter", "Verfahrensrichter-Stellvertreter:in", "Verfahrensanwalt", "Verfahrensanwalt-Stellvertreterin", "Schriftführer:in", "Schriftführer:in", "Schriftführer:in", "member", "member", "member", "member", "member", "member", "member", "member", "member", "member", "member", "member", "member", "substitute", "substitute", "substitute", "substitute", "substitute", "substitute", "substitute", "substitute", "substitute", "substitute", "substitute", "substitute", "substitute"
-#> $ party         <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "ÖVP", "ÖVP", "ÖVP", "ÖVP", "ÖVP", "SPÖ", "SPÖ", "SPÖ", "FPÖ", "FPÖ", "GRÜNE", "GRÜNE", "NEOS", "ÖVP", "ÖVP", "ÖVP", "ÖVP", "ÖVP", "SPÖ", "SPÖ", "SPÖ", "FPÖ", "FPÖ", "GRÜNE", "GRÜNE", "NEOS"
-#> $ member_url    <chr> NA, "https://www.parlament.gv.at/person/88386", "https://www.parlament.gv.at/person/145", "https://www.parlament.gv.at/person/35521", "https://www.parlament.gv.at/person/83300", "https://www.parlament.gv.at/person/2339", "https://www.parlament.gv.at/person/35468", NA, NA, NA, NA, "https://www.parlament.gv.at/person/83409", "https://www.parlament.gv.at/person/2309", "https://www.parlament.gv.at/person/78586", "https://www.parlament.gv.at/person/72999", "https://www.parlament.gv.at/person/83409", "https://www.parlament.gv.at/person/83148", "https://www.parlament.gv.at/person/1983", "https://www.parlament.gv.at/person/5439", "https://www.parlament.gv.at/person/2309", "https://www.parlament.gv.at/person/14842", "https://www.parlament.gv.at/person/14844", "https://www.parlament.gv.at/person/1567", "https://www.parlament.gv.at/person/78586", "https://www.parlament.gv.at/person/87001", "https://www.parlament.gv.at/person/5678", "https://www.parlament.gv.at/person/2344", "https://www.parlament.gv.at/person/6506", "https://www.parlament.gv.at/person/3133", "https://www.parlament.gv.at/person/2242", "https://www.parlament.gv.at/person/35487", "https://www.parlament.gv.at/person/2326", "https://www.parlament.gv.at/person/18666", "https://www.parlament.gv.at/person/35908", "https://www.parlament.gv.at/person/83117", "https://www.parlament.gv.at/person/2834", "https://www.parlament.gv.at/person/2997", "https://www.parlament.gv.at/person/6501", "https://www.parlament.gv.at/person/5674", "https://www.parlament.gv.at/person/5682"
+#> Rows: 1
+#> Columns: 10
+#> $ legis_period  <chr> "XXVII"
+#> $ committee     <chr> "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 - beendet am 22.09.2021"
+#> $ citation      <chr> "A-USA/2"
+#> $ id_number     <int> 906
+#> $ url_committee <chr> "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/00906"
+#> $ date_start    <dttm> 2020-01-22
+#> $ date_end      <dttm> 2024-10-23
+#> $ url_pdf       <chr> "/dokument/XXVII/A-USA/2/00906/MIT_00906.pdf"
+#> $ url_html      <chr> "/dokument/XXVII/A-USA/2/00906/MIT_00906.html"
+#> $ members       <list> [<tbl_df[39 x 4]>]
 ```
 
 ## Get names & pad_interns
@@ -730,7 +721,7 @@ dplyr::glimpse(result)
 #> Rows: 2
 #> Columns: 9
 #> $ index       <int> 1, 2
-#> $ pad_intern  <dbl> 44127, 44127
+#> $ pad_intern  <chr> "44127", "44127"
 #> $ name        <chr> "Pia Philippa Beck", "Pia Philippa Strache"
 #> $ date_start  <date> 2023-06-28, NA
 #> $ date_end    <date> NA, 2023-06-27
@@ -748,8 +739,8 @@ result <- get_names(44127, date = "01/01/2024")
 dplyr::glimpse(result)
 #> Rows: 1
 #> Columns: 9
-#> $ index       <dbl> 1
-#> $ pad_intern  <dbl> 44127
+#> $ index       <int> 1
+#> $ pad_intern  <chr> "44127"
 #> $ name        <chr> "Pia Philippa Beck"
 #> $ date_start  <date> 2023-06-28
 #> $ date_end    <date> NA

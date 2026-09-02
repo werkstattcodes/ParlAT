@@ -305,33 +305,16 @@ get_mps_current(
 
 ## Value
 
-A data frame containing the list of current members of parliament that
-match the search criteria with the following columns:
-
-- `time_stamp`: Timestamp of when the data was retrieved
-
-- `pad_intern`: Person's unique identification number
-
-- `name`: Full name of the MP
-
-- `gender`: Gender of the MP
-
-- `parl_group`: Full name of the parliamentary group
-
-- `parl_group_code`: Code/abbreviation of the parliamentary group
-
-- `party_name`: Full name of the political party
-
-- `party_code`: Code/abbreviation of the political party
-
-- `state`: Federal state (Bundesland)
-
-- `electoral_district_region_code`: Electoral district region code
-
-- `chamber`: Chamber of Parliament ("NR" or "BR")
-
-Returns a zero-row tibble with the documented columns if no results are
-found.
+A data frame containing the current members matching the search
+criteria. The columns depend on `institution`. National Council (`"NR"`)
+results contain `time_stamp`, `name`, `pad_intern`, `party`,
+`parl_group`, `electoral_district_region_code`,
+`electoral_district_region`, `state`, `link`, and `chamber`. Federal
+Council (`"BR"`) results contain `time_stamp`, `name`, `pad_intern`,
+`state`, `electoral_district_region_code`, `parl_group`,
+`parl_group_code`, `party_name`, `party_code`, and `chamber`. If no
+results are found, a zero-row tibble with the columns and column types
+for the requested institution is returned.
 
 ## Examples
 
@@ -343,34 +326,31 @@ found.
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> Hits: 183
 #> ⠙ Fetching MPs' names 3/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 6/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 14/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 22/183 | ETA:  1m
-#> ⠴ Fetching MPs' names 31/183 | ETA:  1m
-#> ⠦ Fetching MPs' names 39/183 | ETA:  1m
-#> ⠧ Fetching MPs' names 47/183 | ETA: 50s
-#> ⠇ Fetching MPs' names 55/183 | ETA: 47s
-#> ⠏ Fetching MPs' names 64/183 | ETA: 43s
-#> ⠋ Fetching MPs' names 72/183 | ETA: 41s
-#> ⠙ Fetching MPs' names 80/183 | ETA: 38s
-#> ⠹ Fetching MPs' names 88/183 | ETA: 35s
-#> ⠸ Fetching MPs' names 97/183 | ETA: 31s
-#> ⠼ Fetching MPs' names 105/183 | ETA: 28s
-#> ⠴ Fetching MPs' names 113/183 | ETA: 26s
-#> ⠦ Fetching MPs' names 121/183 | ETA: 23s
-#> ⠧ Fetching MPs' names 130/183 | ETA: 19s
-#> ⠇ Fetching MPs' names 138/183 | ETA: 16s
-#> ⠏ Fetching MPs' names 146/183 | ETA: 13s
-#> ⠋ Fetching MPs' names 154/183 | ETA: 11s
-#> ⠙ Fetching MPs' names 163/183 | ETA:  7s
-#> ⠹ Fetching MPs' names 171/183 | ETA:  4s
-#> ⠸ Fetching MPs' names 179/183 | ETA:  1s
+#> ⠹ Fetching MPs' names 12/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 21/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 30/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 40/183 | ETA: 48s
+#> ⠦ Fetching MPs' names 48/183 | ETA: 45s
+#> ⠧ Fetching MPs' names 58/183 | ETA: 42s
+#> ⠇ Fetching MPs' names 67/183 | ETA: 39s
+#> ⠏ Fetching MPs' names 76/183 | ETA: 36s
+#> ⠋ Fetching MPs' names 85/183 | ETA: 33s
+#> ⠙ Fetching MPs' names 94/183 | ETA: 30s
+#> ⠹ Fetching MPs' names 103/183 | ETA: 27s
+#> ⠸ Fetching MPs' names 112/183 | ETA: 24s
+#> ⠼ Fetching MPs' names 121/183 | ETA: 21s
+#> ⠴ Fetching MPs' names 131/183 | ETA: 17s
+#> ⠦ Fetching MPs' names 140/183 | ETA: 14s
+#> ⠧ Fetching MPs' names 149/183 | ETA: 11s
+#> ⠇ Fetching MPs' names 158/183 | ETA:  8s
+#> ⠏ Fetching MPs' names 167/183 | ETA:  5s
+#> ⠋ Fetching MPs' names 176/183 | ETA:  2s
 #> Fetched 183 MPs' names.
 #> 
   dplyr::glimpse(nr_members)
 #> Rows: 183
 #> Columns: 10
-#> $ time_stamp                     <dttm> 2026-09-01 20:16:49, 2026-09-01 20:16:…
+#> $ time_stamp                     <dttm> 2026-09-02 10:46:31, 2026-09-02 10:46:…
 #> $ name                           <chr> "Lisa Aldali", "Mag. Katrin Auer", "Mag…
 #> $ pad_intern                     <chr> "38385", "30688", "30668", "30689", "19…
 #> $ party                          <chr> "NEOS", "SPÖ", "NEOS", "SPÖ", "ÖVP", "S…
@@ -393,7 +373,7 @@ found.
   dplyr::glimpse(br_female_vienna)
 #> Rows: 4
 #> Columns: 11
-#> $ time_stamp                     <dttm> 2026-09-01 20:17:56, 2026-09-01 20:17:…
+#> $ time_stamp                     <dttm> 2026-09-02 10:47:32, 2026-09-02 10:47:…
 #> $ pad_intern                     <chr> "32831", "84868", "17881", "33455"
 #> $ name                           <chr> "Mag. Dr. Julia Deutsch", "Mag. Daniela…
 #> $ electoral_district_region_code <chr> "9 Wien", "9 Wien", "9 Wien", "9 Wien"
@@ -413,18 +393,17 @@ found.
 #> Results on the Parliament website:
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W&WFW_002WP=SP%C3%96
 #> Hits: 41
-#> ⠙ Fetching MPs' names 3/41 | ETA: 14s
-#> ⠹ Fetching MPs' names 6/41 | ETA: 13s
-#> ⠸ Fetching MPs' names 15/41 | ETA:  9s
-#> ⠼ Fetching MPs' names 23/41 | ETA:  7s
-#> ⠴ Fetching MPs' names 31/41 | ETA:  4s
-#> ⠦ Fetching MPs' names 39/41 | ETA:  1s
+#> ⠙ Fetching MPs' names 4/41 | ETA: 12s
+#> ⠹ Fetching MPs' names 5/41 | ETA: 12s
+#> ⠸ Fetching MPs' names 14/41 | ETA:  9s
+#> ⠼ Fetching MPs' names 23/41 | ETA:  6s
+#> ⠴ Fetching MPs' names 32/41 | ETA:  3s
 #> Fetched 41 MPs' names.
 #> 
   dplyr::glimpse(spo_nr)
 #> Rows: 41
 #> Columns: 10
-#> $ time_stamp                     <dttm> 2026-09-01 20:17:58, 2026-09-01 20:17:…
+#> $ time_stamp                     <dttm> 2026-09-02 10:47:33, 2026-09-02 10:47:…
 #> $ name                           <chr> "Mag. Katrin Auer", "Roland Baumann", "…
 #> $ pad_intern                     <chr> "30688", "30689", "14835", "30693", "14…
 #> $ party                          <chr> "SPÖ", "SPÖ", "SPÖ", "SPÖ", "SPÖ", "SPÖ…

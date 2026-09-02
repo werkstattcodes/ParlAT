@@ -29,6 +29,16 @@
 
 ### Bug fixes
 
+- [`get_committees()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_committees.md):
+  zero-row results now retain the exact default or
+  `details_type = "members"` schema, including typed dates and the
+  `members` list-column where requested. Member details now return one
+  row per committee, combine the PDF and HTML membership links, ignore
+  illustrated member lists, and select National Council, Federal
+  Council, Hauptausschuss, and special committee layouts defensively.
+  Unsupported layouts warn and yield an empty member tibble instead of a
+  fabricated failure row. Exact citations accept both `"1/SA-BU"` and
+  canonical `"SA-BU/1"` order.
 - [`get_events()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_events.md):
   leaving the legislative period and dates unset now returns events
   across all available dates, including a completely unfiltered call.
@@ -48,10 +58,42 @@
   period codes `"PN"` and `"KN"` can now be selected explicitly. An
   unmatched person returns a typed zero-row result instead of sending an
   unfiltered item request.
+- [`get_mandates()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mandates.md):
+  all empty-result paths now return the complete documented schema,
+  including party and substitute columns. Non-empty results use the same
+  column order and types when optional upstream fields are absent.
+- [`get_mps()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps.md):
+  empty date-filtered searches now retain the `date` column as a `Date`,
+  matching non-empty results.
+- [`get_mps()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps.md):
+  removed ~160 lines of unreachable dead code after an early
+  [`return()`](https://rdrr.io/r/base/function.html).
+- [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md):
+  no longer errors when a search returns no members (previously `NULL`
+  was piped into `mutate()`). Empty National Council and Federal Council
+  searches now retain their respective result schemas.
+- `get_mps_details(detail_type = "activities")`: the `institution`
+  filter silently matched nothing, and the `institution` column leaked
+  the raw German names `"Nationalrat"`/`"Bundesrat"` instead of the
+  documented `"NR"`/`"BR"`. The upstream API changed its `gremium`
+  vocabulary from short codes to full names. Both directions now speak
+  the new vocabulary, so the filter works again and the column values
+  are as documented. Code that worked around this by matching
+  `"Nationalrat"` should match `"NR"`.
+- `get_mps_details(detail_type = "committees")`: no longer errors for
+  MPs with multiple name variants.
+- [`get_names()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_names.md):
+  no longer returns a bare `NA` when the person-detail fetch fails,
+  which could break its own vectorized path. Empty results and people
+  without previous-name records now retain the complete documented
+  schema.
 - [`get_participation()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_participation.md):
   the graceful empty-result path was unreachable due to an internal
   assertion that errored first; empty results now return a typed
   zero-row tibble.
+- [`get_persons()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_persons.md):
+  empty searches with `mandates = TRUE`, and matching people without
+  mandates, now retain the complete typed `mandates_*` schema.
 - [`get_plenary_meetings()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_plenary_meetings.md):
   when `legis_period = NULL`, the echoed Parliament website URL now
   explicitly selects every available period instead of defaulting to the
@@ -63,25 +105,6 @@
   PDF-export error message was fixed. All-period searches now echo a
   website URL that explicitly selects every available period instead of
   defaulting to the current period.
-- [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md):
-  no longer errors when a search returns no members (previously `NULL`
-  was piped into `mutate()`).
-- [`get_names()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_names.md):
-  no longer returns a bare `NA` when the person-detail fetch fails,
-  which could break its own vectorized path.
-- `get_mps_details(detail_type = "committees")`: no longer errors for
-  MPs with multiple name variants.
-- [`get_mps()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps.md):
-  removed ~160 lines of unreachable dead code after an early
-  [`return()`](https://rdrr.io/r/base/function.html).
-- `get_mps_details(detail_type = "activities")`: the `institution`
-  filter silently matched nothing, and the `institution` column leaked
-  the raw German names `"Nationalrat"`/`"Bundesrat"` instead of the
-  documented `"NR"`/`"BR"`. The upstream API changed its `gremium`
-  vocabulary from short codes to full names. Both directions now speak
-  the new vocabulary, so the filter works again and the column values
-  are as documented. Code that worked around this by matching
-  `"Nationalrat"` should match `"NR"`.
 
 ### Enhancements
 

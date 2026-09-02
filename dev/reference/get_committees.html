@@ -82,7 +82,11 @@
 
 
 <dt id="arg-citation">citation<a class="anchor" aria-label="anchor" href="#arg-citation"></a></dt>
-<dd><p>A character vector for filtering results by committee citation code (e.g., "1/SA-BU"). This is applied as a post-processing filter after API results are retrieved. Default is NULL (no filtering).</p></dd>
+<dd><p>A character string for filtering results by committee citation
+code. Exact citations may use either number-first form (for example,
+<code>"1/SA-BU"</code>) or the canonical code-first form (<code>"SA-BU/1"</code>). Other
+values are treated as regular expressions. The filter is applied after API
+results are retrieved. Default is <code>NULL</code> (no filtering).</p></dd>
 
 
 <dt id="arg-include-subcommittees">include_subcommittees<a class="anchor" aria-label="anchor" href="#arg-include-subcommittees"></a></dt>
@@ -120,7 +124,9 @@ in the search results. Search for subcommittees is only possible if <code>perman
 <li><p><code>party</code>: Party affiliation (character, may be NA)</p></li>
 <li><p><code>member_url</code>: URL to member's profile page (character)</p></li>
 </ul></li>
-</ul><p>Returns a zero-row tibble with the documented columns if no results are found.</p>
+</ul><p>If no results are found, the zero-row tibble has exactly the same columns,
+order, and column types as a non-empty result for the requested
+<code>details_type</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -155,22 +161,18 @@ e.g. incorporating the extraction of data from membership lists. Data available 
 <span class="r-in"><span>  details_type <span class="op">=</span> <span class="st">"members"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ committee     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 -…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ citation      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "A-USA/2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ id_number     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 906</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ url_committee <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/009…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ id_number     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>906<span style="color: #949494;">, </span>9…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ citation      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "A-USA/2"<span style="color: #949494;">, </span>"A-USA/2"<span style="color: #949494;">, </span>"A-USA/2"<span style="color: #949494;">, </span>"A-USA/2"<span style="color: #949494;">, </span>"A-USA/2"<span style="color: #949494;">, </span>"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"X…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ date_start    <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2020-01-22<span style="color: #949494;">, </span>2020-01-22<span style="color: #949494;">, </span>2020-01-22<span style="color: #949494;">, </span>2020-01-22<span style="color: #949494;">, </span>2020-01…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ date_end      <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2024-10-23<span style="color: #949494;">, </span>2024-10-23<span style="color: #949494;">, </span>2024-10-23<span style="color: #949494;">, </span>2024-10-23<span style="color: #949494;">, </span>2024-10…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ title         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-in…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ url_pdf       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/dokument/XXVII/A-USA/2/00906/MIT_00906.pdf"<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">N</span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ url_html      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>"/dokument/XXVII/A-USA/2/00906/MIT_00906.html"<span style="color: #949494;">, </span>"/do…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>"Präsident Sobotka Wolfgang, Mag."<span style="color: #949494;">, </span>"Zweite Präsiden…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ member_type   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>"Vorsitzender"<span style="color: #949494;">, </span>"Vorsitzender-Vertreterin"<span style="color: #949494;">, </span>"Vorsitz…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ party         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ member_url    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>"https://www.parlament.gv.at/person/88386"<span style="color: #949494;">, </span>"https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ date_start    <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2020-01-22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ date_end      <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2024-10-23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ url_pdf       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/dokument/XXVII/A-USA/2/00906/MIT_00906.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ url_html      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/dokument/XXVII/A-USA/2/00906/MIT_00906.html"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ members       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;tbl_df[39 x 4]&gt;]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Search only permanent committees</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_committees</span><span class="op">(</span></span></span>

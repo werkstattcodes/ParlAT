@@ -42,9 +42,11 @@ get_committees(
 
 - citation:
 
-  A character vector for filtering results by committee citation code
-  (e.g., "1/SA-BU"). This is applied as a post-processing filter after
-  API results are retrieved. Default is NULL (no filtering).
+  A character string for filtering results by committee citation code.
+  Exact citations may use either number-first form (for example,
+  `"1/SA-BU"`) or the canonical code-first form (`"SA-BU/1"`). Other
+  values are treated as regular expressions. The filter is applied after
+  API results are retrieved. Default is `NULL` (no filtering).
 
 - include_subcommittees:
 
@@ -114,8 +116,9 @@ A tibble (data frame) with different structures depending on
 
   - `member_url`: URL to member's profile page (character)
 
-Returns a zero-row tibble with the documented columns if no results are
-found.
+If no results are found, the zero-row tibble has exactly the same
+columns, order, and column types as a non-empty result for the requested
+`details_type`.
 
 ## Details
 
@@ -154,22 +157,18 @@ result <- get_committees(
   details_type = "members"
 )
 dplyr::glimpse(result)
-#> Rows: 40
-#> Columns: 14
+#> Rows: 1
+#> Columns: 10
+#> $ legis_period  <chr> "XXVII"
 #> $ committee     <chr> "Ibiza-Untersuchungsausschuss eingesetzt am 22.01.2020 -…
+#> $ citation      <chr> "A-USA/2"
+#> $ id_number     <int> 906
 #> $ url_committee <chr> "https://www.parlament.gv.at/ausschuss/XXVII/A-USA/2/009…
-#> $ id_number     <int> 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 906, 9…
-#> $ citation      <chr> "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "A-USA/2", "…
-#> $ legis_period  <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "X…
-#> $ date_start    <dttm> 2020-01-22, 2020-01-22, 2020-01-22, 2020-01-22, 2020-01…
-#> $ date_end      <dttm> 2024-10-23, 2024-10-23, 2024-10-23, 2024-10-23, 2024-10…
-#> $ title         <chr> "Verzeichnis: Mitglieder, Vorsitz, Verfahrensrichter/-in…
-#> $ url_pdf       <chr> "/dokument/XXVII/A-USA/2/00906/MIT_00906.pdf", NA, NA, N…
-#> $ url_html      <chr> NA, "/dokument/XXVII/A-USA/2/00906/MIT_00906.html", "/do…
-#> $ name          <chr> NA, "Präsident Sobotka Wolfgang, Mag.", "Zweite Präsiden…
-#> $ member_type   <chr> NA, "Vorsitzender", "Vorsitzender-Vertreterin", "Vorsitz…
-#> $ party         <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-#> $ member_url    <chr> NA, "https://www.parlament.gv.at/person/88386", "https:/…
+#> $ date_start    <dttm> 2020-01-22
+#> $ date_end      <dttm> 2024-10-23
+#> $ url_pdf       <chr> "/dokument/XXVII/A-USA/2/00906/MIT_00906.pdf"
+#> $ url_html      <chr> "/dokument/XXVII/A-USA/2/00906/MIT_00906.html"
+#> $ members       <list> [<tbl_df[39 x 4]>]
 
 # Search only permanent committees
 result <- get_committees(

@@ -61,25 +61,33 @@
 <div class="section level3">
 <h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
 <ul><li>
+<code><a href="../reference/get_committees.html">get_committees()</a></code>: zero-row results now retain the exact default or <code>details_type = "members"</code> schema, including typed dates and the <code>members</code> list-column where requested. Member details now return one row per committee, combine the PDF and HTML membership links, ignore illustrated member lists, and select National Council, Federal Council, Hauptausschuss, and special committee layouts defensively. Unsupported layouts warn and yield an empty member tibble instead of a fabricated failure row. Exact citations accept both <code>"1/SA-BU"</code> and canonical <code>"SA-BU/1"</code> order.</li>
+<li>
 <code><a href="../reference/get_events.html">get_events()</a></code>: leaving the legislative period and dates unset now returns events across all available dates, including a completely unfiltered call. The echoed Parliament website URL derives its date and availability filters from the returned rows so it reproduces the API results instead of applying the website’s current-events defaults. Austrian civil-date boundaries are serialized consistently across operating systems.</li>
 <li>
 <code><a href="../reference/get_items.html">get_items()</a></code>: combining <code>person</code> with <code>institution</code> now resolves the person across all institutional categories and applies the institution filter only to the returned items. <code>institution</code> accepts both <code>"NR"</code>/<code>"BR"</code> and the full German names <code>"Nationalrat"</code>/<code>"Bundesrat"</code>. When <code>legis_period = NULL</code>, the echoed Parliament website URL now explicitly selects all available periods so it reproduces the package results instead of defaulting to the current period. The historical period codes <code>"PN"</code> and <code>"KN"</code> can now be selected explicitly. An unmatched person returns a typed zero-row result instead of sending an unfiltered item request.</li>
 <li>
+<code><a href="../reference/get_mandates.html">get_mandates()</a></code>: all empty-result paths now return the complete documented schema, including party and substitute columns. Non-empty results use the same column order and types when optional upstream fields are absent.</li>
+<li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code>: empty date-filtered searches now retain the <code>date</code> column as a <code>Date</code>, matching non-empty results.</li>
+<li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code>: removed ~160 lines of unreachable dead code after an early <code><a href="https://rdrr.io/r/base/function.html" class="external-link">return()</a></code>.</li>
+<li>
+<code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>: no longer errors when a search returns no members (previously <code>NULL</code> was piped into <code>mutate()</code>). Empty National Council and Federal Council searches now retain their respective result schemas.</li>
+<li>
+<code>get_mps_details(detail_type = "activities")</code>: the <code>institution</code> filter silently matched nothing, and the <code>institution</code> column leaked the raw German names <code>"Nationalrat"</code>/<code>"Bundesrat"</code> instead of the documented <code>"NR"</code>/<code>"BR"</code>. The upstream API changed its <code>gremium</code> vocabulary from short codes to full names. Both directions now speak the new vocabulary, so the filter works again and the column values are as documented. Code that worked around this by matching <code>"Nationalrat"</code> should match <code>"NR"</code>.</li>
+<li>
+<code>get_mps_details(detail_type = "committees")</code>: no longer errors for MPs with multiple name variants.</li>
+<li>
+<code><a href="../reference/get_names.html">get_names()</a></code>: no longer returns a bare <code>NA</code> when the person-detail fetch fails, which could break its own vectorized path. Empty results and people without previous-name records now retain the complete documented schema.</li>
+<li>
 <code><a href="../reference/get_participation.html">get_participation()</a></code>: the graceful empty-result path was unreachable due to an internal assertion that errored first; empty results now return a typed zero-row tibble.</li>
+<li>
+<code><a href="../reference/get_persons.html">get_persons()</a></code>: empty searches with <code>mandates = TRUE</code>, and matching people without mandates, now retain the complete typed <code>mandates_*</code> schema.</li>
 <li>
 <code><a href="../reference/get_plenary_meetings.html">get_plenary_meetings()</a></code>: when <code>legis_period = NULL</code>, the echoed Parliament website URL now explicitly selects every available period instead of defaulting to the current period.</li>
 <li>
 <code><a href="../reference/get_transcripts.html">get_transcripts()</a></code>: the row-limit error message incorrectly said the limit was 10,000 (the actual limit is 100,000); a misplaced <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf()</a></code> argument in the PDF-export error message was fixed. All-period searches now echo a website URL that explicitly selects every available period instead of defaulting to the current period.</li>
-<li>
-<code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>: no longer errors when a search returns no members (previously <code>NULL</code> was piped into <code>mutate()</code>).</li>
-<li>
-<code><a href="../reference/get_names.html">get_names()</a></code>: no longer returns a bare <code>NA</code> when the person-detail fetch fails, which could break its own vectorized path.</li>
-<li>
-<code>get_mps_details(detail_type = "committees")</code>: no longer errors for MPs with multiple name variants.</li>
-<li>
-<code><a href="../reference/get_mps.html">get_mps()</a></code>: removed ~160 lines of unreachable dead code after an early <code><a href="https://rdrr.io/r/base/function.html" class="external-link">return()</a></code>.</li>
-<li>
-<code>get_mps_details(detail_type = "activities")</code>: the <code>institution</code> filter silently matched nothing, and the <code>institution</code> column leaked the raw German names <code>"Nationalrat"</code>/<code>"Bundesrat"</code> instead of the documented <code>"NR"</code>/<code>"BR"</code>. The upstream API changed its <code>gremium</code> vocabulary from short codes to full names. Both directions now speak the new vocabulary, so the filter works again and the column values are as documented. Code that worked around this by matching <code>"Nationalrat"</code> should match <code>"NR"</code>.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="enhancements-development-version">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-development-version"></a></h3>

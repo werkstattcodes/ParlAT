@@ -49,6 +49,9 @@ following columns:
 
 - `note`: Raw value from the source data
 
+Zero-row results and results without previous-name records retain these
+columns in the documented order and with the same column types.
+
 ## See also
 
 [`get_pad_intern()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_pad_intern.md)
@@ -63,7 +66,7 @@ dplyr::glimpse(result)
 #> Rows: 2
 #> Columns: 9
 #> $ index       <int> 1, 2
-#> $ pad_intern  <dbl> 44127, 44127
+#> $ pad_intern  <chr> "44127", "44127"
 #> $ name        <chr> "Pia Philippa Beck", "Pia Philippa Strache"
 #> $ date_start  <date> 2023-06-28, NA
 #> $ date_end    <date> NA, 2023-06-27
@@ -77,7 +80,7 @@ dplyr::glimpse(result)
 #> Rows: 1
 #> Columns: 9
 #> $ index       <int> 1
-#> $ pad_intern  <dbl> 44127
+#> $ pad_intern  <chr> "44127"
 #> $ name        <chr> "Pia Philippa Beck"
 #> $ date_start  <date> 2023-06-28
 #> $ date_end    <date> NA
@@ -90,8 +93,8 @@ result <- get_names(44127, date = "01/01/2023") # Philippa Pia Strache
 dplyr::glimpse(result)
 #> Rows: 1
 #> Columns: 9
-#> $ index       <dbl> 1
-#> $ pad_intern  <dbl> 44127
+#> $ index       <int> 1
+#> $ pad_intern  <chr> "44127"
 #> $ name        <chr> "Pia Philippa Strache"
 #> $ date_start  <date> NA
 #> $ date_end    <date> 2023-06-27
@@ -107,7 +110,7 @@ dplyr::glimpse(result)
 #> Rows: 4
 #> Columns: 9
 #> $ index       <int> 1, 2, 1, 2
-#> $ pad_intern  <dbl> 1130, 1130, 83124, 83124
+#> $ pad_intern  <chr> "1130", "1130", "83124", "83124"
 #> $ name        <chr> "Freda Meissner-Blau", "Freda Blau-Meissner", "Michael Ber…
 #> $ date_start  <date> 1988-05-12, NA, 2016-08-11, NA
 #> $ date_end    <date> NA, 1988-05-11, NA, 2016-08-10

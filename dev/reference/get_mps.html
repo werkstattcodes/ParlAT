@@ -141,7 +141,10 @@ also on his or her membership in other parliamentary groups in the past.</p>
 <li><p><code>legis_period</code>: Legislative period(s)</p></li>
 <li><p><code>mandate_detail</code>: Details on mandates in Parliament at the queried period of time (not all mandates). To obtain all mandates, use <code><a href="get_mandates.html">get_mandates()</a></code>.</p></li>
 <li><p><code>electoral_district</code>: Electoral district</p></li>
-</ul></div>
+</ul><p>If no MPs match, the zero-row data frame has the same columns and column
+types as a non-empty result for the requested mode. In particular, <code>date</code>
+remains a <code>Date</code> column when the <code>date</code> argument is supplied.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
 

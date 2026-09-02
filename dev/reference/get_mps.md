@@ -120,6 +120,10 @@ Columns returned:
 
 - `electoral_district`: Electoral district
 
+If no MPs match, the zero-row data frame has the same columns and column
+types as a non-empty result for the requested mode. In particular,
+`date` remains a `Date` column when the `date` argument is supplied.
+
 ## Details
 
 ### search_string

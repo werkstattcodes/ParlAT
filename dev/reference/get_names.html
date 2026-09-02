@@ -82,7 +82,9 @@ This function is particularly relevant for MPs who changed their names (e.g., du
 <li><p><code>name_family</code>: Family name/surname</p></li>
 <li><p><code>name_given</code>: Given name/first name</p></li>
 <li><p><code>note</code>: Raw value from the source data</p></li>
-</ul></div>
+</ul><p>Zero-row results and results without previous-name records retain these
+columns in the documented order and with the same column types.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="get_pad_intern.html">get_pad_intern()</a></code> to retrieve an MP's <code>pad_intern</code></p></div>
@@ -96,7 +98,7 @@ This function is particularly relevant for MPs who changed their names (e.g., du
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ index       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 44127<span style="color: #949494;">, </span>44127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "44127"<span style="color: #949494;">, </span>"44127"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Pia Philippa Beck"<span style="color: #949494;">, </span>"Pia Philippa Strache"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date_start  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-06-28<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date_end    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>2023-06-27</span>
@@ -110,7 +112,7 @@ This function is particularly relevant for MPs who changed their names (e.g., du
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ index       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 44127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "44127"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Pia Philippa Beck"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date_start  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-06-28</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date_end    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> <span style="color: #BB0000;">NA</span></span>
@@ -123,8 +125,8 @@ This function is particularly relevant for MPs who changed their names (e.g., du
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ index       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 44127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ index       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "44127"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Pia Philippa Strache"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date_start  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date_end    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-06-27</span>
@@ -140,7 +142,7 @@ This function is particularly relevant for MPs who changed their names (e.g., du
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ index       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>2<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1130<span style="color: #949494;">, </span>1130<span style="color: #949494;">, </span>83124<span style="color: #949494;">, </span>83124</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1130"<span style="color: #949494;">, </span>"1130"<span style="color: #949494;">, </span>"83124"<span style="color: #949494;">, </span>"83124"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Freda Meissner-Blau"<span style="color: #949494;">, </span>"Freda Blau-Meissner"<span style="color: #949494;">, </span>"Michael Ber…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date_start  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1988-05-12<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>2016-08-11<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date_end    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1988-05-11<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>2016-08-10</span>
