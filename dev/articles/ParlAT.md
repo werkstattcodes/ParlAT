@@ -19,41 +19,47 @@ by the function
 df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> Results on the Parliament website: https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> Hits: 183
-#> ⠙ Fetching MPs' names 4/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 3/183 | ETA:  1m
 #> 
-#> ⠹ Fetching MPs' names 10/183 | ETA: 49s
+#> ⠹ Fetching MPs' names 9/183 | ETA:  1m
 #> 
-#> ⠸ Fetching MPs' names 21/183 | ETA: 46s
+#> ⠸ Fetching MPs' names 18/183 | ETA:  1m
 #> 
-#> ⠼ Fetching MPs' names 32/183 | ETA: 42s
+#> ⠼ Fetching MPs' names 27/183 | ETA:  1m
 #> 
-#> ⠴ Fetching MPs' names 42/183 | ETA: 39s
+#> ⠴ Fetching MPs' names 36/183 | ETA: 49s
 #> 
-#> ⠦ Fetching MPs' names 53/183 | ETA: 37s
+#> ⠦ Fetching MPs' names 45/183 | ETA: 46s
 #> 
-#> ⠧ Fetching MPs' names 64/183 | ETA: 33s
+#> ⠧ Fetching MPs' names 54/183 | ETA: 43s
 #> 
-#> ⠇ Fetching MPs' names 74/183 | ETA: 30s
+#> ⠇ Fetching MPs' names 63/183 | ETA: 40s
 #> 
-#> ⠏ Fetching MPs' names 85/183 | ETA: 27s
+#> ⠏ Fetching MPs' names 72/183 | ETA: 37s
 #> 
-#> ⠋ Fetching MPs' names 96/183 | ETA: 24s
+#> ⠋ Fetching MPs' names 81/183 | ETA: 34s
 #> 
-#> ⠙ Fetching MPs' names 107/183 | ETA: 21s
+#> ⠙ Fetching MPs' names 90/183 | ETA: 31s
 #> 
-#> ⠹ Fetching MPs' names 117/183 | ETA: 18s
+#> ⠹ Fetching MPs' names 99/183 | ETA: 28s
 #> 
-#> ⠸ Fetching MPs' names 128/183 | ETA: 15s
+#> ⠸ Fetching MPs' names 108/183 | ETA: 25s
 #> 
-#> ⠼ Fetching MPs' names 139/183 | ETA: 12s
+#> ⠼ Fetching MPs' names 117/183 | ETA: 22s
 #> 
-#> ⠴ Fetching MPs' names 149/183 | ETA: 10s
+#> ⠴ Fetching MPs' names 127/183 | ETA: 19s
 #> 
-#> ⠦ Fetching MPs' names 160/183 | ETA:  6s
+#> ⠦ Fetching MPs' names 136/183 | ETA: 16s
 #> 
-#> ⠧ Fetching MPs' names 171/183 | ETA:  3s
+#> ⠧ Fetching MPs' names 145/183 | ETA: 13s
 #> 
-#> ⠇ Fetching MPs' names 182/183 | ETA:  0s
+#> ⠇ Fetching MPs' names 154/183 | ETA: 10s
+#> 
+#> ⠏ Fetching MPs' names 163/183 | ETA:  7s
+#> 
+#> ⠋ Fetching MPs' names 172/183 | ETA:  4s
+#> 
+#> ⠙ Fetching MPs' names 181/183 | ETA:  1s
 #> 
 #> Fetched 183 MPs' names.
 nrow(df_current)
@@ -220,16 +226,18 @@ MPs (top 5 are shown below).
 ``` r
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
-#> ⠙ Fetching mandates 8/183 | ETA: 24s
-#> ⠹ Fetching mandates 27/183 | ETA: 24s
-#> ⠸ Fetching mandates 46/183 | ETA: 21s
-#> ⠼ Fetching mandates 65/183 | ETA: 18s
-#> ⠴ Fetching mandates 84/183 | ETA: 15s
-#> ⠦ Fetching mandates 103/183 | ETA: 12s
-#> ⠧ Fetching mandates 122/183 | ETA: 10s
-#> ⠇ Fetching mandates 141/183 | ETA:  7s
-#> ⠏ Fetching mandates 160/183 | ETA:  4s
-#> ⠋ Fetching mandates 179/183 | ETA:  1s
+#> ⠙ Fetching mandates 7/183 | ETA: 28s
+#> ⠹ Fetching mandates 18/183 | ETA: 29s
+#> ⠸ Fetching mandates 34/183 | ETA: 27s
+#> ⠼ Fetching mandates 50/183 | ETA: 24s
+#> ⠴ Fetching mandates 67/183 | ETA: 21s
+#> ⠦ Fetching mandates 83/183 | ETA: 18s
+#> ⠧ Fetching mandates 99/183 | ETA: 15s
+#> ⠇ Fetching mandates 115/183 | ETA: 12s
+#> ⠏ Fetching mandates 132/183 | ETA:  9s
+#> ⠋ Fetching mandates 148/183 | ETA:  6s
+#> ⠙ Fetching mandates 164/183 | ETA:  3s
+#> ⠹ Fetching mandates 181/183 | ETA:  0s
 #> Fetched mandates for 183 persons.
 #> 
 
@@ -470,17 +478,17 @@ glimpse(df_govBills %>% head())
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2024-07-05, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "2704", "2609", "2607", "2606", "2600", "2596"
-#> $ item_number_type <chr> "2704 d.B.", "2609 d.B.", "2607 d.B.", "2606 d.B.", "2600 d.B.", "2596 d.B."
+#> $ item_number      <chr> "2704", "2610", "2598", "2603", "2602", "2606"
+#> $ item_number_type <chr> "2704 d.B.", "2610 d.B.", "2598 d.B.", "2603 d.B.", "2602 d.B.", "2606 d.B."
 #> $ stage            <chr> "2", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2609", "https://www.parlament.gv.at/gegenstand/XXVII/I/2607", "https://www.parlament.gv.at/gegenstand/XXVII/I/2606", "https://www.parlament.gv.at/gegenstand/XXVII/I/2600", "https://www.parlament.gv.at/gegenstand/XXVII/I/2596"
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2610", "https://www.parlament.gv.at/gegenstand/XXVII/I/2598", "https://www.parlament.gv.at/gegenstand/XXVII/I/2603", "https://www.parlament.gv.at/gegenstand/XXVII/I/2602", "https://www.parlament.gv.at/gegenstand/XXVII/I/2606"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Zivildienstgesetz, Änderung", "Sozialversicherungs-Änderungsgesetz 2024 – SVÄG 2024", "Grundbuchs-Novelle 2024 – GB-Nov 2024", "IFI Beitragsgesetz 2024", "DORA-Vollzugsgesetz (DORA-VG); Alternative Investmentfonds Manager-Gesetz, Bankwesengesetz u.a., Änderung"
-#> $ topics           <list> "Budget und Finanzen", "Landesverteidigung", "Soziales", "Inneres und Recht", <"Außenpolitik", "Budget und Finanzen">, <"Budget und Finanzen", "Information und Medien">
-#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", "Zivildienst", "Sozialversicherung I. Allgemeine Sozialversicherung", "Zivilrecht", <"Kreditwesen", "Entwicklungszusammenarbeit">, <"Kreditwesen", "Information und Informationsverarbeitung", "Vertragsversicherungen">
-#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Zivildienst\"]", "[\"soziale Sicherheit\"]", "[\"Bürgerliches Recht\"]", "[\"Finanzwesen\",\"Politik der Zusammenarbeit\"]", "[\"Finanzwesen\",\"Informatik\",\"Information und Informationsverarbeitung\",\"Versicherungswesen\"]"
-#> $ persons          <list> "55727", "2136", "21029", "2345", "55727", "55727"
+#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Abgabenänderungsgesetz 2024 – AbgÄG 2024", "Betrugsbekämpfungsgesetz 2024 Teil I – BBKG 2024 Teil I", "Eisenbahngesetz, Änderung", "Qualifizierte-Einrichtungen-Gesetz; Verbandsklagen-Richtlinie-Umsetzungs-Novelle – VRUN", "Grundbuchs-Novelle 2024 – GB-Nov 2024"
+#> $ topics           <list> "Budget und Finanzen", "Budget und Finanzen", <"Budget und Finanzen", "Inneres und Recht", "Soziales">, "Verkehr und Infrastruktur", <"Budget und Finanzen", "Inneres und Recht", "Wirtschaft">, "Inneres und Recht"
+#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Steuern und Gebühren", "Kreditwesen">, <"Strafrecht", "Kreditwesen", "Sozialversicherung I. Allgemeine Sozialversicherung", "Verwaltungsorganisation">, "Verkehr II. Schienenverkehr", <"Zivilrecht", "Handel", "Gewerbe und Industrie", "Rechtsanwälte und Notare", "Rechtspflege", "Steuern und Gebühren">, "Zivilrecht"
+#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Finanzwesen\",\"Steuerwesen\"]", "[\"Finanzwesen\",\"soziale Sicherheit\",\"Strafrecht\",\"Verwaltungsorganisation\"]", "[\"Schienentransport\"]", "[\"Bürgerliches Recht\",\"Gerichtswesen\",\"Handel\",\"Industrie\",\"Notar\",\"Rechtsanwalt\",\"Steuerwesen\",\"Unternehmen und Wettbewerb\"]", "[\"Bürgerliches Recht\"]"
+#> $ persons          <list> "55727", "55727", "55727", "5653", "2345", "2345"
 #> $ parl_group       <list> "", "", "", "", "", ""
 
 #count number of bills by legis period
