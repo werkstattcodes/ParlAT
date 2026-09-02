@@ -28,6 +28,42 @@ mock_names_result <- function(name = "Anna Muster") {
   tibble::tibble(index = 1L, name = name)
 }
 
+test_that("current MP requests exclude browser fingerprint headers", {
+  capture_request <- function(request_fn) {
+    captured_request <- NULL
+    local_mocked_bindings(
+      req_perform = function(req) {
+        captured_request <<- req
+        req
+      },
+      .package = "httr2"
+    )
+    request_fn("{}")
+    captured_request
+  }
+
+  requests <- list(
+    capture_request(get_mps_NR_current_api_request),
+    capture_request(get_mps_BR_current_api_request)
+  )
+  forbidden_headers <- c(
+    "priority", "sec-ch-ua", "sec-ch-ua-mobile", "sec-ch-ua-platform",
+    "sec-fetch-dest", "sec-fetch-mode", "sec-fetch-site", "user-agent"
+  )
+
+  purrr::walk(requests, \(req) {
+    expect_identical(
+      req$options$useragent,
+      "ParlAT R package (http://werk.statt.codes)"
+    )
+    expect_identical(req$policies$retry_max_tries, 3)
+    expect_length(
+      intersect(tolower(names(req$headers)), forbidden_headers),
+      0L
+    )
+  })
+})
+
 test_that("get_mps_current validates the institution argument", {
   expect_error(get_mps_current(institution = "XX"))
   expect_error(get_mps_current(institution = NULL))

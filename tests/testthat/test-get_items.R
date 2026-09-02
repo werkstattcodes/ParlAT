@@ -250,6 +250,42 @@ test_that("get_items echo URL preserves explicit historical periods", {
   expect_match(url_message, "FP_001GP_CODE=KN", fixed = TRUE)
 })
 
+test_that("get_items request excludes browser fingerprint headers", {
+  captured_request <- NULL
+
+  local_mocked_bindings(
+    req_perform = function(req) {
+      captured_request <<- req
+      structure(list(), class = "httr2_response")
+    },
+    resp_body_json = function(resp, simplifyVector = TRUE) {
+      list(
+        header = data.frame(label = character(), rnr = integer()),
+        rows = list()
+      )
+    },
+    .package = "httr2"
+  )
+
+  suppressMessages(get_items(echo = FALSE))
+
+  forbidden_headers <- c(
+    "dnt", "priority", "sec-ch-ua", "sec-ch-ua-mobile",
+    "sec-ch-ua-platform", "sec-fetch-dest", "sec-fetch-mode",
+    "sec-fetch-site", "user-agent"
+  )
+
+  expect_identical(
+    captured_request$options$useragent,
+    "ParlAT R package (http://werk.statt.codes)"
+  )
+  expect_identical(captured_request$policies$retry_max_tries, 3)
+  expect_length(
+    intersect(tolower(names(captured_request$headers)), forbidden_headers),
+    0L
+  )
+})
+
 test_that("get_items resolves people independently of the item institution", {
   local_mocked_bindings(
     get_persons = function(names) {

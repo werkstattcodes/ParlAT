@@ -20,6 +20,21 @@
     )
 }
 
+.parlat_download_transcript_pdf <- function(url, dest_file) {
+    tryCatch(
+        {
+            httr2::request(url) |>
+                httr2::req_user_agent(
+                    "ParlAT R package (http://werk.statt.codes)"
+                ) |>
+                httr2::req_retry(max_tries = 3) |>
+                httr2::req_perform(path = dest_file)
+            TRUE
+        },
+        error = function(e) FALSE
+    )
+}
+
 #' Retrieve Transcripts from the Austrian Parliament API
 #'
 #' `get_transcripts()` retrieves the transcripts of parliamentary meetings via Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">here</a>).
@@ -465,23 +480,6 @@ get_transcripts <- function(
             return(filename)
         }
 
-        # HELPER FUNCTION: Download single PDF
-        download_pdf <- function(url, dest_file) {
-            tryCatch(
-                {
-                    httr2::request(url) %>%
-                        httr2::req_user_agent(
-                            "ParlAT R package (http://werk.statt.codes)"
-                        ) %>%
-                        httr2::req_perform(path = dest_file)
-                    return(TRUE)
-                },
-                error = function(e) {
-                    return(FALSE)
-                }
-            )
-        }
-
         # Ensure destination folder exists
         dest_path <- ensure_destination_folder(export_destination)
 
@@ -531,7 +529,7 @@ get_transcripts <- function(
                     )
                     dest_file <- file.path(dest_path, filename)
 
-                    success <- download_pdf(url, dest_file)
+                    success <- .parlat_download_transcript_pdf(url, dest_file)
                     cli::cli_progress_update(id = pb_id)
                     return(success)
                 }

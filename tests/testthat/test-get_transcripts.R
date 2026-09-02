@@ -63,6 +63,60 @@ test_that("transcript echo URL preserves an explicit period", {
   expect_match(url_message, "search=budget", fixed = TRUE)
 })
 
+test_that("transcript PDF downloads use the shared request policy", {
+  performed_request <- NULL
+
+  local_mocked_bindings(
+    request = function(url) list(url = url),
+    req_user_agent = function(req, string) {
+      req$user_agent <- string
+      req
+    },
+    req_retry = function(req, max_tries) {
+      req$max_tries <- max_tries
+      req
+    },
+    req_perform = function(req, path) {
+      req$path <- path
+      performed_request <<- req
+      structure(list(status_code = 200L), class = "httr2_response")
+    },
+    .package = "httr2"
+  )
+
+  success <- .parlat_download_transcript_pdf(
+    "https://www.parlament.gv.at/example.pdf",
+    "example.pdf"
+  )
+
+  expect_identical(success, TRUE)
+  expect_identical(
+    performed_request$url,
+    "https://www.parlament.gv.at/example.pdf"
+  )
+  expect_identical(
+    performed_request$user_agent,
+    "ParlAT R package (http://werk.statt.codes)"
+  )
+  expect_identical(performed_request$max_tries, 3)
+  expect_identical(performed_request$path, "example.pdf")
+})
+
+test_that("transcript PDF downloads report a final request failure", {
+  local_mocked_bindings(
+    req_perform = function(req, path) stop("download failed"),
+    .package = "httr2"
+  )
+
+  expect_identical(
+    .parlat_download_transcript_pdf(
+      "https://www.parlament.gv.at/example.pdf",
+      "example.pdf"
+    ),
+    FALSE
+  )
+})
+
 test_that("get_transcripts returns data frame with correct number of meetings", {
   # Nationalrat
   result_nr <- run_api_call(

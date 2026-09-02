@@ -85,18 +85,19 @@
 ## Enhancements
 
 - `aux_check_pad_intern_exists()` now uses `httr2::req_retry()` for its
-  preliminary person-page check so transient failures are retried up to three
-  times before an identifier is treated as unavailable.
+  preliminary person-page check, allowing at most three total attempts for
+  retryable responses before an identifier is treated as unavailable.
 - `echo = TRUE` no longer prints the raw JSON request body; it prints the
   URL to the corresponding search results on the Parliament website and the
   number of results. The URL carries the same filter information in a
   directly usable form, with reserved characters in query values safely
   encoded.
-- All API requests now retry up to three times on transient failures
-  (`httr2::req_retry()`).
-- Stale hardcoded browser cookies/session IDs and browser fingerprint
-  headers were removed from all requests; every request now sends the ParlAT
-  package user agent.
+- All Parliament HTTP requests now use the ParlAT package user agent and
+  allow at most three total attempts for retryable responses
+  (`httr2::req_retry(max_tries = 3)`).
+- Stale hardcoded browser cookies/session IDs, Chrome/Edge client hints,
+  Fetch Metadata headers, and browser user-agent strings were removed from
+  requests.
 - Person-detail JSON fetches (`get_mandates()`, `get_names()`,
   `get_committees()` details) now go through httr2, so they are covered by
   the httptest2 mock layer in tests.
