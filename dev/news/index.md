@@ -47,7 +47,8 @@
   filters from the returned rows so it reproduces the API results
   instead of applying the website’s current-events defaults. Austrian
   civil-date boundaries are serialized consistently across operating
-  systems.
+  systems. Non-empty results now return a tibble, matching the
+  documented class and the empty-result path.
 - [`get_items()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_items.md):
   combining `person` with `institution` now resolves the person across
   all institutional categories and applies the institution filter only

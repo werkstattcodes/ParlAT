@@ -325,27 +325,31 @@ for the requested institution is returned.
 #> Results on the Parliament website:
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> Hits: 183
-#> ⠙ Fetching MPs' names 5/183 | ETA: 44s
-#> ⠹ Fetching MPs' names 16/183 | ETA: 42s
-#> ⠸ Fetching MPs' names 28/183 | ETA: 39s
-#> ⠼ Fetching MPs' names 40/183 | ETA: 36s
-#> ⠴ Fetching MPs' names 52/183 | ETA: 33s
-#> ⠦ Fetching MPs' names 64/183 | ETA: 30s
-#> ⠧ Fetching MPs' names 76/183 | ETA: 27s
-#> ⠇ Fetching MPs' names 88/183 | ETA: 24s
-#> ⠏ Fetching MPs' names 100/183 | ETA: 21s
-#> ⠋ Fetching MPs' names 111/183 | ETA: 18s
-#> ⠙ Fetching MPs' names 124/183 | ETA: 15s
-#> ⠹ Fetching MPs' names 136/183 | ETA: 12s
-#> ⠸ Fetching MPs' names 148/183 | ETA:  9s
-#> ⠼ Fetching MPs' names 160/183 | ETA:  6s
-#> ⠴ Fetching MPs' names 172/183 | ETA:  3s
+#> ⠙ Fetching MPs' names 4/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 5/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 15/183 | ETA: 50s
+#> ⠼ Fetching MPs' names 26/183 | ETA: 46s
+#> ⠴ Fetching MPs' names 36/183 | ETA: 43s
+#> ⠦ Fetching MPs' names 46/183 | ETA: 40s
+#> ⠧ Fetching MPs' names 56/183 | ETA: 37s
+#> ⠇ Fetching MPs' names 67/183 | ETA: 34s
+#> ⠏ Fetching MPs' names 77/183 | ETA: 31s
+#> ⠋ Fetching MPs' names 87/183 | ETA: 28s
+#> ⠙ Fetching MPs' names 97/183 | ETA: 25s
+#> ⠹ Fetching MPs' names 107/183 | ETA: 22s
+#> ⠸ Fetching MPs' names 118/183 | ETA: 19s
+#> ⠼ Fetching MPs' names 128/183 | ETA: 16s
+#> ⠴ Fetching MPs' names 138/183 | ETA: 13s
+#> ⠦ Fetching MPs' names 148/183 | ETA: 10s
+#> ⠧ Fetching MPs' names 159/183 | ETA:  7s
+#> ⠇ Fetching MPs' names 169/183 | ETA:  4s
+#> ⠏ Fetching MPs' names 179/183 | ETA:  1s
 #> Fetched 183 MPs' names.
 #> 
   dplyr::glimpse(nr_members)
 #> Rows: 183
 #> Columns: 10
-#> $ time_stamp                     <dttm> 2026-09-02 14:46:15, 2026-09-02 14:46:…
+#> $ time_stamp                     <dttm> 2026-09-02 18:54:04, 2026-09-02 18:54:…
 #> $ name                           <chr> "Lisa Aldali", "Mag. Katrin Auer", "Mag…
 #> $ pad_intern                     <chr> "38385", "30688", "30668", "30689", "19…
 #> $ party                          <chr> "NEOS", "SPÖ", "NEOS", "SPÖ", "ÖVP", "S…
@@ -368,7 +372,7 @@ for the requested institution is returned.
   dplyr::glimpse(br_female_vienna)
 #> Rows: 4
 #> Columns: 11
-#> $ time_stamp                     <dttm> 2026-09-02 14:47:02, 2026-09-02 14:47:…
+#> $ time_stamp                     <dttm> 2026-09-02 18:54:58, 2026-09-02 18:54:…
 #> $ pad_intern                     <chr> "32831", "84868", "17881", "33455"
 #> $ name                           <chr> "Mag. Dr. Julia Deutsch", "Mag. Daniela…
 #> $ electoral_district_region_code <chr> "9 Wien", "9 Wien", "9 Wien", "9 Wien"
@@ -388,16 +392,17 @@ for the requested institution is returned.
 #> Results on the Parliament website:
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W&WFW_002WP=SP%C3%96
 #> Hits: 41
-#> ⠙ Fetching MPs' names 4/41 | ETA:  9s
-#> ⠹ Fetching MPs' names 6/41 | ETA:  9s
-#> ⠸ Fetching MPs' names 18/41 | ETA:  6s
+#> ⠙ Fetching MPs' names 4/41 | ETA: 11s
+#> ⠹ Fetching MPs' names 10/41 | ETA:  9s
+#> ⠸ Fetching MPs' names 20/41 | ETA:  6s
 #> ⠼ Fetching MPs' names 30/41 | ETA:  3s
+#> ⠴ Fetching MPs' names 40/41 | ETA:  0s
 #> Fetched 41 MPs' names.
 #> 
   dplyr::glimpse(spo_nr)
 #> Rows: 41
 #> Columns: 10
-#> $ time_stamp                     <dttm> 2026-09-02 14:47:03, 2026-09-02 14:47:…
+#> $ time_stamp                     <dttm> 2026-09-02 18:55:00, 2026-09-02 18:55:…
 #> $ name                           <chr> "Mag. Katrin Auer", "Roland Baumann", "…
 #> $ pad_intern                     <chr> "30688", "30689", "14835", "30693", "14…
 #> $ party                          <chr> "SPÖ", "SPÖ", "SPÖ", "SPÖ", "SPÖ", "SPÖ…
