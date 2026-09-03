@@ -120,17 +120,17 @@ get_mandates_single <- function(pad_intern) {
 #'   result <- get_mandates(c("Pia Philippa Strache"))
 #'   dplyr::glimpse(result)
 #'
-#'   # Michael Pöck changed name to Michael Bernhard.
+#'   # Michael Pock changed name to Michael Bernhard.
 #'   result <- get_names(pad_intern = "83124")
 #'   dplyr::glimpse(result)
 #'
-#'   # Query for Micheal Pöck returns all results under the name
-#'   # Michael Bernhard, even for periods where Michael Pöck was still valid.
-#'   result <- get_mandates(name = "Michael Pöck")
+#'   # Query for Michael Pock returns all results under the name
+#'   # Michael Bernhard, even for periods where Michael Pock was still valid.
+#'   result <- get_mandates(name = "Michael Pock")
 #'   dplyr::glimpse(result)
 #'
 #'   # Query for Michael Bernhard returns all results,
-#'   # including for those with the name Michael Pöck.
+#'   # including for those with the name Michael Pock.
 #'   result <- get_mandates(name = "Michael Bernhard")
 #'   dplyr::glimpse(result)
 #' }
