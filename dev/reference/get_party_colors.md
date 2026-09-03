@@ -65,6 +65,35 @@ get_party_colors(c("ÖVP", "ÖVP"), legis_period = c(25, 26))
 #>       ÖVP       ÖVP 
 #>   "black" "#63C3D0" 
 
+# Display the default plotting palette.
+party_colors <- get_party_colors(output = "tibble")
+party_colors$party <- factor(
+  party_colors$party,
+  levels = rev(party_colors$party)
+)
+
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  ggplot2::ggplot(
+    party_colors,
+    ggplot2::aes(x = party, y = 1, fill = color)
+  ) +
+    ggplot2::geom_col(width = 0.8) +
+    ggplot2::scale_fill_identity() +
+    ggplot2::coord_flip() +
+    ggplot2::labs(
+      title = "Default party color palette",
+      x = NULL,
+      y = NULL
+    ) +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_blank(),
+      axis.ticks.x = ggplot2::element_blank(),
+      panel.grid = ggplot2::element_blank()
+    )
+}
+
+
 # The ÖVP color changed from black to turquoise in legislative period 26.
 oevp_data <- data.frame(
   legis_period = c(25, 26),
