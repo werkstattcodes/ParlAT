@@ -625,13 +625,6 @@ result <- get_items(
 )
 dplyr::glimpse(result)
 
-# Search historical items from the national assemblies of 1918-1920
-historical_items <- get_items(
-  institution = "NR",
-  legis_period = c("PN", "KN")
-)
-dplyr::glimpse(historical_items)
-
 # Combine multiple search criteria
 result <- get_items(
   topic = "Gesundheit und Ernährung",
