@@ -326,35 +326,35 @@ for the requested institution is returned.
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> Hits: 183
 #> ⠙ Fetching MPs' names 3/183 | ETA:  1m
-#> ⠹ Fetching MPs' names 6/183 | ETA:  1m
-#> ⠸ Fetching MPs' names 14/183 | ETA:  1m
-#> ⠼ Fetching MPs' names 22/183 | ETA:  1m
-#> ⠴ Fetching MPs' names 30/183 | ETA:  1m
-#> ⠦ Fetching MPs' names 38/183 | ETA:  1m
-#> ⠧ Fetching MPs' names 46/183 | ETA:  1m
-#> ⠇ Fetching MPs' names 54/183 | ETA: 49s
-#> ⠏ Fetching MPs' names 61/183 | ETA: 47s
-#> ⠋ Fetching MPs' names 69/183 | ETA: 44s
-#> ⠙ Fetching MPs' names 77/183 | ETA: 41s
-#> ⠹ Fetching MPs' names 85/183 | ETA: 38s
-#> ⠸ Fetching MPs' names 93/183 | ETA: 35s
-#> ⠼ Fetching MPs' names 101/183 | ETA: 31s
-#> ⠴ Fetching MPs' names 108/183 | ETA: 29s
-#> ⠦ Fetching MPs' names 116/183 | ETA: 26s
-#> ⠧ Fetching MPs' names 124/183 | ETA: 23s
+#> ⠹ Fetching MPs' names 4/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 12/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 20/183 | ETA:  1m
+#> ⠴ Fetching MPs' names 28/183 | ETA:  1m
+#> ⠦ Fetching MPs' names 36/183 | ETA:  1m
+#> ⠧ Fetching MPs' names 44/183 | ETA:  1m
+#> ⠇ Fetching MPs' names 52/183 | ETA: 49s
+#> ⠏ Fetching MPs' names 60/183 | ETA: 46s
+#> ⠋ Fetching MPs' names 68/183 | ETA: 43s
+#> ⠙ Fetching MPs' names 76/183 | ETA: 40s
+#> ⠹ Fetching MPs' names 84/183 | ETA: 37s
+#> ⠸ Fetching MPs' names 92/183 | ETA: 34s
+#> ⠼ Fetching MPs' names 100/183 | ETA: 31s
+#> ⠴ Fetching MPs' names 108/183 | ETA: 28s
+#> ⠦ Fetching MPs' names 116/183 | ETA: 25s
+#> ⠧ Fetching MPs' names 124/183 | ETA: 22s
 #> ⠇ Fetching MPs' names 132/183 | ETA: 19s
 #> ⠏ Fetching MPs' names 140/183 | ETA: 16s
 #> ⠋ Fetching MPs' names 148/183 | ETA: 13s
 #> ⠙ Fetching MPs' names 156/183 | ETA: 10s
 #> ⠹ Fetching MPs' names 164/183 | ETA:  7s
 #> ⠸ Fetching MPs' names 172/183 | ETA:  4s
-#> ⠼ Fetching MPs' names 179/183 | ETA:  2s
+#> ⠼ Fetching MPs' names 180/183 | ETA:  1s
 #> Fetched 183 MPs' names.
 #> 
   dplyr::glimpse(nr_members)
 #> Rows: 183
 #> Columns: 10
-#> $ time_stamp                     <dttm> 2026-09-03 17:11:14, 2026-09-03 17:11:…
+#> $ time_stamp                     <dttm> 2026-09-03 20:32:08, 2026-09-03 20:32:…
 #> $ name                           <chr> "Lisa Aldali", "Mag. Katrin Auer", "Mag…
 #> $ pad_intern                     <chr> "38385", "30688", "30668", "30689", "19…
 #> $ party                          <chr> "NEOS", "SPÖ", "NEOS", "SPÖ", "ÖVP", "S…
@@ -377,7 +377,7 @@ for the requested institution is returned.
   dplyr::glimpse(br_female_vienna)
 #> Rows: 4
 #> Columns: 11
-#> $ time_stamp                     <dttm> 2026-09-03 17:12:25, 2026-09-03 17:12:…
+#> $ time_stamp                     <dttm> 2026-09-03 20:33:17, 2026-09-03 20:33:…
 #> $ pad_intern                     <chr> "32831", "84868", "17881", "33455"
 #> $ name                           <chr> "Mag. Dr. Julia Deutsch", "Mag. Daniela…
 #> $ electoral_district_region_code <chr> "9 Wien", "9 Wien", "9 Wien", "9 Wien"
@@ -398,17 +398,17 @@ for the requested institution is returned.
 #> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W&WFW_002WP=SP%C3%96
 #> Hits: 41
 #> ⠙ Fetching MPs' names 3/41 | ETA: 14s
-#> ⠹ Fetching MPs' names 6/41 | ETA: 13s
-#> ⠸ Fetching MPs' names 14/41 | ETA: 10s
-#> ⠼ Fetching MPs' names 22/41 | ETA:  7s
-#> ⠴ Fetching MPs' names 30/41 | ETA:  4s
-#> ⠦ Fetching MPs' names 38/41 | ETA:  1s
+#> ⠹ Fetching MPs' names 7/41 | ETA: 13s
+#> ⠸ Fetching MPs' names 15/41 | ETA: 10s
+#> ⠼ Fetching MPs' names 23/41 | ETA:  7s
+#> ⠴ Fetching MPs' names 31/41 | ETA:  4s
+#> ⠦ Fetching MPs' names 39/41 | ETA:  1s
 #> Fetched 41 MPs' names.
 #> 
   dplyr::glimpse(spo_nr)
 #> Rows: 41
 #> Columns: 10
-#> $ time_stamp                     <dttm> 2026-09-03 17:12:26, 2026-09-03 17:12:…
+#> $ time_stamp                     <dttm> 2026-09-03 20:33:19, 2026-09-03 20:33:…
 #> $ name                           <chr> "Mag. Katrin Auer", "Roland Baumann", "…
 #> $ pad_intern                     <chr> "30688", "30689", "14835", "30693", "14…
 #> $ party                          <chr> "SPÖ", "SPÖ", "SPÖ", "SPÖ", "SPÖ", "SPÖ…
