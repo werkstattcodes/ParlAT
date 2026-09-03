@@ -173,7 +173,7 @@ column types is returned.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "XXVII"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ url_biography                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/person/441…</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Michael Pöck changed name to Michael Bernhard.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Michael Pock changed name to Michael Bernhard.</span></span></span>
 <span class="r-in"><span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_names.html">get_names</a></span><span class="op">(</span>pad_intern <span class="op">=</span> <span class="st">"83124"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
@@ -188,32 +188,31 @@ column types is returned.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name_given  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Michael "<span style="color: #949494;">, </span>"Michael "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ note        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>"(bis 10.8.2016: Michael Pock)"</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Query for Micheal Pöck returns all results under the name</span></span></span>
-<span class="r-in"><span>  <span class="co"># Michael Bernhard, even for periods where Michael Pöck was still valid.</span></span></span>
-<span class="r-in"><span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_mandates</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Michael Pöck"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> No mandates found.</span>
+<span class="r-in"><span>  <span class="co"># Query for Michael Pock returns all results under the name</span></span></span>
+<span class="r-in"><span>  <span class="co"># Michael Bernhard, even for periods where Michael Pock was still valid.</span></span></span>
+<span class="r-in"><span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_mandates</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Michael Pock"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ name                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_text                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_code                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_name                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_date_start            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_date_end              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_active                <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ party                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ party_name                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ substitute                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ electoral_district_region_code <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ electoral_district_region      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ url_biography                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "83124"<span style="color: #949494;">, </span>"83124"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ name                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Michael Bernhard"<span style="color: #949494;">, </span>"Michael Bernhard"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_text                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Abgeordneter zum Nationalrat (XXV.-XXV…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_code                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_name                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Abgeordneter zum Nationalrat"<span style="color: #949494;">, </span>"Abgeor…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_date_start            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2014-01-30<span style="color: #949494;">, </span>2013-10-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_date_end              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>2014-01-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ position_active                <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE<span style="color: #949494;">, </span>FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NEOS Parlamentsklub"<span style="color: #949494;">, </span>"Klub von NEOS u…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ party                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NEOS"<span style="color: #949494;">, </span>"NEOS-LIF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ party_name                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NEOS - Das neue Österreich und Liberal…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ substitute                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Das durch Mandatsverzicht von Frau Abg…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ electoral_district_region_code <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "9"<span style="color: #949494;">, </span>"9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ electoral_district_region      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Wien"<span style="color: #949494;">, </span>"Wien"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"XXV", "XXVIII"&gt;<span style="color: #949494;">, </span>"XXV"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ url_biography                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/person/83…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Query for Michael Bernhard returns all results,</span></span></span>
-<span class="r-in"><span>  <span class="co"># including for those with the name Michael Pöck.</span></span></span>
+<span class="r-in"><span>  <span class="co"># including for those with the name Michael Pock.</span></span></span>
 <span class="r-in"><span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_mandates</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Michael Bernhard"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2</span>

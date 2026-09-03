@@ -143,7 +143,7 @@ See examples.
 #> $ legis_period                   <list> "XXVII"
 #> $ url_biography                  <chr> "https://www.parlament.gv.at/person/441…
 
-  # Michael Pöck changed name to Michael Bernhard.
+  # Michael Pock changed name to Michael Bernhard.
   result <- get_names(pad_intern = "83124")
   dplyr::glimpse(result)
 #> Rows: 2
@@ -158,32 +158,31 @@ See examples.
 #> $ name_given  <chr> "Michael ", "Michael "
 #> $ note        <chr> NA, "(bis 10.8.2016: Michael Pock)"
 
-  # Query for Micheal Pöck returns all results under the name
-  # Michael Bernhard, even for periods where Michael Pöck was still valid.
-  result <- get_mandates(name = "Michael Pöck")
-#> No mandates found.
+  # Query for Michael Pock returns all results under the name
+  # Michael Bernhard, even for periods where Michael Pock was still valid.
+  result <- get_mandates(name = "Michael Pock")
   dplyr::glimpse(result)
-#> Rows: 0
+#> Rows: 2
 #> Columns: 16
-#> $ pad_intern                     <chr> 
-#> $ name                           <chr> 
-#> $ position_text                  <chr> 
-#> $ position_code                  <chr> 
-#> $ position_name                  <chr> 
-#> $ position_date_start            <date> 
-#> $ position_date_end              <date> 
-#> $ position_active                <lgl> 
-#> $ parl_group                     <chr> 
-#> $ party                          <chr> 
-#> $ party_name                     <chr> 
-#> $ substitute                     <chr> 
-#> $ electoral_district_region_code <chr> 
-#> $ electoral_district_region      <chr> 
-#> $ legis_period                   <list> list()
-#> $ url_biography                  <chr> 
+#> $ pad_intern                     <chr> "83124", "83124"
+#> $ name                           <chr> "Michael Bernhard", "Michael Bernhard"
+#> $ position_text                  <chr> "Abgeordneter zum Nationalrat (XXV.-XXV…
+#> $ position_code                  <chr> "NR", "NR"
+#> $ position_name                  <chr> "Abgeordneter zum Nationalrat", "Abgeor…
+#> $ position_date_start            <date> 2014-01-30, 2013-10-29
+#> $ position_date_end              <date> NA, 2014-01-29
+#> $ position_active                <lgl> TRUE, FALSE
+#> $ parl_group                     <chr> "NEOS Parlamentsklub", "Klub von NEOS u…
+#> $ party                          <chr> "NEOS", "NEOS-LIF"
+#> $ party_name                     <chr> "NEOS - Das neue Österreich und Liberal…
+#> $ substitute                     <chr> "Das durch Mandatsverzicht von Frau Abg…
+#> $ electoral_district_region_code <chr> "9", "9"
+#> $ electoral_district_region      <chr> "Wien", "Wien"
+#> $ legis_period                   <list> <"XXV", "XXVIII">, "XXV"
+#> $ url_biography                  <chr> "https://www.parlament.gv.at/person/83…
 
   # Query for Michael Bernhard returns all results,
-  # including for those with the name Michael Pöck.
+  # including for those with the name Michael Pock.
   result <- get_mandates(name = "Michael Bernhard")
   dplyr::glimpse(result)
 #> Rows: 2
