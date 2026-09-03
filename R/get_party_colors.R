@@ -26,36 +26,43 @@
 #' get_party_colors(c("S", "V", "F"))
 #' get_party_colors(c("ÖVP", "ÖVP"), legis_period = c(25, 26))
 #'
-#' party_colors <- get_party_colors(output = "tibble")
-#' old_par <- par(no.readonly = TRUE)
-#' par(mar = c(1, 7, 1, 1))
-#' party_colors <- party_colors[nrow(party_colors):1, ]
-#' barplot(
-#'   rep(1, nrow(party_colors)),
-#'   col = party_colors$color,
-#'   names.arg = party_colors$party,
-#'   horiz = TRUE,
-#'   las = 1,
-#'   border = NA,
-#'   axes = FALSE
+#' # The ÖVP color changed from black to turquoise in legislative period 26.
+#' oevp_data <- data.frame(
+#'   legis_period = c(25, 26),
+#'   party = c("ÖVP", "ÖVP"),
+#'   value = c(1, 1)
+#' )
+#' oevp_data$party_color <- get_party_colors(
+#'   parties = oevp_data$party,
+#'   legis_period = oevp_data$legis_period
 #' )
 #'
-#' oevp_colors <- get_party_colors(
-#'   c("ÖVP", "ÖVP"),
-#'   legis_period = c(25, 26),
-#'   output = "tibble"
-#' )
-#' oevp_colors <- oevp_colors[nrow(oevp_colors):1, ]
-#' barplot(
-#'   rep(1, nrow(oevp_colors)),
-#'   col = oevp_colors$color,
-#'   names.arg = c("Before GP 26", "From GP 26"),
-#'   horiz = TRUE,
-#'   las = 1,
-#'   border = NA,
-#'   axes = FALSE
-#' )
-#' par(old_par)
+#' if (requireNamespace("ggplot2", quietly = TRUE)) {
+#'   ggplot2::ggplot(
+#'     oevp_data,
+#'     ggplot2::aes(
+#'       x = factor(legis_period),
+#'       y = value,
+#'       fill = party_color
+#'     )
+#'   ) +
+#'     ggplot2::geom_col(width = 0.7) +
+#'     ggplot2::scale_fill_identity() +
+#'     ggplot2::labs(
+#'       title = "Change in the ÖVP party color",
+#'       subtitle = paste(
+#'         "Black before legislative period 26,",
+#'         "turquoise from period 26"
+#'       ),
+#'       x = "Legislative period",
+#'       y = NULL
+#'     ) +
+#'     ggplot2::theme_minimal() +
+#'     ggplot2::theme(
+#'       axis.text.y = ggplot2::element_blank(),
+#'       axis.ticks.y = ggplot2::element_blank()
+#'     )
+#' }
 get_party_colors <- function(parties = NULL,
                              legis_period = NULL,
                              output = c("vector", "tibble"),

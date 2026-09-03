@@ -135,6 +135,20 @@ result <- get_participation(
 )
 dplyr::glimpse(result)
 
+# Get all ministerial drafts (Ministervorlagen) from legislative period 28
+# and their number of submitted statements
+get_participation(item = "ME", legis_period = 28) |>
+  dplyr::select(
+    legis_period, date, item_id, item, title, statements
+  )
+
+# Get statements submitted on ministerial drafts
+result <- get_participation(
+  item = "SN",
+  statement_type = "SNME"
+)
+dplyr::glimpse(result)
+
 # Get participation data on legislative initiatives with specific initiative type
 result <- get_participation(
   item = "RGES",
