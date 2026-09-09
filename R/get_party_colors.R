@@ -91,6 +91,40 @@
 #'       axis.ticks.y = ggplot2::element_blank()
 #'     )
 #' }
+#'
+#' \donttest{
+#' # Combine ParlAT data with party colors in a ggplot.
+#' party_counts <- get_mps(
+#'   institution = "NR",
+#'   date = "01.01.2024",
+#'   echo = FALSE
+#' ) |>
+#'   tidyr::unnest(cols = "mp_details") |>
+#'   dplyr::count(party, name = "members") |>
+#'   dplyr::mutate(color = get_party_colors(party))
+#'
+#' if (requireNamespace("ggplot2", quietly = TRUE)) {
+#'   ggplot2::ggplot(
+#'     party_counts,
+#'     ggplot2::aes(
+#'       x = stats::reorder(party, members),
+#'       y = members,
+#'       fill = color
+#'     )
+#'   ) +
+#'     ggplot2::geom_col() +
+#'     ggplot2::scale_fill_identity() +
+#'     ggplot2::coord_flip() +
+#'     ggplot2::labs(
+#'       title = "National Council members by party",
+#'       subtitle = "Snapshot on 1 January 2024",
+#'       x = NULL,
+#'       y = "Members"
+#'     ) +
+#'     ggplot2::theme_minimal() +
+#'     ggplot2::theme(panel.grid = ggplot2::element_blank())
+#' }
+#' }
 get_party_colors <- function(parties = NULL,
                              legis_period = NULL,
                              output = c("vector", "tibble"),

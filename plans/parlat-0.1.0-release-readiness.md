@@ -2,13 +2,14 @@
 
 ## Summary
 
-The substantive changes approved for `v0.1.0` are implemented on `dev`.
-Documentation corrections and release metadata are now implemented locally;
-final validation, PR review, merge, and publication remain in progress.
+The substantive changes approved for `v0.1.0`, documentation corrections,
+release metadata, and local validation are complete on `dev`. The final branch
+push, pull request, and GitHub Actions gate remain in progress; merge, tagging,
+and publication follow review.
 The academic-title heuristic is intentionally deferred. This plan targets a
 GitHub-only release; CRAN administrative requirements are out of scope.
 
-## Current Status (2026-09-08)
+## Current Status (2026-09-09)
 
 - Release preparation resumed with authorization to finish documentation,
   validate, open and review the PR, merge, and publish GitHub release `v0.1.0`.
@@ -32,8 +33,28 @@ GitHub-only release; CRAN administrative requirements are out of scope.
   reconciliation is follow-up work; it is not discussed in the README mapping.
 - SBPL-BR remains empty both unrestricted and in XXVII. This is retained as
   release-audit evidence, not presented in the README mapping.
-- `pkgdown::check_pkgdown()` passes. Final tests, examples, vignette, package
-  check, and release CI are being collected below.
+- `pkgdown::check_pkgdown()` passes.
+- Added a live-data `get_party_colors()` example on 2026-09-09. It uses
+  `get_mps()` for a fixed 2024 National Council snapshot, counts MPs by party,
+  maps the returned party names to colors, and renders a ggplot bar chart.
+  The query returned 183 MPs across five parties, all colors matched, the
+  pkgdown page rendered the figure, and `pkgdown::check_pkgdown()` passes.
+- Final local validation passed on 2026-09-09: the mocked suite completed 1,173
+  expectations with no failures or warnings and 14 intentional skips; all 17
+  public help topics, including `\donttest{}` blocks, returned meaningful live
+  results; and all 49 vignette render steps completed under
+  `English_United States.utf8`.
+- A fixed single-result transcript query downloaded one valid 1,081,130-byte
+  PDF to a temporary directory. The mass-download example remains in
+  `\dontrun{}`.
+- A clean-source `devtools::check()` completed with zero errors, zero warnings,
+  and one accepted NOTE for long fixture paths. The `plans/` NOTE is resolved;
+  the previously accepted vignette-link and spelling-output findings did not
+  recur. Running directly from the OneDrive checkout first hit Windows path
+  limits while R copied Codex's internal `.git` refs, so the successful check
+  used an otherwise identical tracked-source snapshot without `.git`.
+- The complete pkgdown site builds successfully. The only console warnings
+  report dependency asset directories that already exist in `docs/`.
 
 ### Previous status (2026-09-02)
 
@@ -57,11 +78,11 @@ Completed:
 
 Still required before release:
 
-- Resolve the documentation-example findings recorded on 2026-09-03.
-- Set the package and NEWS release version to `0.1.0`.
-- Run the final documentation, full mocked tests, package check, and GitHub
-  Actions release gate on the release-metadata commit.
-- Merge `dev` into `master`, tag `v0.1.0`, and publish the GitHub release.
+- Commit and push the final documentation example and validation record.
+- Open the `dev` to `master` pull request and require the complete R-check
+  matrix, coverage, and pkgdown workflows to pass for its final revision.
+- After review, merge `dev` into `master`, confirm master CI and documentation
+  deployment, tag `v0.1.0`, and publish the GitHub release.
 
 ## Decision Log
 
