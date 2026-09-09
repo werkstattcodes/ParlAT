@@ -260,16 +260,16 @@ get_participation(item = "ME", legis_period = 28) |>
 #> # A tibble: 132 × 6
 #>    legis_period date       item_id item               title           statements
 #>    <chr>        <date>     <chr>   <chr>              <chr>           <chr>     
-#>  1 XXVIII       2025-02-03 6/ME    Ministerialentwurf Kreditdienstle… 12        
-#>  2 XXVIII       2025-09-17 47/ME   Ministerialentwurf Rechtsanwaltst… 30        
-#>  3 XXVIII       2025-10-02 51/ME   Ministerialentwurf IVS-Gesetz, Än… 10        
-#>  4 XXVIII       2025-10-10 59/ME   Ministerialentwurf Bundesstraßeng… 10        
-#>  5 XXVIII       2025-09-25 50/ME   Ministerialentwurf 5. Mietrechtli… 41        
-#>  6 XXVIII       2026-06-30 126/ME  Ministerialentwurf Bundesgesetz ü… 846       
-#>  7 XXVIII       2025-10-02 52/ME   Ministerialentwurf Zivilrechtlich… 21        
-#>  8 XXVIII       2025-07-29 36/ME   Ministerialentwurf Allgemeines bü… 22        
-#>  9 XXVIII       2025-10-09 57/ME   Ministerialentwurf Tourismusbesch… 10        
-#> 10 XXVIII       2026-07-20 129/ME  Ministerialentwurf Zeitungs-Zuste… 53        
+#>  1 XXVIII       2025-10-10 58/ME   Ministerialentwurf Vergaberechtsg… 55        
+#>  2 XXVIII       2025-10-02 52/ME   Ministerialentwurf Zivilrechtlich… 21        
+#>  3 XXVIII       2025-09-09 43/ME   Ministerialentwurf Erneuerbaren-A… 151       
+#>  4 XXVIII       2025-10-03 54/ME   Ministerialentwurf Schulunterrich… 38        
+#>  5 XXVIII       2025-09-15 45/ME   Ministerialentwurf Niederlassungs… 11        
+#>  6 XXVIII       2026-06-29 125/ME  Ministerialentwurf Glücksspielges… 109       
+#>  7 XXVIII       2026-07-17 128/ME  Ministerialentwurf Bilanzbuchhalt… 13        
+#>  8 XXVIII       2026-07-20 129/ME  Ministerialentwurf Zeitungs-Zuste… 53        
+#>  9 XXVIII       2025-07-29 37/ME   Ministerialentwurf Allgemeines So… 12        
+#> 10 XXVIII       2025-10-10 59/ME   Ministerialentwurf Bundesstraßeng… 10        
 #> # ℹ 122 more rows
 
 # Get statements submitted on ministerial drafts
