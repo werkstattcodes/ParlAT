@@ -19,47 +19,43 @@ by the function
 df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> Results on the Parliament website: https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> Hits: 183
-#> ⠙ Fetching MPs' names 3/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 4/183 | ETA:  1m
 #> 
-#> ⠹ Fetching MPs' names 8/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 11/183 | ETA:  1m
 #> 
-#> ⠸ Fetching MPs' names 17/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 21/183 | ETA: 48s
 #> 
-#> ⠼ Fetching MPs' names 26/183 | ETA:  1m
+#> ⠼ Fetching MPs' names 31/183 | ETA: 45s
 #> 
-#> ⠴ Fetching MPs' names 35/183 | ETA: 50s
+#> ⠴ Fetching MPs' names 41/183 | ETA: 42s
 #> 
-#> ⠦ Fetching MPs' names 44/183 | ETA: 47s
+#> ⠦ Fetching MPs' names 51/183 | ETA: 39s
 #> 
-#> ⠧ Fetching MPs' names 53/183 | ETA: 44s
+#> ⠧ Fetching MPs' names 61/183 | ETA: 36s
 #> 
-#> ⠇ Fetching MPs' names 62/183 | ETA: 40s
+#> ⠇ Fetching MPs' names 71/183 | ETA: 33s
 #> 
-#> ⠏ Fetching MPs' names 71/183 | ETA: 37s
+#> ⠏ Fetching MPs' names 82/183 | ETA: 30s
 #> 
-#> ⠋ Fetching MPs' names 80/183 | ETA: 34s
+#> ⠋ Fetching MPs' names 92/183 | ETA: 27s
 #> 
-#> ⠙ Fetching MPs' names 89/183 | ETA: 31s
+#> ⠙ Fetching MPs' names 102/183 | ETA: 24s
 #> 
-#> ⠹ Fetching MPs' names 98/183 | ETA: 28s
+#> ⠹ Fetching MPs' names 112/183 | ETA: 21s
 #> 
-#> ⠸ Fetching MPs' names 107/183 | ETA: 25s
+#> ⠸ Fetching MPs' names 122/183 | ETA: 18s
 #> 
-#> ⠼ Fetching MPs' names 116/183 | ETA: 22s
+#> ⠼ Fetching MPs' names 132/183 | ETA: 15s
 #> 
-#> ⠴ Fetching MPs' names 125/183 | ETA: 19s
+#> ⠴ Fetching MPs' names 142/183 | ETA: 12s
 #> 
-#> ⠦ Fetching MPs' names 134/183 | ETA: 16s
+#> ⠦ Fetching MPs' names 152/183 | ETA:  9s
 #> 
-#> ⠧ Fetching MPs' names 143/183 | ETA: 13s
+#> ⠧ Fetching MPs' names 162/183 | ETA:  6s
 #> 
-#> ⠇ Fetching MPs' names 152/183 | ETA: 10s
+#> ⠇ Fetching MPs' names 172/183 | ETA:  3s
 #> 
-#> ⠏ Fetching MPs' names 161/183 | ETA:  7s
-#> 
-#> ⠋ Fetching MPs' names 170/183 | ETA:  4s
-#> 
-#> ⠙ Fetching MPs' names 179/183 | ETA:  1s
+#> ⠏ Fetching MPs' names 182/183 | ETA:  0s
 #> 
 #> Fetched 183 MPs' names.
 nrow(df_current)
@@ -226,17 +222,17 @@ MPs (top 5 are shown below).
 ``` r
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
-#> ⠙ Fetching mandates 7/183 | ETA: 28s
-#> ⠹ Fetching mandates 21/183 | ETA: 29s
-#> ⠸ Fetching mandates 37/183 | ETA: 26s
-#> ⠼ Fetching mandates 54/183 | ETA: 23s
-#> ⠴ Fetching mandates 70/183 | ETA: 21s
-#> ⠦ Fetching mandates 86/183 | ETA: 18s
-#> ⠧ Fetching mandates 102/183 | ETA: 15s
-#> ⠇ Fetching mandates 118/183 | ETA: 12s
-#> ⠏ Fetching mandates 134/183 | ETA:  9s
-#> ⠋ Fetching mandates 151/183 | ETA:  6s
-#> ⠙ Fetching mandates 167/183 | ETA:  3s
+#> ⠙ Fetching mandates 7/183 | ETA: 25s
+#> ⠹ Fetching mandates 14/183 | ETA: 26s
+#> ⠸ Fetching mandates 32/183 | ETA: 24s
+#> ⠼ Fetching mandates 50/183 | ETA: 22s
+#> ⠴ Fetching mandates 68/183 | ETA: 19s
+#> ⠦ Fetching mandates 86/183 | ETA: 16s
+#> ⠧ Fetching mandates 104/183 | ETA: 13s
+#> ⠇ Fetching mandates 122/183 | ETA: 10s
+#> ⠏ Fetching mandates 140/183 | ETA:  7s
+#> ⠋ Fetching mandates 158/183 | ETA:  4s
+#> ⠙ Fetching mandates 176/183 | ETA:  1s
 #> Fetched mandates for 183 persons.
 #> 
 
