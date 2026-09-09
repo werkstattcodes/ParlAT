@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,9 +39,84 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/v0.0.6/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.0" id="parlat-010">ParlAT 0.1.0<a class="anchor" aria-label="anchor" href="#parlat-010"></a></h2>
+<div class="section level3">
+<h3 id="new-features-0-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-0"></a></h3>
+<ul><li>
+<code><a href="../reference/get_party_colors.html">get_party_colors()</a></code> provides a reusable plotting palette for Austrian parties and parliamentary groups, including common aliases and historical ÖVP colors.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="breaking-changes-0-1-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-1-0"></a></h3>
+<ul><li>All exported <code>get_*()</code> functions now return a <strong>zero-row tibble with their documented columns</strong> instead of <code>NULL</code> (or <code>invisible(NULL)</code>) when the API finds no results, accompanied by an informative message. Code that checked <code>is.null(result)</code> should check <code>nrow(result) == 0</code> instead.</li>
+<li>
+<code><a href="../reference/get_persons.html">get_persons()</a></code>, <code><a href="../reference/get_names.html">get_names()</a></code>, <code><a href="../reference/get_plenary_meetings.html">get_plenary_meetings()</a></code>, and the <code><a href="../reference/get_mps_details.html">get_mps_details()</a></code> modes now return tibbles instead of plain data frames.</li>
+<li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code> no longer returns a grouped tibble.</li>
+<li>All user-facing errors, warnings, and messages are now signalled via the cli package; message wording may differ slightly.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-1-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-0"></a></h3>
+<ul><li>
+<code><a href="../reference/get_committees.html">get_committees()</a></code>: zero-row results now retain the exact default or <code>details_type = "members"</code> schema, including typed dates and the <code>members</code> list-column where requested. Member details now return one row per committee, combine the PDF and HTML membership links, ignore illustrated member lists, and select National Council, Federal Council, Hauptausschuss, and special committee layouts defensively. Unsupported layouts warn and yield an empty member tibble instead of a fabricated failure row. Exact citations accept both <code>"1/SA-BU"</code> and canonical <code>"SA-BU/1"</code> order. Echo output now reports the number of rows actually returned, including zero after citation filtering.</li>
+<li>
+<code><a href="../reference/get_events.html">get_events()</a></code>: leaving the legislative period and dates unset now returns events across all available dates, including a completely unfiltered call. The echoed Parliament website URL derives its date and availability filters from the returned rows so it reproduces the API results instead of applying the website’s current-events defaults. Austrian civil-date boundaries are serialized consistently across operating systems. Non-empty results now return a tibble, matching the documented class and the empty-result path.</li>
+<li>
+<code><a href="../reference/get_items.html">get_items()</a></code>: combining <code>person</code> with <code>institution</code> now resolves the person across all institutional categories and applies the institution filter only to the returned items. <code>institution</code> accepts both <code>"NR"</code>/<code>"BR"</code> and the full German names <code>"Nationalrat"</code>/<code>"Bundesrat"</code>. When <code>legis_period = NULL</code>, the echoed Parliament website URL now explicitly selects all available periods so it reproduces the package results instead of defaulting to the current period. The historical period codes <code>"PN"</code> and <code>"KN"</code> can now be selected explicitly. An unmatched person returns a typed zero-row result instead of sending an unfiltered item request.</li>
+<li>
+<code><a href="../reference/get_mandates.html">get_mandates()</a></code>: all empty-result paths now return the complete documented schema, including party and substitute columns. Non-empty results use the same column order and types when optional upstream fields are absent.</li>
+<li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code>: empty date-filtered searches now retain the <code>date</code> column as a <code>Date</code>, matching non-empty results.</li>
+<li>
+<code><a href="../reference/get_mps.html">get_mps()</a></code>: removed ~160 lines of unreachable dead code after an early <code><a href="https://rdrr.io/r/base/function.html" class="external-link">return()</a></code>.</li>
+<li>
+<code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>: no longer errors when a search returns no members (previously <code>NULL</code> was piped into <code>mutate()</code>). Empty National Council and Federal Council searches now retain their respective result schemas.</li>
+<li>
+<code>get_mps_details(detail_type = "activities")</code>: the <code>institution</code> filter silently matched nothing, and the <code>institution</code> column leaked the raw German names <code>"Nationalrat"</code>/<code>"Bundesrat"</code> instead of the documented <code>"NR"</code>/<code>"BR"</code>. The upstream API changed its <code>gremium</code> vocabulary from short codes to full names. Both directions now speak the new vocabulary, so the filter works again and the column values are as documented. Code that worked around this by matching <code>"Nationalrat"</code> should match <code>"NR"</code>.</li>
+<li>
+<code>get_mps_details(detail_type = "committees")</code>: no longer errors for MPs with multiple name variants.</li>
+<li>
+<code><a href="../reference/get_names.html">get_names()</a></code>: no longer returns a bare <code>NA</code> when the person-detail fetch fails, which could break its own vectorized path. Empty results and people without previous-name records now retain the complete documented schema.</li>
+<li>
+<code><a href="../reference/get_participation.html">get_participation()</a></code>: the graceful empty-result path was unreachable due to an internal assertion that errored first; empty results now return a typed zero-row tibble.</li>
+<li>
+<code><a href="../reference/get_persons.html">get_persons()</a></code>: empty searches with <code>mandates = TRUE</code>, and matching people without mandates, now retain the complete typed <code>mandates_*</code> schema.</li>
+<li>
+<code><a href="../reference/get_plenary_meetings.html">get_plenary_meetings()</a></code>: when <code>legis_period = NULL</code>, the echoed Parliament website URL now explicitly selects every available period instead of defaulting to the current period.</li>
+<li>
+<code><a href="../reference/get_transcripts.html">get_transcripts()</a></code>: the row-limit error message incorrectly said the limit was 10,000 (the actual limit is 100,000); a misplaced <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf()</a></code> argument in the PDF-export error message was fixed. All-period searches now echo a website URL that explicitly selects every available period instead of defaulting to the current period.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="enhancements-0-1-0">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-0-1-0"></a></h3>
+<ul><li>
+<code>aux_check_pad_intern_exists()</code> now uses <code><a href="https://httr2.r-lib.org/reference/req_retry.html" class="external-link">httr2::req_retry()</a></code> for its preliminary person-page check, allowing at most three total attempts for retryable responses before an identifier is treated as unavailable.</li>
+<li>
+<code>echo = TRUE</code> no longer prints the raw JSON request body; it prints the URL to the corresponding search results on the Parliament website and the number of results. The URL carries the same filter information in a directly usable form, with reserved characters in query values safely encoded.</li>
+<li>All Parliament HTTP requests now use the ParlAT package user agent and allow at most three total attempts for retryable responses (<code>httr2::req_retry(max_tries = 3)</code>).</li>
+<li>Stale hardcoded browser cookies/session IDs, Chrome/Edge client hints, Fetch Metadata headers, and browser user-agent strings were removed from requests.</li>
+<li>Person-detail JSON fetches (<code><a href="../reference/get_mandates.html">get_mandates()</a></code>, <code><a href="../reference/get_names.html">get_names()</a></code>, <code><a href="../reference/get_committees.html">get_committees()</a></code> details) now go through httr2, so they are covered by the httptest2 mock layer in tests.</li>
+<li>
+<code><a href="../reference/get_pad_intern.html">get_pad_intern()</a></code> now removes academic titles from name searches before looking up matching Parliament person identifiers. Previously academic titles could cause searches to fail.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-0-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-0"></a></h3>
+<ul><li>Reference pages gained Examples sections, and the <code><a href="../reference/get_party_colors.html">get_party_colors()</a></code> examples now render the actual color swatches.</li>
+<li>Fixed dropdown styling in the pkgdown navbar on the package website.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="internal-changes-0-1-0">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-0-1-0"></a></h3>
+<ul><li>New shared internal helpers (<code>R/utils-shared.R</code>) replace duplicated rename-map and echo/URL-reconstruction blocks across the package.</li>
+<li>Debug <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> calls, commented <code><a href="https://rdrr.io/r/base/browser.html" class="external-link">browser()</a></code> calls, no-op <code>req_verbose()</code> blocks, and two large dead functions were removed.</li>
+<li>New unit tests for <code><a href="../reference/get_names.html">get_names()</a></code>, <code><a href="../reference/get_mps_current.html">get_mps_current()</a></code>, the detail-page JSON helpers, and the pure auxiliary converters.</li>
+<li>
+<code>T</code>/<code>F</code> abbreviations expanded; superseded <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">purrr::map_dfr()</a></code> replaced.</li>
+<li>Live tests skip count-sensitive assertions while the Parliament search index is degraded (<code>skip_if_api_index_degraded()</code>), and row-count assertions tolerate ±10% drift in live mode (<code>expect_row_count()</code>), so upstream outages no longer look like package regressions. Adds <code>tools/check_api_index.sh</code> for a manual health check and a daily workflow that monitors index health.</li>
+<li>Non-standard-evaluation pronouns declared via <code><a href="https://rdrr.io/r/utils/globalVariables.html" class="external-link">globalVariables()</a></code>, resolving the related code-analysis R CMD check NOTEs.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.6" id="parlat-006">ParlAT 0.0.6<a class="anchor" aria-label="anchor" href="#parlat-006"></a></h2>
 <div class="section level3">
@@ -131,7 +206,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

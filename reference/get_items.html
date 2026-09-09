@@ -11,7 +11,7 @@ mirrors the search functionality offered on the Austrian Parliament's website (s
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,14 +43,14 @@ mirrors the search functionality offered on the Austrian Parliament's website (s
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get items under negotiation ('Verhandlungsgegenstände')</h1>
-      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/v0.0.6/R/get_items.R" class="external-link"><code>R/get_items.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/R/get_items.R" class="external-link"><code>R/get_items.R</code></a></small>
       <div class="d-none name"><code>get_items.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
     <p><code>get_items</code> searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
-mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank" class="external-link">here</a>).</p>
+mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende" target="_blank" class="external-link">here</a>).</p>
     </div>
 
     <div class="section level2">
@@ -82,11 +82,18 @@ mirrors the search functionality offered on the Austrian Parliament's website (s
 
 
 <dt id="arg-institution">institution<a class="anchor" aria-label="anchor" href="#arg-institution"></a></dt>
-<dd><p>Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is <code>NULL</code> which returns both chambers.</p></dd>
+<dd><p>Character string. Either <code>"NR"</code> or <code>"Nationalrat"</code>
+(National Council), or <code>"BR"</code> or <code>"Bundesrat"</code> (Federal Council).
+Default is <code>NULL</code>, which returns both chambers. When combined with
+<code>person</code>, this filters the parliamentary items; it does not restrict the
+person's institutional affiliations.</p></dd>
 
 
 <dt id="arg-legis-period">legis_period<a class="anchor" aria-label="anchor" href="#arg-legis-period"></a></dt>
-<dd><p>Character vector or <code>NULL</code>. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is <code>NULL</code>.</p></dd>
+<dd><p>Character or numeric vector, or <code>NULL</code>. Specifies the
+legislative period(s) to search in. If <code>NULL</code> (the default), no period
+restriction is applied. See 'Details' for possible values and the API
+result limit.</p></dd>
 
 
 <dt id="arg-date-start">date_start<a class="anchor" aria-label="anchor" href="#arg-date-start"></a></dt>
@@ -110,7 +117,10 @@ mirrors the search functionality offered on the Austrian Parliament's website (s
 
 
 <dt id="arg-person">person<a class="anchor" aria-label="anchor" href="#arg-person"></a></dt>
-<dd><p>Character string or <code>NULL</code>. Name of a person to search for (family name, optionally followed by first name). Default is <code>NULL</code>.</p></dd>
+<dd><p>Character string or <code>NULL</code>. Name of a person to search for
+(family name, optionally followed by first name). People are resolved
+across all institutional categories before other item filters are applied.
+Default is <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-keyword">keyword<a class="anchor" aria-label="anchor" href="#arg-keyword"></a></dt>
@@ -130,7 +140,7 @@ mirrors the search functionality offered on the Austrian Parliament's website (s
 
 
 <dt id="arg-echo">echo<a class="anchor" aria-label="anchor" href="#arg-echo"></a></dt>
-<dd><p>Logical. If <code>TRUE</code>, the function prints the used search parameters and the url to the pertaining search results on website of the Austrian Parliament.</p></dd>
+<dd><p>Logical. If <code>TRUE</code>, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -188,10 +198,18 @@ Possible values for <code>topic</code> are:</p><ul><li><p>"Arbeit" (work)</p></l
 <h3 id="legis-period-gesetzgebungsperiode-">legis_period (Gesetzgebungsperiode)<a class="anchor" aria-label="anchor" href="#legis-period-gesetzgebungsperiode-"></a></h3>
 
 
-<p><code>legis_period</code> specifies the legislative period(s). Can be one or more of the following value(s):</p><ul><li><p>number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".</p></li>
-</ul><p>Only periods from the 5th legislative period (V. GP, 1945) onwards are
-supported. Earlier periods (including special codes like "PN" and "KN")
-do not return data and will be rejected.</p>
+<p><code>legis_period</code> specifies the legislative period(s). It can be one or more of
+the following values:</p><ul><li><p>number(s) or character(s) indicating the relevant period(s), i.e., "25",
+25, or "XXV";</p></li>
+<li><p><code>"PN"</code> for the Provisional National Assembly; or</p></li>
+<li><p><code>"KN"</code> for the Constituent National Assembly.</p></li>
+</ul><p>Explicit numbered period filters are supported from the 5th legislative
+period (V. GP, 1945) onwards; <code>"PN"</code> and <code>"KN"</code> are also supported. If
+<code>legis_period = NULL</code>, no period restriction is applied. Broad searches can
+still omit periods from the returned data when the API's 100,000-row export
+limit is reached. When <code>echo = TRUE</code>, the website URL explicitly selects
+every available period so it reproduces the unrestricted search instead of
+using the website's current-period default.</p>
 </div>
 
 <div class="section">
@@ -204,6 +222,7 @@ do not return data and will be rejected.</p>
 <li><p>"ANTR" (Anträge, Motions)</p></li>
 <li><p>"US" (Anträge/Verlangen auf Untersuchungsausschuss, Motions/Requests for Investigative Committee)</p></li>
 <li><p>"AUB" (Ausschussberichte, Committee Reports)</p></li>
+<li><p>"AUB-BR" (Ausschussberichte Bundesrat, Committee Reports Federl Council)</p></li>
 <li><p>"AB_ABPR_ABM" (Beantwortungen, Answers)</p></li>
 <li><p>"III" (Berichte an den Nationalrat, Reports to the National Council)</p></li>
 <li><p>"BNR" (Beschlüsse, Resolutions)</p></li>
@@ -579,6 +598,18 @@ has featured different abbreviations for their parliamentary group: "FPÖ", "F",
 the results for all three abbreviations.</p>
 </div>
 
+<div class="section">
+<h3 id="combining-person-and-institution-filters">Combining person and institution filters<a class="anchor" aria-label="anchor" href="#combining-person-and-institution-filters"></a></h3>
+
+
+<p>When <code>person</code> and <code>institution</code> are supplied together, the person lookup is
+performed across all institutional categories. The <code>institution</code> value then
+filters the parliamentary items by chamber. The full German chamber names
+and their abbreviations are equivalent. For example, a federal minister can
+be associated with National Council items even if the person is not
+categorized as a National Council member.</p>
+</div>
+
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -612,8 +643,10 @@ reaches this limit, the function issues a warning because the results may be inc
 <h3 id="data-availability">Data Availability<a class="anchor" aria-label="anchor" href="#data-availability"></a></h3>
 
 
-<p>The API only returns data from the 5th legislative period (V. GP, 1945)
-onwards, i.e. for the Second Republic.</p>
+<p>Numbered legislative periods are available from the 5th period (V. GP,
+1945) onwards. Historical material is also available for the Provisional
+National Assembly (<code>"PN"</code>) and Constituent National Assembly (<code>"KN"</code>).
+Coverage and completeness vary by document type.</p>
 </div>
 
     </div>
@@ -633,29 +666,29 @@ onwards, i.e. for the Second Republic.</p>
 <span class="r-in"><span><span class="co"># Search for EU-related items in the 28th legislative period</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_items</span><span class="op">(</span>topic <span class="op">=</span> <span class="st">"Europäische Union"</span>, legis_period <span class="op">=</span> <span class="fl">28</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 755 items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"THEMEN":["Europäische Union"],"GP_CODE":["XXVIII"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001THEMEN=Europ%C3%A4ische%20Union&amp;FP_001GP_CODE=XXVIII</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 755</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 829 items</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001THEMEN=Europ%C3%A4ische%20Union&amp;FP_001GP_CODE=XXVIII</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 829</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 829</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XX…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">,</span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2026-06-18<span style="color: #949494;">, </span>2026-06-18<span style="color: #949494;">, </span>2026-06-18<span style="color: #949494;">, </span>2026-06-18<span style="color: #949494;">, </span>2026…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "534"<span style="color: #949494;">, </span>"536"<span style="color: #949494;">, </span>"535"<span style="color: #949494;">, </span>"533"<span style="color: #949494;">, </span>"5299"<span style="color: #949494;">, </span>"5293"<span style="color: #949494;">, </span>"5298"<span style="color: #949494;">, </span>"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "534 d.B."<span style="color: #949494;">, </span>"536 d.B."<span style="color: #949494;">, </span>"535 d.B."<span style="color: #949494;">, </span>"533 d.B."<span style="color: #949494;">, </span>"5299…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVIII/I/534"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AUB"<span style="color: #949494;">, </span>"AUB"<span style="color: #949494;">, </span>"AUB"<span style="color: #949494;">, </span>"AUB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"A(E)"<span style="color: #949494;">,</span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ausschussbericht"<span style="color: #949494;">, </span>"Ausschussbericht"<span style="color: #949494;">, </span>"Ausschussber…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Klares Bekenntnis Österreichs zum Schutz und Erhalt …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Außenpolitik", "Bildung", "Europäische Union"&gt;<span style="color: #949494;">, </span>&lt;"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Südtirol", "Bildungswesen VIII. Sonstiges"&gt;<span style="color: #949494;">, </span>"Südt…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Bildung\",\"Organisation des Unterrichtswesens\",…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "2339"<span style="color: #949494;">, </span>"5623"<span style="color: #949494;">, </span>"5623"<span style="color: #949494;">, </span>"5623"<span style="color: #949494;">, </span>"10778"<span style="color: #949494;">, </span>"30720"<span style="color: #949494;">, </span>"5…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "SPÖ"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"FP…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2026-09-07<span style="color: #949494;">, </span>2026-09-04<span style="color: #949494;">, </span>2026-09-03<span style="color: #949494;">, </span>2026-08-26<span style="color: #949494;">, </span>2026…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5919"<span style="color: #949494;">, </span>"5914"<span style="color: #949494;">, </span>"5896"<span style="color: #949494;">, </span>"6819"<span style="color: #949494;">, </span>"5724"<span style="color: #949494;">, </span>"5717"<span style="color: #949494;">, </span>"5720…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5919/AB"<span style="color: #949494;">, </span>"5914/AB"<span style="color: #949494;">, </span>"5896/AB"<span style="color: #949494;">, </span>"6819/J"<span style="color: #949494;">, </span>"5724/AB"<span style="color: #949494;">,</span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVIII/AB/591…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Anfragebeantwortung"<span style="color: #949494;">, </span>"Anfragebeantwortung"<span style="color: #949494;">, </span>"Anfrag…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Koordinations-, Repräsentations- und Sicherheitsaufw…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Außenpolitik", "Europäische Union"&gt;<span style="color: #949494;">, </span>&lt;"Außenpoliti…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Europäische Integration", "Außenpolitik"&gt;<span style="color: #949494;">, </span>&lt;"Europ…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Europäische Union\",\"Internationale Beziehungen\…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "5439"<span style="color: #949494;">, </span>"83122"<span style="color: #949494;">, </span>"10778"<span style="color: #949494;">, </span>&lt;"22847", "23963"&gt;<span style="color: #949494;">, </span>"3677"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "ÖVP"<span style="color: #949494;">, </span>"NEOS"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"NEOS"<span style="color: #949494;">, </span>"…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Search for motions (Antraege) in National Council from February 2024</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_items</span><span class="op">(</span></span></span>
@@ -666,28 +699,28 @@ onwards, i.e. for the Second Republic.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 97 items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"NRBR":["NR"],"DATUM_VON":["2024-02-01T00:00:00.000Z","2024-02-29T00:00:00.000Z"],"VHG":["ANTR"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR&amp;FP_001DATUM_VON=2024-02-01T00:00:00.000Z&amp;FP_001DATUM_VON=2024-02-29T00:00:00.000Z&amp;FP_001VHG=ANTR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 97</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001NRBR=NR&amp;FP_001DATUM_VON=2024-02-01T00%3A00%3A00.000Z&amp;FP_001DATUM_VON=2024-02-29T00%3A00%3A00.000Z&amp;FP_001VHG=ANTR&amp;FP_001GP_CODE=V&amp;FP_001GP_CODE=VI&amp;FP_001GP_CODE=VII&amp;FP_001GP_CODE=VIII&amp;FP_001GP_CODE=IX&amp;FP_001GP_CODE=X&amp;FP_001GP_CODE=XI&amp;FP_001GP_CODE=XII&amp;FP_001GP_CODE=XIII&amp;FP_001GP_CODE=XIV&amp;FP_001GP_CODE=XV&amp;FP_001GP_CODE=XVI&amp;FP_001GP_CODE=XVII&amp;FP_001GP_CODE=XVIII&amp;FP_001GP_CODE=XIX&amp;FP_001GP_CODE=XX&amp;FP_001GP_CODE=XXI&amp;FP_001GP_CODE=XXII&amp;FP_001GP_CODE=XXIII&amp;FP_001GP_CODE=XXIV&amp;FP_001GP_CODE=XXV&amp;FP_001GP_CODE=XXVI&amp;FP_001GP_CODE=XXVII&amp;FP_001GP_CODE=XXVIII&amp;FP_001GP_CODE=KN&amp;FP_001GP_CODE=PN</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 97</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 97</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">,</span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">,</span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2024-02-28<span style="color: #949494;">, </span>2024-02-28<span style="color: #949494;">, </span>2024-02-28<span style="color: #949494;">, </span>2024-02-28<span style="color: #949494;">, </span>2024…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">,</span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1192"<span style="color: #949494;">, </span>"1193"<span style="color: #949494;">, </span>"1195"<span style="color: #949494;">, </span>"1196"<span style="color: #949494;">, </span>"1191"<span style="color: #949494;">, </span>"1194"<span style="color: #949494;">, </span>"1197…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1192/UEA"<span style="color: #949494;">, </span>"1193/UEA"<span style="color: #949494;">, </span>"1195/UEA"<span style="color: #949494;">, </span>"1196/UEA"<span style="color: #949494;">, </span>"1191…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/UEA/119…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"UEA"<span style="color: #949494;">, </span>"A(E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Unselbständiger Entschließungsantrag"<span style="color: #949494;">, </span>"Unselbständi…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gender-Stopp"<span style="color: #949494;">, </span>"Lebensmittelherkunftskennzeichnung t…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Bildung", "Frauen und Gleichbehandlung", "Inneres …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Frauen und Gleichbehandlung", "Bildungswesen VIII.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Bildung\",\"Frau\",\"Gleichbehandlung\",\"öffentl…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "87002"<span style="color: #949494;">, </span>"1944"<span style="color: #949494;">, </span>"2309"<span style="color: #949494;">, </span>"83113"<span style="color: #949494;">, </span>"5646"<span style="color: #949494;">, </span>"2189"<span style="color: #949494;">, </span>"8…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>&lt;"F…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "A"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"AA"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"AA"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">, </span>"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3892"<span style="color: #949494;">, </span>"3922"<span style="color: #949494;">, </span>"372"<span style="color: #949494;">, </span>"3929"<span style="color: #949494;">, </span>"3932"<span style="color: #949494;">, </span>"3931"<span style="color: #949494;">, </span>"374"<span style="color: #949494;">,</span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3892/A"<span style="color: #949494;">, </span>"3922/A(E)"<span style="color: #949494;">, </span>"AA-372"<span style="color: #949494;">, </span>"3929/A(E)"<span style="color: #949494;">, </span>"3932/A…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"2"<span style="color: #949494;">, </span>"3"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/A/3892"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "A"<span style="color: #949494;">, </span>"A(E)"<span style="color: #949494;">, </span>"AA"<span style="color: #949494;">, </span>"A(E)"<span style="color: #949494;">, </span>"A(E)"<span style="color: #949494;">, </span>"A(E)"<span style="color: #949494;">, </span>"AA"<span style="color: #949494;">, </span>"A"<span style="color: #949494;">,</span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Selbständiger Antrag"<span style="color: #949494;">, </span>"Selbständiger Entschließungs…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Einkommensteuergesetz, Änderung"<span style="color: #949494;">, </span>"Maßnahmen zum Erh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "Budget und Finanzen"<span style="color: #949494;">, </span>"Verkehr und Infrastruktur"<span style="color: #949494;">, </span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "Steuern und Gebühren"<span style="color: #949494;">, </span>"Verkehr II. Schienenverkehr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Steuerwesen\"]"<span style="color: #949494;">, </span>"[\"Schienentransport\"]"<span style="color: #949494;">, </span>"[\"A…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "83121"<span style="color: #949494;">, </span>&lt;"22847", "30653"&gt;<span style="color: #949494;">, </span>"5684"<span style="color: #949494;">, </span>"51568"<span style="color: #949494;">, </span>"35468…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "NEOS"<span style="color: #949494;">, </span>&lt;"FPÖ", "SPÖ"&gt;<span style="color: #949494;">, </span>"NEOS"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">,</span>…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Search for items by specific parliamentary groups</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_items</span><span class="op">(</span></span></span>
@@ -696,12 +729,12 @@ onwards, i.e. for the Second Republic.</p>
 <span class="r-in"><span>  topic <span class="op">=</span> <span class="st">"Bildung"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 1651 items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"THEMEN":["Bildung"],"GP_CODE":["XXVII"],"FRAK_CODE":["SPÖ","ÖVP"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001THEMEN=Bildung&amp;FP_001GP_CODE=XXVII&amp;FP_001FRAK_CODE=SP%C3%96&amp;FP_001FRAK_CODE=%C3%96VP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1651</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 1658 items</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001THEMEN=Bildung&amp;FP_001GP_CODE=XXVII&amp;FP_001FRAK_CODE=SP%C3%96&amp;FP_001FRAK_CODE=%C3%96VP</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 1658</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 1,651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 1,658</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">,</span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"BR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">,</span>…</span>
@@ -727,60 +760,60 @@ onwards, i.e. for the Second Republic.</p>
 <span class="r-in"><span>  institution <span class="op">=</span> <span class="st">"NR"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 2891 items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"NRBR":["NR"],"VHG":["J_JPR_M"],"SW":["Flüchtlinge"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR&amp;FP_001VHG=J_JPR_M&amp;FP_001SW=Fl%C3%BCchtlinge</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2891</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 2921 items</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001NRBR=NR&amp;FP_001VHG=J_JPR_M&amp;FP_001SW=Fl%C3%BCchtlinge&amp;FP_001GP_CODE=V&amp;FP_001GP_CODE=VI&amp;FP_001GP_CODE=VII&amp;FP_001GP_CODE=VIII&amp;FP_001GP_CODE=IX&amp;FP_001GP_CODE=X&amp;FP_001GP_CODE=XI&amp;FP_001GP_CODE=XII&amp;FP_001GP_CODE=XIII&amp;FP_001GP_CODE=XIV&amp;FP_001GP_CODE=XV&amp;FP_001GP_CODE=XVI&amp;FP_001GP_CODE=XVII&amp;FP_001GP_CODE=XVIII&amp;FP_001GP_CODE=XIX&amp;FP_001GP_CODE=XX&amp;FP_001GP_CODE=XXI&amp;FP_001GP_CODE=XXII&amp;FP_001GP_CODE=XXIII&amp;FP_001GP_CODE=XXIV&amp;FP_001GP_CODE=XXV&amp;FP_001GP_CODE=XXVI&amp;FP_001GP_CODE=XXVII&amp;FP_001GP_CODE=XXVIII&amp;FP_001GP_CODE=KN&amp;FP_001GP_CODE=PN</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 2921</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2,891</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 2,921</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XXVIII"<span style="color: #949494;">, </span>"XX…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">,</span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2026-04-21<span style="color: #949494;">, </span>2026-04-21<span style="color: #949494;">, </span>2026-04-21<span style="color: #949494;">, </span>2026-04-21<span style="color: #949494;">, </span>2026…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2026-09-04<span style="color: #949494;">, </span>2026-08-05<span style="color: #949494;">, </span>2026-07-31<span style="color: #949494;">, </span>2026-07-30<span style="color: #949494;">, </span>2026…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5906"<span style="color: #949494;">, </span>"5909"<span style="color: #949494;">, </span>"5913"<span style="color: #949494;">, </span>"5907"<span style="color: #949494;">, </span>"5911"<span style="color: #949494;">, </span>"5905"<span style="color: #949494;">, </span>"5908…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5906/J"<span style="color: #949494;">, </span>"5909/J"<span style="color: #949494;">, </span>"5913/J"<span style="color: #949494;">, </span>"5907/J"<span style="color: #949494;">, </span>"5911/J"<span style="color: #949494;">, </span>"59…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVIII/J/5906…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6846"<span style="color: #949494;">, </span>"6760"<span style="color: #949494;">, </span>"6751"<span style="color: #949494;">, </span>"6746"<span style="color: #949494;">, </span>"6711"<span style="color: #949494;">, </span>"6695"<span style="color: #949494;">, </span>"6657…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6846/J"<span style="color: #949494;">, </span>"6760/J"<span style="color: #949494;">, </span>"6751/J"<span style="color: #949494;">, </span>"6746/J"<span style="color: #949494;">, </span>"6711/J"<span style="color: #949494;">, </span>"66…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"3"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVIII/J/6846…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Schriftliche Anfrage"<span style="color: #949494;">, </span>"Schriftliche Anfrage"<span style="color: #949494;">, </span>"Schr…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kosten der medizinischen Grundversorgung für vertrie…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Außenpolitik", "Gesundheit und Ernährung", "Innere…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Flüchtlinge", "Gesundheit"&gt;<span style="color: #949494;">, </span>&lt;"Flüchtlinge", "Gesu…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Flüchtling\",\"Gesundheit\"]"<span style="color: #949494;">, </span>"[\"Flüchtling\",\…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"3677", "30661"&gt;<span style="color: #949494;">, </span>&lt;"3677", "30661"&gt;<span style="color: #949494;">, </span>&lt;"3677", "3066…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FP…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Die sofortige Einstellung jeglicher Integrationsförd…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Außenpolitik", "Budget und Finanzen", "Inneres und…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Flüchtlinge", "Bundeshaushalt III. Sonstiges"&gt;<span style="color: #949494;">, </span>&lt;"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Flüchtling\",\"Öffentliche Finanzen und Haushalts…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"2996", "20445"&gt;<span style="color: #949494;">, </span>&lt;"20445", "30664"&gt;<span style="color: #949494;">, </span>&lt;"20445", "35…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"GRÜNE"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Search by person (minister or MP)</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_items</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  person <span class="op">=</span> <span class="st">"Nehammer"</span>,</span></span>
-<span class="r-in"><span>  date_start <span class="op">=</span> <span class="st">"01-01-2023"</span>,</span></span>
-<span class="r-in"><span>  date_end <span class="op">=</span> <span class="st">"31-12-2023"</span></span></span>
+<span class="r-in"><span>  person <span class="op">=</span> <span class="st">"Kurz Sebastian"</span>,</span></span>
+<span class="r-in"><span>  institution <span class="op">=</span> <span class="st">"Nationalrat"</span>, <span class="co"># "NR" is equivalent</span></span></span>
+<span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">27</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 382 items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"DATUM_VON":["2023-01-01T00:00:00.000Z","2023-12-31T00:00:00.000Z"],"PAD_INTERN":["2136"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001DATUM_VON=2023-01-01T00:00:00.000Z&amp;FP_001DATUM_VON=2023-12-31T00:00:00.000Z&amp;FP_001PAD_INTERN=2136</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 382</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 872 items</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001NRBR=NR&amp;FP_001GP_CODE=XXVII&amp;FP_001PAD_INTERN=65321</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 872</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 382</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 872</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">,</span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">,</span>…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-12-22<span style="color: #949494;">, </span>2023-12-22<span style="color: #949494;">, </span>2023-12-22<span style="color: #949494;">, </span>2023-12-22<span style="color: #949494;">, </span>2023…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "III"<span style="color: #949494;">, </span>"III"<span style="color: #949494;">, </span>"III"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"A…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1083"<span style="color: #949494;">, </span>"1082"<span style="color: #949494;">, </span>"1085"<span style="color: #949494;">, </span>"16230"<span style="color: #949494;">, </span>"16229"<span style="color: #949494;">, </span>"16227"<span style="color: #949494;">, </span>"1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "III-1083 d.B."<span style="color: #949494;">, </span>"III-1082 d.B."<span style="color: #949494;">, </span>"III-1085 d.B."<span style="color: #949494;">, </span>"1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/III/108…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "BRG"<span style="color: #949494;">, </span>"BRG"<span style="color: #949494;">, </span>"BRG"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"A…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bericht der Bundesregierung"<span style="color: #949494;">, </span>"Bericht der Bundesreg…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Achter Bericht zur Lage der Jugend in Österreich"<span style="color: #949494;">, </span>"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "Familie und Generationen"<span style="color: #949494;">, </span>&lt;"Familie und Generation…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "Jugend"<span style="color: #949494;">, </span>&lt;"Jugend", "Sozialpolitik"&gt;<span style="color: #949494;">, </span>"Bundeshausha…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"junger Mensch\"]"<span style="color: #949494;">, </span>"[\"junger Mensch\",\"Sozialpo…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "2136"<span style="color: #949494;">, </span>"2136"<span style="color: #949494;">, </span>"2136"<span style="color: #949494;">, </span>"2136"<span style="color: #949494;">, </span>"2136"<span style="color: #949494;">, </span>"2136"<span style="color: #949494;">, </span>"213…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"ÖV…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2021-11-26<span style="color: #949494;">, </span>2021-10-14<span style="color: #949494;">, </span>2021-10-08<span style="color: #949494;">, </span>2021-10-08<span style="color: #949494;">, </span>2021…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "J"<span style="color: #949494;">, </span>"IMM"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"III"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "8772"<span style="color: #949494;">, </span>"11"<span style="color: #949494;">, </span>"8178"<span style="color: #949494;">, </span>"8203"<span style="color: #949494;">, </span>"8156"<span style="color: #949494;">, </span>"8131"<span style="color: #949494;">, </span>"7462"<span style="color: #949494;">,</span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "8772/J"<span style="color: #949494;">, </span>"11/IMM"<span style="color: #949494;">, </span>"8178/J"<span style="color: #949494;">, </span>"8203/J"<span style="color: #949494;">, </span>"8156/J"<span style="color: #949494;">, </span>"81…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/J/8772"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "J"<span style="color: #949494;">, </span>"IMM"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"AB"<span style="color: #949494;">, </span>"BRG"<span style="color: #949494;">, </span>"J"<span style="color: #949494;">, </span>"J"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Schriftliche Anfrage"<span style="color: #949494;">, </span>"Ersuchen von Behörden"<span style="color: #949494;">, </span>"Sch…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Vorbereitung von Aktenlieferungen an den ÖVP-Korrupt…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Inneres und Recht", "Parlament und Demokratie"&gt;<span style="color: #949494;">, </span>"…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"Geschäftsordnung des Nationalrates", "Untersuchung…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "[\"Exekutive\",\"Geschäftsordnung des Parlaments\",\…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"14842", "65321"&gt;<span style="color: #949494;">, </span>"65321"<span style="color: #949494;">, </span>&lt;"65321", "83125"&gt;<span style="color: #949494;">, </span>&lt;"6…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "SPÖ"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"NEOS"<span style="color: #949494;">, </span>"NEOS"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"FPÖ"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Combine multiple search criteria</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_items</span><span class="op">(</span></span></span>
@@ -790,18 +823,18 @@ onwards, i.e. for the Second Republic.</p>
 <span class="r-in"><span>  institution <span class="op">=</span> <span class="st">"NR"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 59 items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"THEMEN":["Gesundheit und Ernährung"],"NRBR":["NR"],"GP_CODE":["XXVII"],"VHG":["RV"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001THEMEN=Gesundheit%20und%20Ern%C3%A4hrung&amp;FP_001NRBR=NR&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=RV</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 59</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 61 items</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001THEMEN=Gesundheit%20und%20Ern%C3%A4hrung&amp;FP_001NRBR=NR&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=RV</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 61</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 61</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">,</span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">,</span>…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2024-05-15<span style="color: #949494;">, </span>2024-04-17<span style="color: #949494;">, </span>2024-03-20<span style="color: #949494;">, </span>2024-01-31<span style="color: #949494;">, </span>2023…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"<span style="color: #949494;">, </span>"I"…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2551"<span style="color: #949494;">, </span>"2530"<span style="color: #949494;">, </span>"2503"<span style="color: #949494;">, </span>"2433"<span style="color: #949494;">, </span>"2303"<span style="color: #949494;">, </span>"2310"<span style="color: #949494;">, </span>"2271…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2551"<span style="color: #949494;">, </span>"2530"<span style="color: #949494;">, </span>"2503"<span style="color: #949494;">, </span>"2433"<span style="color: #949494;">, </span>"2310"<span style="color: #949494;">, </span>"2303"<span style="color: #949494;">, </span>"2271…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2551 d.B."<span style="color: #949494;">, </span>"2530 d.B."<span style="color: #949494;">, </span>"2503 d.B."<span style="color: #949494;">, </span>"2433 und Zu 2…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/I/2551"…</span>
@@ -823,9 +856,9 @@ onwards, i.e. for the Second Republic.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 7 items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"NRBR":["NR"],"GP_CODE":["XXVII"],"VHG":["EU"],"VHG2":["S"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=EU&amp;FP_001VHG2=S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001NRBR=NR&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=EU&amp;FP_001VHG2=S</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 7</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
@@ -846,38 +879,38 @@ onwards, i.e. for the Second Republic.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Get all statements of the sub-committee on EU affairs</span></span></span>
-<span class="r-in"><span><span class="co"># (EU-Unterausschuss) during the 27th legislative period.</span></span></span>
+<span class="r-in"><span><span class="co"># Get communications from the sub-committee on EU affairs</span></span></span>
+<span class="r-in"><span><span class="co"># (EU-Unterausschuss) during the 25th legislative period.</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">get_items</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  item <span class="op">=</span> <span class="st">"EU"</span>,</span></span>
 <span class="r-in"><span>  type_eu_submission <span class="op">=</span> <span class="st">"MTEU"</span>,</span></span>
-<span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">27</span>,</span></span>
+<span class="r-in"><span>  legis_period <span class="op">=</span> <span class="fl">25</span>,</span></span>
 <span class="r-in"><span>  institution <span class="op">=</span> <span class="st">"NR"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching items from API...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 6 items</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"NRBR":["NR"],"GP_CODE":["XXVII"],"VHG":["EU"],"VHG2":["MTEU"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?FP_001NRBR=NR&amp;FP_001GP_CODE=XXVII&amp;FP_001VHG=EU&amp;FP_001VHG2=MTEU</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Fetched 5 items</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001NRBR=NR&amp;FP_001GP_CODE=XXV&amp;FP_001VHG=EU&amp;FP_001VHG2=MTEU</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 5</span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"<span style="color: #949494;">, </span>"XXVII"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-10-04<span style="color: #949494;">, </span>2022-12-05<span style="color: #949494;">, </span>2022-09-14<span style="color: #949494;">, </span>2021-07-06<span style="color: #949494;">, </span>2021-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"4"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"2"<span style="color: #949494;">, </span>"1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6/MTEU"<span style="color: #949494;">, </span>"5/MTEU"<span style="color: #949494;">, </span>"4/MTEU"<span style="color: #949494;">, </span>"3/MTEU"<span style="color: #949494;">, </span>"2/MTEU"<span style="color: #949494;">, </span>"1/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXVII/MTEU/6…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mitteilung Ständiger Unterausschuss des Hauptausschu…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bekämpfung der Korruption, zur Ersetzung des Rahmenb…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ legis_period     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "XXV"<span style="color: #949494;">, </span>"XXV"<span style="color: #949494;">, </span>"XXV"<span style="color: #949494;">, </span>"XXV"<span style="color: #949494;">, </span>"XXV"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ institution      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"<span style="color: #949494;">, </span>"NR"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2017-02-21<span style="color: #949494;">, </span>2014-12-04<span style="color: #949494;">, </span>2014-07-02<span style="color: #949494;">, </span>2014-04-23<span style="color: #949494;">, </span>2013-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"4"<span style="color: #949494;">, </span>"3"<span style="color: #949494;">, </span>"2"<span style="color: #949494;">, </span>"1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_number_type <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5/MTEU"<span style="color: #949494;">, </span>"4/MTEU"<span style="color: #949494;">, </span>"3/MTEU"<span style="color: #949494;">, </span>"2/MTEU"<span style="color: #949494;">, </span>"1/MTEU"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"<span style="color: #949494;">, </span>"5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ item_url         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.parlament.gv.at/gegenstand/XXV/MTEU/5"<span style="color: #949494;">, </span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"<span style="color: #949494;">, </span>"MTEU"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type_doc_long    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mitteilung Ständiger Unterausschuss des Hauptaussch…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ subject          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Code of conduct on countering illegal hate speech on…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ topics           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ keywords         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ eurovoc          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ persons          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ parl_group       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""<span style="color: #949494;">, </span>""</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
@@ -891,7 +924,7 @@ onwards, i.e. for the Second Republic.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

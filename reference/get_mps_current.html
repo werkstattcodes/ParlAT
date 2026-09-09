@@ -9,7 +9,7 @@ chamber of interest, different search parameters are applicable."><meta property
 
     <a class="navbar-brand me-2" href="../index.html">ParlAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@ chamber of interest, different search parameters are applicable."><meta property
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get Current Members of Parliament</h1>
-      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/v0.0.6/R/get_mps_current.R" class="external-link"><code>R/get_mps_current.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/werkstattcodes/ParlAT/blob/master/R/get_mps_current.R" class="external-link"><code>R/get_mps_current.R</code></a></small>
       <div class="d-none name"><code>get_mps_current.Rd</code></div>
     </div>
 
@@ -217,23 +217,21 @@ Only applicable for National Council (NR). Valid electoral districts are:</p><ul
 
 
 <dt id="arg-echo">echo<a class="anchor" aria-label="anchor" href="#arg-echo"></a></dt>
-<dd><p>Logical. Whether to print debug information. Default is TRUE.</p></dd>
+<dd><p>Logical. Whether to print the URL to the corresponding search results on the Parliament website and the number of results. Default is TRUE.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame containing the list of current members of parliament that match the search criteria with the following columns:</p><ul><li><p><code>time_stamp</code>: Timestamp of when the data was retrieved</p></li>
-<li><p><code>pad_intern</code>: Person's unique identification number</p></li>
-<li><p><code>name</code>: Full name of the MP</p></li>
-<li><p><code>gender</code>: Gender of the MP</p></li>
-<li><p><code>parl_group</code>: Full name of the parliamentary group</p></li>
-<li><p><code>parl_group_code</code>: Code/abbreviation of the parliamentary group</p></li>
-<li><p><code>party_name</code>: Full name of the political party</p></li>
-<li><p><code>party_code</code>: Code/abbreviation of the political party</p></li>
-<li><p><code>state</code>: Federal state (Bundesland)</p></li>
-<li><p><code>electoral_district_region_code</code>: Electoral district region code</p></li>
-<li><p><code>chamber</code>: Chamber of Parliament ("NR" or "BR")</p></li>
-</ul><p>Returns NULL if no results are found.</p>
+    <p>A data frame containing the current members matching the search
+criteria. The columns depend on <code>institution</code>. National Council (<code>"NR"</code>)
+results contain <code>time_stamp</code>, <code>name</code>, <code>pad_intern</code>, <code>party</code>, <code>parl_group</code>,
+<code>electoral_district_region_code</code>, <code>electoral_district_region</code>, <code>state</code>,
+<code>link</code>, and <code>chamber</code>. Federal Council (<code>"BR"</code>) results contain
+<code>time_stamp</code>, <code>name</code>, <code>pad_intern</code>, <code>state</code>,
+<code>electoral_district_region_code</code>, <code>parl_group</code>, <code>parl_group_code</code>,
+<code>party_name</code>, <code>party_code</code>, and <code>chamber</code>. If no results are found, a
+zero-row tibble with the columns and column types for the requested
+institution is returned.</p>
     </div>
 
     <div class="section level2">
@@ -241,54 +239,36 @@ Only applicable for National Council (NR). Valid electoral districts are:</p><ul
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Get all current National Council members</span></span></span>
 <span class="r-in"><span>  <span class="va">nr_members</span> <span class="op">&lt;-</span> <span class="fu">get_mps_current</span><span class="op">(</span>institution <span class="op">=</span> <span class="st">"NR"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 183</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"M":["M"],"W":["W"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&amp;WFW_002W=W</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 2/183 | ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Fetching MPs' names 4/183 | ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠸ Fetching MPs' names 9/183 | ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠼ Fetching MPs' names 14/183 | ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠴ Fetching MPs' names 18/183 | ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠦ Fetching MPs' names 23/183 | ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠧ Fetching MPs' names 28/183 | ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠇ Fetching MPs' names 33/183 | ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠏ Fetching MPs' names 38/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠋ Fetching MPs' names 43/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 48/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Fetching MPs' names 52/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠸ Fetching MPs' names 57/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠼ Fetching MPs' names 62/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠴ Fetching MPs' names 67/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠦ Fetching MPs' names 72/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠧ Fetching MPs' names 77/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠇ Fetching MPs' names 82/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠏ Fetching MPs' names 87/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠋ Fetching MPs' names 91/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 96/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Fetching MPs' names 101/183 | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠸ Fetching MPs' names 105/183 | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠼ Fetching MPs' names 110/183 | ETA: 46s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠴ Fetching MPs' names 115/183 | ETA: 42s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠦ Fetching MPs' names 120/183 | ETA: 39s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠧ Fetching MPs' names 124/183 | ETA: 37s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠇ Fetching MPs' names 129/183 | ETA: 34s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠏ Fetching MPs' names 134/183 | ETA: 31s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠋ Fetching MPs' names 139/183 | ETA: 27s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 144/183 | ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Fetching MPs' names 149/183 | ETA: 21s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠸ Fetching MPs' names 154/183 | ETA: 18s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠼ Fetching MPs' names 159/183 | ETA: 15s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠴ Fetching MPs' names 164/183 | ETA: 12s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠦ Fetching MPs' names 168/183 | ETA:  9s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠧ Fetching MPs' names 173/183 | ETA:  6s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠇ Fetching MPs' names 178/183 | ETA:  3s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠏ Fetching MPs' names 182/183 | ETA:  1s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&amp;WFW_002W=W</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 183</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 4/183 | ETA:  1m</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Fetching MPs' names 5/183 | ETA:  1m</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠸ Fetching MPs' names 14/183 | ETA:  1m</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠼ Fetching MPs' names 23/183 | ETA:  1m</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠴ Fetching MPs' names 32/183 | ETA:  1m</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠦ Fetching MPs' names 41/183 | ETA: 47s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠧ Fetching MPs' names 50/183 | ETA: 44s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠇ Fetching MPs' names 59/183 | ETA: 41s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠏ Fetching MPs' names 68/183 | ETA: 38s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠋ Fetching MPs' names 77/183 | ETA: 35s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 87/183 | ETA: 32s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Fetching MPs' names 96/183 | ETA: 29s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠸ Fetching MPs' names 105/183 | ETA: 26s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠼ Fetching MPs' names 114/183 | ETA: 23s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠴ Fetching MPs' names 123/183 | ETA: 20s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠦ Fetching MPs' names 132/183 | ETA: 17s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠧ Fetching MPs' names 141/183 | ETA: 14s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠇ Fetching MPs' names 150/183 | ETA: 11s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠏ Fetching MPs' names 159/183 | ETA:  8s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠋ Fetching MPs' names 168/183 | ETA:  5s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 177/183 | ETA:  2s</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetched 183 MPs' names.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nr_members</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 183</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ time_stamp                     <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2026-06-19 10:36:09<span style="color: #949494;">, </span>2026-06-19 10:36:…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ time_stamp                     <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2026-09-09 19:06:27<span style="color: #949494;">, </span>2026-09-09 19:06:…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Lisa Aldali"<span style="color: #949494;">, </span>"Mag. Katrin Auer"<span style="color: #949494;">, </span>"Mag…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "38385"<span style="color: #949494;">, </span>"30688"<span style="color: #949494;">, </span>"30668"<span style="color: #949494;">, </span>"30689"<span style="color: #949494;">, </span>"19…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ party                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NEOS"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"NEOS"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"ÖVP"<span style="color: #949494;">, </span>"S…</span>
@@ -305,13 +285,13 @@ Only applicable for National Council (NR). Valid electoral districts are:</p><ul
 <span class="r-in"><span>    gender <span class="op">=</span> <span class="st">"female"</span>,</span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="st">"W"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"W":["W"],"BL":["W"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/bundesrat/index.html?WFW_005W=W&amp;WFW_005BL=W</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/bundesrat/index.html?WFW_005W=W&amp;WFW_005BL=W</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 4</span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">br_female_vienna</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ time_stamp                     <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2026-06-19 10:38:04<span style="color: #949494;">, </span>2026-06-19 10:38:…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ time_stamp                     <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2026-09-09 19:07:29<span style="color: #949494;">, </span>2026-09-09 19:07:…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "32831"<span style="color: #949494;">, </span>"84868"<span style="color: #949494;">, </span>"17881"<span style="color: #949494;">, </span>"33455"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mag. Dr. Julia Deutsch"<span style="color: #949494;">, </span>"Mag. Daniela…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ electoral_district_region_code <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "9 Wien"<span style="color: #949494;">, </span>"9 Wien"<span style="color: #949494;">, </span>"9 Wien"<span style="color: #949494;">, </span>"9 Wien"</span>
@@ -328,24 +308,20 @@ Only applicable for National Council (NR). Valid electoral districts are:</p><ul
 <span class="r-in"><span>    institution <span class="op">=</span> <span class="st">"NR"</span>,</span></span>
 <span class="r-in"><span>    party <span class="op">=</span> <span class="st">"SPÖ"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {"M":["M"],"W":["W"],"WP":["SPÖ"]} </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&amp;WFW_002W=W&amp;WFW_002WP=SP%C3%96</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 2/41 | ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Fetching MPs' names 5/41 | ETA: 23s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠸ Fetching MPs' names 9/41 | ETA: 20s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠼ Fetching MPs' names 14/41 | ETA: 17s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠴ Fetching MPs' names 19/41 | ETA: 14s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠦ Fetching MPs' names 23/41 | ETA: 11s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠧ Fetching MPs' names 28/41 | ETA:  8s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠇ Fetching MPs' names 33/41 | ETA:  5s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠏ Fetching MPs' names 38/41 | ETA:  2s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Results on the Parliament website:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&amp;WFW_002W=W&amp;WFW_002WP=SP%C3%96</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Hits: 41</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Fetching MPs' names 4/41 | ETA: 12s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Fetching MPs' names 7/41 | ETA: 11s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠸ Fetching MPs' names 16/41 | ETA:  8s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠼ Fetching MPs' names 25/41 | ETA:  5s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠴ Fetching MPs' names 34/41 | ETA:  2s</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Fetched 41 MPs' names.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">spo_nr</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 41</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ time_stamp                     <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2026-06-19 10:38:06<span style="color: #949494;">, </span>2026-06-19 10:38:…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ time_stamp                     <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2026-09-09 19:07:30<span style="color: #949494;">, </span>2026-09-09 19:07:…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ name                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mag. Katrin Auer"<span style="color: #949494;">, </span>"Roland Baumann"<span style="color: #949494;">, </span>"…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ pad_intern                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "30688"<span style="color: #949494;">, </span>"30689"<span style="color: #949494;">, </span>"14835"<span style="color: #949494;">, </span>"30693"<span style="color: #949494;">, </span>"14…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ party                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ"<span style="color: #949494;">, </span>"SPÖ…</span>
@@ -368,7 +344,7 @@ Only applicable for National Council (NR). Valid electoral districts are:</p><ul
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

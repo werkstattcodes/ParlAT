@@ -73,19 +73,17 @@ documentation in the reference section.
 | Stenographisches Protokolle (Meeting transcripts) | [`get_transcripts()`](https://werkstattcodes.github.io/ParlAT/reference/get_transcripts.md) |
 | Plenarsitzungen (Plenary meetings) | [`get_plenary_meetings()`](https://werkstattcodes.github.io/ParlAT/reference/get_plenary_meetings.md) |
 | Parlamentarier seit 1918 (MPs since 1918) | [`get_mps()`](https://werkstattcodes.github.io/ParlAT/reference/get_mps.md) |
-| Aktuelle Abg. z NR (Current members of National Council) | `get_mps_current(institution="Nationalrat")` |
-| Aktuelle Abg. z BR (Current members of National Council) | `get_mps_current(institution="Bundesrat")` |
+| Aktuelle Abg. z NR (Current members of National Council) | `get_mps_current(institution="NR")` |
+| Aktuelle Abg. z BR (Current members of Federal Council) | `get_mps_current(institution="BR")` |
 | Parlamentskorrespondenz (Corrspondance) | not yet implemented |
 | Termine (Events) | [`get_events()`](https://werkstattcodes.github.io/ParlAT/reference/get_events.md) |
 | Ausschüsse (Committees) | [`get_committees()`](https://werkstattcodes.github.io/ParlAT/reference/get_committees.md) |
 | Ausschussmitgliedschaften (Committee membership) | `get_mps_details(..., detail_type="committees")` |
-| Schriftliche Anfragen NR (Written questions National Council) | `get_items(item="J_JPR_M", institution="Nationalrat")` |
-| Schriftliche Anfragen BR (Written questions Federal Council) | `get_items(item="J_JPR_M", institution="Bundesrat")` |
+| Schriftliche Anfragen NR (Written questions National Council) | `get_items(item="J_JPR_M", institution="NR")` |
+| Schriftliche Anfragen BR (Written questions Federal Council) | `get_items(item="J_JPR_M", institution="BR")` |
 | Stellungnahmen im EU-Hauptausschusses (Statements of the EU Main Committee) | `get_items(item="EU", type_eu_submission="S", institution="NR")` |
 | Mitteilungen des EU-Unterausschusses (Communications of the EU Subcommittee) | `get_items(item="EU", type_eu_submission="MTEU", institution="NR")` |
 | Stellungnahmen des Ständigen Unterausschusses des Hauptausschusses (Statements of the Permanent Subcommittee of the Main Committee) | not yet implemented |
 | Begründete Stellungnahmen des EU-Ausschusses (Reasoned Opinions of the EU Committee) | `get_items(item="EU", type_eu_submission="SBPL-BR", institution="BR")` |
 | Mitteilungen des EU-Ausschusses BR (Communications of the EU Committee - Federal Council) | `get_items(item="EU", type_eu_submission="MT-BR", institution="BR")` |
 | Stellungnahmen des EU-Ausschusses BR (Statements of the EU Committee Federal Council) | `get_items(item="EU", type_eu_submission="S-BR", institution="BR")` |
-
-## References

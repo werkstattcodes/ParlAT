@@ -48,16 +48,20 @@ get_persons(
 
 - echo:
 
-  Logical. If `TRUE`, prints the API request body parameters, the
-  constructed URL, and the number of results. Default is `FALSE`.
+  Logical. If `TRUE`, prints the URL to the corresponding search results
+  on the Parliament website and the number of results. Default is
+  `FALSE`.
 
 ## Value
 
 A data frame with one row per matching person and the columns
 `pad_intern`, `name`, `gender`, `position`, and `link`. When
-`mandates = TRUE`, the returned data frame additionally contains mandate
-details for each person. Returns `NULL` with a message if no persons are
-found.
+`mandates = TRUE`, the returned data frame additionally contains every
+column returned by
+[`get_mandates()`](https://werkstattcodes.github.io/ParlAT/reference/get_mandates.md),
+prefixed with `mandates_`. If no persons are found, a zero-row tibble
+with the same columns and column types as the requested output mode is
+returned with a message.
 
 ## Details
 

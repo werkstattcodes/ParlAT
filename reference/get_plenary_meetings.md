@@ -3,7 +3,9 @@
 Retrieves information about plenary meetings from the Austrian
 Parliament's API (see
 [here](https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html)).
-Data available from 20th legislative period onwards.
+Explicit period filters are available from the 20th legislative period
+onwards. With `legis_period = NULL`, the API returns all available
+periods.
 
 ## Usage
 
@@ -28,10 +30,12 @@ get_plenary_meetings(
 
 - legis_period:
 
-  Numeric value or vector specifying the legislative period(s). Can also
-  be NULL to retrieve all periods from 20th onwards. **Must be NULL when
-  institution is "BV"** (Bundesversammlung does not use legislative
-  periods).
+  Numeric value or vector specifying the legislative period(s). Explicit
+  filters are supported from the 20th period onwards. `NULL` retrieves
+  all available periods, including periods before the 20th and the
+  historical codes `"KN"` and `"PN"`. It must be `NULL` when
+  `institution = "BV"` because the Bundesversammlung does not use
+  legislative periods.
 
 - meeting_and_activities:
 
@@ -59,13 +63,14 @@ get_plenary_meetings(
 
 - echo:
 
-  Logical. If `TRUE`, prints the API request body parameters and the
-  number of results. Default is `FALSE`.
+  Logical. If `TRUE`, prints the URL to the corresponding search on the
+  Parliament website, pagination progress, and the number of results.
+  Default is `FALSE`.
 
 ## Value
 
-A data frame containing plenary meeting details, or NULL if no results
-found. The structure depends on the `meeting_and_activities` parameter:
+A tibble containing plenary meeting details (zero rows if no results are
+found). The structure depends on the `meeting_and_activities` parameter:
 
 If *`meeting_and_activities = "meetings"`*:
 
@@ -139,7 +144,7 @@ result <- get_plenary_meetings(
   meeting_and_activities = "meetings"
 )
 dplyr::glimpse(result)
-#> Rows: 84
+#> Rows: 93
 #> Columns: 10
 #> $ institution     <chr> "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR", …
 #> $ legis_period    <chr> "28", "28", "28", "28", "28", "28", "28", "28", "28", …
@@ -159,19 +164,19 @@ result <- get_plenary_meetings(
   meeting_and_activities = "activities"
 )
 dplyr::glimpse(result)
-#> Rows: 3,629
+#> Rows: 3,646
 #> Columns: 11
 #> $ institution    <chr> "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR", "…
 #> $ legis_period   <chr> "27", "27", "27", "27", "27", "27", "27", "27", "27", "…
 #> $ date           <date> 2019-10-23, 2019-10-23, 2019-10-23, 2019-10-23, 2019-1…
-#> $ title          <chr> "Einberufung zur XXVII. GP und zugleich zur ordentliche…
-#> $ url_item       <chr> "https://www.parlament.gv.at/gegenstand/XXVII/GO/1", "h…
+#> $ title          <chr> "Wahl der Präsidenten des Nationalrates", "Wahl der Sch…
+#> $ url_item       <chr> "https://www.parlament.gv.at/gegenstand/XXVII/W/1", "ht…
 #> $ meeting_number <chr> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", …
 #> $ url_meeting    <chr> "https://www.parlament.gv.at/gegenstand/XXVII/NRSITZ/1"…
 #> $ session_type   <chr> "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", …
-#> $ activity_type  <chr> "Sonstiges", "Sonstiges", "Sonstiges", "Sonstiges", "De…
-#> $ doc_type       <chr> "Einberufung einer Tagung", "Zuschrift", "Sonstige Gesc…
-#> $ citation       <chr> "1/GO", "2/GO", "3/GO", "6/GO", "7/GO", "8/GO", "9/GO",…
+#> $ activity_type  <chr> "Sonstiges", "Sonstiges", "Sonstiges", "Sonstiges", "So…
+#> $ doc_type       <chr> "Wahl von Funktionsträgern", "Wahl von Funktionsträgern…
+#> $ citation       <chr> "1/W", "2/W", "3/W", "4/W", "5/W", "1/GO", "2/GO", "3/G…
 
 # Federal Council meetings
 result <- get_plenary_meetings(
@@ -180,7 +185,7 @@ result <- get_plenary_meetings(
   meeting_and_activities = "meetings"
 )
 dplyr::glimpse(result)
-#> Rows: 21
+#> Rows: 24
 #> Columns: 10
 #> $ institution     <chr> "BR", "BR", "BR", "BR", "BR", "BR", "BR", "BR", "BR", …
 #> $ legis_period    <chr> "28", "28", "28", "28", "28", "28", "28", "28", "28", …

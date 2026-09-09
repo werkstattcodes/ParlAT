@@ -2,7 +2,7 @@
 
 This function retrieves event data based on search parameters from the
 Austrian Parliament API. It mirrors the search functionality on the
-Austrian Parliament website at [this
+Austrian Parliament website at [the 'Termine'
 page](https://www.parlament.gv.at/aktuelles/termine/index.html), and
 additionally facilitates searches by legislative period.
 
@@ -45,7 +45,8 @@ get_events(
 
   Character or numeric value of length 1, or NULL. Specifies the
   legislative period to search in. Only available if `date_start` and
-  `date_end` are NULL.
+  `date_end` are NULL. When all three parameters are NULL, events from
+  all available dates are returned.
 
 - date_start:
 
@@ -61,13 +62,14 @@ get_events(
 
 - echo:
 
-  Logical indicating whether to print used search parameters, number of
-  hits, and link to results on website of parliament. Default is TRUE.
+  Logical indicating whether to print the link to the corresponding
+  results on the Parliament website and the number of hits. Default is
+  TRUE.
 
 ## Value
 
-A data frame containing event details with the following columns, or
-NULL if no results are found:
+A tibble containing event details with the following columns (zero rows
+if no results are found):
 
 - `date`: Event date (parsed as Date)
 
@@ -108,6 +110,12 @@ NULL if no results are found:
 - `link2`: Secondary link (if available)
 
 ## Details
+
+When `legis_period`, `date_start`, and `date_end` are all NULL, the API
+search is unrestricted by date. The echoed Parliament website URL
+derives an explicit lower date bound and availability values from the
+returned rows so that the website reproduces the unrestricted API
+results instead of applying its current-events defaults.
 
 ### event_type
 
@@ -270,11 +278,11 @@ parameters provided.
 # \donttest{
   # Basic example: Get all National Council events
   events <- get_events(institution = "NR")
-#> {"GREMIUM":["Nationalrat"]} 
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat
-#> [1] 11277
+#> Results on the Parliament website:
+#> https://www.parlament.gv.at/aktuelles/termine?TERMIN_01GREMIUM=Nationalrat&TERMIN_01DATERANGE=1918-11-12T23%3A00%3A00.000Z&TERMIN_01VERFUEGBAR=J&TERMIN_01VERFUEGBAR=V
+#> Hits: 11306
   dplyr::glimpse(events)
-#> Rows: 11,277
+#> Rows: 11,306
 #> Columns: 15
 #> $ date            <date> 2027-07-09, 2027-07-09, 2027-07-09, 2027-07-09, 2027-…
 #> $ date_time_end   <dttm> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
@@ -290,7 +298,7 @@ parameters provided.
 #> $ registration    <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
 #> $ livestream_url  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "<div clas…
 #> $ language        <chr> NA, "[\"Deutsch\"]", "[\"Deutsch\"]", "[\"Deutsch\"]",…
-#> $ link            <chr> NA, "/erleben/fuehrungen/266085", "/erleben/fuehrungen…
+#> $ link            <chr> NA, "/erleben/fuehrungen/266083", "/erleben/fuehrungen…
 
   # Get events with specific date range
   events <- get_events(
@@ -298,9 +306,9 @@ parameters provided.
     date_start = "01-01-2024",
     date_end = "31-01-2024"
   )
-#> {"DATERANGE":["2023-12-31T23:00:00.000Z","2024-01-31T22:59:59.000Z"],"GREMIUM":["Nationalrat"]} 
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2023-12-31T23:00:00.000Z&TERMIN_01DATERANGE=2024-01-31T22:59:59.000Z&TERMIN_01GREMIUM=Nationalrat
-#> [1] 16
+#> Results on the Parliament website:
+#> https://www.parlament.gv.at/aktuelles/termine?TERMIN_01DATERANGE=2023-12-31T23%3A00%3A00.000Z&TERMIN_01DATERANGE=2024-01-31T22%3A59%3A59.000Z&TERMIN_01GREMIUM=Nationalrat&TERMIN_01VERFUEGBAR=J
+#> Hits: 16
   dplyr::glimpse(events)
 #> Rows: 16
 #> Columns: 15
@@ -326,11 +334,11 @@ parameters provided.
     event_type = "Plenarsitzung",
     location = "Nationalratssaal"
   )
-#> {"GREMIUM":["Nationalrat"],"TERMINART":["Plenarsitzung"],"ORT":["Nationalratssaal"]} 
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01GREMIUM=Nationalrat&TERMIN_01TERMINART=Plenarsitzung&TERMIN_01ORT=Nationalratssaal
-#> [1] 192
+#> Results on the Parliament website:
+#> https://www.parlament.gv.at/aktuelles/termine?TERMIN_01GREMIUM=Nationalrat&TERMIN_01TERMINART=Plenarsitzung&TERMIN_01ORT=Nationalratssaal&TERMIN_01DATERANGE=2023-01-24T23%3A00%3A00.000Z&TERMIN_01VERFUEGBAR=J
+#> Hits: 196
   dplyr::glimpse(events)
-#> Rows: 192
+#> Rows: 196
 #> Columns: 15
 #> $ date            <date> 2027-07-08, 2027-07-07, 2027-06-17, 2027-06-16, 2027-…
 #> $ date_time_end   <dttm> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
@@ -353,26 +361,26 @@ parameters provided.
     institution = "NR",
     legis_period = 28
   )
-#> {"DATERANGE":["2024-10-23T22:00:00.000Z","2026-06-19T21:59:59.000Z"],"GREMIUM":["Nationalrat"]} 
-#> https://www.parlament.gv.at/aktuelles/termine/index.html?TERMIN_01DATERANGE=2024-10-23T22:00:00.000Z&TERMIN_01DATERANGE=2026-06-19T21:59:59.000Z&TERMIN_01GREMIUM=Nationalrat
-#> [1] 598
+#> Results on the Parliament website:
+#> https://www.parlament.gv.at/aktuelles/termine?TERMIN_01DATERANGE=2024-10-23T22%3A00%3A00.000Z&TERMIN_01DATERANGE=2026-09-09T21%3A59%3A59.000Z&TERMIN_01GREMIUM=Nationalrat&TERMIN_01VERFUEGBAR=J&TERMIN_01VERFUEGBAR=V
+#> Hits: 660
   dplyr::glimpse(events)
-#> Rows: 598
+#> Rows: 660
 #> Columns: 15
-#> $ date            <date> 2026-06-18, 2026-06-17, 2026-06-17, 2026-06-17, 2026-…
+#> $ date            <date> 2026-09-09, 2026-09-09, 2026-09-08, 2026-07-10, 2026-…
 #> $ date_time_end   <dttm> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-#> $ title           <chr> "22. Sitzung Pilnacek-Untersuchungsausschuss", "21. Si…
+#> $ title           <chr> "10. Sitzung Ausschuss für Arbeit und Soziales", "7. S…
 #> $ event_type      <chr> "Ausschusssitzung oder Ausschuss", "Ausschusssitzung o…
-#> $ location        <chr> "Lokal 1  |  Erwin Schrödinger", "Lokal 1  |  Erwin Sc…
+#> $ location        <chr> "Lokal 5  |  Ludwig Wittgenstein", "Lokal 4  |  Bertha…
 #> $ topic           <chr> NA, NA, NA, NA, NA, NA, "[\"Parlament und Demokratie\"…
 #> $ institution     <chr> "Nationalrat", "Nationalrat", "Nationalrat", "National…
-#> $ media_relevance <chr> "J", "J", "J", "J", "J", "J", "N", "N", "J", "N", "N",…
-#> $ group           <chr> NA, NA, NA, NA, NA, NA, "N", "N", NA, "N", "N", "N", "…
+#> $ media_relevance <chr> "J", "J", "J", "J", "J", "J", "N", "N", "N", "N", "N",…
+#> $ group           <chr> NA, NA, NA, NA, NA, NA, "N", "N", "N", "N", "N", "N", …
 #> $ view            <chr> "[\"S\"]", "[\"S\"]", "[\"S\"]", "[\"S\"]", "[\"S\"]",…
 #> $ fully_booked    <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
 #> $ registration    <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-#> $ livestream_url  <chr> NA, NA, NA, NA, NA, "<a href=\"/aktuelles/mediathek/XX…
+#> $ livestream_url  <chr> NA, NA, NA, "<a href=\"/aktuelles/mediathek/XXVIII/NRS…
 #> $ language        <chr> NA, NA, NA, NA, NA, NA, "[\"Deutsch\"]", "[\"Deutsch\"…
-#> $ link            <chr> "/ausschuss/XXVIII/A-USA/2/00944?selectedSession=22&se…
+#> $ link            <chr> "/ausschuss/XXVIII/A-AS/1/00917?selectedSession=10&sel…
 # }
 ```
