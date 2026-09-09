@@ -13,6 +13,9 @@
 ^doc$
 ^Meta$
 ^CLAUDE\.md$
+^AGENTS\.md$
+^fix-lexicalError-summary\.md$
+^REVIEW-CHANGES\.md$
 ^\.gemini$
 ^\.claude$
 ^\.quarto$
@@ -29,3 +32,4 @@ vignettes/ParlAT_cache/
 ^\.playwright-mcp$
 ^_temp$
 ^codecov\.yml$
+^plans$

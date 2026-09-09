@@ -16,7 +16,12 @@ get_plenary_meetings(
 \arguments{
 \item{institution}{A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).}
 
-\item{legis_period}{Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. \strong{Must be NULL when institution is "BV"} (Bundesversammlung does not use legislative periods).}
+\item{legis_period}{Numeric value or vector specifying the legislative
+period(s). Explicit filters are supported from the 20th period onwards.
+\code{NULL} retrieves all available periods, including periods before the 20th
+and the historical codes \code{"KN"} and \code{"PN"}. It must be \code{NULL} when
+\code{institution = "BV"} because the Bundesversammlung does not use
+legislative periods.}
 
 \item{meeting_and_activities}{A character string. One of 'meetings' or 'activities'. 'meetings' returns plenary meeting entries; 'activities' returns parliamentary items submitted or acted upon in meetings. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.}
 
@@ -24,10 +29,10 @@ get_plenary_meetings(
 
 \item{meeting_type}{A character string or vector. Filter by sitting type. Permissible values: \code{"S"} (Sitzung / Regular sitting), \code{"SO"} (Sondersitzung / Special sitting), \code{"ZU"} (Zuweisungssitzung / Assignment sitting), \code{"N"} (Nachtrag / Addendum). Can be NULL to retrieve all sitting types. Only applicable when \code{meeting_and_activities = "meetings"}.}
 
-\item{echo}{Logical. If \code{TRUE}, prints the API request body parameters and the number of results. Default is \code{FALSE}.}
+\item{echo}{Logical. If \code{TRUE}, prints the URL to the corresponding search on the Parliament website, pagination progress, and the number of results. Default is \code{FALSE}.}
 }
 \value{
-A data frame containing plenary meeting details, or NULL if no results found. The structure depends on the \code{meeting_and_activities} parameter:
+A tibble containing plenary meeting details (zero rows if no results are found). The structure depends on the \code{meeting_and_activities} parameter:
 
 If \emph{\code{meeting_and_activities = "meetings"}}:
 \itemize{
@@ -67,7 +72,8 @@ For \emph{BV (Bundesversammlung) institution}:
 }
 \description{
 Retrieves information about plenary meetings from the Austrian Parliament's API (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">}}here\if{html}{\out{</a>}}).
-Data available from 20th legislative period onwards.
+Explicit period filters are available from the 20th legislative period
+onwards. With \code{legis_period = NULL}, the API returns all available periods.
 }
 \examples{
 \donttest{

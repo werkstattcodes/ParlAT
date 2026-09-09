@@ -1,3 +1,134 @@
+# ParlAT 0.1.0
+
+## New features
+
+- `get_party_colors()` provides a reusable plotting palette for Austrian
+  parties and parliamentary groups, including common aliases and historical
+  ÖVP colors.
+
+## Breaking changes
+
+- All exported `get_*()` functions now return a **zero-row tibble with their
+  documented columns** instead of `NULL` (or `invisible(NULL)`) when the API
+  finds no results, accompanied by an informative message. Code that checked
+  `is.null(result)` should check `nrow(result) == 0` instead.
+- `get_persons()`, `get_names()`, `get_plenary_meetings()`, and the
+  `get_mps_details()` modes now return tibbles instead of plain data frames.
+- `get_mps()` no longer returns a grouped tibble.
+- All user-facing errors, warnings, and messages are now signalled via the
+  cli package; message wording may differ slightly.
+
+## Bug fixes
+
+- `get_committees()`: zero-row results now retain the exact default or
+  `details_type = "members"` schema, including typed dates and the `members`
+  list-column where requested. Member details now return one row per committee,
+  combine the PDF and HTML membership links, ignore illustrated member lists,
+  and select National Council, Federal Council, Hauptausschuss, and special
+  committee layouts defensively. Unsupported layouts warn and yield an empty
+  member tibble instead of a fabricated failure row. Exact citations accept
+  both `"1/SA-BU"` and canonical `"SA-BU/1"` order. Echo output now reports
+  the number of rows actually returned, including zero after citation
+  filtering.
+- `get_events()`: leaving the legislative period and dates unset now returns
+  events across all available dates, including a completely unfiltered call.
+  The echoed Parliament website URL derives its date and availability filters
+  from the returned rows so it reproduces the API results instead of applying
+  the website's current-events defaults. Austrian civil-date boundaries are
+  serialized consistently across operating systems. Non-empty results now
+  return a tibble, matching the documented class and the empty-result path.
+- `get_items()`: combining `person` with `institution` now resolves the person
+  across all institutional categories and applies the institution filter only
+  to the returned items. `institution` accepts both `"NR"`/`"BR"` and the full
+  German names `"Nationalrat"`/`"Bundesrat"`. When `legis_period = NULL`, the
+  echoed Parliament website URL now explicitly selects all available periods
+  so it reproduces the package results instead of defaulting to the current
+  period. The historical period codes `"PN"` and `"KN"` can now be selected
+  explicitly. An unmatched person returns a typed zero-row result instead of
+  sending an unfiltered item request.
+- `get_mandates()`: all empty-result paths now return the complete documented
+  schema, including party and substitute columns. Non-empty results use the
+  same column order and types when optional upstream fields are absent.
+- `get_mps()`: empty date-filtered searches now retain the `date` column as a
+  `Date`, matching non-empty results.
+- `get_mps()`: removed ~160 lines of unreachable dead code after an early
+  `return()`.
+- `get_mps_current()`: no longer errors when a search returns no members
+  (previously `NULL` was piped into `mutate()`). Empty National Council and
+  Federal Council searches now retain their respective result schemas.
+- `get_mps_details(detail_type = "activities")`: the `institution` filter
+  silently matched nothing, and the `institution` column leaked the raw
+  German names `"Nationalrat"`/`"Bundesrat"` instead of the documented
+  `"NR"`/`"BR"`. The upstream API changed its `gremium` vocabulary from
+  short codes to full names. Both directions now speak the new vocabulary,
+  so the filter works again and the column values are as documented. Code
+  that worked around this by matching `"Nationalrat"` should match `"NR"`.
+- `get_mps_details(detail_type = "committees")`: no longer errors for MPs
+  with multiple name variants.
+- `get_names()`: no longer returns a bare `NA` when the person-detail fetch
+  fails, which could break its own vectorized path. Empty results and people
+  without previous-name records now retain the complete documented schema.
+- `get_participation()`: the graceful empty-result path was unreachable due
+  to an internal assertion that errored first; empty results now return a
+  typed zero-row tibble.
+- `get_persons()`: empty searches with `mandates = TRUE`, and matching people
+  without mandates, now retain the complete typed `mandates_*` schema.
+- `get_plenary_meetings()`: when `legis_period = NULL`, the echoed Parliament
+  website URL now explicitly selects every available period instead of
+  defaulting to the current period.
+- `get_transcripts()`: the row-limit error message incorrectly said the limit
+  was 10,000 (the actual limit is 100,000); a misplaced `sprintf()` argument
+  in the PDF-export error message was fixed. All-period searches now echo a
+  website URL that explicitly selects every available period instead of
+  defaulting to the current period.
+
+## Enhancements
+
+- `aux_check_pad_intern_exists()` now uses `httr2::req_retry()` for its
+  preliminary person-page check, allowing at most three total attempts for
+  retryable responses before an identifier is treated as unavailable.
+- `echo = TRUE` no longer prints the raw JSON request body; it prints the
+  URL to the corresponding search results on the Parliament website and the
+  number of results. The URL carries the same filter information in a
+  directly usable form, with reserved characters in query values safely
+  encoded.
+- All Parliament HTTP requests now use the ParlAT package user agent and
+  allow at most three total attempts for retryable responses
+  (`httr2::req_retry(max_tries = 3)`).
+- Stale hardcoded browser cookies/session IDs, Chrome/Edge client hints,
+  Fetch Metadata headers, and browser user-agent strings were removed from
+  requests.
+- Person-detail JSON fetches (`get_mandates()`, `get_names()`,
+  `get_committees()` details) now go through httr2, so they are covered by
+  the httptest2 mock layer in tests.
+- `get_pad_intern()` now removes academic titles from name searches before
+  looking up matching Parliament person identifiers. Previously academic titles
+  could cause searches to fail.
+
+## Documentation
+
+- Reference pages gained Examples sections, and the `get_party_colors()`
+  examples now render the actual color swatches.
+- Fixed dropdown styling in the pkgdown navbar on the package website.
+
+## Internal changes
+
+- New shared internal helpers (`R/utils-shared.R`) replace duplicated
+  rename-map and echo/URL-reconstruction blocks across the package.
+- Debug `print()` calls, commented `browser()` calls, no-op `req_verbose()`
+  blocks, and two large dead functions were removed.
+- New unit tests for `get_names()`, `get_mps_current()`, the detail-page
+  JSON helpers, and the pure auxiliary converters.
+- `T`/`F` abbreviations expanded; superseded `purrr::map_dfr()` replaced.
+- Live tests skip count-sensitive assertions while the Parliament search
+  index is degraded (`skip_if_api_index_degraded()`), and row-count
+  assertions tolerate ±10% drift in live mode (`expect_row_count()`), so
+  upstream outages no longer look like package regressions. Adds
+  `tools/check_api_index.sh` for a manual health check and a daily workflow
+  that monitors index health.
+- Non-standard-evaluation pronouns declared via `globalVariables()`, resolving
+  the related code-analysis R CMD check NOTEs.
+
 # ParlAT 0.0.6
 
 ## Bug fixes

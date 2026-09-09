@@ -1,13 +1,55 @@
+#' @noRd
+.get_transcripts_echo_request <- function(
+    body_params,
+    legis_period,
+    n_results,
+    search_string
+) {
+    echo_body_params <- .parlat_echo_body_all_periods(
+        body_params,
+        legis_period,
+        first_period = 1L
+    )
+
+    .parlat_echo_request(
+        echo_body_params,
+        url_base = "https://www.parlament.gv.at/recherchieren/protokolle",
+        param_prefix = "STENO_211",
+        n_results = n_results,
+        search = search_string
+    )
+}
+
+.parlat_download_transcript_pdf <- function(url, dest_file) {
+    tryCatch(
+        {
+            httr2::request(url) |>
+                httr2::req_user_agent(
+                    "ParlAT R package (http://werk.statt.codes)"
+                ) |>
+                httr2::req_retry(max_tries = 3) |>
+                httr2::req_perform(path = dest_file)
+            TRUE
+        },
+        error = function(e) FALSE
+    )
+}
+
 #' Retrieve Transcripts from the Austrian Parliament API
 #'
 #' `get_transcripts()` retrieves the transcripts of parliamentary meetings via Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/protokolle/index.html" target="_blank" rel="noopener">here</a>).
 #'
 #' @param search_string Optional character string to filter transcripts by keywords. Defaults to NULL.
-#' @param legis_period Legislative period(s). Default NULL queries for all legislative periods. Accepts numeric (10), character ("10") or roman numerals in character format ("X") as well as "KN" (Konstituierende Nationalversammlung) and "PN" (Provisorische Nationalversammlung).
+#' @param legis_period Legislative period(s). `NULL` (the default) queries all
+#'   available legislative periods. Accepts numeric (`10`), character (`"10"`),
+#'   or Roman numerals (`"X"`), as well as `"KN"` (Konstituierende
+#'   Nationalversammlung) and `"PN"` (Provisorische Nationalversammlung).
 #' @param meeting_type Optional character string specifying the type(s) of meeting. Permissible values are "NRSITZ" (National Council - Plenary meetings) and "BRSITZ" (Federal Council - Plenary meetings). Defaults to NULL, which queries both NRSITZ and BRSITZ. See Details for more information.
 #' @param date_start Optional start date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
 #' @param date_end Optional end date for filtering transcripts. Defaults to NULL. Date has to be in dmy-format (e.g. "01.05.2020", "01/05/2020", "01-05-2020", "01052020").
-#' @param echo Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.
+#' @param echo Logical. If `TRUE`, the function prints the URL to the
+#'   corresponding search results on the website of the Austrian Parliament
+#'   and the number of results. Default is `TRUE`.
 #' @param export Optional character string to enable PDF downloads. Set to "pdf" to download transcript PDFs. Defaults to NULL (no export).
 #' @param export_destination Character string specifying the directory path where PDFs will be saved. Defaults to "transcripts" (a folder in the current working directory). If the folder does not exist, the user will be prompted to create it in interactive meetings.
 #' @return A tibble containing transcript data with the following columns:
@@ -35,6 +77,10 @@
 #' Queries returning more than 10,000 results will raise
 #' an error; in these cases it is recommended to cut your query into
 #' multiple steps (e.g. by using the purrr package).
+#'
+#' If `legis_period = NULL` and `echo = TRUE`, the website URL explicitly
+#' selects every available period. This reproduces the unrestricted API search
+#' instead of using the website's current-period default.
 #'
 #' ## PDF Export
 #' When `export = "pdf"`, the function additionaly downloads the PDF files of the transcripts.
@@ -175,15 +221,7 @@ get_transcripts <- function(
             httr2::req_headers(
                 accept = "*/*",
                 `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
-                origin = "https://www.parlament.gv.at",
-                priority = "u=1, i",
-                `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
-                `sec-ch-ua-mobile` = "?0",
-                `sec-ch-ua-platform` = '"Windows"',
-                `sec-fetch-dest` = "empty",
-                `sec-fetch-mode` = "cors",
-                `sec-fetch-site` = "same-origin",
-                `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0"
+                origin = "https://www.parlament.gv.at"
             ) %>%
             httr2::req_body_raw(
                 body_params,
@@ -192,6 +230,7 @@ get_transcripts <- function(
             httr2::req_user_agent(
                 "ParlAT R package (http://werk.statt.codes)"
             ) %>%
+            httr2::req_retry(max_tries = 3) %>%
             httr2::req_perform()
 
         resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
@@ -216,15 +255,7 @@ get_transcripts <- function(
             httr2::req_headers(
                 accept = "*/*",
                 `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
-                origin = "https://www.parlament.gv.at",
-                priority = "u=1, i",
-                `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
-                `sec-ch-ua-mobile` = "?0",
-                `sec-ch-ua-platform` = '"Windows"',
-                `sec-fetch-dest` = "empty",
-                `sec-fetch-mode` = "cors",
-                `sec-fetch-site` = "same-origin",
-                `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0"
+                origin = "https://www.parlament.gv.at"
             ) %>%
             httr2::req_body_raw(
                 body_params,
@@ -233,6 +264,7 @@ get_transcripts <- function(
             httr2::req_user_agent(
                 "ParlAT R package (http://werk.statt.codes)"
             ) %>%
+            httr2::req_retry(max_tries = 3) %>%
             httr2::req_perform()
 
         resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
@@ -245,7 +277,7 @@ get_transcripts <- function(
 
     # Check if no results (API returns HTTP 500 if we request pagesize = 0)
     if (total_count == 0) {
-        message("Query returned 0 results.")
+        cli::cli_inform("Query returned 0 results.")
         # Return empty tibble with correct column structure
         return(tibble::tibble(
             date = lubridate::Date(),
@@ -261,13 +293,10 @@ get_transcripts <- function(
 
     # Check hard limit
     if (total_count > 100000) {
-        stop(
-            "Query returns ",
-            total_count,
-            " results, which exceeds the limit of 10,000. ",
-            "Please refine your query using more specific filters (e.g., narrower date range, ",
-            "specific legislative period, or meeting type)."
-        )
+        cli::cli_abort(c(
+            "Query returns {total_count} results, which exceeds the limit of 100,000.",
+            "i" = "Please refine your query using more specific filters (e.g., narrower date range, specific legislative period, or meeting type)."
+        ))
     }
 
     # Step 2: Get all data with the total count as pagesize
@@ -291,7 +320,9 @@ get_transcripts <- function(
         #they were included
 
         if (ncol(df_res) != length(vec_headings)) {
-            print("Warning: Columns and labels of different length!")
+            cli::cli_warn(
+                "API returned {ncol(df_res)} column{?s} but {length(vec_headings)} header label{?s}; surplus labels are dropped."
+            )
 
             vec_headings <- vec_headings[seq_len(ncol(df_res))]
         }
@@ -305,24 +336,12 @@ get_transcripts <- function(
 
     # ECHO - print request details if requested
     if (echo == TRUE) {
-        print(body_params)
-        # print url to results / transparency reasons / add search string parameter
-        body_params_li <- jsonlite::fromJSON(body_params) %>%
-            c("search" = search_string)
-
-        query_string <- purrr::imap(
-            body_params_li,
-            \(x, y) glue::glue("STENO_211{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/recherchieren/protokolle/index.html?{query_string}"
-        ))
-
-        print(nrow(df_res))
+        .get_transcripts_echo_request(
+            body_params,
+            legis_period = legis_period_input,
+            n_results = nrow(df_res),
+            search_string = search_string
+        )
     }
 
     # SELECT AND RENAME COLUMNS
@@ -336,11 +355,7 @@ get_transcripts <- function(
         "gesamtprotokoll" = "meeting_transcript"
     )
 
-    df_res <- df_res %>%
-        dplyr::rename_with(
-            .fn = \(x) renaming_map[x],
-            .cols = any_of(names(renaming_map))
-        )
+    df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
     df_res <- df_res %>%
         dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
@@ -422,29 +437,22 @@ get_transcripts <- function(
 
             if (!dir.exists(dest_path)) {
                 if (interactive()) {
-                    message(sprintf(
-                        "Folder '%s' does not exist.",
-                        dest_path
-                    ))
+                    cli::cli_inform("Folder {.path {dest_path}} does not exist.")
                     response <- readline(prompt = "Create it? (y/n): ")
                     if (tolower(trimws(response)) == "y") {
                         dir.create(dest_path, recursive = TRUE)
-                        message(sprintf("Created folder: %s", dest_path))
+                        cli::cli_inform("Created folder: {.path {dest_path}}")
                         return(dest_path)
                     } else {
-                        stop(
-                            "PDF export cancelled: destination folder not created.",
-                            call. = FALSE
+                        cli::cli_abort(
+                            "PDF export cancelled: destination folder not created."
                         )
                     }
                 } else {
-                    stop(
-                        sprintf(
-                            "Destination folder '%s' does not exist. ",
-                            "Please create it before running in non-interactive mode."
-                        ),
-                        call. = FALSE
-                    )
+                    cli::cli_abort(c(
+                        "Destination folder {.path {dest_path}} does not exist.",
+                        "i" = "Please create it before running in non-interactive mode."
+                    ))
                 }
             }
             return(dest_path)
@@ -472,23 +480,6 @@ get_transcripts <- function(
             return(filename)
         }
 
-        # HELPER FUNCTION: Download single PDF
-        download_pdf <- function(url, dest_file) {
-            tryCatch(
-                {
-                    httr2::request(url) %>%
-                        httr2::req_user_agent(
-                            "ParlAT R package (http://werk.statt.codes)"
-                        ) %>%
-                        httr2::req_perform(path = dest_file)
-                    return(TRUE)
-                },
-                error = function(e) {
-                    return(FALSE)
-                }
-            )
-        }
-
         # Ensure destination folder exists
         dest_path <- ensure_destination_folder(export_destination)
 
@@ -499,13 +490,11 @@ get_transcripts <- function(
         n_pdfs <- nrow(df_to_download)
 
         if (n_pdfs == 0) {
-            message("No PDF transcripts available for download.")
+            cli::cli_inform("No PDF transcripts available for download.")
         } else {
-            message(sprintf(
-                "Downloading %d PDF(s) to '%s'...",
-                n_pdfs,
-                dest_path
-            ))
+            cli::cli_inform(
+                "Downloading {n_pdfs} PDF{?s} to {.path {dest_path}}..."
+            )
 
             # Initialize progress bar
             pb_id <- cli::cli_progress_bar(
@@ -540,7 +529,7 @@ get_transcripts <- function(
                     )
                     dest_file <- file.path(dest_path, filename)
 
-                    success <- download_pdf(url, dest_file)
+                    success <- .parlat_download_transcript_pdf(url, dest_file)
                     cli::cli_progress_update(id = pb_id)
                     return(success)
                 }
@@ -551,16 +540,11 @@ get_transcripts <- function(
             n_failed <- n_pdfs - n_success
 
             if (n_failed == 0) {
-                message(sprintf(
-                    "Successfully downloaded %d PDF(s).",
-                    n_success
-                ))
+                cli::cli_inform("Successfully downloaded {n_success} PDF{?s}.")
             } else {
-                warning(sprintf(
-                    "Downloaded %d PDF(s). %d download(s) failed.",
-                    n_success,
-                    n_failed
-                ))
+                cli::cli_warn(
+                    "Downloaded {n_success} PDF{?s}. {n_failed} download{?s} failed."
+                )
             }
         }
     }

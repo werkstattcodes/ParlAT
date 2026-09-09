@@ -44,7 +44,7 @@ A tibble containing the participation data with the following columns:
 \item \code{ministry}: Responsible ministry
 }
 
-Returns NULL if no results are found for the provided search criteria.
+Returns a zero-row tibble with the documented columns if no results are found.
 }
 \description{
 This function retrieves participation data from the Austrian Parliament's API based on various filter criteria.
@@ -132,6 +132,20 @@ dplyr::glimpse(result)
 result <- get_participation(
   legis_period = c(26, 27),
   item = "ME"
+)
+dplyr::glimpse(result)
+
+# Get all ministerial drafts (Ministervorlagen) from legislative period 28
+# and their number of submitted statements
+get_participation(item = "ME", legis_period = 28) |>
+  dplyr::select(
+    legis_period, date, item_id, item, title, statements
+  )
+
+# Get statements submitted on ministerial drafts
+result <- get_participation(
+  item = "SN",
+  statement_type = "SNME"
 )
 dplyr::glimpse(result)
 

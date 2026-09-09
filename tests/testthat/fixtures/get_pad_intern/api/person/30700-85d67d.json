@@ -1,0 +1,514 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Höfler Bernhard",
+        "generationTime": "Thu Jul 02 04:05:27 UTC 2026",
+        "lang": "de",
+        "title": "Höfler Bernhard | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/201431/20143158_500.jpg",
+            "title": "Höfler Bernhard | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (XXVIII. GP), SPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Bernhard Höfler",
+            "title_plain": "Bernhard Höfler",
+            "titleSuffix": "(aktiv)",
+            "ebene": 1
+        },
+        "banner": {
+            "mandate": [
+                {
+                    "funktion_text": "Abgeordneter zum Nationalrat",
+                    "mandat": "Abgeordneter zum Nationalrat",
+                    "klub": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                    "wahlkreis": "7 - Tirol",
+                    "wahlpartei": "SPÖ",
+                    "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                    "gremium": "NR",
+                    "funktion": "NR",
+                    "bez": "Abgeordneter zum Nationalrat (XXVIII. GP), SPÖ",
+                    "mandatVon": "24.10.2024",
+                    "mandatBis": "",
+                    "funktion_von": "24.10.2024",
+                    "funktion_bis": "",
+                    "zeitraum": "24.10.2024-",
+                    "aktiv": true
+                }
+            ],
+            "stand": "2024-10-28T08:43:23",
+            "socialMedia": [
+                {
+                    "url": "https://www.bernhardhoefler.at/",
+                    "name": "Website von Bernhard Höfler",
+                    "type": "WEBSITE"
+                },
+                {
+                    "url": "https://www.facebook.com/Bernie2024",
+                    "name": "Facebook von Bernhard Höfler",
+                    "type": "FACEBOOK"
+                },
+                {
+                    "url": "http://www.instagram.com/berniehoefler",
+                    "name": "Instagram von Bernhard Höfler",
+                    "type": "INSTAGRAM"
+                }
+            ],
+            "portrait": {
+                "src": "/dokument/bild/201431/20143158_384.jpg",
+                "alt": "Portraitfoto von Bernhard Höfler",
+                "bildId": 20143158,
+                "copyright": "Parlamentsdirektion/Thomas Topf"
+            },
+            "type": "Parlamentarier"
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": "nr",
+            "pad_intern": 30700,
+            "aktiv": true,
+            "sitzplatz": "5/02"
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "KONTAKT",
+                "label": "Kontakt",
+                "selected": false
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            },
+            {
+                "id": "UNVTRANS",
+                "label": "Transparenz",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "kurzinfo_html": null,
+            "portraitvideo": "b9f8ee52-7455-4d55-a99b-c2f7a03fe9d7",
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                        "wahlkreis": "7 - Tirol",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XXVIII. GP), SPÖ",
+                        "mandatVon": "24.10.2024",
+                        "mandatBis": "",
+                        "funktion_von": "24.10.2024",
+                        "funktion_bis": "",
+                        "zeitraum": "24.10.2024-",
+                        "aktiv": true
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 20.10.1986, Innsbruck",
+                "beruflicherWerdegang": [
+                    "Chef de rang, Restaurant Glasmalerei Innsbruck 6/2006-9/2007",
+                    "Gewerkschaftsangestellter, ÖGB (Österreichischer Gewerkschaftsbund)  seit 10/2007"
+                ],
+                "bildungsweg": [
+                    "Tourismuskaufmann, Villa Blanka Innsbruck 2001-2006",
+                    "Sprachenhauptschule, Michael Gaismair, Innsbruck 1997-2001",
+                    "Volksschule, Pradl-Leitgeb 1, Innsbruck  1993-1997"
+                ],
+                "politischeFunktionen": [
+                    "Vorstandsmitglied der AK Tirol seit 2014",
+                    "FSG Landesvorsitzender Tirol seit 5/2022",
+                    "ÖGB Vorsitzender Stv. Tirol seit 5/2022"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Für Richtigkeit und Umfang der biografischen Daten verantwortlich: Bernhard Höfler"
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                30700
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "portraitvideo": "b9f8ee52-7455-4d55-a99b-c2f7a03fe9d7",
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "kontakt": {
+            "verantwortlich": "mandatar",
+            "socialMedia": [
+                {
+                    "url": "https://www.bernhardhoefler.at/",
+                    "name": "Website von Bernhard Höfler",
+                    "type": "WEBSITE"
+                },
+                {
+                    "url": "https://www.facebook.com/Bernie2024",
+                    "name": "Facebook von Bernhard Höfler",
+                    "type": "FACEBOOK"
+                },
+                {
+                    "url": "http://www.instagram.com/berniehoefler",
+                    "name": "Instagram von Bernhard Höfler",
+                    "type": "INSTAGRAM"
+                }
+            ],
+            "mail": [
+                "bernhard.hoefler@parlament.gv.at"
+            ],
+            "anschrift": [
+                "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament<br>Dr.-Karl-Renner-Ring 3<br>1017 Wien"
+            ],
+            "disclaimer": "Für Richtigkeit und Umfang der Kontaktdaten verantwortlich: Bernhard Höfler",
+            "parentid": "biografietabs",
+            "tabid": "KONTAKT"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                30700
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                30700
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "unvtrans": {
+            "einleitung": "Hier finden Sie die von Mitgliedern des Nationalrates bzw. des Bundesrates nach § 6 Unvereinbarkeits- und Transparenz-Gesetz in Verbindung mit § 9 Bundesverfassungsgesetz über die Begrenzung von Bezügen öffentlicher Funktionäre zu veröffentlichenden leitenden Stellungen in AGs, GmbHs, Stiftungen und Sparkassen, sonstigen Tätigkeiten mit Vermögensvorteilen, leitenden ehrenamtlichen Tätigkeiten und jährlichen Einkommenskategorien.",
+            "header": "Liste gemäß § 9 BezBegrBVG - Abgeordneter Bernhard Höfler",
+            "linkliste": [
+                {
+                    "title": "Druckversion - Liste Bernhard Höfler:",
+                    "documents": [
+                        {
+                            "link": "/dokument/unvtrans/person/30700/BezBegrBVGPar9.pdf",
+                            "type": "PDF"
+                        }
+                    ]
+                },
+                {
+                    "title": "Gesamtliste gemäß § 9 BezBegrBVG - Nationalrat:",
+                    "documents": [
+                        {
+                            "link": "/person/unvtrans/BezBegrBVGPar9-NR.html",
+                            "type": "HTML"
+                        },
+                        {
+                            "link": "/dokument/unvtrans/BezBegrBVGPar9-NR.pdf",
+                            "type": "PDF"
+                        }
+                    ]
+                },
+                {
+                    "title": "Informationen zur Liste gemäß § 9 BezBegrBVG (Unv-Transparenz):",
+                    "documents": [
+                        {
+                            "link": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html",
+                            "type": "HTML"
+                        }
+                    ]
+                }
+            ],
+            "unvtransData": {
+                "z1Header": "Leitende Stellungen in Aktiengesellschaft, Gesellschaft mit beschränkter Haftung, Stiftung oder Sparkasse - § 6 Abs. 2 Z 1",
+                "z1Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#leitende_stellungen",
+                "z1Zusatztext": "(Werden aus einer Tätigkeit keine Vermögensvorteile erzielt, wird dies durch * gekennzeichnet)",
+                "z1KeineAngaben": "Keine",
+                "z1Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende Stellung",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ]
+                    }
+                },
+                "z2Header": "Sonstige Tätigkeiten, aus denen Vermögensvorteile erzielt werden - § 6 Abs. 2 Z 2",
+                "z2Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#sonstige_tatigkeiten",
+                "z2Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Dienstgeber/Rechtsträger/Unternehmen",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                "<a href='/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#sonstige_tatigkeiten'>lit. d<\/a>: AK Tirol",
+                                "Vorstandsmitglied"
+                            ],
+                            [
+                                "<a href='/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#sonstige_tatigkeiten'>lit. a<\/a>: ÖGB Tirol",
+                                "Angestellter"
+                            ]
+                        ]
+                    }
+                },
+                "z3Header": "Leitende ehrenamtliche Tätigkeiten (keine Vermögensvorteile) - § 6 Abs. 2 Z 3",
+                "z3Erklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#(weitere)_leitende_ehrenamtliche_tatigkeiten",
+                "z3Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende ehrenamtliche Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                "Kinderfreunde Ortsgruppe Hall",
+                                "Kassier"
+                            ],
+                            [
+                                "Bundesarbeitskammer",
+                                "Mitglied FSG-Vorstand"
+                            ],
+                            [
+                                "FSG Tirol",
+                                "Vorsitzender"
+                            ],
+                            [
+                                "ÖGB Tirol",
+                                "stellvertretender Vorsitzender"
+                            ],
+                            [
+                                "SPÖ Tirol",
+                                "Mitglied Landesparteirat "
+                            ],
+                            [
+                                "SPÖ Tirol ",
+                                "Mitglied im Landesparteivorstand"
+                            ],
+                            [
+                                "SPÖ Tirol - Bezirksorganisation Innsbruck-Land",
+                                "Vorsitzender (ab 15.02.2025)"
+                            ]
+                        ]
+                    }
+                },
+                "einkHeader": "Einkommenskategorie -  § 6 Abs. 4 und 5",
+                "einkErklaerlink": "/verstehen/nationalrat/rechtsgrundlagen/UTrag/index.html#einkommenskategorie",
+                "einkTable": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "für das Jahr",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Einkommenskategorie",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                2024,
+                                "4&nbsp; (von 8.001 bis 12.000 Euro)"
+                            ],
+                            [
+                                2025,
+                                "4&nbsp; (von 8.001 bis 12.000 Euro)"
+                            ],
+                            [
+                                2026,
+                                "Meldefrist endet am 30.06.2027"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "UNVTRANS"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                30700
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

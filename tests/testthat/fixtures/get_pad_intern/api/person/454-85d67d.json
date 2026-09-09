@@ -1,0 +1,202 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Haager Hans",
+        "generationTime": "Fri Mar 20 08:37:25 UTC 2026",
+        "lang": "de",
+        "title": "Haager Hans | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/20997/2099791_500.jpg",
+            "title": "Haager Hans | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (V. GP), ÖVP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Hans Haager",
+            "title_plain": "Hans Haager",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 454,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/20997/2099791_384.jpg",
+                "alt": "Portraitfoto von Hans Haager",
+                "bildId": 2099791,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "27.02.2017",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                        "wahlkreis": "15 - Traunviertel",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (V. GP), ÖVP",
+                        "mandatVon": "19.12.1945",
+                        "mandatBis": "08.11.1949",
+                        "funktion_von": "19.12.1945",
+                        "funktion_bis": "08.11.1949",
+                        "aktiv": false,
+                        "zeitraum": "19.12.1945-08.11.1949"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 22.11.1890, Salzburg",
+                "sterbtext": "Verst.: 23.01.1981, Kremsmünster",
+                "beruflicheTaetigkeit": "Mühlen- und Landwirtschaftsbesitzer",
+                "beruflicherWerdegang": [
+                    "Verehelichung und dadurch Erwerb der Neumühle bei Bad Hall 1919",
+                    "Praktikant in verschiedenen Brauereien 1911-1912"
+                ],
+                "bildungsweg": [
+                    "Diplomierter Braumeister",
+                    "Abteilung technisches Gewerbeinstitut für Gärungsindustrie 1913-1914",
+                    "landwirtschaftliche Hochschule in Berlin",
+                    "Matura 1910",
+                    "Gymnasium in Kremsmünster und Wels",
+                    "Volksschule in Pfarrkirchen"
+                ],
+                "politischeFunktionen": [
+                    "Zunftmeister der Müller Oberösterreichs",
+                    "Landesinnungsmeister der Müller Oberösterreichs",
+                    "Vizebürgermeister von Bad Hall 1945",
+                    "Bürgermeister von Bad Hall 1945-1953"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                454
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                454
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                454
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

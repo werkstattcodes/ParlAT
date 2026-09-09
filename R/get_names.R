@@ -1,3 +1,32 @@
+#' Zero-row tibble matching the documented columns of get_names()
+#' @noRd
+.empty_names_tibble <- function() {
+  .parlat_empty_tibble(
+    c(
+      "index", "pad_intern", "name", "date_start", "date_end",
+      "name_clean", "name_family", "name_given", "note"
+    ),
+    int_cols = "index",
+    date_cols = c("date_start", "date_end")
+  )
+}
+
+aux_clean_person_name <- function(name) {
+  name %>%
+    # remove trailing acad titles after comma
+    stringr::str_remove(stringr::regex(",.*$")) %>%
+    # remove leading title ending on a dot, including Abg. and acad titles
+    stringr::str_remove_all(stringr::regex("\\S*\\.\\s")) %>%
+    # remove academic titles comprising multiple capital letters
+    stringr::str_remove(
+      stringr::regex("\\p{Lu}+\\p{Ll}*\\p{Lu}+\\p{Ll}*\\b")
+    ) %>%
+    # remove bracket elements
+    stringr::str_remove_all(stringr::regex("\\([^\\(]*\\)")) %>%
+    stringr::str_trim() %>%
+    stringr::str_squish()
+}
+
 #' Get name variants of a Member of Parliament
 #'
 #' Returns all name variants of an person or a specific name used on a given date.
@@ -17,6 +46,9 @@
 #' - `name_family`: Family name/surname
 #' - `name_given`: Given name/first name
 #' - `note`: Raw value from the source data
+#'
+#' Zero-row results and results without previous-name records retain these
+#' columns in the documented order and with the same column types.
 #' @seealso [get_pad_intern()] to retrieve an MP's `pad_intern`
 #' @export
 #'
@@ -49,26 +81,26 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
 
   # check if pad_intern actually exists
   if (aux_check_pad_intern_exists(pad_intern = pad_intern) != TRUE) {
-    message(paste0("No MP registered under this pad_intern: ", pad_intern))
-    return(NULL)
+    cli::cli_inform("No MP registered under this pad_intern: {pad_intern}.")
+    return(.empty_names_tibble())
   }
 
-  link_file_json <- glue::glue(
-    "https://www.parlament.gv.at/person/{pad_intern}?json=TRUE"
+  link_person <- glue::glue(
+    "https://www.parlament.gv.at/person/{pad_intern}"
   )
 
+  # fetched via httr2 so httptest2 can intercept and record the request
   file_json <- tryCatch(
     {
-      jsonlite::read_json(link_file_json)
+      json_text <- .parlat_fetch_detail_json_text(link_person)
+      .parlat_parse_detail_json(json_text, simplifyVector = FALSE)$data
     },
-    error = function(e) {
-      #warning(paste("Error reading JSON from URL:", e$message))
-      return(NULL)
-    }
+    error = function(e) NULL
   )
 
   if (is.null(file_json)) {
-    return(NA)
+    cli::cli_warn("Could not retrieve data for pad_intern {pad_intern}.")
+    return(.empty_names_tibble())
   }
 
   #CURRENT NAMES
@@ -181,34 +213,7 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
   #get family/given name
   ## clean name
   df_names <- df_names %>%
-    #remove trailing acad titles after comma
-    dplyr::mutate(
-      name_clean = stringr::str_remove(.data$name, stringr::regex(",.*$"))
-    ) %>%
-    #remove leading title ending on a dot, including Abg. and acad titles
-    dplyr::mutate(
-      name_clean = stringr::str_remove_all(
-        .data$name_clean,
-        stringr::regex("\\S*\\.\\s")
-      )
-    ) %>%
-    #remove academic titles comprising multiple capital letters
-    dplyr::mutate(
-      name_clean = stringr::str_remove(
-        .data$name_clean,
-        stringr::regex("\\p{Lu}+\\p{Ll}*\\p{Lu}+\\p{Ll}*\\b")
-      )
-    ) %>%
-    #remove bracket elements
-    dplyr::mutate(
-      name_clean = stringr::str_remove_all(
-        .data$name_clean,
-        stringr::regex("\\([^\\(]*\\)")
-      )
-    ) %>%
-    dplyr::mutate(
-      name_clean = stringr::str_trim(.data$name_clean) %>% stringr::str_squish()
-    )
+    dplyr::mutate(name_clean = aux_clean_person_name(.data$name))
 
   df_names <- df_names %>%
     dplyr::mutate(
@@ -260,6 +265,11 @@ get_names <- function(pad_intern, date = NULL, latest = NULL) {
     df_names <- df_names %>%
       dplyr::mutate(index = 1)
   }
+
+  df_names <- .parlat_match_tibble_prototype(
+    df_names,
+    .empty_names_tibble()
+  )
 
   if (!is.null(latest) && latest == TRUE) {
     df_names %>%

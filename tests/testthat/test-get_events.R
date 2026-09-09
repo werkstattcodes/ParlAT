@@ -40,7 +40,7 @@ test_that("legis_period mutual exclusivity with dates works", {
   expect_no_error(get_events(legis_period = 28))
 })
 
-test_that("get_events returns correct data structure", {
+test_that("get_events returns a tibble for non-empty results", {
   res <- run_api_call(
     {
       get_events(legis_period = 27, institution = "NR")
@@ -48,8 +48,7 @@ test_that("get_events returns correct data structure", {
     fixture_subdir = "get_events"
   )
 
-  # Check if result is a tibble/data.frame
-  expect_s3_class(res, "data.frame")
+  expect_s3_class(res, "tbl_df")
 })
 
 test_that("get_events handles empty results gracefully", {
@@ -65,15 +64,10 @@ test_that("get_events handles empty results gracefully", {
     fixture_subdir = "get_events"
   )
 
-  # Expecting NULL or 0-row tibble depending on implementation
-  if (is.null(res)) {
-    expect_null(res)
-  } else {
-    expect_equal(nrow(res), 0)
-    # Even if empty, should have correct columns
-    expected_cols <- c("title", "institution", "location")
-    expect_true(all(expected_cols %in% names(res)))
-  }
+  expect_s3_class(res, "tbl_df")
+  expect_identical(nrow(res), 0L)
+  expected_cols <- c("title", "institution", "location")
+  expect_true(all(expected_cols %in% names(res)))
 })
 
 test_that("get_events works with complex parameter combinations", {
@@ -90,13 +84,95 @@ test_that("get_events works with complex parameter combinations", {
     fixture_subdir = "get_events"
   )
 
-  expect_s3_class(res, "data.frame")
+  expect_s3_class(res, "tbl_df")
 
   # If data returned, verify filtering worked
   if (nrow(res) > 0) {
     # Check location filtering
     expect_true(all(grepl("Nationalratssaal", res$location)))
   }
+})
+
+test_that("echo does not change returned event data", {
+  get_filtered_events <- function(echo) {
+    run_api_call(
+      {
+        get_events(
+          institution = "NR",
+          date_start = "01-01-2024",
+          date_end = "31-03-2024",
+          event_type = "Plenarsitzung",
+          location = "Nationalratssaal",
+          echo = echo
+        )
+      },
+      fixture_subdir = "get_events"
+    )
+  }
+
+  expect_identical(
+    get_filtered_events(echo = TRUE),
+    get_filtered_events(echo = FALSE)
+  )
+})
+
+test_that("empty event filters serialize as a JSON object", {
+  expect_identical(.get_events_body_to_json(list()), "{}")
+
+  body <- .get_events_body_to_json(list(GREMIUM = "Nationalrat")) |>
+    jsonlite::fromJSON()
+  expect_equal(body$GREMIUM, "Nationalrat")
+})
+
+test_that("event echo derives filters that override website defaults", {
+  response <- list(
+    header = data.frame(
+      feld_name = c("DATUM", "VERFUEGBAR", "TITLE")
+    ),
+    rows = data.frame(
+      date = c("17.07.2027", "10.11.1920", "01.09.2026"),
+      available = c("J", "V", "J"),
+      title = c("Future", "Historical", "Current")
+    )
+  )
+  body <- jsonlite::toJSON(list(GREMIUM = "Nationalrat"))
+
+  echo_body <- .get_events_echo_body(body, response) |>
+    jsonlite::fromJSON()
+
+  expect_equal(echo_body$GREMIUM, "Nationalrat")
+  expect_equal(echo_body$DATERANGE, "1920-11-09T23:00:00.000Z")
+  expect_equal(echo_body$VERFUEGBAR, c("J", "V"))
+})
+
+test_that("event echo preserves explicit dates and empty results", {
+  response <- list(
+    header = data.frame(feld_name = c("DATUM", "VERFUEGBAR")),
+    rows = data.frame(
+      date = "10.11.1920",
+      available = "V"
+    )
+  )
+  date_range <- c(
+    "2024-01-01T00:00:00.000Z",
+    "2024-12-31T23:59:59.000Z"
+  )
+  body <- jsonlite::toJSON(list(DATERANGE = date_range))
+
+  echo_body <- .get_events_echo_body(body, response) |>
+    jsonlite::fromJSON()
+
+  expect_equal(echo_body$DATERANGE, date_range)
+  expect_equal(echo_body$VERFUEGBAR, "V")
+
+  empty_response <- list(
+    header = response$header,
+    rows = data.frame(date = character(), available = character())
+  )
+  expect_identical(
+    .get_events_echo_body("{}", empty_response),
+    "{}"
+  )
 })
 
 test_that("aux_transform_event_date works correctly", {
@@ -141,20 +217,36 @@ test_that("aux_transform_event_date works correctly", {
 })
 
 test_that("aux_transform_event_date returns correct format", {
-  # Test that the function returns ISO 8601 UTC format
-  result <- ParlAT:::aux_transform_event_date("01-01-2024", "test_date", FALSE)
-  expect_match(result, "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.000Z$")
-
-  # Test end date processing (should add 1 day minus 1 second)
-  start_result <- ParlAT:::aux_transform_event_date(
-    "01-01-2024",
-    "start_date",
-    FALSE
+  expect_equal(
+    ParlAT:::aux_transform_event_date(
+      "10-11-1920",
+      "date_start",
+      FALSE
+    ),
+    "1920-11-09T23:00:00.000Z"
   )
-  end_result <- ParlAT:::aux_transform_event_date(
-    "01-01-2024",
-    "end_date",
-    TRUE
+  expect_equal(
+    ParlAT:::aux_transform_event_date(
+      "01-01-2024",
+      "date_start",
+      FALSE
+    ),
+    "2023-12-31T23:00:00.000Z"
   )
-  expect_false(start_result == end_result)
+  expect_equal(
+    ParlAT:::aux_transform_event_date(
+      "01-07-2024",
+      "date_start",
+      FALSE
+    ),
+    "2024-06-30T22:00:00.000Z"
+  )
+  expect_equal(
+    ParlAT:::aux_transform_event_date(
+      "01-07-2024",
+      "date_end",
+      TRUE
+    ),
+    "2024-07-01T21:59:59.000Z"
+  )
 })

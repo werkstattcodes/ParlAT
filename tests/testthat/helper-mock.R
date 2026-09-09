@@ -73,24 +73,98 @@ run_api_call <- function(expr, fixture_subdir = NULL) {
   }
 }
 
-# #' Flexible row count assertion for tests with exact counts
-# #'
-# #' In mocked mode, asserts exact equality (fixtures have known counts).
-# #' In live mode, asserts within a tolerance range (API data may change).
-# #'
-# #' @param actual Actual row count from the result
-# #' @param expected Expected row count (from fixture recording time)
-# #' @param tolerance Percentage tolerance for live API (default 0.1 = 10%)
-# expect_row_count <- function(actual, expected, tolerance = 0.1) {
-#   if (.parlat_live_api()) {
-#     # Live mode: allow for data changes within tolerance
-#     testthat::expect_gte(actual, floor(expected * (1 - tolerance)))
-#     testthat::expect_lte(actual, ceiling(expected * (1 + tolerance)))
-#   } else {
-#     # Mocked mode: exact count from fixture
-#     testthat::expect_equal(actual, expected)
-#   }
-# }
+#' Flexible row count assertion for tests with exact counts
+#'
+#' In mocked mode, asserts exact equality (fixtures have known counts).
+#' In live mode, asserts within a tolerance range (API data may change).
+#'
+#' @param actual Actual row count from the result
+#' @param expected Expected row count (from fixture recording time)
+#' @param tolerance Percentage tolerance for live API (default 0.1 = 10%)
+expect_row_count <- function(actual, expected, tolerance = 0.1) {
+  if (.parlat_live_api()) {
+    # Live mode: allow for data changes within tolerance
+    testthat::expect_gte(actual, floor(expected * (1 - tolerance)))
+    testthat::expect_lte(actual, ceiling(expected * (1 + tolerance)))
+  } else {
+    # Mocked mode: exact count from fixture
+    testthat::expect_equal(actual, expected)
+  }
+}
+
+# Cache environment for the API index health check so the whole test run
+# costs at most one extra request.
+.parlat_canary_cache <- new.env(parent = emptyenv())
+
+#' Check whether the parlament.gv.at search index is healthy
+#'
+#' The filter API's index can temporarily lose records (observed 2026-07-17,
+#' see issue #33): a closed historical date window that matched exactly 2526
+#' rows dropped to fluctuating counts (1766, 432) within hours, and entire
+#' categories (item = "EU" with institution = "BR") vanished. Row-count
+#' assertions against the live API are meaningless while the index is in that
+#' state, so count-sensitive tests skip via skip_if_api_index_degraded().
+#'
+#' The canary queries a closed window (Jan-Mar 2024) whose healthy count is
+#' known to be 2526; anything well below that means the index is degraded.
+#' Request errors also count as unhealthy so tests skip rather than fail.
+#'
+#' @return List with elements `healthy` (logical) and `count` (integer or NA)
+.parlat_api_index_health <- function() {
+  if (!is.null(.parlat_canary_cache$result)) {
+    return(.parlat_canary_cache$result)
+  }
+
+  healthy_reference <- 2526
+  threshold <- 2400
+
+  count <- tryCatch(
+    {
+      resp <- httr2::request(
+        "https://www.parlament.gv.at/Filter/api/filter/data/101"
+      ) |>
+        httr2::req_method("POST") |>
+        httr2::req_url_query(js = "eval", page = "1", pagesize = "1") |>
+        httr2::req_headers(origin = "https://www.parlament.gv.at") |>
+        httr2::req_body_raw(
+          '{"DATUM_VON":["2024-01-01T00:00:00.000Z","2024-03-01T00:00:00.000Z"]}',
+          "application/json"
+        ) |>
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        httr2::req_perform()
+      httr2::resp_body_json(resp)$count
+    },
+    error = function(e) NA_integer_
+  )
+
+  result <- list(
+    healthy = !is.na(count) && count >= threshold,
+    count = count
+  )
+  .parlat_canary_cache$result <- result
+  result
+}
+
+#' Skip test if the live API's search index is degraded
+#'
+#' No-op in mocked mode. In live mode, skips count-sensitive tests while the
+#' upstream index is missing records (see .parlat_api_index_health), so the
+#' weekly live-test workflow reports the known upstream problem as skips
+#' instead of failures. Tests resume automatically once the index recovers.
+skip_if_api_index_degraded <- function() {
+  if (!.parlat_live_api()) {
+    return(invisible(TRUE))
+  }
+  health <- .parlat_api_index_health()
+  if (!health$healthy) {
+    testthat::skip(paste0(
+      "Upstream search index degraded (canary count: ",
+      health$count,
+      ", healthy: ~2526); see issue #33"
+    ))
+  }
+  invisible(TRUE)
+}
 
 #' Skip test if running in mocked mode
 #'

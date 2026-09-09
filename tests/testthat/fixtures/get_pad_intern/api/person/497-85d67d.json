@@ -1,0 +1,210 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Hampel Ernst, Dr.",
+        "generationTime": "Fri Mar 20 08:34:47 UTC 2026",
+        "lang": "de",
+        "title": "Hampel Ernst, Dr. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21005/2100578_500.jpg",
+            "title": "Hampel Ernst, Dr. | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (IV. GP), NWB"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Dr. Ernst Hampel",
+            "title_plain": "Dr. Ernst Hampel",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 497,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21005/2100578_384.jpg",
+                "alt": "Portraitfoto von Dr. Ernst Hampel",
+                "bildId": 2100578,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Verband der Abgeordneten des Nationalen Wirtschaftsblocks",
+                        "wahlkreis": "Wahlkreisverband IV (B, K u St.)",
+                        "wahlpartei": "NWB",
+                        "wahlpartei_text": "Nationaler Wirtschaftsblock",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (IV. GP), NWB",
+                        "mandatVon": "02.12.1930",
+                        "mandatBis": "02.05.1934",
+                        "funktion_von": "02.12.1930",
+                        "funktion_bis": "02.05.1934",
+                        "aktiv": false,
+                        "zeitraum": "02.12.1930-02.05.1934"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Verband der Abgeordneten der Großdeutschen Volkspartei",
+                        "wahlkreis": "20 - Graz und Umgebung",
+                        "wahlpartei": "GdP",
+                        "wahlpartei_text": "Großdeutsche Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (II.-III. GP), GdP",
+                        "mandatVon": "07.01.1924",
+                        "mandatBis": "01.10.1930",
+                        "funktion_von": "07.01.1924",
+                        "funktion_bis": "01.10.1930",
+                        "aktiv": false,
+                        "zeitraum": "07.01.1924-01.10.1930"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Verband der Abgeordneten der Großdeutschen Volkspartei",
+                        "wahlkreis": "RM - Reststimmenmandat",
+                        "wahlpartei": "GdP",
+                        "wahlpartei_text": "Großdeutsche Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (I. GP), GdP",
+                        "mandatVon": "10.11.1920",
+                        "mandatBis": "20.11.1923",
+                        "funktion_von": "10.11.1920",
+                        "funktion_bis": "20.11.1923",
+                        "aktiv": false,
+                        "zeitraum": "10.11.1920-20.11.1923"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 18.08.1885, Bodenstadt/Potstat (Mähren)",
+                "sterbtext": "Verst.: 23.01.1964, Oberfellabrunn (Niederösterreich)",
+                "beruflicheTaetigkeit": "Bürgerschullehrer",
+                "beruflicherWerdegang": [
+                    "Regierungsrat  1934",
+                    "ab 1945 zurückgezogenes Leben als Pensionist in Oberfellabrunn",
+                    "Verfasser verschiedener Arbeiten über die \"Arbeitsschule\"",
+                    "Pensionierung 1934",
+                    "Bürgerschuldirektor",
+                    "Fachlehrer an der Siemensschule in Floridsdorf",
+                    "Bisamberg",
+                    "Volksschullehrer in Groß-Siegharts"
+                ],
+                "bildungsweg": [
+                    "Promotion 1914",
+                    "Lehrbefähigungsprüfung für den Unterricht an Bürgerschulen 1910",
+                    "Lehrbefähigungsprüfung für den Unterricht an Volksschulen 1909",
+                    "Studium der Geschichte und der Philosophie",
+                    "Matura 1905",
+                    "Gymnasium in Mährisch-Weißkirchen",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Reichsvollzugsausschusses der Großdeutschen Volkspartei",
+                    "Präsident des Deutschen Handels- und Gewerbebundes für Wien, Niederösterreich und Burgenland",
+                    "Vorsitzender des Parlamentsklub des Nationalen Wirtschaftsblocks",
+                    "Vorsitzender des Gesamtsklubs der Großdeutschen Abgeordneten",
+                    "Parteibeauftragter und kommissarischer Leiter des niederösterreichischen Landesgewerbeverbandes",
+                    "Gauführerstellvertreter im Handels- und Gewerbering 1938",
+                    "SA-Führer, Gaupropagandist im Kreis Hollabrunn"
+                ],
+                "sonstiges": "<p>Politische Freiheitsstrafe: 1934 kurze Haft.<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": null
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                497
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                497
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        }
+    }
+}

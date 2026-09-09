@@ -21,6 +21,32 @@ test_that("get_pad_intern returns correct structure with valid name", {
   expect_type(result$names_variants, "character")
 })
 
+test_that("get_pad_intern strips academic titles before searching", {
+  observed_search <- NULL
+
+  local_mocked_bindings(
+    get_mps = function(search_string, echo) {
+      observed_search <<- search_string
+      tibble::tibble(
+        pad_intern = "2344",
+        name = "Dr. Stephanie Krisper"
+      )
+    },
+    get_names = function(pad_intern) {
+      tibble::tibble(
+        pad_intern = pad_intern,
+        name = "Dr. Stephanie Krisper",
+        name_clean = "Stephanie Krisper"
+      )
+    }
+  )
+
+  result <- get_pad_intern("Dr. Krisper")
+
+  expect_equal(observed_search, "Krisper")
+  expect_equal(result$pad_intern, "2344")
+})
+
 test_that("get_pad_intern handles names with special characters", {
   result <- run_api_call({
     get_pad_intern("Müller")

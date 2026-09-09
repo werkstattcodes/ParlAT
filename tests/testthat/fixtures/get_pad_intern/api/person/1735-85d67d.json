@@ -1,0 +1,202 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Schmidt Albert, Dr.",
+        "generationTime": "Fri Mar 20 08:08:35 UTC 2026",
+        "lang": "de",
+        "title": "Schmidt Albert, Dr. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21010/2101017_500.jpg",
+            "title": "Schmidt Albert, Dr. | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (XIII.-XIV. GP), FPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Dr. Albert Schmidt",
+            "title_plain": "Dr. Albert Schmidt",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 1735,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21010/2101017_384.jpg",
+                "alt": "Portraitfoto von Dr. Albert Schmidt",
+                "bildId": 2101017,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "11.10.2007",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub der Freiheitlichen Partei Österreichs",
+                        "wahlkreis": "Wahlkreisverband I (Burgenland, Niederösterreich, Wien)",
+                        "wahlpartei": "FPÖ",
+                        "wahlpartei_text": "Freiheitliche Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XIII.-XIV. GP), FPÖ",
+                        "mandatVon": "04.11.1971",
+                        "mandatBis": "04.06.1979",
+                        "funktion_von": "04.11.1971",
+                        "funktion_bis": "04.06.1979",
+                        "aktiv": false,
+                        "zeitraum": "04.11.1971-04.06.1979"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 27.11.1922, Wien",
+                "sterbtext": "Verst.: 13.08.2007, Wien",
+                "beruflicheTaetigkeit": "Bundesbeamter",
+                "beruflicherWerdegang": [
+                    "Ministerialrat im Bundesministerium für Finanzen",
+                    "Eintritt in den Bundesdienst"
+                ],
+                "bildungsweg": [
+                    "Werkstudent an der Universität Wien (Promotion 1951)",
+                    "humanistisches Gymnasium (Matura 1940)",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Wiener Gemeinderates und Abgeordneter zum Wiener Landtag 1959-1971",
+                    "Obmann der Landtags- bzw. Gemeinderatsfraktion der FPÖ Wien 1963",
+                    "Bezirksparteiobmann der FPÖ Wien/Döbling",
+                    "Mitglied des Landesparteivorstandes der FPÖ Wien",
+                    "Mitglied der Bundesparteileitung der FPÖ 1992-1996",
+                    "Obmann Wiener Seniorenring 1990-1998",
+                    "Bundesobmann Österreichischer Seniorenring 1991-1996"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1735
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1735
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1735
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

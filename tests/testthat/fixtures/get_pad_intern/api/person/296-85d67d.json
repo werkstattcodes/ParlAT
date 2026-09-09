@@ -1,0 +1,152 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Fahrner Anton",
+        "generationTime": "Fri Mar 20 10:34:46 UTC 2026",
+        "lang": "de",
+        "title": "Fahrner Anton | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/Foto_Platzhalter_Quadrat.svg",
+            "title": "Fahrner Anton | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (III. GP), GdP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Anton Fahrner",
+            "title_plain": "Anton Fahrner",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 296,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/static/img/Foto_Platzhalter_Quadrat.svg",
+                "copyright": "Parlamentsdirektion"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Verband der Abgeordneten der Großdeutschen Volkspartei",
+                        "wahlkreis": "8 - Viertel oberm Wienerwald",
+                        "wahlpartei": "GdP",
+                        "wahlpartei_text": "Großdeutsche Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (III. GP), GdP",
+                        "mandatVon": "18.05.1927",
+                        "mandatBis": "01.10.1930",
+                        "funktion_von": "18.05.1927",
+                        "funktion_bis": "01.10.1930",
+                        "aktiv": false,
+                        "zeitraum": "18.05.1927-01.10.1930"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 07.05.1880, Neunkirchen",
+                "sterbtext": "Verst.: 21.05.1955, Wien",
+                "beruflicheTaetigkeit": "Müller",
+                "beruflicherWerdegang": [
+                    "Kommerzialrat",
+                    "Besitzer einer Mühle und eines Elektrizitätswerkes"
+                ],
+                "politischeFunktionen": [
+                    "Bürgermeister von Wieselburg 1913-1934 sowie  1938-1945"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": null
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                296
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                296
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,236 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Kaufmann Paul, Dr.",
+        "generationTime": "Fri Mar 20 09:03:41 UTC 2026",
+        "lang": "de",
+        "title": "Kaufmann Paul, Dr. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21007/2100763_500.jpg",
+            "title": "Kaufmann Paul, Dr. | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (XV. GP), ÖVP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Dr. Paul Kaufmann",
+            "title_plain": "Dr. Paul Kaufmann",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 786,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21007/2100763_384.jpg",
+                "alt": "Portraitfoto von Dr. Paul Kaufmann",
+                "bildId": 2100763,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "20.01.2015",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                        "wahlkreis": "6 - Steiermark",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XV. GP), ÖVP",
+                        "mandatVon": "02.01.1983",
+                        "mandatBis": "18.05.1983",
+                        "funktion_von": "02.01.1983",
+                        "funktion_bis": "18.05.1983",
+                        "aktiv": false,
+                        "zeitraum": "02.01.1983-18.05.1983"
+                    },
+                    {
+                        "funktion_text": "Mitglied des Bundesrates",
+                        "mandat": "Mitglied des Bundesrates",
+                        "klub": "Bundesratsfraktion der ÖVP",
+                        "wahlkreis": "In den Bundesrat entsendet vom Steiermärkischen Landtag",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "BR",
+                        "funktion": "BR",
+                        "bez": "Mitglied des Bundesrates, ÖVP",
+                        "mandatVon": "01.01.1981",
+                        "mandatBis": "31.12.1982",
+                        "funktion_von": "01.01.1981",
+                        "funktion_bis": "31.12.1982",
+                        "aktiv": false,
+                        "zeitraum": "01.01.1981-31.12.1982"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Parlamentsklub der Österreichischen Volkspartei",
+                        "wahlkreis": "6 - Steiermark",
+                        "wahlpartei": "ÖVP",
+                        "wahlpartei_text": "Österreichische Volkspartei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XIII.-XIV. GP), ÖVP",
+                        "mandatVon": "04.11.1971",
+                        "mandatBis": "04.06.1979",
+                        "funktion_von": "04.11.1971",
+                        "funktion_bis": "04.06.1979",
+                        "aktiv": false,
+                        "zeitraum": "04.11.1971-04.06.1979"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 20.08.1925, Graz",
+                "sterbtext": "Verst.: 17.01.2015, Stadl-Predlitz (Steiermark)",
+                "beruflicheTaetigkeit": "Generalsekretär des \"steirischen herbstes\"",
+                "beruflicherWerdegang": [
+                    "Generalsekretär des \"steirischen herbstes\" 1968-1990",
+                    "schriftstellerische Tätigkeit",
+                    "Chefredakteur der Wochenzeitung \"Sonntagspost\" 1963",
+                    "innenpolitischer Redakteur der \"Südost-Tagespost\" 1956",
+                    "Pressereferent der ÖVP Steiermark",
+                    "Mitarbeiter beim Nordwestdeutschen Rundfunk in Hamburg",
+                    "Verlagstätigkeit bei Styria/Graz und Müller/Salzburg 1949-1951"
+                ],
+                "bildungsweg": [
+                    "Studium der Volkskunde, Germanistik und Philosophie an der Universität Graz (Dr. phil.) 1945-1949",
+                    "Mittelschule",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Landespressereferent des ÖAAB Steiermark 1963"
+                ],
+                "sonstiges": "<p>Während des Zweiten Weltkrieges zwei Jahre Militärdienst.<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                786
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                786
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                786
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

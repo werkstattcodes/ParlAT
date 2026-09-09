@@ -1,17 +1,15 @@
 {
     "pages": 1,
-    "lastSync": "2026-03-17 21:40:42.0",
-    "count": 14,
+    "lastSync": "2026-07-02 17:01:07.0",
+    "count": 15,
     "header": [
         {
-            "link_rnr": "16",
             "feldId": 605,
+            "link_rnr": "16",
             "hidden": false,
-            "valueToNull": false,
             "mediaType": "title",
             "label": "Name",
             "css_class": "col-15",
-            "hideValue": false,
             "rnr": 1,
             "listeId": 409,
             "feld_name": "PERSON_NAME",
@@ -21,9 +19,7 @@
             "css_class": "col-10",
             "feldId": 603,
             "hidden": false,
-            "hideValue": false,
             "rnr": 2,
-            "valueToNull": false,
             "listeId": 409,
             "label": "Gremium",
             "feld_name": "GREMIUM",
@@ -31,23 +27,17 @@
             "ist_werteliste": "1"
         },
         {
-            "export_jn": "0",
             "feldId": 604,
             "hidden": true,
-            "hideValue": false,
             "rnr": 3,
-            "valueToNull": false,
             "listeId": 409,
             "label": "WENTRY_ID",
             "ist_web_item_id": "1"
         },
         {
-            "export_jn": "0",
             "feldId": 623,
             "hidden": true,
-            "hideValue": false,
             "rnr": 4,
-            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHL_CODE",
             "feld_name": "GESCHL_CODE"
@@ -55,9 +45,7 @@
         {
             "feldId": 624,
             "hidden": true,
-            "hideValue": false,
             "rnr": 5,
-            "valueToNull": false,
             "listeId": 409,
             "label": "GESCHLECHT",
             "feld_name": "GESCHLECHT"
@@ -66,9 +54,7 @@
             "css_class": "col-15",
             "feldId": 863,
             "hidden": false,
-            "hideValue": false,
             "rnr": 6,
-            "valueToNull": false,
             "listeId": 409,
             "label": "Gesetzgebungsperiode",
             "class": "col-15"
@@ -76,78 +62,58 @@
         {
             "feldId": 864,
             "hidden": true,
-            "hideValue": false,
             "rnr": 7,
-            "valueToNull": false,
             "listeId": 409,
             "label": "parteien"
         },
         {
             "feldId": 643,
             "hidden": true,
-            "hideValue": false,
             "rnr": 8,
-            "valueToNull": false,
             "listeId": 409,
             "label": "Attribute",
             "feld_name": "ATTR_JSON"
         },
         {
-            "export_jn": "0",
             "feldId": 903,
             "hidden": true,
-            "hideValue": false,
             "rnr": 9,
-            "valueToNull": false,
             "listeId": 409,
             "label": "ist_praes",
             "feld_name": "PRAES"
         },
         {
-            "export_jn": "0",
             "feldId": 1223,
             "hidden": true,
-            "hideValue": false,
             "rnr": 10,
-            "valueToNull": false,
             "listeId": 409,
             "label": "vorname"
         },
         {
-            "export_jn": "0",
             "feldId": 1224,
             "hidden": true,
-            "hideValue": false,
             "rnr": 11,
-            "valueToNull": false,
             "listeId": 409,
             "label": "nachname"
         },
         {
             "feldId": 1225,
             "hidden": true,
-            "hideValue": false,
             "rnr": 12,
-            "valueToNull": false,
             "listeId": 409,
             "label": "akgr"
         },
         {
-            "export_jn": "0",
             "feldId": 1226,
             "hidden": true,
-            "hideValue": false,
             "rnr": 13,
-            "valueToNull": false,
             "listeId": 409,
             "label": "akgr_h"
         },
         {
             "feldId": 7120,
             "hidden": false,
-            "hideValue": false,
             "rnr": 14,
-            "valueToNull": false,
             "listeId": 409,
             "label": "Klub/Fraktion"
         },
@@ -155,9 +121,7 @@
             "css_class": "col-15",
             "feldId": 7121,
             "hidden": false,
-            "hideValue": false,
             "rnr": 15,
-            "valueToNull": false,
             "listeId": 409,
             "label": "Wahlkreis",
             "class": "col-15"
@@ -165,9 +129,7 @@
         {
             "feldId": 7180,
             "hidden": true,
-            "hideValue": false,
             "rnr": 16,
-            "valueToNull": false,
             "listeId": 409,
             "label": "Bio"
         }
@@ -183,6 +145,7 @@
             "[\"CSP\"]",
             {
                 "zit": "Johann Blöchl",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -236,6 +199,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Mühlviertel",
                 "pad_intern": 133,
                 "medien": [
                     2099589
@@ -251,8 +215,8 @@
             "Blöchl",
             null,
             null,
-            null,
-            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+            "Mühlviertel",
             "/person/133"
         ],
         [
@@ -265,6 +229,7 @@
             "[\"SPÖ\",\"SdP\"]",
             {
                 "zit": "Johann Böhm",
+                "fraktionen": "Klub der Sozialistischen Partei Österreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ",
@@ -438,6 +403,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Burgenland",
                 "pad_intern": 149,
                 "medien": [
                     2101353
@@ -446,18 +412,15 @@
                     "description": "Abgeordneter zum Nationalrat (V.-VIII. GP), SPÖ",
                     "image": "/dokument/bild/21013/2101353_500.jpg"
                 },
-                "aktiv": false,
-                "nrbr_praes": [
-                    "2PNR"
-                ]
+                "aktiv": false
             },
             "J",
             "Johann",
             "Böhm",
             null,
             null,
-            null,
-            null,
+            "Klub der Sozialistischen Partei Österreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Parlamentsklub der Sozialistischen Partei Österreichs; Klub der Sozialistischen Partei Österreichs (S)",
+            "Burgenland",
             "/person/149"
         ],
         [
@@ -470,6 +433,7 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Anton Ehrenfried",
+                "fraktionen": "Klub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -561,6 +525,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Viertel unterm Manhartsberg",
                 "pad_intern": 255,
                 "medien": [
                     2099655
@@ -576,8 +541,8 @@
             "Ehrenfried",
             null,
             null,
-            null,
-            null,
+            "Klub der Österreichischen Volkspartei (V)",
+            "Viertel unterm Manhartsberg",
             "/person/255"
         ],
         [
@@ -590,6 +555,7 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Hermann Gruber",
+                "fraktionen": "Klub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -661,6 +627,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Kärnten, Wahlkreisverband IV (B, K u St.)",
                 "pad_intern": 521,
                 "medien": [
                     2101432
@@ -676,8 +643,8 @@
             "Gruber",
             null,
             null,
-            null,
-            null,
+            "Klub der Österreichischen Volkspartei (V)",
+            "Kärnten, Wahlkreisverband IV (B, K u St.)",
             "/person/521"
         ],
         [
@@ -690,6 +657,7 @@
             "[\"GdP\",\"NWB\"]",
             {
                 "zit": "Dr. Ernst Hampel",
+                "fraktionen": "Verband der Abgeordneten des Nationalen Wirtschaftsblocks (W), Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
                 "item_type": "Biogr",
                 "frak": [
                     "GdP",
@@ -832,6 +800,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Reststimmenmandat, Wahlkreisverband IV - Steiermark, Graz und Umgebung, Wahlkreisverband IV (B, K u St.)",
                 "pad_intern": 497,
                 "medien": [
                     2100578
@@ -847,8 +816,8 @@
             "Hampel",
             "Dr. phil.",
             null,
-            null,
-            null,
+            "Verband der Abgeordneten des Nationalen Wirtschaftsblocks (W), Verband der Abgeordneten der Großdeutschen Volkspartei (D)",
+            "Reststimmenmandat, Wahlkreisverband IV - Steiermark, Graz und Umgebung, Wahlkreisverband IV (B, K u St.)",
             "/person/497"
         ],
         [
@@ -861,6 +830,7 @@
             "[\"CSP\"]",
             {
                 "zit": "Emma Kapral",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -913,6 +883,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Wahlkreisverband I (Wien)",
                 "pad_intern": 770,
                 "medien": [
                     2101481
@@ -928,8 +899,8 @@
             "Kapral",
             null,
             null,
-            null,
-            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+            "Wahlkreisverband I (Wien)",
             "/person/770"
         ],
         [
@@ -942,6 +913,7 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Dr. Irmtraut Karlsson",
+                "fraktionen": "Bundesratsfraktion der SPÖ (S), Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1103,6 +1075,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Wien Innen-West, Wien",
                 "pad_intern": 777,
                 "medien": [
                     2099881
@@ -1118,8 +1091,8 @@
             "Karlsson",
             "Dr. phil.",
             null,
-            null,
-            null,
+            "Bundesratsfraktion der SPÖ (S), Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten und Bundesräte (S), Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament (S)",
+            "Wien Innen-West, Wien",
             "/person/777"
         ],
         [
@@ -1132,6 +1105,7 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Josef Krainer",
+                "fraktionen": "Bundesratsfraktion der ÖVP (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -1198,6 +1172,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Steiermark",
                 "pad_intern": 953,
                 "openGraph": {
                     "description": "Mitglied des Bundesrates, ÖVP",
@@ -1210,8 +1185,8 @@
             "Krainer",
             null,
             null,
-            null,
-            null,
+            "Bundesratsfraktion der ÖVP (V)",
+            "Steiermark",
             "/person/953"
         ],
         [
@@ -1224,6 +1199,7 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Dr. Otto Kranzlmayr",
+                "fraktionen": "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -1404,6 +1380,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Innviertel, Oberösterreich",
                 "pad_intern": 962,
                 "medien": [
                     2100775
@@ -1419,8 +1396,8 @@
             "Kranzlmayr",
             "Dr. iur.",
             null,
-            null,
-            null,
+            "Klub der Österreichischen Volkspartei (V), Klub der Österreichischen Volkspartei; Parlamentsklub der Österreichischen Volkspartei (V), Parlamentsklub der Österreichischen Volkspartei (V)",
+            "Innviertel, Oberösterreich",
             "/person/962"
         ],
         [
@@ -1433,6 +1410,7 @@
             "[\"ÖVP\"]",
             {
                 "zit": "Sebastian Kurz",
+                "fraktionen": "Parlamentsklub der Österreichischen Volkspartei (V)",
                 "item_type": "Biogr",
                 "frak": [
                     "ÖVP"
@@ -1658,6 +1636,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Bundeswahlvorschlag, Wien Süd-West",
                 "pad_intern": 65321,
                 "medien": [
                     20178605
@@ -1673,12 +1652,12 @@
             "Kurz",
             null,
             null,
-            null,
-            null,
+            "Parlamentsklub der Österreichischen Volkspartei (V)",
+            "Bundeswahlvorschlag, Wien Süd-West",
             "/person/65321"
         ],
         [
-            "Kurz Susanne, Mag.",
+            "Kurz Susanne, Mag. (bis 18.8.2012: Mag. Susanne Neuwirth)",
             "BR",
             654751,
             "W",
@@ -1687,6 +1666,7 @@
             "[\"SPÖ\"]",
             {
                 "zit": "Mag. Susanne Kurz",
+                "fraktionen": "Bundesratsfraktion der SPÖ (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SPÖ"
@@ -1824,6 +1804,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Salzburg",
                 "pad_intern": 21150,
                 "medien": [
                     5904049
@@ -1832,19 +1813,15 @@
                     "description": "Mitglied des Bundesrates, SPÖ",
                     "image": "/dokument/bild/59040/5904049_500.jpg"
                 },
-                "aktiv": false,
-                "nrbr_praes": [
-                    "PB",
-                    "SPB"
-                ]
+                "aktiv": false
             },
             "J",
             "Susanne",
             "Kurz",
             "Mag. phil.",
             null,
-            null,
-            null,
+            "Bundesratsfraktion der SPÖ (S)",
+            "Salzburg",
             "/person/21150"
         ],
         [
@@ -1857,6 +1834,7 @@
             "[\"CSP\"]",
             {
                 "zit": "Rudolf Manhalter",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -1946,6 +1924,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Viertel unterm Wienerwald",
                 "pad_intern": 1046,
                 "medien": [
                     2100688
@@ -1961,8 +1940,8 @@
             "Manhalter",
             null,
             null,
-            null,
-            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+            "Viertel unterm Wienerwald",
             "/person/1046"
         ],
         [
@@ -1975,6 +1954,7 @@
             "[\"SdP\"]",
             {
                 "zit": "Karl Pick",
+                "fraktionen": "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
                 "item_type": "Biogr",
                 "frak": [
                     "SdP"
@@ -2137,6 +2117,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Wien Nordost",
                 "pad_intern": 1203,
                 "medien": [
                     2100190
@@ -2152,8 +2133,8 @@
             "Pick",
             null,
             null,
-            null,
-            null,
+            "Verband der Sozialdemokratischen Abgeordneten zum Nationalrat Deutschösterreichs (S), Verband der Sozialdemokratischen Abgeordneten zum Nationalrat (S), Sozialdemokratische Vereinigung (S)",
+            "Wien Nordost",
             "/person/1203"
         ],
         [
@@ -2166,6 +2147,7 @@
             "[\"CSP\"]",
             {
                 "zit": "Vinzenz Strohmaier",
+                "fraktionen": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
                 "item_type": "Biogr",
                 "frak": [
                     "CSP"
@@ -2219,6 +2201,7 @@
                         }
                     ]
                 },
+                "wahlkreise": "Mittel- und Untersteier",
                 "pad_intern": 1920,
                 "openGraph": {
                     "description": "Abgeordneter zum Nationalrat (IV. GP), CSP",
@@ -2231,9 +2214,92 @@
             "Strohmaier",
             null,
             null,
-            null,
-            null,
+            "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente (C)",
+            "Mittel- und Untersteier",
             "/person/1920"
+        ],
+        [
+            "Viertler Wolfgang, Dr.",
+            "BR",
+            31028341,
+            "M",
+            "Männlich",
+            "XXVIII",
+            "[\"FPÖ\"]",
+            {
+                "zit": "Dr. Wolfgang Viertler",
+                "fraktionen": "Freiheitliche Bundesratsfraktion (F)",
+                "item_type": "Biogr",
+                "frak": [
+                    "FPÖ"
+                ],
+                "geschlecht": "M",
+                "gp_code": [
+                    "BR"
+                ],
+                "nr_gp_code": "XXVIII",
+                "uri": "/person/39606",
+                "mandate_detail": [
+                    {
+                        "wahlkreis_bundesland": "Salzburg",
+                        "wahlpartei_code": "FPÖ",
+                        "fraktionscode": "F",
+                        "gp_von": "1945-12-19T00:00:00",
+                        "wahlpartei_full_txt": "Freiheitliche Partei Österreichs (FPÖ)",
+                        "gp_code": "BR",
+                        "mandat_von": "25.03.2026",
+                        "gremium_name": "Bundesrat",
+                        "wahlpartei_txt": "Freiheitliche Partei Österreichs",
+                        "gp_text_full_short": "ab 19.12.1945: Bundesrat",
+                        "wahlkreis_code": "Z5",
+                        "mand_code": "BR",
+                        "wahlpartei_sort": "Freiheitliche Partei Oesterreichs",
+                        "wahlkreis": "Salzburg",
+                        "fraktion": "Freiheitliche Bundesratsfraktion"
+                    }
+                ],
+                "name_nvg": "Viertler Wolfgang, Dr.",
+                "mandate_kompakt": {
+                    "bez": "Politische Mandate/Funktionen",
+                    "mandate": [
+                        {
+                            "funktion": "BR",
+                            "gremium": "BR",
+                            "funktion_von": "25.03.2026",
+                            "wahlpartei_text": "Freiheitliche Partei Österreichs",
+                            "mandatVon": "25.03.2026",
+                            "wahlkreis": "In den Bundesrat entsendet vom Salzburger Landtag",
+                            "zeitraum": "25.03.2026-",
+                            "bez": "Mitglied des Bundesrates, FPÖ",
+                            "mandat": "Mitglied des Bundesrates",
+                            "klub": "Freiheitliche Bundesratsfraktion",
+                            "mandatBis": "",
+                            "funktion_bis": "",
+                            "wahlpartei": "FPÖ",
+                            "aktiv": true,
+                            "funktion_text": "Mitglied des Bundesrates"
+                        }
+                    ]
+                },
+                "wahlkreise": "Salzburg",
+                "pad_intern": 39606,
+                "medien": [
+                    20180454
+                ],
+                "openGraph": {
+                    "description": "Mitglied des Bundesrates, FPÖ",
+                    "image": "/dokument/bild/201804/20180454_500.jpg"
+                },
+                "aktiv": true
+            },
+            null,
+            "Wolfgang",
+            "Viertler",
+            "Dr.",
+            null,
+            "Freiheitliche Bundesratsfraktion (F)",
+            "Salzburg",
+            "/person/39606"
         ]
     ]
 }

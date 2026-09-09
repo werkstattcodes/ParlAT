@@ -1,0 +1,393 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Schmidt Michaela, MMag.",
+        "generationTime": "Fri Mar 20 10:30:33 UTC 2026",
+        "lang": "de",
+        "title": "Schmidt Michaela, MMag. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/201546/20154683_500.jpg",
+            "title": "Schmidt Michaela, MMag. | Parlament Österreich",
+            "description": "Abgeordnete zum Nationalrat (XXVII.-XXVIII. GP), SPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "MMag. Michaela Schmidt",
+            "title_plain": "MMag. Michaela Schmidt",
+            "titleSuffix": "(aktiv)",
+            "ebene": 1
+        },
+        "banner": {
+            "mandate": [
+                {
+                    "funktion_text": "Staatssekretärin im Bundesministerium für Wohnen, Kunst, Kultur, Medien und Sport",
+                    "mandat": "Staatssekretärin im Bundesministerium für Wohnen, Kunst, Kultur, Medien und Sport",
+                    "klub": null,
+                    "wahlkreis": null,
+                    "wahlpartei": null,
+                    "wahlpartei_text": null,
+                    "gremium": "STS",
+                    "funktion": "STS",
+                    "bez": "Staatssekretärin im Bundesministerium für Wohnen, Kunst, Kultur, Medien und Sport",
+                    "mandatVon": "02.04.2025",
+                    "mandatBis": "",
+                    "funktion_von": "02.04.2025",
+                    "funktion_bis": "",
+                    "zeitraum": "02.04.2025-",
+                    "aktiv": true
+                }
+            ],
+            "stand": "2025-03-19T17:19:57",
+            "socialMedia": [
+
+            ],
+            "portrait": {
+                "src": "/dokument/bild/201546/20154683_384.jpg",
+                "alt": "Portraitfoto von MMag. Michaela Schmidt",
+                "bildId": 20154683,
+                "copyright": "BKA/Andy Wenzel"
+            },
+            "type": "Parlamentarier"
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 25188,
+            "aktiv": true
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "KONTAKT",
+                "label": "Kontakt",
+                "selected": false
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            },
+            {
+                "id": "UNVTRANS",
+                "label": "Transparenz",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordnete zum Nationalrat",
+                        "mandat": "Abgeordnete zum Nationalrat",
+                        "klub": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                        "wahlkreis": "Bundeswahlvorschlag",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordnete zum Nationalrat (XXVII.-XXVIII. GP), SPÖ",
+                        "mandatVon": "20.09.2023",
+                        "mandatBis": "06.03.2025",
+                        "funktion_von": "20.09.2023",
+                        "funktion_bis": "06.03.2025",
+                        "aktiv": false,
+                        "zeitraum": "20.09.2023-06.03.2025"
+                    },
+                    {
+                        "funktion_text": "Staatssekretärin im Bundesministerium für Wohnen, Kunst, Kultur, Medien und Sport",
+                        "mandat": "Staatssekretärin im Bundesministerium für Wohnen, Kunst, Kultur, Medien und Sport",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "STS",
+                        "funktion": "STS",
+                        "bez": "Staatssekretärin im Bundesministerium für Wohnen, Kunst, Kultur, Medien und Sport",
+                        "mandatVon": "02.04.2025",
+                        "mandatBis": "",
+                        "funktion_von": "02.04.2025",
+                        "funktion_bis": "",
+                        "zeitraum": "02.04.2025-",
+                        "aktiv": true
+                    },
+                    {
+                        "funktion_text": "Staatssekretärin im Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport",
+                        "mandat": "Staatssekretärin im Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "STS",
+                        "funktion": "STS",
+                        "bez": "Staatssekretärin im Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport",
+                        "mandatVon": "03.03.2025",
+                        "mandatBis": "02.04.2025",
+                        "funktion_von": "03.03.2025",
+                        "funktion_bis": "02.04.2025",
+                        "aktiv": false,
+                        "zeitraum": "03.03.2025-02.04.2025"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 1983",
+                "beruflicherWerdegang": [
+                    "Leiterin der Abteilung Wirtschaft, Arbeiterkammer Salzburg  seit 2019",
+                    "Referentin Abteilung Wirtschaft, Arbeiterkammer Salzburg 2014-2019",
+                    "Referentin Abteilung Wirtschaft, Arbeiterkammer Oberösterreich 2007-2014"
+                ],
+                "bildungsweg": [
+                    "Diplomstudium der Wirtschaftswissenschaften an der JKU Linz (Mag.) 2005-2008",
+                    "Diplomstudium der Wirtschaftsinformatik an der JKU Linz (Mag.) 2002-2007",
+                    "Christian Doppler Gymnasium Salzburg 1994-2002",
+                    "Volksschule Liefering 1 1990-1994"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Bundesparteipräsidiums der SPÖ seit 12.11.2023",
+                    "Mitglied des Bundesparteivorstandes der SPÖ seit 12.11.2023",
+                    "Mitglied des Landesparteipräsidiums der SPÖ Salzburg seit 2017",
+                    "Mitglied des Landesparteivorstandes der SPÖ Salzburg seit 2017",
+                    "Mitglied des Bezirksparteipräsidiums der SPÖ Salzburg seit 2017",
+                    "Mitglied des Bezirksparteivorstandes der SPÖ Salzburg seit 2017",
+                    "SPÖ Bildung Salzburg, Landesvorsitzende seit 2022",
+                    "SPÖ Bildung Mitglied Präsidium seit 2022",
+                    "Bund Sozialdemokratischer FreiheitskämpferInnen Salzburg seit 2020"
+                ],
+                "sonstiges": "<p>2016-2019 Präsidiumsmitglied im Österreichischen Faustballbund<\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                25188
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "kontakt": {
+            "verantwortlich": "mandatar",
+            "mail": [
+                "michaela.schmidt@bmwkms.gv.at"
+            ],
+            "anschrift": [
+                "Bundesministerium für Wohnen, Kunst, Kultur, Medien und Sport<br>Radetzkystraße 2<br>1030 Wien"
+            ],
+            "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden.",
+            "parentid": "biografietabs",
+            "tabid": "KONTAKT"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                25188
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                25188
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "unvtrans": {
+            "einleitung-BReg": "Hier finden Sie die von Mitgliedern der Bundesregierung bzw. Staatssekretärinnen und Staatssekretären nach § 2 Abs. 3a Unvereinbarkeits- und Transparenz-Gesetz in Verbindung mit § 9 Bundesverfassungsgesetz über die Begrenzung von Bezügen öffentlicher Funktionäre zu veröffentlichenden leitenden ehrenamtlichen Tätigkeiten.",
+            "header-BReg": "Liste gemäß § 9 BezBegrBVG - Bundesregierung/StS",
+            "unvtransData-BReg": {
+                "z3Table": {
+                    "rendertype": "table",
+                    "data": {
+                        "header": [
+                            {
+                                "label": "Rechtsträger",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            },
+                            {
+                                "label": "Leitende Tätigkeit",
+                                "sortable": false,
+                                "filterable": false,
+                                "hidden": false,
+                                "additionalInfo": false
+                            }
+                        ],
+                        "rows": [
+                            [
+                                "SPÖ Salzburg",
+                                "Mitglied im Präsidium und Vorstand"
+                            ],
+                            [
+                                "SPÖ Salzburg Stadt",
+                                "Mitglied des Vorstands (ab 5.7.2025 auch stv. Vorsitzende)"
+                            ],
+                            [
+                                "Bund Sozialdemokratischer FreiheitskämpferInnen Salzburg",
+                                "Mitglied des Vorstands"
+                            ],
+                            [
+                                "SPÖ Bildung ",
+                                "Mitglied des Präsidiums"
+                            ],
+                            [
+                                "SPÖ Bildung Salzburg",
+                                "Vorsitzende"
+                            ],
+                            [
+                                "SPÖ",
+                                "Mitglied im Präsidium und Vorstand, stv. Kassierin"
+                            ],
+                            [
+                                "GVV Salzburg",
+                                "Mitglied des Landesvorstands"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "UNVTRANS"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                25188
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

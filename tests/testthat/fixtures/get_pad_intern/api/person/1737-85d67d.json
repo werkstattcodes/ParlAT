@@ -1,0 +1,250 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Schmidt Erich, Dr.",
+        "generationTime": "Fri Mar 20 08:08:38 UTC 2026",
+        "lang": "de",
+        "title": "Schmidt Erich, Dr. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21010/2101019_500.jpg",
+            "title": "Schmidt Erich, Dr. | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (XVII. GP), SPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Dr. Erich Schmidt",
+            "title_plain": "Dr. Erich Schmidt",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 1737,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21010/2101019_384.jpg",
+                "alt": "Portraitfoto von Dr. Erich Schmidt",
+                "bildId": 2101019,
+                "copyright": "ungeklärt"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub der Sozialistischen Abgeordneten und Bundesräte",
+                        "wahlkreis": "Wahlkreisverband II (K, OÖ, S, St, T u V)",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialistische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XVII. GP), SPÖ",
+                        "mandatVon": "27.01.1987",
+                        "mandatBis": "20.09.1988",
+                        "funktion_von": "27.01.1987",
+                        "funktion_bis": "20.09.1988",
+                        "aktiv": false,
+                        "zeitraum": "27.01.1987-20.09.1988"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub der Sozialistischen Abgeordneten und Bundesräte",
+                        "wahlkreis": "Wahlkreisverband II (K, OÖ, S, St, T u V)",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialistische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XV.-XVI. GP), SPÖ",
+                        "mandatVon": "05.06.1979",
+                        "mandatBis": "31.05.1983",
+                        "funktion_von": "05.06.1979",
+                        "funktion_bis": "31.05.1983",
+                        "aktiv": false,
+                        "zeitraum": "05.06.1979-31.05.1983"
+                    },
+                    {
+                        "funktion_text": "Bundesminister für Land- und Forstwirtschaft",
+                        "mandat": "Bundesminister für Land- und Forstwirtschaft",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "BM",
+                        "funktion": "BM",
+                        "bez": "Bundesminister für Land- und Forstwirtschaft",
+                        "mandatVon": "16.06.1986",
+                        "mandatBis": "21.01.1987",
+                        "funktion_von": "16.06.1986",
+                        "funktion_bis": "21.01.1987",
+                        "aktiv": false,
+                        "zeitraum": "16.06.1986-21.01.1987"
+                    },
+                    {
+                        "funktion_text": "Staatssekretär im Bundesministerium für Handel, Gewerbe und Industrie",
+                        "mandat": "Staatssekretär im Bundesministerium für Handel, Gewerbe und Industrie",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "STS",
+                        "funktion": "STS",
+                        "bez": "Staatssekretär im Bundesministerium für Handel, Gewerbe und Industrie",
+                        "mandatVon": "24.05.1983",
+                        "mandatBis": "16.06.1986",
+                        "funktion_von": "24.05.1983",
+                        "funktion_bis": "16.06.1986",
+                        "aktiv": false,
+                        "zeitraum": "24.05.1983-16.06.1986"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 14.08.1943, Wien",
+                "sterbtext": "Verst.: 28.01.2019, Wien",
+                "beruflicheTaetigkeit": "Angestellter",
+                "beruflicherWerdegang": [
+                    "Leiter derselben 1976",
+                    "Tätigkeit in der Volkswirtschaftlichen Abteilung des Österreichischen Gewerkschaftsbundes 1970"
+                ],
+                "bildungsweg": [
+                    "Institut für Höhere Studien und Wissenschaftliche Forschung",
+                    "Universität Wien",
+                    "Bundesrealgymnasium (Matura 1961)",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Beirates für Wirtschafts- und Sozialpolitik",
+                    "Kammerrat der Kammer für Arbeiter und Angestellte für Wien 1975",
+                    "Obmannstellvertreter des Klubs der Sozialistischen Abgeordneten und Bundesräte"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1737
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1737
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1737
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

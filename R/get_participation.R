@@ -29,7 +29,7 @@
 #' * `support`: Number of supporters
 #' * `ministry`: Responsible ministry
 #'
-#' Returns NULL if no results are found for the provided search criteria.
+#' Returns a zero-row tibble with the documented columns if no results are found.
 #'
 #' @details
 #' This function sends a request to the Austrian Parliament's API to retrieve participation data based on the provided filter criteria. It performs input validation for each parameter and constructs the API request accordingly.
@@ -103,6 +103,20 @@
 #' )
 #' dplyr::glimpse(result)
 #'
+#' # Get all ministerial drafts (Ministervorlagen) from legislative period 28
+#' # and their number of submitted statements
+#' get_participation(item = "ME", legis_period = 28) |>
+#'   dplyr::select(
+#'     legis_period, date, item_id, item, title, statements
+#'   )
+#'
+#' # Get statements submitted on ministerial drafts
+#' result <- get_participation(
+#'   item = "SN",
+#'   statement_type = "SNME"
+#' )
+#' dplyr::glimpse(result)
+#'
 #' # Get participation data on legislative initiatives with specific initiative type
 #' result <- get_participation(
 #'   item = "RGES",
@@ -144,7 +158,7 @@ get_participation <- function(
     "Verkehr und Infrastruktur",
     "Wirtschaft"
   )
-  checkmate::assert_subset(topic, choices_topic, empty.ok = T)
+  checkmate::assert_subset(topic, choices_topic, empty.ok = TRUE)
 
   #LEGIS PERIOD
   legis_period <- purrr::map_chr(
@@ -170,7 +184,7 @@ get_participation <- function(
   #INITIATIVE_TYPE (DOKTYPE/ART DER GESETZESINITATIVE)
   # Only allowed when item = "RGES"
   if (!is.null(initiative_type) && (is.null(item) || !("RGES" %in% item))) {
-    stop("initiative_type can only be specified when item = \"RGES\"")
+    cli::cli_abort('initiative_type can only be specified when item = "RGES"')
   }
 
   choices_initiative_type <- c("A", "BUA", "RV")
@@ -187,7 +201,7 @@ get_participation <- function(
   #STATEMENT_TYPE (SNTYP/ART DER STELLUNGNAHME)
   # Only allowed when item = "SN"
   if (!is.null(statement_type) && (is.null(item) || !("SN" %in% item))) {
-    stop("statement_type can only be specified when item = \"SN\"")
+    cli::cli_abort('statement_type can only be specified when item = "SN"')
   }
 
   choices_statement_type <- c("SNME", "SN", "SPET", "SPET-BR", "SBI")
@@ -228,37 +242,24 @@ get_participation <- function(
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-      `content-type` = "application/json",
-      cookie = "JSESSIONID=6SuuP4uN67Tzfy5YSSTebU_drcVJsXaonUCi2Ip2.appsrv05e; JSESSIONID=D5_fJZPk36M3KGFa5uvK-d3ze_hVKvOXxYHz-fZ2.appsrv04e; JSESSIONID=9-oz4HlqNiskyx82nuyPCA_jV-I4j7LaDQE6nxlz.appsrv06e; pddsgvo=j; _pk_id.1.26ca=7fce6f38a899aedc.1706609353.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1725286623%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.1.26ca=1",
-      dnt = "1",
-      origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+      origin = "https://www.parlament.gv.at"
     ) %>%
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
+    httr2::req_retry(max_tries = 3) %>%
     httr2::req_body_raw(body_params, "application/json") %>%
     httr2::req_perform()
 
   vec_headings <- res %>%
-    httr2::resp_body_json(simplifyVector = T) %>%
+    httr2::resp_body_json(simplifyVector = TRUE) %>%
     purrr::pluck("header", "label") %>%
     stringr::str_to_snake() %>%
     make.unique(sep = "_")
 
   # extract the actual substantive data
   df_res <- res %>%
-    httr2::resp_body_json(simplifyVector = T) %>%
+    httr2::resp_body_json(simplifyVector = TRUE) %>%
     purrr::pluck("rows") %>%
     as.data.frame()
-
-  checkmate::assert_data_frame(df_res, min.rows = 1)
-
-  if (length(df_res) == 0) {
-    message("No results found for the provided search criteria.")
-    return(NULL)
-  }
-
-  #assign column names
-  colnames(df_res) <- vec_headings
 
   #assign more meaningful col names/translate
 
@@ -279,15 +280,20 @@ get_participation <- function(
     "ressort" = "ministry"
   )
 
-  df_res <- df_res %>%
-    dplyr::rename_with(
-      .fn = \(x) renaming_map[x],
-      .cols = any_of(names(renaming_map))
-    )
+  if (NROW(df_res) == 0 || length(df_res) == 0) {
+    cli::cli_inform("No results found for the provided search criteria.")
+    return(.parlat_empty_tibble(unname(renaming_map), date_cols = "date"))
+  }
+
+  #assign column names
+  colnames(df_res) <- vec_headings
+
+  df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
   df_res <- df_res %>%
     dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
-    dplyr::mutate(date = lubridate::dmy(date))
+    dplyr::mutate(date = lubridate::dmy(date)) %>%
+    tibble::as_tibble()
 
   return(df_res)
 }

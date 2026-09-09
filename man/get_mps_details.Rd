@@ -40,7 +40,7 @@ See Details section for valid committee names.}
 \item{committee_position}{Character string specifying the committee position (optional). Only if \code{detail_type == "committees"}.
 Common values include "Mitglied", "Vorsitzende/r", "Stellvertretende/r Vorsitzende/r".}
 
-\item{echo}{Logical indicating whether to print the API request and response details. Defaults to TRUE.}
+\item{echo}{Logical indicating whether to print the URL to the corresponding results on the Parliament website and the number of results. Defaults to TRUE.}
 }
 \value{
 A data frame containing the requested MP details. The structure depends on the

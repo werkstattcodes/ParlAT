@@ -1,3 +1,20 @@
+#' Zero-row tibble matching the stable columns of get_mandates()
+#' @noRd
+.empty_mandates_tibble <- function() {
+  .parlat_empty_tibble(
+    c(
+      "pad_intern", "name", "position_text", "position_code",
+      "position_name", "position_date_start", "position_date_end",
+      "position_active", "parl_group", "party", "party_name", "substitute",
+      "electoral_district_region_code", "electoral_district_region",
+      "legis_period", "url_biography"
+    ),
+    date_cols = c("position_date_start", "position_date_end"),
+    lgl_cols = "position_active",
+    list_cols = "legis_period"
+  )
+}
+
 #' @title Get mandates single mandate
 #' @description
 #' Auxiliary function which retrieves mandates for a single person. Is used internally
@@ -8,22 +25,21 @@
 #' @return A dataframe.
 #'
 get_mandates_single <- function(pad_intern) {
-  link_file_json <- glue::glue(
-    "https://www.parlament.gv.at/person/{pad_intern}?json=TRUE"
+  link_person <- glue::glue(
+    "https://www.parlament.gv.at/person/{pad_intern}"
   )
 
+  # fetched via httr2 so httptest2 can intercept and record the request
   file_json <- tryCatch(
     {
-      jsonlite::read_json(link_file_json)
+      json_text <- .parlat_fetch_detail_json_text(link_person)
+      .parlat_parse_detail_json(json_text, simplifyVector = FALSE)$data
     },
-    error = function(e) {
-      #warning(paste("Error reading JSON from URL:", e$message))
-      return(NULL)
-    }
+    error = function(e) NULL
   )
 
   if (is.null(file_json)) {
-    print(glue::glue("No data found for pad_intern {pad_intern}."))
+    cli::cli_inform("No data found for pad_intern {pad_intern}.")
     return(NULL)
   }
 
@@ -90,6 +106,9 @@ get_mandates_single <- function(pad_intern) {
 #' - `electoral_district_region`: Electoral district region name
 #' - `legis_period`: Legislative period(s) (list-column)
 #' - `url_biography`: URL to the person's biography page
+#'
+#'   When no mandates match, a zero-row tibble with the same columns and
+#'   column types is returned.
 #' @export
 #' @seealso [get_names()], [get_pad_intern()]
 #' @examples
@@ -101,17 +120,17 @@ get_mandates_single <- function(pad_intern) {
 #'   result <- get_mandates(c("Pia Philippa Strache"))
 #'   dplyr::glimpse(result)
 #'
-#'   # Michael Pöck changed name to Michael Bernhard.
+#'   # Michael Pock changed name to Michael Bernhard.
 #'   result <- get_names(pad_intern = "83124")
 #'   dplyr::glimpse(result)
 #'
-#'   # Query for Micheal Pöck returns all results under the name
-#'   # Michael Bernhard, even for periods where Michael Pöck was still valid.
-#'   result <- get_mandates(name = "Michael Pöck")
+#'   # Query for Michael Pock returns all results under the name
+#'   # Michael Bernhard, even for periods where Michael Pock was still valid.
+#'   result <- get_mandates(name = "Michael Pock")
 #'   dplyr::glimpse(result)
 #'
 #'   # Query for Michael Bernhard returns all results,
-#'   # including for those with the name Michael Pöck.
+#'   # including for those with the name Michael Pock.
 #'   result <- get_mandates(name = "Michael Bernhard")
 #'   dplyr::glimpse(result)
 #' }
@@ -160,12 +179,12 @@ get_mandates <- function(
     return(df_res)
   }
 
-  if (is.null(pad_intern) && !is.na(name)) {
+  if (is.null(pad_intern) && !is.null(name)) {
     df_persons <- get_pad_intern(name)
 
     if (is.null(df_persons) || nrow(df_persons) == 0) {
-      message("No mandates found.")
-      return(NULL)
+      cli::cli_inform("No mandates found.")
+      return(.empty_mandates_tibble())
     } else {
       pad_intern <- df_persons$pad_intern
     }
@@ -175,7 +194,7 @@ get_mandates <- function(
   pad_intern_unique <- unique(pad_intern)
 
   if (length(pad_intern_unique) != length(pad_intern)) {
-    print("Duplicate pad_interns removed")
+    cli::cli_inform("Duplicate pad_interns removed.")
   }
 
   pb_id <- cli::cli_progress_bar(
@@ -197,8 +216,9 @@ get_mandates <- function(
   df_res <- purrr::list_rbind(li_res) %>%
     dplyr::as_tibble()
 
-  if (is.null(df_res) | nrow(df_res) == 0) {
-    return(NULL)
+  if (is.null(df_res) || nrow(df_res) == 0) {
+    cli::cli_inform("No mandates found.")
+    return(.empty_mandates_tibble())
   }
 
   #filter by date
@@ -224,6 +244,17 @@ get_mandates <- function(
           .default = .data$funktion_bis
         )
       )
+  }
+
+  if (nrow(df_res) == 0) {
+    return(.empty_mandates_tibble())
+  }
+
+  optional_source_columns <- c(
+    "klub", "wahlpartei", "wahlpartei_text", "eingetreten_txt", "wahlkreis"
+  )
+  for (col in setdiff(optional_source_columns, names(df_res))) {
+    df_res[[col]] <- rep(NA_character_, nrow(df_res))
   }
 
   # return(df_res)
@@ -275,11 +306,7 @@ get_mandates <- function(
     "eingetreten_txt" = "substitute"
   )
 
-  df_res <- df_res %>%
-    dplyr::rename_with(
-      .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-      .cols = any_of(names(renaming_map))
-    )
+  df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
   #add link to biography as means to check source
   df_res <- df_res %>%
@@ -289,6 +316,11 @@ get_mandates <- function(
         .data$pad_intern
       )
     )
+
+  df_res <- .parlat_match_tibble_prototype(
+    df_res,
+    .empty_mandates_tibble()
+  )
 
   # # only institution of interest
   if (!is.null(institution)) {
@@ -318,8 +350,8 @@ get_mandates <- function(
     }
 
     if (nrow(df_res) == 0) {
-      print(glue::glue("No mandates found for institution {institution}."))
-      return(NULL)
+      cli::cli_inform("No mandates found for institution {institution}.")
+      return(.empty_mandates_tibble())
     }
 
     return(df_res)
@@ -353,7 +385,17 @@ get_mandates <- function(
 get_pad_intern <- function(name) {
   checkmate::assert_character(name, len = 1)
 
-  pad_intern_mps <- get_mps(search_string = name, echo = FALSE)
+  name_search <- aux_clean_person_name(name)
+  if (is.na(name_search) || !nzchar(name_search)) {
+    name_search <- name
+  }
+
+  pad_intern_mps <- get_mps(search_string = name_search, echo = FALSE)
+
+  if (is.null(pad_intern_mps) || nrow(pad_intern_mps) == 0) {
+    cli::cli_inform("No person found for name {.val {name}}.")
+    return(.parlat_empty_tibble(c("pad_intern", "names_variants")))
+  }
 
   if (!is.null(pad_intern_mps) && nrow(pad_intern_mps) > 0) {
     pad_intern_mps <- pad_intern_mps %>%
@@ -369,7 +411,10 @@ get_pad_intern <- function(name) {
     pad_interns_scope <- res %>%
       dplyr::filter(stringr::str_detect(
         .data$names_previous_name_clean,
-        stringr::regex(paste0("\\b", {{ name }}, "\\b"), ignore_case = FALSE)
+        stringr::regex(
+          paste0("\\b", {{ name_search }}, "\\b"),
+          ignore_case = FALSE
+        )
       )) %>%
       dplyr::pull("pad_intern") %>%
       unique()

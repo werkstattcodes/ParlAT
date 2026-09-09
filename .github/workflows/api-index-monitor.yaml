@@ -1,0 +1,57 @@
+# Daily canary check for the parlament.gv.at search index (see issue #33).
+#
+# The filter API's index lost records around 2026-07-17: a closed historical
+# date window (Jan-Mar 2024) whose stable count is 2526 dropped to fluctuating
+# values. While degraded, count-sensitive live tests skip themselves via
+# skip_if_api_index_degraded() in tests/testthat/helper-mock.R (same canary
+# query and threshold as here). This workflow watches for recovery and posts a
+# comment on the tracking issue when the count is back to normal, so the issue
+# can be closed and the live tests are known to be meaningful again.
+#
+# Note: scheduled workflows only run from the default branch; use manual
+# dispatch until this reaches master.
+on:
+  schedule:
+    # Run daily at 5:00 UTC
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+name: API Index Monitor
+
+permissions:
+  issues: write
+
+jobs:
+  check-index:
+    runs-on: ubuntu-latest
+
+    env:
+      TRACKING_ISSUE: '33'
+      THRESHOLD: '2400'
+
+    steps:
+      - name: Check canary count
+        id: canary
+        run: |
+          count=$(curl -s --max-time 60 -X POST \
+            "https://www.parlament.gv.at/Filter/api/filter/data/101?js=eval&page=1&pagesize=1" \
+            -H "content-type: application/json;charset=UTF-8" \
+            -H "origin: https://www.parlament.gv.at" \
+            --data-raw '{"DATUM_VON":["2024-01-01T00:00:00.000Z","2024-03-01T00:00:00.000Z"]}' \
+            | jq -r '.count // empty')
+          echo "count=${count:-0}" >> "$GITHUB_OUTPUT"
+          echo "Canary count: ${count:-unavailable} (healthy: >= $THRESHOLD)"
+
+      - name: Comment on tracking issue if recovered
+        if: ${{ fromJSON(steps.canary.outputs.count) >= fromJSON(env.THRESHOLD) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COUNT: ${{ steps.canary.outputs.count }}
+        run: |
+          state=$(gh issue view "$TRACKING_ISSUE" --repo "$GITHUB_REPOSITORY" --json state -q .state)
+          if [ "$state" = "OPEN" ]; then
+            gh issue comment "$TRACKING_ISSUE" --repo "$GITHUB_REPOSITORY" --body \
+              "The parlament.gv.at search index appears to have recovered: the canary query (closed window Jan-Mar 2024) returned **$COUNT** rows (healthy reference: 2526, threshold: $THRESHOLD). Count-sensitive live tests will resume automatically via \`skip_if_api_index_degraded()\`. This issue can likely be closed after the next green Live API Tests run."
+          else
+            echo "Issue #$TRACKING_ISSUE already closed; nothing to do."
+          fi

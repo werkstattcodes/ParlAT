@@ -1,16 +1,56 @@
+#' @noRd
+.plenary_meetings_website_url <- function(
+    institution,
+    meeting_and_activities_input,
+    legis_period_input,
+    tagungsart_input,
+    sitzungsart_input
+) {
+    website_periods <- if (length(legis_period_input) > 0L) {
+        legis_period_input
+    } else {
+        .parlat_all_legis_period_codes()
+    }
+
+    query_params <- c(
+        paste0("PLENAR_701GREMIUM=", institution),
+        if (!is.null(meeting_and_activities_input)) {
+            paste0("PLENAR_701SIAKT=", meeting_and_activities_input)
+        },
+        paste0("PLENAR_701GP_CODE=", website_periods),
+        if (!is.null(tagungsart_input)) {
+            paste0("PLENAR_701TAGUNGSART=", tagungsart_input)
+        },
+        if (!is.null(sitzungsart_input)) {
+            paste0("PLENAR_701SITZUNGSART=", sitzungsart_input)
+        }
+    )
+
+    paste0(
+        "https://www.parlament.gv.at/recherchieren/plenarsitzungen?",
+        paste(query_params, collapse = "&")
+    )
+}
+
 #' @title Get Data on Plenary Meetings of the Austrian Parliament
 #'
 #' @description
 #' Retrieves information about plenary meetings from the Austrian Parliament's API (see <a href="https://www.parlament.gv.at/recherchieren/plenarsitzungen/index.html" target="_blank" rel="noopener">here</a>).
-#' Data available from 20th legislative period onwards.
+#' Explicit period filters are available from the 20th legislative period
+#' onwards. With `legis_period = NULL`, the API returns all available periods.
 #'
 #' @param institution A character string specifying the institution. "BR" (Bundesrat/Federal Council), "NR" (Nationalrat/National Council), or "BV" (Bundesversammlung/Federal Assembly).
-#' @param legis_period Numeric value or vector specifying the legislative period(s). Can also be NULL to retrieve all periods from 20th onwards. **Must be NULL when institution is "BV"** (Bundesversammlung does not use legislative periods).
+#' @param legis_period Numeric value or vector specifying the legislative
+#'   period(s). Explicit filters are supported from the 20th period onwards.
+#'   `NULL` retrieves all available periods, including periods before the 20th
+#'   and the historical codes `"KN"` and `"PN"`. It must be `NULL` when
+#'   `institution = "BV"` because the Bundesversammlung does not use
+#'   legislative periods.
 #' @param meeting_and_activities A character string. One of 'meetings' or 'activities'. 'meetings' returns plenary meeting entries; 'activities' returns parliamentary items submitted or acted upon in meetings. Not applicable when institution is "BV" (Bundesversammlung); must be NULL for BV institution.
 #' @param session_type A character string or vector. Filter by meeting period type. Permissible values: `"N"` (Ordentliche Tagung / Ordinary session), `"A"` (Ausserordentliche Tagung / Extraordinary session). Can be NULL to retrieve all meeting period types. Not applicable when institution is "BV".
 #' @param meeting_type A character string or vector. Filter by sitting type. Permissible values: `"S"` (Sitzung / Regular sitting), `"SO"` (Sondersitzung / Special sitting), `"ZU"` (Zuweisungssitzung / Assignment sitting), `"N"` (Nachtrag / Addendum). Can be NULL to retrieve all sitting types. Only applicable when `meeting_and_activities = "meetings"`.
-#' @param echo Logical. If `TRUE`, prints the API request body parameters and the number of results. Default is `FALSE`.
-#' @return A data frame containing plenary meeting details, or NULL if no results found. The structure depends on the `meeting_and_activities` parameter:
+#' @param echo Logical. If `TRUE`, prints the URL to the corresponding search on the Parliament website, pagination progress, and the number of results. Default is `FALSE`.
+#' @return A tibble containing plenary meeting details (zero rows if no results are found). The structure depends on the `meeting_and_activities` parameter:
 #'
 #' If *`meeting_and_activities = "meetings"`*:
 #' - `institution`: parliamentary institution (e.g., "NR", "BR")
@@ -100,7 +140,7 @@ get_plenary_meetings <- function(
 
     # BV constraint: legis_period must be NULL
     if (institution == "BV" && !is.null(legis_period)) {
-        stop(
+        cli::cli_abort(
             "legis_period must be NULL for institution 'BV'. Filtering by legislative period is not supported for 'Bundesversammlung'."
         )
     }
@@ -116,12 +156,10 @@ get_plenary_meetings <- function(
             })
             if (!all(is_valid_format)) {
                 invalid_values <- legis_period[!is_valid_format]
-                stop(
-                    "Invalid legislative period(s) provided: ",
-                    paste(invalid_values, collapse = ", "),
-                    ". Permissible inputs are numeric values (e.g., 27) or Roman numerals (e.g., 'XXVII').",
-                    call. = FALSE
-                )
+                cli::cli_abort(c(
+                    "Invalid legislative period{?s} provided: {.val {invalid_values}}.",
+                    "i" = "Permissible inputs are numeric values (e.g., 27) or Roman numerals (e.g., 'XXVII')."
+                ))
             }
 
             legis_period_numeric <- aux_convert_legis_periods(
@@ -131,12 +169,8 @@ get_plenary_meetings <- function(
                 as.numeric()
 
             if (any(legis_period_numeric < 20)) {
-                stop(
-                    "Only data from the 20th legislative period onwards can be queried. ",
-                    "You provided: ",
-                    paste(legis_period, collapse = ", "),
-                    ".",
-                    call. = FALSE
+                cli::cli_abort(
+                    "Only data from the 20th legislative period onwards can be queried. You provided: {.val {legis_period}}."
                 )
             }
 
@@ -212,34 +246,18 @@ get_plenary_meetings <- function(
 
     body_params <- jsonlite::toJSON(body_list, auto_unbox = TRUE)
 
-    # BUILD REFERER URL — mirrors the website's filter URL pattern so the
-    # server can identify the request as originating from the search page.
-    # Multiple GP_CODE values produce repeated params: GP_CODE=XXVI&GP_CODE=XXVII
-    referer_url <- paste0(
-        "https://www.parlament.gv.at/recherchieren/plenarsitzungen/?",
-        paste(
-            c(
-                paste0("PLENAR_701GREMIUM=", institution),
-                if (!is.null(meeting_and_activities_input)) {
-                    paste0("PLENAR_701SIAKT=", meeting_and_activities_input)
-                },
-                if (!is.null(legis_period_input)) {
-                    paste0("PLENAR_701GP_CODE=", legis_period_input)
-                },
-                if (!is.null(tagungsart_input)) {
-                    paste0("PLENAR_701TAGUNGSART=", tagungsart_input)
-                },
-                if (!is.null(sitzungsart_input)) {
-                    paste0("PLENAR_701SITZUNGSART=", sitzungsart_input)
-                }
-            ),
-            collapse = "&"
-        )
+    # BUILD REFERER URL — explicit all-period values prevent the website from
+    # restoring its current-period default when legis_period is NULL.
+    referer_url <- .plenary_meetings_website_url(
+        institution = institution,
+        meeting_and_activities_input = meeting_and_activities_input,
+        legis_period_input = legis_period_input,
+        tagungsart_input = tagungsart_input,
+        sitzungsart_input = sitzungsart_input
     )
 
     if (isTRUE(echo)) {
-        cli::cli_inform("Request body: {body_params}")
-        cli::cli_inform("Equivalent URL: {referer_url}")
+        cli::cli_inform("Results on the Parliament website: {referer_url}")
     }
 
     # BUILD BASE REQUEST
@@ -261,8 +279,8 @@ get_plenary_meetings <- function(
             origin = "https://www.parlament.gv.at"
         ) |>
         httr2::req_body_raw(body_params, "application/json") |>
-        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)")
-
+        httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+        httr2::req_retry(max_tries = 3)
     # FETCH FIRST PAGE
     res <- base_req |> httr2::req_perform()
     res_body <- res |> httr2::resp_body_json(simplifyVector = TRUE)
@@ -282,24 +300,43 @@ get_plenary_meetings <- function(
         }
         df <- as.data.frame(rows_raw, stringsAsFactors = FALSE)
         if (ncol(df) != length(vec_headings)) {
-            stop(
-                "Column mismatch between response rows (",
-                ncol(df),
-                ") and header definitions (",
-                length(vec_headings),
-                ").",
-                call. = FALSE
+            cli::cli_abort(
+                "Column mismatch between response rows ({ncol(df)}) and header definitions ({length(vec_headings)})."
             )
         }
         colnames(df) <- vec_headings
         df
     }
 
+    # EMPTY RESULT HELPER (schema depends on the requested mode)
+    .empty_result <- function() {
+        is_meetings_mode <- (institution == "BV") ||
+            (!is.null(meeting_and_activities) &&
+                meeting_and_activities == "meetings")
+        if (is_meetings_mode) {
+            cols <- c(
+                "institution", "legis_period", "date", "meeting_number",
+                "meeting_url", "meeting_type", "meeting_title",
+                "session_type", "agenda_url_html", "agenda_url_pdf"
+            )
+            if (institution == "BV") {
+                cols <- setdiff(cols, "legis_period")
+            }
+        } else {
+            cols <- c(
+                "institution", "legis_period", "date", "title", "url_item",
+                "meeting_number", "url_meeting", "session_type",
+                "activity_type", "doc_type", "citation"
+            )
+        }
+        .parlat_empty_tibble(cols, date_cols = "date")
+    }
+
     df_page1 <- .parse_rows(res_body$rows)
 
     if (is.null(df_page1)) {
         cli::cli_inform("No results found for the provided search criteria.")
-        return(NULL)
+        return(.empty_result())
     }
 
     # PAGINATE REMAINING PAGES
@@ -326,9 +363,11 @@ get_plenary_meetings <- function(
         df_res <- df_page1
     }
 
+    df_res <- tibble::as_tibble(df_res)
+
     if (nrow(df_res) == 0) {
         cli::cli_inform("No results found for the provided search criteria.")
-        return(NULL)
+        return(.empty_result())
     }
 
     # CLIENT-SIDE SIAKT FILTER (belt-and-suspenders; server filters by array body
@@ -340,7 +379,7 @@ get_plenary_meetings <- function(
 
     if (nrow(df_res) == 0) {
         cli::cli_inform("No results found for the provided search criteria.")
-        return(NULL)
+        return(.empty_result())
     }
 
     # AGENDA HTML PARSER (extracts PDF and HTML URLs from AGENDA HTML snippet)

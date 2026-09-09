@@ -48,7 +48,7 @@ get_mps(
 
 \item{presidents_only}{Logical. If TRUE, returns only presidents. Default is FALSE}
 
-\item{echo}{Logical. If \code{TRUE}, the function prints the used search parameters and the url to the  pertaining search results on website of the Austrian Parliament.}
+\item{echo}{Logical. If \code{TRUE}, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results.}
 }
 \value{
 A dataframe containing information about the MPs. One row per MP. Important: The API returns details
@@ -69,6 +69,10 @@ Columns returned:
 \item \code{mandate_detail}: Details on mandates in Parliament at the queried period of time (not all mandates). To obtain all mandates, use \code{get_mandates()}.
 \item \code{electoral_district}: Electoral district
 }
+
+If no MPs match, the zero-row data frame has the same columns and column
+types as a non-empty result for the requested mode. In particular, \code{date}
+remains a \code{Date} column when the \code{date} argument is supplied.
 }
 \description{
 \code{get_mps()} retrieves information about Members of Parliament based on specified filter criteria.

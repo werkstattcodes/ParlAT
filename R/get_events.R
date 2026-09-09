@@ -2,14 +2,17 @@
 #'
 #' This function retrieves event data based on search parameters from the Austrian Parliament API.
 #' It mirrors the search functionality on the Austrian Parliament website at
-#' <a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">this page</a>, and additionally
+#' <a href="https://www.parlament.gv.at/aktuelles/termine/index.html" target="_blank">the 'Termine' page</a>, and additionally
 #' facilitates searches by legislative period.
 #'
 #' @param institution Character vector specifying the institution(s) to query. Must be "NR" (Nationalrat/National Council), "BR" (Bundesrat/Federal Council), or "ParlDir/Klub" ("Parliamentary Directorate/Caucus"). Can be a single value or vector for multiple institutions. NULL covers all institutions.
 #' @param event_type Optional character string indicating the event type. Must be one of the predefined event types (see Details). Default is NULL (all types).
 #' @param location Optional character string to filter events by location. Must be one of the predefined locations (see Details). Default is NULL (all locations).
-#' @param echo Logical indicating whether to print used search parameters, number of hits, and link to results on website of parliament. Default is TRUE.
-#' @param legis_period Character or numeric value of length 1, or NULL. Specifies the legislative period to search in. Only available if `date_start` and `date_end` are NULL.
+#' @param echo Logical indicating whether to print the link to the corresponding results on the Parliament website and the number of hits. Default is TRUE.
+#' @param legis_period Character or numeric value of length 1, or NULL.
+#'   Specifies the legislative period to search in. Only available if
+#'   `date_start` and `date_end` are NULL. When all three parameters are NULL,
+#'   events from all available dates are returned.
 #' @param date_start Optional character string representing the start date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.
 #' @param date_end Optional character string representing the end date in day-month-year (DMY) format (e.g., "26-10-2025", "26.10.2025", or "26/10/2025"). Default is NULL.
 #'
@@ -18,6 +21,12 @@
 #' provided.
 #'
 #' @details
+#' When `legis_period`, `date_start`, and `date_end` are all NULL, the API
+#' search is unrestricted by date. The echoed Parliament website URL derives
+#' an explicit lower date bound and availability values from the returned rows
+#' so that the website reproduces the unrestricted API results instead of
+#' applying its current-events defaults.
+#'
 #' ## event_type
 #' Allowed event types are:
 #'   - "Plenarsitzung" (Plenary Meeting)
@@ -94,7 +103,7 @@
 #'   - "Theophil Hansen | Lokal 3"
 #'   - "virtuell"
 #'
-#' @return A data frame containing event details with the following columns, or NULL if no results are found:
+#' @return A tibble containing event details with the following columns (zero rows if no results are found):
 #' - `date`: Event date (parsed as Date)
 #' - `date_time_start`: Event start date and time (parsed as POSIXct)
 #' - `date_time_end`: Event end date and time (parsed as POSIXct)
@@ -199,7 +208,7 @@ get_events <- function(
 
     #LEGIS PERIOD check
     if (!is.null(date_start) && !is.null(date_end) && !is.null(legis_period)) {
-        stop(
+        cli::cli_abort(
             "Input for `legis_period` only permissible if `date_start` and `date_end` are NULL. Choose either
             `legis_period` or dates as input, not both."
         )
@@ -333,9 +342,9 @@ get_events <- function(
         GREMIUM = institution_input,
         TERMINART = event_type,
         ORT = location
-    ) %>%
-        purrr::compact() %>%
-        jsonlite::toJSON()
+    ) |>
+        purrr::compact() |>
+        .get_events_body_to_json()
 
     req <- httr2::request(
         "https://www.parlament.gv.at/Filter/api/filter/data/600"
@@ -349,26 +358,12 @@ get_events <- function(
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-            dnt = "1",
-            origin = "https://www.parlament.gv.at",
-            priority = "u=1, i",
-            `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-            `sec-ch-ua-mobile` = "?0",
-            `sec-ch-ua-platform` = '"Windows"',
-            `sec-fetch-dest` = "empty",
-            `sec-fetch-mode` = "cors",
-            `sec-fetch-site` = "same-origin",
-            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+            origin = "https://www.parlament.gv.at"
         ) %>%
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
-        httr2::req_verbose(
-            body_req = FALSE,
-            header_req = FALSE,
-            header_resp = FALSE,
-            body_resp = FALSE,
-            info = FALSE
-        )
+        httr2::req_retry(max_tries = 3)
+
 
     resp <- httr2::req_perform(req)
 
@@ -388,33 +383,32 @@ get_events <- function(
             as.data.frame()
 
         colnames(df_res) <- vec_headings
+        df_res <- tibble::as_tibble(df_res)
     }
 
     if (isTRUE(echo)) {
-        print(body_params)
-
-        # # print url to results / transparency reasons
-        body_params_li <- jsonlite::fromJSON(body_params)
-
-        query_string <- purrr::imap(
-            body_params_li,
-            \(x, y) glue::glue("TERMIN_01{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&") %>%
-            URLencode()
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/aktuelles/termine/index.html?{query_string}"
-        ))
-
-        print(if (is.null(df_res)) 0 else nrow(df_res))
+        echo_body_params <- .get_events_echo_body(body_params, resp_json)
+        .parlat_echo_request(
+            echo_body_params,
+            url_base = "https://www.parlament.gv.at/aktuelles/termine",
+            param_prefix = "TERMIN_01",
+            n_results = if (is.null(df_res)) 0 else nrow(df_res)
+        )
     }
 
     if (is.null(df_res) || nrow(df_res) == 0) {
-        message("No results found for the provided search criteria.")
-        return(NULL)
+        cli::cli_inform("No results found for the provided search criteria.")
+        return(.parlat_empty_tibble(
+            c(
+                "date", "date_time_start", "date_time_end", "title",
+                "event_type", "location", "topic", "institution",
+                "media_relevance", "guidance_type", "group", "view",
+                "fully_booked", "registration", "livestream_url",
+                "available", "language", "link", "link2"
+            ),
+            date_cols = "date",
+            datetime_cols = c("date_time_start", "date_time_end")
+        ))
     }
 
     if ("link2" %in% colnames(df_res)) {
@@ -455,11 +449,7 @@ get_events <- function(
         "sprache" = "language"
     )
 
-    df_res <- df_res %>%
-        dplyr::rename_with(
-            .fn = \(x) renaming_map[x], # For each selected old name, get its new name from the map
-            .cols = any_of(names(renaming_map))
-        )
+    df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
     #select relevant columns
     cols_select <- c(
@@ -495,6 +485,62 @@ get_events <- function(
 }
 
 
+.get_events_body_to_json <- function(body_params) {
+    if (length(body_params) == 0L) {
+        return("{}")
+    }
+
+    jsonlite::toJSON(body_params)
+}
+
+
+.get_events_echo_body <- function(body_params, resp_json) {
+    echo_params <- jsonlite::fromJSON(body_params)
+    field_names <- purrr::pluck(resp_json, "header", "feld_name") |>
+        unlist(use.names = FALSE)
+    rows <- purrr::pluck(resp_json, "rows")
+
+    if (length(rows) == 0L || length(field_names) == 0L) {
+        return(.get_events_body_to_json(echo_params))
+    }
+
+    event_rows <- as.data.frame(rows)
+
+    if (!"DATERANGE" %in% names(echo_params)) {
+        date_index <- match("DATUM", field_names)
+        if (!is.na(date_index) && date_index <= ncol(event_rows)) {
+            event_dates <- lubridate::dmy(
+                event_rows[[date_index]],
+                quiet = TRUE
+            )
+            event_dates <- event_dates[!is.na(event_dates)]
+            if (length(event_dates) > 0L) {
+                earliest_date <- format(min(event_dates), "%d-%m-%Y")
+                echo_params$DATERANGE <- aux_transform_event_date(
+                    earliest_date,
+                    "date_start",
+                    is_end_date = FALSE
+                )
+            }
+        }
+    }
+
+    availability_index <- match("VERFUEGBAR", field_names)
+    if (!is.na(availability_index) && availability_index <= ncol(event_rows)) {
+        availability <- as.character(event_rows[[availability_index]])
+        availability <- availability[
+            !is.na(availability) & nzchar(availability)
+        ]
+        availability <- sort(unique(availability))
+        if (length(availability) > 0L) {
+            echo_params$VERFUEGBAR <- availability
+        }
+    }
+
+    .get_events_body_to_json(echo_params)
+}
+
+
 #' Transform Event Date for API Request
 #'
 #' Helper function to convert date from dd-mm-yyyy format to ISO 8601 UTC format
@@ -518,27 +564,32 @@ aux_transform_event_date <- function(
     checkmate::assert_character(date_string, len = 1)
 
     # Parse the date string (day-month-year format)
-    date_cet <- lubridate::dmy(date_string, quiet = TRUE)
+    date_vienna <- lubridate::dmy(date_string, quiet = TRUE)
 
     # Validate that date parsing was successful
-    if (is.na(date_cet)) {
-        stop(paste0(
-            param_name, " must be in day-month-year (DMY) format. ",
-            "Expected formats: '26-10-2025', '26.10.2025', or '26/10/2025'. ",
-            "Received: '", date_string, "'"
-        ), call. = FALSE)
+    if (is.na(date_vienna)) {
+        cli::cli_abort(c(
+            "{param_name} must be in day-month-year (DMY) format.",
+            "i" = "Expected formats: '26-10-2025', '26.10.2025', or '26/10/2025'.",
+            "x" = "Received: {.val {date_string}}"
+        ))
     }
 
-    # Set the timezone to CET
-    date_cet <- lubridate::force_tz(date_cet, tzone = "CET")
+    # Interpret the calendar date in Austrian civil time
+    date_vienna <- lubridate::force_tz(
+        date_vienna,
+        tzone = "Europe/Vienna"
+    )
 
     # For end dates, add 1 day minus 1 second to include the full end day
     if (is_end_date) {
-        date_cet <- date_cet + lubridate::days(1) - lubridate::seconds(1)
+        date_vienna <- date_vienna +
+            lubridate::days(1) -
+            lubridate::seconds(1)
     }
 
     # Convert to UTC
-    date_utc <- lubridate::with_tz(date_cet, tzone = "UTC")
+    date_utc <- lubridate::with_tz(date_vienna, tzone = "UTC")
 
     # Format the result in ISO 8601 format
     return(format(date_utc, "%Y-%m-%dT%H:%M:%S.000Z"))

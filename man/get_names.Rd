@@ -26,6 +26,9 @@ A dataframe containing name variant(s) of the specified person with the followin
 \item \code{name_given}: Given name/first name
 \item \code{note}: Raw value from the source data
 }
+
+Zero-row results and results without previous-name records retain these
+columns in the documented order and with the same column types.
 }
 \description{
 Returns all name variants of an person or a specific name used on a given date.

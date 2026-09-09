@@ -149,22 +149,18 @@
 #'     \item "F9D": Wien Süd (Vienna South)
 #'     \item "F9E": Wien Süd-West (Vienna South-West)
 #'   }
-#' @param echo Logical. Whether to print debug information. Default is TRUE.
+#' @param echo Logical. Whether to print the URL to the corresponding search results on the Parliament website and the number of results. Default is TRUE.
 #'
-#' @return A data frame containing the list of current members of parliament that match the search criteria with the following columns:
-#' - `time_stamp`: Timestamp of when the data was retrieved
-#' - `pad_intern`: Person's unique identification number
-#' - `name`: Full name of the MP
-#' - `gender`: Gender of the MP
-#' - `parl_group`: Full name of the parliamentary group
-#' - `parl_group_code`: Code/abbreviation of the parliamentary group
-#' - `party_name`: Full name of the political party
-#' - `party_code`: Code/abbreviation of the political party
-#' - `state`: Federal state (Bundesland)
-#' - `electoral_district_region_code`: Electoral district region code
-#' - `chamber`: Chamber of Parliament ("NR" or "BR")
-#'
-#' Returns NULL if no results are found.
+#' @return A data frame containing the current members matching the search
+#'   criteria. The columns depend on `institution`. National Council (`"NR"`)
+#'   results contain `time_stamp`, `name`, `pad_intern`, `party`, `parl_group`,
+#'   `electoral_district_region_code`, `electoral_district_region`, `state`,
+#'   `link`, and `chamber`. Federal Council (`"BR"`) results contain
+#'   `time_stamp`, `name`, `pad_intern`, `state`,
+#'   `electoral_district_region_code`, `parl_group`, `parl_group_code`,
+#'   `party_name`, `party_code`, and `chamber`. If no results are found, a
+#'   zero-row tibble with the columns and column types for the requested
+#'   institution is returned.
 #'
 #' @examples
 #' \donttest{
@@ -218,7 +214,13 @@ get_mps_current <- function(
             state = state,
             electoral_district = electoral_district,
             echo = echo
-        ) %>%
+        )
+
+        if (is.null(df_NR) || nrow(df_NR) == 0) {
+            return(.empty_mps_current_tibble(institution))
+        }
+
+        df_NR <- df_NR %>%
             dplyr::mutate(time_stamp = Sys.time()) #add timestamp to make 'current' specific
 
         #Parse output; get meaningful column names
@@ -285,7 +287,7 @@ get_mps_current <- function(
         #     stop("Postal code filter only applicable for Nationalrat (NR).")
         # }
         if (!is.null(electoral_district)) {
-            warning(
+            cli::cli_warn(
                 "electoral_district parameter is not applicable for Federal Council (BR) and will be ignored."
             )
         }
@@ -299,6 +301,10 @@ get_mps_current <- function(
             state = state,
             echo = echo
         )
+
+        if (is.null(df_res) || nrow(df_res) == 0) {
+            return(.empty_mps_current_tibble(institution))
+        }
 
         #add/drop/rename columns
         df_res <- df_res %>%
@@ -348,8 +354,6 @@ get_mps_current <- function(
         return(NULL)
     }
 
-    max_retries <- 3L
-
     pb_id <- cli::cli_progress_bar(
         "Fetching MPs' names",
         total = length(df_res$pad_intern),
@@ -358,41 +362,28 @@ get_mps_current <- function(
         clear = FALSE
     )
 
+    # transient network failures are retried at the httr2 layer (req_retry)
     df_res <- df_res %>%
         dplyr::mutate(
             name = purrr::map_chr(.data$pad_intern, \(pad_id) {
-                result <- NA_character_
+                result <- tryCatch(
+                    {
+                        name_df <- get_names(pad_intern = pad_id)
 
-                for (attempt in seq_len(max_retries)) {
-                    result <- tryCatch(
-                        {
-                            name_df <- get_names(pad_intern = pad_id)
-
-                            if (
-                                is.null(name_df) ||
-                                identical(name_df, NA) ||
-                                !is.data.frame(name_df) ||
-                                nrow(name_df) == 0
-                            ) {
-                                NA_character_
-                            } else {
-                                name_df %>%
-                                    dplyr::filter(.data$index == 1) %>%
-                                    dplyr::pull("name")
-                            }
-                        },
-                        error = \(e) NA_character_
-                    )
-
-                    if (!is.na(result)) break
-                    Sys.sleep(1 * attempt)
-                }
+                        if (!is.data.frame(name_df) || nrow(name_df) == 0) {
+                            NA_character_
+                        } else {
+                            name_df %>%
+                                dplyr::filter(.data$index == 1) %>%
+                                dplyr::pull("name")
+                        }
+                    },
+                    error = \(e) NA_character_
+                )
 
                 if (is.na(result)) {
-                    warning(
-                        "Failed to fetch name for pad_intern: ", pad_id,
-                        " after ", max_retries, " attempts.",
-                        call. = FALSE
+                    cli::cli_warn(
+                        "Failed to fetch name for pad_intern {pad_id}."
                     )
                 }
 
@@ -582,12 +573,11 @@ get_mps_current <- function(
 #' }
 #'
 #' @importFrom checkmate assert_choice assert_scalar assert_subset
-#' @importFrom httr2 request req_method req_perform req_body_raw req_headers req_url_query req_user_agent req_verbose resp_body_json
+#' @importFrom httr2 request req_method req_perform req_body_raw req_headers req_url_query req_user_agent resp_body_json
 #' @importFrom jsonlite toJSON
 #' @importFrom purrr map_chr map2_chr compact pluck imap
 #' @keywords internal
 #' @noRd
-# TODO make two functions; NR and BR
 get_mps_NR_current <- function(
     institution = NULL,
     gender = "all",
@@ -604,7 +594,7 @@ get_mps_NR_current <- function(
     checkmate::assert_subset(
         gender,
         choices_gender,
-        empty.ok = F
+        empty.ok = FALSE
     )
     ## encode
 
@@ -860,18 +850,18 @@ get_mps_NR_current <- function(
     res <- get_mps_NR_current_api_request(body_params)
 
     vec_headings <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("header", "label") %>%
         stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # EXTRACT THE ACTUAL SUBSTANTIVE DATA
     df_res <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
-        message("No results found for the provided search criteria.")
+        cli::cli_inform("No results found for the provided search criteria.")
         return(NULL)
     }
     colnames(df_res) <- vec_headings
@@ -879,21 +869,12 @@ get_mps_NR_current <- function(
 
     #ECHO
     if (echo == TRUE) {
-        print(nrow(df_res))
-        print(body_params)
-
-        params_list <- jsonlite::fromJSON(body_params)
-        query_string <- purrr::imap(
-            params_list,
-            \(x, y) glue::glue("WFW_002{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?{query_string}"
-        ))
+        .parlat_echo_request(
+            body_params,
+            url_base = "https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html",
+            param_prefix = "WFW_002",
+            n_results = nrow(df_res)
+        )
     }
 
     # #PARSE HTML STRINGS
@@ -946,28 +927,12 @@ get_mps_NR_current_api_request <- function(body_params) {
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
-            origin = "https://www.parlament.gv.at",
-            priority = "u=1, i",
-            # referer = "https://www.parlament.gv.at/recherchieren/personen/nationalrat",
-            `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Microsoft Edge";v="134"',
-            `sec-ch-ua-mobile` = "?0",
-            `sec-ch-ua-platform` = '"Windows"',
-            `sec-fetch-dest` = "empty",
-            `sec-fetch-mode` = "cors",
-            `sec-fetch-site` = "same-origin",
-            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0",
-            # cookie = "JSESSIONID=8W7-0Ik_IGTvMWFmcUDtc42xP_c-TZhjBqdTemqY.appsrv05e; pddsgvo=j; _pk_id.1.26ca=2b9c3ab31363e4f4.1742073577.; _pk_ref.1.26ca=%5B%22%22%2C%22%22%2C1742568811%2C%22https%3A%2F%2Fwww.bing.com%2F%22%5D; _pk_ses.1.26ca=1"
+            origin = "https://www.parlament.gv.at"
         ) %>%
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
-        httr2::req_verbose(
-            body_req = F,
-            header_req = F,
-            header_resp = F,
-            body_resp = F,
-            info = F
-        ) %>%
-        httr2::req_perform()
+        httr2::req_retry(max_tries = 3) %>%
+                httr2::req_perform()
 }
 
 
@@ -1027,7 +992,7 @@ get_mps_NR_current_api_request <- function(body_params) {
 #'   Default is NULL.
 #'
 #' @return A data frame containing information about Federal Council members matching
-#'   the specified criteria. Returns NULL if no results are found, along with a message.
+#'   the specified criteria. Returns NULL if no results are found, along with a message (internal helper).
 #'
 #' @examples
 #' \donttest{
@@ -1042,7 +1007,7 @@ get_mps_NR_current_api_request <- function(body_params) {
 #' }
 #' @keywords internal
 #' @noRd
-#TODO function input NULL = "all"
+# note: NULL input currently means "all" for the filter parameters below
 get_mps_BR_current <- function(
     gender = "all",
     position = "all",
@@ -1056,7 +1021,7 @@ get_mps_BR_current <- function(
     checkmate::assert_subset(
         gender,
         choices_gender,
-        empty.ok = F
+        empty.ok = FALSE
     )
     ## encode
 
@@ -1173,18 +1138,18 @@ get_mps_BR_current <- function(
     res <- get_mps_BR_current_api_request(body_params)
 
     vec_headings <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("header", "label") %>%
         stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # EXTRACT THE ACTUAL SUBSTANTIVE DATA
     df_res <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
-        message("No results found for the provided search criteria.")
+        cli::cli_inform("No results found for the provided search criteria.")
         return(NULL)
     }
     colnames(df_res) <- vec_headings
@@ -1192,21 +1157,12 @@ get_mps_BR_current <- function(
 
     #ECHO
     if (echo == TRUE) {
-        print(nrow(df_res))
-        print(body_params)
-
-        params_list <- jsonlite::fromJSON(body_params)
-        query_string <- purrr::imap(
-            params_list,
-            \(x, y) glue::glue("WFW_005{URLencode(y)}={URLencode(x)}")
-        ) %>%
-            unlist() %>%
-            unname() %>%
-            paste0(collapse = "&")
-
-        print(glue::glue(
-            "https://www.parlament.gv.at/recherchieren/personen/bundesrat/index.html?{query_string}"
-        ))
+        .parlat_echo_request(
+            body_params,
+            url_base = "https://www.parlament.gv.at/recherchieren/personen/bundesrat/index.html",
+            param_prefix = "WFW_005",
+            n_results = nrow(df_res)
+        )
     }
 
     # #PARSE HTML STRINGS
@@ -1250,16 +1206,7 @@ get_mps_BR_current_api_request <- function(body_params) {
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7",
-            origin = "https://www.parlament.gv.at",
-            priority = "u=1, i",
-            # referer = "https://www.parlament.gv.at/recherchieren/personen/bundesrat/index.html",
-            `sec-ch-ua` = '"Chromium";v="136", "Microsoft Edge";v="136", "Not.A/Brand";v="99"',
-            `sec-ch-ua-mobile` = "?0",
-            `sec-ch-ua-platform` = '"Windows"',
-            `sec-fetch-dest` = "empty",
-            `sec-fetch-mode` = "cors",
-            `sec-fetch-site` = "same-origin",
-            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"
+            origin = "https://www.parlament.gv.at"
         ) %>%
         httr2::req_body_raw(
             body_params,
@@ -1267,14 +1214,8 @@ get_mps_BR_current_api_request <- function(body_params) {
         ) %>%
         httr2::req_body_raw(body_params, type = "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
-        httr2::req_verbose(
-            body_req = F,
-            header_req = F,
-            header_resp = F,
-            body_resp = F,
-            info = F
-        ) %>%
-        httr2::req_perform()
+        httr2::req_retry(max_tries = 3) %>%
+                httr2::req_perform()
 }
 
 #auxiliary function to extract name from rss_description;
@@ -1296,15 +1237,43 @@ aux_extract_name <- function(string) {
     if (is.na(title_trailing) || !nzchar(title_trailing)) {
         stringr::str_flatten(
             c(title, name, name_family),
-            na.rm = T,
+            na.rm = TRUE,
             collapse = " "
         )
     } else {
         stringr::str_flatten(
             c(title, name, name_family, title_trailing),
-            na.rm = T,
+            na.rm = TRUE,
             collapse = " ",
             last = ", "
         )
     }
+}
+
+
+#' Zero-row tibble matching an output variant of get_mps_current()
+#' @noRd
+.empty_mps_current_tibble <- function(institution) {
+    cols <- switch(
+        institution,
+        NR = c(
+            "time_stamp", "name", "pad_intern", "party", "parl_group",
+            "electoral_district_region_code", "electoral_district_region",
+            "state", "link", "chamber"
+        ),
+        BR = c(
+            "time_stamp", "name", "pad_intern", "state",
+            "electoral_district_region_code", "parl_group",
+            "parl_group_code", "party_name", "party_code", "chamber"
+        )
+    )
+
+    result <- .parlat_empty_tibble(
+        cols,
+        datetime_cols = "time_stamp"
+    )
+
+    # Sys.time(), used by successful results, has no explicit tzone attribute.
+    attr(result$time_stamp, "tzone") <- NULL
+    result
 }

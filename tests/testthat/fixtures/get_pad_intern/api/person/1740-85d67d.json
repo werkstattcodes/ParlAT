@@ -1,0 +1,179 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Schmidt Josef",
+        "generationTime": "Fri Mar 20 08:08:46 UTC 2026",
+        "lang": "de",
+        "title": "Schmidt Josef | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/Foto_Platzhalter_Quadrat.svg",
+            "title": "Schmidt Josef | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (IV. GP), CSP"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Josef Schmidt",
+            "title_plain": "Josef Schmidt",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 1740,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/static/img/Foto_Platzhalter_Quadrat.svg",
+                "copyright": "Parlamentsdirektion"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+                        "wahlkreis": "Wahlkreisverband III (OÖ, S, T u. V)",
+                        "wahlpartei": "CSP",
+                        "wahlpartei_text": "Christlichsoziale Partei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (IV. GP), CSP",
+                        "mandatVon": "02.12.1930",
+                        "mandatBis": "02.05.1934",
+                        "funktion_von": "02.12.1930",
+                        "funktion_bis": "02.05.1934",
+                        "aktiv": false,
+                        "zeitraum": "02.12.1930-02.05.1934"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Christlichsoziale Vereinigung deutscher Abgeordneter im österreichischen Parlamente",
+                        "wahlkreis": "19 - Vorarlberg",
+                        "wahlpartei": "CSP",
+                        "wahlpartei_text": "Christlichsoziale Partei",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (III. GP), CSP",
+                        "mandatVon": "18.04.1930",
+                        "mandatBis": "01.10.1930",
+                        "funktion_von": "18.04.1930",
+                        "funktion_bis": "01.10.1930",
+                        "aktiv": false,
+                        "zeitraum": "18.04.1930-01.10.1930"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 25.08.1889, Bludenz",
+                "sterbtext": "Verst.: 04.04.1978, Bludenz",
+                "beruflicheTaetigkeit": "Kaufmann",
+                "beruflicherWerdegang": [
+                    "Kommerzialrat",
+                    "Geschäftsführender Gesellschafter der Eisenhandlung 1923",
+                    "Eintritt in die väterliche Eisenwarenhandlung 1907"
+                ],
+                "bildungsweg": [
+                    "Kaufmännische Lehre in Salzburg",
+                    "Berufsschule in Trient",
+                    "Bürgerschule in Bludenz",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Gemeinderates von Bludenz 1919-1924",
+                    "Bürgermeister von Bludenz 1924-1930",
+                    "Abgeordneter zum Vorarlberger Landtag 1932-1934",
+                    "Mitglied der Vorarlberger Landesregierung 1932-1934"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": null
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1740
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                1740
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        }
+    }
+}

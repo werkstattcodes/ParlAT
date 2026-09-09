@@ -1,0 +1,255 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Hartleb Karl",
+        "generationTime": "Fri Mar 20 08:20:48 UTC 2026",
+        "lang": "de",
+        "title": "Hartleb Karl | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/20998/2099807_500.jpg",
+            "title": "Hartleb Karl | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (VI.-VII. GP), WdU"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Karl Hartleb",
+            "title_plain": "Karl Hartleb",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 513,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/20998/2099807_384.jpg",
+                "alt": "Portraitfoto von Karl Hartleb",
+                "bildId": 2099807,
+                "copyright": "Bildarchiv der Österreichischen Nationalbibliothek"
+            },
+            "biografieStand": "02.01.1990",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Klub der Wahlpartei der Unabhängigen",
+                        "wahlkreis": "23 - Obersteier",
+                        "wahlpartei": "WdU",
+                        "wahlpartei_text": "Wahlpartei der Unabhängigen",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (VI.-VII. GP), WdU",
+                        "mandatVon": "08.11.1949",
+                        "mandatBis": "08.06.1956",
+                        "funktion_von": "08.11.1949",
+                        "funktion_bis": "08.06.1956",
+                        "aktiv": false,
+                        "zeitraum": "08.11.1949-08.06.1956"
+                    },
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Abgeordnetenverband des Landbundes für Österreich",
+                        "wahlkreis": "23 - Obersteier",
+                        "wahlpartei": "LBd",
+                        "wahlpartei_text": "Landbund",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (III. GP), LBd",
+                        "mandatVon": "18.05.1927",
+                        "mandatBis": "01.10.1930",
+                        "funktion_von": "18.05.1927",
+                        "funktion_bis": "01.10.1930",
+                        "aktiv": false,
+                        "zeitraum": "18.05.1927-01.10.1930"
+                    },
+                    {
+                        "funktion_text": "Dritter Präsident des Nationalrates",
+                        "mandat": "Dritter Präsident des Nationalrates",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "3PNR",
+                        "funktion": "3PNR",
+                        "bez": "Dritter Präsident des Nationalrates",
+                        "mandatVon": "18.03.1953",
+                        "mandatBis": "08.06.1956",
+                        "funktion_von": "18.03.1953",
+                        "funktion_bis": "08.06.1956",
+                        "aktiv": false,
+                        "zeitraum": "18.03.1953-08.06.1956"
+                    },
+                    {
+                        "funktion_text": "Vizekanzler",
+                        "mandat": "Vizekanzler",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "VK",
+                        "funktion": "VK",
+                        "bez": "Vizekanzler",
+                        "mandatVon": "19.05.1927",
+                        "mandatBis": "04.05.1929",
+                        "funktion_von": "19.05.1927",
+                        "funktion_bis": "04.05.1929",
+                        "aktiv": false,
+                        "zeitraum": "19.05.1927-04.05.1929"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 23.10.1886, St. Georgen",
+                "sterbtext": "Verst.: 28.08.1965, Friesach",
+                "beruflicheTaetigkeit": "Landwirt",
+                "beruflicherWerdegang": [
+                    "Müller",
+                    "Jäger",
+                    "Bauer"
+                ],
+                "bildungsweg": [
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Abgeordneter zum Steiermärkischen Landtag 1919-1927",
+                    "Präsident des Steiermärkischen Landtages",
+                    "Präsident der Bundeskammer für Land- und Forstwirtschaft in Steiermark 1930-1934",
+                    "Mitglied der Reichsparteileitung des LBd",
+                    "Klubobmann des VdU 1949-1956"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                513
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                513
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                513
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        }
+    }
+}

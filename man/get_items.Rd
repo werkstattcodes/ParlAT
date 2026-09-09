@@ -25,9 +25,16 @@ get_items(
 \arguments{
 \item{topic}{(Thema) Character vector or \code{NULL}. Specifies the topic(s) to search for. See 'Details' for possible values. Default is \code{NULL}.}
 
-\item{institution}{Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is \code{NULL} which returns both chambers.}
+\item{institution}{Character string. Either \code{"NR"} or \code{"Nationalrat"}
+(National Council), or \code{"BR"} or \code{"Bundesrat"} (Federal Council).
+Default is \code{NULL}, which returns both chambers. When combined with
+\code{person}, this filters the parliamentary items; it does not restrict the
+person's institutional affiliations.}
 
-\item{legis_period}{Character vector or \code{NULL}. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is \code{NULL}.}
+\item{legis_period}{Character or numeric vector, or \code{NULL}. Specifies the
+legislative period(s) to search in. If \code{NULL} (the default), no period
+restriction is applied. See 'Details' for possible values and the API
+result limit.}
 
 \item{date_start}{Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is \code{NULL}.}
 
@@ -39,7 +46,10 @@ get_items(
 
 \item{type_eu_submission}{(Art der EU-Vorlage) Character vector or \code{NULL}. Type(s) of EU submission to search for. Can only be specified when \code{item = "EU"}. See 'Details' for possible values. Default is \code{NULL}.}
 
-\item{person}{Character string or \code{NULL}. Name of a person to search for (family name, optionally followed by first name). Default is \code{NULL}.}
+\item{person}{Character string or \code{NULL}. Name of a person to search for
+(family name, optionally followed by first name). People are resolved
+across all institutional categories before other item filters are applied.
+Default is \code{NULL}.}
 
 \item{keyword}{Character vector or \code{NULL}. Keyword(s) to search for. Default is \code{NULL}.}
 
@@ -49,7 +59,7 @@ get_items(
 
 \item{parl_group_names_standard}{Logical. If \code{TRUE}, the function expands and standardizes parliamentary group names. Default is \code{FALSE}. See Details.}
 
-\item{echo}{Logical. If \code{TRUE}, the function prints the used search parameters and the url to the pertaining search results on website of the Austrian Parliament.}
+\item{echo}{Logical. If \code{TRUE}, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results.}
 }
 \value{
 A tibble (data.frame) with one row per parliamentary item matching the search.
@@ -78,7 +88,7 @@ or returned as list-columns for multi-valued fields):
 \description{
 \code{get_items} searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
-mirrors the search functionality offered on the Austrian Parliament's website (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">}}here\if{html}{\out{</a>}}).
+mirrors the search functionality offered on the Austrian Parliament's website (see \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/gegenstaende" target="_blank">}}here\if{html}{\out{</a>}}).
 }
 \details{
 \subsection{topic (Thema)}{
@@ -111,14 +121,22 @@ Possible values for \code{topic} are:
 
 \subsection{legis_period (Gesetzgebungsperiode)}{
 
-\code{legis_period} specifies the legislative period(s). Can be one or more of the following value(s):
+\code{legis_period} specifies the legislative period(s). It can be one or more of
+the following values:
 \itemize{
-\item number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
+\item number(s) or character(s) indicating the relevant period(s), i.e., "25",
+25, or "XXV";
+\item \code{"PN"} for the Provisional National Assembly; or
+\item \code{"KN"} for the Constituent National Assembly.
 }
 
-Only periods from the 5th legislative period (V. GP, 1945) onwards are
-supported. Earlier periods (including special codes like "PN" and "KN")
-do not return data and will be rejected.
+Explicit numbered period filters are supported from the 5th legislative
+period (V. GP, 1945) onwards; \code{"PN"} and \code{"KN"} are also supported. If
+\code{legis_period = NULL}, no period restriction is applied. Broad searches can
+still omit periods from the returned data when the API's 100,000-row export
+limit is reached. When \code{echo = TRUE}, the website URL explicitly selects
+every available period so it reproduces the unrestricted search instead of
+using the website's current-period default.
 }
 
 \subsection{item (Gegenstand)}{
@@ -131,6 +149,7 @@ Possible values for \code{item} include:
 \item "ANTR" (Anträge, Motions)
 \item "US" (Anträge/Verlangen auf Untersuchungsausschuss, Motions/Requests for Investigative Committee)
 \item "AUB" (Ausschussberichte, Committee Reports)
+\item "AUB-BR" (Ausschussberichte Bundesrat, Committee Reports Federl Council)
 \item "AB_ABPR_ABM" (Beantwortungen, Answers)
 \item "III" (Berichte an den Nationalrat, Reports to the National Council)
 \item "BNR" (Beschlüsse, Resolutions)
@@ -520,6 +539,16 @@ has featured different abbreviations for their parliamentary group: "FPÖ", "F",
 \code{parl_group_names_standard = TRUE}, an input of "F" (or any other variant) will return
 the results for all three abbreviations.
 }
+
+\subsection{Combining person and institution filters}{
+
+When \code{person} and \code{institution} are supplied together, the person lookup is
+performed across all institutional categories. The \code{institution} value then
+filters the parliamentary items by chamber. The full German chamber names
+and their abbreviations are equivalent. For example, a federal minister can
+be associated with National Council items even if the person is not
+categorized as a National Council member.
+}
 }
 \note{
 \subsection{Free Text Search}{
@@ -552,8 +581,10 @@ all_results <- periods \%>\%
 
 \subsection{Data Availability}{
 
-The API only returns data from the 5th legislative period (V. GP, 1945)
-onwards, i.e. for the Second Republic.
+Numbered legislative periods are available from the 5th period (V. GP,
+1945) onwards. Historical material is also available for the Provisional
+National Assembly (\code{"PN"}) and Constituent National Assembly (\code{"KN"}).
+Coverage and completeness vary by document type.
 }
 }
 \examples{
@@ -589,9 +620,9 @@ dplyr::glimpse(result)
 
 # Search by person (minister or MP)
 result <- get_items(
-  person = "Nehammer",
-  date_start = "01-01-2023",
-  date_end = "31-12-2023"
+  person = "Kurz Sebastian",
+  institution = "Nationalrat", # "NR" is equivalent
+  legis_period = 27
 )
 dplyr::glimpse(result)
 
@@ -613,12 +644,12 @@ result <- get_items(
 )
 dplyr::glimpse(result)
 
-# Get all statements of the sub-committee on EU affairs
-# (EU-Unterausschuss) during the 27th legislative period.
+# Get communications from the sub-committee on EU affairs
+# (EU-Unterausschuss) during the 25th legislative period.
 result <- get_items(
   item = "EU",
   type_eu_submission = "MTEU",
-  legis_period = 27,
+  legis_period = 25,
   institution = "NR"
 )
 dplyr::glimpse(result)

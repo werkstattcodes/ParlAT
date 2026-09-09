@@ -2,6 +2,121 @@
 
 # Basic functionality tests
 
+test_that("transcript echo URL represents a NULL period as all periods", {
+  body_params <- jsonlite::toJSON(list(NBVS = "NRSITZ"))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_transcripts_echo_request(
+      body_params,
+      legis_period = character(),
+      n_results = 6847L,
+      search_string = NULL
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+  query_parts <- strsplit(sub("^[^?]+\\?", "", url_message), "&")[[1]]
+  period_params <- query_parts[grepl("STENO_211GP_CODE=", query_parts)]
+  periods <- sub("STENO_211GP_CODE=", "", period_params, fixed = TRUE)
+  expected_periods <- c(as.character(as.roman(1:28)), "KN", "PN")
+
+  expect_length(url_message, 1L)
+  expect_match(
+    url_message,
+    "https://www.parlament.gv.at/recherchieren/protokolle?",
+    fixed = TRUE
+  )
+  expect_setequal(periods, expected_periods)
+  expect_match(url_message, "STENO_211NBVS=NRSITZ", fixed = TRUE)
+  expect_no_match(url_message, "index.html", fixed = TRUE)
+})
+
+test_that("transcript echo URL preserves an explicit period", {
+  body_params <- jsonlite::toJSON(list(
+    GP_CODE = "XXVII",
+    NBVS = "NRSITZ"
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_transcripts_echo_request(
+      body_params,
+      legis_period = "XXVII",
+      n_results = 1L,
+      search_string = "budget"
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+
+  expect_equal(stringr::str_count(url_message, "STENO_211GP_CODE="), 1L)
+  expect_match(url_message, "STENO_211GP_CODE=XXVII", fixed = TRUE)
+  expect_match(url_message, "search=budget", fixed = TRUE)
+})
+
+test_that("transcript PDF downloads use the shared request policy", {
+  performed_request <- NULL
+
+  local_mocked_bindings(
+    request = function(url) list(url = url),
+    req_user_agent = function(req, string) {
+      req$user_agent <- string
+      req
+    },
+    req_retry = function(req, max_tries) {
+      req$max_tries <- max_tries
+      req
+    },
+    req_perform = function(req, path) {
+      req$path <- path
+      performed_request <<- req
+      structure(list(status_code = 200L), class = "httr2_response")
+    },
+    .package = "httr2"
+  )
+
+  success <- .parlat_download_transcript_pdf(
+    "https://www.parlament.gv.at/example.pdf",
+    "example.pdf"
+  )
+
+  expect_identical(success, TRUE)
+  expect_identical(
+    performed_request$url,
+    "https://www.parlament.gv.at/example.pdf"
+  )
+  expect_identical(
+    performed_request$user_agent,
+    "ParlAT R package (http://werk.statt.codes)"
+  )
+  expect_identical(performed_request$max_tries, 3)
+  expect_identical(performed_request$path, "example.pdf")
+})
+
+test_that("transcript PDF downloads report a final request failure", {
+  local_mocked_bindings(
+    req_perform = function(req, path) stop("download failed"),
+    .package = "httr2"
+  )
+
+  expect_identical(
+    .parlat_download_transcript_pdf(
+      "https://www.parlament.gv.at/example.pdf",
+      "example.pdf"
+    ),
+    FALSE
+  )
+})
+
 test_that("get_transcripts returns data frame with correct number of meetings", {
   # Nationalrat
   result_nr <- run_api_call(

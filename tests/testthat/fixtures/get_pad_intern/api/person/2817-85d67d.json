@@ -1,0 +1,243 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Müller Karl Gerfried",
+        "generationTime": "Fri Mar 20 08:47:59 UTC 2026",
+        "lang": "de",
+        "title": "Müller Karl Gerfried | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/21001/2100133_500.jpg",
+            "title": "Müller Karl Gerfried | Parlament Österreich",
+            "description": "Abgeordneter zum Nationalrat (XIX.-XX. GP), SPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Karl Gerfried Müller",
+            "title_plain": "Karl Gerfried Müller",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 2817,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/21001/2100133_384.jpg",
+                "alt": "Portraitfoto von Karl Gerfried Müller",
+                "bildId": 2100133,
+                "copyright": "HOPI-MEDIA Medienservice GmbH."
+            },
+            "biografieStand": "28.10.1999",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Abgeordneter zum Nationalrat",
+                        "mandat": "Abgeordneter zum Nationalrat",
+                        "klub": "Die Sozialdemokratische Parlamentsfraktion - Klub der sozialdemokratischen Abgeordneten zum Nationalrat, Bundesrat und Europäischen Parlament",
+                        "wahlkreis": "2B - Villach",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "NR",
+                        "funktion": "NR",
+                        "bez": "Abgeordneter zum Nationalrat (XIX.-XX. GP), SPÖ",
+                        "mandatVon": "07.11.1994",
+                        "mandatBis": "28.10.1999",
+                        "funktion_von": "07.11.1994",
+                        "funktion_bis": "28.10.1999",
+                        "aktiv": false,
+                        "zeitraum": "07.11.1994-28.10.1999"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 13.04.1957, Villach",
+                "beruflicheTaetigkeit": "Finanzbeamter",
+                "beruflicherWerdegang": [
+                    "Karenziert 1994-1999",
+                    "Betriebsprüfer des Finanzamtes Villach  seit 1993",
+                    "Eintritt in den Dienst des Finanzamtes Villach 1976"
+                ],
+                "bildungsweg": [
+                    "Präsenzdienst 1977-1978",
+                    "Beamtenaufstiegsprüfung 1990",
+                    "Handelsschule Villach 1972-1975",
+                    "Hauptschule Landskron 1968-1972",
+                    "Volksschule Arriach 1963-1968"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Gemeinderates der Gemeinde Arriach 1985-1990",
+                    "Mitglied des Gemeindevorstandes der Gemeinde Arriach 1990-1991",
+                    "Bürgermeister der Gemeinde Arriach seit 1991",
+                    "Bezirksparteivorsitzender der SPÖ Villach 1995-1998"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                2817
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                2817
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                2817
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                2817
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

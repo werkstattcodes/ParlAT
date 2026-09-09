@@ -1,0 +1,158 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Müller Karl",
+        "generationTime": "Fri Mar 20 10:15:39 UTC 2026",
+        "lang": "de",
+        "title": "Müller Karl | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/Foto_Platzhalter_Quadrat.svg",
+            "title": "Müller Karl | Parlament Österreich",
+            "description": "Mitglied der Prov. Nationalversammlung, Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (Deutschnationale Parteien)"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Karl Müller",
+            "title_plain": "Karl Müller",
+            "ebene": 1
+        },
+        "personInfo": {
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 34149,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/static/img/Foto_Platzhalter_Quadrat.svg",
+                "copyright": "Parlamentsdirektion"
+            },
+            "biografieStand": "13.07.2006",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Mitglied der Prov. Nationalversammlung",
+                        "mandat": "Mitglied der Prov. Nationalversammlung",
+                        "klub": "Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (Deutschnationale Parteien)",
+                        "wahlkreis": null,
+                        "wahlpartei": "DnP",
+                        "wahlpartei_text": "Deutschnationale Parteien",
+                        "gremium": "PN",
+                        "funktion": "PN",
+                        "bez": "Mitglied der Prov. Nationalversammlung, Verband der deutschnationalen Parteien und weitere deutschnationale Klubs (Deutschnationale Parteien)",
+                        "mandatVon": "21.10.1918",
+                        "mandatBis": "16.02.1919",
+                        "funktion_von": "21.10.1918",
+                        "funktion_bis": "16.02.1919",
+                        "aktiv": false,
+                        "zeitraum": "21.10.1918-16.02.1919"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 17.06.1869, Triebsch/Trebusín (Böhmen)",
+                "sterbtext": "Verst.: 04.02.1937, Leitmeritz/Litomerice (Böhmen)",
+                "beruflicheTaetigkeit": "Landwirt",
+                "beruflicherWerdegang": [
+                    "Landwirt in Triebsch"
+                ],
+                "bildungsweg": [
+                    "Bürgerschule",
+                    "Volksschule"
+                ],
+                "politischeFunktionen": [
+                    "Gemeindevorsteher und Mitglied des Gemeinderates von Triebsch",
+                    "Mitglied des Bundes der Landwirte",
+                    "Reichsratsabgeordneter 1912"
+                ],
+                "sonstiges": "<p>XXI. Session  Ersatz für Kutscher Franz Wahl: 07.05.1912  Angelobung: 15.05.1912 <\/p><a href=\"/recherchieren/personen/parlamentarierinnen-ab-1848/parlamentarier-1848-1918/muller_6\" target=\"_blank\" title=\"Dieser Link geht in einem neuen Fenster auf\" class=\"link-indicator\">siehe auch: Biografisches Lexikon der Mitglieder der österreichischen Zentralparlamente 1848-1918<\/a><p><\/p>",
+                "bez": "Kurzbiografie",
+                "disclaimer": null
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                34149
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                34149
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        }
+    }
+}

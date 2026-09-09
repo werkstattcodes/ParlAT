@@ -67,42 +67,32 @@ get_inquiries_and_responses <- function(
         httr2::req_headers(
             accept = "*/*",
             `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-            `content-type` = "application/json",
-            cookie = "JSESSIONID=iKXM7OFa8k08t-YvjlkpMqniLt2vciq1o-7ihZer.appsrv04e; JSESSIONID=TMjVAqf5hP5ZYQFoBRd8_8vRxt8HCVbHUOEghgQV.appsrv05e",
-            dnt = "1",
-            origin = "https://www.parlament.gv.at",
-            priority = "u=1, i",
-            `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            origin = "https://www.parlament.gv.at"
         ) %>%
         httr2::req_body_raw(body_params, "application/json") %>%
         httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
-        httr2::req_verbose(
-            body_req = T,
-            header_req = F,
-            header_resp = F
-        ) %>%
+        httr2::req_retry(max_tries = 3) %>%
         httr2::req_perform()
 
     vec_headings <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("header", "label") %>%
         stringr::str_to_snake() %>%
         make.unique(sep = "_")
 
     # extract the actual substantive data
     df_res <- res %>%
-        httr2::resp_body_json(simplifyVector = T) %>%
+        httr2::resp_body_json(simplifyVector = TRUE) %>%
         purrr::pluck("rows")
 
     if (length(df_res) == 0) {
-        message("No results found for the provided search criteria.")
+        cli::cli_inform("No results found for the provided search criteria.")
         return(NULL)
     }
 
     colnames(df_res) <- vec_headings
 
     df_res <- as.data.frame(df_res)
-    print(names(df_res))
 
     return(df_res)
 }

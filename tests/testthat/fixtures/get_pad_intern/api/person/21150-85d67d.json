@@ -1,0 +1,340 @@
+{
+    "pagetype": "biografie",
+    "meta": {
+        "description": "Kurz Susanne, Mag.",
+        "generationTime": "Fri Mar 20 09:17:30 UTC 2026",
+        "lang": "de",
+        "title": "Kurz Susanne, Mag. | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/dokument/bild/59040/5904049_500.jpg",
+            "title": "Kurz Susanne, Mag. | Parlament Österreich",
+            "description": "Mitglied des Bundesrates, SPÖ"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "headingbox": {
+            "title": "Mag. Susanne Kurz",
+            "title_plain": "Mag. Susanne Kurz",
+            "ebene": 1
+        },
+        "personInfo": {
+            "frueherenamen": "(bis 18.8.2012: Mag. Susanne Neuwirth)",
+            "personTyp": "mandatar",
+            "gremium": null,
+            "pad_intern": 21150,
+            "aktiv": false
+        },
+        "tabs": [
+            {
+                "id": "BIO",
+                "label": "Biografie",
+                "selected": true
+            },
+            {
+                "id": "PLENUM",
+                "label": "Plenum",
+                "selected": false
+            },
+            {
+                "id": "AUS",
+                "label": "Ausschüsse",
+                "selected": false
+            },
+            {
+                "id": "AKT",
+                "label": "Aktivitäten",
+                "selected": false
+            },
+            {
+                "id": "MEDIEN",
+                "label": "Mediathek",
+                "selected": false
+            }
+        ],
+        "biografie": {
+            "portrait": {
+                "src": "/dokument/bild/59040/5904049_384.jpg",
+                "alt": "Portraitfoto von Mag. Susanne Kurz",
+                "bildId": 5904049,
+                "copyright": "Parlamentsdirektion/PHOTO SIMONIS"
+            },
+            "biografieStand": "01.01.2017",
+            "kurzinfo_html": null,
+            "mandatefunktionen": {
+                "bez": "Politische Mandate/Funktionen",
+                "mandate": [
+                    {
+                        "funktion_text": "Mitglied des Bundesrates",
+                        "mandat": "Mitglied des Bundesrates",
+                        "klub": "Bundesratsfraktion der SPÖ",
+                        "wahlkreis": "In den Bundesrat entsendet vom Salzburger Landtag",
+                        "wahlpartei": "SPÖ",
+                        "wahlpartei_text": "Sozialdemokratische Partei Österreichs",
+                        "gremium": "BR",
+                        "funktion": "BR",
+                        "bez": "Mitglied des Bundesrates, SPÖ",
+                        "mandatVon": "28.04.2004",
+                        "mandatBis": "05.03.2018",
+                        "funktion_von": "28.04.2004",
+                        "funktion_bis": "05.03.2018",
+                        "aktiv": false,
+                        "zeitraum": "28.04.2004-05.03.2018"
+                    },
+                    {
+                        "funktion_text": "Ordnerin des Bundesrates",
+                        "mandat": "Ordnerin des Bundesrates",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "ZOB",
+                        "funktion": "ZOB",
+                        "bez": "Ordnerin des Bundesrates",
+                        "mandatVon": "01.07.2015",
+                        "mandatBis": "05.03.2018",
+                        "funktion_von": "01.07.2015",
+                        "funktion_bis": "05.03.2018",
+                        "aktiv": false,
+                        "zeitraum": "01.07.2015-05.03.2018"
+                    },
+                    {
+                        "funktion_text": "Vizepräsidentin des Bundesrates",
+                        "mandat": "Vizepräsidentin des Bundesrates",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "SPB",
+                        "funktion": "SPB",
+                        "bez": "Vizepräsidentin des Bundesrates",
+                        "mandatVon": "01.01.2012",
+                        "mandatBis": "30.06.2014",
+                        "funktion_von": "01.01.2012",
+                        "funktion_bis": "30.06.2014",
+                        "aktiv": false,
+                        "zeitraum": "01.01.2012-30.06.2014"
+                    },
+                    {
+                        "funktion_text": "Präsidentin des Bundesrates",
+                        "mandat": "Präsidentin des Bundesrates",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "PB",
+                        "funktion": "PB",
+                        "bez": "Präsidentin des Bundesrates",
+                        "mandatVon": "01.07.2011",
+                        "mandatBis": "31.12.2011",
+                        "funktion_von": "01.07.2011",
+                        "funktion_bis": "31.12.2011",
+                        "aktiv": false,
+                        "zeitraum": "01.07.2011-31.12.2011"
+                    },
+                    {
+                        "funktion_text": "Vizepräsidentin des Bundesrates",
+                        "mandat": "Vizepräsidentin des Bundesrates",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "SPB",
+                        "funktion": "SPB",
+                        "bez": "Vizepräsidentin des Bundesrates",
+                        "mandatVon": "01.01.2008",
+                        "mandatBis": "30.06.2011",
+                        "funktion_von": "01.01.2008",
+                        "funktion_bis": "30.06.2011",
+                        "aktiv": false,
+                        "zeitraum": "01.01.2008-30.06.2011"
+                    },
+                    {
+                        "funktion_text": "Schriftführerin des Bundesrates",
+                        "mandat": "Schriftführerin des Bundesrates",
+                        "klub": null,
+                        "wahlkreis": null,
+                        "wahlpartei": null,
+                        "wahlpartei_text": null,
+                        "gremium": "ZSB",
+                        "funktion": "ZSB",
+                        "bez": "Schriftführerin des Bundesrates",
+                        "mandatVon": "07.10.2004",
+                        "mandatBis": "31.12.2007",
+                        "funktion_von": "07.10.2004",
+                        "funktion_bis": "31.12.2007",
+                        "aktiv": false,
+                        "zeitraum": "07.10.2004-31.12.2007"
+                    }
+                ]
+            },
+            "kurzbiografie": {
+                "gebtext": "Geb.: 02.04.1956, Salzburg",
+                "beruflicheTaetigkeit": "Lehrerin an einer BHS",
+                "beruflicherWerdegang": [
+                    "Professorin",
+                    "Angestellte, Verein \"Frauennotruf\" Salzburg 1985-1987",
+                    "Lehrerin, Akademisches Gymnasium Salzburg und Höhere Technische Lehranstalt Salzburg 1988-1991",
+                    "Familienberatung und Projektarbeit, Kinderfreunde Salzburg 1991-1992",
+                    "Leiterin der Familienberatungsstelle, Vereine \"VIELE\" Salzburg 1993-1994",
+                    "Angestellte (Marketing/Controlling), Apple Center COMP 1995-1996",
+                    "Lehrerin, Höhere Technische Lehranstalt Hallein  seit 1998",
+                    "Gender-Beauftragte, Landesschulrat von Salzburg  seit 2007"
+                ],
+                "bildungsweg": [
+                    "Diplomstudium der Anglistik und Germanistik an der Paris-Lodron-Universität Salzburg (Mag. phil.) Salzburg 1974-1984",
+                    "Bundesgymnasium Hallein 1966-1974",
+                    "Volksschule Adnet 1962-1966"
+                ],
+                "politischeFunktionen": [
+                    "Mitglied des Gemeinderates der Landeshaupstadt Salzburg 1987-2004",
+                    "Mitglied des Landesparteivorstandes der SPÖ Salzburg seit 1987",
+                    "Mitglied des Bezirksparteivorstandes der SPÖ Salzburg(Stadt) seit 1985",
+                    "Mitglied Sektion Altstadt/Riedenburg seit 1985",
+                    "Mitglied des Bundesfrauenvorstandes der SPÖ seit 2004",
+                    "Mitglied des Salzburger Landesfrauenausschusses der SPÖ seit 1994",
+                    "Bezirksfrauenvorsitzende der SPÖ Salzburg(Stadt) seit 1994"
+                ],
+                "bez": "Kurzbiografie",
+                "disclaimer": "Inhalt und Umfang der Biografien ab 1945 gehen grundsätzlich auf die von den Mandatarinnen und Mandataren selbst gemachten Angaben zurück. Diese können von der Parlamentsdirektion ohne Zustimmung der Betroffenen nicht geändert werden."
+            },
+            "parentid": "biografietabs",
+            "tabid": "BIO"
+        },
+        "medien": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "SEARCH",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Medien",
+                    "pagesize": 20,
+                    "hasPaging": false,
+                    "showMore": true,
+                    "definition": {
+                        "bez": "BIO_252",
+                        "listeId": 252,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                21150
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 11,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "MEDIEN"
+        },
+        "ausschuss": {
+            "parentid": "biografietabs",
+            "tabid": "AUS",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Ausschuesse",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "AUSSCHUSS_BIO_250",
+                        "listeId": 250,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                21150
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 2,
+                        "ascDesc": "ASC"
+                    },
+                    "type": "MONGODB"
+                }
+            }
+        },
+        "plenum": {
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Reden",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BIO_251",
+                        "listeId": 251,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                21150
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 10,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "parentid": "biografietabs",
+            "tabid": "PLENUM"
+        },
+        "akt": {
+            "parentid": "biografietabs",
+            "tabid": "AKT",
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Aktivitaeten",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "PERS_AKTIVIT_025",
+                        "listeId": 25,
+                        "params": {
+
+                        },
+                        "fixedParams": {
+                            "PAD_INTERN": [
+                                21150
+                            ]
+                        },
+                        "hideDimensions": [
+                            "PAD_INTERN"
+                        ],
+                        "sortrnr": 9,
+                        "ascDesc": "DESC"
+                    }
+                }
+            }
+        }
+    }
+}

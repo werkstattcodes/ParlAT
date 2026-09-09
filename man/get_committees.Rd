@@ -24,14 +24,18 @@ get_committees(
 
 \item{permanent}{A logical flag indicating whether only permanent committees should be queried. Default is NULL (both permanent and non-permanent).}
 
-\item{citation}{A character vector for filtering results by committee citation code (e.g., "1/SA-BU"). This is applied as a post-processing filter after API results are retrieved. Default is NULL (no filtering).}
+\item{citation}{A character string for filtering results by committee citation
+code. Exact citations may use either number-first form (for example,
+\code{"1/SA-BU"}) or the canonical code-first form (\code{"SA-BU/1"}). Other
+values are treated as regular expressions. The filter is applied after API
+results are retrieved. Default is \code{NULL} (no filtering).}
 
 \item{include_subcommittees}{A logical flag to indicate whether subcommittees should be included
 in the search results. Search for subcommittees is only possible if \code{permanent} is not TRUE. Default is NULL.}
 
 \item{details_type}{A character string specifying the type of details to retrieve. Currently supports "members" to extract committee membership information. Default is NULL (no additional details).}
 
-\item{echo}{Logical. If TRUE, the function prints the used search parameters and the url to the pertaining search results on the website of the Austrian Parliament. Default is NULL.}
+\item{echo}{Logical. If TRUE, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results. Default is NULL.}
 }
 \value{
 A tibble (data frame) with different structures depending on \code{details_type}:
@@ -65,7 +69,9 @@ A tibble (data frame) with different structures depending on \code{details_type}
 }
 }
 
-Returns NULL if no results are found for the provided search criteria.
+If no results are found, the zero-row tibble has exactly the same columns,
+order, and column types as a non-empty result for the requested
+\code{details_type}.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

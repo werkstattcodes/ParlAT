@@ -1,4 +1,17 @@
 #' @noRd
+.empty_items_tibble <- function() {
+  .parlat_empty_tibble(
+    c(
+      "legis_period", "institution", "date", "item_type", "item_number",
+      "item_number_type", "stage", "item_url", "type_doc", "type_doc_long",
+      "subject", "topics", "keywords", "eurovoc", "persons", "parl_group"
+    ),
+    date_cols = "date",
+    list_cols = c("topics", "keywords", "eurovoc", "persons", "parl_group")
+  )
+}
+
+#' @noRd
 .align_get_items_export_rows <- function(rows, vec_headings, col_positions) {
   if (length(rows) == 0) {
     return(NULL)
@@ -22,27 +35,80 @@
   df_res
 }
 
+#' @noRd
+.get_items_echo_request <- function(body_params, legis_period, n_results) {
+  echo_body_params <- .parlat_echo_body_all_periods(
+    body_params,
+    legis_period,
+    first_period = 5L
+  )
+
+  .parlat_echo_request(
+    echo_body_params,
+    url_base = "https://www.parlament.gv.at/recherchieren/gegenstaende",
+    param_prefix = "FP_001",
+    n_results = n_results
+  )
+}
+
+.normalize_get_items_legis_period <- function(legis_period) {
+  normalized <- purrr::map_chr(
+    legis_period,
+    \(x) fn_check_legis_period_elements(x)
+  )
+
+  if (length(normalized) == 0L) {
+    return(normalized)
+  }
+
+  numeric_period <- suppressWarnings(as.integer(as.roman(normalized)))
+  special_period <- normalized %in% c("ALLE", "KN", "PN")
+  invalid <- !special_period & (is.na(numeric_period) | numeric_period < 5L)
+
+  if (any(invalid)) {
+    cli::cli_abort(
+      paste(
+        "Explicit numbered `legis_period` values are supported from the 5th",
+        "legislative period onwards; `\"KN\"` and `\"PN\"` are also supported."
+      ),
+      arg = "legis_period"
+    )
+  }
+
+  normalized
+}
+
 #' Get items under negotiation ('Verhandlungsgegenstände')
 #' @encoding UTF-8
 #' @description
 #' `get_items` searches for items ('Verhandlungsgegenstände') that are or were subject to negotiations
 #' in the Austrian National Council ('Nationalrat') or the Federal Council ('Bundesrat'). The function
-#' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende/index.html" target="_blank">here</a>).
+#' mirrors the search functionality offered on the Austrian Parliament's website (see <a href="https://www.parlament.gv.at/recherchieren/gegenstaende" target="_blank">here</a>).
 #'
 #' @param topic (Thema) Character vector or `NULL`. Specifies the topic(s) to search for. See 'Details' for possible values. Default is `NULL`.
-#' @param institution Character string. Either "NR" (Nationalrat, National Council) or "BR" (Bundesrat, Federal Council). Default is `NULL` which returns both chambers.
-#' @param legis_period Character vector or `NULL`. Specifies the legislative period(s) to search in. See 'Details' for possible values. Default is `NULL`.
+#' @param institution Character string. Either `"NR"` or `"Nationalrat"`
+#'   (National Council), or `"BR"` or `"Bundesrat"` (Federal Council).
+#'   Default is `NULL`, which returns both chambers. When combined with
+#'   `person`, this filters the parliamentary items; it does not restrict the
+#'   person's institutional affiliations.
+#' @param legis_period Character or numeric vector, or `NULL`. Specifies the
+#'   legislative period(s) to search in. If `NULL` (the default), no period
+#'   restriction is applied. See 'Details' for possible values and the API
+#'   result limit.
 #' @param date_start Character string. Start date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param date_end Character string. End date for the search period in format "dd-mm-yyyy", "dd.mm.yyyy", or "dd/mm/yyyy". Default is `NULL`.
 #' @param item (Gegenstand) Character vector or `NULL`. Specifies the type(s) of parliamentary item(s) to search for. See 'Details' for possible values. Default is `NULL`.
 #' @param type_doc (Art des Antrages / Art der Anfrage) Character vector or `NULL`. Specifies the document type for certain item types. Permissible values depend on both `item` and `institution`. See 'Details' for possible values. Default is `NULL`.
 #' @param type_eu_submission (Art der EU-Vorlage) Character vector or `NULL`. Type(s) of EU submission to search for. Can only be specified when `item = "EU"`. See 'Details' for possible values. Default is `NULL`.
-#' @param person Character string or `NULL`. Name of a person to search for (family name, optionally followed by first name). Default is `NULL`.
+#' @param person Character string or `NULL`. Name of a person to search for
+#'   (family name, optionally followed by first name). People are resolved
+#'   across all institutional categories before other item filters are applied.
+#'   Default is `NULL`.
 #' @param keyword Character vector or `NULL`. Keyword(s) to search for. Default is `NULL`.
 #' @param eurovoc Character vector or `NULL`. EuroVoc term(s) to search for. Default is `NULL`.
 #' @param parl_group Character vector or `NULL`. Parliamentary group(s) to search for. Default is `NULL`. Combine multiple groups in a vector, i.e. c("SPÖ", "ÖVP"). See Details.
 #' @param parl_group_names_standard Logical. If `TRUE`, the function expands and standardizes parliamentary group names. Default is `FALSE`. See Details.
-#' @param echo Logical. If `TRUE`, the function prints the used search parameters and the url to the pertaining search results on website of the Austrian Parliament.
+#' @param echo Logical. If `TRUE`, the function prints the URL to the pertaining search results on the website of the Austrian Parliament and the number of results.
 #'
 #' @details
 #' ## topic (Thema)
@@ -71,12 +137,20 @@
 #' * "Wirtschaft" (economy)
 #'
 #' ## legis_period (Gesetzgebungsperiode)
-#' `legis_period` specifies the legislative period(s). Can be one or more of the following value(s):
-#' * number(s) or character(s) indicating the relevant period(s), i.e., "25", 25, or "XXV".
+#' `legis_period` specifies the legislative period(s). It can be one or more of
+#' the following values:
+#' * number(s) or character(s) indicating the relevant period(s), i.e., "25",
+#'   25, or "XXV";
+#' * `"PN"` for the Provisional National Assembly; or
+#' * `"KN"` for the Constituent National Assembly.
 #'
-#' Only periods from the 5th legislative period (V. GP, 1945) onwards are
-#' supported. Earlier periods (including special codes like "PN" and "KN")
-#' do not return data and will be rejected.
+#' Explicit numbered period filters are supported from the 5th legislative
+#' period (V. GP, 1945) onwards; `"PN"` and `"KN"` are also supported. If
+#' `legis_period = NULL`, no period restriction is applied. Broad searches can
+#' still omit periods from the returned data when the API's 100,000-row export
+#' limit is reached. When `echo = TRUE`, the website URL explicitly selects
+#' every available period so it reproduces the unrestricted search instead of
+#' using the website's current-period default.
 #'
 #' ## item (Gegenstand)
 #' Possible values for `item` include:
@@ -87,6 +161,7 @@
 #' * "ANTR" (Anträge, Motions)
 #' * "US" (Anträge/Verlangen auf Untersuchungsausschuss, Motions/Requests for Investigative Committee)
 #' * "AUB" (Ausschussberichte, Committee Reports)
+#' * "AUB-BR" (Ausschussberichte Bundesrat, Committee Reports Federl Council)
 #' * "AB_ABPR_ABM" (Beantwortungen, Answers)
 #' * "III" (Berichte an den Nationalrat, Reports to the National Council)
 #' * "BNR" (Beschlüsse, Resolutions)
@@ -437,6 +512,14 @@
 #' `parl_group_names_standard = TRUE`, an input of "F" (or any other variant) will return
 #' the results for all three abbreviations.
 #'
+#' ## Combining person and institution filters
+#' When `person` and `institution` are supplied together, the person lookup is
+#' performed across all institutional categories. The `institution` value then
+#' filters the parliamentary items by chamber. The full German chamber names
+#' and their abbreviations are equivalent. For example, a federal minister can
+#' be associated with National Council items even if the person is not
+#' categorized as a National Council member.
+#'
 #' @return
 #' A tibble (data.frame) with one row per parliamentary item matching the search.
 #' The returned object contains the most commonly used columns (some are optional
@@ -483,8 +566,10 @@
 #' ```
 #'
 #' ## Data Availability
-#' The API only returns data from the 5th legislative period (V. GP, 1945)
-#' onwards, i.e. for the Second Republic.
+#' Numbered legislative periods are available from the 5th period (V. GP,
+#' 1945) onwards. Historical material is also available for the Provisional
+#' National Assembly (`"PN"`) and Constituent National Assembly (`"KN"`).
+#' Coverage and completeness vary by document type.
 #'
 #' @seealso
 #' * [get_persons()] for searching person identifiers used in the `person` parameter
@@ -526,9 +611,9 @@
 #'
 #' # Search by person (minister or MP)
 #' result <- get_items(
-#'   person = "Nehammer",
-#'   date_start = "01-01-2023",
-#'   date_end = "31-12-2023"
+#'   person = "Kurz Sebastian",
+#'   institution = "Nationalrat", # "NR" is equivalent
+#'   legis_period = 27
 #' )
 #' dplyr::glimpse(result)
 #'
@@ -550,12 +635,12 @@
 #' )
 #' dplyr::glimpse(result)
 #'
-#' # Get all statements of the sub-committee on EU affairs
-#' # (EU-Unterausschuss) during the 27th legislative period.
+#' # Get communications from the sub-committee on EU affairs
+#' # (EU-Unterausschuss) during the 25th legislative period.
 #' result <- get_items(
 #'   item = "EU",
 #'   type_eu_submission = "MTEU",
-#'   legis_period = 27,
+#'   legis_period = 25,
 #'   institution = "NR"
 #' )
 #' dplyr::glimpse(result)
@@ -606,38 +691,20 @@ get_items <- function(
   #INSTITUTION
   checkmate::assert_subset(
     institution,
-    choices = c("BR", "NR"),
+    choices = c("BR", "Bundesrat", "NR", "Nationalrat"),
     empty.ok = TRUE
   )
-  ##encode
+  if (!is.null(institution)) {
+    institution <- dplyr::recode(
+      institution,
+      "Bundesrat" = "BR",
+      "Nationalrat" = "NR"
+    )
+  }
   institution_input <- institution
-  # institution_input <- switch(
-  #   institution,
-  #   Nationalrat = "NR",
-  #   Bundesrat = "BR"
-  # )
 
   #LEGIS PERIOD
-  legis_period <- purrr::map_chr(
-    legis_period,
-    \(x) fn_check_legis_period_elements(x)
-  )
-
-  # Data is only available from the 5th legislative period (Second Republic).
-  # Special codes like "PN", "KN" also predate the 5th period and return no
-
-  # data, so only numeric periods >= 5 (and "ALLE") are permitted.
-  if (length(legis_period) > 0) {
-    lp_numeric <- suppressWarnings(as.integer(as.roman(legis_period)))
-    lp_invalid <- is.na(lp_numeric) & legis_period != "ALLE" |
-      !is.na(lp_numeric) & lp_numeric < 5L
-    if (any(lp_invalid)) {
-      cli::cli_abort(
-        "Data is only available from the 5th legislative period onwards.",
-        arg = "legis_period"
-      )
-    }
-  }
+  legis_period <- .normalize_get_items_legis_period(legis_period)
 
   #DATE START; DATE END
   # Date validation using lubridate for flexible input formats
@@ -648,7 +715,7 @@ get_items <- function(
     checkmate::assert_character(date_start, len = 1, null.ok = TRUE)
     date_start_parsed <- lubridate::dmy(date_start, quiet = TRUE)
     if (is.na(date_start_parsed)) {
-      stop(
+      cli::cli_abort(
         "date_start must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
       )
     }
@@ -663,7 +730,7 @@ get_items <- function(
     checkmate::assert_character(date_end, len = 1, null.ok = TRUE)
     date_end_parsed <- lubridate::dmy(date_end, quiet = TRUE)
     if (is.na(date_end_parsed)) {
-      stop(
+      cli::cli_abort(
         "date_end must be a valid date in format dd-mm-yyyy, dd.mm.yyyy, or dd/mm/yyyy"
       )
     }
@@ -673,7 +740,7 @@ get_items <- function(
   # Validate date range
   if (!is.null(date_start_parsed) && !is.null(date_end_parsed)) {
     if (date_start_parsed > date_end_parsed) {
-      stop("date_start must be before or equal to date_end")
+      cli::cli_abort("date_start must be before or equal to date_end")
     }
   }
 
@@ -712,7 +779,7 @@ get_items <- function(
 
   # type_doc (Art des Antrages / Art der Anfrage)
   if (!is.null(type_doc) && is.null(item)) {
-    stop("'type_doc' can be only specified in combination with 'item'")
+    cli::cli_abort("'type_doc' can be only specified in combination with 'item'")
   }
 
   # Validation for item = "ANTR" (Motions)
@@ -807,7 +874,7 @@ get_items <- function(
   # TYPE_EU_SUBMISSION (Art der EU-Vorlage)
   # Can only be specified when item = "EU"
   if (!is.null(type_eu_submission) && (is.null(item) || !any(item %in% "EU"))) {
-    stop("'type_eu_submission' can only be specified when item = 'EU'")
+    cli::cli_abort("'type_eu_submission' can only be specified when item = 'EU'")
   }
 
   if (!is.null(type_eu_submission)) {
@@ -857,7 +924,7 @@ get_items <- function(
     # Check if NR-specific codes are used without institution="NR"
     if (any(type_eu_submission %in% choices_type_eu_submission_nr)) {
       if (is.null(institution) || institution != "NR") {
-        stop(
+        cli::cli_abort(
           "National Council type_eu_submission codes can only be used when institution = 'NR'"
         )
       }
@@ -866,7 +933,7 @@ get_items <- function(
     # Check if BR-specific codes are used without institution="BR"
     if (any(type_eu_submission %in% choices_type_eu_submission_br)) {
       if (is.null(institution) || institution != "BR") {
-        stop(
+        cli::cli_abort(
           "Federal Council type_eu_submission codes can only be used when institution = 'BR'"
         )
       }
@@ -878,10 +945,18 @@ get_items <- function(
   ## accepts multiple values
   ## pad_intern needs to be character, not numeric
   if (!is.null(person)) {
-    person_input <- get_persons(names = person, institution = institution) %>%
-      dplyr::pull("pad_intern") %>%
-      unique() %>%
+    person_matches <- suppressMessages(get_persons(names = person))
+    person_input <- person_matches |>
+      dplyr::pull("pad_intern") |>
+      unique() |>
       as.character()
+
+    if (length(person_input) == 0L) {
+      cli::cli_inform(
+        "No person found for the given search criteria; no items were requested."
+      )
+      return(.empty_items_tibble())
+    }
   } else {
     person_input <- NULL
   }
@@ -1166,21 +1241,12 @@ get_items <- function(
     httr2::req_headers(
       accept = "*/*",
       `accept-language` = "en-US,en;q=0.9,de-AT;q=0.8,de;q=0.7,en-AT;q=0.6",
-      dnt = "1",
-      origin = "https://www.parlament.gv.at",
-      priority = "u=1, i",
-      `sec-ch-ua` = '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-      `sec-ch-ua-mobile` = "?0",
-      `sec-ch-ua-platform` = '"Windows"',
-      `sec-fetch-dest` = "empty",
-      `sec-fetch-mode` = "cors",
-      `sec-fetch-site` = "same-origin",
-      `user-agent` = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+      origin = "https://www.parlament.gv.at"
     ) %>%
     httr2::req_body_raw(body_params, "application/json") %>%
     # httr2::req_body_json(body_params) %>%
-    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)")
-  #browser()
+    httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") |>
+    httr2::req_retry(max_tries = 3)
   resp <- httr2::req_perform(req)
   resp_json <- httr2::resp_body_json(resp, simplifyVector = TRUE)
   vec_headings <- resp_json %>%
@@ -1199,18 +1265,17 @@ get_items <- function(
 
   # STOP IF NO HITS
   if (is.null(df_res) || nrow(df_res) == 0) {
-    cli::cli_alert_warning("No results found for the provided search criteria.")
-    return(NULL)
+    cli::cli_inform("No results found for the provided search criteria.")
+    return(.empty_items_tibble())
   }
 
   # WARN IF RESULT LIMIT REACHED
   if (nrow(df_res) >= 100000) {
-    warning(
-      "Query returned 100,000 rows (API maximum). Results are likely to be incomplete. ",
-      "Refine search criteria or split into multiple requests. ",
-      "See 'API Result Limits' in ?get_items for details.",
-      call. = FALSE
-    )
+    cli::cli_warn(c(
+      "Query returned 100,000 rows (API maximum). Results are likely to be incomplete.",
+      "i" = "Refine search criteria or split into multiple requests.",
+      "i" = "See 'API Result Limits' in ?get_items for details."
+    ))
   }
 
   # PARSE CONTENT TO MAKE MORE AMENABLE FOR FURTHER ANALYSIS
@@ -1270,11 +1335,7 @@ get_items <- function(
     "gremium" = "institution"
   )
 
-  df_res <- df_res %>%
-    dplyr::rename_with(
-      .fn = \(x) renaming_map[x],
-      .cols = any_of(names(renaming_map))
-    )
+  df_res <- .parlat_apply_renaming(df_res, renaming_map)
 
   ##select
   col_select <- c(
@@ -1327,41 +1388,19 @@ get_items <- function(
   if (n_total_rows > n_distinct_rows) {
     n_duplicates <- n_total_rows - n_distinct_rows
 
-    warning(
-      "The result contains ",
-      n_duplicates,
-      " duplicate row(s). ",
-      "Total rows: ",
-      n_total_rows,
-      ", unique rows: ",
-      n_distinct_rows,
-      ". ",
-      "This may indicate data quality issues.",
-      call. = FALSE
+    cli::cli_warn(
+      "The result contains {n_duplicates} duplicate row{?s}. Total rows: {n_total_rows}, unique rows: {n_distinct_rows}. This may indicate data quality issues."
     )
   }
 
   # RETURN RESULT
-  if (echo) cli::cli_alert_success("Fetched {nrow(df_res)} item{?s}")
-
-  # ECHO: print search parameters and result URL
-  if (echo == TRUE) {
-    print(body_params)
-    body_params_li <- jsonlite::fromJSON(body_params)
-
-    query_string <- purrr::imap(
-      body_params_li,
-      \(x, y) glue::glue("FP_001{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
-      paste0(collapse = "&")
-
-    print(glue::glue(
-      "https://www.parlament.gv.at/recherchieren/gegenstaende/index.html?{query_string}"
-    ))
-
-    print(nrow(df_res))
+  if (echo) {
+    cli::cli_alert_success("Fetched {nrow(df_res)} item{?s}")
+    .get_items_echo_request(
+      body_params,
+      legis_period = legis_period,
+      n_results = nrow(df_res)
+    )
   }
 
   return(df_res)

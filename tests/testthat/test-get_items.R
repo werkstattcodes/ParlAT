@@ -69,6 +69,8 @@ test_that("get_items validates date_start must be <= date_end", {
 })
 
 test_that("get_items accepts multiple date formats", {
+  skip_if_api_index_degraded()
+
   # Test that all three date formats return the same result
   result1 <- run_api_call(
     {
@@ -81,7 +83,7 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result1, "data.frame")
-  expect_equal(nrow(result1), 2526)
+  expect_row_count(nrow(result1), 2526)
 
   result2 <- run_api_call(
     {
@@ -94,7 +96,7 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result2, "data.frame")
-  expect_equal(nrow(result2), 2526)
+  expect_row_count(nrow(result2), 2526)
 
   result3 <- run_api_call(
     {
@@ -107,7 +109,11 @@ test_that("get_items accepts multiple date formats", {
     fixture_subdir = "get_items"
   )
   expect_s3_class(result3, "data.frame")
-  expect_equal(nrow(result3), 2526)
+  expect_row_count(nrow(result3), 2526)
+
+  # All three formats must resolve to the same query and thus the same rows
+  expect_equal(nrow(result1), nrow(result2))
+  expect_equal(nrow(result1), nrow(result3))
 })
 
 test_that("get_items validates institution parameter", {
@@ -117,12 +123,215 @@ test_that("get_items validates institution parameter", {
   )
 })
 
+test_that("get_items accepts full and abbreviated chamber names", {
+  local_mocked_bindings(
+    get_persons = function(names) {
+      tibble::tibble(pad_intern = character())
+    }
+  )
+  local_mocked_bindings(
+    req_perform = function(...) {
+      stop("The item API must not be called for an unmatched person.")
+    },
+    .package = "httr2"
+  )
+
+  aliases <- c("NR", "Nationalrat", "BR", "Bundesrat")
+  results <- purrr::map(aliases, \(chamber) {
+    suppressMessages(get_items(
+      institution = chamber,
+      person = "Unknown Person",
+      echo = FALSE
+    ))
+  })
+
+  expect_length(results, 4L)
+  expect_equal(purrr::map_int(results, nrow), rep(0L, 4L))
+})
+
+test_that("get_items echo URL represents a NULL period as all periods", {
+  body_params <- jsonlite::toJSON(list(
+    NRBR = "NR",
+    PAD_INTERN = "65321"
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_items_echo_request(
+      body_params,
+      legis_period = character(),
+      n_results = 2685L
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+  expected_periods <- c(as.character(as.roman(5:28)), "KN", "PN")
+
+  expect_length(url_message, 1L)
+  expect_match(
+    url_message,
+    "https://www.parlament.gv.at/recherchieren/gegenstaende?",
+    fixed = TRUE
+  )
+  expect_equal(
+    stringr::str_count(url_message, "FP_001GP_CODE="),
+    length(expected_periods)
+  )
+  purrr::walk(expected_periods, \(period) {
+    expect_match(
+      url_message,
+      paste0("FP_001GP_CODE=", period),
+      fixed = TRUE
+    )
+  })
+  expect_match(url_message, "FP_001NRBR=NR", fixed = TRUE)
+  expect_match(url_message, "FP_001PAD_INTERN=65321", fixed = TRUE)
+  expect_no_match(url_message, "index.html", fixed = TRUE)
+})
+
+test_that("get_items echo URL preserves an explicit period", {
+  body_params <- jsonlite::toJSON(list(
+    NRBR = "NR",
+    GP_CODE = "XXVII",
+    PAD_INTERN = "65321"
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_items_echo_request(
+      body_params,
+      legis_period = "XXVII",
+      n_results = 872L
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+
+  expect_length(url_message, 1L)
+  expect_equal(
+    stringr::str_count(url_message, "FP_001GP_CODE="),
+    1L
+  )
+  expect_match(url_message, "FP_001GP_CODE=XXVII", fixed = TRUE)
+})
+
+test_that("get_items echo URL preserves explicit historical periods", {
+  body_params <- jsonlite::toJSON(list(
+    NRBR = "NR",
+    GP_CODE = c("PN", "KN")
+  ))
+  messages <- character()
+
+  withCallingHandlers(
+    .get_items_echo_request(
+      body_params,
+      legis_period = c("PN", "KN"),
+      n_results = 2213L
+    ),
+    message = function(message) {
+      messages <<- c(messages, conditionMessage(message))
+      invokeRestart("muffleMessage")
+    }
+  )
+
+  url_message <- messages[grepl("Results on the Parliament website", messages)]
+
+  expect_length(url_message, 1L)
+  expect_equal(stringr::str_count(url_message, "FP_001GP_CODE="), 2L)
+  expect_match(url_message, "FP_001GP_CODE=PN", fixed = TRUE)
+  expect_match(url_message, "FP_001GP_CODE=KN", fixed = TRUE)
+})
+
+test_that("get_items request excludes browser fingerprint headers", {
+  captured_request <- NULL
+
+  local_mocked_bindings(
+    req_perform = function(req) {
+      captured_request <<- req
+      structure(list(), class = "httr2_response")
+    },
+    resp_body_json = function(resp, simplifyVector = TRUE) {
+      list(
+        header = data.frame(label = character(), rnr = integer()),
+        rows = list()
+      )
+    },
+    .package = "httr2"
+  )
+
+  suppressMessages(get_items(echo = FALSE))
+
+  forbidden_headers <- c(
+    "dnt", "priority", "sec-ch-ua", "sec-ch-ua-mobile",
+    "sec-ch-ua-platform", "sec-fetch-dest", "sec-fetch-mode",
+    "sec-fetch-site", "user-agent"
+  )
+
+  expect_identical(
+    captured_request$options$useragent,
+    "ParlAT R package (http://werk.statt.codes)"
+  )
+  expect_identical(captured_request$policies$retry_max_tries, 3)
+  expect_length(
+    intersect(tolower(names(captured_request$headers)), forbidden_headers),
+    0L
+  )
+})
+
+test_that("get_items resolves people independently of the item institution", {
+  local_mocked_bindings(
+    get_persons = function(names) {
+      expect_equal(names, "Kurz Sebastian")
+      tibble::tibble(pad_intern = character())
+    }
+  )
+  local_mocked_bindings(
+    req_perform = function(...) {
+      stop("The item API must not be called for an unmatched person.")
+    },
+    .package = "httr2"
+  )
+
+  expect_message(
+    result <- get_items(
+      institution = "NR",
+      person = "Kurz Sebastian",
+      echo = FALSE
+    ),
+    "No person found.*no items were requested"
+  )
+
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0L)
+  expect_named(
+    result,
+    c(
+      "legis_period", "institution", "date", "item_type", "item_number",
+      "item_number_type", "stage", "item_url", "type_doc", "type_doc_long",
+      "subject", "topics", "keywords", "eurovoc", "persons", "parl_group"
+    )
+  )
+})
+
 test_that("get_items rejects legis_period before 5th period", {
   expect_error(get_items(legis_period = 4), "5th legislative period")
   expect_error(get_items(legis_period = "3"), "5th legislative period")
   expect_error(get_items(legis_period = c(2, 27)), "5th legislative period")
-  expect_error(get_items(legis_period = "PN"), "5th legislative period")
-  expect_error(get_items(legis_period = "KN"), "5th legislative period")
+})
+
+test_that("get_items accepts historical legislative period codes", {
+  expect_identical(
+    .normalize_get_items_legis_period(c("KN", "PN", 10, "15")),
+    c("KN", "PN", "X", "XV")
+  )
 })
 
 test_that("get_items validates topic parameter", {
@@ -160,7 +369,12 @@ test_that("get_items handles empty results gracefully", {
     fixture_subdir = "get_items"
   )
 
-  expect_null(result)
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0)
+  expect_true(all(
+    c("legis_period", "institution", "date", "subject", "topics") %in%
+      names(result)
+  ))
 })
 
 test_that("get_items works with multiple parameters", {
@@ -183,6 +397,8 @@ test_that("get_items works with multiple parameters", {
 })
 
 test_that("get_items works with multiple topics", {
+  skip_if_api_index_degraded()
+
   result <- run_api_call(
     {
       get_items(
@@ -194,17 +410,17 @@ test_that("get_items works with multiple topics", {
     fixture_subdir = "get_items"
   )
 
-  expect_equal(nrow(result), 2011)
+  expect_row_count(nrow(result), 2011)
 })
 
-test_that("get_items rejects mixed legis_period inputs containing unsupported early periods", {
+test_that("get_items rejects mixed inputs containing early numbered periods", {
   expect_error(
     get_items(
-      legis_period = c("KN", "PN", 10, "15"),
+      legis_period = c("KN", "PN", 4, "15"),
       institution = "NR",
       echo = FALSE
     ),
-    "5th legislative period onwards"
+    "5th legislative period"
   )
 })
 
@@ -340,14 +556,22 @@ test_that("get_items echo parameter works", {
   # This test checks console output behavior - run only in live mode
   skip_if_mocked("Echo output testing requires live API")
 
-  # Test with echo = TRUE (should print output)
-  expect_output(
+  # Test with echo = TRUE (should report the results URL).
+  # echo output is emitted via cli::cli_inform(), which signals a message
+  # condition and therefore writes to stderr, not stdout. Capture all
+  # messages rather than using expect_output()/expect_message(): the first
+  # message is the "Fetching items" status line, not the URL.
+  echo_messages <- capture_messages(
     get_items(
       item = "RV",
       legis_period = "27",
       echo = TRUE
-    ),
-    "https://www.parlament.gv.at"
+    )
+  )
+  expect_match(
+    paste(echo_messages, collapse = ""),
+    "parlament.gv.at",
+    fixed = TRUE
   )
 
   # Test with echo = FALSE (should not print)
@@ -548,6 +772,8 @@ test_that("get_items accepts valid type_eu_submission values", {
 })
 
 test_that("get_items accepts multiple type_eu_submission values", {
+  skip_if_api_index_degraded()
+
   # Test multiple valid values
   result <- run_api_call(
     {
@@ -563,7 +789,7 @@ test_that("get_items accepts multiple type_eu_submission values", {
   )
 
   expect_true(is.data.frame(result) || is.null(result))
-  expect_equal(nrow(result), 8)
+  expect_row_count(nrow(result), 8)
 })
 
 test_that("get_items type_eu_submission works with all valid codes", {
@@ -888,11 +1114,14 @@ test_that("get_items returns 0 rows for SBPL-BR type_eu_submission (periods 24-2
     fixture_subdir = "get_items"
   )
 
-  # Expect NULL for empty results (following package convention)
-  expect_null(result)
+  # Expect a typed zero-row tibble for empty results (package convention)
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 0)
 })
 
 test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27)", {
+  skip_if_api_index_degraded()
+
   result <- run_api_call(
     {
       get_items(
@@ -926,6 +1155,8 @@ test_that("get_items returns 71 rows for MT-BR type_eu_submission (periods 24-27
 })
 
 test_that("get_items returns 17 rows for S-BR type_eu_submission (periods 24-27)", {
+  skip_if_api_index_degraded()
+
   result <- run_api_call(
     {
       get_items(

@@ -1,9 +1,26 @@
+#' Zero-row tibble matching a get_persons() output mode
+#' @noRd
+.empty_persons_tibble <- function(mandates = FALSE) {
+  persons <- .parlat_empty_tibble(
+    c("pad_intern", "name", "gender", "position", "link")
+  )
+
+  if (!isTRUE(mandates)) {
+    return(persons)
+  }
+
+  mandate_columns <- .empty_mandates_tibble()
+  names(mandate_columns) <- paste0("mandates_", names(mandate_columns))
+
+  dplyr::bind_cols(persons, mandate_columns)
+}
+
 #' @param search_string A character string to search for specific names or keywords. Default is `NULL`.
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param gender A character string specifying the gender to filter by. Possible values are `"male"`, `"female"`, or `"all"`. Default is `"all"`.
-#' @param echo Logical. If `TRUE`, prints the API request body parameters, the constructed URL, and the number of results. Default is `FALSE`.
+#' @param echo Logical. If `TRUE`, prints the URL to the corresponding search results on the Parliament website and the number of results. Default is `FALSE`.
 #'
-#' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`). Returns `NULL` if no results are found.
+#' @return A data.frame with the search results. The data frame includes columns for the internal ID (`pad_intern`), name (`name`), gender (`gender`), position (`position`), and a link (`link`). Returns a zero-row tibble if no results are found.
 #' @noRd
 
 get_persons_single <- function(
@@ -82,12 +99,8 @@ get_persons_single <- function(
     ) %>%
     httr2::req_body_raw(body_params, "application/json") %>%
     httr2::req_user_agent("ParlAT R package (http://werk.statt.codes)") %>%
-    httr2::req_verbose(
-      body_req = FALSE,
-      header_req = FALSE,
-      header_resp = FALSE
-    ) %>%
-    httr2::req_perform()
+    httr2::req_retry(max_tries = 3) %>%
+        httr2::req_perform()
 
   df_res <- res %>%
     httr2::resp_body_json(simplifyVector = TRUE) %>%
@@ -120,23 +133,13 @@ get_persons_single <- function(
 
   # PRINT ECHO
   if (isTRUE(echo)) {
-    print(body_params)
-    body_params_li <- jsonlite::fromJSON(body_params) %>%
-      c("search" = search_string)
-
-    query_string <- purrr::imap(
-      body_params_li,
-      \(x, y) glue::glue("PERSON_10400{URLencode(y)}={URLencode(x)}")
-    ) %>%
-      unlist() %>%
-      unname() %>%
-      paste0(collapse = "&")
-
-    print(glue::glue(
-      "https://www.parlament.gv.at/recherchieren/personen?{query_string}"
-    ))
-
-    print(nrow(df_res))
+    .parlat_echo_request(
+      body_params,
+      url_base = "https://www.parlament.gv.at/recherchieren/personen",
+      param_prefix = "PERSON_10400",
+      n_results = nrow(df_res),
+      search = search_string
+    )
   }
 
   return(df_res)
@@ -162,12 +165,14 @@ get_persons_single <- function(
 #' @param institution A character vector specifying one or more institutions to search within. Possible values are `"Bundespräsident"`, `"Bundesrat"`, `"Bundesregierung"`, `"Europäisches Parlament"`, `"Konstituierende Nationalversammlung"`, `"Landeshauptleute"`, `"Nationalrat"`, `"Politische Mandate"`, `"Provisorische Nationalversammlung"`, `"Rechnungshof"`, and `"Volksanwaltschaft"`. Defaults to all institutions.
 #' @param mandates Logical. If `TRUE`, mandates are retrieved for each person. Default is `FALSE`.
 #' @param gender A character string. Possible values are `"all"`, `"female"`, or `"male"`. Default is `"all"`.
-#' @param echo Logical. If `TRUE`, prints the API request body parameters, the constructed URL, and the number of results. Default is `FALSE`.
+#' @param echo Logical. If `TRUE`, prints the URL to the corresponding search results on the Parliament website and the number of results. Default is `FALSE`.
 #'
 #' @return A data frame with one row per matching person and the columns `pad_intern`,
 #'   `name`, `gender`, `position`, and `link`. When `mandates = TRUE`, the
-#'   returned data frame additionally contains mandate details for each person.
-#'   Returns `NULL` with a message if no persons are found.
+#'   returned data frame additionally contains every column returned by
+#'   [get_mandates()], prefixed with `mandates_`. If no persons are found, a
+#'   zero-row tibble with the same columns and column types as the requested
+#'   output mode is returned with a message.
 #'
 #' @export
 #'
@@ -203,11 +208,13 @@ get_persons <- function(
     )
   }
 
-  df_persons <- li_persons %>% purrr::list_rbind()
+  df_persons <- li_persons %>%
+    purrr::list_rbind() %>%
+    tibble::as_tibble()
 
   if (nrow(df_persons) == 0) {
-    message("No person found for the given search criteria.")
-    return(NULL)
+    cli::cli_inform("No person found for the given search criteria.")
+    return(.empty_persons_tibble(mandates = mandates))
   }
 
   if (isTRUE(mandates)) {
@@ -222,5 +229,8 @@ get_persons <- function(
       tidyr::unnest_wider(mandates, names_sep = "_")
   }
 
-  return(df_persons)
+  .parlat_match_tibble_prototype(
+    df_persons,
+    .empty_persons_tibble(mandates = mandates)
+  )
 }
