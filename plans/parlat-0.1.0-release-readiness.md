@@ -2,14 +2,40 @@
 
 ## Summary
 
-The substantive changes approved for `v0.1.0` are implemented on `dev`, and
-all GitHub Actions checks pass at `bc582d3`. The academic-title heuristic is
-intentionally deferred. A live documentation audit found several stale or
-non-executable examples that must be corrected or explicitly accepted before
-the release metadata and final release gate. This plan targets a GitHub-only
-release; CRAN administrative requirements are out of scope.
+The substantive changes approved for `v0.1.0` are implemented on `dev`.
+Documentation corrections and release metadata are now implemented locally;
+final validation, PR review, merge, and publication remain in progress.
+The academic-title heuristic is intentionally deferred. This plan targets a
+GitHub-only release; CRAN administrative requirements are out of scope.
 
-## Current Status (2026-09-02)
+## Current Status (2026-09-08)
+
+- Release preparation resumed with authorization to finish documentation,
+  validate, open and review the PR, merge, and publish GitHub release `v0.1.0`.
+- Starting head: `c0f067e`; clean `dev` matches origin and is 56 commits ahead
+  of `master`, with no master-only commits. All three release workflows pass
+  at this head; no open PR or remote `v0.1.0` tag exists.
+- The current check has a fourth NOTE for the tracked `plans/` directory.
+  Added `^plans$` to `.Rbuildignore` to restore the accepted three-note baseline.
+- Updated DESCRIPTION and NEWS to `0.1.0`; removed NEWS trailing whitespace
+  and narrowed an outdated claim about all check NOTEs being resolved.
+- Corrected and regenerated README sources and generated Markdown/HTML, plus
+  the `get_items()` help. The MTEU help example now uses period XXV (five live
+  rows); the README table remains a compact dataset-to-function map rather
+  than a set of reproducible examples, following user review on 2026-09-09.
+- Live README probes confirm 1,039 NR decisions in XXVII, 276 NR plenary
+  meetings, 183 current NR and 60 BR members, 43 NR committees in XXVII,
+  three committee-membership rows for PAD_INTERN 65321, and 14 MT-BR / 12 S-BR
+  rows in XXVII. Several formerly empty upstream datasets have recovered.
+- The advertised BR written-question filter `JMIN-BR` still returns zero,
+  but the broader XXVII BR result has 616 `J-BR` rows. Server-filter vocabulary
+  reconciliation is follow-up work; it is not discussed in the README mapping.
+- SBPL-BR remains empty both unrestricted and in XXVII. This is retained as
+  release-audit evidence, not presented in the README mapping.
+- `pkgdown::check_pkgdown()` passes. Final tests, examples, vignette, package
+  check, and release CI are being collected below.
+
+### Previous status (2026-09-02)
 
 Completed:
 
@@ -433,7 +459,8 @@ Still required before release:
 - **Resolved 2026-09-02:** Reconcile `NEWS.md` with the implementation. All 20
   httr2 request builders now use the ParlAT user agent and allow at most three
   total attempts; stale browser-fingerprint headers are removed.
-- Set `DESCRIPTION` and the `NEWS.md` release heading to version `0.1.0`.
+- **Resolved 2026-09-08:** Set `DESCRIPTION` and the `NEWS.md` release heading
+  to version `0.1.0`.
 - **Resolved 2026-09-02:** The previously identified trailing whitespace and
   extra end-of-file blank line are no longer present; `git diff --check` is
   clean.
@@ -442,12 +469,11 @@ Still required before release:
 
 - **Resolved 2026-09-03:** Removed the semantically stale PN/KN historical
   items example from the `get_items()` help.
-- Replace or revise the remaining semantically stale XXVII `MTEU` help
-  example identified in the 2026-09-03 audit.
-- Make the six non-executable README usage snippets syntactically and
-  semantically complete.
-- Replace the five zero-result README dataset examples with verified queries,
-  or label unsupported/unavailable datasets explicitly.
+- **Resolved 2026-09-08:** Replace the XXVII `MTEU` help example with the
+  live-verified XXV communications example.
+- **Resolved 2026-09-09:** Keep the README table as a concise mapping from
+  Parliament datasets to ParlAT functions and identifying filters. Do not add
+  bounded periods, live-result guarantees, workarounds, or availability notes.
 - Keep the transcript mass-download example in `\dontrun{}`, but consider
   narrowing it so users can verify PDF export without downloading 90 files.
 

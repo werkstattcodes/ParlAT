@@ -1,4 +1,4 @@
-# ParlAT (development version)
+# ParlAT 0.1.0
 
 ## New features
 
@@ -102,7 +102,7 @@
   `get_committees()` details) now go through httr2, so they are covered by
   the httptest2 mock layer in tests.
 - `get_pad_intern()` now removes academic titles from name searches before
-  looking up matching Parliament person identifiers. Previously academic titles 
+  looking up matching Parliament person identifiers. Previously academic titles
   could cause searches to fail.
 
 ## Documentation
@@ -126,8 +126,8 @@
   upstream outages no longer look like package regressions. Adds
   `tools/check_api_index.sh` for a manual health check and a daily workflow
   that monitors index health.
-- Non-standard-evaluation pronouns declared via `globalVariables()`;
-  remaining R CMD check NOTEs resolved.
+- Non-standard-evaluation pronouns declared via `globalVariables()`, resolving
+  the related code-analysis R CMD check NOTEs.
 
 # ParlAT 0.0.6
 

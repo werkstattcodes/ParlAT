@@ -149,6 +149,7 @@ Possible values for \code{item} include:
 \item "ANTR" (Anträge, Motions)
 \item "US" (Anträge/Verlangen auf Untersuchungsausschuss, Motions/Requests for Investigative Committee)
 \item "AUB" (Ausschussberichte, Committee Reports)
+\item "AUB-BR" (Ausschussberichte Bundesrat, Committee Reports Federl Council)
 \item "AB_ABPR_ABM" (Beantwortungen, Answers)
 \item "III" (Berichte an den Nationalrat, Reports to the National Council)
 \item "BNR" (Beschlüsse, Resolutions)
@@ -643,12 +644,12 @@ result <- get_items(
 )
 dplyr::glimpse(result)
 
-# Get all statements of the sub-committee on EU affairs
-# (EU-Unterausschuss) during the 27th legislative period.
+# Get communications from the sub-committee on EU affairs
+# (EU-Unterausschuss) during the 25th legislative period.
 result <- get_items(
   item = "EU",
   type_eu_submission = "MTEU",
-  legis_period = 27,
+  legis_period = 25,
   institution = "NR"
 )
 dplyr::glimpse(result)

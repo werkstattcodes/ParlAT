@@ -161,6 +161,7 @@
 #' * "ANTR" (Anträge, Motions)
 #' * "US" (Anträge/Verlangen auf Untersuchungsausschuss, Motions/Requests for Investigative Committee)
 #' * "AUB" (Ausschussberichte, Committee Reports)
+#' * "AUB-BR" (Ausschussberichte Bundesrat, Committee Reports Federl Council)
 #' * "AB_ABPR_ABM" (Beantwortungen, Answers)
 #' * "III" (Berichte an den Nationalrat, Reports to the National Council)
 #' * "BNR" (Beschlüsse, Resolutions)
@@ -634,12 +635,12 @@
 #' )
 #' dplyr::glimpse(result)
 #'
-#' # Get all statements of the sub-committee on EU affairs
-#' # (EU-Unterausschuss) during the 27th legislative period.
+#' # Get communications from the sub-committee on EU affairs
+#' # (EU-Unterausschuss) during the 25th legislative period.
 #' result <- get_items(
 #'   item = "EU",
 #'   type_eu_submission = "MTEU",
-#'   legis_period = 27,
+#'   legis_period = 25,
 #'   institution = "NR"
 #' )
 #' dplyr::glimpse(result)
