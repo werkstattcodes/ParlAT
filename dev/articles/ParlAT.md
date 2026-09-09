@@ -10,7 +10,7 @@ section](https://werkstattcodes.github.io/ParlAT/dev/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (03 September 2026). This is done
+(Nationalrat) at the time of writing (09 September 2026). This is done
 by the function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md).
 
@@ -19,43 +19,51 @@ by the function
 df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> Results on the Parliament website: https://www.parlament.gv.at/recherchieren/personen/nationalrat/index.html?WFW_002M=M&WFW_002W=W
 #> Hits: 183
-#> ⠙ Fetching MPs' names 4/183 | ETA:  1m
+#> ⠙ Fetching MPs' names 3/183 | ETA:  1m
 #> 
-#> ⠹ Fetching MPs' names 10/183 | ETA:  1m
+#> ⠹ Fetching MPs' names 9/183 | ETA:  1m
 #> 
-#> ⠸ Fetching MPs' names 20/183 | ETA:  1m
+#> ⠸ Fetching MPs' names 17/183 | ETA:  1m
 #> 
-#> ⠼ Fetching MPs' names 30/183 | ETA: 47s
+#> ⠼ Fetching MPs' names 25/183 | ETA:  1m
 #> 
-#> ⠴ Fetching MPs' names 40/183 | ETA: 44s
+#> ⠴ Fetching MPs' names 34/183 | ETA:  1m
 #> 
-#> ⠦ Fetching MPs' names 50/183 | ETA: 41s
+#> ⠦ Fetching MPs' names 42/183 | ETA:  1m
 #> 
-#> ⠧ Fetching MPs' names 59/183 | ETA: 38s
+#> ⠧ Fetching MPs' names 50/183 | ETA: 49s
 #> 
-#> ⠇ Fetching MPs' names 69/183 | ETA: 35s
+#> ⠇ Fetching MPs' names 58/183 | ETA: 46s
 #> 
-#> ⠏ Fetching MPs' names 79/183 | ETA: 32s
+#> ⠏ Fetching MPs' names 66/183 | ETA: 43s
 #> 
-#> ⠋ Fetching MPs' names 89/183 | ETA: 29s
+#> ⠋ Fetching MPs' names 75/183 | ETA: 39s
 #> 
-#> ⠙ Fetching MPs' names 99/183 | ETA: 26s
+#> ⠙ Fetching MPs' names 83/183 | ETA: 36s
 #> 
-#> ⠹ Fetching MPs' names 109/183 | ETA: 23s
+#> ⠹ Fetching MPs' names 91/183 | ETA: 34s
 #> 
-#> ⠸ Fetching MPs' names 118/183 | ETA: 20s
+#> ⠸ Fetching MPs' names 99/183 | ETA: 31s
 #> 
-#> ⠼ Fetching MPs' names 128/183 | ETA: 17s
+#> ⠼ Fetching MPs' names 108/183 | ETA: 27s
 #> 
-#> ⠴ Fetching MPs' names 138/183 | ETA: 14s
+#> ⠴ Fetching MPs' names 116/183 | ETA: 24s
 #> 
-#> ⠦ Fetching MPs' names 148/183 | ETA: 11s
+#> ⠦ Fetching MPs' names 124/183 | ETA: 22s
 #> 
-#> ⠧ Fetching MPs' names 158/183 | ETA:  8s
+#> ⠧ Fetching MPs' names 132/183 | ETA: 19s
 #> 
-#> ⠇ Fetching MPs' names 168/183 | ETA:  5s
+#> ⠇ Fetching MPs' names 140/183 | ETA: 16s
 #> 
-#> ⠏ Fetching MPs' names 178/183 | ETA:  2s
+#> ⠏ Fetching MPs' names 149/183 | ETA: 12s
+#> 
+#> ⠋ Fetching MPs' names 157/183 | ETA:  9s
+#> 
+#> ⠙ Fetching MPs' names 165/183 | ETA:  7s
+#> 
+#> ⠹ Fetching MPs' names 173/183 | ETA:  4s
+#> 
+#> ⠸ Fetching MPs' names 182/183 | ETA:  0s
 #> 
 #> Fetched 183 MPs' names.
 nrow(df_current)
@@ -222,16 +230,19 @@ MPs (top 5 are shown below).
 ``` r
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
-#> ⠙ Fetching mandates 8/183 | ETA: 25s
-#> ⠹ Fetching mandates 26/183 | ETA: 25s
-#> ⠸ Fetching mandates 44/183 | ETA: 22s
-#> ⠼ Fetching mandates 62/183 | ETA: 20s
-#> ⠴ Fetching mandates 80/183 | ETA: 17s
-#> ⠦ Fetching mandates 98/183 | ETA: 14s
-#> ⠧ Fetching mandates 116/183 | ETA: 11s
-#> ⠇ Fetching mandates 134/183 | ETA:  8s
-#> ⠏ Fetching mandates 152/183 | ETA:  5s
-#> ⠋ Fetching mandates 170/183 | ETA:  2s
+#> ⠙ Fetching mandates 6/183 | ETA: 30s
+#> ⠹ Fetching mandates 9/183 | ETA: 31s
+#> ⠸ Fetching mandates 25/183 | ETA: 30s
+#> ⠼ Fetching mandates 40/183 | ETA: 28s
+#> ⠴ Fetching mandates 55/183 | ETA: 25s
+#> ⠦ Fetching mandates 70/183 | ETA: 22s
+#> ⠧ Fetching mandates 85/183 | ETA: 19s
+#> ⠇ Fetching mandates 101/183 | ETA: 16s
+#> ⠏ Fetching mandates 116/183 | ETA: 13s
+#> ⠋ Fetching mandates 131/183 | ETA: 10s
+#> ⠙ Fetching mandates 146/183 | ETA:  7s
+#> ⠹ Fetching mandates 161/183 | ETA:  4s
+#> ⠸ Fetching mandates 177/183 | ETA:  1s
 #> Fetched mandates for 183 persons.
 #> 
 
@@ -257,11 +268,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10499
-#> 2 12741      Peter Haubner                     9040
-#> 3 2834       Mag. Dr. Martin Graf              8739
-#> 4 14835      Petra Bayr, MA MLS                8658
-#> 5 14795      August Wöginger                   8658
+#> 1 145        Doris Bures                      10505
+#> 2 12741      Peter Haubner                     9046
+#> 3 2834       Mag. Dr. Martin Graf              8745
+#> 4 14835      Petra Bayr, MA MLS                8664
+#> 5 14795      August Wöginger                   8664
 ```
 
 ## Get MPs’ details
@@ -374,9 +385,9 @@ visualise the count by party and legislative period.
 #get items
 df_items <- get_items(item = "J_JPR_M", legis_period = seq(20,27), echo=TRUE)
 #> ℹ Fetching items from API...
-#> ✔ Fetched 2318 items
+#> ✔ Fetched 77208 items
 #> Results on the Parliament website: https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001GP_CODE=XX&FP_001GP_CODE=XXI&FP_001GP_CODE=XXII&FP_001GP_CODE=XXIII&FP_001GP_CODE=XXIV&FP_001GP_CODE=XXV&FP_001GP_CODE=XXVI&FP_001GP_CODE=XXVII&FP_001VHG=J_JPR_M
-#> Hits: 2318
+#> Hits: 77208
 
 
 dplyr::glimpse(df_items %>% head())
@@ -384,23 +395,23 @@ dplyr::glimpse(df_items %>% head())
 #> Columns: 16
 #> $ legis_period     <chr> "XXVII", "XXVII", "XXVII", "XXVII", "XXVII", "XXVII"
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
-#> $ date             <date> 2024-10-01, 2024-09-03, 2024-07-10, 2024-07-05, 2024-07-05, 2024-07-05
-#> $ item_type        <chr> "JPR", "JPR", "JPR", "M", "M", "M"
-#> $ item_number      <chr> "101", "100", "99", "386", "390", "391"
-#> $ item_number_type <chr> "101/JPR", "100/JPR", "99/JPR", "386/M", "390/M", "391/M"
-#> $ stage            <chr> "5", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/JPR/101", "https://www.parlament.gv.at/gegenstand/XXVII/JPR/100", "https://www.parlament.gv.at/gegenstand/XXVII/JPR/99", "https://www.parlament.gv.at/gegenstand/XXVII/M/386", "https://www.parlament.gv.at/gegenstand/XXVII/M/390", "https://www.parlament.gv.at/gegenstand/XXVII/M/391"
-#> $ type_doc         <chr> "JPR", "JPR", "JPR", "M", "M", "M"
-#> $ type_doc_long    <chr> "Schriftliche Anfrage an Präsidentin/Präsident/Ausschussvorsitzende", "Schriftliche Anfrage an Präsidentin/Präsident/Ausschussvorsitzende", "Schriftliche Anfrage an Präsidentin/Präsident/Ausschussvorsitzende", "Mündliche Anfrage", "Mündliche Anfrage", "Mündliche Anfrage"
-#> $ subject          <chr> "Willkürlicher Ausschluss von Journalisten von der Wahlberichterstattung aus dem Parlament - beantwortet durch 100/ABPR", "Wiederbelebung der Abteilung 5.2 kurz vor Ende der Ära Sobotka - beantwortet durch 101/ABPR", "Besuch des EM-Länderspiels Österreich – Niederlande in Berlin - beantwortet durch 99/ABPR", "Regierungspolitik des Nicht-Eingreifens in die Preise", "Abschaffung des Amtsgeheimnisses", "Artikel-7-Verfahren"
-#> $ topics           <list> <"Information und Medien", "Parlament und Demokratie">, <"Inneres und Recht", "Parlament und Demokratie">, <"Budget und Finanzen", "Parlament und Demokratie", "Sport">, <"Budget und Finanzen", "Wirtschaft">, <"Information und Medien", "Inneres und Recht">, "Europäische Union"
-#> $ keywords         <list> <"Nationalrat V. Sonstiges", "Presse", "Wahlen">, <"Nationalrat V. Sonstiges", "Öffentlicher Dienst">, <"Nationalrat V. Sonstiges", "Bundeshaushalt III. Sonstiges", "Sport">, "Preise", <"Öffentlicher Dienst", "Information und Informationsverarbeitung">, "Europäische Integration"
-#> $ eurovoc          <chr> "[\"direkt gewählte Kammer\",\"Presse\",\"Wahl\"]", "[\"direkt gewählte Kammer\",\"öffentliche Verwaltung\",\"öffentlicher Dienst\"]", "[\"direkt gewählte Kammer\",\"Öffentliche Finanzen und Haushaltspolitik\",\"Sport\"]", "[\"Preis\"]", "[\"Informatik\",\"Information und Informationsverarbeitung\",\"öffentliche Verwaltung\",\"öffentlicher Dienst\"]", "[\"Europäische Union\"]"
-#> $ persons          <list> <"78586", "88386">, <"78586", "88386">, <"78586", "88386">, <"1974", "2136", "2309", "5654">, <"2136", "6502", "72959">, <"2136", "84054">
-#> $ parl_group       <list> "FPÖ", "FPÖ", "FPÖ", <"GRÜNE", "SPÖ", "ÖVP">, <"GRÜNE", "ÖVP">, <"GRÜNE", "ÖVP">
+#> $ date             <date> 2024-10-14, 2024-10-14, 2024-10-14, 2024-10-08, 2024-10-03, 2024-10-01
+#> $ item_type        <chr> "J", "J", "J", "J", "J", "JPR"
+#> $ item_number      <chr> "19510", "19509", "19508", "19507", "19506", "101"
+#> $ item_number_type <chr> "19510/J", "19509/J", "19508/J", "19507/J", "19506/J", "101/JPR"
+#> $ stage            <chr> "3", "3", "3", "3", "5", "5"
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/J/19510", "https://www.parlament.gv.at/gegenstand/XXVII/J/19509", "https://www.parlament.gv.at/gegenstand/XXVII/J/19508", "https://www.parlament.gv.at/gegenstand/XXVII/J/19507", "https://www.parlament.gv.at/gegenstand/XXVII/J/19506", "https://www.parlament.gv.at/gegenstand/XXVII/JPR/101"
+#> $ type_doc         <chr> "J", "J", "J", "J", "J", "JPR"
+#> $ type_doc_long    <chr> "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage", "Schriftliche Anfrage an Präsidentin/Präsident/Ausschussvorsitzende"
+#> $ subject          <chr> "Steckt ukrainischer Verein hinter organisierter Beschädigung von FPÖ-Plakaten? - Frist für die Beantwortung 14.12.2024", "Linksextreme Chaoten attackieren FPÖ-Wahlfeier - Frist für die Beantwortung 14.12.2024", "Verbot des sportlichen Long-Range-Schießens für den Heeressportverein - Frist für die Beantwortung 14.12.2024", "Botschafter Michael Linhart als ÖVP-Wahlkampfhelfer bei der Vorarlberger Landtagswahl - Frist für die Beantwortung 08.12.2024", "Zustände in der Justizanstalt Salzburg - beantwortet durch 18818/AB", "Willkürlicher Ausschluss von Journalisten von der Wahlberichterstattung aus dem Parlament - beantwortet durch 100/ABPR"
+#> $ topics           <list> <"Inneres und Recht", "Parlament und Demokratie", "Soziales">, <"Inneres und Recht", "Parlament und Demokratie", "Soziales">, <"Inneres und Recht", "Landesverteidigung", "Soziales", "Sport">, <"Außenpolitik", "Inneres und Recht", "Parlament und Demokratie">, "Inneres und Recht", <"Information und Medien", "Parlament und Demokratie">
+#> $ keywords         <list> <"Vereins- und Versammlungsrecht", "Politische Parteien", "Wahlen">, <"Sicherheitswesen", "Abgeordnete", "Nationalrat V. Sonstiges", "Öffentlicher Dienst", "Vereins- und Versammlungsrecht">, <"Vereins- und Versammlungsrecht", "Landesverteidigung", "Sport">, <"Wahlen", "Bundesländer", "Völkerrechtliche Vertretungen">, <"Strafrecht", "Öffentlicher Dienst">, <"Nationalrat V. Sonstiges", "Presse", "Wahlen">
+#> $ eurovoc          <chr> "[\"Politische Partei\",\"Vereinsleben\",\"Versammlungsfreiheit\",\"Wahl\"]", "[\"direkt gewählte Kammer\",\"öffentliche Sicherheit\",\"öffentliche Verwaltung\",\"öffentlicher Dienst\",\"Parlamentarier\",\"Vereinsleben\",\"Versammlungsfreiheit\"]", "[\"Sport\",\"Vereinsleben\",\"Versammlungsfreiheit\",\"Verteidigung\"]", "[\"diplomatische Beziehungen\",\"Gliedstaat\",\"Wahl\"]", "[\"öffentliche Verwaltung\",\"öffentlicher Dienst\",\"Strafrecht\"]", "[\"direkt gewählte Kammer\",\"Presse\",\"Wahl\"]"
+#> $ persons          <list> <"20445", "78586">, <"20445", "78586">, <"3717", "6485">, <"5430", "5678">, <"2345", "3717">, <"78586", "88386">
+#> $ parl_group       <list> "FPÖ", "FPÖ", "FPÖ", "GRÜNE", "FPÖ", "FPÖ"
 ```
 
-There were in total 2 318 questions submitted in writing and asked
+There were in total 77 208 questions submitted in writing and asked
 orally by the members of the National Council from the 20th to 27th
 legislative period. With a few additional steps, we can easily visualise
 the results.
@@ -472,17 +483,17 @@ glimpse(df_govBills %>% head())
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2024-07-05, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "2704", "2599", "2611", "2610", "2598", "2601"
-#> $ item_number_type <chr> "2704 d.B.", "2599 d.B.", "2611 d.B.", "2610 d.B.", "2598 d.B.", "2601 d.B."
+#> $ item_number      <chr> "2704", "2612", "2604", "2608", "2599", "2610"
+#> $ item_number_type <chr> "2704 d.B.", "2612 d.B.", "2604 d.B.", "2608 d.B.", "2599 d.B.", "2610 d.B."
 #> $ stage            <chr> "2", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2599", "https://www.parlament.gv.at/gegenstand/XXVII/I/2611", "https://www.parlament.gv.at/gegenstand/XXVII/I/2610", "https://www.parlament.gv.at/gegenstand/XXVII/I/2598", "https://www.parlament.gv.at/gegenstand/XXVII/I/2601"
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2612", "https://www.parlament.gv.at/gegenstand/XXVII/I/2604", "https://www.parlament.gv.at/gegenstand/XXVII/I/2608", "https://www.parlament.gv.at/gegenstand/XXVII/I/2599", "https://www.parlament.gv.at/gegenstand/XXVII/I/2610"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Betrugsbekämpfungsgesetz 2024 Teil II – BBKG 2024 Teil II", "Gewerbeordnung, Änderung", "Abgabenänderungsgesetz 2024 – AbgÄG 2024", "Betrugsbekämpfungsgesetz 2024 Teil I – BBKG 2024 Teil I", "Fahrgastrechtenovelle 2024"
-#> $ topics           <list> "Budget und Finanzen", <"Budget und Finanzen", "Soziales">, "Wirtschaft", "Budget und Finanzen", <"Budget und Finanzen", "Inneres und Recht", "Soziales">, "Verkehr und Infrastruktur"
-#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Sozialversicherung VI. Sonstiges", "Kreditwesen">, <"Handel", "Gewerbe und Industrie">, <"Steuern und Gebühren", "Kreditwesen">, <"Strafrecht", "Kreditwesen", "Sozialversicherung I. Allgemeine Sozialversicherung", "Verwaltungsorganisation">, "Verkehr V. Sonstiges"
-#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Finanzwesen\",\"soziale Sicherheit\"]", "[\"Handel\",\"Industrie\",\"Unternehmen und Wettbewerb\"]", "[\"Finanzwesen\",\"Steuerwesen\"]", "[\"Finanzwesen\",\"soziale Sicherheit\",\"Strafrecht\",\"Verwaltungsorganisation\"]", "[\"Verkehr\"]"
-#> $ persons          <list> "55727", "55727", "18140", "55727", "55727", "5653"
+#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Druckgerätegesetz, Änderung; Emissionsgrenzwerte für gasförmige Schadstoffe und luftverunreinigende Partikel und die Typgenehmigung für Verbrennungsmotoren für nicht für den Straßenverkehr bestimmte mobile Maschinen und Geräte festgelegt werden (Mot-G)", "Katastrophenfondsgesetz, Änderung", "Erneuerbaren-Ausbau-Gesetz, Änderung", "Betrugsbekämpfungsgesetz 2024 Teil II – BBKG 2024 Teil II", "Abgabenänderungsgesetz 2024 – AbgÄG 2024"
+#> $ topics           <list> "Budget und Finanzen", <"Klima", "Umwelt und Energie", "Wirtschaft">, <"Budget und Finanzen", "Inneres und Recht">, <"Inneres und Recht", "Klima", "Umwelt und Energie">, <"Budget und Finanzen", "Soziales">, "Budget und Finanzen"
+#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Handel", "Gewerbe und Industrie", "Umweltschutz">, <"Bundeshaushalt III. Sonstiges", "Zivilschutz">, <"Bundesverfassung", "Elektrizität", "Umweltschutz">, <"Sozialversicherung VI. Sonstiges", "Kreditwesen">, <"Steuern und Gebühren", "Kreditwesen">
+#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Handel\",\"Industrie\",\"Umwelt\",\"Unternehmen und Wettbewerb\"]", "[\"Öffentliche Finanzen und Haushaltspolitik\",\"Zivilschutz\"]", "[\"Elektrizitätsindustrie\",\"Umwelt\",\"Verfassung\"]", "[\"Finanzwesen\",\"soziale Sicherheit\"]", "[\"Finanzwesen\",\"Steuerwesen\"]"
+#> $ persons          <list> "55727", "18140", "55727", "5653", "55727", "55727"
 #> $ parl_group       <list> "", "", "", "", "", ""
 
 #count number of bills by legis period
@@ -557,10 +568,18 @@ period.
 
 df_petition <- get_items(item = "VOLKBG", legis_period = seq(20, 27), institution = "NR", echo = TRUE)
 #> ℹ Fetching items from API...
-#> No results found for the provided search criteria.
+#> ✔ Fetched 65 items
+#> Results on the Parliament website: https://www.parlament.gv.at/recherchieren/gegenstaende?FP_001NRBR=NR&FP_001GP_CODE=XX&FP_001GP_CODE=XXI&FP_001GP_CODE=XXII&FP_001GP_CODE=XXIII&FP_001GP_CODE=XXIV&FP_001GP_CODE=XXV&FP_001GP_CODE=XXVI&FP_001GP_CODE=XXVII&FP_001VHG=VOLKBG
+#> Hits: 65
 df_petition %>% count(legis_period)
-#> # A tibble: 0 × 2
-#> # ℹ 2 variables: legis_period <chr>, n <int>
+#>   legis_period  n
+#> 1           XX  6
+#> 2          XXI  6
+#> 3         XXII  3
+#> 4         XXIV  2
+#> 5          XXV  2
+#> 6         XXVI  3
+#> 7        XXVII 43
 ```
 
 ## Get data on Plenary Meetings

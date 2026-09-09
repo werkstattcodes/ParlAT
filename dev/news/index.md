@@ -1,6 +1,6 @@
 # Changelog
 
-## ParlAT (development version)
+## ParlAT 0.1.0
 
 ### New features
 
@@ -165,8 +165,8 @@
   `tools/check_api_index.sh` for a manual health check and a daily
   workflow that monitors index health.
 - Non-standard-evaluation pronouns declared via
-  [`globalVariables()`](https://rdrr.io/r/utils/globalVariables.html);
-  remaining R CMD check NOTEs resolved.
+  [`globalVariables()`](https://rdrr.io/r/utils/globalVariables.html),
+  resolving the related code-analysis R CMD check NOTEs.
 
 ## ParlAT 0.0.6
 
