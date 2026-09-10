@@ -2,59 +2,36 @@
 
 ## Summary
 
-The substantive changes approved for `v0.1.0`, documentation corrections,
-release metadata, and local validation are complete on `dev`. The final branch
-push, pull request, and GitHub Actions gate remain in progress; merge, tagging,
-and publication follow review.
-The academic-title heuristic is intentionally deferred. This plan targets a
-GitHub-only release; CRAN administrative requirements are out of scope.
+ParlAT `v0.1.0` was released on 2026-09-09. Pull request 42 merged `dev` into
+`master` at `8a9f8fe`; all required local and GitHub checks passed, the pkgdown
+site deployed, and the annotated tag and GitHub release were published. The
+`dev` branch is reopened at version `0.1.0.9000`.
 
-## Current Status (2026-09-09)
+The academic-title heuristic remains intentionally deferred. This was a
+GitHub-only release; CRAN administrative requirements were out of scope.
 
-- Release preparation resumed with authorization to finish documentation,
-  validate, open and review the PR, merge, and publish GitHub release `v0.1.0`.
-- Starting head: `c0f067e`; clean `dev` matches origin and is 56 commits ahead
-  of `master`, with no master-only commits. All three release workflows pass
-  at this head; no open PR or remote `v0.1.0` tag exists.
-- The current check has a fourth NOTE for the tracked `plans/` directory.
-  Added `^plans$` to `.Rbuildignore` to restore the accepted three-note baseline.
-- Updated DESCRIPTION and NEWS to `0.1.0`; removed NEWS trailing whitespace
-  and narrowed an outdated claim about all check NOTEs being resolved.
-- Corrected and regenerated README sources and generated Markdown/HTML, plus
-  the `get_items()` help. The MTEU help example now uses period XXV (five live
-  rows); the README table remains a compact dataset-to-function map rather
-  than a set of reproducible examples, following user review on 2026-09-09.
-- Live README probes confirm 1,039 NR decisions in XXVII, 276 NR plenary
-  meetings, 183 current NR and 60 BR members, 43 NR committees in XXVII,
-  three committee-membership rows for PAD_INTERN 65321, and 14 MT-BR / 12 S-BR
-  rows in XXVII. Several formerly empty upstream datasets have recovered.
-- The advertised BR written-question filter `JMIN-BR` still returns zero,
-  but the broader XXVII BR result has 616 `J-BR` rows. Server-filter vocabulary
-  reconciliation is follow-up work; it is not discussed in the README mapping.
-- SBPL-BR remains empty both unrestricted and in XXVII. This is retained as
-  release-audit evidence, not presented in the README mapping.
-- `pkgdown::check_pkgdown()` passes.
-- Added a live-data `get_party_colors()` example on 2026-09-09. It uses
-  `get_mps()` for a fixed 2024 National Council snapshot, counts MPs by party,
-  maps the returned party names to colors, and renders a ggplot bar chart.
-  The query returned 183 MPs across five parties, all colors matched, the
-  pkgdown page rendered the figure, and `pkgdown::check_pkgdown()` passes.
-- Final local validation passed on 2026-09-09: the mocked suite completed 1,173
-  expectations with no failures or warnings and 14 intentional skips; all 17
-  public help topics, including `\donttest{}` blocks, returned meaningful live
-  results; and all 49 vignette render steps completed under
-  `English_United States.utf8`.
-- A fixed single-result transcript query downloaded one valid 1,081,130-byte
-  PDF to a temporary directory. The mass-download example remains in
-  `\dontrun{}`.
+## Current Status (2026-09-10)
+
+- Final release preparation was committed as `41991e8`, and the combined
+  ParlAT-data/party-color example and validation record as `78e086d`.
+- Local validation completed with 1,173 passing mocked expectations, no test
+  failures or warnings, and 14 intentional live-only skips. All 17 public help
+  topics, including `\donttest{}` blocks, returned meaningful live results;
+  all 49 vignette render steps completed under a Windows UTF-8 locale; and a
+  one-result transcript query downloaded a valid 1,081,130-byte PDF.
 - A clean-source `devtools::check()` completed with zero errors, zero warnings,
-  and one accepted NOTE for long fixture paths. The `plans/` NOTE is resolved;
-  the previously accepted vignette-link and spelling-output findings did not
-  recur. Running directly from the OneDrive checkout first hit Windows path
-  limits while R copied Codex's internal `.git` refs, so the successful check
-  used an otherwise identical tracked-source snapshot without `.git`.
-- The complete pkgdown site builds successfully. The only console warnings
-  report dependency asset directories that already exist in `docs/`.
+  and one accepted NOTE for long fixture paths. Adding `^plans$` to
+  `.Rbuildignore` removed the additional tracker-directory NOTE. The complete
+  pkgdown site and `pkgdown::check_pkgdown()` passed.
+- Pull request 42 passed the five-job R CMD check matrix, coverage, and pkgdown,
+  then merged into `master` as `8a9f8fe` on 2026-09-09. The same workflows
+  passed on the merge commit, and pkgdown deployed the release site.
+- Annotated tag `v0.1.0` points to `8a9f8fe`. The public GitHub release
+  `ParlAT 0.1.0` was published from the finalized NEWS entry.
+- Development resumed in commit `314baa3`: `dev` is at version `0.1.0.9000`
+  with a new development NEWS heading. Its five R CMD jobs, coverage, and
+  pkgdown workflow passed, and the development site deployed.
+- No release PR remains open.
 
 ### Previous status (2026-09-02)
 
@@ -76,13 +53,14 @@ Completed:
 - Commits `55a3a84`, `93470ca`, and `75c43ca` are pushed to `origin/dev`.
 - R CMD check, test coverage, and pkgdown GitHub Actions pass at `75c43ca`.
 
-Still required before release:
+Release outcome:
 
-- Commit and push the final documentation example and validation record.
-- Open the `dev` to `master` pull request and require the complete R-check
-  matrix, coverage, and pkgdown workflows to pass for its final revision.
-- After review, merge `dev` into `master`, confirm master CI and documentation
-  deployment, tag `v0.1.0`, and publish the GitHub release.
+- **Completed:** documentation corrections, release metadata, local validation,
+  final branch push, pull request review gate, merge, post-merge CI, pkgdown
+  deployment, annotated tag, and GitHub release publication.
+- **Post-release follow-up:** revisit the academic-title/CamelCase heuristic,
+  long fixture paths, BR written-question filter vocabulary, and upstream
+  `SBPL-BR` availability separately from the completed `v0.1.0` release.
 
 ## Decision Log
 
