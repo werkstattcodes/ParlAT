@@ -10,7 +10,7 @@ section](https://werkstattcodes.github.io/ParlAT/dev/reference/index.md).
 ## Get current MPs in the National Council (Nationalrat)
 
 Let’s start with retrieving the compostion of the National Council
-(Nationalrat) at the time of writing (09 September 2026). This is done
+(Nationalrat) at the time of writing (10 September 2026). This is done
 by the function
 [`get_mps_current()`](https://werkstattcodes.github.io/ParlAT/dev/reference/get_mps_current.md).
 
@@ -27,37 +27,37 @@ df_current <- get_mps_current(institution = "NR", echo=TRUE)
 #> 
 #> ⠼ Fetching MPs' names 29/183 | ETA:  1m
 #> 
-#> ⠴ Fetching MPs' names 38/183 | ETA: 48s
+#> ⠴ Fetching MPs' names 38/183 | ETA: 47s
 #> 
-#> ⠦ Fetching MPs' names 47/183 | ETA: 45s
+#> ⠦ Fetching MPs' names 48/183 | ETA: 44s
 #> 
-#> ⠧ Fetching MPs' names 56/183 | ETA: 42s
+#> ⠧ Fetching MPs' names 57/183 | ETA: 41s
 #> 
-#> ⠇ Fetching MPs' names 65/183 | ETA: 39s
+#> ⠇ Fetching MPs' names 66/183 | ETA: 38s
 #> 
-#> ⠏ Fetching MPs' names 74/183 | ETA: 36s
+#> ⠏ Fetching MPs' names 75/183 | ETA: 35s
 #> 
-#> ⠋ Fetching MPs' names 84/183 | ETA: 33s
+#> ⠋ Fetching MPs' names 84/183 | ETA: 32s
 #> 
-#> ⠙ Fetching MPs' names 93/183 | ETA: 30s
+#> ⠙ Fetching MPs' names 93/183 | ETA: 29s
 #> 
-#> ⠹ Fetching MPs' names 102/183 | ETA: 27s
+#> ⠹ Fetching MPs' names 103/183 | ETA: 26s
 #> 
-#> ⠸ Fetching MPs' names 111/183 | ETA: 24s
+#> ⠸ Fetching MPs' names 112/183 | ETA: 23s
 #> 
-#> ⠼ Fetching MPs' names 120/183 | ETA: 21s
+#> ⠼ Fetching MPs' names 121/183 | ETA: 20s
 #> 
-#> ⠴ Fetching MPs' names 129/183 | ETA: 18s
+#> ⠴ Fetching MPs' names 130/183 | ETA: 17s
 #> 
-#> ⠦ Fetching MPs' names 138/183 | ETA: 15s
+#> ⠦ Fetching MPs' names 140/183 | ETA: 14s
 #> 
-#> ⠧ Fetching MPs' names 148/183 | ETA: 12s
+#> ⠧ Fetching MPs' names 149/183 | ETA: 11s
 #> 
-#> ⠇ Fetching MPs' names 157/183 | ETA:  9s
+#> ⠇ Fetching MPs' names 158/183 | ETA:  8s
 #> 
-#> ⠏ Fetching MPs' names 166/183 | ETA:  6s
+#> ⠏ Fetching MPs' names 167/183 | ETA:  5s
 #> 
-#> ⠋ Fetching MPs' names 175/183 | ETA:  3s
+#> ⠋ Fetching MPs' names 176/183 | ETA:  2s
 #> 
 #> Fetched 183 MPs' names.
 nrow(df_current)
@@ -225,16 +225,17 @@ MPs (top 5 are shown below).
 
 df_mandates <- get_mandates(pad_intern=df_current$pad_intern, institution = "NR")
 #> ⠙ Fetching mandates 7/183 | ETA: 27s
-#> ⠹ Fetching mandates 18/183 | ETA: 28s
-#> ⠸ Fetching mandates 35/183 | ETA: 26s
-#> ⠼ Fetching mandates 52/183 | ETA: 23s
-#> ⠴ Fetching mandates 69/183 | ETA: 20s
-#> ⠦ Fetching mandates 86/183 | ETA: 17s
-#> ⠧ Fetching mandates 101/183 | ETA: 15s
-#> ⠇ Fetching mandates 118/183 | ETA: 12s
-#> ⠏ Fetching mandates 135/183 | ETA:  9s
-#> ⠋ Fetching mandates 152/183 | ETA:  6s
-#> ⠙ Fetching mandates 169/183 | ETA:  3s
+#> ⠹ Fetching mandates 8/183 | ETA: 28s
+#> ⠸ Fetching mandates 24/183 | ETA: 27s
+#> ⠼ Fetching mandates 41/183 | ETA: 25s
+#> ⠴ Fetching mandates 58/183 | ETA: 22s
+#> ⠦ Fetching mandates 75/183 | ETA: 19s
+#> ⠧ Fetching mandates 91/183 | ETA: 16s
+#> ⠇ Fetching mandates 108/183 | ETA: 13s
+#> ⠏ Fetching mandates 125/183 | ETA: 10s
+#> ⠋ Fetching mandates 142/183 | ETA:  7s
+#> ⠙ Fetching mandates 159/183 | ETA:  4s
+#> ⠹ Fetching mandates 175/183 | ETA:  1s
 #> Fetched mandates for 183 persons.
 #> 
 
@@ -260,11 +261,11 @@ slice_head(., n=5)
 #> # A tibble: 5 × 3
 #>   pad_intern name                 position_days_sum
 #>   <chr>      <chr>                            <dbl>
-#> 1 145        Doris Bures                      10505
-#> 2 12741      Peter Haubner                     9046
-#> 3 2834       Mag. Dr. Martin Graf              8745
-#> 4 14835      Petra Bayr, MA MLS                8664
-#> 5 14795      August Wöginger                   8664
+#> 1 145        Doris Bures                      10506
+#> 2 12741      Peter Haubner                     9047
+#> 3 2834       Mag. Dr. Martin Graf              8746
+#> 4 14835      Petra Bayr, MA MLS                8665
+#> 5 14795      August Wöginger                   8665
 ```
 
 ## Get MPs’ details
@@ -475,17 +476,17 @@ glimpse(df_govBills %>% head())
 #> $ institution      <chr> "NR", "NR", "NR", "NR", "NR", "NR"
 #> $ date             <date> 2024-07-05, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12, 2024-06-12
 #> $ item_type        <chr> "I", "I", "I", "I", "I", "I"
-#> $ item_number      <chr> "2704", "2612", "2608", "2604", "2611", "2609"
-#> $ item_number_type <chr> "2704 d.B.", "2612 d.B.", "2608 d.B.", "2604 d.B.", "2611 d.B.", "2609 d.B."
+#> $ item_number      <chr> "2704", "2612", "2604", "2608", "2599", "2609"
+#> $ item_number_type <chr> "2704 d.B.", "2612 d.B.", "2604 d.B.", "2608 d.B.", "2599 d.B.", "2609 d.B."
 #> $ stage            <chr> "2", "5", "5", "5", "5", "5"
-#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2612", "https://www.parlament.gv.at/gegenstand/XXVII/I/2608", "https://www.parlament.gv.at/gegenstand/XXVII/I/2604", "https://www.parlament.gv.at/gegenstand/XXVII/I/2611", "https://www.parlament.gv.at/gegenstand/XXVII/I/2609"
+#> $ item_url         <chr> "https://www.parlament.gv.at/gegenstand/XXVII/I/2704", "https://www.parlament.gv.at/gegenstand/XXVII/I/2612", "https://www.parlament.gv.at/gegenstand/XXVII/I/2604", "https://www.parlament.gv.at/gegenstand/XXVII/I/2608", "https://www.parlament.gv.at/gegenstand/XXVII/I/2599", "https://www.parlament.gv.at/gegenstand/XXVII/I/2609"
 #> $ type_doc         <chr> "RV", "RV", "RV", "RV", "RV", "RV"
 #> $ type_doc_long    <chr> "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz", "Regierungsvorlage: Bundes(verfassungs)gesetz"
-#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Druckgerätegesetz, Änderung; Emissionsgrenzwerte für gasförmige Schadstoffe und luftverunreinigende Partikel und die Typgenehmigung für Verbrennungsmotoren für nicht für den Straßenverkehr bestimmte mobile Maschinen und Geräte festgelegt werden (Mot-G)", "Erneuerbaren-Ausbau-Gesetz, Änderung", "Katastrophenfondsgesetz, Änderung", "Gewerbeordnung, Änderung", "Zivildienstgesetz, Änderung"
-#> $ topics           <list> "Budget und Finanzen", <"Klima", "Umwelt und Energie", "Wirtschaft">, <"Inneres und Recht", "Klima", "Umwelt und Energie">, <"Budget und Finanzen", "Inneres und Recht">, "Wirtschaft", "Landesverteidigung"
-#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Handel", "Gewerbe und Industrie", "Umweltschutz">, <"Bundesverfassung", "Elektrizität", "Umweltschutz">, <"Bundeshaushalt III. Sonstiges", "Zivilschutz">, <"Handel", "Gewerbe und Industrie">, "Zivildienst"
-#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Handel\",\"Industrie\",\"Umwelt\",\"Unternehmen und Wettbewerb\"]", "[\"Elektrizitätsindustrie\",\"Umwelt\",\"Verfassung\"]", "[\"Öffentliche Finanzen und Haushaltspolitik\",\"Zivilschutz\"]", "[\"Handel\",\"Industrie\",\"Unternehmen und Wettbewerb\"]", "[\"Zivildienst\"]"
-#> $ persons          <list> "55727", "18140", "5653", "55727", "18140", "2136"
+#> $ subject          <chr> "Bundeshaushaltsgesetzes 2013, Änderung", "Druckgerätegesetz, Änderung; Emissionsgrenzwerte für gasförmige Schadstoffe und luftverunreinigende Partikel und die Typgenehmigung für Verbrennungsmotoren für nicht für den Straßenverkehr bestimmte mobile Maschinen und Geräte festgelegt werden (Mot-G)", "Katastrophenfondsgesetz, Änderung", "Erneuerbaren-Ausbau-Gesetz, Änderung", "Betrugsbekämpfungsgesetz 2024 Teil II – BBKG 2024 Teil II", "Zivildienstgesetz, Änderung"
+#> $ topics           <list> "Budget und Finanzen", <"Klima", "Umwelt und Energie", "Wirtschaft">, <"Budget und Finanzen", "Inneres und Recht">, <"Inneres und Recht", "Klima", "Umwelt und Energie">, <"Budget und Finanzen", "Soziales">, "Landesverteidigung"
+#> $ keywords         <list> "Bundeshaushalt III. Sonstiges", <"Handel", "Gewerbe und Industrie", "Umweltschutz">, <"Bundeshaushalt III. Sonstiges", "Zivilschutz">, <"Bundesverfassung", "Elektrizität", "Umweltschutz">, <"Sozialversicherung VI. Sonstiges", "Kreditwesen">, "Zivildienst"
+#> $ eurovoc          <chr> "[\"Öffentliche Finanzen und Haushaltspolitik\"]", "[\"Handel\",\"Industrie\",\"Umwelt\",\"Unternehmen und Wettbewerb\"]", "[\"Öffentliche Finanzen und Haushaltspolitik\",\"Zivilschutz\"]", "[\"Elektrizitätsindustrie\",\"Umwelt\",\"Verfassung\"]", "[\"Finanzwesen\",\"soziale Sicherheit\"]", "[\"Zivildienst\"]"
+#> $ persons          <list> "55727", "18140", "55727", "5653", "55727", "2136"
 #> $ parl_group       <list> "", "", "", "", "", ""
 
 #count number of bills by legis period
