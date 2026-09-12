@@ -25,7 +25,7 @@
 #' * `type_doc`: Document type
 #' * `topic`: Topic(s) associated with the item
 #' * `item_url`: URL to the item on the Parliament website
-#' * `statements`: Number of statements submitted
+#' * `statements_n`: Number of statements submitted (numeric)
 #' * `support`: Number of supporters
 #' * `ministry`: Responsible ministry
 #'
@@ -107,7 +107,7 @@
 #' # and their number of submitted statements
 #' get_participation(item = "ME", legis_period = 28) |>
 #'   dplyr::select(
-#'     legis_period, date, item_id, item, title, statements
+#'     legis_period, date, item_id, item, title, statements_n
 #'   )
 #'
 #' # Get statements submitted on ministerial drafts
@@ -275,14 +275,18 @@ get_participation <- function(
     # "beteiligen"?
     "themen" = "topic",
     "b" = "item_url",
-    "stellungnahmen" = "statements",
+    "stellungnahmen" = "statements_n",
     "unterstutzungen" = "support",
     "ressort" = "ministry"
   )
 
   if (NROW(df_res) == 0 || length(df_res) == 0) {
     cli::cli_inform("No results found for the provided search criteria.")
-    return(.parlat_empty_tibble(unname(renaming_map), date_cols = "date"))
+    return(.parlat_empty_tibble(
+      unname(renaming_map),
+      date_cols = "date",
+      num_cols = "statements_n"
+    ))
   }
 
   #assign column names
@@ -292,7 +296,10 @@ get_participation <- function(
 
   df_res <- df_res %>%
     dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
-    dplyr::mutate(date = lubridate::dmy(date)) %>%
+    dplyr::mutate(
+      date = lubridate::dmy(date),
+      statements_n = as.numeric(statements_n)
+    ) %>%
     tibble::as_tibble()
 
   return(df_res)

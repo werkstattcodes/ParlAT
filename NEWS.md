@@ -1,5 +1,10 @@
 # ParlAT (development version)
 
+- `get_participation()` renames `statements` to `statements_n` to clarify that
+  the column contains the number of statements, rather than the statements
+  themselves. It now returns numeric values, including for empty results.
+  Update existing code that uses the old column name.
+
 # ParlAT 0.1.0
 
 ## New features

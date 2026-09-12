@@ -39,7 +39,7 @@ A tibble containing the participation data with the following columns:
 \item \code{type_doc}: Document type
 \item \code{topic}: Topic(s) associated with the item
 \item \code{item_url}: URL to the item on the Parliament website
-\item \code{statements}: Number of statements submitted
+\item \code{statements_n}: Number of statements submitted (numeric)
 \item \code{support}: Number of supporters
 \item \code{ministry}: Responsible ministry
 }
@@ -139,7 +139,7 @@ dplyr::glimpse(result)
 # and their number of submitted statements
 get_participation(item = "ME", legis_period = 28) |>
   dplyr::select(
-    legis_period, date, item_id, item, title, statements
+    legis_period, date, item_id, item, title, statements_n
   )
 
 # Get statements submitted on ministerial drafts
