@@ -111,6 +111,13 @@ get_mandates_single <- function(pad_intern) {
 #'   column types is returned.
 #' @export
 #' @seealso [get_names()], [get_pad_intern()]
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @examples
 #' \donttest{
 #'   result <- get_mandates(c("Elisabeth Götze", "Sebastian Kurz"))

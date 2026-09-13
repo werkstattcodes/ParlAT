@@ -12,7 +12,8 @@
 }
 
 .parlat_detail_json_url <- function(url) {
-  url <- stringr::str_remove(url, "\\?.*$")
+  url <- .parlat_absolute_url(url) |>
+    stringr::str_remove("[?#].*$")
   stringr::str_c(url, "?json=TRUE")
 }
 
@@ -62,4 +63,68 @@
   }
 
   json_text
+}
+
+# Complete API paths or resolve HTML hrefs against their source page. Already
+# absolute URLs are left intact, including links outside Parliament's website.
+.parlat_absolute_url <- function(x, base_url = "https://www.parlament.gv.at/") {
+  x <- trimws(as.character(x))
+  x[!is.na(x) & !nzchar(x)] <- NA_character_
+  base_url <- rep_len(base_url, length(x))
+  base_url[is.na(base_url) | !nzchar(base_url)] <- "https://www.parlament.gv.at/"
+  vapply(seq_along(x), function(i) {
+    value <- x[[i]]
+    if (is.na(value) || grepl("^[A-Za-z][A-Za-z0-9+.-]*:", value)) {
+      return(value)
+    }
+    if (startsWith(value, "//")) {
+      return(paste0("https:", value))
+    }
+    base <- base_url[[i]]
+    # Resolve only the path: URL builders can re-encode query/fragment text.
+    if (startsWith(value, "#")) {
+      return(paste0(sub("#.*$", "", base), value))
+    }
+    if (startsWith(value, "?")) {
+      return(paste0(sub("[?#].*$", "", base), value))
+    }
+    path <- sub("[?#].*$", "", value)
+    suffix <- substring(value, nchar(path) + 1L)
+    # Search results often contain thousands of already encoded root paths.
+    # These need only the origin; reserve URL parsing for relative navigation
+    # and paths that need escaping.
+    if (grepl("^/[A-Za-z0-9/._~%+-]*$", path) &&
+        !grepl("(^|/)\\.{1,2}(/|$)", path)) {
+      origin <- sub("^(https?://[^/?#]+).*$", "\\1", base)
+      return(paste0(origin, value))
+    }
+    paste0(
+      httr2::url_modify_relative(sub("[?#].*$", "", base), path),
+      suffix
+    )
+  }, character(1), USE.NAMES = FALSE)
+}
+
+# URL-bearing search columns sometimes contain an anchor instead of a URL.
+.parlat_href_url <- function(x, base_url = "https://www.parlament.gv.at/") {
+  hrefs <- vapply(x, function(value) {
+    if (is.na(value) || !grepl("<", value, fixed = TRUE)) {
+      return(value)
+    }
+    rvest::read_html(value) |>
+      rvest::html_element("a[href]") |>
+      rvest::html_attr("href")
+  }, character(1), USE.NAMES = FALSE)
+  .parlat_absolute_url(hrefs, base_url)
+}
+
+.parlat_url_columns <- function(
+  df,
+  cols,
+  base_url = "https://www.parlament.gv.at/"
+) {
+  for (col in intersect(cols, names(df))) {
+    df[[col]] <- .parlat_absolute_url(df[[col]], base_url)
+  }
+  df
 }

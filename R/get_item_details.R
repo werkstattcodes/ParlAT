@@ -253,15 +253,7 @@
 }
 
 .normalise_item_url <- function(item_url) {
-  prefix <- "https://www.parlament.gv.at/"
-
-  if (stringr::str_starts(item_url, prefix)) {
-    return(item_url)
-  }
-
-  item_url |>
-    stringr::str_replace("^/+", "") |>
-    (\(x) stringr::str_c(prefix, x))()
+  .parlat_absolute_url(item_url)
 }
 
 .get_item_details_code_path <- function(item_url) {
@@ -368,13 +360,20 @@
 #' dplyr::glimpse(details)
 #' }
 #'
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @export
 get_item_details <- function(item_url, stages = TRUE, votes = TRUE) {
   checkmate::assert_logical(stages, len = 1, any.missing = FALSE)
   checkmate::assert_logical(votes, len = 1, any.missing = FALSE)
 
   # Normalise the URL: accept absolute URLs, relative paths with or without a
-  # leading slash.  Strip any leading slashes, then prepend the base URL.
+  # leading slash, without prefixing an already absolute URL.
   item_url <- .normalise_item_url(item_url)
 
   # Fetch the item detail JSON through httr2 so fixture recording can capture

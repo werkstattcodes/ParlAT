@@ -75,6 +75,13 @@ Retrieves information about plenary meetings from the Austrian Parliament's API 
 Explicit period filters are available from the 20th legislative period
 onwards. With \code{legis_period = NULL}, the API returns all available periods.
 }
+\details{
+Top-level URL columns contain full URLs. URL values inside nested tables
+and lists retain their previous format. Relative
+Parliament paths are resolved against \verb{https://www.parlament.gv.at/};
+existing absolute URLs (including external links) are preserved. Missing or
+blank URLs in top-level columns are returned as \code{NA_character_}.
+}
 \examples{
 \donttest{
 # Basic usage: meetings of the National Council for legislative period 28

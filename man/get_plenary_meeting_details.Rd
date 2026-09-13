@@ -98,7 +98,7 @@ If \code{details_on = "decisions"}:
 \item \code{meeting_type} (character): Meeting type label (e.g. \code{"Plenarsitzung"}).
 \item \code{resolution_top} (character): Agenda item label (e.g. \code{"TOP 1"}).
 \item \code{resolution_title} (character): Agenda item title.
-\item \code{resolution_url} (character): Relative URL to the main document.
+\item \code{resolution_url} (character): Full URL to the main document.
 \item \code{resolution_citation} (character): Citation of the main document (e.g. \code{"319 d.B."}).
 }
 
@@ -129,6 +129,13 @@ data from the meeting's detail page.
 
 Supply either \code{url} \strong{or} the combination of \code{institution},
 \code{legis_period}, and \code{meeting_number} — not both.
+}
+\details{
+Top-level URL columns contain full URLs. URL values inside nested tables
+and lists retain their previous format. Relative
+Parliament paths are resolved against \verb{https://www.parlament.gv.at/};
+existing absolute URLs (including external links) are preserved. Missing or
+blank URLs in top-level columns are returned as \code{NA_character_}.
 }
 \examples{
 \donttest{

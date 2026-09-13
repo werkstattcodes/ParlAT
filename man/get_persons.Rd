@@ -43,6 +43,12 @@ Note that \code{get_persons} only returns matches for the latest
 name of an individual. MPs' previous names (e.g., before marriage) do
 not return a match. When \code{names} is \code{NULL}, the function returns all
 available persons for the supplied filters.
+
+Top-level URL columns contain full URLs. URL values inside nested tables
+and lists retain their previous format. Relative
+Parliament paths are resolved against \verb{https://www.parlament.gv.at/};
+existing absolute URLs (including external links) are preserved. Missing or
+blank URLs in top-level columns are returned as \code{NA_character_}.
 }
 \examples{
 \donttest{

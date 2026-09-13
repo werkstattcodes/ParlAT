@@ -549,6 +549,12 @@ and their abbreviations are equivalent. For example, a federal minister can
 be associated with National Council items even if the person is not
 categorized as a National Council member.
 }
+
+Top-level URL columns contain full URLs. URL values inside nested tables
+and lists retain their previous format. Relative
+Parliament paths are resolved against \verb{https://www.parlament.gv.at/};
+existing absolute URLs (including external links) are preserved. Missing or
+blank URLs in top-level columns are returned as \code{NA_character_}.
 }
 \note{
 \subsection{Free Text Search}{

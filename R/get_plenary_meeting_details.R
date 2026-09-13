@@ -81,7 +81,7 @@
 #' - `meeting_type` (character): Meeting type label (e.g. `"Plenarsitzung"`).
 #' - `resolution_top` (character): Agenda item label (e.g. `"TOP 1"`).
 #' - `resolution_title` (character): Agenda item title.
-#' - `resolution_url` (character): Relative URL to the main document.
+#' - `resolution_url` (character): Full URL to the main document.
 #' - `resolution_citation` (character): Citation of the main document (e.g. `"319 d.B."`).
 #'
 #' If `details_on = "timeline"`:
@@ -133,6 +133,13 @@
 #' )
 #' dplyr::glimpse(result)
 #' }
+#'
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
 #'
 #' @export
 get_plenary_meeting_details <- function(
@@ -192,11 +199,7 @@ get_plenary_meeting_details <- function(
         )
     } else {
         checkmate::assert_string(url)
-        if (!stringr::str_starts(url, prefix)) {
-            url <- url |>
-                stringr::str_replace("^/+", "") |>
-                (\(x) stringr::str_c(prefix, x))()
-        }
+        url <- .parlat_absolute_url(url)
     }
 
     if (isTRUE(echo)) {
@@ -443,5 +446,7 @@ get_plenary_meeting_details <- function(
         cli::cli_inform("Returning {nrow(df_res)} row(s).")
     }
 
-    df_res
+    .parlat_url_columns(
+        df_res, c("meeting_url", "resolution_url", "stage_fsth_url"), url
+    )
 }

@@ -39,7 +39,7 @@ A tibble containing the participation data with the following columns:
 \item \code{type_doc}: Document type
 \item \code{topic}: Topic(s) associated with the item
 \item \code{item_url}: URL to the item on the Parliament website
-\item \code{statements_n}: Number of statements submitted (numeric)
+\item \code{submissions_n}: Number of consultation submissions (Stellungnahmen; numeric)
 \item \code{support}: Number of supporters
 \item \code{ministry}: Responsible ministry
 }
@@ -113,6 +113,12 @@ Setting \code{initiative_type = NULL} returns values for all initiative types li
 }
 
 Setting \code{statement_type = NULL} returns values for all statement types listed above.
+
+Top-level URL columns contain full URLs. URL values inside nested tables
+and lists retain their previous format. Relative
+Parliament paths are resolved against \verb{https://www.parlament.gv.at/};
+existing absolute URLs (including external links) are preserved. Missing or
+blank URLs in top-level columns are returned as \code{NA_character_}.
 }
 \examples{
 \donttest{
@@ -136,11 +142,17 @@ result <- get_participation(
 dplyr::glimpse(result)
 
 # Get all ministerial drafts (Ministervorlagen) from legislative period 28
-# and their number of submitted statements
+# and their number of consultation submissions
 get_participation(item = "ME", legis_period = 28) |>
   dplyr::select(
-    legis_period, date, item_id, item, title, statements_n
+    legis_period, date, item_id, item, title, submissions_n
   )
+
+# Pass a returned full URL directly to the detail function
+participation <- get_participation(item = "ME", legis_period = 28)
+if (nrow(participation) > 0) {
+  get_item_details(participation$item_url[[1]], stages = FALSE)
+}
 
 # Get statements submitted on ministerial drafts
 result <- get_participation(
@@ -157,4 +169,8 @@ result <- get_participation(
 dplyr::glimpse(result)
 }
 
+}
+\seealso{
+\code{\link[=get_consultation_submissions]{get_consultation_submissions()}} to retrieve individual consultation
+submissions for one ministerial draft or bill using its \code{item_url}.
 }

@@ -123,6 +123,7 @@ test_that("get_mps_current parses NR results and fetches names", {
   expect_equal(nrow(result), 1)
   expect_equal(result$name, "Anna Muster")
   expect_equal(result$pad_intern, "12345")
+  expect_identical(result$link, "https://www.parlament.gv.at/person/12345")
   expect_equal(result$parl_group, "Sozialdemokratische Parlamentsfraktion")
   expect_equal(result$state, "Wien")
   expect_equal(result$chamber, "NR")

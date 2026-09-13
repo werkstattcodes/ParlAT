@@ -396,6 +396,13 @@
 #' dplyr::glimpse(result)
 #' }
 #'
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @export
 get_committees <- function(
   search_string = NULL,
@@ -541,10 +548,7 @@ get_committees <- function(
       )
     )) %>%
     dplyr::mutate(
-      url_committee = paste0(
-        "https://www.parlament.gv.at",
-        .data$url_committee
-      )
+      url_committee = .parlat_absolute_url(.data$url_committee)
     )
 
   # Pseudo filter
@@ -609,7 +613,7 @@ get_committees <- function(
   }
 
   #RETURN RESULT
-  return(df_res)
+  return(.parlat_url_columns(df_res, c("url_committee", "url_pdf", "url_html")))
 }
 
 
@@ -641,6 +645,7 @@ get_committees_api_request <- function(body_params) {
 
 
 get_committee_details <- function(url_committee, details_type) {
+  url_committee <- .parlat_absolute_url(url_committee)
   # url_committee <- "https://www.parlament.gv.at/ausschuss/XXVIII/A-AS/1/00917"
 
   # print(url_committee)
@@ -742,7 +747,8 @@ get_committee_details <- function(url_committee, details_type) {
     } else {
       NULL
     }
-    document_links <- .parlat_select_committee_documents(documents)
+    document_links <- .parlat_select_committee_documents(documents) |>
+      .parlat_url_columns(c("url_pdf", "url_html"), url_committee)
 
     df_details <- df_details |>
       dplyr::select(-dplyr::any_of("documents")) |>
@@ -799,13 +805,7 @@ safe_get_committee_members <- function(url) {
 }
 
 get_committee_members <- function(url) {
-  url <- if (
-    stringr::str_detect(url, stringr::regex("^https://www.parlament.gv.at"))
-  ) {
-    url
-  } else {
-    paste0("https://www.parlament.gv.at", url)
-  }
+  url <- .parlat_absolute_url(url)
 
   tryCatch(
     {

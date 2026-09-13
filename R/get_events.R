@@ -154,6 +154,13 @@
 #'   dplyr::glimpse(events)
 #' }
 #'
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @export
 get_events <- function(
     institution = NULL,
@@ -411,22 +418,6 @@ get_events <- function(
         ))
     }
 
-    if ("link2" %in% colnames(df_res)) {
-        df_res <- df_res %>%
-            dplyr::mutate(
-                link2 = purrr::map_chr(.data$link2, \(x) {
-                    if (is.na(x) | is.null(x)) {
-                        return(NA)
-                    } else {
-                        x %>%
-                            rvest::read_html() %>%
-                            rvest::html_element("a") %>%
-                            rvest::html_attr("href")
-                    }
-                })
-            )
-    }
-
     #RENAME AND SELECT COLUMNS
     #rename
     renaming_map <- c(
@@ -446,7 +437,8 @@ get_events <- function(
         "anmeldung" = "registration",
         "livestreamlink" = "livestream_url",
         "verfugbar" = "available",
-        "sprache" = "language"
+        "sprache" = "language",
+        "link_2" = "link2"
     )
 
     df_res <- .parlat_apply_renaming(df_res, renaming_map)
@@ -480,6 +472,16 @@ get_events <- function(
         dplyr::mutate(dplyr::across(dplyr::any_of("date_time_start"), lubridate::ymd_hms)) %>%
         dplyr::mutate(dplyr::across(dplyr::any_of("date_time_end"), lubridate::ymd_hms)) %>%
         dplyr::arrange(dplyr::desc(date))
+
+    df_res <- .parlat_url_columns(df_res, "link")
+    source_urls <- if ("link" %in% names(df_res)) {
+        dplyr::coalesce(df_res$link, "https://www.parlament.gv.at/")
+    } else {
+        "https://www.parlament.gv.at/"
+    }
+    for (col in intersect(c("link2", "livestream_url"), names(df_res))) {
+        df_res[[col]] <- .parlat_href_url(df_res[[col]], source_urls)
+    }
 
     return(df_res)
 }

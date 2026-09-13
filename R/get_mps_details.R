@@ -183,6 +183,13 @@
 #' )
 #' dplyr::glimpse(committees)
 #'}
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @export
 get_mps_details <- function(
     pad_intern,
@@ -419,7 +426,9 @@ get_mps_details_plenary <- function(
                     rvest::html_element("a") %>%
                     rvest::html_attr("href")
             }) %>%
-                stringr::str_c("https://www.parlament.gv.at", .)
+                .parlat_absolute_url(
+                    ., paste0("https://www.parlament.gv.at/person/", pad_intern)
+                )
         ) %>%
         dplyr::mutate(
             sitzung_name = purrr::map_chr(.data$sitzung, \(x) {
@@ -444,7 +453,9 @@ get_mps_details_plenary <- function(
                     rvest::html_element("a") %>%
                     rvest::html_attr("href")
             }) %>%
-                stringr::str_c("https://www.parlament.gv.at", .)
+                .parlat_absolute_url(
+                    ., paste0("https://www.parlament.gv.at/person/", pad_intern)
+                )
         ) %>%
         dplyr::select(-"transcript") %>%
         dplyr::mutate(
@@ -457,7 +468,9 @@ get_mps_details_plenary <- function(
                     rvest::html_element("a") %>%
                     rvest::html_attr("href")
             }) %>%
-                stringr::str_c("https://www.parlament.gv.at", .)
+                .parlat_absolute_url(
+                    ., paste0("https://www.parlament.gv.at/person/", pad_intern)
+                )
         ) %>%
         dplyr::select(-"media") %>%
         dplyr::mutate(fromdate = lubridate::ymd_hms(.data$fromdate) %>% as.Date())
@@ -544,7 +557,10 @@ get_mps_details_plenary <- function(
         )
     }
 
-    return(tibble::as_tibble(df_res))
+    return(.parlat_url_columns(
+        tibble::as_tibble(df_res),
+        c("meeting_url", "speech_transcript_url", "speech_media_url")
+    ))
 }
 
 
@@ -787,7 +803,7 @@ get_mps_details_activities <- function(
         )
     }
 
-    return(tibble::as_tibble(df_res))
+    return(.parlat_url_columns(tibble::as_tibble(df_res), "item_url"))
 }
 
 
@@ -951,10 +967,7 @@ get_mps_details_committees <- function(
         })) %>%
         dplyr::relocate("committee_url", .after = dplyr::last_col()) %>%
         dplyr::mutate(
-            committee_url = paste0(
-                "https://www.parlament.gv.at/",
-                .data$committee_url
-            )
+            committee_url = .parlat_absolute_url(.data$committee_url)
         )
 
     #ADD MPinfo
@@ -979,5 +992,5 @@ get_mps_details_committees <- function(
         )
     }
 
-    return(tibble::as_tibble(df_res))
+    return(.parlat_url_columns(tibble::as_tibble(df_res), "committee_url"))
 }

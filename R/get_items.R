@@ -579,6 +579,13 @@
 #'
 #' @export
 #'
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @examples \donttest{
 #' # Search for EU-related items in the 28th legislative period
 #' result <- get_items(topic = "Europäische Union", legis_period = 28)
@@ -1363,20 +1370,7 @@ get_items <- function(
     dplyr::mutate(date = lubridate::dmy(.data$date)) |>
     dplyr::arrange(dplyr::desc(.data$date))
 
-  if ("item_url" %in% names(df_res)) {
-    df_res <- df_res |>
-      dplyr::mutate(
-        item_url = purrr::map_chr(
-          .data$item_url,
-          \(url) {
-            if (is.na(url)) {
-              return(NA_character_)
-            }
-            .normalise_item_url(url)
-          }
-        )
-      )
-  }
+  df_res <- .parlat_url_columns(df_res, "item_url")
 
   # CHECK FOR DUPLICATES
   # Check for completely duplicate rows across all columns

@@ -612,12 +612,14 @@ test_that("committee detail documents collapse into one non-photo row", {
       )
     )
   )
+  requested_member_url <- NULL
   local_mocked_bindings(
     .parlat_fetch_detail_json_text = function(url) "detail JSON",
     .parlat_parse_detail_json = function(json_text, ...) {
       list(data = detail_data)
     },
     safe_get_committee_members = function(url) {
+      requested_member_url <<- url
       tibble::tibble(
         name = "Anna Beispiel",
         member_type = "member",
@@ -633,10 +635,11 @@ test_that("committee detail documents collapse into one non-photo row", {
   )
 
   expect_identical(nrow(result), 1L)
-  expect_identical(result$url_pdf, "/MIT_1.pdf")
-  expect_identical(result$url_html, "/MIT_1.html")
+  expect_identical(result$url_pdf, "https://www.parlament.gv.at/MIT_1.pdf")
+  expect_identical(result$url_html, "https://www.parlament.gv.at/MIT_1.html")
   expect_identical(length(result$members), 1L)
   expect_identical(result$members[[1]]$name, "Anna Beispiel")
+  expect_identical(requested_member_url, "https://www.parlament.gv.at/MIT_1.html")
 })
 
 test_that("flat mixed documents discard photo records, not the ordinary pair", {

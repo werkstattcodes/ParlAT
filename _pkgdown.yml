@@ -37,6 +37,7 @@ reference:
       - get_mps_current
       - get_mps_details
       - get_participation
+      - get_consultation_submissions
       - get_persons
       - get_plenary_meeting_details
       - get_plenary_meetings

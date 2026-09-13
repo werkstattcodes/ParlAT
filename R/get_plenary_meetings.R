@@ -121,6 +121,13 @@
 #' dplyr::glimpse(result)
 #' }
 #'
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @export
 
 get_plenary_meetings <- function(
@@ -394,8 +401,8 @@ get_plenary_meetings <- function(
                     rvest::html_elements("a") |>
                     rvest::html_attr("href")
                 list(
-                    html = hrefs[stringr::str_ends(hrefs, "\\.html")][1],
-                    pdf = hrefs[stringr::str_ends(hrefs, "\\.pdf")][1]
+                    html = hrefs[stringr::str_ends(hrefs, "\\.html([?#].*)?$")][1],
+                    pdf = hrefs[stringr::str_ends(hrefs, "\\.pdf([?#].*)?$")][1]
                 )
             },
             error = function(e) {
@@ -441,27 +448,12 @@ get_plenary_meetings <- function(
                 legis_period = .data$gp_code,
                 date = as.Date(.data$datum, format = "%d.%m.%Y"),
                 meeting_number = stringr::str_extract(.data$sitzung, "^\\d+"),
-                meeting_url = dplyr::if_else(
-                    !is.na(.data$sitzung_url) & .data$sitzung_url != "",
-                    paste0("https://www.parlament.gv.at", .data$sitzung_url),
-                    NA_character_
-                ),
+                meeting_url = .parlat_absolute_url(.data$sitzung_url),
                 meeting_type = .data$sitzungsart,
                 meeting_title = .data$title,
                 session_type = .data$tagungsart,
-                agenda_url_html = dplyr::if_else(
-                    !is.na(.data$agenda_url_html),
-                    paste0(
-                        "https://www.parlament.gv.at",
-                        .data$agenda_url_html
-                    ),
-                    NA_character_
-                ),
-                agenda_url_pdf = dplyr::if_else(
-                    !is.na(.data$agenda_url_pdf),
-                    paste0("https://www.parlament.gv.at", .data$agenda_url_pdf),
-                    NA_character_
-                )
+                agenda_url_html = .parlat_absolute_url(.data$agenda_url_html, .data$meeting_url),
+                agenda_url_pdf = .parlat_absolute_url(.data$agenda_url_pdf, .data$meeting_url)
             )
 
         col_select <- c(
@@ -498,17 +490,9 @@ get_plenary_meetings <- function(
             legis_period = .data$gp_code,
             date = as.Date(.data$datum, format = "%d.%m.%Y"),
             title = .data$title,
-            url_item = dplyr::if_else(
-                !is.na(.data$url) & .data$url != "",
-                paste0("https://www.parlament.gv.at", .data$url),
-                NA_character_
-            ),
+            url_item = .parlat_absolute_url(.data$url),
             meeting_number = stringr::str_extract(.data$sitzung, "^\\d+"),
-            url_meeting = dplyr::if_else(
-                !is.na(.data$sitzung_url) & .data$sitzung_url != "",
-                paste0("https://www.parlament.gv.at", .data$sitzung_url),
-                NA_character_
-            ),
+            url_meeting = .parlat_absolute_url(.data$sitzung_url),
             session_type = .data$tagungsart,
             activity_type = .data$akt_text,
             doc_type = .data$doktyp_text,

@@ -369,6 +369,15 @@ record_fixtures(
   )
 )
 
+# --- get_consultation_submissions ---
+record_fixtures(
+  "get_consultation_submissions",
+  get_consultation_submissions("/gegenstand/XXVIII/ME/44", echo = FALSE),
+  get_consultation_submissions("/gegenstand/XXVIII/I/405", echo = FALSE),
+  get_consultation_submissions("/gegenstand/XXVIII/A/865", echo = FALSE),
+  get_consultation_submissions("/gegenstand/XXVIII/A/5", echo = FALSE)
+)
+
 # --- get_participation ---
 record_fixtures(
   "get_participation",

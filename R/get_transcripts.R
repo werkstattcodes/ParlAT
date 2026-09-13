@@ -23,7 +23,7 @@
 .parlat_download_transcript_pdf <- function(url, dest_file) {
     tryCatch(
         {
-            httr2::request(url) |>
+            httr2::request(.parlat_absolute_url(url)) |>
                 httr2::req_user_agent(
                     "ParlAT R package (http://werk.statt.codes)"
                 ) |>
@@ -90,6 +90,13 @@
 #' PDF filenames follow the pattern: `YYYY-MM-DD_LegislativePeriod_MeetingType_MeetingNumber.pdf`.
 #' A summary of successful and failed downloads is printed at the conclusion of the download.
 #' @export
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @examples
 #' \donttest{
 #'   # Get transcripts using a search string and specifying a legislative period.
@@ -379,11 +386,11 @@ get_transcripts <- function(
                 # Filter and separate HTML and PDF links
                 html_href <- hrefs[stringr::str_ends(
                     hrefs,
-                    "\\.html"
+                    "\\.html([?#].*)?$"
                 )]
                 pdf_href <- hrefs[stringr::str_ends(
                     hrefs,
-                    "\\.pdf"
+                    "\\.pdf([?#].*)?$"
                 )]
 
                 # Create named vector: [html, pdf]
@@ -416,13 +423,13 @@ get_transcripts <- function(
             })
         ) %>%
         tidyr::unnest_wider("meeting_transcript", names_sep = "_") %>%
-        dplyr::mutate(across(starts_with("meeting_transcript"), \(x) {
-            dplyr::if_else(
-                is.na(x) | stringr::str_starts(x, "http"),
-                x,
-                paste0("https://www.parlament.gv.at", x)
+        dplyr::mutate(
+            meeting_url = .parlat_absolute_url(.data$meeting_url),
+            dplyr::across(
+                dplyr::starts_with("meeting_transcript"),
+                \(x) .parlat_absolute_url(x, .data$meeting_url)
             )
-        }))
+        )
 
     # PDF EXPORT FUNCTIONALITY
     if (!is.null(export) && export == "pdf") {

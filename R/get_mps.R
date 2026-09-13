@@ -268,6 +268,13 @@
 #'
 #' @export
 #'
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
 #' @examples
 #' \donttest{
 #' # Get all MPs from the current legislative period
@@ -915,5 +922,5 @@ get_mps <- function(
       dplyr::relocate("date")
   }
 
-  return(df_res)
+  return(.parlat_url_columns(df_res, "link"))
 }

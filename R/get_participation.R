@@ -25,7 +25,7 @@
 #' * `type_doc`: Document type
 #' * `topic`: Topic(s) associated with the item
 #' * `item_url`: URL to the item on the Parliament website
-#' * `statements_n`: Number of statements submitted (numeric)
+#' * `submissions_n`: Number of consultation submissions (Stellungnahmen; numeric)
 #' * `support`: Number of supporters
 #' * `ministry`: Responsible ministry
 #'
@@ -104,11 +104,17 @@
 #' dplyr::glimpse(result)
 #'
 #' # Get all ministerial drafts (Ministervorlagen) from legislative period 28
-#' # and their number of submitted statements
+#' # and their number of consultation submissions
 #' get_participation(item = "ME", legis_period = 28) |>
 #'   dplyr::select(
-#'     legis_period, date, item_id, item, title, statements_n
+#'     legis_period, date, item_id, item, title, submissions_n
 #'   )
+#'
+#' # Pass a returned full URL directly to the detail function
+#' participation <- get_participation(item = "ME", legis_period = 28)
+#' if (nrow(participation) > 0) {
+#'   get_item_details(participation$item_url[[1]], stages = FALSE)
+#' }
 #'
 #' # Get statements submitted on ministerial drafts
 #' result <- get_participation(
@@ -125,6 +131,15 @@
 #' dplyr::glimpse(result)
 #' }
 #'
+#' @details
+#' Top-level URL columns contain full URLs. URL values inside nested tables
+#' and lists retain their previous format. Relative
+#' Parliament paths are resolved against `https://www.parlament.gv.at/`;
+#' existing absolute URLs (including external links) are preserved. Missing or
+#' blank URLs in top-level columns are returned as `NA_character_`.
+#'
+#' @seealso [get_consultation_submissions()] to retrieve individual consultation
+#'   submissions for one ministerial draft or bill using its `item_url`.
 #' @export
 
 get_participation <- function(
@@ -275,7 +290,7 @@ get_participation <- function(
     # "beteiligen"?
     "themen" = "topic",
     "b" = "item_url",
-    "stellungnahmen" = "statements_n",
+    "stellungnahmen" = "submissions_n",
     "unterstutzungen" = "support",
     "ressort" = "ministry"
   )
@@ -285,7 +300,7 @@ get_participation <- function(
     return(.parlat_empty_tibble(
       unname(renaming_map),
       date_cols = "date",
-      num_cols = "statements_n"
+      num_cols = "submissions_n"
     ))
   }
 
@@ -298,9 +313,9 @@ get_participation <- function(
     dplyr::select(dplyr::any_of(unname(renaming_map))) %>%
     dplyr::mutate(
       date = lubridate::dmy(date),
-      statements_n = as.numeric(statements_n)
+      submissions_n = as.numeric(.data$submissions_n)
     ) %>%
     tibble::as_tibble()
 
-  return(df_res)
+  return(.parlat_url_columns(df_res, "item_url"))
 }

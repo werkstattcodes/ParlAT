@@ -1,0 +1,210 @@
+{
+    "pages": 0,
+    "lastSync": "2026-09-13 17:32:48.0",
+    "count": 0,
+    "header": [
+        {
+            "feldId": 15,
+            "hidden": true,
+            "rnr": 1,
+            "listeId": 142,
+            "label": "?",
+            "feld_name": "GP_CODE"
+        },
+        {
+            "feldId": 16,
+            "hidden": true,
+            "rnr": 2,
+            "listeId": 142,
+            "label": "?",
+            "feld_name": "ITYP"
+        },
+        {
+            "feldId": 17,
+            "hidden": true,
+            "rnr": 3,
+            "listeId": 142,
+            "label": "?",
+            "feld_name": "INR"
+        },
+        {
+            "feldId": 18,
+            "hidden": true,
+            "rnr": 4,
+            "listeId": 142,
+            "label": "?",
+            "feld_name": "ZUKZ"
+        },
+        {
+            "filterable": "1",
+            "feldId": 10,
+            "hidden": false,
+            "sort_clause": "6,2,22",
+            "sort_rnr": 6,
+            "display_rnr": 1,
+            "mediaType": "datetime",
+            "label": "Datum",
+            "sortable": "1",
+            "css_class": "datum-col",
+            "rnr": 5,
+            "listeId": 142,
+            "feld_name": "DATUM",
+            "class": "datum-col"
+        },
+        {
+            "vts_sort_field": "date_fresh",
+            "feldId": 19,
+            "hidden": true,
+            "sort_clause": "6,2,22",
+            "rnr": 6,
+            "mediaType": "fromDate",
+            "listeId": 142,
+            "label": "Datumsort",
+            "feld_name": "DATUM_SORT"
+        },
+        {
+            "filterable": "1",
+            "feldId": 11,
+            "hidden": false,
+            "display_rnr": 2,
+            "mediaType": "description",
+            "label": "Von",
+            "sortable": "1",
+            "css_class": "betreff-col",
+            "rnr": 7,
+            "listeId": 142,
+            "class": "betreff-col"
+        },
+        {
+            "feldId": 20,
+            "hidden": true,
+            "rnr": 8,
+            "listeId": 142,
+            "label": "GP",
+            "feld_name": "BEZUG_GP_CODE"
+        },
+        {
+            "feldId": 21,
+            "hidden": true,
+            "rnr": 9,
+            "listeId": 142,
+            "label": "INR",
+            "feld_name": "BEZUG_INR"
+        },
+        {
+            "feldId": 22,
+            "hidden": true,
+            "rnr": 10,
+            "listeId": 142,
+            "label": "ITYP",
+            "feld_name": "BEZUG_ITYP"
+        },
+        {
+            "feldId": 23,
+            "hidden": true,
+            "rnr": 11,
+            "listeId": 142,
+            "label": "SORT"
+        },
+        {
+            "feldId": 24,
+            "hidden": true,
+            "rnr": 12,
+            "listeId": 142,
+            "label": "Datumsort"
+        },
+        {
+            "feldId": 14,
+            "hidden": false,
+            "rnr": 13,
+            "display_rnr": 4,
+            "listeId": 142,
+            "label": "Unterstützungen",
+            "sortable": "1"
+        },
+        {
+            "feldId": 13,
+            "hidden": true,
+            "rnr": 14,
+            "listeId": 142,
+            "label": "Details"
+        },
+        {
+            "feldId": 1635,
+            "hidden": true,
+            "rnr": 15,
+            "listeId": 142,
+            "label": "?"
+        },
+        {
+            "feldId": 1636,
+            "hidden": true,
+            "rnr": 16,
+            "mediaType": "title",
+            "listeId": 142,
+            "label": "Nr"
+        },
+        {
+            "filterable": "1",
+            "link_rnr": "19",
+            "feldId": 1637,
+            "hidden": false,
+            "rnr": 17,
+            "display_rnr": 3,
+            "listeId": 142,
+            "label": "Zu",
+            "sortable": "1"
+        },
+        {
+            "filterable": "1",
+            "feldId": 12,
+            "hidden": false,
+            "rnr": 18,
+            "display_rnr": 5,
+            "listeId": 142,
+            "label": "Beteiligen",
+            "sortable": "1"
+        },
+        {
+            "feldId": 3061,
+            "hidden": true,
+            "rnr": 19,
+            "listeId": 142,
+            "label": "Bezug_Link"
+        },
+        {
+            "feldId": 2181,
+            "hidden": true,
+            "rnr": 20,
+            "listeId": 142,
+            "label": "?",
+            "feld_name": "TYP"
+        },
+        {
+            "feldId": 2541,
+            "hidden": true,
+            "rnr": 21,
+            "listeId": 142,
+            "label": "wentry_id",
+            "ist_web_item_id": "1"
+        },
+        {
+            "feldId": 161,
+            "hidden": true,
+            "rnr": 22,
+            "listeId": 142,
+            "label": "?"
+        },
+        {
+            "feldId": 1846,
+            "hidden": true,
+            "rnr": 23,
+            "listeId": 142,
+            "label": "?",
+            "feld_name": "VHG"
+        }
+    ],
+    "rows": [
+
+    ]
+}

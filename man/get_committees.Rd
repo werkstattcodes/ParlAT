@@ -81,6 +81,12 @@ Get data on the committees ('Ausschüsse') of the Austrian Parliament. Data incl
 The function partly mirrors the search functionality of the Austrian Parliament's website for committees
 \if{html}{\out{<a href="https://www.parlament.gv.at/recherchieren/ausschuesse/index.html" target="_blank">}}here\if{html}{\out{</a>}} and extends it by
 e.g. incorporating the extraction of data from membership lists. Data available starting from the 20th legislative period.
+
+Top-level URL columns contain full URLs. URL values inside nested tables
+and lists retain their previous format. Relative
+Parliament paths are resolved against \verb{https://www.parlament.gv.at/};
+existing absolute URLs (including external links) are preserved. Missing or
+blank URLs in top-level columns are returned as \code{NA_character_}.
 }
 \examples{
 \donttest{

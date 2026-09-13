@@ -1,9 +1,24 @@
 # ParlAT (development version)
 
-- `get_participation()` renames `statements` to `statements_n` to clarify that
-  the column contains the number of statements, rather than the statements
-  themselves. It now returns numeric values, including for empty results.
-  Update existing code that uses the old column name.
+- New `get_consultation_submissions(item_url)` retrieves references to all
+  consultation submissions (Stellungnahmen) for one ministerial draft or bill.
+  It returns a flat tibble with submission and parent references, dates,
+  published authors, full links and numeric support counts. All result pages
+  are fetched; non-public submissions retain missing authors and links.
+
+- Top-level Parliament URL columns now return full URLs. URLs inside nested
+  tables and lists retain their previous format. Existing column names are unchanged;
+  remove manual `https://www.parlament.gv.at` prefixes from downstream code.
+  Detail functions continue accepting both relative paths and full URLs.
+  `get_events()` now extracts livestream URLs and retains the documented
+  secondary `link2` column. Missing or blank URL values in top-level columns
+  are returned as `NA_character_`.
+
+- `get_participation()` renames `statements` to `submissions_n` to clarify
+  that the column counts consultation submissions (Stellungnahmen), rather
+  than containing their text. It returns numeric values, including for empty
+  results. Update code using `statements` or the earlier development name
+  `statements_n`.
 
 # ParlAT 0.1.0
 

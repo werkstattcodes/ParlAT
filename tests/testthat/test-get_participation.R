@@ -14,14 +14,14 @@ test_that("get_participation returns a data frame with expected columns", {
   expect_true(nrow(result) > 0)
   expect_true(all(c("topic", "item", "date") %in% names(result)))
   expect_s3_class(result$date, "Date")
-  expect_type(result$statements_n, "double")
-  expect_false("statements" %in% names(result))
+  expect_type(result$submissions_n, "double")
+  expect_false(any(c("statements", "statements_n") %in% names(result)))
   if (!.parlat_live_api()) {
-    expect_identical(result$statements_n, c(0, 68))
+    expect_identical(result$submissions_n, c(0, 68))
   }
 })
 
-test_that("get_participation keeps statements_n numeric for empty results", {
+test_that("get_participation keeps submissions_n numeric for empty results", {
   local_mocked_bindings(
     req_perform = function(...) structure(list(), class = "httr2_response"),
     resp_body_json = function(...) {
@@ -33,8 +33,8 @@ test_that("get_participation keeps statements_n numeric for empty results", {
   expect_message(result <- get_participation(), "No results found")
   expect_s3_class(result, "tbl_df")
   expect_identical(nrow(result), 0L)
-  expect_identical(result$statements_n, numeric())
-  expect_false("statements" %in% names(result))
+  expect_identical(result$submissions_n, numeric())
+  expect_false(any(c("statements", "statements_n") %in% names(result)))
 })
 
 test_that("get_participation validates topic choices", {
@@ -116,7 +116,7 @@ test_that("get_participation returns correct data for multiple legislative perio
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 516)
-  expect_type(result$statements_n, "double")
+  expect_type(result$submissions_n, "double")
 })
 
 test_that("get_participation returns data for RGES item type", {
@@ -129,5 +129,5 @@ test_that("get_participation returns data for RGES item type", {
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 1403)
-  expect_type(result$statements_n, "double")
+  expect_type(result$submissions_n, "double")
 })
