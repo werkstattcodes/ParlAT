@@ -116,6 +116,21 @@ Nennungen mit unbekannter Organisation.
 In Variante B kann das nicht passieren: Dort kommt die Zuordnung
 Dokument → Nennung aus dem Prompt-Aufbau, nicht aus der Antwort.
 
+## Selbsttest (Abschnitt H)
+
+```bash
+Rscript --vanilla analysis/themenanalyse_komplett.R --test
+```
+
+Prüft alles außer den API-Aufrufen selbst: Einlesen, Abschnittsbildung, beide
+Varianten bis zur gemeinsamen Ergebnisform, die Auszählung über beide, die
+Vergleichs- und die Gütefunktionen. Die ellmer-Aufrufe sind durch Attrappen
+ersetzt — der Test braucht weder `ellmer` noch einen API-Key. Exit-Code 0 bei
+Erfolg, 1 bei Fehlschlag. 33 Prüfungen.
+
+Was der Test *nicht* sagt: ob die Kodierung inhaltlich gut ist. Dafür sind
+Abschnitt G und die manuelle Validierung da.
+
 ## Gütekriterien (Abschnitt G)
 
 - *Stabilität*: eine Variante zweimal laufen lassen, Übereinstimmung messen.

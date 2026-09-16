@@ -5,13 +5,22 @@
 # vor, und wie oft kommt jedes Thema ueber alle Dokumente hinweg vor?
 #
 # Zwei Wege zur selben Frage, beide hier drin:
-#   Variante A - ein einziger Aufruf ueber alle Dokumente (Abschnitt C)
-#   Variante B - mehrstufig, Dokument fuer Dokument      (Abschnitt D)
-# Beide liefern dieselbe Ergebnisform, deshalb teilen sie sich Auszaehlung
-# (E) und lassen sich direkt vergleichen (F).
+#   Variante A (C) - ein einziger Aufruf ueber alle Dokumente
+#   Variante B (D) - mehrstufig, Dokument fuer Dokument
+# Beide liefern dieselbe Ergebnisform, deshalb teilen sie sich Auszaehlung (E)
+# und lassen sich direkt vergleichen (F).
 #
-# Block fuer Block ausfuehren, nicht am Stueck sourcen: zwischen D2 und D3
-# liegt ein Halt, an dem das Kategoriensystem haendisch geprueft wird.
+# Aufbau:
+#   A Konfiguration   B Korpus        C Variante A     D Variante B
+#   E Auszaehlung     F Vergleich     G Guete          H Selbsttest
+#   ABLAUF (ganz unten)
+#
+# Benutzung:
+#   Selbsttest ohne API und ohne ellmer:
+#     Rscript --vanilla analysis/themenanalyse_komplett.R --test
+#   Analyse: den ABLAUF-Block unten Schritt fuer Schritt ausfuehren, nicht am
+#   Stueck sourcen - zwischen D2 und D3 liegt ein Halt, an dem das
+#   Kategoriensystem haendisch geprueft wird.
 #
 # Voraussetzungen:
 #   install.packages(c("ellmer", "tidyverse"))
@@ -19,11 +28,15 @@
 #   Stellungnahmen als .txt in DATEN, optional meta.csv (datei, organisation)
 # ===========================================================================
 
-library(ellmer)
-library(tidyverse)
-
 
 # === A  Konfiguration ======================================================
+
+TEST_MODUS <- "--test" %in% commandArgs(trailingOnly = TRUE)
+
+library(tidyverse)
+# Im Selbsttest sind alle API-Aufrufe durch Attrappen ersetzt, ellmer wird
+# dafuer nicht gebraucht.
+if (!TEST_MODUS) library(ellmer)
 
 MODELL <- "claude-opus-5"
 DATEN  <- "analysis/daten"
@@ -49,7 +62,6 @@ neuer_chat <- function(system_prompt, effort = NULL, max_tokens = 16000) {
 }
 
 # Beide Varianten liefern diese Form - darauf setzen E und F auf:
-#   doc_id | organisation | thema_id | label | zitat
 NENNUNG_SPALTEN <- c("doc_id", "organisation", "thema_id", "label", "zitat")
 
 pruefe_form <- function(nennungen, wer) {
@@ -79,7 +91,7 @@ korpus_einlesen <- function(pfad = DATEN, meta = file.path(pfad, "meta.csv")) {
         str_trim(),
       doc_id = sprintf("D%02d", row_number()),
       n_zeichen = nchar(text),
-      rang = row_number(),        # Position im zusammengesetzten Prompt (Variante A)
+      rang = row_number(),      # Position im zusammengesetzten Prompt (Variante A)
       .before = 1
     )
 
@@ -171,7 +183,8 @@ variante_a <- function(korpus, gegenstand = GEGENSTAND, n_max = N_THEMEN_MAX) {
     select(thema_id, label, nennungen) |>
     unnest(nennungen) |>
     # Das Modell tippt Organisationsnamen ab - hier faellt auf, wenn es
-    # danebengreift ("Beispielverband e.V." statt "Beispielverband").
+    # danebengreift ("Alpha GmbH" statt "Alpha"). Ohne diese Pruefung faellt
+    # die Nennung beim Join lautlos raus und die Haeufigkeit ist zu niedrig.
     left_join(select(korpus, doc_id, organisation), by = "organisation")
 
   unbekannt <- filter(nennungen, is.na(doc_id))
@@ -192,18 +205,20 @@ variante_a <- function(korpus, gegenstand = GEGENSTAND, n_max = N_THEMEN_MAX) {
 
 # --- D1  Induktive Offenkodierung ------------------------------------------
 
-typ_punkte <- type_object(
-  "Alle Vorbehalte, die der Text zum Begutachtungsgegenstand vorbringt.",
-  punkte = type_array(
-    type_object(
-      kurztitel    = type_string("Praegnante Bezeichnung, hoechstens acht Woerter."),
-      beschreibung = type_string("Ein bis zwei Saetze: was genau wird bemaengelt."),
-      zitat        = type_string("Woertliches, unveraendertes Belegzitat. Max. 40 Woerter."),
-      bezug        = type_string("Betroffene Bestimmung, z.B. '§ 4 Abs. 2'. Sonst 'allgemein'.")
-    ),
-    "Ein Eintrag je eigenstaendigem Vorbehalt."
+typ_punkte <- function() {
+  type_object(
+    "Alle Vorbehalte, die der Text zum Begutachtungsgegenstand vorbringt.",
+    punkte = type_array(
+      type_object(
+        kurztitel    = type_string("Praegnante Bezeichnung, hoechstens acht Woerter."),
+        beschreibung = type_string("Ein bis zwei Saetze: was genau wird bemaengelt."),
+        zitat        = type_string("Woertliches, unveraendertes Belegzitat. Max. 40 Woerter."),
+        bezug        = type_string("Betroffene Bestimmung, z.B. '§ 4 Abs. 2'. Sonst 'allgemein'.")
+      ),
+      "Ein Eintrag je eigenstaendigem Vorbehalt."
+    )
   )
-)
+}
 
 b1_offen_kodieren <- function(abschnitte, gegenstand = GEGENSTAND) {
   chat <- neuer_chat(str_glue("
@@ -224,7 +239,7 @@ b1_offen_kodieren <- function(abschnitte, gegenstand = GEGENSTAND) {
     chat,
     as.character(str_glue_data(abschnitte,
       "Stellungnahme von {organisation} ({abschnitt_id}):\n\n<text>\n{text}\n</text>")),
-    type = typ_punkte,
+    type = typ_punkte(),
     on_error = "continue"
   )
 
@@ -238,18 +253,20 @@ b1_offen_kodieren <- function(abschnitte, gegenstand = GEGENSTAND) {
 
 # --- D2  Kategorienbildung -------------------------------------------------
 
-typ_codebuch <- type_object(
-  "Kategoriensystem fuer die vorgelegten Vorbehalte.",
-  kategorien = type_array(
-    type_object(
-      thema_id   = type_string("Kurz-ID in snake_case."),
-      label      = type_string("Themenname, hoechstens fuenf Woerter."),
-      definition = type_string("Was faellt hinein? Zwei bis drei Saetze."),
-      abgrenzung = type_string("Was faellt NICHT hinein, besonders gegen das aehnlichste Thema.")
-    ),
-    "Die Themen des Systems, nach Haeufigkeit sortiert."
+typ_codebuch <- function() {
+  type_object(
+    "Kategoriensystem fuer die vorgelegten Vorbehalte.",
+    kategorien = type_array(
+      type_object(
+        thema_id   = type_string("Kurz-ID in snake_case."),
+        label      = type_string("Themenname, hoechstens fuenf Woerter."),
+        definition = type_string("Was faellt hinein? Zwei bis drei Saetze."),
+        abgrenzung = type_string("Was faellt NICHT hinein, besonders gegen das aehnlichste Thema.")
+      ),
+      "Die Themen des Systems, nach Haeufigkeit sortiert."
+    )
   )
-)
+}
 
 b2_codebuch <- function(punkte, gegenstand = GEGENSTAND, n_max = N_THEMEN_MAX) {
   chat <- neuer_chat(str_glue("
@@ -279,7 +296,7 @@ b2_codebuch <- function(punkte, gegenstand = GEGENSTAND, n_max = N_THEMEN_MAX) {
 
       Entwickle daraus das Kategoriensystem.
     "),
-    type = typ_codebuch
+    type = typ_codebuch()
   )
 
   as_tibble(erg$kategorien) |> mutate(thema_nr = row_number(), .before = 1)
@@ -330,7 +347,7 @@ b3_zuordnen <- function(punkte, codebuch, gegenstand = GEGENSTAND) {
 # === E  Auszaehlung (fuer beide Varianten dieselbe) ========================
 
 # Zwei Zaehleinheiten, beide gehoeren berichtet:
-#   n_nennungen - wie oft insgesamt vorgebracht (lange Stellungnahmen zaehlen mehrfach)
+#   n_nennungen - wie oft insgesamt vorgebracht (lange Stellungnahmen mehrfach)
 #   n_dokumente - in wie vielen Stellungnahmen ueberhaupt (meist die Zahl, die zaehlt)
 haeufigkeiten <- function(nennungen, themen, korpus) {
   n_docs <- n_distinct(korpus$doc_id)
@@ -475,8 +492,203 @@ validierung_export <- function(nennungen, pfad, n = 50) {
 }
 
 
+# === H  Selbsttest =========================================================
+#
+#   Rscript --vanilla analysis/themenanalyse_komplett.R --test
+#
+# Prueft alles ausser den API-Aufrufen selbst: Einlesen, Abschnittsbildung,
+# beide Varianten bis zur gemeinsamen Ergebnisform, die Auszaehlung ueber
+# beide, die Vergleichsfunktionen und die Guetefunktionen. Braucht weder
+# ellmer noch einen Key.
+#
+# Was der Test NICHT sagt: ob die Kodierung inhaltlich gut ist. Dafuer sind
+# Abschnitt G und die manuelle Validierung da.
+
+selbsttest <- function() {
+  n_ok <- 0L; n_fail <- 0L
+  ok <- function(bedingung, text) {
+    bestanden <- isTRUE(bedingung)
+    if (bestanden) n_ok <<- n_ok + 1L else n_fail <<- n_fail + 1L
+    cat(if (bestanden) "  OK   " else "  FAIL ", text, "\n", sep = "")
+  }
+
+  # Die ellmer-Aufrufe durch Attrappen ersetzen. Sie muessen in den globalen
+  # Environment, weil die Analysefunktionen dort nachschlagen. Nach dem Test
+  # wird der vorherige Zustand wiederhergestellt.
+  g <- globalenv()
+  namen <- c("chat_anthropic", "params", "type_object", "type_array", "type_enum",
+             "type_string", "type_boolean", "parallel_chat_structured",
+             ".antwort", ".parallel")
+  vorher <- intersect(namen, ls(g, all.names = TRUE))
+  sicherung <- mget(vorher, envir = g)
+  on.exit({
+    rm(list = setdiff(namen, vorher), envir = g)
+    list2env(sicherung, envir = g)
+  }, add = TRUE)
+
+  setze <- function(n, wert) assign(n, wert, envir = g)
+  setze("params",       function(...) list(...))
+  setze("type_object",  function(...) list(...))
+  setze("type_array",   function(...) list(...))
+  setze("type_enum",    function(values, ...) list(values = values))
+  setze("type_string",  function(...) "string")
+  setze("type_boolean", function(...) "boolean")
+  setze("chat_anthropic", function(...)
+    list(chat_structured = function(...) get(".antwort", envir = g)()))
+  setze("parallel_chat_structured", function(chat, prompts, type, ...)
+    get(".parallel", envir = g)(prompts, type))
+
+  tmp <- file.path(tempdir(), "selbsttest")
+  dir.create(tmp, showWarnings = FALSE)
+  on.exit(unlink(tmp, recursive = TRUE), add = TRUE)
+  writeLines(c("Stellungnahme A", "", "Zur Weisungsspitze: Die Konzentration wird abgelehnt.",
+               "", "Das Bestellverfahren ist intransparent.", "", "Das Budget bleibt offen."),
+             file.path(tmp, "a.txt"))
+  writeLines(c("Stellungnahme B", "", "Die Berichtsfrist ist zu kurz bemessen.",
+               "", "Die Ressourcenfrage ist ungeloest."), file.path(tmp, "b.txt"))
+  writeLines(c("Stellungnahme C", "", "Zur Weisungsspitze bestehen Bedenken.",
+               "", "Das Bestellverfahren braucht einen Parlamentsvorbehalt."),
+             file.path(tmp, "c.txt"))
+  writeLines(c("datei,organisation", "a.txt,Alpha", "b.txt,Beta", "c.txt,Gamma"),
+             file.path(tmp, "meta.csv"))
+
+  cat("\n== B  Korpus ==\n")
+  korpus <- korpus_einlesen(tmp)
+  ok(nrow(korpus) == 3 && all(korpus$doc_id == c("D01", "D02", "D03")),
+     "eingelesen, doc_id vergeben")
+  ok(all(korpus$rang == 1:3), "rang = Position im Prompt")
+  ok(all(str_detect(korpus$text, "\n\n")), "Absatzgrenzen ueberleben die Normalisierung")
+  ok(!any(str_detect(korpus$text, "  ")), "doppelte Leerzeichen entfernt")
+  ok(identical(sort(korpus$organisation), c("Alpha", "Beta", "Gamma")),
+     "Metadaten gejoint")
+
+  absch <- in_abschnitte_teilen(korpus, max_zeichen = 60)
+  ok(nrow(absch) > 3, "lange Dokumente werden geteilt")
+  ok(all(str_detect(absch$abschnitt_id, "^D\\d{2}-\\d{2}$")), "abschnitt_id Format")
+  ok(sum(nchar(str_remove_all(absch$text, "\\s"))) ==
+     sum(nchar(str_remove_all(korpus$text, "\\s"))), "kein Textverlust beim Teilen")
+  ok(nrow(in_abschnitte_teilen(korpus, max_zeichen = 40000)) == 3,
+     "kurze Dokumente bleiben ungeteilt")
+
+  cat("\n== C  Variante A ==\n")
+  themen_stub <- tibble(
+    thema_id = c("weisungsspitze", "bestellverfahren", "ressourcen"),
+    label = c("Weisungsspitze", "Bestellverfahren", "Ressourcen"),
+    definition = "d",
+    nennungen = list(
+      tibble(organisation = c("Alpha", "Gamma"), zitat = c("z1", "z2")),
+      tibble(organisation = c("Alpha", "Gamma"), zitat = c("z3", "z4")),
+      tibble(organisation = c("Alpha", "Beta"),  zitat = c("z5", "z6"))))
+  setze(".antwort", function() list(themen = themen_stub))
+
+  a <- variante_a(korpus)
+  ok(identical(names(a$nennungen), NENNUNG_SPALTEN),
+     "Variante A haelt die gemeinsame Ergebnisform ein")
+  ok(nrow(a$nennungen) == 6 && !any(is.na(a$nennungen$doc_id)),
+     "Organisationen auf doc_id aufgeloest")
+  ok(nrow(a$themen) == 3, "Themen zurueckgegeben")
+
+  # Modell vertippt sich beim Organisationsnamen -> muss auffallen
+  falsch <- themen_stub
+  falsch$nennungen[[1]] <- tibble(organisation = c("Alpha GmbH", "Gamma"),
+                                  zitat = c("z1", "z2"))
+  setze(".antwort", function() list(themen = falsch))
+  meldung <- tryCatch({ variante_a(korpus); "keine Warnung" },
+                      warning = \(w) conditionMessage(w))
+  ok(str_detect(meldung, "Alpha GmbH"), "unbekannte Organisation wird gemeldet")
+  setze(".antwort", function() list(themen = themen_stub))
+
+  cat("\n== D  Variante B ==\n")
+  punkte_stub <- tibble(kurztitel = c("Weisungsspitze", "Bestellverfahren"),
+                        beschreibung = "b", zitat = c("Die Konzentration wird abgelehnt.", "x"),
+                        bezug = "allgemein")
+  setze(".parallel", function(prompts, type)
+    tibble(punkte = c(list(punkte_stub), rep(list(tibble()), length(prompts) - 1))))
+  p <- b1_offen_kodieren(head(absch, 3))
+  ok(nrow(p) == 2 && all(p$punkt_id == c("P0001", "P0002")),
+     "leere Ergebnisse gefiltert, punkt_id fortlaufend")
+  ok(all(c("doc_id", "organisation", "zitat") %in% names(p)),
+     "Dokumentkontext bleibt an den Punkten haengen")
+
+  punkte <- tibble(
+    punkt_id = sprintf("P%03d", 1:6),
+    doc_id = c("D01", "D01", "D01", "D02", "D02", "D03"),
+    organisation = c("Alpha", "Alpha", "Alpha", "Beta", "Beta", "Gamma"),
+    kurztitel = "k", beschreibung = "b", bezug = "allgemein",
+    zitat = c("Die Konzentration wird abgelehnt.", "Das Bestellverfahren ist intransparent.",
+              "Das Budget bleibt offen.", "Die Berichtsfrist ist zu kurz bemessen.",
+              "Die Ressourcenfrage ist ungeloest.", "Zur Weisungsspitze bestehen Bedenken."))
+  codebuch <- tibble(thema_nr = 1:3,
+    thema_id = c("weisungsspitze", "bestellverfahren", "ressourcen"),
+    label = c("Weisungsspitze", "Bestellverfahren", "Ressourcen"),
+    definition = "d", abgrenzung = "a")
+  zuw <- c("weisungsspitze", "bestellverfahren", "ressourcen",
+           "ressourcen", "ressourcen", "weisungsspitze")
+  setze(".parallel", function(prompts, type) {
+    ok(identical(type$thema_id$values, codebuch$thema_id),
+       "type_enum ist auf die Codebuch-IDs beschraenkt")
+    tibble(thema_id = zuw[seq_along(prompts)], konfidenz = "hoch", begruendung = "w")
+  })
+  b <- list(themen = codebuch, nennungen = b3_zuordnen(punkte, codebuch))
+  ok(all(NENNUNG_SPALTEN %in% names(b$nennungen)),
+     "Variante B haelt dieselbe Ergebnisform ein")
+
+  cat("\n== E  Auszaehlung, beide Varianten ==\n")
+  ta <- haeufigkeiten(a$nennungen, a$themen, korpus)
+  tb <- haeufigkeiten(b$nennungen, b$themen, korpus)
+  ok(nrow(ta) == 3 && nrow(tb) == 3, "dieselbe Funktion frisst beide Varianten")
+  ok(ta$n_dokumente[ta$thema_id == "weisungsspitze"] == 2, "A: Dokumente gezaehlt")
+  ok(tb$n_nennungen[tb$thema_id == "ressourcen"] == 3 &&
+     tb$n_dokumente[tb$thema_id == "ressourcen"] == 2,
+     "B: Nennungen und Dokumente korrekt getrennt")
+  ok(abs(sum(tb$anteil_nennungen) - 1) < 1e-9, "Anteile summieren auf 1")
+  ok(all(tb$anteil_dokumente <= 1), "Dokumentanteile <= 1")
+  ok(all(diff(tb$n_dokumente) <= 0), "absteigend sortiert")
+
+  m <- dokument_thema_matrix(b$nennungen, b$themen, korpus)
+  ok(nrow(m) == 3 && all(codebuch$thema_id %in% names(m)),
+     "Matrix: Zeile je Dokument, Spalte je Thema")
+  ok(all(as.matrix(m[, codebuch$thema_id]) %in% c(0L, 1L)), "Matrix ist 0/1")
+
+  cat("\n== F  Vergleich ==\n")
+  kz <- kennzahlen(a$nennungen, a$themen, b$nennungen, b$themen, korpus)
+  ok(nrow(kz) == 5 && kz$variante_a[1] == 3 && kz$variante_b[1] == 3,
+     "Kennzahlen stehen nebeneinander")
+
+  setze(".parallel", function(prompts, type)
+    tibble(abgedeckt = c(TRUE, TRUE, FALSE, TRUE, FALSE, TRUE)[seq_along(prompts)],
+           thema_id = "x"))
+  abd <- abdeckung_pruefen(punkte, a$nennungen)
+  ok(nrow(abd) == 6 && "abgedeckt" %in% names(abd), "Abdeckung geprueft")
+
+  pos <- positionseffekt(abd, korpus)
+  ok(all(c("rang", "treffer", "pos_im_dokument") %in% names(pos)), "Positionsspalten da")
+  ok(sum(!is.na(pos$treffer)) == 6, "alle Zitate im Text wiedergefunden")
+  ok(all(pos$pos_im_dokument >= 0 & pos$pos_im_dokument <= 1, na.rm = TRUE),
+     "Position liegt in [0, 1]")
+  ok(!"text" %in% names(pos), "Volltext nicht mitgeschleppt")
+
+  cat("\n== G  Guete ==\n")
+  st <- stabilitaet(\() list(themen = a$themen, nennungen = a$nennungen), laeufe = 2)
+  ok(nrow(st) == 1 && st$gemeinsam == 6, "Stabilitaet vergleicht zwei Laeufe")
+
+  pfad <- validierung_export(b$nennungen, file.path(tmp, "v.csv"), n = 4)
+  gold <- read_csv(pfad, show_col_types = FALSE)
+  ok(nrow(gold) == 4 && all(is.na(gold$thema_manuell)) && !"thema_id" %in% names(gold),
+     "Validierungsstichprobe ohne Maschinenspalte im Weg")
+
+  cat(sprintf("\n%d Pruefungen, %d Fehlschlaege\n", n_ok + n_fail, n_fail))
+  invisible(n_fail == 0)
+}
+
+if (TEST_MODUS) {
+  bestanden <- selbsttest()
+  if (!interactive()) quit(status = if (isTRUE(bestanden)) 0 else 1)
+}
+
+
 # ===========================================================================
-# ABLAUF - Block fuer Block
+# ABLAUF - Block fuer Block ausfuehren
 # ===========================================================================
 
 stopifnot(nzchar(Sys.getenv("ANTHROPIC_API_KEY")))
@@ -504,9 +716,9 @@ codebuch <- b2_codebuch(punkte)
 write_csv(codebuch, file.path(OUT, "codebuch.csv"))
 
 # >>> HALT: codebuch.csv oeffnen und pruefen <<<
-#   ueberschneiden sich zwei Themen?   -> zusammenlegen / Abgrenzung schaerfen
-#   fehlt ein fachlich zentrales?      -> ergaenzen
-#   ist eines eine Haltung statt Thema -> umformulieren
+#   ueberschneiden sich zwei Themen?    -> zusammenlegen / Abgrenzung schaerfen
+#   fehlt ein fachlich zentrales?       -> ergaenzen
+#   ist eines eine Haltung statt Thema? -> umformulieren
 # Danach eingefroren:
 codebuch <- read_csv(file.path(OUT, "codebuch.csv"), show_col_types = FALSE)
 
