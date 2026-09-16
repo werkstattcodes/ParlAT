@@ -14,6 +14,34 @@ D2 und D3 liegt ein Halt.
 - `daten/` — hier die Stellungnahmen als `.txt` ablegen (nicht versioniert)
 - `output/` — Ergebnisse (nicht versioniert)
 
+## Zwei Dateien
+
+- **`themenanalyse.qmd`** — das Quarto-Dokument: Fließtext plus Code-Chunks,
+  rendert zu HTML für einen Blogbeitrag. Der A/B-Vergleich ist der rote Faden.
+- **`themenanalyse_komplett.R`** — die lauffähige Pipeline inklusive Selbsttest.
+
+Das `.qmd` ist eigenständig; es sourct das Skript nicht, sondern enthält den Code,
+den es zeigt. Etwas Überschneidung zwischen beiden ist also beabsichtigt — ändert
+man das eine substanziell, gehört das andere nachgezogen.
+
+### Rendern
+
+Der Beitrag entsteht in zwei Schritten, damit ein Re-Render beim Veröffentlichen
+nichts kostet:
+
+```bash
+# 1. Einmal mit Zugriff: die Aufrufe laufen, output/ergebnisse.rds entsteht
+export ANTHROPIC_API_KEY=...
+export THEMEN_LIVE=true
+quarto render analysis/themenanalyse.qmd
+
+# 2. Danach ohne THEMEN_LIVE: der Beitrag wird aus der abgelegten Datei gebaut
+quarto render analysis/themenanalyse.qmd
+```
+
+Ohne Key und ohne `ergebnisse.rds` rendert das Dokument ebenfalls — dann zeigt es
+den Code, lässt Tabellen und Grafiken weg und weist darauf hin.
+
 ## Zwei Wege zur selben Frage
 
 Das Skript enthält beide, weil der Vergleich selbst aufschlussreich ist.

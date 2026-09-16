@@ -1,0 +1,618 @@
+---
+title: "Zehn Stellungnahmen, zehn Themen"
+subtitle: "Inhaltsanalyse mit ellmer — und was der bequeme Weg kostet"
+author: "Roland Schmidt"
+date: today
+lang: de
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-link: true
+    df-print: kable
+    fig-width: 7
+    fig-height: 4.5
+    fig-dpi: 200
+execute:
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    comment: "#>"
+    collapse: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+
+# Die API-Aufrufe laufen nur, wenn beides gesetzt ist. So rendert das Dokument
+# auch ohne Schluessel - und kostet beim Rendern nichts.
+LIVE <- nzchar(Sys.getenv("ANTHROPIC_API_KEY")) &&
+  identical(Sys.getenv("THEMEN_LIVE"), "true")
+if (LIVE) library(ellmer)
+
+# Ergebnisse eines frueheren Laufs, falls vorhanden
+pfad_erg <- "output/ergebnisse.rds"
+haben_erg <- file.exists(pfad_erg)
+keine_erg <- !haben_erg
+if (haben_erg) erg <- read_rds(pfad_erg)
+```
+
+```{r}
+#| label: theme
+#| include: false
+
+# Werte aus einer validierten Referenzpalette. `dunkel = TRUE` schaltet auf die
+# fuer dunkle Flaechen gestuften Varianten um - statische ggplot-Grafiken passen
+# sich nicht selbst an das Blog-Theme an, also ist das eine bewusste Entscheidung
+# und kein automatisches Umdrehen der Farben.
+viz <- function(dunkel = FALSE) {
+  if (dunkel) {
+    list(flaeche = "#1a1a19", ink = "#ffffff", ink2 = "#c3c2b7",
+         serie = "#3987e5", gitter = "#383835")
+  } else {
+    list(flaeche = "#fcfcfb", ink = "#0b0b0b", ink2 = "#52514e",
+         serie = "#2a78d6", gitter = "#e6e5e1")
+  }
+}
+
+theme_viz <- function(dunkel = FALSE) {
+  f <- viz(dunkel)
+  theme_minimal(base_size = 12) +
+    theme(
+      plot.background  = element_rect(fill = f$flaeche, colour = NA),
+      panel.background = element_rect(fill = f$flaeche, colour = NA),
+      plot.title    = element_text(colour = f$ink, face = "bold", size = 13),
+      plot.subtitle = element_text(colour = f$ink2, size = 10.5),
+      plot.caption  = element_text(colour = f$ink2, size = 9, hjust = 0),
+      axis.text     = element_text(colour = f$ink2, size = 10),
+      axis.title    = element_text(colour = f$ink2, size = 10),
+      # Hairline, durchgezogen, eine Nuance von der Flaeche entfernt
+      panel.grid.major = element_line(colour = f$gitter, linewidth = 0.3),
+      panel.grid.minor = element_blank(),
+      plot.title.position = "plot",
+      plot.margin = margin(12, 16, 12, 12)
+    )
+}
+```
+
+## Die Frage
+
+Im Begutachtungsverfahren zum Ministerialentwurf über eine **Bundesstaatsanwaltschaft**
+sind eine Reihe von Stellungnahmen eingelangt. Jede bringt Vorbehalte vor, jede
+formuliert sie anders. Was ich wissen will, ist banal und mühsam zugleich:
+
+> Welche Vorbehalte werden vorgebracht, und wie viele Stellungnahmen bringen sie
+> jeweils vor?
+
+Das ist eine qualitative Inhaltsanalyse. Klassisch macht man sie mit der Hand und
+zwei Wochen Zeit. Die Frage ist, was ein Sprachmodell davon übernehmen kann —
+und, wichtiger, welcher Teil besser bei einem selbst bleibt.
+
+## Was ellmer macht (und was nicht)
+
+[ellmer](https://ellmer.tidyverse.org) ist kein Analysewerkzeug. Es ist eine
+*typisierte Schnittstelle zum Modell* und macht drei Dinge:
+
+1. **Prompt hinschicken** — `chat_anthropic()` baut ein Gesprächsobjekt
+2. **Die Antwortform erzwingen** — `type_*()` beschreibt ein Schema, das Modell
+   *kann* nichts anderes zurückgeben
+3. **Parallelisieren** — `parallel_chat_structured()` schickt viele Dokumente
+   gleichzeitig
+
+Das Erkennen und Gruppieren macht das Modell. ellmers Beitrag ist, dass die
+Antwort als Tibble ankommt statt als Fließtext, den man mit Regex auseinandernimmt.
+Klingt banal, ist aber der ganze Unterschied.
+
+Ein Detail, das man früh verstehen sollte: Ein `chat`-Objekt ist **eine**
+Konversation. `parallel_chat_structured()` klont es als Vorlage — jedes Dokument
+bekommt einen frischen Verlauf. **Dokument 7 weiß nichts von Dokument 3.**
+
+Daraus folgt die ganze Architektur weiter unten.
+
+## Der Korpus
+
+```{r}
+#| label: korpus
+#| eval: !expr LIVE
+
+korpus <- tibble(pfad = list.files("daten", "\\.txt$", full.names = TRUE)) |>
+  mutate(
+    organisation = str_remove(basename(pfad), "\\.txt$"),
+    text = map_chr(pfad, \(f) paste(read_lines(f), collapse = "\n")),
+    doc_id = sprintf("D%02d", row_number()),
+    n_zeichen = nchar(text),
+    rang = row_number()          # Position im zusammengesetzten Prompt, s.u.
+  )
+```
+
+## Variante A — der bequeme Weg
+
+Opus 5 hat ein Kontextfenster von einer Million Tokens. Zehn Stellungnahmen sind
+grob 100 bis 300 Seiten und passen bequem hinein. Also: alles in einen Prompt,
+einmal fragen, fertig.
+
+```{r}
+#| label: typ-a
+#| eval: !expr LIVE
+
+typ_themen <- type_object(
+  "Die Themen, unter denen die Stellungnahmen Vorbehalte vorbringen.",
+  themen = type_array(
+    type_object(
+      thema_id   = type_string("Kurz-ID in snake_case."),
+      label      = type_string("Themenname, höchstens fünf Wörter."),
+      definition = type_string("Was fällt unter dieses Thema, was nicht?"),
+      nennungen  = type_array(
+        type_object(
+          organisation = type_string("Name exakt wie im Attribut organisation."),
+          zitat = type_string("Wörtliches Belegzitat aus genau dieser Stellungnahme.")
+        ),
+        "Eine Nennung je Stellungnahme, die diesen Vorbehalt vorbringt."
+      )
+    ),
+    "Höchstens zehn Themen, nach Anzahl der Nennungen sortiert."
+  )
+)
+```
+
+::: {.callout-tip}
+## Verschachtelte Objekte statt paralleler Arrays
+
+`nennungen` ist ein Array von **Objekten**, nicht zwei parallele Arrays für
+Organisation und Zitat. Parallele Arrays laufen früher oder später auseinander —
+neun Organisationen, acht Zitate, und die Zuordnung ist verloren. Verschachtelte
+Objekte können das strukturell nicht.
+:::
+
+```{r}
+#| label: variante-a
+#| eval: !expr LIVE
+
+alle_texte <- korpus |>
+  str_glue_data('<stellungnahme organisation="{organisation}">\n{text}\n</stellungnahme>') |>
+  paste(collapse = "\n\n")
+
+chat <- chat_anthropic(
+  model = "claude-opus-5",
+  system_prompt = "
+    Du wertest Stellungnahmen aus einem österreichischen Begutachtungsverfahren
+    zur Einrichtung einer Bundesstaatsanwaltschaft aus.
+
+    Erfasse ausschließlich Vorbehalte, Bedenken und Kritikpunkte — keine
+    Zustimmung, keine Formalien. Gruppiere sie zu höchstens zehn trennscharfen
+    Themen auf gleicher Abstraktionsebene, sachlich benannt.
+
+    Arbeite jede Stellungnahme einzeln durch, bevor du gruppierst. Übergehe keine,
+    auch nicht die in der Mitte des Materials. Jede Nennung braucht ein wörtliches
+    Belegzitat aus genau der Stellungnahme, der sie zugeordnet wird.",
+  params = params(max_tokens = 32000)
+)
+
+antwort_a <- chat$chat_structured(
+  paste0("Hier sind alle ", nrow(korpus), " Stellungnahmen.\n\n", alle_texte),
+  type = typ_themen
+)
+
+nennungen_a <- as_tibble(antwort_a$themen) |>
+  select(thema_id, label, nennungen) |>
+  unnest(nennungen) |>
+  left_join(select(korpus, doc_id, organisation), by = "organisation")
+```
+
+Das war's. Ein Aufruf, und `nennungen_a` ist die lange Tabelle
+Thema × Organisation × Zitat.
+
+::: {.callout-warning}
+## Der Join, der lautlos danebengeht
+
+Das Modell **tippt die Organisationsnamen ab**. Schreibt es „Beispielverband e.V.",
+wo im Dokument „Beispielverband" steht, fällt die Nennung beim `left_join()` heraus
+und die Häufigkeit ist zu niedrig — ohne Fehlermeldung. Immer prüfen:
+
+```r
+nennungen_a |> filter(is.na(doc_id)) |> distinct(organisation)
+```
+
+In Variante B kann das nicht passieren: Dort kommt die Zuordnung Dokument → Nennung
+aus dem Prompt-Aufbau, nicht aus der Antwort.
+:::
+
+## Variante B — vier Durchgänge
+
+Der bequeme Weg liefert eine Tabelle, die plausibel aussieht und die niemand prüfen
+kann: Die Kategorien entstehen unterwegs, gezählt wird im Modell, und es gibt keinen
+Weg von der Zahl zurück zum Text. Für einen Satz wie „14 von 31 Stellungnahmen
+kritisieren die Weisungsspitze" ist das zu wenig.
+
+Also die klassische Inhaltsanalyse, in vier Schritte zerlegt. Das Modell macht pro
+Schritt eine kleine, prüfbare Sache; **gezählt wird in dplyr, nicht im Modell**.
+
+### D1 — Induktiv offen kodieren
+
+Jedes Dokument einzeln. Noch keine Kategorien.
+
+```{r}
+#| label: d1
+#| eval: !expr LIVE
+
+typ_punkte <- type_object(
+  "Alle Vorbehalte, die der Text vorbringt.",
+  punkte = type_array(
+    type_object(
+      kurztitel    = type_string("Prägnante Bezeichnung, höchstens acht Wörter."),
+      beschreibung = type_string("Ein bis zwei Sätze: was genau wird bemängelt."),
+      zitat        = type_string("Wörtliches, unverändertes Belegzitat."),
+      bezug        = type_string("Betroffene Bestimmung, z.B. '§ 4 Abs. 2'.")
+    ),
+    "Ein Eintrag je eigenständigem Vorbehalt."
+  )
+)
+
+chat_d1 <- chat_anthropic(
+  model = "claude-opus-5",
+  system_prompt = "
+    Reine Extraktion, keine Bewertung, keine Zusammenfassung.
+    - Jeder eigenständige Vorbehalt ist ein eigener Eintrag. Nicht bündeln.
+    - Erfinde nichts: jeder Eintrag braucht ein wörtliches Belegzitat.
+      Kein Zitat, kein Eintrag.
+    - Ignoriere Anrede, Dank, Verteilerhinweise.
+    - Bringt ein Text keinen Vorbehalt, gib eine leere Liste zurück.",
+  params = params(max_tokens = 16000)
+)
+
+roh <- parallel_chat_structured(
+  chat_d1,
+  as.character(str_glue_data(korpus, "Stellungnahme von {organisation}:\n\n{text}")),
+  type = typ_punkte,
+  on_error = "continue"
+)
+
+punkte <- korpus |>
+  select(doc_id, organisation) |>
+  mutate(p = roh$punkte) |>
+  filter(map_lgl(p, \(x) is.data.frame(x) && nrow(x) > 0)) |>
+  unnest(p) |>
+  mutate(punkt_id = sprintf("P%04d", row_number()), .before = 1)
+```
+
+Das **Belegzitat** ist keine Zierde. Es macht jede spätere Häufigkeit am Text
+überprüfbar, es diszipliniert das Modell (was sich nicht zitieren lässt, darf nicht
+in die Liste), und es liefert weiter unten die Positionsmessung gratis.
+
+### D2 — Kategorien bilden
+
+Ein einziger Aufruf, und zwar nur über die **Kurztitel**, nicht über die Volltexte.
+So hat ein Vorbehalt im Nebensatz dasselbe Gewicht wie einer, der über drei Seiten
+ausgebreitet wird.
+
+```{r}
+#| label: d2
+#| eval: !expr LIVE
+
+typ_codebuch <- type_object(
+  "Kategoriensystem für die vorgelegten Vorbehalte.",
+  kategorien = type_array(
+    type_object(
+      thema_id   = type_string("Kurz-ID in snake_case."),
+      label      = type_string("Themenname, höchstens fünf Wörter."),
+      definition = type_string("Was fällt hinein? Zwei bis drei Sätze."),
+      abgrenzung = type_string("Was fällt NICHT hinein, gegen das ähnlichste Thema.")
+    ),
+    "Die Themen des Systems, nach Häufigkeit sortiert."
+  )
+)
+
+codebuch <- chat_anthropic(
+  model = "claude-opus-5",
+  system_prompt = "
+    Du entwickelst das Kategoriensystem einer qualitativen Inhaltsanalyse.
+    - Höchstens zehn Themen.
+    - Trennscharf: jeder vorgelegte Vorbehalt passt in genau eines.
+    - Erschöpfend: jeder Vorbehalt kommt unter.
+    - Auf gleicher Abstraktionsebene. Nicht 'Rechtsstaatlichkeit' neben
+      'Frist in § 12'.
+    - Sachlich benannt, nicht wertend.",
+  params = params(max_tokens = 32000)
+)$chat_structured(
+  paste0("Vorbehalte aus ", n_distinct(punkte$doc_id), " Stellungnahmen:\n\n",
+         paste("-", punkte$kurztitel, ":", punkte$beschreibung, collapse = "\n")),
+  type = typ_codebuch
+)$kategorien |>
+  as_tibble() |>
+  mutate(thema_nr = row_number(), .before = 1)
+
+write_csv(codebuch, "output/codebuch.csv")
+```
+
+::: {.callout-important}
+## Hier hört die Automatisierung auf
+
+Das Codebuch geht als CSV raus und wird **von Hand durchgesehen**: überlappende
+Themen zusammenlegen, fehlende ergänzen, Abgrenzungen schärfen. Danach ist es
+eingefroren.
+
+Das ist der Schritt, der aus einer LLM-Spielerei eine nachvollziehbare
+Inhaltsanalyse macht — und der einzige, den man nicht delegieren sollte.
+:::
+
+### D3 — Deduktiv zuordnen
+
+```{r}
+#| label: d3
+#| eval: !expr LIVE
+
+codebuch <- read_csv("output/codebuch.csv", show_col_types = FALSE)  # geprüft
+
+typ_zuordnung <- type_object(
+  thema_id  = type_enum(codebuch$thema_id, "Das eine Thema, das am besten passt."),
+  konfidenz = type_enum(c("hoch", "mittel", "niedrig"),
+                        "'niedrig', wenn zwei Themen gleich gut passen."),
+  begruendung = type_string("Ein Satz.")
+)
+
+chat_d3 <- chat_anthropic(
+  model = "claude-opus-5",
+  system_prompt = paste0(
+    "Ordne jeden Vorbehalt genau einem Thema zu. Entscheide nach der Definition,
+     nicht nach Wortähnlichkeit zum Label.\n\n",
+    str_glue_data(codebuch, "## {thema_id}\n{definition}\nNicht: {abgrenzung}") |>
+      paste(collapse = "\n\n")
+  ),
+  # Mechanische Entscheidung, das Codebuch liegt vor
+  params = params(reasoning_effort = "low", max_tokens = 2000)
+)
+
+nennungen_b <- punkte |>
+  bind_cols(parallel_chat_structured(
+    chat_d3,
+    as.character(str_glue_data(punkte, "{kurztitel} — {beschreibung}\nZitat: \"{zitat}\"")),
+    type = typ_zuordnung,
+    on_error = "continue"
+  )) |>
+  left_join(select(codebuch, thema_id, label), by = "thema_id")
+```
+
+**Hier wird „höchstens zehn Themen" erst verbindlich.** `type_enum(codebuch$thema_id, …)`
+wird zur Laufzeit aus dem eingefrorenen Codebuch gebaut — das Modell *kann*
+strukturell nichts anderes ausgeben. Keine erfundene Kategorie, keine verrutschte
+Schreibweise, nichts, was hinterher per `left_join()` ins Leere läuft.
+
+In Variante A stand „höchstens zehn" nur in der Beschreibung des Arrays. Das ist
+eine Bitte, keine Garantie.
+
+## Auszählen
+
+Beide Varianten liefern dieselbe Form — `doc_id`, `organisation`, `thema_id`,
+`label`, `zitat` — also zählt eine Funktion beide. Das ist nicht Kosmetik: Ein
+Unterschied zwischen den Varianten kann so nicht aus unterschiedlichem Zählcode
+stammen.
+
+```{r}
+#| label: zaehlen
+#| eval: !expr LIVE
+
+haeufigkeiten <- function(nennungen, themen, korpus) {
+  themen |>
+    select(thema_nr, thema_id, label) |>
+    left_join(count(nennungen, thema_id, name = "n_nennungen"), by = "thema_id") |>
+    left_join(nennungen |> distinct(doc_id, thema_id) |>
+                count(thema_id, name = "n_dokumente"), by = "thema_id") |>
+    mutate(
+      across(c(n_nennungen, n_dokumente), \(x) coalesce(x, 0L)),
+      anteil_dokumente = n_dokumente / n_distinct(korpus$doc_id)
+    ) |>
+    arrange(desc(n_dokumente), desc(n_nennungen))
+}
+```
+
+Zwei Zähleinheiten, und sie sagen verschiedene Dinge:
+
+- **`n_nennungen`** — wie oft insgesamt vorgebracht. Eine ausführliche
+  Stellungnahme schlägt mehrfach durch.
+- **`n_dokumente`** — in wie vielen Stellungnahmen das Thema überhaupt vorkommt.
+  Robuster, und meist die Zahl, die man berichten will.
+
+```{r}
+#| label: tabelle
+#| eval: !expr haben_erg
+#| echo: false
+
+erg$tab_b |>
+  select(Thema = label, Stellungnahmen = n_dokumente,
+         Anteil = anteil_dokumente, Nennungen = n_nennungen) |>
+  mutate(Anteil = scales::percent(Anteil, accuracy = 1))
+```
+
+```{r}
+#| label: fig-haeufigkeit
+#| eval: !expr haben_erg
+#| echo: false
+#| fig-cap: "In wie vielen Stellungnahmen jedes Thema vorkommt."
+
+f <- viz()
+erg$tab_b |>
+  mutate(label = fct_reorder(label, n_dokumente)) |>
+  ggplot(aes(n_dokumente, label)) +
+  geom_col(fill = f$serie, width = 0.62) +
+  geom_text(aes(label = n_dokumente), hjust = -0.45,
+            colour = f$ink2, size = 3.4) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.09))) +
+  # Achse weg, die Werte am Balkenende sind die Skala - sonst steht dieselbe
+  # Zahl zweimal da
+  labs(title = "Vorbehalte gegen die Bundesstaatsanwaltschaft",
+       subtitle = paste0("Zahl der Stellungnahmen je Thema (n = ",
+                         erg$n_docs, ")"),
+       x = NULL, y = NULL) +
+  theme_viz() +
+  theme(axis.text.x = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_blank())
+```
+
+## „Da muss doch dasselbe rauskommen"
+
+Das war meine Erwartung, und sie ist die interessanteste Hypothese am ganzen
+Aufbau. Vier Gründe, warum sie vermutlich nicht stimmt — und sie lassen sich
+sauber trennen:
+
+1. **Aufmerksamkeit.** Zehn Stellungnahmen sind 200+ Seiten in einem Prompt. Jedes
+   Dokument bekommt einen Bruchteil davon ab.
+2. **Woraus die Themen entstehen.** Variante A bildet sie aus dem Gesamteindruck
+   der Volltexte, Variante B aus gleichgewichteten Einzelpunkten. In A schlägt
+   Textmenge auf Themenbildung durch.
+3. **Wer zählt.** A entscheidet intern, welche Organisation ein Thema nennt.
+   B zählt Zeilen, die je ein Zitat tragen.
+4. **Es gibt keinen Determinismus.** `claude-opus-5` nimmt kein `temperature`
+   mehr entgegen (die API antwortet mit 400). Zwei identische Läufe *derselben*
+   Variante liefern nicht dasselbe.
+
+Punkt 4 kippt die Fragestellung: **Man kann nicht fragen „sind die beiden gleich?",
+bevor man weiß, wie stark jede mit sich selbst schwankt.** Die Grundlinie kommt
+zuerst, sonst ist jede Differenz uninterpretierbar.
+
+### Was gemessen wird
+
+```{r}
+#| label: recall
+#| eval: !expr LIVE
+
+# Jeder Vorbehalt, den B in einem Dokument gefunden hat, gegen das, was A
+# für DASSELBE Dokument ausgibt.
+je_doc <- nennungen_a |>
+  group_by(doc_id) |>
+  summarise(liste = paste0("- ", thema_id, ": \"", zitat, "\"", collapse = "\n"))
+
+abdeckung <- punkte |>
+  left_join(je_doc, by = "doc_id") |>
+  mutate(liste = coalesce(liste, "(keine Nennungen)")) |>
+  bind_cols(parallel_chat_structured(
+    chat_anthropic(
+      model = "claude-opus-5",
+      system_prompt = "Prüfe, ob ein Vorbehalt in einer zweiten Auswertung
+        derselben Stellungnahme vorkommt. Gleiche Sache, andere Formulierung
+        zählt als abgedeckt. Ein bloß verwandtes Oberthema nicht.",
+      params = params(reasoning_effort = "low", max_tokens = 1000)),
+    as.character(str_glue_data(punkte, "{kurztitel}\nZitat: \"{zitat}\"")),
+    type = type_object(abgedeckt = type_boolean("Kommt der Vorbehalt vor?")),
+    on_error = "continue"
+  ))
+
+# Das Belegzitat macht die Position messbar - ohne weiteren API-Aufruf
+position <- abdeckung |>
+  left_join(select(korpus, doc_id, rang, text, n_zeichen), by = "doc_id") |>
+  mutate(treffer = map2_int(zitat, text, \(z, t) {
+    m <- str_locate(t, fixed(str_sub(z, 1, 40)))
+    if (is.na(m[1, 1])) NA_integer_ else as.integer(m[1, 1])
+  })) |>
+  select(-text)
+```
+
+```{r}
+#| label: speichern
+#| eval: !expr LIVE
+#| include: false
+
+# Ein LIVE-Lauf legt die Ergebnisse ab; der spätere Render baut den Beitrag
+# daraus, ohne die API nochmal anzufassen.
+dir.create("output", showWarnings = FALSE)
+
+themen_a <- as_tibble(antwort_a$themen) |> mutate(thema_nr = row_number(), .before = 1)
+
+erg <- list(
+  n_docs = n_distinct(korpus$doc_id),
+  tab_a  = haeufigkeiten(nennungen_a, themen_a, korpus),
+  tab_b  = haeufigkeiten(nennungen_b, codebuch, korpus),
+  recall_gesamt = mean(abdeckung$abgedeckt, na.rm = TRUE),
+  zitattreue = mean(!is.na(position$treffer)),
+  recall_position = position |>
+    group_by(rang) |>
+    summarise(n = n(), recall = mean(abgedeckt, na.rm = TRUE), .groups = "drop")
+)
+write_rds(erg, "output/ergebnisse.rds")
+```
+
+Die Hypothese dahinter heißt *lost in the middle*: Was Variante A übersieht, sollte
+überproportional in der Mitte des zusammengesetzten Prompts stehen.
+
+```{r}
+#| label: fig-position
+#| eval: !expr haben_erg
+#| echo: false
+#| fig-cap: "Anteil der Vorbehalte aus Variante B, die Variante A für dasselbe Dokument ebenfalls nennt — aufgetragen über die Position der Stellungnahme im zusammengesetzten Prompt."
+
+f <- viz()
+erg$recall_position |>
+  ggplot(aes(rang, recall)) +
+  geom_line(colour = f$serie, linewidth = 0.7) +
+  geom_point(colour = f$serie, size = 2.6) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  scale_x_continuous(breaks = scales::breaks_width(1)) +
+  labs(title = "Trefferquote nach Position im Prompt",
+       subtitle = "Anteil der Vorbehalte aus Variante B, die Variante A ebenfalls nennt",
+       x = "Position im Prompt", y = NULL) +
+  theme_viz() +
+  theme(panel.grid.major.x = element_blank())
+```
+
+```{r}
+#| label: keine-ergebnisse
+#| eval: !expr keine_erg
+#| echo: false
+#| output: asis
+
+cat("::: {.callout-note}\n",
+    "## Noch keine Ergebnisse\n\n",
+    "Dieses Dokument rendert ohne API-Zugriff — die Code-Chunks sind gezeigt, ",
+    "aber nicht ausgeführt, und Tabellen wie Grafiken fehlen.\n\n",
+    "Der Beitrag entsteht in zwei Schritten. Erst einmal mit Zugriff rendern; ",
+    "dabei laufen die Aufrufe und `output/ergebnisse.rds` wird abgelegt:\n\n",
+    "```bash\n",
+    "export ANTHROPIC_API_KEY=...\n",
+    "export THEMEN_LIVE=true\n",
+    "quarto render analysis/themenanalyse.qmd\n",
+    "```\n\n",
+    "Danach ohne `THEMEN_LIVE` rendern: Der Beitrag wird aus der abgelegten ",
+    "Datei gebaut und kostet nichts mehr. So ist auch ein Re-Render beim ",
+    "Veröffentlichen unbedenklich.\n",
+    ":::\n", sep = "")
+```
+
+## Was ich daraus mitnehme
+
+Meine Vermutung, bevor die Zahlen da sind: Die **großen Themen decken sich** — die
+zentralen Vorbehalte sind unübersehbar, die findet auch der eine Prompt. Der lange
+Schwanz divergiert, und bei den Dokument-Thema-Paaren liegt Variante A systematisch
+niedriger.
+
+Die Schlagzeile stimmt also, die Tabelle nicht: *Der eine Prompt sagt dir richtig,
+worüber geklagt wird — aber nicht verlässlich, wer.*
+
+Wenn das stimmt, ist die Arbeitsteilung klar. Variante A für den ersten Blick ins
+Material: ein Aufruf, ein paar Cent, zwei Minuten. Variante B für jede Zahl, die man
+jemandem gegenüber vertritt.
+
+::: {.callout-note}
+## Zur Reproduzierbarkeit
+
+Ohne `temperature` kommt die Reproduzierbarkeit aus drei anderen Quellen: dem
+eingefrorenen Codebuch, der `type_enum`-Beschränkung in D3 und der gemessenen
+Wiederholungsübereinstimmung. Praktisch trägt das weiter als `temperature = 0` —
+die Kategorien, aus denen gewählt wird, liegen fest und sind versioniert.
+
+Und: Der Vergleich benutzt selbst ein Modell (Abdeckungsprüfung). Diese Urteile
+sind auch verrauscht und gehören stichprobenartig nachgeprüft, sonst misst man am
+Ende den Schiedsrichter.
+:::
+
+---
+
+Die vollständige Pipeline inklusive Selbsttest liegt als
+[`themenanalyse_komplett.R`](themenanalyse_komplett.R) daneben:
+
+```bash
+Rscript --vanilla analysis/themenanalyse_komplett.R --test
+```
