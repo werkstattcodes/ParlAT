@@ -23,3 +23,9 @@ test_results.csv
 .playwright-mcp/
 vignettes/*_cache/
 _temp/
+
+# Analyse-Workflow (kein Paketbestandteil)
+analysis/daten/*
+!analysis/daten/.gitkeep
+analysis/output/*
+!analysis/output/.gitkeep

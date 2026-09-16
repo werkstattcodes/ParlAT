@@ -33,3 +33,4 @@ vignettes/ParlAT_cache/
 ^_temp$
 ^codecov\.yml$
 ^plans$
+^analysis$
