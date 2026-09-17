@@ -4,7 +4,7 @@
 \alias{get_consultation_submissions}
 \title{Get Consultation Submissions for a Draft or Bill}
 \usage{
-get_consultation_submissions(item_url, echo = TRUE)
+get_consultation_submissions(item_url, echo = TRUE, include_text = FALSE)
 }
 \arguments{
 \item{item_url}{Character scalar. Full Parliament URL or relative path of
@@ -14,6 +14,10 @@ Query strings, fragments and a trailing slash are ignored.}
 
 \item{echo}{Logical scalar. If \code{TRUE}, display the parent item's website URL,
 pagination progress and the number of submissions returned.}
+
+\item{include_text}{Logical scalar. If \code{TRUE}, fetch each published
+submission's detail JSON and add inline text, HTML and document links.
+Defaults to \code{FALSE}, without additional detail requests.}
 }
 \value{
 An ungrouped tibble with one row per submission and these columns:
@@ -30,6 +34,18 @@ An ungrouped tibble with one row per submission and these columns:
 \item \code{item_url}: Full URL of the parent item (character).
 }
 
+With \code{include_text = TRUE}, three additional columns are returned:
+\itemize{
+\item \code{submission_text}: Inline submission text with HTML markup removed,
+entities decoded and paragraph/line breaks preserved (character).
+\item \code{submission_html}: Original inline HTML from the API (character).
+\item \code{documents}: List-column of tibbles with character columns \code{doc_title},
+\code{link} (absolute document URL), and \code{type} (e.g. PDF or HTML).
+}
+
+Missing inline text is \code{NA_character_}; missing documents are zero-row
+tibbles. Text and attachments can coexist. Attachment text is not extracted.
+
 No results produce a zero-row tibble with the same columns and types.
 }
 \description{
@@ -40,11 +56,18 @@ one ministerial draft or parliamentary bill.
 }
 \details{
 The function queries the parent-specific consultation filter and retrieves
-all pages. It returns references and metadata, without downloading submission
-texts, PDFs or individual detail pages. Results follow the API's date order
+all pages. By default it returns references and metadata only.
+Results follow the API's date order
 (newest first). Non-public submissions remain in the result, with unavailable
 authors and links recorded as \code{NA}. A submission URL is returned only when
 the API supplies a link; internal identifiers are not used to invent links.
+
+Setting \code{include_text = TRUE} adds one detail fetch per distinct published
+submission URL, sequentially, and can substantially increase runtime.
+Rows without a published URL are retained with missing text and empty
+document tibbles. Documents themselves are not downloaded. Inline text is
+a written consultation submission, not a speech in a parliamentary debate.
+A failed or invalid detail response stops the call and identifies its URL.
 
 The object type is taken from the parent URL. For example, a government
 bill may use \code{I} in its URL even though its document type is \code{RV}.
@@ -59,6 +82,13 @@ submissions |>
   dplyr::select(submission_id, author, submission_url)
 
 get_consultation_submissions("/gegenstand/XXVIII/I/405", echo = FALSE)
+
+# Retrieve inline text and links to attached documents.
+detailed <- get_consultation_submissions(
+  "/gegenstand/XXVIII/I/405", include_text = TRUE
+)
+detailed$submission_text
+detailed$documents[[1]]$link
 
 # Combine submissions for several parent items in one flat table.
 c("/gegenstand/XXVIII/ME/44", "/gegenstand/XXVIII/I/405") |>

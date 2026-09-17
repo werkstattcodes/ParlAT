@@ -1,0 +1,286 @@
+{
+    "pagetype": "geschichtsseite",
+    "meta": {
+        "description": "Stellungnahme zu 405 d.B. (980/SN)",
+        "generationTime": "Mon Apr 13 22:34:57 UTC 2026",
+        "keywords": "\"Öffentlicher Dienst\", \"Bildungswesen VIII. Sonstiges\"",
+        "lang": "de",
+        "title": "Stellungnahme zu 405 d.B. (980/SN) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "Stellungnahme zu 405 d.B. | Parlament Österreich",
+            "description": "980/SN"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "breadcrumbs": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Alle Beteiligungen",
+                "url": "/beteiligen/alle-beteiligungen/"
+            },
+            {
+                "title": "Alle Stellungnahmen",
+                "url": "/beteiligen/alle-beteiligungen/alle-stellungnahmen/"
+            },
+            {
+                "title": "Nationalrat - XXVIII. GP",
+                "url": "/beteiligen/alle-beteiligungen/alle-stellungnahmen/?GP_CODE=XXVIII"
+            },
+            {
+                "title": "Stellungnahme",
+                "url": "/beteiligen/alle-beteiligungen/alle-stellungnahmen/?GP_CODE=XXVIII&ITYP=SN"
+            },
+            {
+                "title": "980/SN"
+            }
+        ],
+        "type": "Stellungnahme",
+        "sntype": "Stellungnahme",
+        "approvaltype": "Stellungnahme",
+        "title": "Stellungnahme zu 405 d.B.",
+        "zitation": "980/SN",
+        "description": "Stellungnahme betreffend die Regierungsvorlage (405 d.B.): Bundesgesetz, mit dem das Beamten-Dienstrechtsgesetz 1979, das Gehaltsgesetz 1956, das Vertragsbedienstetengesetz 1948, das Landeslehrer-Dienstrechtsgesetz, das Landesvertragslehrpersonengesetz 1966 und das Bundeslehrer-Lehrverpflichtungsgesetz geändert werden",
+        "gp_code": "XXVIII",
+        "ityp": "SN",
+        "inr": 980,
+        "doktyp": "SN",
+        "update": "2026-04-14T00:34:57",
+        "nr_gp_code": "XXVIII",
+        "intranet": "N",
+        "group": "1",
+        "deleted": false,
+        "einlangen": "2026-03-03T00:00:00",
+        "history_ind": 1.1,
+        "vhg_fertig": "J",
+        "vhg_fertig_docs": "J",
+        "process": "N",
+        "statementsstate": "9 Keine Begutachtung bei dem Doktyp \"SN\" möglich",
+        "approvalstate": "0",
+        "approvals": {
+            "new": 0,
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Unterstützungen",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BI_001",
+                        "listeId": 305,
+                        "params": {
+                            "GP_CODE": [
+                                "XXVIII"
+                            ],
+                            "ITYP": [
+                                "SN"
+                            ],
+                            "INR": [
+                                980
+                            ]
+                        },
+                        "fixedParams": {
+                            "GP_CODE": [
+                                "XXVIII"
+                            ],
+                            "ITYP": [
+                                "SN"
+                            ],
+                            "INR": [
+                                980
+                            ]
+                        },
+                        "hideDimensions": [
+                            "GP_CODE",
+                            "ITYP",
+                            "INR"
+                        ],
+                        "hideColumns": [
+                            "10",
+                            "12"
+                        ],
+                        "sortrnr": 5,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "reportformlink": "/gegenstand/XXVIII/SN/980?selectedStage=103&reportForm=1#reportForm",
+            "reportform": {
+                "rendertype": "form",
+                "data": {
+                    "action": "/PtWeb/api/stellungnahme/melden",
+                    "fields": [
+                        {
+                            "fieldType": "hidden",
+                            "id": "gpCode",
+                            "required": true,
+                            "value": "XXVIII"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "ityp",
+                            "required": true,
+                            "value": "SN"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "inr",
+                            "required": true,
+                            "value": "980"
+                        },
+                        {
+                            "id": "grund",
+                            "label": "Meldegrund",
+                            "required": true,
+                            "entries": [
+                                {
+                                    "label": "Enthält unangemessene Inhalte",
+                                    "value": "UNANGEMESSEN"
+                                },
+                                {
+                                    "label": "Verstößt gegen das geltende Recht (insbesondere das Strafgesetzbuch, das Urheberrechtsgesetz und das Datenschutzgesetz)",
+                                    "value": "RECHT"
+                                },
+                                {
+                                    "label": "Vortäuschung einer falschen Identität/Organisationsvertretung",
+                                    "value": "IDENTITAET"
+                                },
+                                {
+                                    "label": "Sonstiges",
+                                    "value": "SONST",
+                                    "selected": true
+                                }
+                            ],
+                            "fieldType": "dropdown"
+                        },
+                        {
+                            "fieldType": "textarea",
+                            "id": "grunddetail",
+                            "label": "Begründung",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "info",
+                            "infoText": "Hinweis: Die Stellungnahme muss der Würde des Hauses entsprechen und darf nicht gegen zwingende gesetzliche Vorschriften verstoßen (z.B. das Strafrecht, Urheberrecht oder Datenschutzrecht)",
+                            "infoType": "TEXT"
+                        },
+                        {
+                            "heading": {
+                                "title": "Kontaktdaten",
+                                "ebene": 3
+                            },
+                            "fieldType": "heading"
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "name",
+                            "label": "Name",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "email",
+                            "id": "mail",
+                            "label": "E-Mail-Adresse",
+                            "required": true
+                        }
+                    ],
+                    "method": "POST",
+                    "preventDefault": true,
+                    "rest": true
+                }
+            }
+        },
+        "stages": [
+            {
+                "date": "03.03.2026",
+                "text": "Einlangen",
+                "priority": 1
+            }
+        ],
+        "statement": "Sehr geehrte Damen und Herren,<br><br>als Administrator an einer kleineren Schule möchte ich zum vorliegenden Gesetzesentwurf, der zusätzliche Ressourcen für das Mittlere Management sowie administrative Tätigkeiten an Schulen vorsieht, im Rahmen des Begutachtungsverfahrens Stellung nehmen. Die Zielsetzung des Entwurfs – die administrative und organisatorische Entlastung von Schulen – ist ausdrücklich zu begrüßen. Jedoch führt die konkrete Ausgestaltung des Ressourcenzuteilungsmodells zu erheblichen Benachteiligungen kleiner Schulen und weist bestehende strukturelle Ungleichheiten sogar weiter aus.<br>Im Folgenden lege ich dar, warum der Entwurf in seiner jetzigen Form einer Überarbeitung bedarf und welche Anpassungen notwendig sind, um eine faire, sachgerechte und wirksame Ressourcenzuteilung für alle Schulstandorte sicherzustellen.<br> <br>1. Fehlende Ressourcenzuteilung für kleine Schulen<br>Im vorliegenden Gesetzesentwurf ist für kleine Schulstandorte – insbesondere jene mit 8 bis 9 Klassen – keine einzige zusätzliche Werteinheit für administrative Aufgaben vorgesehen.<br>Dies steht im klaren Widerspruch zu den realen Anforderungen und der tatsächlichen administrativen Arbeitslast, die an kleinen Schulen ebenso besteht wie an größeren. Die Reduktion oder gänzliche Nichtberücksichtigung kleiner Schulen führt dazu, dass diese wiederholt strukturell benachteiligt werden, obwohl sie im Vergleich zu größeren Standorten keine proportional geringere, sondern oft sogar höher individualisierte administrative Arbeit leisten müssen.<br> <br>2. Fortbestehende Ungleichbehandlung zwischen altem und neuem Dienstrecht<br>Bereits nach geltender Rechtslage bestehen deutliche Unterschiede zwischen Administratorinnen und Administratoren im alten und im neuen Dienstrecht.<br>Aktuell ist die Situation wie folgt:<br>•\tAltes Dienstrecht: Administratoren an Schulen mit 8–9 Klassen erhalten 4 bis 4,5 Werteinheiten.<br>•\tNeues Dienstrecht: Die identische Tätigkeit wird mit 12 Werteinheiten abgegolten.<br>Diese Differenz ist weder durch Aufgabenprofil, Umfang der Tätigkeiten noch durch die tatsächliche Arbeitsleistung zu rechtfertigen. Der Gesetzgeber hat durch diese Divergenz eine strukturelle Ungleichheit geschaffen, die seit Jahren in der Praxis zu erheblichen Belastungen und Demotivation führt.<br>Der nun vorliegende Gesetzesentwurf bietet eine hervorragende Möglichkeit, diese Ungerechtigkeit zu beseitigen. Stattdessen perpetuiert die geplante Regelung diese Ungleichbehandlung – insbesondere an kleinen Schulstandorten – und verschärft sie faktisch durch den Wegfall von administrativen Werteinheiten für genau jene Schulen, die es am dringendsten benötigen.<br> <br>3. Auswirkungen auf Schulqualität und Schulorganisation<br>Eine faire Ressourcenzuteilung an die schulische Administration ist nicht nur eine Frage der Gerechtigkeit den betroffenen Bediensteten gegenüber, sondern essenziell für die Funktionsfähigkeit des Bildungsbetriebs. Mangelnde administrative Unterstützung führt nachweislich zu:<br>•\tÜberlastung von Schulleitungen und Lehrpersonen<br>•\tVerzögerung organisatorischer Abläufe<br>•\tEinschränkung der pädagogischen Arbeit<br>•\tErhöhten Krankenständen und geringerer Arbeitszufriedenheit<br>Gerade kleine Schulen, die mit knappen Personalressourcen arbeiten müssen, leiden in besonderem Ausmaß unter administrativer Unterversorgung. Dass ausgerechnet diese Schulstandorte im Entwurf unberücksichtigt bleiben, widerspricht dem Ziel einer modernen, effizienten und pädagogisch gut aufgestellten Schulverwaltung.<br> <br>4. Notwendige Anpassungen<br>Ich ersuche daher den Gesetzgeber eindringlich, folgende Punkte in den Gesetzesentwurf aufzunehmen bzw. anzupassen:<br>1.\tGewährleistung einer Mindestausstattung an Werteinheiten für administrative Tätigkeiten an allen Schulen, unabhängig von ihrer Größe.<br>2.\tBeseitigung der Ungleichbehandlung zwischen altem und neuem Dienstrecht durch ein einheitliches, transparentes und sachlich nachvollziehbares System der Ressourcenzuteilung.<br>3.\tBerücksichtigung des tatsächlichen administrativen Aufwands kleiner Schulen, der sich nicht linear zur Anzahl der Klassen reduziert.<br>4.\tSicherstellung, dass keine Schulart und keine Schulgröße systematisch benachteiligt wird, um die Qualität der schulischen Arbeit österreichweit zu sichern.<br> <br>5. Schlussbemerkung<br>Der vorliegende Gesetzesentwurf stellt zweifellos einen wichtigen Schritt dar, um die schulische Verwaltung zu stärken. Damit dieses Ziel jedoch tatsächlich erreicht werden kann, ist eine gleichmäßige, gerechte und realitätsnahe Ressourcenzuteilung erforderlich. Kleine Schulen dürfen nicht erneut „durch den Rost fallen“. Vielmehr müssen gerade diese Standorte – als wichtige Bildungs- und Sozialräume im ländlichen Raum – besonders bedacht werden.<br>Ich ersuche daher, die aufgezeigten Punkte im weiteren parlamentarischen Verfahren einzubeziehen und die notwendigen Korrekturen vorzunehmen.<br><br>Mit freundlichen Grüßen<br>Oliver Fischer<br><br>",
+        "names": [
+            {
+                "funktext": "Stellungnahme von",
+                "name": "Fischer, Oliver (6850 Dornbirn)",
+                "frak_code": null
+            }
+        ],
+        "reference": [
+            {
+                "text": "Bezug zu",
+                "subject": "Beamten-Dienstrechtsgesetz, Gehaltsgesetz u.a., Änderung",
+                "zitation": "405 d.B.",
+                "url": "/gegenstand/XXVIII/I/405",
+                "art": "B"
+            }
+        ],
+        "topics": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Bildung",
+                        "link": "/suche?thema=Bildung"
+                    },
+                    {
+                        "label": "Inneres und Recht",
+                        "link": "/suche?thema=Inneres und Recht"
+                    }
+                ]
+            }
+        },
+        "headwords": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Öffentlicher Dienst",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Öffentlicher Dienst"
+                    },
+                    {
+                        "label": "Bildungswesen VIII. Sonstiges",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&SW=Bildungswesen VIII. Sonstiges"
+                    }
+                ]
+            }
+        },
+        "eurovoc": {
+            "rendertype": "bubbles",
+            "data": {
+                "title": "",
+                "bubbles": [
+                    {
+                        "label": "Bildung",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Bildung"
+                    },
+                    {
+                        "label": "öffentliche Verwaltung",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=öffentliche Verwaltung"
+                    },
+                    {
+                        "label": "öffentlicher Dienst",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=öffentlicher Dienst"
+                    },
+                    {
+                        "label": "Organisation des Unterrichtswesens",
+                        "link": "/recherchieren/gegenstaende/?NRBR=NR&GP_CODE=XXVIII&EUROVOC=Organisation des Unterrichtswesens"
+                    }
+                ]
+            }
+        }
+    }
+}

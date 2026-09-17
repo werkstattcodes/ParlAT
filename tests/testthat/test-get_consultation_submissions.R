@@ -21,16 +21,16 @@ submission_test_response <- function() {
 }
 
 test_that("parent URLs normalize to the same API identifiers", {
-  expected <- .parlat_submission_parent("/gegenstand/XXVIII/ME/44")
+  expected <- .parlat_parse_submission_parent_url("/gegenstand/XXVIII/ME/44")
   for (url in c(
     "gegenstand/XXVIII/ME/44", " /gegenstand/XXVIII/ME/0044/ ",
     "https://www.parlament.gv.at/gegenstand/XXVIII/ME/44?tab=2#details",
     "http://parlament.gv.at/gegenstand/XXVIII/ME/44/"
   )) {
-    expect_identical(.parlat_submission_parent(url), expected)
+    expect_identical(.parlat_parse_submission_parent_url(url), expected)
   }
-  expect_identical(.parlat_submission_parent("/gegenstand/XXVIII/I/405")$item_code, "I")
-  expect_identical(.parlat_submission_parent("/gegenstand/XXVIII/A/5")$item_code, "A")
+  expect_identical(.parlat_parse_submission_parent_url("/gegenstand/XXVIII/I/405")$item_code, "I")
+  expect_identical(.parlat_parse_submission_parent_url("/gegenstand/XXVIII/A/5")$item_code, "A")
 })
 
 test_that("invalid inputs fail before any request is made", {
@@ -51,7 +51,7 @@ test_that("invalid inputs fail before any request is made", {
 
 test_that("submission metadata preserves names and only uses published links", {
   result <- .parlat_parse_submissions(
-    submission_test_response(), .parlat_submission_parent("/gegenstand/XXVIII/ME/44")
+    submission_test_response(), .parlat_parse_submission_parent_url("/gegenstand/XXVIII/ME/44")
   )
   expect_s3_class(result, "tbl_df")
   expect_false(dplyr::is_grouped_df(result))
@@ -68,7 +68,7 @@ test_that("submission metadata preserves names and only uses published links", {
 })
 
 test_that("parsing handles reordered fields and missing optional values", {
-  parent <- .parlat_submission_parent("/gegenstand/XXVIII/ME/44")
+  parent <- .parlat_parse_submission_parent_url("/gegenstand/XXVIII/ME/44")
   original <- submission_test_response()
   expected <- .parlat_parse_submissions(original, parent)
   response <- original
@@ -91,7 +91,7 @@ test_that("parsing handles reordered fields and missing optional values", {
 
 test_that("single rows and list-shaped rows retain the same schema", {
   response <- submission_test_response()
-  parent <- .parlat_submission_parent("/gegenstand/XXVIII/ME/44")
+  parent <- .parlat_parse_submission_parent_url("/gegenstand/XXVIII/ME/44")
   expected <- .parlat_parse_submissions(response, parent)
   response$rows <- response$rows[1, ]
   expect_identical(.parlat_parse_submissions(response, parent), expected[1, ])
@@ -104,7 +104,7 @@ test_that("single rows and list-shaped rows retain the same schema", {
 })
 
 test_that("malformed responses and unrelated parent rows are not silently accepted", {
-  parent <- .parlat_submission_parent("/gegenstand/XXVIII/ME/44")
+  parent <- .parlat_parse_submission_parent_url("/gegenstand/XXVIII/ME/44")
   response <- submission_test_response()
   response$rows[1, 5] <- "45"
   expect_error(.parlat_parse_submissions(response, parent), "different parent")
@@ -205,4 +205,40 @@ test_that("motions with submissions use the A parent code", {
   expect_true(all(result$item_code == "A"))
   expect_true(all(result$submission_code == "SN"))
   expect_true(all(result$item_id == "865/A"))
+})
+
+test_that("include_text is opt-in and retains unpublished rows", {
+  fetched <- character()
+  local_mocked_bindings(
+    .parlat_fetch_submission_page = function(...) submission_test_response(),
+    .parlat_submission_content = function(url) {
+      fetched <<- c(fetched, url)
+      result <- .parlat_empty_submission_content()
+      result$submission_text <- "Submission text"
+      result
+    }
+  )
+  plain <- get_consultation_submissions("/gegenstand/XXVIII/ME/44", FALSE)
+  expect_identical(fetched, character())
+  expect_silent(enriched <- get_consultation_submissions(
+    "/gegenstand/XXVIII/ME/44", echo = FALSE, include_text = TRUE
+  ))
+  expect_identical(enriched[names(plain)], plain)
+  expect_identical(fetched, plain$submission_url[1])
+  expect_identical(enriched$submission_text, c("Submission text", NA_character_))
+})
+
+test_that("include_text validates inputs and extends empty results", {
+  local_mocked_bindings(.parlat_fetch_submission_page = function(...) {
+    list(count = 0L, pages = 0L, rows = list())
+  })
+  expect_snapshot(error = TRUE, get_consultation_submissions(
+    "/gegenstand/XXVIII/ME/44", include_text = NA
+  ))
+  result <- get_consultation_submissions(
+    "/gegenstand/XXVIII/ME/44", echo = FALSE, include_text = TRUE
+  )
+  expect_identical(result$submission_text, character())
+  expect_identical(result$submission_html, character())
+  expect_identical(result$documents, list())
 })

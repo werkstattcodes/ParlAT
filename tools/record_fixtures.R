@@ -723,6 +723,14 @@ record_fixtures(
 )
 
 # ============================================================================
+# Submission content used by include_text (without fetching entire lists).
+record_fixtures(
+  "sn_text",
+  .parlat_submission_content("https://www.parlament.gv.at/gegenstand/XXVIII/SNME/2458"),
+  .parlat_submission_content("https://www.parlament.gv.at/gegenstand/XXVIII/SNME/2446"),
+  .parlat_submission_content("https://www.parlament.gv.at/gegenstand/XXVIII/SN/980")
+)
+
 # Summary
 # ============================================================================
 

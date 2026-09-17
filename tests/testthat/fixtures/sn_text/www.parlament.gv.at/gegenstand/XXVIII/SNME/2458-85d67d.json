@@ -1,0 +1,228 @@
+{
+    "pagetype": "geschichtsseite",
+    "meta": {
+        "description": "Bundesgesetz zur Stärkung der Selbstbestimmung von unmündigen Mädchen an Schulen mittels Einführung eines Kopftuchverbots (624/SN-44/ME)",
+        "generationTime": "Sat Oct 25 04:38:40 UTC 2025",
+        "lang": "de",
+        "title": "Bundesgesetz zur Stärkung der Selbstbestimmung von unmündigen Mädchen an Schulen mittels Einführung eines Kopftuchverbots (624/SN-44/ME) | Parlament Österreich",
+        "openGraph": {
+            "image": "https://www.parlament.gv.at/static/img/og.png",
+            "title": "Bundesgesetz zur Stärkung der Selbstbestimmung von unmündigen Mädchen an Schulen mittels Einführung eines Kopftuchverbots | Parlament Österreich",
+            "description": "624/SN-44/ME"
+        },
+        "scripts": [
+
+        ],
+        "styles": [
+
+        ]
+    },
+    "content": {
+        "breadcrumbs": [
+            {
+                "title": "Start",
+                "url": "/"
+            },
+            {
+                "title": "Alle Beteiligungen",
+                "url": "/beteiligen/alle-beteiligungen/"
+            },
+            {
+                "title": "Alle Stellungnahmen",
+                "url": "/beteiligen/alle-beteiligungen/alle-stellungnahmen/"
+            },
+            {
+                "title": "Nationalrat - XXVIII. GP",
+                "url": "/beteiligen/alle-beteiligungen/alle-stellungnahmen/?GP_CODE=XXVIII"
+            },
+            {
+                "title": "Stellungnahme zu Ministerialentwurf",
+                "url": "/beteiligen/alle-beteiligungen/alle-stellungnahmen/?GP_CODE=XXVIII&ITYP=SNME"
+            },
+            {
+                "title": "624/SN-44/ME"
+            }
+        ],
+        "type": "Stellungnahme zu Ministerialentwurf",
+        "sntype": "Stellungnahme zu Ministerialentwurf",
+        "approvaltype": "Stellungnahme",
+        "title": "Bundesgesetz zur Stärkung der Selbstbestimmung von unmündigen Mädchen an Schulen mittels Einführung eines Kopftuchverbots",
+        "zitation": "624/SN-44/ME",
+        "description": "Stellungnahme zu dem Ministerialentwurf betreffend Bundesgesetz zur Stärkung der Selbstbestimmung von unmündigen Mädchen an Schulen mittels Einführung eines Kopftuchverbots",
+        "gp_code": "XXVIII",
+        "ityp": "SNME",
+        "inr": 2458,
+        "doktyp": "SNME",
+        "update": "2025-10-25T06:38:40",
+        "nr_gp_code": "XXVIII",
+        "intranet": "N",
+        "group": "1",
+        "deleted": false,
+        "einlangen": "2025-10-25T00:00:00",
+        "history_ind": 1.1,
+        "vhg_fertig": "J",
+        "vhg_fertig_docs": "J",
+        "process": "N",
+        "statementsstate": "9 Keine Begutachtung bei dem Doktyp \"SNME\" möglich",
+        "approvalstate": "0",
+        "approvals": {
+            "new": 0,
+            "filter": {
+                "rendertype": "filter",
+                "data": {
+                    "type": "FILTER",
+                    "resultLayout": "TABLE",
+                    "hasForm": true,
+                    "hasList": true,
+                    "label": "Unterstützungen",
+                    "pagesize": 20,
+                    "definition": {
+                        "bez": "BI_001",
+                        "listeId": 305,
+                        "params": {
+                            "GP_CODE": [
+                                "XXVIII"
+                            ],
+                            "ITYP": [
+                                "SNME"
+                            ],
+                            "INR": [
+                                2458
+                            ]
+                        },
+                        "fixedParams": {
+                            "GP_CODE": [
+                                "XXVIII"
+                            ],
+                            "ITYP": [
+                                "SNME"
+                            ],
+                            "INR": [
+                                2458
+                            ]
+                        },
+                        "hideDimensions": [
+                            "GP_CODE",
+                            "ITYP",
+                            "INR"
+                        ],
+                        "hideColumns": [
+                            "10",
+                            "12"
+                        ],
+                        "sortrnr": 5,
+                        "ascDesc": "DESC"
+                    }
+                }
+            },
+            "reportformlink": "/gegenstand/XXVIII/SNME/2458?selectedStage=103&reportForm=1#reportForm",
+            "reportform": {
+                "rendertype": "form",
+                "data": {
+                    "action": "/PtWeb/api/stellungnahme/melden",
+                    "fields": [
+                        {
+                            "fieldType": "hidden",
+                            "id": "gpCode",
+                            "required": true,
+                            "value": "XXVIII"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "ityp",
+                            "required": true,
+                            "value": "SNME"
+                        },
+                        {
+                            "fieldType": "hidden",
+                            "id": "inr",
+                            "required": true,
+                            "value": "2458"
+                        },
+                        {
+                            "id": "grund",
+                            "label": "Meldegrund",
+                            "required": true,
+                            "entries": [
+                                {
+                                    "label": "Enthält unangemessene Inhalte",
+                                    "value": "UNANGEMESSEN"
+                                },
+                                {
+                                    "label": "Verstößt gegen das geltende Recht (insbesondere das Strafgesetzbuch, das Urheberrechtsgesetz und das Datenschutzgesetz)",
+                                    "value": "RECHT"
+                                },
+                                {
+                                    "label": "Vortäuschung einer falschen Identität/Organisationsvertretung",
+                                    "value": "IDENTITAET"
+                                },
+                                {
+                                    "label": "Sonstiges",
+                                    "value": "SONST",
+                                    "selected": true
+                                }
+                            ],
+                            "fieldType": "dropdown"
+                        },
+                        {
+                            "fieldType": "textarea",
+                            "id": "grunddetail",
+                            "label": "Begründung",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "info",
+                            "infoText": "Hinweis: Die Stellungnahme muss der Würde des Hauses entsprechen und darf nicht gegen zwingende gesetzliche Vorschriften verstoßen (z.B. das Strafrecht, Urheberrecht oder Datenschutzrecht)",
+                            "infoType": "TEXT"
+                        },
+                        {
+                            "heading": {
+                                "title": "Kontaktdaten",
+                                "ebene": 3
+                            },
+                            "fieldType": "heading"
+                        },
+                        {
+                            "fieldType": "text",
+                            "id": "name",
+                            "label": "Name",
+                            "required": true
+                        },
+                        {
+                            "fieldType": "email",
+                            "id": "mail",
+                            "label": "E-Mail-Adresse",
+                            "required": true
+                        }
+                    ],
+                    "method": "POST",
+                    "preventDefault": true,
+                    "rest": true
+                }
+            }
+        },
+        "stages": [
+            {
+                "date": "25.10.2025",
+                "text": "Einlangen"
+            }
+        ],
+        "statement": "Laut EMRK haben Eltern das Recht auf religiöse Erziehung ihrer Kinder. Es steht dem Gesetzgeber nicht zu, den Eltern dieses Recht zu entziehen oder einzuschränken.<br>Weiters bezieht sich dieser Gesetzesentwurf ausschließlich auf muslimische Mädchen und stellt somit eine Diskriminierung dar.  Es werden keine Burschen thematisiert und auch keine Kopfbedeckung anderer Religionen (z.B.: jüdische und indische religiöse Kopfbedeckungen). Die Ausrede, es würde eine kulturelle Tradition betreffen, ist wie so oft eine politische Nebelgranate. <br>Für die wenigen Fälle, in denen vielleicht wirklich ein Kind gezwungen, ist dieser Gesetzesentwurf keine Hilfe. Für alle Anderen ist es eine Bevormundung, und ein Eingriff in ihre private Entscheidungsfreiheit. Kinder können durchaus selbst entscheiden was sie möchten und was nicht. <br>Der Versuch, mit diesem Gesetzesentwurf die Gesellschaft zu spalten und zu radikalisieren ist einer demokratischen Regierung unwürdig. Es wird hier versucht auf dem Rücken einer Minderheit politisches Kleingeld zu schlagen. Anstatt eine angemessene und vernünftige Volksvertretung zu sein und sich um die Bedürfnisse und Probleme der Menschen zu kümmern, wird hier versucht dem politischen Gegner Stimmen streitig zu machen, damit man um jeden Preis an der Macht bleiben kann. <br>Die Notwendigkeit eines Gesetzes gegen eine religiöse Kopfbedeckung ist nicht gegeben und konnte bisher auch nicht durch Studien oder andere Zahlen belegt werden. Der Versuch die Grundrechte von Bürgern schrittweise einzuschränken ist strikt abzulehnen und gibt Anlass den Antragstellern Misstrauen entgegen zu bringen.<br>Ich fordere hiermit eine Ablehnung dieses Gesetzesentwurfes.<br><br>",
+        "names": [
+            {
+                "funktext": "Stellungnahme von",
+                "name": "Karakullukcu, Özkan (2231 Strasshof)",
+                "frak_code": null
+            }
+        ],
+        "reference": [
+            {
+                "text": "Bezug zu",
+                "subject": "Bundesgesetz zur Stärkung der Selbstbestimmung von unmündigen Mädchen an Schulen mittels Einführung eines Kopftuchverbots",
+                "zitation": "44/ME",
+                "url": "/gegenstand/XXVIII/ME/44",
+                "art": "B"
+            }
+        ]
+    }
+}

@@ -1,5 +1,9 @@
 # ParlAT (development version)
 
+- `get_consultation_submissions()` gains `include_text = TRUE` to retrieve
+  inline submission text, original HTML and absolute document links. This
+  adds a detail request for each distinct published submission URL.
+
 - New `get_consultation_submissions(item_url)` retrieves references to all
   consultation submissions (Stellungnahmen) for one ministerial draft or bill.
   It returns a flat tibble with submission and parent references, dates,
