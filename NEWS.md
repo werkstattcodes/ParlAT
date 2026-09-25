@@ -1,3 +1,9 @@
+# ParlAT (development version)
+
+- `get_events()` now orders events by descending date and ascending link
+  within each date, preventing row-order differences between API calls for
+  events on the same day.
+
 # ParlAT 0.1.0
 
 ## New features

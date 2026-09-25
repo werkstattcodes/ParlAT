@@ -21,6 +21,10 @@
 #' provided.
 #'
 #' @details
+#' Results are ordered by date (newest first), then by `link` in ascending
+#' order within each date. Missing links sort last within a date. If the API
+#' omits the link column, results are ordered by date only.
+#'
 #' When `legis_period`, `date_start`, and `date_end` are all NULL, the API
 #' search is unrestricted by date. The echoed Parliament website URL derives
 #' an explicit lower date bound and availability values from the returned rows
@@ -479,7 +483,7 @@ get_events <- function(
         dplyr::mutate(dplyr::across(dplyr::any_of("date"), lubridate::dmy)) %>%
         dplyr::mutate(dplyr::across(dplyr::any_of("date_time_start"), lubridate::ymd_hms)) %>%
         dplyr::mutate(dplyr::across(dplyr::any_of("date_time_end"), lubridate::ymd_hms)) %>%
-        dplyr::arrange(dplyr::desc(date))
+        dplyr::arrange(dplyr::desc(date), dplyr::across(dplyr::any_of("link")))
 
     return(df_res)
 }
