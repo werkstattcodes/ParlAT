@@ -116,6 +116,78 @@ test_that("echo does not change returned event data", {
   )
 })
 
+test_that("events have stable date and link ordering across API row permutations", {
+  rows <- data.frame(
+    date = c("28.02.2024", rep("01.03.2024", 3), "02.03.2024"),
+    link = c("/a", "/c", NA_character_, "/b", "/z"),
+    title = c("Older", "Same day C", "Missing link", "Same day B", "Newest")
+  )
+  request_n <- 0L
+  local_mocked_bindings(
+    req_perform = function(req) {
+      request_n <<- request_n + 1L
+      permutation <- if (request_n == 1L) {
+        seq_len(nrow(rows))
+      } else {
+        rev(seq_len(nrow(rows)))
+      }
+      httr2::response(
+        headers = list(`content-type` = "application/json"),
+        body = charToRaw(jsonlite::toJSON(
+          list(
+            header = data.frame(label = c("Datum", "link", "Bezeichnung")),
+            rows = rows[permutation, ]
+          ),
+          auto_unbox = TRUE
+        ))
+      )
+    },
+    .package = "httr2"
+  )
+
+  with_echo <- run_api_call(get_events(echo = TRUE), fixture_subdir = "get_events")
+  without_echo <- run_api_call(
+    get_events(echo = FALSE), fixture_subdir = "get_events"
+  )
+
+  expect_identical(with_echo, without_echo)
+  expect_identical(
+    with_echo$title,
+    c("Newest", "Same day B", "Same day C", "Missing link", "Older")
+  )
+  expect_identical(with_echo$link, c("/z", "/b", "/c", NA_character_, "/a"))
+  expect_identical(
+    with_echo$date,
+    as.Date(c("2024-03-02", rep("2024-03-01", 3), "2024-02-28"))
+  )
+})
+
+test_that("events retain date ordering when the API omits links", {
+  local_mocked_bindings(
+    req_perform = function(req) {
+      httr2::response(
+        headers = list(`content-type` = "application/json"),
+        body = charToRaw(jsonlite::toJSON(
+          list(
+            header = data.frame(label = c("Datum", "Bezeichnung")),
+            rows = data.frame(
+              date = c("28.02.2024", "02.03.2024"),
+              title = c("Older", "Newest")
+            )
+          ),
+          auto_unbox = TRUE
+        ))
+      )
+    },
+    .package = "httr2"
+  )
+
+  result <- run_api_call(get_events(echo = FALSE), fixture_subdir = "get_events")
+
+  expect_identical(result$title, c("Newest", "Older"))
+  expect_false("link" %in% names(result))
+})
+
 test_that("empty event filters serialize as a JSON object", {
   expect_identical(.get_events_body_to_json(list()), "{}")
 

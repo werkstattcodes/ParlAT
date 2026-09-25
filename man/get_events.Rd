@@ -63,6 +63,10 @@ It mirrors the search functionality on the Austrian Parliament website at
 facilitates searches by legislative period.
 }
 \details{
+Results are ordered by date (newest first), then by \code{link} in ascending
+order within each date. Missing links sort last within a date. If the API
+omits the link column, results are ordered by date only.
+
 When \code{legis_period}, \code{date_start}, and \code{date_end} are all NULL, the API
 search is unrestricted by date. The echoed Parliament website URL derives
 an explicit lower date bound and availability values from the returned rows
