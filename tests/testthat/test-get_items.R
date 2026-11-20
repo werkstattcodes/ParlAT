@@ -1259,3 +1259,30 @@ test_that("get_items accepts supported post-5th legislative periods", {
   expect_s3_class(result, "data.frame")
   expect_true(nrow(result) > 0)
 })
+
+test_that("get_items sends an open start bound when only date_end is given", {
+  captured_bodies <- list()
+
+  local_mocked_bindings(
+    req_perform = function(req) {
+      captured_bodies[[length(captured_bodies) + 1L]] <<- req$body$data
+      structure(list(), class = "httr2_response")
+    },
+    resp_body_json = function(resp, simplifyVector = TRUE) {
+      list(
+        header = data.frame(label = character(), rnr = integer()),
+        rows = list()
+      )
+    },
+    .package = "httr2"
+  )
+
+  suppressMessages(get_items(date_end = "29-11-2022", echo = FALSE))
+  body <- jsonlite::fromJSON(as.character(captured_bodies[[1]]))
+  expect_identical(body$DATUM_VON, c("null", "2022-11-29T00:00:00.000Z"))
+
+  captured_bodies <- list()
+  suppressMessages(get_items(date_start = "29-11-2022", echo = FALSE))
+  body <- jsonlite::fromJSON(as.character(captured_bodies[[1]]))
+  expect_identical(body$DATUM_VON, c("2022-11-29T00:00:00.000Z", "null"))
+})

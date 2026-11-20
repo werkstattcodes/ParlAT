@@ -245,6 +245,16 @@ get_events <- function(
         is_end_date = TRUE
     )
 
+    # The API reads DATERANGE as a [start, end] pair; a single value is treated
+    # as the start date. Send "null" for an open bound so that a lone
+    # `date_end` is not interpreted as `date_start`.
+    if (is.null(date_start) && !is.null(date_end)) {
+        date_start <- "null"
+    }
+    if (!is.null(date_start) && is.null(date_end)) {
+        date_end <- "null"
+    }
+
     #event type
     choices_event_type <- c(
         "Plenarsitzung",

@@ -250,3 +250,31 @@ test_that("aux_transform_event_date returns correct format", {
     "2024-07-01T21:59:59.000Z"
   )
 })
+
+test_that("get_events sends an open start bound when only date_end is given", {
+  captured_bodies <- list()
+
+  local_mocked_bindings(
+    req_perform = function(req) {
+      captured_bodies[[length(captured_bodies) + 1L]] <<- req$body$data
+      structure(list(), class = "httr2_response")
+    },
+    resp_body_json = function(resp, simplifyVector = TRUE) {
+      list(header = data.frame(label = character()), rows = list())
+    },
+    .package = "httr2"
+  )
+
+  suppressMessages(
+    get_events(institution = "NR", date_end = "31-12-2019", echo = FALSE)
+  )
+  body <- jsonlite::fromJSON(as.character(captured_bodies[[1]]))
+  expect_identical(body$DATERANGE, c("null", "2019-12-31T22:59:59.000Z"))
+
+  captured_bodies <- list()
+  suppressMessages(
+    get_events(institution = "NR", date_start = "01-01-2024", echo = FALSE)
+  )
+  body <- jsonlite::fromJSON(as.character(captured_bodies[[1]]))
+  expect_identical(body$DATERANGE, c("2023-12-31T23:00:00.000Z", "null"))
+})
