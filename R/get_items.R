@@ -744,6 +744,16 @@ get_items <- function(
     }
   }
 
+  # The API reads DATUM_VON as a [start, end] pair; a single value is treated
+  # as the start date. Send "null" for an open bound so that a lone `date_end`
+  # is not interpreted as `date_start` (same approach as get_transcripts()).
+  if (is.null(date_start) && !is.null(date_end)) {
+    date_start <- "null"
+  }
+  if (!is.null(date_start) && is.null(date_end)) {
+    date_end <- "null"
+  }
+
   # ITEM / VHG / Gegenstand
   ## checkmate::assert_subset does not show which element was not matched
   choices_item <- c(

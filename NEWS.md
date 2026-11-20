@@ -1,3 +1,14 @@
+# ParlAT (development version)
+
+## Bug fixes
+
+- `get_items()` and `get_events()` no longer treat a lone `date_end` as a start
+  date. Previously, `get_items(date_end = "29-11-2022")` returned items *from*
+  29 November 2022 onwards instead of up to that date (likewise for
+  `get_events()`). An open bound is now sent to the API as `"null"`, as
+  `get_transcripts()` already did. Calls that supply both `date_start` and
+  `date_end`, or only `date_start`, return the same results as before.
+
 # ParlAT 0.1.0
 
 ## New features
