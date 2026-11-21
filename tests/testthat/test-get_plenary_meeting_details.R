@@ -225,6 +225,65 @@ test_that("get_plenary_meeting_details timeline mode keeps nested statements str
   ))
 })
 
+test_that("get_plenary_meeting_details timeline returns one row per statement with protocol links", {
+  result <- run_api_call(
+    get_plenary_meeting_details(
+      institution = "NR",
+      legis_period = 28,
+      meeting_number = 50,
+      details_on = "timeline"
+    ),
+    fixture_subdir = "get_plenary_meeting_details"
+  )
+
+  statements <- dplyr::bind_rows(result$statements)
+
+  expect_true(nrow(statements) > 0)
+  expect_type(statements$protocol_ref, "character")
+  expect_type(statements$protocol_url, "character")
+  # The protocol cell used to be split into one row per data-frame column,
+  # which left protocol_url empty and duplicated every statement.
+  expect_true(all(!is.na(statements$protocol_url)))
+  expect_true(all(grepl("^/dokument/XXVIII/NRSITZ/50/", statements$protocol_url)))
+  expect_true(all(grepl("^RN/\\d+$", statements$protocol_ref)))
+  expect_false(anyDuplicated(statements$protocol_url) > 0)
+})
+
+test_that(".parlat_timeline_protocol handles data frame, string and empty cells", {
+  df_cell <- data.frame(
+    gp_code = "XXVIII", sitzung_id = 105L, fund_von = NA, fund_bis = NA,
+    url = "/dokument/XXVIII/NRSITZ/105/A_-_09_22_14_01044731.html#6",
+    title = "09:22:14 - Name (Grüne) - Aktuelle Stunde (RN/6)",
+    text = "RN/6"
+  )
+  expect_equal(
+    .parlat_timeline_protocol(df_cell),
+    list(ref = "RN/6", url = "/dokument/XXVIII/NRSITZ/105/A_-_09_22_14_01044731.html#6")
+  )
+
+  old_cell <- data.frame(
+    url = "/dokument/XXV/NRSITZ/100/fnameorig_543770.html#RU_146559",
+    title = "Seite 32 des Stenographischen Protokolls der 100. Sitzung des Nationalrats"
+  )
+  expect_equal(
+    .parlat_timeline_protocol(old_cell)$ref,
+    "Seite 32 des Stenographischen Protokolls der 100. Sitzung des Nationalrats"
+  )
+
+  expect_equal(
+    .parlat_timeline_protocol("<a href=\"/dokument/x.html#1\">RN/1</a>"),
+    list(ref = "RN/1", url = "/dokument/x.html#1")
+  )
+  expect_equal(
+    .parlat_timeline_protocol(NULL),
+    list(ref = NA_character_, url = NA_character_)
+  )
+  expect_equal(
+    .parlat_timeline_protocol(df_cell[0, ]),
+    list(ref = NA_character_, url = NA_character_)
+  )
+})
+
 test_that("get_plenary_meeting_details timeline works for sparse meetings (no reden/fsth)", {
   result <- run_api_call(
     get_plenary_meeting_details(

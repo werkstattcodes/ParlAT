@@ -388,13 +388,13 @@ get_plenary_meeting_details <- function(
                         }) |> purrr::list_rbind()
                     } else {
                         purrr::map(rows, function(row) {
-                            s3 <- if (!is.null(row[[3]])) as.character(row[[3]]) else NA_character_
+                            protocol <- .parlat_timeline_protocol(row[[3]])
                             tibble::tibble(
                                 speaker_name = stringr::str_remove_all(as.character(row[[1]]), "<[^>]+>"),
                                 speaker_url  = stringr::str_extract(as.character(row[[1]]), "href=\"([^\"]+)\"", group = 1),
                                 wm_type      = as.character(row[[2]]),
-                                protocol_ref = stringr::str_remove_all(s3, "<[^>]+>"),
-                                protocol_url = stringr::str_extract(s3, "href=\"([^\"]+)\"", group = 1)
+                                protocol_ref = protocol$ref,
+                                protocol_url = protocol$url
                             )
                         }) |> purrr::list_rbind()
                     }
@@ -444,4 +444,42 @@ get_plenary_meeting_details <- function(
     }
 
     df_res
+}
+
+#' Extract the protocol reference of a timeline statement
+#'
+#' In the "Wortmeldungen in der Debatte" rows, the third cell ("Protokoll") is
+#' parsed by jsonlite into a one-row data frame with the columns `text`
+#' (e.g. `"RN/6"` or `"S. 32"`), `url` and `title`. Coercing that data frame
+#' with `as.character()` produced one value per column, which multiplied each
+#' statement into several rows and left `protocol_url` empty. Older string
+#' cells containing an HTML link are still supported.
+#'
+#' @param x The third cell of a statement row.
+#' @return A list with `ref` and `url` (character scalars, possibly `NA`).
+#' @noRd
+.parlat_timeline_protocol <- function(x) {
+    empty <- list(ref = NA_character_, url = NA_character_)
+
+    if (is.data.frame(x)) {
+        if (nrow(x) == 0) {
+            return(empty)
+        }
+        first_value <- function(col) {
+            if (col %in% names(x)) as.character(x[[col]][[1]]) else NA_character_
+        }
+        # Older periods have no `text` column; their `title` holds the page
+        # reference ("Seite 32 des Stenographischen Protokolls ...").
+        ref <- dplyr::coalesce(first_value("text"), first_value("title"))
+        return(list(ref = ref, url = first_value("url")))
+    }
+
+    if (is.character(x) && length(x) == 1 && !is.na(x)) {
+        return(list(
+            ref = stringr::str_remove_all(x, "<[^>]+>"),
+            url = stringr::str_extract(x, "href=\"([^\"]+)\"", group = 1)
+        ))
+    }
+
+    empty
 }
