@@ -1,3 +1,13 @@
+# ParlAT (development version)
+
+## Bug fixes
+
+- `get_plenary_meeting_details(details_on = "timeline")` now returns one row
+  per statement in `statements`, with `protocol_ref` (e.g. `"RN/6"`) and
+  `protocol_url` filled in. The API delivers the protocol cell as a one-row
+  data frame; it was coerced column by column, which multiplied every
+  statement into about seven rows and left `protocol_url` as `NA`.
+
 # ParlAT 0.1.0
 
 ## New features
