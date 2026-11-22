@@ -449,8 +449,10 @@ get_plenary_meeting_details <- function(
 #' Extract the protocol reference of a timeline statement
 #'
 #' In the "Wortmeldungen in der Debatte" rows, the third cell ("Protokoll") is
-#' parsed by jsonlite into a one-row data frame with the columns `text`
-#' (e.g. `"RN/6"` or `"S. 32"`), `url` and `title`. Coercing that data frame
+#' parsed by jsonlite into a one-row data frame. Current periods have the
+#' columns `text` (the margin number, e.g. `"RN/6"`), `url` and `title`; older
+#' periods have no `text`, and `title` holds the page reference (e.g.
+#' `"Seite 32 des Stenographischen Protokolls ..."`). Coercing that data frame
 #' with `as.character()` produced one value per column, which multiplied each
 #' statement into several rows and left `protocol_url` empty. Older string
 #' cells containing an HTML link are still supported.
