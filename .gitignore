@@ -4,6 +4,10 @@
 .Ruserdata
 .Rdata
 .httr-oauth
+.Renviron
+.env
+.env.*
+!.env.example
 .DS_Store
 .quarto
 .vscode

@@ -28,6 +28,8 @@ navbar:
 reference:
   - title: "main functions"
     contents:
+      - get_submission_arguments
+      - group_submission_arguments
       - get_committees
       - get_events
       - get_items

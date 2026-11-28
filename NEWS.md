@@ -1,5 +1,10 @@
 # ParlAT (development version)
 
+- `get_submission_arguments()` identifies quoted pro/contra arguments within
+  submissions using an optional ellmer model. `group_submission_arguments()`
+  groups those arguments into shared topics with a user-defined maximum and
+  returns total and direction-specific occurrence and submission frequencies.
+
 - `get_consultation_submissions()` gains `include_text = TRUE` to retrieve
   inline submission text, original HTML and absolute document links. This
   adds a detail request for each distinct published submission URL.

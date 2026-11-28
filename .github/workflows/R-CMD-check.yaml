@@ -5,7 +5,7 @@
 # Uses mocked API tests (default) for fast, reliable CI.
 on:
   push:
-    branches: [main, master, dev]
+    branches: [main, master, dev, dev-0.2.0]
     paths-ignore:
       - 'docs/**'
       - 'pkgdown/**'
@@ -14,7 +14,7 @@ on:
       - 'README.Rmd'
       - 'NEWS.md'
   pull_request:
-    branches: [main, master, dev]
+    branches: [main, master, dev, dev-0.2.0]
     paths-ignore:
       - 'docs/**'
       - 'pkgdown/**'

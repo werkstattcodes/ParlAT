@@ -1,0 +1,147 @@
+---
+title: "Draft workflow: arguments in consultation submissions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Draft workflow: arguments in consultation submissions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`get_submission_arguments()` identifies arguments in each submission.
+`group_submission_arguments()` separately groups and counts them
+once complete submission text is available. It builds on the workflow in the
+[prosecutor consultation analysis](https://werk.statt.codes/posts/2026-09-17-Prosecutor-Submission/).
+This first draft uses [ellmer](https://ellmer.tidyverse.org/) for provider access
+and structured output. The optional dependency, explicit namespace calls,
+roxygen documentation and offline tests follow the development practices in
+[R Packages](https://r-pkgs.org/).
+
+## Set up a model
+
+Install ellmer separately. Choose a provider/model with structured output
+support and access through your provider account.
+
+```{r, eval=FALSE}
+install.packages("ellmer")
+```
+
+Store the provider's key in your user or project `.Renviron`, then restart R.
+For example, the file can contain `OPENAI_API_KEY=your-key-here`. Anthropic uses
+`ANTHROPIC_API_KEY`; Google Gemini uses `GOOGLE_API_KEY`. Follow ellmer's
+documentation for other providers. Keep credential files out of version control.
+ParlAT does not read, modify or return those files or the key.
+
+If you already use a `.env` file, explicitly load it into the R process first:
+
+```{r, eval=FALSE}
+# Requires the optional dotenv package, installed separately.
+dotenv::load_dot_env(".env")
+```
+
+## Prepare full text
+
+```{r, eval=FALSE}
+library(ParlAT)
+
+submissions <- get_consultation_submissions(
+  "/gegenstand/XXVIII/ME/44", include_text = TRUE
+)
+```
+
+`submission_text` contains inline text only. Review the `documents` list-column:
+when there are attachments, the inline text may just be a cover letter. Prepare
+the complete text, including PDF extraction or OCR as appropriate, in one
+character column. Keep exactly one row per submission with a unique
+`submission_id`. Combine multiple documents belonging to the same submission
+before analysis. Restrict each run to one consultation.
+
+The first draft does not download PDFs, run OCR, or decide whether an attachment
+duplicates inline text. Missing text remains visible as `missing_text` and is
+excluded from the analysed denominator.
+
+## Extract, group and count
+
+This example assumes `submission_text` has been reviewed and completed. Use
+`text_column = "full_text"` if you store prepared text in a separate column.
+
+```{r, eval=FALSE}
+arguments <- get_submission_arguments(
+  submissions,
+  model = "openai/gpt-4.1-mini",
+  direction = "both"
+)
+
+result <- group_submission_arguments(
+  arguments, model = "openai/gpt-4.1-mini", n_groups = 5
+)
+
+result$submissions
+result$arguments
+result$groups
+result$frequencies
+result$direction_frequencies
+saveRDS(result, "consultation-arguments.rds")
+```
+
+`n_groups` is an upper limit across the corpus, including any residual group.
+It does not limit the number of arguments extracted from a submission. The
+model may form fewer groups if the material warrants fewer.
+
+The workflow sends one extraction request per non-empty submission, one request
+to define groups from all distinct argument descriptions, and one assignment
+request per batch (50 descriptions by default). Every request uses a fresh chat.
+No additional paid probe request is sent. The functions make real provider
+requests and can incur charges; start with a small subset. Provider libraries
+may retry requests according to their own policies.
+
+`arguments` retains a submission identifier and verbatim source quotations for
+each argument. Each occurrence has its own argument ID. Exact duplicate
+descriptions and directions across submissions share an assignment request.
+Similar descriptions with different wording can fall in the same group but
+remain separate registry entries. Quotations must occur in the supplied source;
+the check cannot establish whether the interpretation is correct.
+
+Extraction accepts one or several submissions and preserves their identifiers.
+Save `arguments` to rerun grouping with a different model or group limit without
+repeating extraction. Direction is relative to the proposal or provision:
+`direction = "pro"`, `"contra"` or `"both"`. One submission can contain both.
+Topics are shared across directions; `direction_frequencies` reports pro/contra
+counts separately. Overall topic totals count a submission once even when it
+raises both pro and contra arguments.
+
+## Interpret the frequencies
+
+For each group:
+
+- `n_arguments` counts extracted argument occurrences across submissions.
+- `n_submissions` counts distinct submissions raising at least one argument in
+  the group. Several arguments in one submission count once here.
+- `proportion` divides `n_submissions` by all successfully analysed submissions,
+  including those returning zero arguments.
+
+For example, if three submissions are analysed and two raise a cost argument,
+the cost group's proportion is `2 / 3`, even if the third submission contains
+no relevant argument. A fourth submission with missing text is excluded from
+that denominator. A submission can raise arguments in several groups, so group
+proportions need not sum to one.
+
+## Failures and review
+
+By default, any extraction failure stops the call. With `on_error = "continue"`,
+failed extractions are marked `failed`, with `n_arguments = NA`, and excluded
+from the denominator. They are never treated as successful zero-argument
+responses. Inspect `result$submissions` before interpreting frequencies.
+Group-definition or assignment failures always stop the call; a partial
+assignment cannot silently become a valid frequency table. Unknown, duplicate
+or omitted IDs are rejected.
+
+`max_input_chars` guards the size of each source input. It is not a token budget
+and does not account for the model's context-window rules. Inputs are never
+silently truncated. All distinct descriptions must fit into the codebook
+request; for large corpora, use a suitable context window or reduce the corpus.
+
+Review the codebook, source quotations, and missing/failed cases before using
+the counts. Model outputs vary, and this helper does not validate political
+interpretations. Save results and record your model and settings. This draft
+does not provide durable checkpoints, automatic resume, hierarchical grouping,
+cost estimates, or automatic PDF/OCR preparation.
